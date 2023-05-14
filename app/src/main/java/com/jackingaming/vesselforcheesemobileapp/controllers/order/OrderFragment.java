@@ -103,6 +103,8 @@ public class OrderFragment extends Fragment {
                     }
                 }
         ).attach();
+
+        viewPager2.setCurrentItem(1, false);
     }
 
     class OrderFragmentAdapter extends FragmentStateAdapter {
