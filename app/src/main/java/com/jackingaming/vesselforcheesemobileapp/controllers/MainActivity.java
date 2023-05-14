@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.jackingaming.vesselforcheesemobileapp.R;
@@ -29,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar_layout);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -39,18 +42,25 @@ public class MainActivity extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case R.id.action_home:
                         replaceFragmentInFCV(HomeFragment.newInstance(null, null));
+                        collapsingToolbarLayout.setTitle(
+                                getResources().getString(R.string.app_name)
+                        );
                         return true;
                     case R.id.action_scan:
                         replaceFragmentInFCV(ScanFragment.newInstance(null, null));
+                        collapsingToolbarLayout.setTitle("Scan");
                         return true;
                     case R.id.action_order:
                         replaceFragmentInFCV(OrderFragment.newInstance(null, null));
+                        collapsingToolbarLayout.setTitle("Order");
                         return true;
                     case R.id.action_gift:
                         replaceFragmentInFCV(GiftFragment.newInstance(null, null));
+                        collapsingToolbarLayout.setTitle("Gift");
                         return true;
                     case R.id.action_stores:
                         replaceFragmentInFCV(StoresFragment.newInstance(null, null));
+                        collapsingToolbarLayout.setTitle("Stores");
                         return true;
                     default:
                         Log.e(TAG, "onCreate() bncMain item selected listener's switch-construct's default block");
