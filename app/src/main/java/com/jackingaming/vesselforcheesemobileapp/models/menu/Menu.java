@@ -1,5 +1,6 @@
 package com.jackingaming.vesselforcheesemobileapp.models.menu;
 
+import com.jackingaming.vesselforcheesemobileapp.R;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.UndefinedDrinkComponent;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.AddInsOptions;
@@ -16,18 +17,59 @@ import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.size_o
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.sweetener_options.SweetenerOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.tea_options.TeaOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.topping_options.ToppingOptions;
-import com.jackingaming.vesselforcheesemobileapp.models.menu.drinks.brewed.Coffee;
-import com.jackingaming.vesselforcheesemobileapp.models.menu.drinks.espresso.milk_based.lattes.Latte;
-import com.jackingaming.vesselforcheesemobileapp.models.menu.drinks.espresso.straight_shots.ShotEspresso;
-import com.jackingaming.vesselforcheesemobileapp.models.menu.drinks.other.Water;
-import com.jackingaming.vesselforcheesemobileapp.models.menu.foods.Bread;
-import com.jackingaming.vesselforcheesemobileapp.models.menu.sides.SteamedVegetable;
+import com.jackingaming.vesselforcheesemobileapp.models.menu.categories.Category;
+import com.jackingaming.vesselforcheesemobileapp.models.menu.categories.TitleCategory;
+import com.jackingaming.vesselforcheesemobileapp.models.menu.categories.MenuItemCategory;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.MenuItem;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.UndefinedMenuItem;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.Coffee;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.lattes.Latte;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.straight_shots.ShotEspresso;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.other.Water;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.foods.Bread;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.sides.SteamedVegetable;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Menu {
     public static final String TAG = Menu.class.getSimpleName();
+
+    public static final List<Category> categories = Arrays.asList(
+            new TitleCategory("Drinks", 4),
+            new MenuItemCategory("Oleato", R.drawable.harvest_moon_natsume),
+            new MenuItemCategory("Hot Coffees", R.drawable.harvest_moon_natsume),
+            new MenuItemCategory("Hot Teas", R.drawable.harvest_moon_natsume),
+            new MenuItemCategory("Hot Drinks", R.drawable.harvest_moon_natsume),
+            new MenuItemCategory("Frappuccino Blended Beverages", R.drawable.harvest_moon_natsume),
+            new MenuItemCategory("Cold Coffees", R.drawable.harvest_moon_natsume),
+            new MenuItemCategory("Iced Teas", R.drawable.harvest_moon_natsume),
+            new MenuItemCategory("Cold Drinks", R.drawable.harvest_moon_natsume),
+
+            new TitleCategory("Food", 2),
+            new MenuItemCategory("Hot Breakfast", R.drawable.harvest_moon_natsume),
+            new MenuItemCategory("Oatmeal & Yogurt", R.drawable.harvest_moon_natsume),
+            new MenuItemCategory("Bakery", R.drawable.harvest_moon_natsume),
+            new MenuItemCategory("Lunch", R.drawable.harvest_moon_natsume),
+            new MenuItemCategory("Snacks & Sweets", R.drawable.harvest_moon_natsume),
+
+            new TitleCategory("At Home Coffee", 0),
+            new MenuItemCategory("Whole Bean", R.drawable.harvest_moon_natsume),
+            new MenuItemCategory("VIA Instant", R.drawable.harvest_moon_natsume),
+
+            new TitleCategory("Merchandise", 4),
+            new MenuItemCategory("Cold Cups", R.drawable.harvest_moon_natsume),
+            new MenuItemCategory("Tumblers", R.drawable.harvest_moon_natsume),
+            new MenuItemCategory("Mugs", R.drawable.harvest_moon_natsume),
+            new MenuItemCategory("Water Bottles", R.drawable.harvest_moon_natsume),
+            new MenuItemCategory("Other", R.drawable.harvest_moon_natsume),
+
+            new TitleCategory("Gift Cards", 2),
+            new MenuItemCategory("Happy Birthday", R.drawable.harvest_moon_natsume),
+            new MenuItemCategory("Thank You", R.drawable.harvest_moon_natsume),
+            new MenuItemCategory("Traditional", R.drawable.harvest_moon_natsume)
+    );
 
     public enum CategoryDrinks {
         OLEATO, HOT_COFFEES, HOT_TEAS, HOT_DRINKS, FRAPPUCCINO_BLENDED_BEVERAGES, COLD_COFFEES, ICED_TEAS, COLD_DRINKS;
