@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +17,7 @@ import com.google.android.material.tabs.TabLayoutMediator;
 import com.jackingaming.vesselforcheesemobileapp.R;
 import com.jackingaming.vesselforcheesemobileapp.controllers.order.favorites.FavoritesFragment;
 import com.jackingaming.vesselforcheesemobileapp.controllers.order.featured.FeaturedFragment;
-import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.MenuFragment;
+import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.parent.MenuFragment;
 import com.jackingaming.vesselforcheesemobileapp.controllers.order.previous.PreviousFragment;
 
 /**

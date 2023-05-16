@@ -14,6 +14,9 @@
         android:theme="@style/Theme.VesselForCheeseMobileApp"
         tools:targetApi="31">
         <activity
+            android:name=".MenuItemCategoryActivity"
+            android:exported="false" />
+        <activity
             android:name=".controllers.MainActivity"
             android:exported="true">
             <intent-filter>

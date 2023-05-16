@@ -4,6 +4,6 @@
     android:id="@+id/recycler_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".controllers.order.menu.MenuFragment">
+    tools:context=".controllers.order.menu.parent.MenuFragment">
 
 </androidx.recyclerview.widget.RecyclerView>

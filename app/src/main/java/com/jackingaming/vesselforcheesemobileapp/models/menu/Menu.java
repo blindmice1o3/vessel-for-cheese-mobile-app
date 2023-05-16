@@ -36,87 +36,57 @@ import java.util.List;
 public class Menu {
     public static final String TAG = Menu.class.getSimpleName();
 
-    public static final List<Category> categories = Arrays.asList(
-            new TitleCategory("Drinks", 4),
-            new MenuItemCategory("Oleato", R.drawable.harvest_moon_natsume),
+    public static final List<Category> drinks = Arrays.asList(
+            new MenuItemCategory("Oileeto", R.drawable.harvest_moon_natsume),
             new MenuItemCategory("Hot Coffees", R.drawable.harvest_moon_natsume),
             new MenuItemCategory("Hot Teas", R.drawable.harvest_moon_natsume),
             new MenuItemCategory("Hot Drinks", R.drawable.harvest_moon_natsume),
-            new MenuItemCategory("Frappuccino Blended Beverages", R.drawable.harvest_moon_natsume),
+            new MenuItemCategory("Blended Beverages", R.drawable.harvest_moon_natsume),
             new MenuItemCategory("Cold Coffees", R.drawable.harvest_moon_natsume),
             new MenuItemCategory("Iced Teas", R.drawable.harvest_moon_natsume),
-            new MenuItemCategory("Cold Drinks", R.drawable.harvest_moon_natsume),
+            new MenuItemCategory("Cold Drinks", R.drawable.harvest_moon_natsume)
+    );
 
-            new TitleCategory("Food", 2),
+    public static final List<Category> food = Arrays.asList(
             new MenuItemCategory("Hot Breakfast", R.drawable.harvest_moon_natsume),
             new MenuItemCategory("Oatmeal & Yogurt", R.drawable.harvest_moon_natsume),
             new MenuItemCategory("Bakery", R.drawable.harvest_moon_natsume),
             new MenuItemCategory("Lunch", R.drawable.harvest_moon_natsume),
-            new MenuItemCategory("Snacks & Sweets", R.drawable.harvest_moon_natsume),
+            new MenuItemCategory("Snacks & Sweets", R.drawable.harvest_moon_natsume)
+    );
 
-            new TitleCategory("At Home Coffee", 0),
+    public static final List<Category> atHomeCoffee = Arrays.asList(
             new MenuItemCategory("Whole Bean", R.drawable.harvest_moon_natsume),
-            new MenuItemCategory("VIA Instant", R.drawable.harvest_moon_natsume),
+            new MenuItemCategory("Instant Coffee", R.drawable.harvest_moon_natsume)
+    );
 
-            new TitleCategory("Merchandise", 4),
+    public static final List<Category> merchandise = Arrays.asList(
             new MenuItemCategory("Cold Cups", R.drawable.harvest_moon_natsume),
             new MenuItemCategory("Tumblers", R.drawable.harvest_moon_natsume),
             new MenuItemCategory("Mugs", R.drawable.harvest_moon_natsume),
             new MenuItemCategory("Water Bottles", R.drawable.harvest_moon_natsume),
-            new MenuItemCategory("Other", R.drawable.harvest_moon_natsume),
+            new MenuItemCategory("Other", R.drawable.harvest_moon_natsume)
+    );
 
-            new TitleCategory("Gift Cards", 2),
+    public static final List<Category> giftCards = Arrays.asList(
             new MenuItemCategory("Happy Birthday", R.drawable.harvest_moon_natsume),
             new MenuItemCategory("Thank You", R.drawable.harvest_moon_natsume),
             new MenuItemCategory("Traditional", R.drawable.harvest_moon_natsume)
     );
 
-    public enum CategoryDrinks {
-        OLEATO, HOT_COFFEES, HOT_TEAS, HOT_DRINKS, FRAPPUCCINO_BLENDED_BEVERAGES, COLD_COFFEES, ICED_TEAS, COLD_DRINKS;
-    }
+    public static final List<Category> categories = new ArrayList<Category>();
 
-    public enum HotCoffees {
-        AMERICANOS, BREWED_COFFEES, CAPPUCCINOS, ESPRESSO_SHOTS, FLAT_WHITES, LATTES, MACCHIATOS, MOCHAS, COFFEE_TRAVELERS;
-    }
-
-    public enum HotTeas {
-        CHAI_TEAS, BLACK_TEAS, GREEN_TEAS, HERBAL_TEAS;
-    }
-
-    public enum HotDrinks {
-        HOT_CHOCOLATES, JUICE, STEAMERS;
-    }
-
-    public enum FrappuccinoBlendedBeverages {
-        COFFEE_FRAPPUCCINO, CREME_FRAPPUCCINO;
-    }
-
-    public enum ColdCoffees {
-        COLD_BREWS, NITRO_COLD_BREWS, ICED_AMERICANO, ICED_COFFEES, ICED_SHAKEN_ESPRESSO, ICED_FLAT_WHITES, ICED_LATTES, ICED_MACCHIATOS, ICED_MOCHAS, ICED_CLOVER_BREWED_COFFEES;
-    }
-
-    public enum IcedTeas {
-        BOTTLED_TEAS, ICED_BLACK_TEAS, ICED_CHAI_TEAS, ICED_GREEN_TEAS, ICED_HERBAL_TEAS;
-    }
-
-    public enum ColdDrinks {
-        STARBUCKS_REFRESHERS, JUICE, MILK, SPARKLING_WATER, WATER;
-    }
-
-    public enum CategoryFood {
-        HOT_BREAKFAST, OATMEAL_AND_YOGURT, BAKERY, LUNCH, SNACKS_AND_SWEETS;
-    }
-
-    public enum CategoryAtHomeCoffee {
-        WHOLE_BEAN, VIA_INSTANT;
-    }
-
-    public enum CategoryMerchandise {
-        COLD_CUPS, TUMBLERS, MUGS, WATER_BOTTLES, OTHER, BORROW_A_CUP_PROGRAM;
-    }
-
-    public enum CategoryGiftCards {
-        HAPPY_BIRTHDAY, THANK_YOU, TRADITIONAL;
+    static {
+        categories.add(new TitleCategory("Drinks", drinks.size()));
+        categories.addAll(drinks);
+        categories.add(new TitleCategory("Food", food.size()));
+        categories.addAll(food);
+        categories.add(new TitleCategory("At Home Coffee", atHomeCoffee.size()));
+        categories.addAll(atHomeCoffee);
+        categories.add(new TitleCategory("Merchandise", merchandise.size()));
+        categories.addAll(merchandise);
+        categories.add(new TitleCategory("Gift Cards", giftCards.size()));
+        categories.addAll(giftCards);
     }
 
     public static String parseDrinkComponentForStringRepresentation(DrinkComponent drinkComponent) {
