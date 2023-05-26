@@ -22,10 +22,34 @@ import com.jackingaming.vesselforcheesemobileapp.models.menu.categories.TitleCat
 import com.jackingaming.vesselforcheesemobileapp.models.menu.categories.MenuItemCategory;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.MenuItem;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.UndefinedMenuItem;
-import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.Coffee;
-import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.lattes.Latte;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.CaffeMisto;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.CostaRicaNaranjo;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.DarkRoast;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.DecafPikePlaceRoast;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.EcuadorLoja;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.GreenApronBlend;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.PapuaNewGuineaMoanti;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.PikePlaceRoast;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.RwandaSholi;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.cappuccinos.Cappuccino;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.flat_whites.FlatWhite;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.flat_whites.HoneyAlmondmilkFlatWhite;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.lattes.CaffeLatte;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.lattes.CinnamonDolceLatte;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.lattes.OleatoCaffeLatteWithOatmilk;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.lattes.StarbucksBlondeVanillaLatte;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.lattes.StarbucksReserveHazelnutBiancoLatte;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.lattes.StarbucksReserveLatte;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.macchiatos.CaramelMacchiato;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.macchiatos.EspressoMacchiato;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.mochas.CaffeMocha;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.mochas.StarbucksReserveDarkChocolateMocha;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.mochas.WhiteChocolateMocha;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.straight_shots.EspressoConPanna;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.straight_shots.ShotEspresso;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.water_based.americanos.CaffeAmericano;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.other.Water;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.travelers.VerandaBlend;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.foods.Bread;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.sides.SteamedVegetable;
 
@@ -35,6 +59,79 @@ import java.util.List;
 
 public class Menu {
     public static final String TAG = Menu.class.getSimpleName();
+
+    public static final List<MenuItemCategory> hotCoffees = Arrays.asList(
+            new MenuItemCategory("Americanos", R.drawable.harvest_moon_natsume),
+            new MenuItemCategory("Brewed Coffees", R.drawable.harvest_moon_natsume),
+            new MenuItemCategory("Cappuccinos", R.drawable.harvest_moon_natsume),
+            new MenuItemCategory("Espresso Shots", R.drawable.harvest_moon_natsume),
+            new MenuItemCategory("Flat Whites", R.drawable.harvest_moon_natsume),
+            new MenuItemCategory("Lattes", R.drawable.harvest_moon_natsume),
+            new MenuItemCategory("Macchiatos", R.drawable.harvest_moon_natsume),
+            new MenuItemCategory("Mochas", R.drawable.harvest_moon_natsume),
+            new MenuItemCategory("Coffee Travelers", R.drawable.harvest_moon_natsume)
+    );
+
+    // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+    public static final List<MenuItem> americanos = Arrays.asList(
+            new CaffeAmericano()
+    );
+
+    public static final List<MenuItem> brewedCoffees = Arrays.asList(
+            new GreenApronBlend(),
+            new PikePlaceRoast(),
+            new DarkRoast(),
+            new DecafPikePlaceRoast(),
+            new RwandaSholi(),
+            new PapuaNewGuineaMoanti(),
+            new CostaRicaNaranjo(),
+            new EcuadorLoja(),
+            new CaffeMisto()
+    );
+
+    public static final List<MenuItem> cappuccinos = Arrays.asList(
+            new Cappuccino()
+    );
+
+    public static final List<MenuItem> espressoShots = Arrays.asList(
+            new ShotEspresso(),
+            new EspressoConPanna()
+    );
+
+    public static final List<MenuItem> flatWhites = Arrays.asList(
+            new FlatWhite(),
+            new HoneyAlmondmilkFlatWhite()
+    );
+
+    public static final List<MenuItem> lattes = Arrays.asList(
+            new OleatoCaffeLatteWithOatmilk(),
+            new CaffeLatte(),
+            new CinnamonDolceLatte(),
+            new StarbucksReserveLatte(),
+            new StarbucksReserveHazelnutBiancoLatte(),
+            new StarbucksBlondeVanillaLatte()
+    );
+
+    public static final List<MenuItem> macchiatos = Arrays.asList(
+            new CaramelMacchiato(),
+            new EspressoMacchiato()
+    );
+
+    public static final List<MenuItem> mochas = Arrays.asList(
+            new CaffeMocha(),
+            new WhiteChocolateMocha(),
+            new StarbucksReserveDarkChocolateMocha()
+    );
+
+    public static final List<MenuItem> coffeeTravelers = Arrays.asList(
+            new VerandaBlend(),
+            new com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.travelers.DarkRoast(),
+            new com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.travelers.PikePlaceRoast(),
+            new com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.travelers.DecafPikePlaceRoast()
+    );
+
+    // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
     public static final List<Category> drinks = Arrays.asList(
             new MenuItemCategory("Oileeto", R.drawable.harvest_moon_natsume),
@@ -292,10 +389,10 @@ public class Menu {
         // DRINKS
         else if (tagOfSelectedButton.equals(Water.NAME_DEFAULT)) {
             menuItemSelected = new Water();
-        } else if (tagOfSelectedButton.equals(Coffee.NAME_DEFAULT)) {
-            menuItemSelected = new Coffee();
-        } else if (tagOfSelectedButton.equals(Latte.NAME_DEFAULT)) {
-            menuItemSelected = new Latte();
+        } else if (tagOfSelectedButton.equals(GreenApronBlend.NAME_DEFAULT)) {
+            menuItemSelected = new GreenApronBlend();
+        } else if (tagOfSelectedButton.equals(CaffeLatte.NAME_DEFAULT)) {
+            menuItemSelected = new CaffeLatte();
         } else if (tagOfSelectedButton.equals(ShotEspresso.NAME_DEFAULT)) {
             menuItemSelected = new ShotEspresso();
         }
@@ -337,8 +434,8 @@ public class Menu {
         List<String> allDrinks = new ArrayList<String>();
 
         allDrinks.add(Water.NAME_DEFAULT);
-        allDrinks.add(Coffee.NAME_DEFAULT);
-        allDrinks.add(Latte.NAME_DEFAULT);
+        allDrinks.add(GreenApronBlend.NAME_DEFAULT);
+        allDrinks.add(CaffeLatte.NAME_DEFAULT);
         allDrinks.add(ShotEspresso.NAME_DEFAULT);
         allDrinks.add("NULL");
 
