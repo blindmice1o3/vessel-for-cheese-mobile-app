@@ -41,7 +41,7 @@ public class MenuItemCategoryActivity extends AppCompatActivity {
 
         // TODO: change from just Brewed Coffees to all 9 sub-categories of Hot Coffees.
         // TODO: use Menu.hotCoffeesAsMap
-        MenuItemAdapter adapter = new MenuItemAdapter(Menu.brewedCoffees, new MenuItemAdapter.MenuItemAdapterListener() {
+        SubCategoryAdapter adapter = new SubCategoryAdapter(Menu.hotCoffeesAsMap, new SubCategoryAdapter.SubCategoryAdapterListener() {
             @Override
             public void onItemClicked(int position, View view) {
                 Toast.makeText(MenuItemCategoryActivity.this, "onItemClicked() position: " + position, Toast.LENGTH_SHORT).show();
@@ -58,8 +58,11 @@ public class MenuItemCategoryActivity extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.rv_menu_item_category);
         recyclerView.setAdapter(adapter);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(linearLayoutManager);
+        RecyclerView.ItemDecoration itemDecoration =
+                new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
+        recyclerView.addItemDecoration(itemDecoration);
     }
 
     @Override
