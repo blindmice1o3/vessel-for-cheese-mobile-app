@@ -55,22 +55,33 @@ import com.jackingaming.vesselforcheesemobileapp.models.menu_items.sides.Steamed
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Menu {
     public static final String TAG = Menu.class.getSimpleName();
     public static final String HOT_COFFEES = "Hot Coffees";
+    public static final String AMERICANOS = "Americanos";
+    public static final String BREWED_COFFEES = "Brewed Coffees";
+    public static final String CAPPUCCINOS = "Cappuccinos";
+    public static final String ESPRESSO_SHOTS = "Espresso Shots";
+    public static final String FLAT_WHITES = "Flat Whites";
+    public static final String LATTES = "Lattes";
+    public static final String MACCHIATOS = "Macchiatos";
+    public static final String MOCHAS = "Mochas";
+    public static final String COFFEE_TRAVELERS = "Coffee Travelers";
 
     public static final List<MenuItemCategory> hotCoffees = Arrays.asList(
-            new MenuItemCategory("Americanos", R.drawable.harvest_moon_natsume),
-            new MenuItemCategory("Brewed Coffees", R.drawable.harvest_moon_natsume),
-            new MenuItemCategory("Cappuccinos", R.drawable.harvest_moon_natsume),
-            new MenuItemCategory("Espresso Shots", R.drawable.harvest_moon_natsume),
-            new MenuItemCategory("Flat Whites", R.drawable.harvest_moon_natsume),
-            new MenuItemCategory("Lattes", R.drawable.harvest_moon_natsume),
-            new MenuItemCategory("Macchiatos", R.drawable.harvest_moon_natsume),
-            new MenuItemCategory("Mochas", R.drawable.harvest_moon_natsume),
-            new MenuItemCategory("Coffee Travelers", R.drawable.harvest_moon_natsume)
+            new MenuItemCategory(AMERICANOS, R.drawable.harvest_moon_natsume),
+            new MenuItemCategory(BREWED_COFFEES, R.drawable.harvest_moon_natsume),
+            new MenuItemCategory(CAPPUCCINOS, R.drawable.harvest_moon_natsume),
+            new MenuItemCategory(ESPRESSO_SHOTS, R.drawable.harvest_moon_natsume),
+            new MenuItemCategory(FLAT_WHITES, R.drawable.harvest_moon_natsume),
+            new MenuItemCategory(LATTES, R.drawable.harvest_moon_natsume),
+            new MenuItemCategory(MACCHIATOS, R.drawable.harvest_moon_natsume),
+            new MenuItemCategory(MOCHAS, R.drawable.harvest_moon_natsume),
+            new MenuItemCategory(COFFEE_TRAVELERS, R.drawable.harvest_moon_natsume)
     );
 
     // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -118,7 +129,6 @@ public class Menu {
             new CaramelMacchiato(),
             new EspressoMacchiato()
     );
-
     public static final List<MenuItem> mochas = Arrays.asList(
             new CaffeMocha(),
             new WhiteChocolateMocha(),
@@ -131,6 +141,20 @@ public class Menu {
             new com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.travelers.PikePlaceRoast(),
             new com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.travelers.DecafPikePlaceRoast()
     );
+
+    public static final Map<String, List<MenuItem>> hotCoffeesAsMap = new HashMap<String, List<MenuItem>>();
+
+    static {
+        hotCoffeesAsMap.put(AMERICANOS, americanos);
+        hotCoffeesAsMap.put(BREWED_COFFEES, brewedCoffees);
+        hotCoffeesAsMap.put(CAPPUCCINOS, cappuccinos);
+        hotCoffeesAsMap.put(ESPRESSO_SHOTS, espressoShots);
+        hotCoffeesAsMap.put(FLAT_WHITES, flatWhites);
+        hotCoffeesAsMap.put(LATTES, lattes);
+        hotCoffeesAsMap.put(MACCHIATOS, macchiatos);
+        hotCoffeesAsMap.put(MOCHAS, mochas);
+        hotCoffeesAsMap.put(COFFEE_TRAVELERS, coffeeTravelers);
+    }
 
     // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 

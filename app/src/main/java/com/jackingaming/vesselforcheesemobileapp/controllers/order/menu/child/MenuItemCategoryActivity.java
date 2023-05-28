@@ -3,14 +3,19 @@ package com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.child;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
 
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.jackingaming.vesselforcheesemobileapp.R;
+import com.jackingaming.vesselforcheesemobileapp.models.menu.Menu;
 
 public class MenuItemCategoryActivity extends AppCompatActivity {
     public static final String TAG = MenuItemCategoryActivity.class.getSimpleName();
@@ -27,15 +32,34 @@ public class MenuItemCategoryActivity extends AppCompatActivity {
         int numberOfMenuItems = getIntent().getIntExtra(EXTRA_SIZE, 0);
 
         CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar_layout);
-        // TODO:
         collapsingToolbarLayout.setTitle(title + " (" + numberOfMenuItems + ")");
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        RecyclerView recyclerView = findViewById(R.id.rv_menu_item_category);
 
+        // TODO: change from just Brewed Coffees to all 9 sub-categories of Hot Coffees.
+        // TODO: use Menu.hotCoffeesAsMap
+        MenuItemAdapter adapter = new MenuItemAdapter(Menu.brewedCoffees, new MenuItemAdapter.MenuItemAdapterListener() {
+            @Override
+            public void onItemClicked(int position, View view) {
+                Toast.makeText(MenuItemCategoryActivity.this, "onItemClicked() position: " + position, Toast.LENGTH_SHORT).show();
+                // TODO:
+            }
+
+            @Override
+            public void onItemLongClicked(int position, View view) {
+                Toast.makeText(MenuItemCategoryActivity.this, "onItemLongClicked() position: " + position, Toast.LENGTH_SHORT).show();
+                // TODO:
+            }
+        });
+
+        RecyclerView recyclerView = findViewById(R.id.rv_menu_item_category);
+        recyclerView.setAdapter(adapter);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        recyclerView.setLayoutManager(linearLayoutManager);
     }
 
     @Override
