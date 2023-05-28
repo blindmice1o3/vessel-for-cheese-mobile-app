@@ -42,10 +42,9 @@ public class MenuItemCategoryActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         Log.i(TAG, "onOptionsItemSelected()");
         if (item.getItemId() == android.R.id.home) {
-            // TODO:
             Log.i(TAG, "up button (android.R.id.home) was pressed");
-            finish();
-            return true;
+            // TODO: if needed, can customize behavior of Up-button here.
+            return super.onOptionsItemSelected(item);
         } else {
             Log.i(TAG, "else-clause");
             return super.onOptionsItemSelected(item);
