@@ -59,6 +59,7 @@ import java.util.List;
 
 public class Menu {
     public static final String TAG = Menu.class.getSimpleName();
+    public static final String HOT_COFFEES = "Hot Coffees";
 
     public static final List<MenuItemCategory> hotCoffees = Arrays.asList(
             new MenuItemCategory("Americanos", R.drawable.harvest_moon_natsume),
@@ -135,7 +136,7 @@ public class Menu {
 
     public static final List<Category> drinks = Arrays.asList(
             new MenuItemCategory("Oileeto", R.drawable.harvest_moon_natsume),
-            new MenuItemCategory("Hot Coffees", R.drawable.harvest_moon_natsume),
+            new MenuItemCategory(HOT_COFFEES, R.drawable.harvest_moon_natsume),
             new MenuItemCategory("Hot Teas", R.drawable.harvest_moon_natsume),
             new MenuItemCategory("Hot Drinks", R.drawable.harvest_moon_natsume),
             new MenuItemCategory("Blended Beverages", R.drawable.harvest_moon_natsume),

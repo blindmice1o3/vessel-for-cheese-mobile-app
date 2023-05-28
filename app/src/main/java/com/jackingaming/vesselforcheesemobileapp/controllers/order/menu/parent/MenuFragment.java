@@ -1,5 +1,6 @@
 package com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.parent;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -15,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.jackingaming.vesselforcheesemobileapp.R;
+import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.child.MenuItemCategoryActivity;
 import com.jackingaming.vesselforcheesemobileapp.models.menu.Menu;
 import com.jackingaming.vesselforcheesemobileapp.models.menu.categories.Category;
 
@@ -83,8 +85,19 @@ public class MenuFragment extends Fragment {
         adapter = new CategoryAdapter(categories, new CategoryAdapter.CategoryAdapterListener() {
             @Override
             public void onItemClicked(int position, View view) {
-                Toast.makeText(getContext(), "onItemClicked() position: " + position, Toast.LENGTH_SHORT).show();
                 // TODO:
+                String nameOfCategory = categories.get(position).getName();
+                if (nameOfCategory.equals(Menu.HOT_COFFEES)) {
+                    int numberOfMenuItems = Menu.americanos.size() + Menu.brewedCoffees.size() + Menu.cappuccinos.size() + Menu.espressoShots.size() + Menu.flatWhites.size() + Menu.lattes.size() + Menu.macchiatos.size() + Menu.mochas.size() + Menu.coffeeTravelers.size();
+
+                    Intent intent = new Intent(getContext(), MenuItemCategoryActivity.class);
+                    intent.putExtra(MenuItemCategoryActivity.EXTRA_TITLE, Menu.HOT_COFFEES);
+                    intent.putExtra(MenuItemCategoryActivity.EXTRA_SIZE, numberOfMenuItems);
+                    // TODO: add number of drinks to Intent.
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(getContext(), "onItemClicked() position: " + position, Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
