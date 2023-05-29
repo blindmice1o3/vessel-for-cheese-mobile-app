@@ -122,6 +122,7 @@ public class SubCategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(rvSubCategory.getContext());
             linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
             rvSubCategory.setLayoutManager(linearLayoutManager);
+            rvSubCategory.setNestedScrollingEnabled(false);
         }
 
         @Override
