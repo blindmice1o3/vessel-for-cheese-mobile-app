@@ -93,6 +93,7 @@ public class MenuFragment extends Fragment {
                     Intent intent = new Intent(getContext(), MenuItemCategoryActivity.class);
                     intent.putExtra(MenuItemCategoryActivity.EXTRA_TITLE, Menu.HOT_COFFEES);
                     intent.putExtra(MenuItemCategoryActivity.EXTRA_SIZE, numberOfMenuItems);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
                 } else {
                     Toast.makeText(getContext(), "onItemClicked() position: " + position, Toast.LENGTH_SHORT).show();
