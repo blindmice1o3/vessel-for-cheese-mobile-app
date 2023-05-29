@@ -1,5 +1,6 @@
-package com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.child;
+package com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.subcategory;
 
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jackingaming.vesselforcheesemobileapp.R;
+import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem.MenuItemActivity;
 import com.jackingaming.vesselforcheesemobileapp.models.menu.Menu;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.MenuItem;
 
@@ -100,15 +102,20 @@ public class SubCategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             itemView.setOnLongClickListener(this);
         }
 
-        public void bind(String title, List<MenuItem> menuItems) {
-            tvName.setText(title);
+        public void bind(String nameSubCategory, List<MenuItem> menuItems) {
+            tvName.setText(nameSubCategory);
             tvSize.setText("See all " + menuItems.size());
 
             MenuItemAdapter adapter = new MenuItemAdapter(menuItems, new MenuItemAdapter.MenuItemAdapterListener() {
                 @Override
                 public void onItemClicked(int position, View view) {
                     Toast.makeText(view.getContext(), "onItemClicked() position: " + position, Toast.LENGTH_SHORT).show();
-                    // TODO:
+                    // TODO: start MenuItemActivity
+                    Intent intent = new Intent(view.getContext(), MenuItemActivity.class);
+                    intent.putExtra(MenuItemActivity.EXTRA_NAME_CATEGORY, Menu.HOT_COFFEES);
+                    intent.putExtra(MenuItemActivity.EXTRA_NAME_SUB_CATEGORY, nameSubCategory);
+                    intent.putExtra(MenuItemActivity.EXTRA_POSITION, position);
+                    rvSubCategory.getContext().startActivity(intent);
                 }
 
                 @Override

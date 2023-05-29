@@ -1,4 +1,4 @@
-package com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.child;
+package com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.subcategory;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;

@@ -1,4 +1,4 @@
-package com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.parent;
+package com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.category;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,7 +16,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.jackingaming.vesselforcheesemobileapp.R;
-import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.child.MenuItemCategoryActivity;
+import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.subcategory.MenuItemCategoryActivity;
 import com.jackingaming.vesselforcheesemobileapp.models.menu.Menu;
 import com.jackingaming.vesselforcheesemobileapp.models.menu.categories.Category;
 

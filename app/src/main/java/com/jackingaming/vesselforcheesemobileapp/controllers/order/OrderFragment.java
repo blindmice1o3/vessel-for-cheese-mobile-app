@@ -17,7 +17,7 @@ import com.google.android.material.tabs.TabLayoutMediator;
 import com.jackingaming.vesselforcheesemobileapp.R;
 import com.jackingaming.vesselforcheesemobileapp.controllers.order.favorites.FavoritesFragment;
 import com.jackingaming.vesselforcheesemobileapp.controllers.order.featured.FeaturedFragment;
-import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.parent.MenuFragment;
+import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.category.MenuFragment;
 import com.jackingaming.vesselforcheesemobileapp.controllers.order.previous.PreviousFragment;
 
 /**
