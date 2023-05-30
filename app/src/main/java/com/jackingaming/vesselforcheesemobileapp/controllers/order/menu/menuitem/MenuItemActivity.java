@@ -7,6 +7,7 @@ import androidx.appcompat.widget.Toolbar;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuInflater;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -28,16 +29,16 @@ public class MenuItemActivity extends AppCompatActivity {
         Log.i(TAG, "onCreate()");
         setContentView(R.layout.activity_menu_item);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_menu_close_clear_cancel);
         setSupportActionBar(toolbar);
 
-        CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar_layout);
+        CollapsingToolbarLayout collapsingToolbarLayout = findViewById(R.id.collapsing_toolbar_layout);
         collapsingToolbarLayout.setTitle(" ");
-        AppBarLayout appBarLayout = (AppBarLayout) findViewById(R.id.app_bar_layout);
-        ImageView ivMenuItemImage = (ImageView) findViewById(R.id.iv_menuitem_image);
-        TextView tvMenuItemName = (TextView) findViewById(R.id.tv_menuitem_name);
-        TextView tvMenuItemCalories = (TextView) findViewById(R.id.tv_menuitem_calories);
+        AppBarLayout appBarLayout = findViewById(R.id.app_bar_layout);
+        ImageView ivMenuItemImage = findViewById(R.id.iv_menuitem_image);
+        TextView tvMenuItemName = findViewById(R.id.tv_menuitem_name);
+        TextView tvMenuItemCalories = findViewById(R.id.tv_menuitem_calories);
 
         String nameCategory = getIntent().getStringExtra(EXTRA_NAME_CATEGORY);
         String nameSubCategory = getIntent().getStringExtra(EXTRA_NAME_SUB_CATEGORY);
@@ -45,11 +46,15 @@ public class MenuItemActivity extends AppCompatActivity {
 
         TextView tvContent = findViewById(R.id.tv_content);
         tvContent.setText(nameCategory + " | " + nameSubCategory + " | position: " + position);
+        TextView tvSizeOptions = findViewById(R.id.tv_size);
+        TextView tvWhatsIncluded = findViewById(R.id.tv_whats_included);
+        Button buttonCustomize = findViewById(R.id.button_customize);
+        TextView tvDescription = findViewById(R.id.tv_description);
+        TextView tvCalories = findViewById(R.id.tv_calories);
+        Button buttonNutritionAndIngredient = findViewById(R.id.button_nutrition_and_ingredient);
 
         if (nameCategory.equals(Menu.HOT_COFFEES)) {
             MenuItem menuItem = Menu.hotCoffeesAsMap.get(nameSubCategory).get(position);
-            String textPrevious = tvContent.getText().toString();
-            tvContent.setText(textPrevious + ": " + menuItem.getName());
 
             // TODO: add field to MenuItem class: long idImageResource.
             // TODO: add field to MenuItem class: int calories.
@@ -83,6 +88,11 @@ public class MenuItemActivity extends AppCompatActivity {
 //                    }
                 }
             });
+
+            String textPrevious = tvContent.getText().toString();
+            tvContent.setText(textPrevious + ": " + menuItem.getName());
+            tvDescription.setText(menuItem.getDescription());
+            tvCalories.setText("42 calories, 10g sugar, 4.0g fat");
         } else {
             Log.e(TAG, "nameCategory does NOT equals " + Menu.HOT_COFFEES);
         }
