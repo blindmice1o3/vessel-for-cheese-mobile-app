@@ -7,6 +7,7 @@ import androidx.appcompat.widget.Toolbar;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuInflater;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -93,6 +94,13 @@ public class MenuItemActivity extends AppCompatActivity {
 
             String textPrevious = tvContent.getText().toString();
             tvContent.setText(textPrevious + ": " + menuItem.getName());
+
+            tvWhatsIncluded.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    new ModalBottomSheet().show(getSupportFragmentManager(), ModalBottomSheet.TAG);
+                }
+            });
             tvDescription.setText(menuItem.getDescription());
             tvCalories.setText("42 calories, 10g sugar, 4.0g fat");
         } else {

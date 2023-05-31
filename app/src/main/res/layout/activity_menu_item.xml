@@ -96,7 +96,8 @@
                     android:id="@+id/tv_whats_included"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="What's included" />
+                    android:background="@color/blue"
+                    android:text="What's included (OPENS BottomSheetDialogFragment)" />
 
                 <Button
                     android:id="@+id/button_customize"
