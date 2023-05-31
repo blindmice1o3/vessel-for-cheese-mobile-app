@@ -4,10 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuInflater;
@@ -18,7 +14,6 @@ import android.widget.TextView;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.jackingaming.vesselforcheesemobileapp.R;
 import com.jackingaming.vesselforcheesemobileapp.models.menu.Menu;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.MenuItem;
@@ -65,7 +60,7 @@ public class MenuItemActivity extends AppCompatActivity {
 
             // TODO: add field to MenuItem class: long idImageResource.
             // TODO: add field to MenuItem class: int calories.
-            ivMenuItemImage.setImageResource(R.drawable.harvest_moon_natsume);
+//            ivMenuItemImage.setImageResource(R.drawable.harvest_moon_natsume);
             tvMenuItemName.setText(menuItem.getName());
             tvMenuItemCalories.setText("42 calories");
 
