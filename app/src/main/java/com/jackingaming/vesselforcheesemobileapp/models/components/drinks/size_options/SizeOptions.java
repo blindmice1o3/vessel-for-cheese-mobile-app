@@ -10,7 +10,7 @@ public class SizeOptions extends DrinkComponent {
     public static final String TAG = SizeOptions.class.getSimpleName();
 
     public enum DrinkSize {
-        SHORT, TALL, GRANDE, VENTI, TRENTA;
+        SHORT, TALL, GRANDE, VENTI, TRENTA, UNIQUE, UNDEFINED;
     }
 
     private DrinkSize drinkSize;
@@ -21,6 +21,10 @@ public class SizeOptions extends DrinkComponent {
 
     public DrinkSize getDrinkSize() {
         return drinkSize;
+    }
+
+    public void setDrinkSize(DrinkSize drinkSize) {
+        this.drinkSize = drinkSize;
     }
 
     @NonNull

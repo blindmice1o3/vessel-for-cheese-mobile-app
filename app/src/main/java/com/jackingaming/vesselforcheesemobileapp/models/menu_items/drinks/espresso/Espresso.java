@@ -1,5 +1,6 @@
 package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso;
 
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.size_options.SizeOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.Drink;
 
 public abstract class Espresso extends Drink {
@@ -12,7 +13,7 @@ public abstract class Espresso extends Drink {
     public Espresso() {
     }
 
-    public Espresso(String name, String description, double price, boolean iced) {
-        super(name, description, price, iced);
+    public Espresso(String name, String description, double price, SizeOptions.DrinkSize drinkSizeDefault, boolean iced) {
+        super(name, description, price, drinkSizeDefault, iced);
     }
 }

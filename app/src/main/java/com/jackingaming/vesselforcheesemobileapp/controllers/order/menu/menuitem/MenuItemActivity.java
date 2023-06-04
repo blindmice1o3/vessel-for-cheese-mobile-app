@@ -21,6 +21,7 @@ import com.google.android.material.floatingactionbutton.ExtendedFloatingActionBu
 import com.jackingaming.vesselforcheesemobileapp.R;
 import com.jackingaming.vesselforcheesemobileapp.models.menu.Menu;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.MenuItem;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.Drink;
 
 public class MenuItemActivity extends AppCompatActivity {
     public static final String TAG = MenuItemActivity.class.getSimpleName();
@@ -59,7 +60,7 @@ public class MenuItemActivity extends AppCompatActivity {
 
         TextView tvContent = findViewById(R.id.tv_content);
         tvContent.setText(nameCategory + " | " + nameSubCategory + " | position: " + position);
-        TextView tvSizeOptions = findViewById(R.id.tv_size);
+        TextView tvSizeOptions = findViewById(R.id.tv_size_options);
         TextView tvWhatsIncluded = findViewById(R.id.tv_whats_included);
         Button buttonCustomize = findViewById(R.id.button_customize);
         TextView tvDescription = findViewById(R.id.tv_description);
@@ -68,12 +69,13 @@ public class MenuItemActivity extends AppCompatActivity {
         ExtendedFloatingActionButton extendedFloatingActionButton = findViewById(R.id.fab);
 
         if (nameCategory.equals(Menu.HOT_COFFEES)) {
-            MenuItem menuItem = Menu.hotCoffeesAsMap.get(nameSubCategory).get(position);
+            Log.i(TAG, "Menu.HOT_COFFEES [which implies the selected MenuItem is a Drink]");
+            Drink drink = (Drink) Menu.hotCoffeesAsMap.get(nameSubCategory).get(position);
 
             // TODO: add field to MenuItem class: long idImageResource.
             // TODO: add field to MenuItem class: int calories.
 //            ivMenuItemImage.setImageResource(R.drawable.harvest_moon_natsume);
-            tvMenuItemName.setText(menuItem.getName());
+            tvMenuItemName.setText(drink.getName());
             tvMenuItemCalories.setText("42 calories");
 
             appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
@@ -81,7 +83,7 @@ public class MenuItemActivity extends AppCompatActivity {
                 public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
                     if (Math.abs(verticalOffset) == appBarLayout.getTotalScrollRange()) {
                         // Collapsed
-                        collapsingToolbarLayout.setTitle(menuItem.getName());
+                        collapsingToolbarLayout.setTitle(drink.getName());
                     } else {
                         // Un-collapsed
                         // careful: there should a space between double quote otherwise it wont work.
@@ -91,7 +93,7 @@ public class MenuItemActivity extends AppCompatActivity {
 //                    float percentage = (float) Math.abs(verticalOffset) / appBarLayout.getTotalScrollRange();
 //                    if (Math.abs(verticalOffset) == appBarLayout.getTotalScrollRange()) {
 //                        // Collapsed
-//                        collapsingToolbarLayout.setTitle(menuItem.getName());
+//                        collapsingToolbarLayout.setTitle(drink.getName());
 //                    } else if (verticalOffset == 0) {
 //                        // Expanded
 //                        // careful: there should a space between double quote otherwise it wont work.
@@ -104,7 +106,9 @@ public class MenuItemActivity extends AppCompatActivity {
             });
 
             String textPrevious = tvContent.getText().toString();
-            tvContent.setText(textPrevious + ": " + menuItem.getName());
+            tvContent.setText(textPrevious + ": " + drink.getName());
+
+            tvSizeOptions.setText(drink.getSizeOptions().toString());
 
             tvWhatsIncluded.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -112,7 +116,7 @@ public class MenuItemActivity extends AppCompatActivity {
                     new ModalBottomSheet().show(getSupportFragmentManager(), ModalBottomSheet.TAG);
                 }
             });
-            tvDescription.setText(menuItem.getDescription());
+            tvDescription.setText(drink.getDescription());
             tvCalories.setText("42 calories, 10g sugar, 4.0g fat");
         } else {
             Log.e(TAG, "nameCategory does NOT equals " + Menu.HOT_COFFEES);
