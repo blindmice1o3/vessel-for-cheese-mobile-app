@@ -3,6 +3,7 @@ package com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.subcate
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.jackingaming.vesselforcheesemobileapp.R;
 import com.jackingaming.vesselforcheesemobileapp.models.menu.Menu;
@@ -21,6 +23,12 @@ public class MenuItemCategoryActivity extends AppCompatActivity {
     public static final String TAG = MenuItemCategoryActivity.class.getSimpleName();
     public static final String EXTRA_TITLE = "com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.child.title";
     public static final String EXTRA_SIZE = "com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.child.size";
+
+    public void initHeightAppBarLayoutAsQuarterScreen(AppBarLayout appBarLayout) {
+        float heightDp = getResources().getDisplayMetrics().heightPixels / 4;
+        CoordinatorLayout.LayoutParams lp = (CoordinatorLayout.LayoutParams) appBarLayout.getLayoutParams();
+        lp.height = (int) heightDp;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,10 +39,13 @@ public class MenuItemCategoryActivity extends AppCompatActivity {
         String title = getIntent().getStringExtra(EXTRA_TITLE);
         int numberOfMenuItems = getIntent().getIntExtra(EXTRA_SIZE, 0);
 
-        CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar_layout);
+        AppBarLayout appBarLayout = findViewById(R.id.app_bar_layout);
+        initHeightAppBarLayoutAsQuarterScreen(appBarLayout);
+
+        CollapsingToolbarLayout collapsingToolbarLayout = findViewById(R.id.collapsing_toolbar_layout);
         collapsingToolbarLayout.setTitle(title + " (" + numberOfMenuItems + ")");
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 

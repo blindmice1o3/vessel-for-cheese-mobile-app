@@ -3,8 +3,11 @@ package com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuite
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
+import android.content.res.Resources;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.MenuInflater;
 import android.view.View;
@@ -25,6 +28,12 @@ public class MenuItemActivity extends AppCompatActivity {
     public static final String EXTRA_NAME_SUB_CATEGORY = "com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem.nameSubCategory";
     public static final String EXTRA_POSITION = "com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem.position";
 
+    public void initHeightAppBarLayoutAsHalfScreen(AppBarLayout appBarLayout) {
+        float heightDp = getResources().getDisplayMetrics().heightPixels / 2;
+        CoordinatorLayout.LayoutParams lp = (CoordinatorLayout.LayoutParams) appBarLayout.getLayoutParams();
+        lp.height = (int) heightDp;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +47,8 @@ public class MenuItemActivity extends AppCompatActivity {
         CollapsingToolbarLayout collapsingToolbarLayout = findViewById(R.id.collapsing_toolbar_layout);
         collapsingToolbarLayout.setTitle(" ");
         AppBarLayout appBarLayout = findViewById(R.id.app_bar_layout);
+        initHeightAppBarLayoutAsHalfScreen(appBarLayout);
+
         ImageView ivMenuItemImage = findViewById(R.id.iv_menuitem_image);
         TextView tvMenuItemName = findViewById(R.id.tv_menuitem_name);
         TextView tvMenuItemCalories = findViewById(R.id.tv_menuitem_calories);

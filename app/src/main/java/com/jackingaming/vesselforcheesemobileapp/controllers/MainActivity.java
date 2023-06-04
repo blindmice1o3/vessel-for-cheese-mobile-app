@@ -3,6 +3,7 @@ package com.jackingaming.vesselforcheesemobileapp.controllers;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -10,6 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 
+import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
@@ -23,16 +25,25 @@ import com.jackingaming.vesselforcheesemobileapp.controllers.stores.StoresFragme
 public class MainActivity extends AppCompatActivity {
     public static final String TAG = MainActivity.class.getSimpleName();
 
+    public void initHeightAppBarLayoutAsThirdScreen(AppBarLayout appBarLayout) {
+        float heightDp = getResources().getDisplayMetrics().heightPixels / 3;
+        CoordinatorLayout.LayoutParams lp = (CoordinatorLayout.LayoutParams) appBarLayout.getLayoutParams();
+        lp.height = (int) heightDp;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar_layout);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        AppBarLayout appBarLayout = findViewById(R.id.app_bar_layout);
+        initHeightAppBarLayoutAsThirdScreen(appBarLayout);
+
+        CollapsingToolbarLayout collapsingToolbarLayout = findViewById(R.id.collapsing_toolbar_layout);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        BottomNavigationView bnvMain = (BottomNavigationView) findViewById(R.id.bnv_main);
+        BottomNavigationView bnvMain = findViewById(R.id.bnv_main);
         bnvMain.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
