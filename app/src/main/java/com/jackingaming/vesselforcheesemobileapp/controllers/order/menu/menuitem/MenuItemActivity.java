@@ -9,12 +9,14 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
@@ -187,6 +189,19 @@ public class MenuItemActivity extends AppCompatActivity {
                         ArrayAdapter<EspressoOptions.Shot> spinnerArrayAdaper =
                                 new QuantifiableArrayAdapter(this, 0, valuesShot);
                         spinner.setAdapter(spinnerArrayAdaper);
+                        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                            @Override
+                            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                                EspressoOptions.Shot shot = (EspressoOptions.Shot) adapterView.getItemAtPosition(i);
+                                TextView tvQuantity = adapterView.findViewById(R.id.tv_quantity);
+                                tvQuantity.setText(shot.name());
+                            }
+
+                            @Override
+                            public void onNothingSelected(AdapterView<?> adapterView) {
+                                // Intentionally blank.
+                            }
+                        });
                         spinner.setSelection(spinnerArrayAdaper.getPosition(espressoOptions.getShot()));
                     } else if (espressoOptions.getAffogatoShot() != null) {
                         EspressoOptions.AffogatoShot[] valuesAffogatoShot = EspressoOptions.AffogatoShot.values();
