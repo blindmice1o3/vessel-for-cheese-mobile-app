@@ -185,10 +185,7 @@ public class MenuItemActivity extends AppCompatActivity {
                     if (espressoOptions.getShot() != null) {
                         EspressoOptions.Shot[] valuesShot = EspressoOptions.Shot.values();
                         ArrayAdapter<EspressoOptions.Shot> spinnerArrayAdaper =
-                                new ArrayAdapter<EspressoOptions.Shot>(
-                                        this,
-                                        android.R.layout.simple_spinner_dropdown_item,
-                                        valuesShot);
+                                new QuantifiableArrayAdapter(this, 0, valuesShot);
                         spinner.setAdapter(spinnerArrayAdaper);
                         spinner.setSelection(spinnerArrayAdaper.getPosition(espressoOptions.getShot()));
                     } else if (espressoOptions.getAffogatoShot() != null) {
