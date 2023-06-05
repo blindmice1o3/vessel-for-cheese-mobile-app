@@ -14,7 +14,8 @@ public abstract class Drink extends MenuItem {
 
     protected SizeOptions sizeOptions;
     protected boolean iced;
-    protected List<DrinkComponent> customizedDrinkComponents = new ArrayList<>();
+    protected List<DrinkComponent> drinkComponentsWhatsIncluded = new ArrayList<>();
+    protected List<DrinkComponent> drinkComponentsCustomized = new ArrayList<>();
 
     public Drink() {
         super();
@@ -24,12 +25,20 @@ public abstract class Drink extends MenuItem {
         super(name, description, price);
         sizeOptions = new SizeOptions(drinkSizeDefault);
         this.iced = iced;
+
+
     }
 
-    public void addDrinkComponent(DrinkComponent drinkComponent) {
-        Log.i(TAG, "addDrinkComponent(DrinkComponent)");
+    public void addToDrinkComponentsWhatsIncluded(DrinkComponent drinkComponent) {
+        Log.i(TAG, "addToDrinkComponentsWhatsIncluded(DrinkComponent)");
         // TODO: screen for duplication (subclasses should override and add rules-check)
-        customizedDrinkComponents.add(drinkComponent);
+        drinkComponentsWhatsIncluded.add(drinkComponent);
+    }
+
+    public void addToDrinkComponentsCustomized(DrinkComponent drinkComponent) {
+        Log.i(TAG, "addToDrinkComponentsCustomized(DrinkComponent)");
+        // TODO: screen for duplication (subclasses should override and add rules-check)
+        drinkComponentsCustomized.add(drinkComponent);
     }
 
     public SizeOptions getSizeOptions() {
@@ -48,11 +57,19 @@ public abstract class Drink extends MenuItem {
         this.iced = iced;
     }
 
-    public List<DrinkComponent> getCustomizedDrinkComponents() {
-        return customizedDrinkComponents;
+    public List<DrinkComponent> getDrinkComponentsWhatsIncluded() {
+        return drinkComponentsWhatsIncluded;
     }
 
-    public void setCustomizedDrinkComponents(List<DrinkComponent> customizedDrinkComponents) {
-        this.customizedDrinkComponents = customizedDrinkComponents;
+    public void setDrinkComponentsWhatsIncluded(List<DrinkComponent> drinkComponentsWhatsIncluded) {
+        this.drinkComponentsWhatsIncluded = drinkComponentsWhatsIncluded;
+    }
+
+    public List<DrinkComponent> getDrinkComponentsCustomized() {
+        return drinkComponentsCustomized;
+    }
+
+    public void setDrinkComponentsCustomized(List<DrinkComponent> drinkComponentsCustomized) {
+        this.drinkComponentsCustomized = drinkComponentsCustomized;
     }
 }

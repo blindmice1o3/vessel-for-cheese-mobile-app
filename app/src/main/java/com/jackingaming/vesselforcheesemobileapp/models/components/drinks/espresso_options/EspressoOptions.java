@@ -10,7 +10,7 @@ public class EspressoOptions extends DrinkComponent {
     public static final String TAG = EspressoOptions.class.getSimpleName();
 
     public enum Shot {
-        SHOT
+        ZERO, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE;
     }
 
     public enum AffogatoShot {

@@ -19,6 +19,7 @@ import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.jackingaming.vesselforcheesemobileapp.R;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
 import com.jackingaming.vesselforcheesemobileapp.models.menu.Menu;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.MenuItem;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.Drink;
@@ -105,18 +106,26 @@ public class MenuItemActivity extends AppCompatActivity {
                 }
             });
 
-            String textPrevious = tvContent.getText().toString();
-            tvContent.setText(textPrevious + ": " + drink.getName());
+            String textPreviousContent = tvContent.getText().toString();
+            tvContent.setText(textPreviousContent + ": " + drink.getName());
 
             tvSizeOptions.setText(drink.getSizeOptions().toString());
 
+            String textPreviousWhatsIncluded = tvWhatsIncluded.getText().toString();
+            StringBuilder sb = new StringBuilder();
+            for (DrinkComponent drinkComponent : drink.getDrinkComponentsWhatsIncluded()) {
+                sb.append("\n" + drinkComponent.toString());
+            }
+            tvWhatsIncluded.setText(textPreviousWhatsIncluded + ": " + sb.toString());
             tvWhatsIncluded.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     new ModalBottomSheet().show(getSupportFragmentManager(), ModalBottomSheet.TAG);
                 }
             });
+
             tvDescription.setText(drink.getDescription());
+
             tvCalories.setText("42 calories, 10g sugar, 4.0g fat");
         } else {
             Log.e(TAG, "nameCategory does NOT equals " + Menu.HOT_COFFEES);
