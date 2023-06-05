@@ -99,6 +99,13 @@
                     android:background="@color/blue"
                     android:text="What's included (OPENS BottomSheetDialogFragment)" />
 
+                <LinearLayout
+                    android:id="@+id/linearlayout_whatsincluded"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/blue"
+                    android:orientation="vertical" />
+
                 <Button
                     android:id="@+id/button_customize"
                     android:layout_width="wrap_content"

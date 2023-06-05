@@ -5,14 +5,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
-import android.content.res.Resources;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.MenuInflater;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.google.android.material.appbar.AppBarLayout;
@@ -20,9 +21,11 @@ import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.jackingaming.vesselforcheesemobileapp.R;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.espresso_options.EspressoOptions;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.milk_options.MilkOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.menu.Menu;
-import com.jackingaming.vesselforcheesemobileapp.models.menu_items.MenuItem;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.Drink;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.lattes.CaffeLatte;
 
 public class MenuItemActivity extends AppCompatActivity {
     public static final String TAG = MenuItemActivity.class.getSimpleName();
@@ -61,12 +64,18 @@ public class MenuItemActivity extends AppCompatActivity {
 
         TextView tvContent = findViewById(R.id.tv_content);
         tvContent.setText(nameCategory + " | " + nameSubCategory + " | position: " + position);
+
         TextView tvSizeOptions = findViewById(R.id.tv_size_options);
+
         TextView tvWhatsIncluded = findViewById(R.id.tv_whats_included);
+        LinearLayout linearLayout = findViewById(R.id.linearlayout_whatsincluded);
+
         Button buttonCustomize = findViewById(R.id.button_customize);
+
         TextView tvDescription = findViewById(R.id.tv_description);
         TextView tvCalories = findViewById(R.id.tv_calories);
         Button buttonNutritionAndIngredient = findViewById(R.id.button_nutrition_and_ingredient);
+
         ExtendedFloatingActionButton extendedFloatingActionButton = findViewById(R.id.fab);
 
         if (nameCategory.equals(Menu.HOT_COFFEES)) {
@@ -111,18 +120,131 @@ public class MenuItemActivity extends AppCompatActivity {
 
             tvSizeOptions.setText(drink.getSizeOptions().toString());
 
-            String textPreviousWhatsIncluded = tvWhatsIncluded.getText().toString();
-            StringBuilder sb = new StringBuilder();
-            for (DrinkComponent drinkComponent : drink.getDrinkComponentsWhatsIncluded()) {
-                sb.append("\n" + drinkComponent.toString());
+            if (!(drink instanceof CaffeLatte)) {
+                String textPreviousWhatsIncluded = tvWhatsIncluded.getText().toString();
+                StringBuilder sb = new StringBuilder();
+                for (DrinkComponent drinkComponent : drink.getDrinkComponentsWhatsIncluded()) {
+                    sb.append("\n" + drinkComponent.toString());
+                }
+                tvWhatsIncluded.setText(textPreviousWhatsIncluded + ": " + sb.toString());
             }
-            tvWhatsIncluded.setText(textPreviousWhatsIncluded + ": " + sb.toString());
+
             tvWhatsIncluded.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     new ModalBottomSheet().show(getSupportFragmentManager(), ModalBottomSheet.TAG);
                 }
             });
+
+            for (DrinkComponent drinkComponent : drink.getDrinkComponentsWhatsIncluded()) {
+                Spinner spinner = new Spinner(this);
+
+                if (drinkComponent instanceof MilkOptions) {
+                    MilkOptions milkOptions = (MilkOptions) drinkComponent;
+                    if (milkOptions.getMilkBase() != null) {
+                        MilkOptions.MilkBase[] valuesMilkBase = MilkOptions.MilkBase.values();
+                        ArrayAdapter<MilkOptions.MilkBase> spinnerArrayAdaper =
+                                new ArrayAdapter<MilkOptions.MilkBase>(
+                                        this,
+                                        android.R.layout.simple_spinner_dropdown_item,
+                                        valuesMilkBase);
+                        spinner.setAdapter(spinnerArrayAdaper);
+                        spinner.setSelection(spinnerArrayAdaper.getPosition(milkOptions.getMilkBase()));
+                    } else if (milkOptions.getTemperature() != null) {
+                        MilkOptions.Temperature[] valuesTemperature = MilkOptions.Temperature.values();
+                        ArrayAdapter<MilkOptions.Temperature> spinnerArrayAdaper =
+                                new ArrayAdapter<MilkOptions.Temperature>(
+                                        this,
+                                        android.R.layout.simple_spinner_dropdown_item,
+                                        valuesTemperature);
+                        spinner.setAdapter(spinnerArrayAdaper);
+                        spinner.setSelection(spinnerArrayAdaper.getPosition(milkOptions.getTemperature()));
+                    } else if (milkOptions.getMilkFoam() != null) {
+                        MilkOptions.MilkFoam[] valuesMilkFoam = MilkOptions.MilkFoam.values();
+                        ArrayAdapter<MilkOptions.MilkFoam> spinnerArrayAdaper =
+                                new ArrayAdapter<MilkOptions.MilkFoam>(
+                                        this,
+                                        android.R.layout.simple_spinner_dropdown_item,
+                                        valuesMilkFoam);
+                        spinner.setAdapter(spinnerArrayAdaper);
+                        spinner.setSelection(spinnerArrayAdaper.getPosition(milkOptions.getMilkFoam()));
+                    } else if (milkOptions.getCappuccinoFoam() != null) {
+                        MilkOptions.CappuccinoFoam[] valuesCappuccinoFoam = MilkOptions.CappuccinoFoam.values();
+                        ArrayAdapter<MilkOptions.CappuccinoFoam> spinnerArrayAdaper =
+                                new ArrayAdapter<MilkOptions.CappuccinoFoam>(
+                                        this,
+                                        android.R.layout.simple_spinner_dropdown_item,
+                                        valuesCappuccinoFoam);
+                        spinner.setAdapter(spinnerArrayAdaper);
+                        spinner.setSelection(spinnerArrayAdaper.getPosition(milkOptions.getCappuccinoFoam()));
+                    } else {
+                        Log.e(TAG, "What's included... MilkOptions else-clause while identifying specific type of DrinkComponent... NO ADAPTER for spinner");
+                    }
+                } else if (drinkComponent instanceof EspressoOptions) {
+                    EspressoOptions espressoOptions = (EspressoOptions) drinkComponent;
+                    if (espressoOptions.getShot() != null) {
+                        EspressoOptions.Shot[] valuesShot = EspressoOptions.Shot.values();
+                        ArrayAdapter<EspressoOptions.Shot> spinnerArrayAdaper =
+                                new ArrayAdapter<EspressoOptions.Shot>(
+                                        this,
+                                        android.R.layout.simple_spinner_dropdown_item,
+                                        valuesShot);
+                        spinner.setAdapter(spinnerArrayAdaper);
+                        spinner.setSelection(spinnerArrayAdaper.getPosition(espressoOptions.getShot()));
+                    } else if (espressoOptions.getAffogatoShot() != null) {
+                        EspressoOptions.AffogatoShot[] valuesAffogatoShot = EspressoOptions.AffogatoShot.values();
+                        ArrayAdapter<EspressoOptions.AffogatoShot> spinnerArrayAdaper =
+                                new ArrayAdapter<EspressoOptions.AffogatoShot>(
+                                        this,
+                                        android.R.layout.simple_spinner_dropdown_item,
+                                        valuesAffogatoShot);
+                        spinner.setAdapter(spinnerArrayAdaper);
+                        spinner.setSelection(spinnerArrayAdaper.getPosition(espressoOptions.getAffogatoShot()));
+                    } else if (espressoOptions.getRoastOptions() != null) {
+                        EspressoOptions.RoastOptions[] valuesRoastOptions = EspressoOptions.RoastOptions.values();
+                        ArrayAdapter<EspressoOptions.RoastOptions> spinnerArrayAdaper =
+                                new ArrayAdapter<EspressoOptions.RoastOptions>(
+                                        this,
+                                        android.R.layout.simple_spinner_dropdown_item,
+                                        valuesRoastOptions);
+                        spinner.setAdapter(spinnerArrayAdaper);
+                        spinner.setSelection(spinnerArrayAdaper.getPosition(espressoOptions.getRoastOptions()));
+                    } else if (espressoOptions.getPrepOptions() != null) {
+                        EspressoOptions.PrepOptions[] valuesPrepOptions = EspressoOptions.PrepOptions.values();
+                        ArrayAdapter<EspressoOptions.PrepOptions> spinnerArrayAdaper =
+                                new ArrayAdapter<EspressoOptions.PrepOptions>(
+                                        this,
+                                        android.R.layout.simple_spinner_dropdown_item,
+                                        valuesPrepOptions);
+                        spinner.setAdapter(spinnerArrayAdaper);
+                        spinner.setSelection(spinnerArrayAdaper.getPosition(espressoOptions.getPrepOptions()));
+                    } else if (espressoOptions.getPullOptions() != null) {
+                        EspressoOptions.PullOptions[] valuesPullOptions = EspressoOptions.PullOptions.values();
+                        ArrayAdapter<EspressoOptions.PullOptions> spinnerArrayAdaper =
+                                new ArrayAdapter<EspressoOptions.PullOptions>(
+                                        this,
+                                        android.R.layout.simple_spinner_dropdown_item,
+                                        valuesPullOptions);
+                        spinner.setAdapter(spinnerArrayAdaper);
+                        spinner.setSelection(spinnerArrayAdaper.getPosition(espressoOptions.getPullOptions()));
+                    } else if (espressoOptions.getSizeOptions() != null) {
+                        EspressoOptions.SizeOptions[] valuesSizeOptions = EspressoOptions.SizeOptions.values();
+                        ArrayAdapter<EspressoOptions.SizeOptions> spinnerArrayAdaper =
+                                new ArrayAdapter<EspressoOptions.SizeOptions>(
+                                        this,
+                                        android.R.layout.simple_spinner_dropdown_item,
+                                        valuesSizeOptions);
+                        spinner.setAdapter(spinnerArrayAdaper);
+                        spinner.setSelection(spinnerArrayAdaper.getPosition(espressoOptions.getSizeOptions()));
+                    } else {
+                        Log.e(TAG, "What's included... EspressoOptions else-clause while identifying specific type of DrinkComponent... NO ADAPTER for spinner");
+                    }
+                } else {
+                    Log.e(TAG, "What's included... else-clause while identifying specific type of DrinkComponent");
+                }
+
+                linearLayout.addView(spinner);
+            }
 
             tvDescription.setText(drink.getDescription());
 
