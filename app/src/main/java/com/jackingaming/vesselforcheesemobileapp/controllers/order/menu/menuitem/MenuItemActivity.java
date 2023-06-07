@@ -8,6 +8,7 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -134,7 +135,8 @@ public class MenuItemActivity extends AppCompatActivity {
             tvWhatsIncluded.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    new ModalBottomSheet().show(getSupportFragmentManager(), ModalBottomSheet.TAG);
+                    String[] names = {"Colin", "Mulan", "Muly", "Muhang", "Mushu"};
+                    ModalBottomSheet.newInstance(names).show(getSupportFragmentManager(), ModalBottomSheet.TAG);
                 }
             });
 
@@ -152,6 +154,18 @@ public class MenuItemActivity extends AppCompatActivity {
                                         valuesMilkBase);
                         spinner.setAdapter(spinnerArrayAdaper);
                         spinner.setSelection(spinnerArrayAdaper.getPosition(milkOptions.getMilkBase()));
+                        spinner.setOnTouchListener(new View.OnTouchListener() {
+                            @Override
+                            public boolean onTouch(View view, MotionEvent motionEvent) {
+                                // TODO: pass String[] to ModalBottomSheet
+                                String[] milkBases = new String[valuesMilkBase.length];
+                                for (int i = 0; i < valuesMilkBase.length; i++) {
+                                    milkBases[i] = valuesMilkBase[i].name();
+                                }
+                                ModalBottomSheet.newInstance(milkBases).show(getSupportFragmentManager(), ModalBottomSheet.TAG);
+                                return true;
+                            }
+                        });
                     } else if (milkOptions.getTemperature() != null) {
                         MilkOptions.Temperature[] valuesTemperature = MilkOptions.Temperature.values();
                         ArrayAdapter<MilkOptions.Temperature> spinnerArrayAdaper =
