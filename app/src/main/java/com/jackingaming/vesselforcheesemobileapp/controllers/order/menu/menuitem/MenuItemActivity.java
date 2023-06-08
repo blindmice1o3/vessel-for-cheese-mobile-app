@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.fragment.app.FragmentResultListener;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -37,6 +38,8 @@ public class MenuItemActivity extends AppCompatActivity {
     public static final String EXTRA_NAME_CATEGORY = "com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem.nameCategory";
     public static final String EXTRA_NAME_SUB_CATEGORY = "com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem.nameSubCategory";
     public static final String EXTRA_POSITION = "com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem.position";
+
+    private TextView textViewSelected;
 
     public void initHeightAppBarLayoutAsHalfScreen(AppBarLayout appBarLayout) {
         float heightDp = getResources().getDisplayMetrics().heightPixels / 2;
@@ -143,16 +146,28 @@ public class MenuItemActivity extends AppCompatActivity {
                 }
             });
 
+            getSupportFragmentManager().setFragmentResultListener(ModalBottomSheet.REQUEST_KEY, this, new FragmentResultListener() {
+                @Override
+                public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
+                    if (requestKey.equals(ModalBottomSheet.REQUEST_KEY)) {
+                        String name = result.getString(ModalBottomSheet.KEY_RESULT);
+                        textViewSelected.setText(name);
+                        textViewSelected = null;
+                    }
+                }
+            });
             WhatsIncludedAdapter adapter = new WhatsIncludedAdapter(drink.getDrinkComponentsWhatsIncluded(), new WhatsIncludedAdapter.WhatsIncludedAdapterListener() {
                 @Override
-                public void onItemClicked(String[] names, View view) {
-                    Log.i(TAG, "onItemClicked(String[] names, View view)");
+                public void onItemClicked(String[] names, TextView textView) {
+                    Log.i(TAG, "onItemClicked(String[] names, TextView textView)");
+                    textViewSelected = textView;
                     ModalBottomSheet.newInstance(names).show(getSupportFragmentManager(), ModalBottomSheet.TAG);
                 }
 
                 @Override
-                public void onItemLongClicked(String[] names, View view) {
-                    Log.i(TAG, "onItemLongClicked(String[] names, View view)");
+                public void onItemLongClicked(String[] names, TextView textView) {
+                    Log.i(TAG, "onItemLongClicked(String[] names, TextView textView)");
+                    textViewSelected = textView;
                 }
             });
             rvWhatsIncluded.setAdapter(adapter);

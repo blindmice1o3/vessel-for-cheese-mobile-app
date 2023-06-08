@@ -18,6 +18,9 @@ import com.jackingaming.vesselforcheesemobileapp.R;
 
 public class ModalBottomSheet extends BottomSheetDialogFragment {
     public static final String TAG = ModalBottomSheet.class.getSimpleName();
+    public static final String REQUEST_KEY = "com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem.Key";
+    public static final String KEY_RESULT = "com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem.Result";
+
     private static final String ARG_NAMES = "com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem.Names";
 
     private String[] names;
@@ -56,6 +59,12 @@ public class ModalBottomSheet extends BottomSheetDialogFragment {
             @Override
             public void onItemClicked(int position, View view) {
                 Toast.makeText(getContext(), "onItemClicked() position: " + position, Toast.LENGTH_SHORT).show();
+
+                Bundle result = new Bundle();
+                result.putString(KEY_RESULT, names[position]);
+                getParentFragmentManager().setFragmentResult(REQUEST_KEY, result);
+
+                dismiss();
             }
 
             @Override
