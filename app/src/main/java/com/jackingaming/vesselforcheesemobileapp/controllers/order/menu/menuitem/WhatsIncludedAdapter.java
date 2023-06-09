@@ -11,9 +11,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jackingaming.vesselforcheesemobileapp.R;
-import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
-import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.espresso_options.EspressoOptions;
-import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.milk_options.MilkOptions;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks_1.DrinkComponent;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks_1.espresso_options.EspressoOptions;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks_1.milk_options.MilkOptions;
 
 import java.util.List;
 

@@ -2,8 +2,8 @@ package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks;
 
 import android.util.Log;
 
-import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
-import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.size_options.SizeOptions;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks_1.DrinkComponent;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks_1.size_options.SizeOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.MenuItem;
 
 import java.util.ArrayList;

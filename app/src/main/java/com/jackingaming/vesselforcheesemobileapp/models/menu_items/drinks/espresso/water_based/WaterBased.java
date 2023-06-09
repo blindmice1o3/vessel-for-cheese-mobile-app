@@ -1,6 +1,6 @@
 package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.water_based;
 
-import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.size_options.SizeOptions;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks_1.size_options.SizeOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.Espresso;
 
 public abstract class WaterBased extends Espresso {

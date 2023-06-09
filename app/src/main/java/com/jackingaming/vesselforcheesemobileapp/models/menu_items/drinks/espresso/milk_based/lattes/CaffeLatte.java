@@ -1,11 +1,7 @@
 package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.lattes;
 
-import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
-import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.espresso_options.EspressoOptions;
-import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.milk_options.MilkOptions;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks_1.espresso_options.EspressoOptions;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks_1.milk_options.MilkOptions;
 
 public class CaffeLatte extends Lattes {
     public static final String TAG = CaffeLatte.class.getSimpleName();

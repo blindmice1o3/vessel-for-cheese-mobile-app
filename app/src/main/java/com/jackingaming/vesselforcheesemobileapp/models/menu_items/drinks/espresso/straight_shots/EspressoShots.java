@@ -1,6 +1,6 @@
 package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.straight_shots;
 
-import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.size_options.SizeOptions;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks_1.size_options.SizeOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.Espresso;
 
 public abstract class EspressoShots extends Espresso {
