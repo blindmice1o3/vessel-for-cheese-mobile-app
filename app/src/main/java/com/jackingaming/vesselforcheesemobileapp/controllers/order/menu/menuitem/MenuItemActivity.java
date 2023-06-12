@@ -143,6 +143,7 @@ public class MenuItemActivity extends AppCompatActivity {
                 public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
                     if (requestKey.equals(ModalBottomSheet.REQUEST_KEY)) {
                         String name = result.getString(ModalBottomSheet.KEY_RESULT);
+                        // TODO: update the underlying model.
                         textViewSelected.setText(name);
                         textViewSelected = null;
                     }

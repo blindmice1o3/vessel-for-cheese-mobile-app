@@ -1,14 +1,76 @@
 package com.jackingaming.vesselforcheesemobileapp.models.components.drinks.espresso_options;
 
-public class Shot extends EspressoOptions {
+import android.util.Log;
+
+import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem.Incrementable;
+
+public class Shot extends EspressoOptions
+        implements Incrementable {
+    private static final int DEFAULT_QUANTITY_MAX = 12;
+
+    @Override
+    public void onIncrement() {
+        Log.i(TAG, "onIncrement()");
+        Log.i(TAG, "quantity: " + quantity);
+
+        quantity++;
+
+        Log.i(TAG, "quantity: " + quantity);
+        if (quantity > DEFAULT_QUANTITY_MAX) {
+            Log.i(TAG, "quantity > DEFAULT_QUANTITY_MAX --- SETTING quantity = DEFAULT_QUANTITY_MAX");
+            quantity = DEFAULT_QUANTITY_MAX;
+        }
+
+        Log.i(TAG, "end of onIncrement() --- quantity: " + quantity);
+        for (int i = 0; i < Type.values().length; i++) {
+            if (i == quantity) {
+                type = Type.values()[i];
+                break;
+            }
+        }
+    }
+
+    @Override
+    public void onDecrement() {
+        Log.i(TAG, "onDecrement()");
+        Log.i(TAG, "quantity: " + quantity);
+
+        quantity--;
+
+        Log.i(TAG, "quantity: " + quantity);
+        if (quantity < 0) {
+            Log.i(TAG, "quantity < 0 --- SETTING quantity = 0");
+            quantity = 0;
+        }
+        Log.i(TAG, "end of onDecrement() --- quantity: " + quantity);
+        for (int i = 0; i < Type.values().length; i++) {
+            if (i == quantity) {
+                type = Type.values()[i];
+                break;
+            }
+        }
+    }
+
+    @Override
+    public int getQuantity() {
+        return quantity;
+    }
+
     public enum Type {
         ZERO, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE;
     }
 
     private Type type;
+    private int quantity;
 
-    public Shot(Type type) {
-        this.type = type;
+    public Shot(int quantity) {
+        this.quantity = quantity;
+        for (int i = 0; i < Type.values().length; i++) {
+            if (i == quantity) {
+                type = Type.values()[i];
+                break;
+            }
+        }
     }
 
     public Type getType() {

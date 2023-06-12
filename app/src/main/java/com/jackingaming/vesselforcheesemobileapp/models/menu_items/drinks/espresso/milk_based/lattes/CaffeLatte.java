@@ -15,6 +15,7 @@ public class CaffeLatte extends Lattes {
     public static final double PRICE_MEDIUM_DEFAULT = 3.45;
     public static final double PRICE_LARGE_DEFAULT = 3.70;
     public static final boolean ICED_DEFAULT = false;
+    public static final int DEFAULT_NUMBER_OF_ESPRESSO_SHOTS = 2;
 
     public CaffeLatte() {
         super(NAME_DEFAULT, DESCRIPTION_DEFAULT, PRICE_MEDIUM_DEFAULT, ICED_DEFAULT);
@@ -23,6 +24,6 @@ public class CaffeLatte extends Lattes {
         drinkComponentsWhatsIncluded.add(new MilkBase(MilkBase.Type.TWO_PERCENT));
         drinkComponentsWhatsIncluded.add(new Temperature(Temperature.Type.MEDIUM));
         drinkComponentsWhatsIncluded.add(new RoastOptions(RoastOptions.Type.SIGNATURE));
-        drinkComponentsWhatsIncluded.add(new Shot(Shot.Type.TWO));
+        drinkComponentsWhatsIncluded.add(new Shot(DEFAULT_NUMBER_OF_ESPRESSO_SHOTS));
     }
 }
