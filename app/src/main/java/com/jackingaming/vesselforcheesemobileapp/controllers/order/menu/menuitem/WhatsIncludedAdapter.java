@@ -231,7 +231,7 @@ public class WhatsIncludedAdapter extends RecyclerView.Adapter<RecyclerView.View
                     Log.e(TAG, "DrinkComponentViewHolder.bind() switch(viewType) default block");
                     break;
             }
-            int imageResource = R.drawable.ic_coins_s;
+            int imageResource = R.drawable.ic_menu_arrow_down;
             enumsAsString = drinkComponent.getEnumValuesAsStringArray();
 
             tvBorderTitle.setText(titleBorder);
