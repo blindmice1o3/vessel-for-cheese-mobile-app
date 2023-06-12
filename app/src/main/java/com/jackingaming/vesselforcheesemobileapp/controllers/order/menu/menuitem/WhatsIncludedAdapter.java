@@ -11,9 +11,19 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jackingaming.vesselforcheesemobileapp.R;
-import com.jackingaming.vesselforcheesemobileapp.models.components.drinks_1.DrinkComponent;
-import com.jackingaming.vesselforcheesemobileapp.models.components.drinks_1.espresso_options.EspressoOptions;
-import com.jackingaming.vesselforcheesemobileapp.models.components.drinks_1.milk_options.MilkOptions;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.espresso_options.AffogatoShot;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.espresso_options.EspressoOptions;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.espresso_options.PrepOptions;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.espresso_options.PullOptions;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.espresso_options.RoastOptions;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.espresso_options.Shot;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.espresso_options.SizeOptions;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.milk_options.CappuccinoFoam;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.milk_options.MilkBase;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.milk_options.MilkFoam;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.milk_options.MilkOptions;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.milk_options.Temperature;
 
 import java.util.List;
 
@@ -57,13 +67,13 @@ public class WhatsIncludedAdapter extends RecyclerView.Adapter<RecyclerView.View
             Log.i(TAG, "drinkComponent instanceof MilkOptions");
 
             MilkOptions milkOptions = (MilkOptions) drinkComponent;
-            if (milkOptions.getMilkBase() != null) {
+            if (milkOptions instanceof MilkBase) {
                 return VIEW_TYPE_MILK_BASE;
-            } else if (milkOptions.getTemperature() != null) {
+            } else if (milkOptions instanceof Temperature) {
                 return VIEW_TYPE_TEMPERATURE;
-            } else if (milkOptions.getMilkFoam() != null) {
+            } else if (milkOptions instanceof MilkFoam) {
                 return VIEW_TYPE_MILK_FOAM;
-            } else if (milkOptions.getCappuccinoFoam() != null) {
+            } else if (milkOptions instanceof CappuccinoFoam) {
                 return VIEW_TYPE_CAPPUCCINO_FOAM;
             } else {
                 Log.e(TAG, "MilkOptions else-clause");
@@ -73,17 +83,17 @@ public class WhatsIncludedAdapter extends RecyclerView.Adapter<RecyclerView.View
             Log.i(TAG, "drinkComponent instanceof EspressoOptions");
 
             EspressoOptions espressoOptions = (EspressoOptions) drinkComponent;
-            if (espressoOptions.getShot() != null) {
+            if (espressoOptions instanceof Shot) {
                 return VIEW_TYPE_SHOT;
-            } else if (espressoOptions.getAffogatoShot() != null) {
+            } else if (espressoOptions instanceof AffogatoShot) {
                 return VIEW_TYPE_AFFOGATO_SHOT;
-            } else if (espressoOptions.getRoastOptions() != null) {
+            } else if (espressoOptions instanceof RoastOptions) {
                 return VIEW_TYPE_ROAST_OPTIONS;
-            } else if (espressoOptions.getPrepOptions() != null) {
+            } else if (espressoOptions instanceof PrepOptions) {
                 return VIEW_TYPE_PREP_OPTIONS;
-            } else if (espressoOptions.getPullOptions() != null) {
+            } else if (espressoOptions instanceof PullOptions) {
                 return VIEW_TYPE_PULL_OPTIONS;
-            } else if (espressoOptions.getSizeOptions() != null) {
+            } else if (espressoOptions instanceof SizeOptions) {
                 return VIEW_TYPE_SIZE_OPTIONS;
             } else {
                 Log.e(TAG, "EspressoOptions else-clause");
@@ -164,117 +174,56 @@ public class WhatsIncludedAdapter extends RecyclerView.Adapter<RecyclerView.View
         public void bind(int viewType, DrinkComponent drinkComponent) {
             String titleBorder = null;
             String name = null;
-            int imageResource = R.drawable.ic_coins_s;
-
-            int numberOfEnums = 0;
             switch (viewType) {
                 case VIEW_TYPE_MILK_BASE:
-                    titleBorder = MilkOptions.MilkBase.class.getSimpleName();
-                    name = ((MilkOptions) drinkComponent).getMilkBase().name();
-
-                    numberOfEnums = MilkOptions.MilkBase.values().length;
-                    enumsAsString = new String[numberOfEnums];
-                    for (int i = 0; i < numberOfEnums; i++) {
-                        enumsAsString[i] = MilkOptions.MilkBase.values()[i].name();
-                    }
+                    titleBorder = MilkBase.class.getSimpleName();
+                    name = ((MilkBase) drinkComponent).getType().name();
                     break;
                 case VIEW_TYPE_TEMPERATURE:
-                    titleBorder = MilkOptions.Temperature.class.getSimpleName();
-                    name = ((MilkOptions) drinkComponent).getTemperature().name();
-
-                    numberOfEnums = MilkOptions.Temperature.values().length;
-                    enumsAsString = new String[numberOfEnums];
-                    for (int i = 0; i < numberOfEnums; i++) {
-                        enumsAsString[i] = MilkOptions.Temperature.values()[i].name();
-                    }
+                    titleBorder = Temperature.class.getSimpleName();
+                    name = ((Temperature) drinkComponent).getType().name();
                     break;
                 case VIEW_TYPE_MILK_FOAM:
-                    titleBorder = MilkOptions.MilkFoam.class.getSimpleName();
-                    name = ((MilkOptions) drinkComponent).getMilkFoam().name();
-
-                    numberOfEnums = MilkOptions.MilkFoam.values().length;
-                    enumsAsString = new String[numberOfEnums];
-                    for (int i = 0; i < numberOfEnums; i++) {
-                        enumsAsString[i] = MilkOptions.MilkFoam.values()[i].name();
-                    }
+                    titleBorder = MilkFoam.class.getSimpleName();
+                    name = ((MilkFoam) drinkComponent).getType().name();
                     break;
                 case VIEW_TYPE_CAPPUCCINO_FOAM:
-                    titleBorder = MilkOptions.CappuccinoFoam.class.getSimpleName();
-                    name = ((MilkOptions) drinkComponent).getCappuccinoFoam().name();
-
-                    numberOfEnums = MilkOptions.CappuccinoFoam.values().length;
-                    enumsAsString = new String[numberOfEnums];
-                    for (int i = 0; i < numberOfEnums; i++) {
-                        enumsAsString[i] = MilkOptions.CappuccinoFoam.values()[i].name();
-                    }
+                    titleBorder = CappuccinoFoam.class.getSimpleName();
+                    name = ((CappuccinoFoam) drinkComponent).getType().name();
                     break;
                 case VIEW_TYPE_SHOT:
-                    titleBorder = EspressoOptions.Shot.class.getSimpleName();
-                    name = ((EspressoOptions) drinkComponent).getShot().name();
-
-                    numberOfEnums = EspressoOptions.Shot.values().length;
-                    enumsAsString = new String[numberOfEnums];
-                    for (int i = 0; i < numberOfEnums; i++) {
-                        enumsAsString[i] = EspressoOptions.Shot.values()[i].name();
-                    }
+                    titleBorder = Shot.class.getSimpleName();
+                    name = ((Shot) drinkComponent).getType().name();
                     break;
                 case VIEW_TYPE_AFFOGATO_SHOT:
-                    titleBorder = EspressoOptions.AffogatoShot.class.getSimpleName();
-                    name = ((EspressoOptions) drinkComponent).getAffogatoShot().name();
-
-                    numberOfEnums = EspressoOptions.AffogatoShot.values().length;
-                    enumsAsString = new String[numberOfEnums];
-                    for (int i = 0; i < numberOfEnums; i++) {
-                        enumsAsString[i] = EspressoOptions.AffogatoShot.values()[i].name();
-                    }
+                    titleBorder = AffogatoShot.class.getSimpleName();
+                    name = ((AffogatoShot) drinkComponent).getType().name();
                     break;
                 case VIEW_TYPE_ROAST_OPTIONS:
-                    titleBorder = EspressoOptions.RoastOptions.class.getSimpleName();
-                    name = ((EspressoOptions) drinkComponent).getRoastOptions().name();
-
-                    numberOfEnums = EspressoOptions.RoastOptions.values().length;
-                    enumsAsString = new String[numberOfEnums];
-                    for (int i = 0; i < numberOfEnums; i++) {
-                        enumsAsString[i] = EspressoOptions.RoastOptions.values()[i].name();
-                    }
+                    titleBorder = RoastOptions.class.getSimpleName();
+                    name = ((RoastOptions) drinkComponent).getType().name();
                     break;
                 case VIEW_TYPE_PREP_OPTIONS:
-                    titleBorder = EspressoOptions.PrepOptions.class.getSimpleName();
-                    name = ((EspressoOptions) drinkComponent).getPrepOptions().name();
-
-                    numberOfEnums = EspressoOptions.PrepOptions.values().length;
-                    enumsAsString = new String[numberOfEnums];
-                    for (int i = 0; i < numberOfEnums; i++) {
-                        enumsAsString[i] = EspressoOptions.PrepOptions.values()[i].name();
-                    }
+                    titleBorder = PrepOptions.class.getSimpleName();
+                    name = ((PrepOptions) drinkComponent).getType().name();
                     break;
                 case VIEW_TYPE_PULL_OPTIONS:
-                    titleBorder = EspressoOptions.PullOptions.class.getSimpleName();
-                    name = ((EspressoOptions) drinkComponent).getPullOptions().name();
-
-                    numberOfEnums = EspressoOptions.PullOptions.values().length;
-                    enumsAsString = new String[numberOfEnums];
-                    for (int i = 0; i < numberOfEnums; i++) {
-                        enumsAsString[i] = EspressoOptions.PullOptions.values()[i].name();
-                    }
+                    titleBorder = PullOptions.class.getSimpleName();
+                    name = ((PullOptions) drinkComponent).getType().name();
                     break;
                 case VIEW_TYPE_SIZE_OPTIONS:
-                    titleBorder = EspressoOptions.SizeOptions.class.getSimpleName();
-                    name = ((EspressoOptions) drinkComponent).getSizeOptions().name();
-
-                    numberOfEnums = EspressoOptions.SizeOptions.values().length;
-                    enumsAsString = new String[numberOfEnums];
-                    for (int i = 0; i < numberOfEnums; i++) {
-                        enumsAsString[i] = EspressoOptions.SizeOptions.values()[i].name();
-                    }
+                    titleBorder = SizeOptions.class.getSimpleName();
+                    name = ((SizeOptions) drinkComponent).getType().name();
                     break;
                 default:
                     titleBorder = "error";
                     name = "default";
-                    enumsAsString = new String[]{""};
                     Log.e(TAG, "DrinkComponentViewHolder.bind() switch(viewType) default block");
                     break;
             }
+            int imageResource = R.drawable.ic_coins_s;
+            enumsAsString = drinkComponent.getEnumValuesAsStringArray();
+
             tvBorderTitle.setText(titleBorder);
             tvName.setText(name);
             ivDropDownImage.setImageResource(imageResource);
@@ -337,117 +286,56 @@ public class WhatsIncludedAdapter extends RecyclerView.Adapter<RecyclerView.View
         public void bind(int viewType, DrinkComponent drinkComponent) {
             String titleBorder = null;
             String name = null;
-            int imageResource = R.drawable.ic_coins_s;
-
-            int numberOfEnums = 0;
             switch (viewType) {
                 case VIEW_TYPE_MILK_BASE:
-                    titleBorder = MilkOptions.MilkBase.class.getSimpleName();
-                    name = ((MilkOptions) drinkComponent).getMilkBase().name();
-
-                    numberOfEnums = MilkOptions.MilkBase.values().length;
-                    enumsAsString = new String[numberOfEnums];
-                    for (int i = 0; i < numberOfEnums; i++) {
-                        enumsAsString[i] = MilkOptions.MilkBase.values()[i].name();
-                    }
+                    titleBorder = MilkBase.class.getSimpleName();
+                    name = ((MilkBase) drinkComponent).getType().name();
                     break;
                 case VIEW_TYPE_TEMPERATURE:
-                    titleBorder = MilkOptions.Temperature.class.getSimpleName();
-                    name = ((MilkOptions) drinkComponent).getTemperature().name();
-
-                    numberOfEnums = MilkOptions.Temperature.values().length;
-                    enumsAsString = new String[numberOfEnums];
-                    for (int i = 0; i < numberOfEnums; i++) {
-                        enumsAsString[i] = MilkOptions.Temperature.values()[i].name();
-                    }
+                    titleBorder = Temperature.class.getSimpleName();
+                    name = ((Temperature) drinkComponent).getType().name();
                     break;
                 case VIEW_TYPE_MILK_FOAM:
-                    titleBorder = MilkOptions.MilkFoam.class.getSimpleName();
-                    name = ((MilkOptions) drinkComponent).getMilkFoam().name();
-
-                    numberOfEnums = MilkOptions.MilkFoam.values().length;
-                    enumsAsString = new String[numberOfEnums];
-                    for (int i = 0; i < numberOfEnums; i++) {
-                        enumsAsString[i] = MilkOptions.MilkFoam.values()[i].name();
-                    }
+                    titleBorder = MilkFoam.class.getSimpleName();
+                    name = ((MilkFoam) drinkComponent).getType().name();
                     break;
                 case VIEW_TYPE_CAPPUCCINO_FOAM:
-                    titleBorder = MilkOptions.CappuccinoFoam.class.getSimpleName();
-                    name = ((MilkOptions) drinkComponent).getCappuccinoFoam().name();
-
-                    numberOfEnums = MilkOptions.CappuccinoFoam.values().length;
-                    enumsAsString = new String[numberOfEnums];
-                    for (int i = 0; i < numberOfEnums; i++) {
-                        enumsAsString[i] = MilkOptions.CappuccinoFoam.values()[i].name();
-                    }
+                    titleBorder = CappuccinoFoam.class.getSimpleName();
+                    name = ((CappuccinoFoam) drinkComponent).getType().name();
                     break;
                 case VIEW_TYPE_SHOT:
-                    titleBorder = EspressoOptions.Shot.class.getSimpleName();
-                    name = ((EspressoOptions) drinkComponent).getShot().name();
-
-                    numberOfEnums = EspressoOptions.Shot.values().length;
-                    enumsAsString = new String[numberOfEnums];
-                    for (int i = 0; i < numberOfEnums; i++) {
-                        enumsAsString[i] = EspressoOptions.Shot.values()[i].name();
-                    }
+                    titleBorder = Shot.class.getSimpleName();
+                    name = ((Shot) drinkComponent).getType().name();
                     break;
                 case VIEW_TYPE_AFFOGATO_SHOT:
-                    titleBorder = EspressoOptions.AffogatoShot.class.getSimpleName();
-                    name = ((EspressoOptions) drinkComponent).getAffogatoShot().name();
-
-                    numberOfEnums = EspressoOptions.AffogatoShot.values().length;
-                    enumsAsString = new String[numberOfEnums];
-                    for (int i = 0; i < numberOfEnums; i++) {
-                        enumsAsString[i] = EspressoOptions.AffogatoShot.values()[i].name();
-                    }
+                    titleBorder = AffogatoShot.class.getSimpleName();
+                    name = ((AffogatoShot) drinkComponent).getType().name();
                     break;
                 case VIEW_TYPE_ROAST_OPTIONS:
-                    titleBorder = EspressoOptions.RoastOptions.class.getSimpleName();
-                    name = ((EspressoOptions) drinkComponent).getRoastOptions().name();
-
-                    numberOfEnums = EspressoOptions.RoastOptions.values().length;
-                    enumsAsString = new String[numberOfEnums];
-                    for (int i = 0; i < numberOfEnums; i++) {
-                        enumsAsString[i] = EspressoOptions.RoastOptions.values()[i].name();
-                    }
+                    titleBorder = RoastOptions.class.getSimpleName();
+                    name = ((RoastOptions) drinkComponent).getType().name();
                     break;
                 case VIEW_TYPE_PREP_OPTIONS:
-                    titleBorder = EspressoOptions.PrepOptions.class.getSimpleName();
-                    name = ((EspressoOptions) drinkComponent).getPrepOptions().name();
-
-                    numberOfEnums = EspressoOptions.PrepOptions.values().length;
-                    enumsAsString = new String[numberOfEnums];
-                    for (int i = 0; i < numberOfEnums; i++) {
-                        enumsAsString[i] = EspressoOptions.PrepOptions.values()[i].name();
-                    }
+                    titleBorder = PrepOptions.class.getSimpleName();
+                    name = ((PrepOptions) drinkComponent).getType().name();
                     break;
                 case VIEW_TYPE_PULL_OPTIONS:
-                    titleBorder = EspressoOptions.PullOptions.class.getSimpleName();
-                    name = ((EspressoOptions) drinkComponent).getPullOptions().name();
-
-                    numberOfEnums = EspressoOptions.PullOptions.values().length;
-                    enumsAsString = new String[numberOfEnums];
-                    for (int i = 0; i < numberOfEnums; i++) {
-                        enumsAsString[i] = EspressoOptions.PullOptions.values()[i].name();
-                    }
+                    titleBorder = PullOptions.class.getSimpleName();
+                    name = ((PullOptions) drinkComponent).getType().name();
                     break;
                 case VIEW_TYPE_SIZE_OPTIONS:
-                    titleBorder = EspressoOptions.SizeOptions.class.getSimpleName();
-                    name = ((EspressoOptions) drinkComponent).getSizeOptions().name();
-
-                    numberOfEnums = EspressoOptions.SizeOptions.values().length;
-                    enumsAsString = new String[numberOfEnums];
-                    for (int i = 0; i < numberOfEnums; i++) {
-                        enumsAsString[i] = EspressoOptions.SizeOptions.values()[i].name();
-                    }
+                    titleBorder = SizeOptions.class.getSimpleName();
+                    name = ((SizeOptions) drinkComponent).getType().name();
                     break;
                 default:
                     titleBorder = "error";
                     name = "default";
-                    enumsAsString = new String[]{""};
                     Log.e(TAG, "DrinkComponentViewHolder.bind() switch(viewType) default block");
                     break;
             }
+            int imageResource = R.drawable.ic_coins_s;
+            enumsAsString = drinkComponent.getEnumValuesAsStringArray();
+
             tvBorderTitle.setText(titleBorder);
             tvName.setText(name);
             ivDropDownImage.setImageResource(imageResource);

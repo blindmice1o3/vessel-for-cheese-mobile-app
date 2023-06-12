@@ -20,7 +20,7 @@ import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.jackingaming.vesselforcheesemobileapp.R;
-import com.jackingaming.vesselforcheesemobileapp.models.components.drinks_1.DrinkComponent;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
 import com.jackingaming.vesselforcheesemobileapp.models.menu.Menu;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.Drink;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.lattes.CaffeLatte;
@@ -119,7 +119,7 @@ public class MenuItemActivity extends AppCompatActivity {
             String textPreviousContent = tvContent.getText().toString();
             tvContent.setText(textPreviousContent + ": " + drink.getName());
 
-            tvSizeOptions.setText(drink.getSizeOptions().toString());
+            tvSizeOptions.setText(drink.getDrinkSize().toString());
 
             if (!(drink instanceof CaffeLatte)) {
                 String textPreviousWhatsIncluded = tvWhatsIncluded.getText().toString();

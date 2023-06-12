@@ -1,7 +1,10 @@
 package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.lattes;
 
-import com.jackingaming.vesselforcheesemobileapp.models.components.drinks_1.espresso_options.EspressoOptions;
-import com.jackingaming.vesselforcheesemobileapp.models.components.drinks_1.milk_options.MilkOptions;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.espresso_options.RoastOptions;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.espresso_options.Shot;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.milk_options.MilkBase;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.milk_options.MilkFoam;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.milk_options.Temperature;
 
 public class CaffeLatte extends Lattes {
     public static final String TAG = CaffeLatte.class.getSimpleName();
@@ -16,10 +19,10 @@ public class CaffeLatte extends Lattes {
     public CaffeLatte() {
         super(NAME_DEFAULT, DESCRIPTION_DEFAULT, PRICE_MEDIUM_DEFAULT, ICED_DEFAULT);
 
-        drinkComponentsWhatsIncluded.add(new MilkOptions(MilkOptions.MilkFoam.MEDIUM));
-        drinkComponentsWhatsIncluded.add(new MilkOptions(MilkOptions.MilkBase.TWO_PERCENT));
-        drinkComponentsWhatsIncluded.add(new MilkOptions(MilkOptions.Temperature.MEDIUM));
-        drinkComponentsWhatsIncluded.add(new EspressoOptions(EspressoOptions.RoastOptions.SIGNATURE));
-        drinkComponentsWhatsIncluded.add(new EspressoOptions(EspressoOptions.Shot.TWO));
+        drinkComponentsWhatsIncluded.add(new MilkFoam(MilkFoam.Type.MEDIUM));
+        drinkComponentsWhatsIncluded.add(new MilkBase(MilkBase.Type.TWO_PERCENT));
+        drinkComponentsWhatsIncluded.add(new Temperature(Temperature.Type.MEDIUM));
+        drinkComponentsWhatsIncluded.add(new RoastOptions(RoastOptions.Type.SIGNATURE));
+        drinkComponentsWhatsIncluded.add(new Shot(Shot.Type.TWO));
     }
 }

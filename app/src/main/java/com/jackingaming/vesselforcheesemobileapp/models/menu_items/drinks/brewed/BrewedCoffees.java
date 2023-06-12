@@ -1,11 +1,11 @@
 package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed;
 
-import com.jackingaming.vesselforcheesemobileapp.models.components.drinks_1.size_options.SizeOptions;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.size_options.DrinkSize;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.Drink;
 
 public abstract class BrewedCoffees extends Drink {
     public static final String TAG = BrewedCoffees.class.getSimpleName();
-    public static final SizeOptions.DrinkSize DEFAULT_DRINK_SIZE = SizeOptions.DrinkSize.GRANDE;
+    public static final DrinkSize.Type DEFAULT_DRINK_SIZE = DrinkSize.Type.GRANDE;
 
     public BrewedCoffees() {
     }
