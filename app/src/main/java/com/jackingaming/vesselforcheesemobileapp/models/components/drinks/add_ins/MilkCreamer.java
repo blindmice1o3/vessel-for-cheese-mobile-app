@@ -37,4 +37,15 @@ public class MilkCreamer extends AddInsOptions {
         }
         return enumValuesAsStringArray;
     }
+
+    @Override
+    public void setTypeByString(String typeAsString) {
+        Type[] enumValues = Type.values();
+        for (int i = 0; i < enumValues.length; i++) {
+            if (enumValues[i].name().equals(typeAsString)) {
+                type = enumValues[i];
+                break;
+            }
+        }
+    }
 }

@@ -32,6 +32,7 @@ public class MenuItemActivity extends AppCompatActivity {
     public static final String EXTRA_POSITION = "com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem.position";
 
     private TextView textViewSelected;
+    private int positionOfDrinkComponentSelected;
 
     public void initHeightAppBarLayoutAsHalfScreen(AppBarLayout appBarLayout) {
         float heightDp = getResources().getDisplayMetrics().heightPixels / 2;
@@ -143,7 +144,10 @@ public class MenuItemActivity extends AppCompatActivity {
                 public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
                     if (requestKey.equals(ModalBottomSheet.REQUEST_KEY)) {
                         String name = result.getString(ModalBottomSheet.KEY_RESULT);
-                        // TODO: update the underlying model.
+                        // Update the underlying model.
+                        drink.getDrinkComponentsWhatsIncluded().get(positionOfDrinkComponentSelected).setTypeByString(name);
+
+                        // Update the screen.
                         textViewSelected.setText(name);
                         textViewSelected = null;
                     }
@@ -151,15 +155,17 @@ public class MenuItemActivity extends AppCompatActivity {
             });
             WhatsIncludedAdapter adapter = new WhatsIncludedAdapter(drink.getDrinkComponentsWhatsIncluded(), new WhatsIncludedAdapter.WhatsIncludedAdapterListener() {
                 @Override
-                public void onItemClicked(String[] names, TextView textView) {
+                public void onItemClicked(int position, String[] names, TextView textView) {
                     Log.i(TAG, "onItemClicked(String[] names, TextView textView)");
+                    positionOfDrinkComponentSelected = position;
                     textViewSelected = textView;
                     ModalBottomSheet.newInstance(names).show(getSupportFragmentManager(), ModalBottomSheet.TAG);
                 }
 
                 @Override
-                public void onItemLongClicked(String[] names, TextView textView) {
+                public void onItemLongClicked(int position, String[] names, TextView textView) {
                     Log.i(TAG, "onItemLongClicked(String[] names, TextView textView)");
+                    positionOfDrinkComponentSelected = position;
                     textViewSelected = textView;
                 }
             });

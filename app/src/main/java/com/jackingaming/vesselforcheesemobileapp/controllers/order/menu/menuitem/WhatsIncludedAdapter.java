@@ -46,9 +46,9 @@ public class WhatsIncludedAdapter extends RecyclerView.Adapter<RecyclerView.View
     private static final int VIEW_TYPE_SIZE_OPTIONS = 10;
 
     public interface WhatsIncludedAdapterListener {
-        void onItemClicked(String[] names, TextView textView);
+        void onItemClicked(int position, String[] names, TextView textView);
 
-        void onItemLongClicked(String[] names, TextView textView);
+        void onItemLongClicked(int position, String[] names, TextView textView);
     }
 
     private List<DrinkComponent> drinkComponents;
@@ -245,7 +245,7 @@ public class WhatsIncludedAdapter extends RecyclerView.Adapter<RecyclerView.View
             Log.i(TAG, "item in RV clicked! position: " + position);
             if (position != RecyclerView.NO_POSITION) { // Check if an item was deleted, but the user clicked it before the UI removed it
                 if (listener != null) {
-                    listener.onItemClicked(enumsAsString, view.findViewById(R.id.tv_name));
+                    listener.onItemClicked(position, enumsAsString, view.findViewById(R.id.tv_name));
                 }
             }
         }
@@ -256,7 +256,7 @@ public class WhatsIncludedAdapter extends RecyclerView.Adapter<RecyclerView.View
             Log.i(TAG, "item in RV long-clicked! position: " + position);
             if (position != RecyclerView.NO_POSITION) { // Check if an item was deleted, but the user clicked it before the UI removed it
                 if (listener != null) {
-                    listener.onItemLongClicked(enumsAsString, view.findViewById(R.id.tv_name));
+                    listener.onItemLongClicked(position, enumsAsString, view.findViewById(R.id.tv_name));
                     return true;
                 }
             }
