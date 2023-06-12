@@ -11,24 +11,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuInflater;
-import android.view.MotionEvent;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.jackingaming.vesselforcheesemobileapp.R;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
-import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.espresso_options.EspressoOptions;
-import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.milk_options.MilkOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.menu.Menu;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.Drink;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.lattes.CaffeLatte;
@@ -127,7 +119,7 @@ public class MenuItemActivity extends AppCompatActivity {
             String textPreviousContent = tvContent.getText().toString();
             tvContent.setText(textPreviousContent + ": " + drink.getName());
 
-            tvSizeOptions.setText(drink.getSizeOptions().toString());
+            tvSizeOptions.setText(drink.getDrinkSize().toString());
 
             if (!(drink instanceof CaffeLatte)) {
                 String textPreviousWhatsIncluded = tvWhatsIncluded.getText().toString();

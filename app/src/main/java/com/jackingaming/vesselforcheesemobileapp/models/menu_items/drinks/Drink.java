@@ -3,7 +3,7 @@ package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks;
 import android.util.Log;
 
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
-import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.size_options.SizeOptions;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.size_options.DrinkSize;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.MenuItem;
 
 import java.util.ArrayList;
@@ -12,7 +12,7 @@ import java.util.List;
 public abstract class Drink extends MenuItem {
     public static final String TAG = Drink.class.getSimpleName();
 
-    protected SizeOptions sizeOptions;
+    protected DrinkSize.Type drinkSize;
     protected boolean iced;
     protected List<DrinkComponent> drinkComponentsWhatsIncluded = new ArrayList<>();
     protected List<DrinkComponent> drinkComponentsCustomized = new ArrayList<>();
@@ -21,9 +21,9 @@ public abstract class Drink extends MenuItem {
         super();
     }
 
-    public Drink(String name, String description, double price, SizeOptions.DrinkSize drinkSizeDefault, boolean iced) {
+    public Drink(String name, String description, double price, DrinkSize.Type drinkSizeDefault, boolean iced) {
         super(name, description, price);
-        sizeOptions = new SizeOptions(drinkSizeDefault);
+        drinkSize = drinkSizeDefault;
         this.iced = iced;
 
 
@@ -41,12 +41,12 @@ public abstract class Drink extends MenuItem {
         drinkComponentsCustomized.add(drinkComponent);
     }
 
-    public SizeOptions getSizeOptions() {
-        return sizeOptions;
+    public DrinkSize.Type getDrinkSize() {
+        return drinkSize;
     }
 
-    public void setSizeOptions(SizeOptions sizeOptions) {
-        this.sizeOptions = sizeOptions;
+    public void setDrinkSize(DrinkSize.Type drinkSize) {
+        this.drinkSize = drinkSize;
     }
 
     public boolean isIced() {
