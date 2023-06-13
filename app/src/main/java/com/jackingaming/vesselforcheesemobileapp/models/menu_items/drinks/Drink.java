@@ -15,6 +15,7 @@ public abstract class Drink extends MenuItem {
     protected DrinkSize.Type drinkSize;
     protected boolean iced;
     protected List<DrinkComponent> drinkComponentsWhatsIncluded = new ArrayList<>();
+    protected String[] drinkComponentsWhatsIncludedDefaultValuesAsStringArray;
     protected List<DrinkComponent> drinkComponentsCustomized = new ArrayList<>();
 
     public Drink() {
@@ -25,9 +26,12 @@ public abstract class Drink extends MenuItem {
         super(name, description, price);
         drinkSize = drinkSizeDefault;
         this.iced = iced;
-
-
     }
+
+    // TODO: abstract method to initDrinkComponentsWhatsIncluded()
+    //  (as oppose to CaffeLatte doing this straight in the constructor).
+
+    // TODO: abstract method to initDrinkComponentsWhatsIncludedDefaultValuesAsStringArray().
 
     public void addToDrinkComponentsWhatsIncluded(DrinkComponent drinkComponent) {
         Log.i(TAG, "addToDrinkComponentsWhatsIncluded(DrinkComponent)");
@@ -39,6 +43,10 @@ public abstract class Drink extends MenuItem {
         Log.i(TAG, "addToDrinkComponentsCustomized(DrinkComponent)");
         // TODO: screen for duplication (subclasses should override and add rules-check)
         drinkComponentsCustomized.add(drinkComponent);
+    }
+
+    public String[] getDrinkComponentsWhatsIncludedDefaultValuesAsStringArray() {
+        return drinkComponentsWhatsIncludedDefaultValuesAsStringArray;
     }
 
     public DrinkSize.Type getDrinkSize() {

@@ -57,7 +57,7 @@ public class Shot extends EspressoOptions
     }
 
     public enum Type {
-        ZERO, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE;
+        ZERO, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, ELEVEN, TWELVE;
     }
 
     private Type type;
@@ -89,6 +89,11 @@ public class Shot extends EspressoOptions
             enumValuesAsStringArray[i] = enumValues[i].name();
         }
         return enumValuesAsStringArray;
+    }
+
+    @Override
+    public String getTypeAsString() {
+        return type.name();
     }
 
     @Override

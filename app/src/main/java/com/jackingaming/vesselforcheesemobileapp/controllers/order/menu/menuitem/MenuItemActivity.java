@@ -136,19 +136,22 @@ public class MenuItemActivity extends AppCompatActivity {
                 }
             });
 
-            WhatsIncludedAdapter adapter = new WhatsIncludedAdapter(drink.getDrinkComponentsWhatsIncluded(), new WhatsIncludedAdapter.WhatsIncludedAdapterListener() {
-                @Override
-                public void onItemClicked(String[] names) {
-                    Log.i(TAG, "onItemClicked(String[] names)");
+            WhatsIncludedAdapter adapter = new WhatsIncludedAdapter(
+                    drink.getDrinkComponentsWhatsIncluded(),
+                    drink.getDrinkComponentsWhatsIncludedDefaultValuesAsStringArray(),
+                    new WhatsIncludedAdapter.WhatsIncludedAdapterListener() {
+                        @Override
+                        public void onItemClicked(String[] names) {
+                            Log.i(TAG, "onItemClicked(String[] names)");
 
-                    ModalBottomSheet.newInstance(names).show(getSupportFragmentManager(), ModalBottomSheet.TAG);
-                }
+                            ModalBottomSheet.newInstance(names).show(getSupportFragmentManager(), ModalBottomSheet.TAG);
+                        }
 
-                @Override
-                public void onItemLongClicked(String[] names) {
-                    Log.i(TAG, "onItemLongClicked(String[] names)");
-                }
-            });
+                        @Override
+                        public void onItemLongClicked(String[] names) {
+                            Log.i(TAG, "onItemLongClicked(String[] names)");
+                        }
+                    });
             rvWhatsIncluded.setAdapter(adapter);
             rvWhatsIncluded.setLayoutManager(new LinearLayoutManager(this));
 

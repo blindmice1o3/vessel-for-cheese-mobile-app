@@ -30,6 +30,11 @@ public class Ice extends AddInsOptions {
     }
 
     @Override
+    public String getTypeAsString() {
+        return type.name();
+    }
+
+    @Override
     public void setTypeByString(String typeAsString) {
         Type[] enumValues = Type.values();
         for (int i = 0; i < enumValues.length; i++) {

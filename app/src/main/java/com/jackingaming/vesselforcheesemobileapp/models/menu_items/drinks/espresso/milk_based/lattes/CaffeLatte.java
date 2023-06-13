@@ -34,5 +34,13 @@ public class CaffeLatte extends Lattes {
         drinkComponentsWhatsIncluded.add(new Temperature(DEFAULT_TEMPERATURE));
         drinkComponentsWhatsIncluded.add(new RoastOptions(DEFAULT_ROAST_OPTIONS));
         drinkComponentsWhatsIncluded.add(new Shot(DEFAULT_NUMBER_OF_ESPRESSO_SHOTS));
+
+        drinkComponentsWhatsIncludedDefaultValuesAsStringArray =
+                new String[drinkComponentsWhatsIncluded.size()];
+        drinkComponentsWhatsIncludedDefaultValuesAsStringArray[0] = DEFAULT_MILK_FOAM.name();
+        drinkComponentsWhatsIncludedDefaultValuesAsStringArray[1] = DEFAULT_MILK_BASE.name();
+        drinkComponentsWhatsIncludedDefaultValuesAsStringArray[2] = DEFAULT_TEMPERATURE.name();
+        drinkComponentsWhatsIncludedDefaultValuesAsStringArray[3] = DEFAULT_ROAST_OPTIONS.name();
+        drinkComponentsWhatsIncludedDefaultValuesAsStringArray[4] = Integer.toString(DEFAULT_NUMBER_OF_ESPRESSO_SHOTS);
     }
 }

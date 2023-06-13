@@ -1,5 +1,6 @@
 package com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem;
 
+import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -52,13 +53,19 @@ public class WhatsIncludedAdapter extends RecyclerView.Adapter<RecyclerView.View
     }
 
     private List<DrinkComponent> drinkComponents;
+    private String[] drinkComponentsDefaultValuesAsStringArray;
     private WhatsIncludedAdapterListener listener;
 
     private int indexSelected = -1;
-    private TextView textViewSelected;
+    private TextView tvNameSelected;
+    private TextView tvBorderTitleSelected;
+    private View viewBorderSelected;
 
-    public WhatsIncludedAdapter(List<DrinkComponent> drinkComponents, WhatsIncludedAdapterListener listener) {
+    public WhatsIncludedAdapter(List<DrinkComponent> drinkComponents,
+                                String[] drinkComponentsDefaultValuesAsStringArray,
+                                WhatsIncludedAdapterListener listener) {
         this.drinkComponents = drinkComponents;
+        this.drinkComponentsDefaultValuesAsStringArray = drinkComponentsDefaultValuesAsStringArray;
         this.listener = listener;
     }
 
@@ -171,14 +178,32 @@ public class WhatsIncludedAdapter extends RecyclerView.Adapter<RecyclerView.View
 
         if (indexSelected > -1) {
             // Update the underlying model.
-            drinkComponents.get(indexSelected).setTypeByString(name);
-            indexSelected = -1;
+            DrinkComponent drinkComponentSelected = drinkComponents.get(indexSelected);
+            drinkComponentSelected.setTypeByString(name);
 
             // Update the screen.
-            textViewSelected.setText(name);
-            textViewSelected = null;
+            tvNameSelected.setText(name);
 
-            // TODO: check criteria for changing border color.
+            // Check criteria for changing border color.
+            String drinkComponentSelectedDefaultValueAsString =
+                    drinkComponentsDefaultValuesAsStringArray[indexSelected];
+            if (drinkComponentSelected.getTypeAsString().equals(drinkComponentSelectedDefaultValueAsString)) {
+                // The selected value is the same as the default value for this drink's type.
+                String colorDefault = "#1B455F";
+                viewBorderSelected.setBackgroundResource(R.drawable.border_drink_component_default);
+                tvBorderTitleSelected.setTextColor(Color.parseColor(colorDefault));
+            } else {
+                // The selected value is NOT the same as the default value for this drink's type.
+                String colorCustomized = "#AAFF00";
+                viewBorderSelected.setBackgroundResource(R.drawable.border_drink_component_customized);
+                tvBorderTitleSelected.setTextColor(Color.parseColor(colorCustomized));
+            }
+
+            // Tear-down steps.
+            indexSelected = -1;
+            tvNameSelected = null;
+            tvBorderTitleSelected = null;
+            viewBorderSelected = null;
         } else {
             Log.e(TAG, "indexSelected <= -1");
         }
@@ -259,6 +284,8 @@ public class WhatsIncludedAdapter extends RecyclerView.Adapter<RecyclerView.View
             ivDropDownImage.setImageResource(R.drawable.ic_menu_arrow_down);
 
             enumsAsString = drinkComponent.getEnumValuesAsStringArray();
+            // TODO: change WhatsIncludedAdapter() to take in Drink instead of List<DrinkComponent>.
+            // TODO: track the drink's default value (as String) of the selected drink component.
         }
 
         @Override
@@ -268,7 +295,9 @@ public class WhatsIncludedAdapter extends RecyclerView.Adapter<RecyclerView.View
             if (position != RecyclerView.NO_POSITION) { // Check if an item was deleted, but the user clicked it before the UI removed it
                 if (listener != null) {
                     indexSelected = position;
-                    textViewSelected = view.findViewById(R.id.tv_name);
+                    tvNameSelected = view.findViewById(R.id.tv_name);
+                    tvBorderTitleSelected = view.findViewById(R.id.tv_border_title);
+                    viewBorderSelected = view.findViewById(R.id.view_border);
                     listener.onItemClicked(enumsAsString);
                 }
             }
