@@ -31,9 +31,6 @@ public class MenuItemActivity extends AppCompatActivity {
     public static final String EXTRA_NAME_SUB_CATEGORY = "com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem.nameSubCategory";
     public static final String EXTRA_POSITION = "com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem.position";
 
-    private TextView textViewSelected;
-    private int positionOfDrinkComponentSelected;
-
     public void initHeightAppBarLayoutAsHalfScreen(AppBarLayout appBarLayout) {
         float heightDp = getResources().getDisplayMetrics().heightPixels / 2;
         CoordinatorLayout.LayoutParams lp = (CoordinatorLayout.LayoutParams) appBarLayout.getLayoutParams();
@@ -139,38 +136,32 @@ public class MenuItemActivity extends AppCompatActivity {
                 }
             });
 
+            WhatsIncludedAdapter adapter = new WhatsIncludedAdapter(drink.getDrinkComponentsWhatsIncluded(), new WhatsIncludedAdapter.WhatsIncludedAdapterListener() {
+                @Override
+                public void onItemClicked(String[] names) {
+                    Log.i(TAG, "onItemClicked(String[] names)");
+
+                    ModalBottomSheet.newInstance(names).show(getSupportFragmentManager(), ModalBottomSheet.TAG);
+                }
+
+                @Override
+                public void onItemLongClicked(String[] names) {
+                    Log.i(TAG, "onItemLongClicked(String[] names)");
+                }
+            });
+            rvWhatsIncluded.setAdapter(adapter);
+            rvWhatsIncluded.setLayoutManager(new LinearLayoutManager(this));
+
             getSupportFragmentManager().setFragmentResultListener(ModalBottomSheet.REQUEST_KEY, this, new FragmentResultListener() {
                 @Override
                 public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
                     if (requestKey.equals(ModalBottomSheet.REQUEST_KEY)) {
                         String name = result.getString(ModalBottomSheet.KEY_RESULT);
-                        // Update the underlying model.
-                        drink.getDrinkComponentsWhatsIncluded().get(positionOfDrinkComponentSelected).setTypeByString(name);
 
-                        // Update the screen.
-                        textViewSelected.setText(name);
-                        textViewSelected = null;
+                        adapter.updateDrinkComponentByString(name);
                     }
                 }
             });
-            WhatsIncludedAdapter adapter = new WhatsIncludedAdapter(drink.getDrinkComponentsWhatsIncluded(), new WhatsIncludedAdapter.WhatsIncludedAdapterListener() {
-                @Override
-                public void onItemClicked(int position, String[] names, TextView textView) {
-                    Log.i(TAG, "onItemClicked(String[] names, TextView textView)");
-                    positionOfDrinkComponentSelected = position;
-                    textViewSelected = textView;
-                    ModalBottomSheet.newInstance(names).show(getSupportFragmentManager(), ModalBottomSheet.TAG);
-                }
-
-                @Override
-                public void onItemLongClicked(int position, String[] names, TextView textView) {
-                    Log.i(TAG, "onItemLongClicked(String[] names, TextView textView)");
-                    positionOfDrinkComponentSelected = position;
-                    textViewSelected = textView;
-                }
-            });
-            rvWhatsIncluded.setAdapter(adapter);
-            rvWhatsIncluded.setLayoutManager(new LinearLayoutManager(this));
 
             tvDescription.setText(drink.getDescription());
 

@@ -400,7 +400,7 @@ public class Menu {
             menuItemSelected = new Water();
         } else if (tagOfSelectedButton.equals(GreenApronBlend.NAME_DEFAULT)) {
             menuItemSelected = new GreenApronBlend();
-        } else if (tagOfSelectedButton.equals(CaffeLatte.NAME_DEFAULT)) {
+        } else if (tagOfSelectedButton.equals(CaffeLatte.DEFAULT_NAME)) {
             menuItemSelected = new CaffeLatte();
         } else if (tagOfSelectedButton.equals(ShotEspresso.NAME_DEFAULT)) {
             menuItemSelected = new ShotEspresso();
@@ -444,7 +444,7 @@ public class Menu {
 
         allDrinks.add(Water.NAME_DEFAULT);
         allDrinks.add(GreenApronBlend.NAME_DEFAULT);
-        allDrinks.add(CaffeLatte.NAME_DEFAULT);
+        allDrinks.add(CaffeLatte.DEFAULT_NAME);
         allDrinks.add(ShotEspresso.NAME_DEFAULT);
         allDrinks.add("NULL");
 

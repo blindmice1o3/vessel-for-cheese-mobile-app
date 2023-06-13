@@ -9,21 +9,30 @@ import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.milk_o
 public class CaffeLatte extends Lattes {
     public static final String TAG = CaffeLatte.class.getSimpleName();
 
-    public static final String NAME_DEFAULT = "Caffe Latte";
-    public static final String DESCRIPTION_DEFAULT = "Our dark, rich espresso balanced with steamed milk and a light layer of foam. A perfect milk-forward warm-up.";
-    public static final double PRICE_SMALL_DEFAULT = 2.95;
-    public static final double PRICE_MEDIUM_DEFAULT = 3.45;
-    public static final double PRICE_LARGE_DEFAULT = 3.70;
-    public static final boolean ICED_DEFAULT = false;
+    public static final String DEFAULT_NAME = "Caffe Latte";
+    public static final String DEFAULT_DESCRIPTION = "Our dark, rich espresso balanced with steamed milk and a light layer of foam. A perfect milk-forward warm-up.";
+    public static final int DEFAULT_CALORIES = 190;
+    public static final int DEFAULT_SUGAR_IN_GRAM = 18;
+    public static final float DEFAULT_FAT_IN_GRAM = 7.0f;
+
+    public static final MilkFoam.Type DEFAULT_MILK_FOAM = MilkFoam.Type.MEDIUM;
+    public static final MilkBase.Type DEFAULT_MILK_BASE = MilkBase.Type.TWO_PERCENT;
+    public static final Temperature.Type DEFAULT_TEMPERATURE = Temperature.Type.MEDIUM;
+    public static final RoastOptions.Type DEFAULT_ROAST_OPTIONS = RoastOptions.Type.SIGNATURE;
     public static final int DEFAULT_NUMBER_OF_ESPRESSO_SHOTS = 2;
 
-    public CaffeLatte() {
-        super(NAME_DEFAULT, DESCRIPTION_DEFAULT, PRICE_MEDIUM_DEFAULT, ICED_DEFAULT);
+    public static final double DEFAULT_PRICE_SMALL = 2.95;
+    public static final double DEFAULT_PRICE_MEDIUM = 3.45;
+    public static final double DEFAULT_PRICE_LARGE = 3.70;
+    public static final boolean DEFAULT_ICED = false;
 
-        drinkComponentsWhatsIncluded.add(new MilkFoam(MilkFoam.Type.MEDIUM));
-        drinkComponentsWhatsIncluded.add(new MilkBase(MilkBase.Type.TWO_PERCENT));
-        drinkComponentsWhatsIncluded.add(new Temperature(Temperature.Type.MEDIUM));
-        drinkComponentsWhatsIncluded.add(new RoastOptions(RoastOptions.Type.SIGNATURE));
+    public CaffeLatte() {
+        super(DEFAULT_NAME, DEFAULT_DESCRIPTION, DEFAULT_PRICE_MEDIUM, DEFAULT_ICED);
+
+        drinkComponentsWhatsIncluded.add(new MilkFoam(DEFAULT_MILK_FOAM));
+        drinkComponentsWhatsIncluded.add(new MilkBase(DEFAULT_MILK_BASE));
+        drinkComponentsWhatsIncluded.add(new Temperature(DEFAULT_TEMPERATURE));
+        drinkComponentsWhatsIncluded.add(new RoastOptions(DEFAULT_ROAST_OPTIONS));
         drinkComponentsWhatsIncluded.add(new Shot(DEFAULT_NUMBER_OF_ESPRESSO_SHOTS));
     }
 }

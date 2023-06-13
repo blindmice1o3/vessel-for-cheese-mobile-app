@@ -46,13 +46,16 @@ public class WhatsIncludedAdapter extends RecyclerView.Adapter<RecyclerView.View
     private static final int VIEW_TYPE_SIZE_OPTIONS = 10;
 
     public interface WhatsIncludedAdapterListener {
-        void onItemClicked(int position, String[] names, TextView textView);
+        void onItemClicked(String[] names);
 
-        void onItemLongClicked(int position, String[] names, TextView textView);
+        void onItemLongClicked(String[] names);
     }
 
     private List<DrinkComponent> drinkComponents;
     private WhatsIncludedAdapterListener listener;
+
+    private int indexSelected = -1;
+    private TextView textViewSelected;
 
     public WhatsIncludedAdapter(List<DrinkComponent> drinkComponents, WhatsIncludedAdapterListener listener) {
         this.drinkComponents = drinkComponents;
@@ -163,9 +166,28 @@ public class WhatsIncludedAdapter extends RecyclerView.Adapter<RecyclerView.View
         return drinkComponents.size();
     }
 
+    public void updateDrinkComponentByString(String name) {
+        Log.i(TAG, "updateDrinkComponentByString(String)");
+
+        if (indexSelected > -1) {
+            // Update the underlying model.
+            drinkComponents.get(indexSelected).setTypeByString(name);
+            indexSelected = -1;
+
+            // Update the screen.
+            textViewSelected.setText(name);
+            textViewSelected = null;
+
+            // TODO: check criteria for changing border color.
+        } else {
+            Log.e(TAG, "indexSelected <= -1");
+        }
+    }
+
     class DrinkComponentViewHolder extends RecyclerView.ViewHolder
             implements View.OnClickListener, View.OnLongClickListener {
 
+        private View viewBorder;
         private TextView tvBorderTitle;
         private TextView tvName;
         private ImageView ivDropDownImage;
@@ -174,6 +196,7 @@ public class WhatsIncludedAdapter extends RecyclerView.Adapter<RecyclerView.View
 
         public DrinkComponentViewHolder(@NonNull View itemView) {
             super(itemView);
+            viewBorder = itemView.findViewById(R.id.view_border);
             tvBorderTitle = itemView.findViewById(R.id.tv_border_title);
             tvName = itemView.findViewById(R.id.tv_name);
             ivDropDownImage = itemView.findViewById(R.id.iv_drop_down_image);
@@ -231,12 +254,11 @@ public class WhatsIncludedAdapter extends RecyclerView.Adapter<RecyclerView.View
                     Log.e(TAG, "DrinkComponentViewHolder.bind() switch(viewType) default block");
                     break;
             }
-            int imageResource = R.drawable.ic_menu_arrow_down;
-            enumsAsString = drinkComponent.getEnumValuesAsStringArray();
-
             tvBorderTitle.setText(titleBorder);
             tvName.setText(name);
-            ivDropDownImage.setImageResource(imageResource);
+            ivDropDownImage.setImageResource(R.drawable.ic_menu_arrow_down);
+
+            enumsAsString = drinkComponent.getEnumValuesAsStringArray();
         }
 
         @Override
@@ -245,7 +267,9 @@ public class WhatsIncludedAdapter extends RecyclerView.Adapter<RecyclerView.View
             Log.i(TAG, "item in RV clicked! position: " + position);
             if (position != RecyclerView.NO_POSITION) { // Check if an item was deleted, but the user clicked it before the UI removed it
                 if (listener != null) {
-                    listener.onItemClicked(position, enumsAsString, view.findViewById(R.id.tv_name));
+                    indexSelected = position;
+                    textViewSelected = view.findViewById(R.id.tv_name);
+                    listener.onItemClicked(enumsAsString);
                 }
             }
         }
@@ -256,7 +280,7 @@ public class WhatsIncludedAdapter extends RecyclerView.Adapter<RecyclerView.View
             Log.i(TAG, "item in RV long-clicked! position: " + position);
             if (position != RecyclerView.NO_POSITION) { // Check if an item was deleted, but the user clicked it before the UI removed it
                 if (listener != null) {
-                    listener.onItemLongClicked(position, enumsAsString, view.findViewById(R.id.tv_name));
+                    listener.onItemLongClicked(enumsAsString);
                     return true;
                 }
             }
@@ -267,6 +291,7 @@ public class WhatsIncludedAdapter extends RecyclerView.Adapter<RecyclerView.View
     class DrinkComponentIncrementableViewHolder extends RecyclerView.ViewHolder
             implements View.OnClickListener, View.OnLongClickListener {
 
+        private View viewBorder;
         private TextView tvBorderTitle;
         private TextView tvName;
         private ImageView ivAdd;
@@ -277,6 +302,7 @@ public class WhatsIncludedAdapter extends RecyclerView.Adapter<RecyclerView.View
 
         public DrinkComponentIncrementableViewHolder(@NonNull View itemView) {
             super(itemView);
+            viewBorder = itemView.findViewById(R.id.view_border);
             tvBorderTitle = itemView.findViewById(R.id.tv_border_title);
             tvName = itemView.findViewById(R.id.tv_name);
             ivMinus = itemView.findViewById(R.id.iv_minus);
