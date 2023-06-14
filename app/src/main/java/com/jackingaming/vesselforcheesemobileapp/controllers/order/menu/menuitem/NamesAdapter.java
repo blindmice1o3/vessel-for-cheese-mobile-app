@@ -9,6 +9,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.jackingaming.vesselforcheesemobileapp.R;
+
 public class NamesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public static final String TAG = NamesAdapter.class.getSimpleName();
 
@@ -19,23 +21,25 @@ public class NamesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     }
 
     private String[] names;
+    private String nameDefault;
     private NamesAdapterListener listener;
 
-    public NamesAdapter(String[] names, NamesAdapterListener listener) {
+    public NamesAdapter(String[] names, String nameDefault, NamesAdapterListener listener) {
         this.names = names;
+        this.nameDefault = nameDefault;
         this.listener = listener;
     }
 
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(android.R.layout.simple_spinner_dropdown_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_names, parent, false);
         return new NameViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        ((NameViewHolder) holder).bind(names[position]);
+        ((NameViewHolder) holder).bind(names[position], nameDefault);
     }
 
     @Override
@@ -46,15 +50,20 @@ public class NamesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     class NameViewHolder extends RecyclerView.ViewHolder
             implements View.OnClickListener, View.OnLongClickListener {
         private TextView tvName;
+        private TextView tvStandard;
 
         public NameViewHolder(@NonNull View itemView) {
             super(itemView);
-            tvName = itemView.findViewById(android.R.id.text1);
+            tvName = itemView.findViewById(R.id.tvName);
+            tvStandard = itemView.findViewById(R.id.tvStandard);
             itemView.setOnClickListener(this);
             itemView.setOnLongClickListener(this);
         }
 
-        public void bind(String name) {
+        public void bind(String name, String nameDefault) {
+            if (name.equals(nameDefault)) {
+                tvStandard.setVisibility(View.VISIBLE);
+            }
             tvName.setText(name);
         }
 

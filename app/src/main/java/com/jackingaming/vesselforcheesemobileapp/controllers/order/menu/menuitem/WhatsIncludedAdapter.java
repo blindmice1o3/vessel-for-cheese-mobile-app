@@ -47,9 +47,9 @@ public class WhatsIncludedAdapter extends RecyclerView.Adapter<RecyclerView.View
     private static final int VIEW_TYPE_SIZE_OPTIONS = 10;
 
     public interface WhatsIncludedAdapterListener {
-        void onItemClicked(String[] names);
+        void onItemClicked(String[] names, String nameDefault);
 
-        void onItemLongClicked(String[] names);
+        void onItemLongClicked(String[] names, String nameDefault);
     }
 
     private List<DrinkComponent> drinkComponents;
@@ -217,8 +217,6 @@ public class WhatsIncludedAdapter extends RecyclerView.Adapter<RecyclerView.View
         private TextView tvName;
         private ImageView ivDropDownImage;
 
-        private String[] enumsAsString;
-
         public DrinkComponentViewHolder(@NonNull View itemView) {
             super(itemView);
             viewBorder = itemView.findViewById(R.id.view_border);
@@ -282,10 +280,6 @@ public class WhatsIncludedAdapter extends RecyclerView.Adapter<RecyclerView.View
             tvBorderTitle.setText(titleBorder);
             tvName.setText(name);
             ivDropDownImage.setImageResource(R.drawable.ic_menu_arrow_down);
-
-            enumsAsString = drinkComponent.getEnumValuesAsStringArray();
-            // TODO: change WhatsIncludedAdapter() to take in Drink instead of List<DrinkComponent>.
-            // TODO: track the drink's default value (as String) of the selected drink component.
         }
 
         @Override
@@ -298,7 +292,11 @@ public class WhatsIncludedAdapter extends RecyclerView.Adapter<RecyclerView.View
                     tvNameSelected = view.findViewById(R.id.tv_name);
                     tvBorderTitleSelected = view.findViewById(R.id.tv_border_title);
                     viewBorderSelected = view.findViewById(R.id.view_border);
-                    listener.onItemClicked(enumsAsString);
+
+                    DrinkComponent drinkComponent = drinkComponents.get(indexSelected);
+                    String[] enumsAsString = drinkComponent.getEnumValuesAsStringArray();
+                    String nameDefault = drinkComponentsDefaultValuesAsStringArray[indexSelected];
+                    listener.onItemClicked(enumsAsString, nameDefault);
                 }
             }
         }
@@ -309,7 +307,10 @@ public class WhatsIncludedAdapter extends RecyclerView.Adapter<RecyclerView.View
             Log.i(TAG, "item in RV long-clicked! position: " + position);
             if (position != RecyclerView.NO_POSITION) { // Check if an item was deleted, but the user clicked it before the UI removed it
                 if (listener != null) {
-                    listener.onItemLongClicked(enumsAsString);
+                    DrinkComponent drinkComponent = drinkComponents.get(indexSelected);
+                    String[] enumsAsString = drinkComponent.getEnumValuesAsStringArray();
+                    String nameDefault = drinkComponentsDefaultValuesAsStringArray[indexSelected];
+                    listener.onItemLongClicked(enumsAsString, nameDefault);
                     return true;
                 }
             }
@@ -326,8 +327,6 @@ public class WhatsIncludedAdapter extends RecyclerView.Adapter<RecyclerView.View
         private ImageView ivAdd;
         private TextView tvQuantity;
         private ImageView ivMinus;
-
-        private String[] enumsAsString;
 
         public DrinkComponentIncrementableViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -354,7 +353,6 @@ public class WhatsIncludedAdapter extends RecyclerView.Adapter<RecyclerView.View
 
             Incrementable incrementable = (Incrementable) drinkComponent;
             int quantity = incrementable.getQuantity();
-            enumsAsString = drinkComponent.getEnumValuesAsStringArray();
 
             tvBorderTitle.setText(titleBorder);
             tvName.setText(name);

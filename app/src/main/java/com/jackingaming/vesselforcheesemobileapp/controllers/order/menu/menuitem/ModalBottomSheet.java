@@ -22,13 +22,16 @@ public class ModalBottomSheet extends BottomSheetDialogFragment {
     public static final String KEY_RESULT = "com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem.Result";
 
     private static final String ARG_NAMES = "com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem.Names";
+    private static final String ARG_NAME_DEFAULT = "com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem.NameDefault";
 
     private String[] names;
+    private String nameDefault;
 
-    public static ModalBottomSheet newInstance(String[] names) {
+    public static ModalBottomSheet newInstance(String[] names, String nameDefault) {
         ModalBottomSheet modalBottomSheet = new ModalBottomSheet();
         Bundle args = new Bundle();
         args.putStringArray(ARG_NAMES, names);
+        args.putString(ARG_NAME_DEFAULT, nameDefault);
         ModalBottomSheet fragment = new ModalBottomSheet();
         fragment.setArguments(args);
         return fragment;
@@ -40,6 +43,7 @@ public class ModalBottomSheet extends BottomSheetDialogFragment {
         Log.i(TAG, "onCreate()");
         if (getArguments() != null) {
             names = getArguments().getStringArray(ARG_NAMES);
+            nameDefault = getArguments().getString(ARG_NAME_DEFAULT);
         }
     }
 
@@ -55,7 +59,7 @@ public class ModalBottomSheet extends BottomSheetDialogFragment {
         super.onViewCreated(view, savedInstanceState);
         Log.i(TAG, "onViewCreated()");
         RecyclerView rvContent = view.findViewById(R.id.rv_content);
-        NamesAdapter adapter = new NamesAdapter(names, new NamesAdapter.NamesAdapterListener() {
+        NamesAdapter adapter = new NamesAdapter(names, nameDefault, new NamesAdapter.NamesAdapterListener() {
             @Override
             public void onItemClicked(int position, View view) {
                 Toast.makeText(getContext(), "onItemClicked() position: " + position, Toast.LENGTH_SHORT).show();

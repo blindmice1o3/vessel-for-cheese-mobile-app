@@ -131,7 +131,7 @@ public class MenuItemActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     String[] names = {"Colin", "Mulan", "Muly", "Muhang", "Mushu"};
-                    ModalBottomSheet.newInstance(names).show(getSupportFragmentManager(), ModalBottomSheet.TAG);
+                    ModalBottomSheet.newInstance(names, "Colin").show(getSupportFragmentManager(), ModalBottomSheet.TAG);
                 }
             });
 
@@ -140,15 +140,15 @@ public class MenuItemActivity extends AppCompatActivity {
                     drink.getDrinkComponentsWhatsIncludedDefaultValuesAsStringArray(),
                     new WhatsIncludedAdapter.WhatsIncludedAdapterListener() {
                         @Override
-                        public void onItemClicked(String[] names) {
-                            Log.i(TAG, "onItemClicked(String[] names)");
+                        public void onItemClicked(String[] names, String nameDefault) {
+                            Log.i(TAG, "onItemClicked(String[] names, String nameDefault)");
 
-                            ModalBottomSheet.newInstance(names).show(getSupportFragmentManager(), ModalBottomSheet.TAG);
+                            ModalBottomSheet.newInstance(names, nameDefault).show(getSupportFragmentManager(), ModalBottomSheet.TAG);
                         }
 
                         @Override
-                        public void onItemLongClicked(String[] names) {
-                            Log.i(TAG, "onItemLongClicked(String[] names)");
+                        public void onItemLongClicked(String[] names, String nameDefault) {
+                            Log.i(TAG, "onItemLongClicked(String[] names, String nameDefault)");
                         }
                     });
             rvWhatsIncluded.setAdapter(adapter);
