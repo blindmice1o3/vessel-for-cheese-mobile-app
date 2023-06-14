@@ -13,7 +13,8 @@ public abstract class Espresso extends Drink {
     public Espresso() {
     }
 
-    public Espresso(String name, String description, double price, DrinkSize.Type drinkSizeDefault, boolean iced) {
-        super(name, description, price, drinkSizeDefault, iced);
+    public Espresso(String name, String description, int calories, int sugarInGram, float fatInGram,
+                    double price, DrinkSize.Type drinkSizeDefault, boolean iced) {
+        super(name, description, calories, sugarInGram, fatInGram, price, drinkSizeDefault, iced);
     }
 }

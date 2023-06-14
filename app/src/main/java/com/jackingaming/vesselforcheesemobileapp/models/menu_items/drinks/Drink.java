@@ -22,8 +22,9 @@ public abstract class Drink extends MenuItem {
         super();
     }
 
-    public Drink(String name, String description, double price, DrinkSize.Type drinkSizeDefault, boolean iced) {
-        super(name, description, price);
+    public Drink(String name, String description, int calories, int sugarInGram, float fatInGram,
+                 double price, DrinkSize.Type drinkSizeDefault, boolean iced) {
+        super(name, description, calories, sugarInGram, fatInGram, price);
         drinkSize = drinkSizeDefault;
         this.iced = iced;
     }

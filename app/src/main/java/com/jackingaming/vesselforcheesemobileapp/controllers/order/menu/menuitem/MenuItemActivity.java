@@ -72,7 +72,7 @@ public class MenuItemActivity extends AppCompatActivity {
         Button buttonCustomize = findViewById(R.id.button_customize);
 
         TextView tvDescription = findViewById(R.id.tv_description);
-        TextView tvCalories = findViewById(R.id.tv_calories);
+        TextView tvCaloriesSugarFat = findViewById(R.id.tv_calories_sugar_fat);
         Button buttonNutritionAndIngredient = findViewById(R.id.button_nutrition_and_ingredient);
 
         ExtendedFloatingActionButton extendedFloatingActionButton = findViewById(R.id.fab);
@@ -82,10 +82,9 @@ public class MenuItemActivity extends AppCompatActivity {
             Drink drink = (Drink) Menu.hotCoffeesAsMap.get(nameSubCategory).get(position);
 
             // TODO: add field to MenuItem class: long idImageResource.
-            // TODO: add field to MenuItem class: int calories.
 //            ivMenuItemImage.setImageResource(R.drawable.harvest_moon_natsume);
             tvMenuItemName.setText(drink.getName());
-            tvMenuItemCalories.setText("42 calories");
+            tvMenuItemCalories.setText(drink.getCalories() + " calories");
 
             appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
                 @Override
@@ -168,7 +167,11 @@ public class MenuItemActivity extends AppCompatActivity {
 
             tvDescription.setText(drink.getDescription());
 
-            tvCalories.setText("42 calories, 10g sugar, 4.0g fat");
+            String formatStringCaloriesSugarFat = "%d calories, %dg sugar, %.1fg fat";
+            tvCaloriesSugarFat.setText(
+                    String.format(formatStringCaloriesSugarFat,
+                            drink.getCalories(), drink.getSugarInGram(), drink.getFatInGram())
+            );
         } else {
             Log.e(TAG, "nameCategory does NOT equals " + Menu.HOT_COFFEES);
         }

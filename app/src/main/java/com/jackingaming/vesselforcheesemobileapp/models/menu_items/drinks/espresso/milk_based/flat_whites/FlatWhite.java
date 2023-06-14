@@ -3,14 +3,19 @@ package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espre
 public class FlatWhite extends FlatWhites {
     public static final String TAG = FlatWhite.class.getSimpleName();
 
-    public static final String NAME_DEFAULT = "Flat White";
-    public static final String DESCRIPTION_DEFAULT = "Smooth ristretto shots of espresso get the perfect amount of steamed whole milk to create a not-too-strong, not-too-creamy, just-right flavor.";
-    public static final double PRICE_SMALL_DEFAULT = 0.75;
-    public static final double PRICE_MEDIUM_DEFAULT = 1.40;
-    public static final double PRICE_LARGE_DEFAULT = 1.95;
-    public static final boolean ICED_DEFAULT = false;
+    public static final String DEFAULT_NAME = "Flat White";
+    public static final String DEFAULT_DESCRIPTION = "Smooth ristretto shots of espresso get the perfect amount of steamed whole milk to create a not-too-strong, not-too-creamy, just-right flavor.";
+    public static final int DEFAULT_CALORIES = 170;
+    public static final int DEFAULT_SUGAR_IN_GRAM = 13;
+    public static final float DEFAULT_FAT_IN_GRAM = 9.0f;
+
+    public static final double DEFAULT_PRICE_SMALL = 0.75;
+    public static final double DEFAULT_PRICE_MEDIUM = 1.40;
+    public static final double DEFAULT_PRICE_LARGE = 1.95;
+    public static final boolean DEFAULT_ICED = false;
 
     public FlatWhite() {
-        super(NAME_DEFAULT, DESCRIPTION_DEFAULT, PRICE_MEDIUM_DEFAULT, ICED_DEFAULT);
+        super(DEFAULT_NAME, DEFAULT_DESCRIPTION, DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
+                DEFAULT_PRICE_MEDIUM, DEFAULT_ICED);
     }
 }

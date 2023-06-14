@@ -27,7 +27,8 @@ public class CaffeLatte extends Lattes {
     public static final boolean DEFAULT_ICED = false;
 
     public CaffeLatte() {
-        super(DEFAULT_NAME, DEFAULT_DESCRIPTION, DEFAULT_PRICE_MEDIUM, DEFAULT_ICED);
+        super(DEFAULT_NAME, DEFAULT_DESCRIPTION, DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
+                DEFAULT_PRICE_MEDIUM, DEFAULT_ICED);
 
         drinkComponentsWhatsIncluded.add(new MilkFoam(DEFAULT_MILK_FOAM));
         drinkComponentsWhatsIncluded.add(new MilkBase(DEFAULT_MILK_BASE));

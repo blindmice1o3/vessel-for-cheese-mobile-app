@@ -3,14 +3,19 @@ package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espre
 public class StarbucksReserveDarkChocolateMocha extends Mochas {
     public static final String TAG = StarbucksReserveDarkChocolateMocha.class.getSimpleName();
 
-    public static final String NAME_DEFAULT = "Starbucks Reserve Dark Chocolate Mocha";
-    public static final String DESCRIPTION_DEFAULT = "Our small-lot Starbucks Reserve espresso combined with cocoa, ground chocolate and topped with steamed milk delivers a brilliant combination of sweetness.";
-    public static final double PRICE_SMALL_DEFAULT = 1.95;
-    public static final double PRICE_MEDIUM_DEFAULT = 2.45;
-    public static final double PRICE_LARGE_DEFAULT = 2.70;
-    public static final boolean ICED_DEFAULT = false;
+    public static final String DEFAULT_NAME = "Starbucks Reserve Dark Chocolate Mocha";
+    public static final String DEFAULT_DESCRIPTION = "Our small-lot Starbucks Reserve espresso combined with cocoa, ground chocolate and topped with steamed milk delivers a brilliant combination of sweetness.";
+    public static final int DEFAULT_CALORIES = 320;
+    public static final int DEFAULT_SUGAR_IN_GRAM = 33;
+    public static final float DEFAULT_FAT_IN_GRAM = 14.0f;
+
+    public static final double DEFAULT_PRICE_SMALL = 1.95;
+    public static final double DEFAULT_PRICE_MEDIUM = 2.45;
+    public static final double DEFAULT_PRICE_LARGE = 2.70;
+    public static final boolean DEFAULT_ICED = false;
 
     public StarbucksReserveDarkChocolateMocha() {
-        super(NAME_DEFAULT, DESCRIPTION_DEFAULT, PRICE_MEDIUM_DEFAULT, ICED_DEFAULT);
+        super(DEFAULT_NAME, DEFAULT_DESCRIPTION, DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
+                DEFAULT_PRICE_MEDIUM, DEFAULT_ICED);
     }
 }

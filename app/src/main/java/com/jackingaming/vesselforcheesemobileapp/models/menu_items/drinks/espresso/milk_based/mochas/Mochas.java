@@ -8,7 +8,8 @@ public abstract class Mochas extends MilkBased {
     public Mochas() {
     }
 
-    public Mochas(String name, String description, double price, boolean iced) {
-        super(name, description, price, iced);
+    public Mochas(String name, String description, int calories, int sugarInGram, float fatInGram,
+                  double price, boolean iced) {
+        super(name, description, calories, sugarInGram, fatInGram, price, iced);
     }
 }
