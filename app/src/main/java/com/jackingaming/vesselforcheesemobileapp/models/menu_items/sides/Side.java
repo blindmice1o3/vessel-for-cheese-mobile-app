@@ -9,7 +9,8 @@ public abstract class Side extends MenuItem {
         super();
     }
 
-    public Side(String name, String description, double price) {
-        super(name, description, price);
+    public Side(String name, String description, int calories, int sugarInGram, float fatInGram,
+                double price) {
+        super(name, description, calories, sugarInGram, fatInGram, price);
     }
 }

@@ -392,21 +392,21 @@ public class Menu {
     public static MenuItem instantiateMenuItemByButtonTag(String tagOfSelectedButton) {
         MenuItem menuItemSelected = null;
         // FOODS
-        if (tagOfSelectedButton.equals(Bread.NAME_DEFAULT)) {
+        if (tagOfSelectedButton.equals(Bread.DEFAULT_NAME)) {
             menuItemSelected = new Bread();
         }
         // DRINKS
-        else if (tagOfSelectedButton.equals(Water.NAME_DEFAULT)) {
+        else if (tagOfSelectedButton.equals(Water.DEFAULT_NAME)) {
             menuItemSelected = new Water();
-        } else if (tagOfSelectedButton.equals(GreenApronBlend.NAME_DEFAULT)) {
+        } else if (tagOfSelectedButton.equals(GreenApronBlend.DEFAULT_NAME)) {
             menuItemSelected = new GreenApronBlend();
         } else if (tagOfSelectedButton.equals(CaffeLatte.DEFAULT_NAME)) {
             menuItemSelected = new CaffeLatte();
-        } else if (tagOfSelectedButton.equals(ShotEspresso.NAME_DEFAULT)) {
+        } else if (tagOfSelectedButton.equals(ShotEspresso.DEFAULT_NAME)) {
             menuItemSelected = new ShotEspresso();
         }
         // SIDES
-        else if (tagOfSelectedButton.equals(SteamedVegetable.NAME_DEFAULT)) {
+        else if (tagOfSelectedButton.equals(SteamedVegetable.DEFAULT_NAME)) {
             menuItemSelected = new SteamedVegetable();
         }
         // UNDEFINED
@@ -420,7 +420,7 @@ public class Menu {
     public static List<String> createListOfButtonTitleFoods() {
         List<String> allFoods = new ArrayList<String>();
 
-        allFoods.add(Bread.NAME_DEFAULT);
+        allFoods.add(Bread.DEFAULT_NAME);
         allFoods.add("NULL");
         allFoods.add("NULL");
 
@@ -442,10 +442,10 @@ public class Menu {
     public static List<String> createListOfButtonTitleDrinks() {
         List<String> allDrinks = new ArrayList<String>();
 
-        allDrinks.add(Water.NAME_DEFAULT);
-        allDrinks.add(GreenApronBlend.NAME_DEFAULT);
+        allDrinks.add(Water.DEFAULT_NAME);
+        allDrinks.add(GreenApronBlend.DEFAULT_NAME);
         allDrinks.add(CaffeLatte.DEFAULT_NAME);
-        allDrinks.add(ShotEspresso.NAME_DEFAULT);
+        allDrinks.add(ShotEspresso.DEFAULT_NAME);
         allDrinks.add("NULL");
 
         allDrinks.add("NULL");
@@ -478,7 +478,7 @@ public class Menu {
     public static List<String> createListOfButtonTitleSides() {
         List<String> allSides = new ArrayList<String>();
 
-        allSides.add(SteamedVegetable.NAME_DEFAULT);
+        allSides.add(SteamedVegetable.DEFAULT_NAME);
         allSides.add("NULL");
         allSides.add("NULL");
 

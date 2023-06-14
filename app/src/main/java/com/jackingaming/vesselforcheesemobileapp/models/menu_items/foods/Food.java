@@ -9,7 +9,8 @@ public abstract class Food extends MenuItem {
         super();
     }
 
-    public Food(String name, String description, double price) {
-        super(name, description, price);
+    public Food(String name, String description, int calories, int sugarInGram, float fatInGram,
+                double price) {
+        super(name, description, calories, sugarInGram, fatInGram, price);
     }
 }

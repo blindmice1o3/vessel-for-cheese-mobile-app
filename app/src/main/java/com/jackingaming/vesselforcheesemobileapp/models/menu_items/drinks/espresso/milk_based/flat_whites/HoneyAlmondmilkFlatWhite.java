@@ -3,14 +3,19 @@ package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espre
 public class HoneyAlmondmilkFlatWhite extends FlatWhites {
     public static final String TAG = HoneyAlmondmilkFlatWhite.class.getSimpleName();
 
-    public static final String NAME_DEFAULT = "Honey Almondmilk Flat White";
-    public static final String DESCRIPTION_DEFAULT = "This flat white intentionally pairs almondmilk and Starbucks Blonde Espresso Roast with a hint of honey, making a perfect amount of creamy, nutty sweetness.";
-    public static final double PRICE_SMALL_DEFAULT = 0.75;
-    public static final double PRICE_MEDIUM_DEFAULT = 1.40;
-    public static final double PRICE_LARGE_DEFAULT = 1.95;
-    public static final boolean ICED_DEFAULT = false;
+    public static final String DEFAULT_NAME = "Honey Almondmilk Flat White";
+    public static final String DEFAULT_DESCRIPTION = "This flat white intentionally pairs almondmilk and Starbucks Blonde Espresso Roast with a hint of honey, making a perfect amount of creamy, nutty sweetness.";
+    public static final int DEFAULT_CALORIES = 120;
+    public static final int DEFAULT_SUGAR_IN_GRAM = 18;
+    public static final float DEFAULT_FAT_IN_GRAM = 4.0f;
+
+    public static final double DEFAULT_PRICE_SMALL = 0.75;
+    public static final double DEFAULT_PRICE_MEDIUM = 1.40;
+    public static final double DEFAULT_PRICE_LARGE = 1.95;
+    public static final boolean DEFAULT_ICED = false;
 
     public HoneyAlmondmilkFlatWhite() {
-        super(NAME_DEFAULT, DESCRIPTION_DEFAULT, PRICE_MEDIUM_DEFAULT, ICED_DEFAULT);
+        super(DEFAULT_NAME, DEFAULT_DESCRIPTION, DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
+                DEFAULT_PRICE_MEDIUM, DEFAULT_ICED);
     }
 }

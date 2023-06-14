@@ -3,14 +3,19 @@ package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.other
 public class Water extends Other {
     public static final String TAG = Water.class.getSimpleName();
 
-    public static final String NAME_DEFAULT = "Water";
-    public static final String DESCRIPTION_DEFAULT = "2 part H, 1 part O";
-    public static final double PRICE_SMALL_DEFAULT = 0.05;
-    public static final double PRICE_MEDIUM_DEFAULT = 0.10;
-    public static final double PRICE_LARGE_DEFAULT = 0.25;
-    public static final boolean ICED_DEFAULT = true;
+    public static final String DEFAULT_NAME = "Water";
+    public static final String DEFAULT_DESCRIPTION = "2 part H, 1 part O";
+    public static final int DEFAULT_CALORIES = 0;
+    public static final int DEFAULT_SUGAR_IN_GRAM = 0;
+    public static final float DEFAULT_FAT_IN_GRAM = 0.0f;
+
+    public static final double DEFAULT_PRICE_SMALL = 0.05;
+    public static final double DEFAULT_PRICE_MEDIUM = 0.10;
+    public static final double DEFAULT_PRICE_LARGE = 0.25;
+    public static final boolean DEFAULT_ICED = true;
 
     public Water() {
-        super(NAME_DEFAULT, DESCRIPTION_DEFAULT, PRICE_MEDIUM_DEFAULT, ICED_DEFAULT);
+        super(DEFAULT_NAME, DEFAULT_DESCRIPTION, DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
+                DEFAULT_PRICE_MEDIUM, DEFAULT_ICED);
     }
 }

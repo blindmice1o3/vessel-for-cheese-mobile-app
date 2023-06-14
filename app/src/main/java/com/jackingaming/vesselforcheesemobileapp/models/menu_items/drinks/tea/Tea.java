@@ -10,7 +10,8 @@ public abstract class Tea extends Drink {
     public Tea() {
     }
 
-    public Tea(String name, String description, double price, boolean iced) {
-        super(name, description, price, DEFAULT_DRINK_SIZE, iced);
+    public Tea(String name, String description, int calories, int sugarInGram, float fatInGram,
+               double price, boolean iced) {
+        super(name, description, calories, sugarInGram, fatInGram, price, DEFAULT_DRINK_SIZE, iced);
     }
 }

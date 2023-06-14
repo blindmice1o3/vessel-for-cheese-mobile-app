@@ -3,14 +3,19 @@ package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewe
 public class CaffeMisto extends BrewedCoffees {
     public static final String TAG = CaffeMisto.class.getSimpleName();
 
-    public static final String NAME_DEFAULT = "Caffe Misto";
-    public static final String DESCRIPTION_DEFAULT = "A one-to-one combination of fresh-brewed coffee and steamed milk add up to one distinctly delicious coffee drink remarkably mixed.";
-    public static final double PRICE_SMALL_DEFAULT = 1.95;
-    public static final double PRICE_MEDIUM_DEFAULT = 2.45;
-    public static final double PRICE_LARGE_DEFAULT = 2.70;
-    public static final boolean ICED_DEFAULT = false;
+    public static final String DEFAULT_NAME = "Caffe Misto";
+    public static final String DEFAULT_DESCRIPTION = "A one-to-one combination of fresh-brewed coffee and steamed milk add up to one distinctly delicious coffee drink remarkably mixed.";
+    public static final int DEFAULT_CALORIES = 110;
+    public static final int DEFAULT_SUGAR_IN_GRAM = 10;
+    public static final float DEFAULT_FAT_IN_GRAM = 4.0f;
+
+    public static final double DEFAULT_PRICE_SMALL = 1.95;
+    public static final double DEFAULT_PRICE_MEDIUM = 2.45;
+    public static final double DEFAULT_PRICE_LARGE = 2.70;
+    public static final boolean DEFAULT_ICED = false;
 
     public CaffeMisto() {
-        super(NAME_DEFAULT, DESCRIPTION_DEFAULT, PRICE_MEDIUM_DEFAULT, ICED_DEFAULT);
+        super(DEFAULT_NAME, DEFAULT_DESCRIPTION, DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
+                DEFAULT_PRICE_MEDIUM, DEFAULT_ICED);
     }
 }
