@@ -370,6 +370,24 @@ public class WhatsIncludedAdapter extends RecyclerView.Adapter<RecyclerView.View
                     } else if (drinkComponent instanceof AffogatoShot) {
                         tvName.setText(((AffogatoShot) drinkComponent).getType().name());
                     }
+
+                    int position = getAdapterPosition(); // gets item position
+                    Log.i(TAG, "ivMinus clicked! position: " + position);
+                    if (position != RecyclerView.NO_POSITION) { // Check if an item was deleted, but the user clicked it before the UI removed it
+                        String quantityAsString = Integer.toString(incrementable.getQuantity());
+                        String nameTypeDefault = drinkComponentsDefaultValuesAsStringArray[position];
+                        if (quantityAsString.equals(nameTypeDefault)) {
+                            // The selected value is the same as the default value for this drink's type.
+                            String colorDefault = "#1B455F";
+                            viewBorder.setBackgroundResource(R.drawable.border_drink_component_default);
+                            tvBorderTitle.setTextColor(Color.parseColor(colorDefault));
+                        } else {
+                            // The selected value is NOT the same as the default value for this drink's type.
+                            String colorCustomized = "#AAFF00";
+                            viewBorder.setBackgroundResource(R.drawable.border_drink_component_customized);
+                            tvBorderTitle.setTextColor(Color.parseColor(colorCustomized));
+                        }
+                    }
                 }
             });
             tvQuantity.setText(Integer.toString(quantity));
@@ -384,6 +402,24 @@ public class WhatsIncludedAdapter extends RecyclerView.Adapter<RecyclerView.View
                         tvName.setText(((Shot) drinkComponent).getType().name());
                     } else if (drinkComponent instanceof AffogatoShot) {
                         tvName.setText(((AffogatoShot) drinkComponent).getType().name());
+                    }
+
+                    int position = getAdapterPosition(); // gets item position
+                    Log.i(TAG, "ivAdd! position: " + position);
+                    if (position != RecyclerView.NO_POSITION) { // Check if an item was deleted, but the user clicked it before the UI removed it
+                        String quantityAsString = Integer.toString(incrementable.getQuantity());
+                        String nameTypeDefault = drinkComponentsDefaultValuesAsStringArray[position];
+                        if (quantityAsString.equals(nameTypeDefault)) {
+                            // The selected value is the same as the default value for this drink's type.
+                            String colorDefault = "#1B455F";
+                            viewBorder.setBackgroundResource(R.drawable.border_drink_component_default);
+                            tvBorderTitle.setTextColor(Color.parseColor(colorDefault));
+                        } else {
+                            // The selected value is NOT the same as the default value for this drink's type.
+                            String colorCustomized = "#AAFF00";
+                            viewBorder.setBackgroundResource(R.drawable.border_drink_component_customized);
+                            tvBorderTitle.setTextColor(Color.parseColor(colorCustomized));
+                        }
                     }
                 }
             });
