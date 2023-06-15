@@ -2,7 +2,24 @@ package com.jackingaming.vesselforcheesemobileapp.models.components.drinks.size_
 
 public class DrinkSize extends SizeOptions {
     public enum Type {
-        SHORT, TALL, GRANDE, VENTI, TRENTA, UNIQUE, UNDEFINED;
+        SHORT(8),
+        TALL(12),
+        GRANDE(16),
+        VENTI_HOT(20),
+        VENTI_ICED(24),
+        TRENTA(30),
+        UNIQUE(-1),
+        UNDEFINED(-1);
+
+        private final int sizeInFlOz;
+
+        Type(int sizeInFlOz) {
+            this.sizeInFlOz = sizeInFlOz;
+        }
+
+        public int getSizeInFlOz() {
+            return sizeInFlOz;
+        }
     }
 
     private Type type;

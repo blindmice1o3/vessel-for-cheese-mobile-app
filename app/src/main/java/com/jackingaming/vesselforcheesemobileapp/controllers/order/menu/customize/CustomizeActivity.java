@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.jackingaming.vesselforcheesemobileapp.R;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.size_options.DrinkSize;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.Drink;
 
 public class CustomizeActivity extends AppCompatActivity {
@@ -32,7 +33,17 @@ public class CustomizeActivity extends AppCompatActivity {
         tvName.setText(drink.getName());
 
         TextView tvSize = findViewById(R.id.tv_size);
-        tvSize.setText(drink.getDrinkSize().name());
+
+        String nameDrinkInLowercase = drink.getDrinkSize().name().toLowerCase();
+        String textDrinkSize = capitalizeFirstLetter(nameDrinkInLowercase) + " " +
+                drink.getDrinkSize().getSizeInFlOz() + " " + " fl oz";
+        tvSize.setText(textDrinkSize);
+    }
+
+    private String capitalizeFirstLetter(String text) {
+        char[] c = text.toCharArray();
+        c[0] = Character.toUpperCase(c[0]);
+        return new String(c);
     }
 
     @Override
