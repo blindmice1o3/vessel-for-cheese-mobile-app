@@ -171,6 +171,7 @@ public class MenuItemActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     Intent intentCustomize = new Intent(MenuItemActivity.this, CustomizeActivity.class);
+                    intentCustomize.putExtra(CustomizeActivity.EXTRA_DRINK, drink);
                     startActivity(intentCustomize);
                 }
             });

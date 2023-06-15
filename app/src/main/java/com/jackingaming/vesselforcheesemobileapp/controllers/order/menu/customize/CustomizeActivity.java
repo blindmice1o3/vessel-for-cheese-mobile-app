@@ -1,16 +1,19 @@
 package com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.customize;
 
+import android.os.Bundle;
+import android.util.Log;
+import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.os.Bundle;
-import android.util.Log;
-
 import com.jackingaming.vesselforcheesemobileapp.R;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.Drink;
 
 public class CustomizeActivity extends AppCompatActivity {
     public static final String TAG = CustomizeActivity.class.getSimpleName();
+    public static final String EXTRA_DRINK = "com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.customize.drink";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +25,14 @@ public class CustomizeActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(" ");
+
+        Drink drink = (Drink) getIntent().getSerializableExtra(EXTRA_DRINK);
+
+        TextView tvName = findViewById(R.id.tv_name);
+        tvName.setText(drink.getName());
+
+        TextView tvSize = findViewById(R.id.tv_size);
+        tvSize.setText(drink.getDrinkSize().name());
     }
 
     @Override

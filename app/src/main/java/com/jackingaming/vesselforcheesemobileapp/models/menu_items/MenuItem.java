@@ -1,6 +1,9 @@
 package com.jackingaming.vesselforcheesemobileapp.models.menu_items;
 
-public abstract class MenuItem {
+import java.io.Serializable;
+
+public abstract class MenuItem
+        implements Serializable {
     public static final String TAG = MenuItem.class.getSimpleName();
 
     public static final boolean HANDED_OFF_DEFAULT = false;
