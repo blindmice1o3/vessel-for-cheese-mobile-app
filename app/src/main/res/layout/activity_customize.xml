@@ -29,11 +29,12 @@
 
     <com.jackingaming.vesselforcheesemobileapp.views.CircularBorderedImageView
         android:id="@+id/iv_thumbnail"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
         android:layout_margin="8dp"
         android:scaleType="fitXY"
         android:src="@drawable/harvest_moon_natsume"
+        app:layout_constraintBottom_toTopOf="@id/rv_customize"
         app:layout_constraintEnd_toStartOf="@id/tv_name"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbar" />
@@ -58,5 +59,26 @@
         app:layout_constraintBottom_toBottomOf="@id/iv_thumbnail"
         app:layout_constraintStart_toEndOf="@id/iv_thumbnail"
         app:layout_constraintTop_toBottomOf="@id/tv_name" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_customize"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/button_done_customizing"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/iv_thumbnail" />
+
+    <Button
+        android:id="@+id/button_done_customizing"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawablePadding="4dp"
+        android:text="Done customizing"
+        app:icon="@drawable/ic_menu_emoticons"
+        app:iconGravity="textStart"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rv_customize" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

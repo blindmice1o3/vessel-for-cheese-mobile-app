@@ -2,11 +2,14 @@ package com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.customi
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.jackingaming.vesselforcheesemobileapp.R;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.size_options.DrinkSize;
@@ -27,7 +30,9 @@ public class CustomizeActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(" ");
 
+        // -----------------------------------------------------------------
         Drink drink = (Drink) getIntent().getSerializableExtra(EXTRA_DRINK);
+        // -----------------------------------------------------------------
 
         TextView tvName = findViewById(R.id.tv_name);
         tvName.setText(drink.getName());
@@ -38,6 +43,19 @@ public class CustomizeActivity extends AppCompatActivity {
         String textDrinkSize = capitalizeFirstLetter(nameDrinkInLowercase) + " " +
                 drink.getDrinkSize().getSizeInFlOz() + " " + " fl oz";
         tvSize.setText(textDrinkSize);
+
+        RecyclerView rvCustomize = findViewById(R.id.rv_customize);
+        // TODO: set adapter
+
+        Button buttonDoneCustomizing = findViewById(R.id.button_done_customizing);
+        buttonDoneCustomizing.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.i(TAG, "buttonDoneCustomizing clicked");
+
+                finish();
+            }
+        });
     }
 
     private String capitalizeFirstLetter(String text) {
@@ -52,7 +70,9 @@ public class CustomizeActivity extends AppCompatActivity {
 
         if (item.getItemId() == android.R.id.home) {
             Log.i(TAG, "android.R.id.home");
+
             finish();
+            return true;
         } else {
             Log.i(TAG, "NOT android.R.id.home");
         }
