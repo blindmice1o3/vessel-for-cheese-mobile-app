@@ -57,9 +57,7 @@ public class WhatsIncludedAdapter extends RecyclerView.Adapter<RecyclerView.View
     private WhatsIncludedAdapterListener listener;
 
     private int indexSelected = -1;
-    private TextView tvNameSelected;
-    private TextView tvBorderTitleSelected;
-    private View viewBorderSelected;
+    private DrinkComponentViewHolder viewHolderSelected;
 
     public WhatsIncludedAdapter(List<DrinkComponent> drinkComponents,
                                 String[] drinkComponentsDefaultValuesAsStringArray,
@@ -181,31 +179,21 @@ public class WhatsIncludedAdapter extends RecyclerView.Adapter<RecyclerView.View
             DrinkComponent drinkComponentSelected = drinkComponents.get(indexSelected);
             drinkComponentSelected.setTypeByString(name);
 
-            // Update the screen.
-            tvNameSelected.setText(name);
-
             // Check criteria for changing border color.
-            String drinkComponentSelectedDefaultValueAsString =
-                    drinkComponentsDefaultValuesAsStringArray[indexSelected];
+            String drinkComponentSelectedDefaultValueAsString = drinkComponentsDefaultValuesAsStringArray[indexSelected];
+            boolean defaultValueSelected = false;
             if (drinkComponentSelected.getTypeAsString().equals(drinkComponentSelectedDefaultValueAsString)) {
-                // The selected value is the same as the default value for this drink's type.
-                String colorDefault = "#1B455F";
-                viewBorderSelected.setBackgroundResource(R.drawable.border_drink_component_default);
-                tvBorderTitleSelected.setTextColor(Color.parseColor(colorDefault));
-            } else {
-                // The selected value is NOT the same as the default value for this drink's type.
-                String colorCustomized = "#AAFF00";
-                viewBorderSelected.setBackgroundResource(R.drawable.border_drink_component_customized);
-                tvBorderTitleSelected.setTextColor(Color.parseColor(colorCustomized));
+                defaultValueSelected = true;
             }
+
+            // Update the screen.
+            viewHolderSelected.updateScreenAfterSelection(name, defaultValueSelected);
 
             // Tear-down steps.
             indexSelected = -1;
-            tvNameSelected = null;
-            tvBorderTitleSelected = null;
-            viewBorderSelected = null;
+            viewHolderSelected = null;
         } else {
-            Log.e(TAG, "indexSelected <= -1");
+            Log.e(TAG, "position <= -1");
         }
     }
 
@@ -225,6 +213,22 @@ public class WhatsIncludedAdapter extends RecyclerView.Adapter<RecyclerView.View
             ivDropDownImage = itemView.findViewById(R.id.iv_drop_down_image);
             itemView.setOnClickListener(this);
             itemView.setOnLongClickListener(this);
+        }
+
+        public void updateScreenAfterSelection(String name, boolean defaultValueSelected) {
+            tvName.setText(name);
+
+            if (defaultValueSelected) {
+                // The selected value is the same as the default value for this drink's type.
+                String colorDefault = "#1B455F";
+                viewBorder.setBackgroundResource(R.drawable.border_drink_component_default);
+                tvBorderTitle.setTextColor(Color.parseColor(colorDefault));
+            } else {
+                // The selected value is NOT the same as the default value for this drink's type.
+                String colorCustomized = "#AAFF00";
+                viewBorder.setBackgroundResource(R.drawable.border_drink_component_customized);
+                tvBorderTitle.setTextColor(Color.parseColor(colorCustomized));
+            }
         }
 
         public void bind(int viewType, DrinkComponent drinkComponent) {
@@ -284,19 +288,14 @@ public class WhatsIncludedAdapter extends RecyclerView.Adapter<RecyclerView.View
 
         @Override
         public void onClick(View view) {
-            int position = getAdapterPosition(); // gets item position
-            Log.i(TAG, "item in RV clicked! position: " + position);
-            if (position != RecyclerView.NO_POSITION) { // Check if an item was deleted, but the user clicked it before the UI removed it
+            indexSelected = getAdapterPosition(); // gets item position
+            viewHolderSelected = DrinkComponentViewHolder.this;
+            Log.i(TAG, "item in RV clicked! position: " + indexSelected);
+            if (indexSelected != RecyclerView.NO_POSITION) { // Check if an item was deleted, but the user clicked it before the UI removed it
                 if (listener != null) {
-                    indexSelected = position;
-                    tvNameSelected = view.findViewById(R.id.tv_name);
-                    tvBorderTitleSelected = view.findViewById(R.id.tv_border_title);
-                    viewBorderSelected = view.findViewById(R.id.view_border);
-
-                    DrinkComponent drinkComponent = drinkComponents.get(indexSelected);
-                    String[] enumsAsString = drinkComponent.getEnumValuesAsStringArray();
+                    String[] names = drinkComponents.get(indexSelected).getEnumValuesAsStringArray();
                     String nameDefault = drinkComponentsDefaultValuesAsStringArray[indexSelected];
-                    listener.onItemClicked(enumsAsString, nameDefault);
+                    listener.onItemClicked(names, nameDefault);
                 }
             }
         }
@@ -307,9 +306,9 @@ public class WhatsIncludedAdapter extends RecyclerView.Adapter<RecyclerView.View
             Log.i(TAG, "item in RV long-clicked! position: " + position);
             if (position != RecyclerView.NO_POSITION) { // Check if an item was deleted, but the user clicked it before the UI removed it
                 if (listener != null) {
-                    DrinkComponent drinkComponent = drinkComponents.get(indexSelected);
+                    DrinkComponent drinkComponent = drinkComponents.get(position);
                     String[] enumsAsString = drinkComponent.getEnumValuesAsStringArray();
-                    String nameDefault = drinkComponentsDefaultValuesAsStringArray[indexSelected];
+                    String nameDefault = drinkComponentsDefaultValuesAsStringArray[position];
                     listener.onItemLongClicked(enumsAsString, nameDefault);
                     return true;
                 }
