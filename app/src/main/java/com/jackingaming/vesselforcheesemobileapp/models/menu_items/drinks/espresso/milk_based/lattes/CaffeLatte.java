@@ -25,6 +25,7 @@ public class CaffeLatte extends Lattes {
     public static final MilkBase.Type DEFAULT_MILK_BASE = MilkBase.Type.TWO_PERCENT;
     public static final Temperature.Type DEFAULT_TEMPERATURE = Temperature.Type.MEDIUM;
     public static final RoastOptions.Type DEFAULT_ROAST_OPTIONS = RoastOptions.Type.SIGNATURE;
+    public static final Shot.Type DEFAULT_SHOT = Shot.Type.SHOT;
     public static final int DEFAULT_NUMBER_OF_ESPRESSO_SHOTS = 2;
 
     // TODO: there are 2 different kinds of Type:
@@ -53,7 +54,7 @@ public class CaffeLatte extends Lattes {
         drinkComponentsWhatsIncluded.add(new MilkBase(DEFAULT_MILK_BASE));
         drinkComponentsWhatsIncluded.add(new Temperature(DEFAULT_TEMPERATURE));
         drinkComponentsWhatsIncluded.add(new RoastOptions(DEFAULT_ROAST_OPTIONS));
-        drinkComponentsWhatsIncluded.add(new Shot(DEFAULT_NUMBER_OF_ESPRESSO_SHOTS));
+        drinkComponentsWhatsIncluded.add(new Shot(DEFAULT_SHOT, DEFAULT_NUMBER_OF_ESPRESSO_SHOTS));
 
         drinkComponentsWhatsIncludedDefaultValuesAsStringArray =
                 new String[drinkComponentsWhatsIncluded.size()];

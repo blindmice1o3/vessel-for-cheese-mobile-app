@@ -50,9 +50,9 @@ public class AffogatoShot extends EspressoOptions
     private Type type;
     private int quantity;
 
-    public AffogatoShot(int quantity) {
+    public AffogatoShot(Type type, int quantity) {
+        this.type = type;
         this.quantity = quantity;
-        type = Type.AFFOGATO_SHOT;
     }
 
     public Type getType() {

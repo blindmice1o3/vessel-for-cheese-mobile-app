@@ -20,14 +20,7 @@ public class Shot extends EspressoOptions
             Log.i(TAG, "quantity > DEFAULT_QUANTITY_MAX --- SETTING quantity = DEFAULT_QUANTITY_MAX");
             quantity = DEFAULT_QUANTITY_MAX;
         }
-
         Log.i(TAG, "end of onIncrement() --- quantity: " + quantity);
-        for (int i = 0; i < Type.values().length; i++) {
-            if (i == quantity) {
-                type = Type.values()[i];
-                break;
-            }
-        }
     }
 
     @Override
@@ -43,12 +36,6 @@ public class Shot extends EspressoOptions
             quantity = 0;
         }
         Log.i(TAG, "end of onDecrement() --- quantity: " + quantity);
-        for (int i = 0; i < Type.values().length; i++) {
-            if (i == quantity) {
-                type = Type.values()[i];
-                break;
-            }
-        }
     }
 
     @Override
@@ -57,20 +44,15 @@ public class Shot extends EspressoOptions
     }
 
     public enum Type {
-        ZERO, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, ELEVEN, TWELVE;
+        SHOT;
     }
 
     private Type type;
     private int quantity;
 
-    public Shot(int quantity) {
+    public Shot(Type type, int quantity) {
+        this.type = type;
         this.quantity = quantity;
-        for (int i = 0; i < Type.values().length; i++) {
-            if (i == quantity) {
-                type = Type.values()[i];
-                break;
-            }
-        }
     }
 
     public Type getType() {
