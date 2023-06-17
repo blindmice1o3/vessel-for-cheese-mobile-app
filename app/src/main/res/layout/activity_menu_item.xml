@@ -96,13 +96,17 @@
                     android:id="@+id/tv_whats_included"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
                     android:background="@color/blue"
                     android:text="What's included (OPENS BottomSheetDialogFragment)" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_whats_included"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp" />
                 <!--
                 <LinearLayout
                     android:id="@+id/linearlayout_whatsincluded"

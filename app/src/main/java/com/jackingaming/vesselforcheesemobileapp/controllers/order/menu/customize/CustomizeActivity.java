@@ -9,11 +9,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jackingaming.vesselforcheesemobileapp.R;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.size_options.DrinkSize;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.Drink;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class CustomizeActivity extends AppCompatActivity {
     public static final String TAG = CustomizeActivity.class.getSimpleName();
@@ -44,7 +50,17 @@ public class CustomizeActivity extends AppCompatActivity {
                 drink.getDrinkSize().getSizeInFlOz() + " " + " fl oz";
         tvSize.setText(textDrinkSize);
 
+        List<List<DrinkComponent>> drinkComponentsGroup = new ArrayList<List<DrinkComponent>>();
+        drinkComponentsGroup.add(drink.getDrinkComponentsWhatsIncluded());
+        drinkComponentsGroup.add(drink.getDrinkComponentsWhatsIncluded());
+        drinkComponentsGroup.add(drink.getDrinkComponentsWhatsIncluded());
+        List<List<String>> drinkComponentsGroupDefault = new ArrayList<List<String>>();
+        drinkComponentsGroupDefault.add(Arrays.asList(drink.getDrinkComponentsWhatsIncludedDefaultValuesAsStringArray()));
+        drinkComponentsGroupDefault.add(Arrays.asList(drink.getDrinkComponentsWhatsIncludedDefaultValuesAsStringArray()));
+        drinkComponentsGroupDefault.add(Arrays.asList(drink.getDrinkComponentsWhatsIncludedDefaultValuesAsStringArray()));
         RecyclerView rvCustomize = findViewById(R.id.rv_customize);
+        rvCustomize.setAdapter(new CustomizeAdapter(this, drinkComponentsGroup, drinkComponentsGroupDefault));
+        rvCustomize.setLayoutManager(new LinearLayoutManager(this));
         // TODO: set adapter
 
         Button buttonDoneCustomizing = findViewById(R.id.button_done_customizing);

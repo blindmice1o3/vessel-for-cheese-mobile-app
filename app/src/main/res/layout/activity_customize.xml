@@ -63,11 +63,12 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_customize"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@id/button_done_customizing"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/iv_thumbnail" />
+        app:layout_constraintTop_toBottomOf="@id/iv_thumbnail"
+        app:layout_constraintVertical_weight="1" />
 
     <Button
         android:id="@+id/button_done_customizing"
@@ -77,6 +78,7 @@
         android:text="Done customizing"
         app:icon="@drawable/ic_menu_emoticons"
         app:iconGravity="textStart"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/rv_customize" />

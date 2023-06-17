@@ -2,6 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginStart="16dp"
+    android:layout_marginEnd="16dp"
     android:divider="?android:dividerHorizontal"
     android:orientation="vertical"
     android:showDividers="middle">
@@ -10,7 +12,9 @@
         android:id="@+id/tv_class_name_drink_component"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="class name of DrinkComponent" />
+        android:text="class name of DrinkComponent"
+        android:textColor="@color/purple_200"
+        android:textStyle="bold" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_customize"
