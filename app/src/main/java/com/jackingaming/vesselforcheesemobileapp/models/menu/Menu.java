@@ -1,9 +1,23 @@
 package com.jackingaming.vesselforcheesemobileapp.models.menu;
 
 import com.jackingaming.vesselforcheesemobileapp.R;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.AddInsOptions;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.blended_options.BlendedOptions;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.cup_options.CupOptions;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.espresso_options.EspressoOptions;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.flavor_options.FlavorOptions;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.juice_options.JuiceOptions;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.lemonade_options.LemonadeOptions;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.milk_options.MilkOptions;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.preparation_options.PreparationOptions;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.refresher_base_options.RefresherBaseOptions;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.size_options.SizeOptions;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.sweetener_options.SweetenerOptions;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.tea_options.TeaOptions;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.topping_options.ToppingOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.menu.categories.Category;
-import com.jackingaming.vesselforcheesemobileapp.models.menu.categories.TitleCategory;
 import com.jackingaming.vesselforcheesemobileapp.models.menu.categories.MenuItemCategory;
+import com.jackingaming.vesselforcheesemobileapp.models.menu.categories.TitleCategory;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.MenuItem;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.UndefinedMenuItem;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.CaffeMisto;
@@ -55,6 +69,23 @@ public class Menu {
     public static final String MACCHIATOS = "Macchiatos";
     public static final String MOCHAS = "Mochas";
     public static final String COFFEE_TRAVELERS = "Coffee Travelers";
+
+    public static final List<String> DRINK_COMPONENTS_KEYS = Arrays.asList(
+            AddInsOptions.TAG,
+            BlendedOptions.TAG,
+            CupOptions.TAG,
+            EspressoOptions.TAG,
+            FlavorOptions.TAG,
+            JuiceOptions.TAG,
+            LemonadeOptions.TAG,
+            MilkOptions.TAG,
+            PreparationOptions.TAG,
+            RefresherBaseOptions.TAG,
+            SizeOptions.TAG,
+            SweetenerOptions.TAG,
+            TeaOptions.TAG,
+            ToppingOptions.TAG
+    );
 
     public static final List<MenuItemCategory> hotCoffees = Arrays.asList(
             new MenuItemCategory(AMERICANOS, R.drawable.harvest_moon_natsume),

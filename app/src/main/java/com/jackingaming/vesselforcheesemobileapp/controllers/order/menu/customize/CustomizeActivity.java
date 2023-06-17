@@ -50,18 +50,9 @@ public class CustomizeActivity extends AppCompatActivity {
                 drink.getDrinkSize().getSizeInFlOz() + " " + " fl oz";
         tvSize.setText(textDrinkSize);
 
-        List<List<DrinkComponent>> drinkComponentsGroup = new ArrayList<List<DrinkComponent>>();
-        drinkComponentsGroup.add(drink.getDrinkComponentsWhatsIncluded());
-        drinkComponentsGroup.add(drink.getDrinkComponentsWhatsIncluded());
-        drinkComponentsGroup.add(drink.getDrinkComponentsWhatsIncluded());
-        List<List<String>> drinkComponentsGroupDefault = new ArrayList<List<String>>();
-        drinkComponentsGroupDefault.add(Arrays.asList(drink.getDrinkComponentsWhatsIncludedDefaultValuesAsStringArray()));
-        drinkComponentsGroupDefault.add(Arrays.asList(drink.getDrinkComponentsWhatsIncludedDefaultValuesAsStringArray()));
-        drinkComponentsGroupDefault.add(Arrays.asList(drink.getDrinkComponentsWhatsIncludedDefaultValuesAsStringArray()));
         RecyclerView rvCustomize = findViewById(R.id.rv_customize);
         rvCustomize.setAdapter(new CustomizeAdapter(this, drink.getDrinkComponents(), drink.getDrinkComponentsDefault()));
         rvCustomize.setLayoutManager(new LinearLayoutManager(this));
-        // TODO: set adapter
 
         Button buttonDoneCustomizing = findViewById(R.id.button_done_customizing);
         buttonDoneCustomizing.setOnClickListener(new View.OnClickListener() {
