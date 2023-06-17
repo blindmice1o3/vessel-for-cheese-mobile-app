@@ -3,4 +3,5 @@ package com.jackingaming.vesselforcheesemobileapp.models.components.drinks.blend
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
 
 public abstract class BlendedOptions extends DrinkComponent {
+    public static final String TAG = BlendedOptions.class.getSimpleName();
 }

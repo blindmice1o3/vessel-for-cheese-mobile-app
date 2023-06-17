@@ -59,7 +59,7 @@ public class CustomizeActivity extends AppCompatActivity {
         drinkComponentsGroupDefault.add(Arrays.asList(drink.getDrinkComponentsWhatsIncludedDefaultValuesAsStringArray()));
         drinkComponentsGroupDefault.add(Arrays.asList(drink.getDrinkComponentsWhatsIncludedDefaultValuesAsStringArray()));
         RecyclerView rvCustomize = findViewById(R.id.rv_customize);
-        rvCustomize.setAdapter(new CustomizeAdapter(this, drinkComponentsGroup, drinkComponentsGroupDefault));
+        rvCustomize.setAdapter(new CustomizeAdapter(this, drink.getDrinkComponents(), drink.getDrinkComponentsDefault()));
         rvCustomize.setLayoutManager(new LinearLayoutManager(this));
         // TODO: set adapter
 

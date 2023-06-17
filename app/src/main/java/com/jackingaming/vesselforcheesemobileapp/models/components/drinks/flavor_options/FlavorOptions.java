@@ -3,4 +3,5 @@ package com.jackingaming.vesselforcheesemobileapp.models.components.drinks.flavo
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
 
 public abstract class FlavorOptions extends DrinkComponent {
+    public static final String TAG = FlavorOptions.class.getSimpleName();
 }

@@ -3,4 +3,5 @@ package com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_i
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
 
 public abstract class AddInsOptions extends DrinkComponent {
+    public static final String TAG = AddInsOptions.class.getSimpleName();
 }

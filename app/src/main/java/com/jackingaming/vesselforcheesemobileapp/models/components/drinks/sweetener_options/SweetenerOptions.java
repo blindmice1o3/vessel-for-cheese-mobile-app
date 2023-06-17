@@ -3,4 +3,5 @@ package com.jackingaming.vesselforcheesemobileapp.models.components.drinks.sweet
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
 
 public abstract class SweetenerOptions extends DrinkComponent {
+    public static final String TAG = SweetenerOptions.class.getSimpleName();
 }

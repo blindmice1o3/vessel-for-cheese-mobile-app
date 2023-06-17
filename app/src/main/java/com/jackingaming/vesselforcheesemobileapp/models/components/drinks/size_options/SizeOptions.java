@@ -3,4 +3,5 @@ package com.jackingaming.vesselforcheesemobileapp.models.components.drinks.size_
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
 
 public abstract class SizeOptions extends DrinkComponent {
+    public static final String TAG = SizeOptions.class.getSimpleName();
 }

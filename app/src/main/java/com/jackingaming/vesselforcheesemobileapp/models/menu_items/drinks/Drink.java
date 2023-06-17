@@ -7,13 +7,19 @@ import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.size_o
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.MenuItem;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public abstract class Drink extends MenuItem {
     public static final String TAG = Drink.class.getSimpleName();
 
     protected DrinkSize.Type drinkSize;
     protected boolean iced;
+
+    protected Map<String, List<DrinkComponent>> drinkComponents = new HashMap<>();
+    protected Map<String, List<String>> drinkComponentsDefault = new HashMap<>();
+
     protected List<DrinkComponent> drinkComponentsWhatsIncluded = new ArrayList<>();
     protected String[] drinkComponentsWhatsIncludedDefaultValuesAsStringArray;
     protected List<DrinkComponent> drinkComponentsCustomized = new ArrayList<>();
@@ -44,6 +50,22 @@ public abstract class Drink extends MenuItem {
         Log.i(TAG, "addToDrinkComponentsCustomized(DrinkComponent)");
         // TODO: screen for duplication (subclasses should override and add rules-check)
         drinkComponentsCustomized.add(drinkComponent);
+    }
+
+    public Map<String, List<DrinkComponent>> getDrinkComponents() {
+        return drinkComponents;
+    }
+
+    public void setDrinkComponents(Map<String, List<DrinkComponent>> drinkComponents) {
+        this.drinkComponents = drinkComponents;
+    }
+
+    public Map<String, List<String>> getDrinkComponentsDefault() {
+        return drinkComponentsDefault;
+    }
+
+    public void setDrinkComponentsDefault(Map<String, List<String>> drinkComponentsDefault) {
+        this.drinkComponentsDefault = drinkComponentsDefault;
     }
 
     public String[] getDrinkComponentsWhatsIncludedDefaultValuesAsStringArray() {

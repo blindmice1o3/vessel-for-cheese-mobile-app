@@ -3,4 +3,5 @@ package com.jackingaming.vesselforcheesemobileapp.models.components.drinks.refre
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
 
 public abstract class RefresherBaseOptions extends DrinkComponent {
+    public static final String TAG = RefresherBaseOptions.class.getSimpleName();
 }
