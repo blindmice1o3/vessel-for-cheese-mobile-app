@@ -31,6 +31,11 @@ public class Juice extends JuiceOptions {
     }
 
     @Override
+    public String getClassAsString() {
+        return Juice.class.getSimpleName();
+    }
+
+    @Override
     public String getTypeAsString() {
         return type.name();
     }

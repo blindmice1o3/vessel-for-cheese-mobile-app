@@ -30,6 +30,11 @@ public class Temperature extends MilkOptions {
     }
 
     @Override
+    public String getClassAsString() {
+        return Temperature.class.getSimpleName();
+    }
+
+    @Override
     public String getTypeAsString() {
         return type.name();
     }

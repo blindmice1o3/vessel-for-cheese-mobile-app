@@ -31,6 +31,11 @@ public class Drizzle extends ToppingOptions {
     }
 
     @Override
+    public String getClassAsString() {
+        return Drizzle.class.getSimpleName();
+    }
+
+    @Override
     public String getTypeAsString() {
         return type.name();
     }

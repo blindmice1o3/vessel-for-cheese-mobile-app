@@ -33,6 +33,11 @@ public class Fruit extends AddInsOptions {
     }
 
     @Override
+    public String getClassAsString() {
+        return Fruit.class.getSimpleName();
+    }
+
+    @Override
     public String getTypeAsString() {
         return type.name();
     }

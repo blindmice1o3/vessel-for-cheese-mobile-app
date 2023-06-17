@@ -33,6 +33,11 @@ public class RefresherBase extends RefresherBaseOptions {
     }
 
     @Override
+    public String getClassAsString() {
+        return RefresherBase.class.getSimpleName();
+    }
+
+    @Override
     public String getTypeAsString() {
         return type.name();
     }

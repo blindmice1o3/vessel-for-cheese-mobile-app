@@ -33,6 +33,11 @@ public class ColdFoam extends ToppingOptions {
     }
 
     @Override
+    public String getClassAsString() {
+        return ColdFoam.class.getSimpleName();
+    }
+
+    @Override
     public String getTypeAsString() {
         return type.name();
     }

@@ -30,6 +30,11 @@ public class Water extends AddInsOptions {
     }
 
     @Override
+    public String getClassAsString() {
+        return Water.class.getSimpleName();
+    }
+
+    @Override
     public String getTypeAsString() {
         return type.name();
     }

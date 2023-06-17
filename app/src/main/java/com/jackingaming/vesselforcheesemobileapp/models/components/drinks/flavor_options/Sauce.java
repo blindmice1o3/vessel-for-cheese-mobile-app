@@ -71,6 +71,11 @@ public class Sauce extends FlavorOptions
     }
 
     @Override
+    public String getClassAsString() {
+        return Sauce.class.getSimpleName();
+    }
+
+    @Override
     public String getTypeAsString() {
         return type.name();
     }

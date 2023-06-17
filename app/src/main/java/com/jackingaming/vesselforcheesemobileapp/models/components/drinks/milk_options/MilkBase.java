@@ -39,6 +39,11 @@ public class MilkBase extends MilkOptions {
     }
 
     @Override
+    public String getClassAsString() {
+        return MilkBase.class.getSimpleName();
+    }
+
+    @Override
     public String getTypeAsString() {
         return type.name();
     }

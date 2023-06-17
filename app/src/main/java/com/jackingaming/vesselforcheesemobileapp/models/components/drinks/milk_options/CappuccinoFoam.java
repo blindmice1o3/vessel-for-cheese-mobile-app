@@ -30,6 +30,11 @@ public class CappuccinoFoam extends MilkOptions {
     }
 
     @Override
+    public String getClassAsString() {
+        return CappuccinoFoam.class.getSimpleName();
+    }
+
+    @Override
     public String getTypeAsString() {
         return type.name();
     }

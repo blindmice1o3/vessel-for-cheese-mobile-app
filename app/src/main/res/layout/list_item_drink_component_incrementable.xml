@@ -44,7 +44,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_marginEnd="10dp" />
+            android:layout_marginEnd="10dp"
+            android:src="@drawable/ic_menu_minus" />
 
         <TextView
             android:id="@+id/tv_quantity"
@@ -52,13 +53,14 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginEnd="10dp"
-            android:text="0" />
+            android:text="-1" />
 
         <ImageView
             android:id="@+id/iv_add"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_marginEnd="20dp" />
+            android:layout_marginEnd="20dp"
+            android:src="@drawable/ic_menu_add" />
     </LinearLayout>
 </FrameLayout>

@@ -47,6 +47,11 @@ public class DrinkSize extends SizeOptions {
     }
 
     @Override
+    public String getClassAsString() {
+        return DrinkSize.class.getSimpleName();
+    }
+
+    @Override
     public String getTypeAsString() {
         return type.name();
     }

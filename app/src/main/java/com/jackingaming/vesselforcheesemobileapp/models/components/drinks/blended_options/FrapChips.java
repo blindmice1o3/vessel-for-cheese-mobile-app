@@ -30,6 +30,11 @@ public class FrapChips extends BlendedOptions {
     }
 
     @Override
+    public String getClassAsString() {
+        return FrapChips.class.getSimpleName();
+    }
+
+    @Override
     public String getTypeAsString() {
         return type.name();
     }

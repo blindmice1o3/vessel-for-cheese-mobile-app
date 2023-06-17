@@ -74,6 +74,11 @@ public class AffogatoShot extends EspressoOptions
     }
 
     @Override
+    public String getClassAsString() {
+        return AffogatoShot.class.getSimpleName();
+    }
+
+    @Override
     public String getTypeAsString() {
         return type.name();
     }

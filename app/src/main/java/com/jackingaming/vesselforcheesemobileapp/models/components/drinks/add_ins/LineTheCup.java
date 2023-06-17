@@ -32,6 +32,11 @@ public class LineTheCup extends AddInsOptions {
     }
 
     @Override
+    public String getClassAsString() {
+        return LineTheCup.class.getSimpleName();
+    }
+
+    @Override
     public String getTypeAsString() {
         return type.name();
     }

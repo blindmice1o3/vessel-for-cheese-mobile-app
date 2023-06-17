@@ -77,6 +77,11 @@ public class Syrup extends FlavorOptions
     }
 
     @Override
+    public String getClassAsString() {
+        return Syrup.class.getSimpleName();
+    }
+
+    @Override
     public String getTypeAsString() {
         return type.name();
     }

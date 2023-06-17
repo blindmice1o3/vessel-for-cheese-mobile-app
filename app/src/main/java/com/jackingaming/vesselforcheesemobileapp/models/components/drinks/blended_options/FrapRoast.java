@@ -1,4 +1,4 @@
-    package com.jackingaming.vesselforcheesemobileapp.models.components.drinks.blended_options;
+package com.jackingaming.vesselforcheesemobileapp.models.components.drinks.blended_options;
 
 public class FrapRoast extends BlendedOptions {
     public enum Type {
@@ -27,6 +27,11 @@ public class FrapRoast extends BlendedOptions {
             enumValuesAsStringArray[i] = enumValues[i].name();
         }
         return enumValuesAsStringArray;
+    }
+
+    @Override
+    public String getClassAsString() {
+        return FrapRoast.class.getSimpleName();
     }
 
     @Override

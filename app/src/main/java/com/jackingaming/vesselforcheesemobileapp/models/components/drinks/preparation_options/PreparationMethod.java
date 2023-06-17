@@ -31,6 +31,11 @@ public class PreparationMethod extends PreparationOptions {
     }
 
     @Override
+    public String getClassAsString() {
+        return PreparationMethod.class.getSimpleName();
+    }
+
+    @Override
     public String getTypeAsString() {
         return type.name();
     }

@@ -31,6 +31,11 @@ public class BlendedPrep extends BlendedOptions {
     }
 
     @Override
+    public String getClassAsString() {
+        return BlendedPrep.class.getSimpleName();
+    }
+
+    @Override
     public String getTypeAsString() {
         return type.name();
     }

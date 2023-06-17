@@ -30,6 +30,11 @@ public class Lemonade extends LemonadeOptions {
     }
 
     @Override
+    public String getClassAsString() {
+        return Lemonade.class.getSimpleName();
+    }
+
+    @Override
     public String getTypeAsString() {
         return type.name();
     }

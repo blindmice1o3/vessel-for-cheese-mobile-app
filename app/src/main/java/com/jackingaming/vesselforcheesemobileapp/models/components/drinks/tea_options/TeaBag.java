@@ -30,6 +30,11 @@ public class TeaBag extends TeaOptions {
     }
 
     @Override
+    public String getClassAsString() {
+        return TeaBag.class.getSimpleName();
+    }
+
+    @Override
     public String getTypeAsString() {
         return type.name();
     }

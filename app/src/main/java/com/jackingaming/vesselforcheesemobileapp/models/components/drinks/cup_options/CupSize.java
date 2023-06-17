@@ -30,6 +30,11 @@ public class CupSize extends CupOptions {
     }
 
     @Override
+    public String getClassAsString() {
+        return CupSize.class.getSimpleName();
+    }
+
+    @Override
     public String getTypeAsString() {
         return type.name();
     }

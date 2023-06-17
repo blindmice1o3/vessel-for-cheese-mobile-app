@@ -32,6 +32,11 @@ public class Extras extends TeaOptions {
     }
 
     @Override
+    public String getClassAsString() {
+        return Extras.class.getSimpleName();
+    }
+
+    @Override
     public String getTypeAsString() {
         return type.name();
     }

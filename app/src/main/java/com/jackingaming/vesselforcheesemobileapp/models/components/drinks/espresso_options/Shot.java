@@ -74,6 +74,11 @@ public class Shot extends EspressoOptions
     }
 
     @Override
+    public String getClassAsString() {
+        return Shot.class.getSimpleName();
+    }
+
+    @Override
     public String getTypeAsString() {
         return type.name();
     }

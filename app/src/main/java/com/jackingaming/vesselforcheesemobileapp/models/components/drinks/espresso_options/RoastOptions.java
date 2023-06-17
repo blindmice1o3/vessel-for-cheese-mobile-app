@@ -36,6 +36,11 @@ public class RoastOptions extends EspressoOptions {
     }
 
     @Override
+    public String getClassAsString() {
+        return RoastOptions.class.getSimpleName();
+    }
+
+    @Override
     public String getTypeAsString() {
         return type.name();
     }

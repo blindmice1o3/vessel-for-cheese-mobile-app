@@ -13,38 +13,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.jackingaming.vesselforcheesemobileapp.R;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
-import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.espresso_options.AffogatoShot;
-import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.espresso_options.EspressoOptions;
-import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.espresso_options.PrepOptions;
-import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.espresso_options.PullOptions;
-import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.espresso_options.RoastOptions;
-import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.espresso_options.Shot;
-import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.espresso_options.SizeOptions;
-import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.milk_options.CappuccinoFoam;
-import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.milk_options.MilkBase;
-import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.milk_options.MilkFoam;
-import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.milk_options.MilkOptions;
-import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.milk_options.Temperature;
 
 import java.util.List;
 
 public class WhatsIncludedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public static final String TAG = WhatsIncludedAdapter.class.getSimpleName();
 
-    private static final int VIEW_TYPE_ERROR = -1;
     private static final int VIEW_TYPE_INCREMENTABLE = 0;
-
-    private static final int VIEW_TYPE_MILK_BASE = 1;
-    private static final int VIEW_TYPE_TEMPERATURE = 2;
-    private static final int VIEW_TYPE_MILK_FOAM = 3;
-    private static final int VIEW_TYPE_CAPPUCCINO_FOAM = 4;
-
-    private static final int VIEW_TYPE_SHOT = 5;
-    private static final int VIEW_TYPE_AFFOGATO_SHOT = 6;
-    private static final int VIEW_TYPE_ROAST_OPTIONS = 7;
-    private static final int VIEW_TYPE_PREP_OPTIONS = 8;
-    private static final int VIEW_TYPE_PULL_OPTIONS = 9;
-    private static final int VIEW_TYPE_SIZE_OPTIONS = 10;
+    private static final int VIEW_TYPE_SINGLE_SELECTION = 1;
 
     public interface WhatsIncludedAdapterListener {
         void onItemClicked(String[] names, String nameDefault);
@@ -70,54 +46,12 @@ public class WhatsIncludedAdapter extends RecyclerView.Adapter<RecyclerView.View
     @Override
     public int getItemViewType(int position) {
         Log.i(TAG, "getItemViewType()");
-        DrinkComponent drinkComponent = drinkComponents.get(position);
 
+        DrinkComponent drinkComponent = drinkComponents.get(position);
         if (drinkComponent instanceof Incrementable) {
             return VIEW_TYPE_INCREMENTABLE;
-        }
-
-        // --------------------------------------------------------------------
-
-        if (drinkComponent instanceof MilkOptions) {
-            Log.i(TAG, "drinkComponent instanceof MilkOptions");
-
-            MilkOptions milkOptions = (MilkOptions) drinkComponent;
-            if (milkOptions instanceof MilkBase) {
-                return VIEW_TYPE_MILK_BASE;
-            } else if (milkOptions instanceof Temperature) {
-                return VIEW_TYPE_TEMPERATURE;
-            } else if (milkOptions instanceof MilkFoam) {
-                return VIEW_TYPE_MILK_FOAM;
-            } else if (milkOptions instanceof CappuccinoFoam) {
-                return VIEW_TYPE_CAPPUCCINO_FOAM;
-            } else {
-                Log.e(TAG, "MilkOptions else-clause");
-                return VIEW_TYPE_ERROR;
-            }
-        } else if (drinkComponent instanceof EspressoOptions) {
-            Log.i(TAG, "drinkComponent instanceof EspressoOptions");
-
-            EspressoOptions espressoOptions = (EspressoOptions) drinkComponent;
-            // TODO: remove Shot and AffogatoShot (taken care of by Incrementable)
-            if (espressoOptions instanceof Shot) {
-                return VIEW_TYPE_SHOT;
-            } else if (espressoOptions instanceof AffogatoShot) {
-                return VIEW_TYPE_AFFOGATO_SHOT;
-            } else if (espressoOptions instanceof RoastOptions) {
-                return VIEW_TYPE_ROAST_OPTIONS;
-            } else if (espressoOptions instanceof PrepOptions) {
-                return VIEW_TYPE_PREP_OPTIONS;
-            } else if (espressoOptions instanceof PullOptions) {
-                return VIEW_TYPE_PULL_OPTIONS;
-            } else if (espressoOptions instanceof SizeOptions) {
-                return VIEW_TYPE_SIZE_OPTIONS;
-            } else {
-                Log.e(TAG, "EspressoOptions else-clause");
-                return VIEW_TYPE_ERROR;
-            }
         } else {
-            Log.e(TAG, "else-clause identifying specific type of DrinkComponent");
-            return VIEW_TYPE_ERROR;
+            return VIEW_TYPE_SINGLE_SELECTION;
         }
     }
 
@@ -126,27 +60,12 @@ public class WhatsIncludedAdapter extends RecyclerView.Adapter<RecyclerView.View
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         Log.i(TAG, "onCreateViewHolder()");
 
-        switch (viewType) {
-            case VIEW_TYPE_INCREMENTABLE:
-                View viewIncrementableDrinkComponent = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_drink_component_incrementable, parent, false);
-                return new DrinkComponentIncrementableViewHolder(viewIncrementableDrinkComponent);
-            case VIEW_TYPE_MILK_BASE:
-            case VIEW_TYPE_TEMPERATURE:
-            case VIEW_TYPE_MILK_FOAM:
-            case VIEW_TYPE_CAPPUCCINO_FOAM:
-            case VIEW_TYPE_ROAST_OPTIONS:
-            case VIEW_TYPE_PREP_OPTIONS:
-            case VIEW_TYPE_PULL_OPTIONS:
-            case VIEW_TYPE_SIZE_OPTIONS:
-                View viewDrinkComponent = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_drink_component, parent, false);
-                return new DrinkComponentViewHolder(viewDrinkComponent);
-            // TODO: taken care of by Incrementable
-//            case VIEW_TYPE_SHOT:
-//            case VIEW_TYPE_AFFOGATO_SHOT:
-            default:
-                Log.e(TAG, "switch(viewType) default block");
-                View viewDefault = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_drink_component, parent, false);
-                return new DrinkComponentViewHolder(viewDefault);
+        if (viewType == VIEW_TYPE_INCREMENTABLE) {
+            View viewIncrementableDrinkComponent = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_drink_component_incrementable, parent, false);
+            return new DrinkComponentIncrementableViewHolder(viewIncrementableDrinkComponent);
+        } else {
+            View viewDrinkComponent = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_drink_component, parent, false);
+            return new DrinkComponentViewHolder(viewDrinkComponent);
         }
     }
 
@@ -154,12 +73,11 @@ public class WhatsIncludedAdapter extends RecyclerView.Adapter<RecyclerView.View
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         Log.i(TAG, "onBindViewHolder()");
 
-        int viewType = holder.getItemViewType();
         DrinkComponent drinkComponent = drinkComponents.get(position);
-        if (holder instanceof DrinkComponentViewHolder) {
-            ((DrinkComponentViewHolder) holder).bind(viewType, drinkComponent);
-        } else if (holder instanceof DrinkComponentIncrementableViewHolder) {
-            ((DrinkComponentIncrementableViewHolder) holder).bind(viewType, drinkComponent);
+        if (holder instanceof DrinkComponentIncrementableViewHolder) {
+            ((DrinkComponentIncrementableViewHolder) holder).bind(drinkComponent);
+        } else if (holder instanceof DrinkComponentViewHolder) {
+            ((DrinkComponentViewHolder) holder).bind(drinkComponent);
         } else {
             Log.e(TAG, "else-clause identifying specific type of ViewHolder");
         }
@@ -231,58 +149,10 @@ public class WhatsIncludedAdapter extends RecyclerView.Adapter<RecyclerView.View
             }
         }
 
-        public void bind(int viewType, DrinkComponent drinkComponent) {
-            String titleBorder = null;
-            String name = null;
-            switch (viewType) {
-                case VIEW_TYPE_MILK_BASE:
-                    titleBorder = MilkBase.class.getSimpleName();
-                    name = ((MilkBase) drinkComponent).getType().name();
-                    break;
-                case VIEW_TYPE_TEMPERATURE:
-                    titleBorder = Temperature.class.getSimpleName();
-                    name = ((Temperature) drinkComponent).getType().name();
-                    break;
-                case VIEW_TYPE_MILK_FOAM:
-                    titleBorder = MilkFoam.class.getSimpleName();
-                    name = ((MilkFoam) drinkComponent).getType().name();
-                    break;
-                case VIEW_TYPE_CAPPUCCINO_FOAM:
-                    titleBorder = CappuccinoFoam.class.getSimpleName();
-                    name = ((CappuccinoFoam) drinkComponent).getType().name();
-                    break;
-                case VIEW_TYPE_SHOT:
-                    titleBorder = Shot.class.getSimpleName();
-                    name = ((Shot) drinkComponent).getType().name();
-                    break;
-                case VIEW_TYPE_AFFOGATO_SHOT:
-                    titleBorder = AffogatoShot.class.getSimpleName();
-                    name = ((AffogatoShot) drinkComponent).getType().name();
-                    break;
-                case VIEW_TYPE_ROAST_OPTIONS:
-                    titleBorder = RoastOptions.class.getSimpleName();
-                    name = ((RoastOptions) drinkComponent).getType().name();
-                    break;
-                case VIEW_TYPE_PREP_OPTIONS:
-                    titleBorder = PrepOptions.class.getSimpleName();
-                    name = ((PrepOptions) drinkComponent).getType().name();
-                    break;
-                case VIEW_TYPE_PULL_OPTIONS:
-                    titleBorder = PullOptions.class.getSimpleName();
-                    name = ((PullOptions) drinkComponent).getType().name();
-                    break;
-                case VIEW_TYPE_SIZE_OPTIONS:
-                    titleBorder = SizeOptions.class.getSimpleName();
-                    name = ((SizeOptions) drinkComponent).getType().name();
-                    break;
-                default:
-                    titleBorder = "error";
-                    name = "default";
-                    Log.e(TAG, "DrinkComponentViewHolder.bind() switch(viewType) default block");
-                    break;
-            }
-            tvBorderTitle.setText(titleBorder);
-            tvName.setText(name);
+        public void bind(DrinkComponent drinkComponent) {
+            tvBorderTitle.setText(drinkComponent.getClassAsString());
+            tvName.setText(drinkComponent.getTypeAsString());
+
             ivDropDownImage.setImageResource(R.drawable.ic_menu_arrow_down);
         }
 
@@ -339,84 +209,57 @@ public class WhatsIncludedAdapter extends RecyclerView.Adapter<RecyclerView.View
             itemView.setOnLongClickListener(this);
         }
 
-        public void bind(int viewType, DrinkComponent drinkComponent) {
-            String titleBorder = null;
-            String name = null;
-            if (drinkComponent instanceof Shot) {
-                titleBorder = Shot.class.getSimpleName();
-                name = ((Shot) drinkComponent).getType().name();
-            } else if (drinkComponent instanceof AffogatoShot) {
-                titleBorder = AffogatoShot.class.getSimpleName();
-                name = ((AffogatoShot) drinkComponent).getType().name();
-            }
+        public void bind(DrinkComponent drinkComponent) {
+            tvBorderTitle.setText(drinkComponent.getClassAsString());
+            tvName.setText(drinkComponent.getTypeAsString());
 
             Incrementable incrementable = (Incrementable) drinkComponent;
-            int quantity = incrementable.getQuantity();
 
-            tvBorderTitle.setText(titleBorder);
-            tvName.setText(name);
-            ivMinus.setImageResource(R.drawable.ic_menu_minus);
             ivMinus.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     incrementable.onDecrement();
+
+                    tvName.setText(drinkComponent.getTypeAsString());
                     tvQuantity.setText(Integer.toString(incrementable.getQuantity()));
 
-                    if (drinkComponent instanceof Shot) {
-                        tvName.setText(((Shot) drinkComponent).getType().name());
-                    } else if (drinkComponent instanceof AffogatoShot) {
-                        tvName.setText(((AffogatoShot) drinkComponent).getType().name());
-                    }
-
-                    int position = getAdapterPosition(); // gets item position
-                    Log.i(TAG, "ivMinus clicked! position: " + position);
-                    if (position != RecyclerView.NO_POSITION) { // Check if an item was deleted, but the user clicked it before the UI removed it
-                        String quantityAsString = Integer.toString(incrementable.getQuantity());
-                        String nameTypeDefault = drinkComponentsDefaultValuesAsStringArray[position];
-                        if (quantityAsString.equals(nameTypeDefault)) {
-                            // The selected value is the same as the default value for this drink's type.
-                            String colorDefault = "#1B455F";
-                            viewBorder.setBackgroundResource(R.drawable.border_drink_component_default);
-                            tvBorderTitle.setTextColor(Color.parseColor(colorDefault));
-                        } else {
-                            // The selected value is NOT the same as the default value for this drink's type.
-                            String colorCustomized = "#AAFF00";
-                            viewBorder.setBackgroundResource(R.drawable.border_drink_component_customized);
-                            tvBorderTitle.setTextColor(Color.parseColor(colorCustomized));
-                        }
+                    String quantityAsString = Integer.toString(incrementable.getQuantity());
+                    String nameTypeDefault = drinkComponentsDefaultValuesAsStringArray[getAdapterPosition()];
+                    if (quantityAsString.equals(nameTypeDefault)) {
+                        // The selected value is the same as the default value for this drink's type.
+                        String colorDefault = "#1B455F";
+                        viewBorder.setBackgroundResource(R.drawable.border_drink_component_default);
+                        tvBorderTitle.setTextColor(Color.parseColor(colorDefault));
+                    } else {
+                        // The selected value is NOT the same as the default value for this drink's type.
+                        String colorCustomized = "#AAFF00";
+                        viewBorder.setBackgroundResource(R.drawable.border_drink_component_customized);
+                        tvBorderTitle.setTextColor(Color.parseColor(colorCustomized));
                     }
                 }
             });
-            tvQuantity.setText(Integer.toString(quantity));
+            tvQuantity.setText(Integer.toString(incrementable.getQuantity()));
             ivAdd.setImageResource(R.drawable.ic_menu_add);
             ivAdd.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     incrementable.onIncrement();
+
+                    tvName.setText(drinkComponent.getTypeAsString());
                     tvQuantity.setText(Integer.toString(incrementable.getQuantity()));
 
-                    if (drinkComponent instanceof Shot) {
-                        tvName.setText(((Shot) drinkComponent).getType().name());
-                    } else if (drinkComponent instanceof AffogatoShot) {
-                        tvName.setText(((AffogatoShot) drinkComponent).getType().name());
-                    }
-
-                    int position = getAdapterPosition(); // gets item position
-                    Log.i(TAG, "ivAdd! position: " + position);
-                    if (position != RecyclerView.NO_POSITION) { // Check if an item was deleted, but the user clicked it before the UI removed it
-                        String quantityAsString = Integer.toString(incrementable.getQuantity());
-                        String nameTypeDefault = drinkComponentsDefaultValuesAsStringArray[position];
-                        if (quantityAsString.equals(nameTypeDefault)) {
-                            // The selected value is the same as the default value for this drink's type.
-                            String colorDefault = "#1B455F";
-                            viewBorder.setBackgroundResource(R.drawable.border_drink_component_default);
-                            tvBorderTitle.setTextColor(Color.parseColor(colorDefault));
-                        } else {
-                            // The selected value is NOT the same as the default value for this drink's type.
-                            String colorCustomized = "#AAFF00";
-                            viewBorder.setBackgroundResource(R.drawable.border_drink_component_customized);
-                            tvBorderTitle.setTextColor(Color.parseColor(colorCustomized));
-                        }
+                    String quantityAsString = Integer.toString(incrementable.getQuantity());
+                    String nameTypeDefault = drinkComponentsDefaultValuesAsStringArray[getAdapterPosition()];
+                    if (quantityAsString.equals(nameTypeDefault)) {
+                        // The selected value is the same as the default value for this drink's type.
+                        String colorDefault = "#1B455F";
+                        viewBorder.setBackgroundResource(R.drawable.border_drink_component_default);
+                        tvBorderTitle.setTextColor(Color.parseColor(colorDefault));
+                    } else {
+                        // The selected value is NOT the same as the default value for this drink's type.
+                        String colorCustomized = "#AAFF00";
+                        viewBorder.setBackgroundResource(R.drawable.border_drink_component_customized);
+                        tvBorderTitle.setTextColor(Color.parseColor(colorCustomized));
                     }
                 }
             });

@@ -30,6 +30,11 @@ public class CinnamonPowder extends ToppingOptions {
     }
 
     @Override
+    public String getClassAsString() {
+        return CinnamonPowder.class.getSimpleName();
+    }
+
+    @Override
     public String getTypeAsString() {
         return type.name();
     }

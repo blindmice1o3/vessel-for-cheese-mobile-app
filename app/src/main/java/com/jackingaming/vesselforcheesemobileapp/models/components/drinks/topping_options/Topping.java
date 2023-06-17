@@ -32,6 +32,11 @@ public class Topping extends ToppingOptions {
     }
 
     @Override
+    public String getClassAsString() {
+        return Topping.class.getSimpleName();
+    }
+
+    @Override
     public String getTypeAsString() {
         return type.name();
     }

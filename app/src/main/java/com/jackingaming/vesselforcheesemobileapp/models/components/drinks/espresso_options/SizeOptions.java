@@ -33,6 +33,11 @@ public class SizeOptions extends EspressoOptions {
     }
 
     @Override
+    public String getClassAsString() {
+        return SizeOptions.class.getSimpleName();
+    }
+
+    @Override
     public String getTypeAsString() {
         return type.name();
     }

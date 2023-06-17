@@ -8,6 +8,8 @@ public abstract class DrinkComponent
 
     public abstract String[] getEnumValuesAsStringArray();
 
+    public abstract String getClassAsString();
+
     public abstract String getTypeAsString();
 
     public abstract void setTypeByString(String typeAsString);

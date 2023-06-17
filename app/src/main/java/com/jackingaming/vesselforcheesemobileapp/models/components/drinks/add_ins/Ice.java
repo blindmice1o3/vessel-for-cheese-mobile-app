@@ -30,6 +30,11 @@ public class Ice extends AddInsOptions {
     }
 
     @Override
+    public String getClassAsString() {
+        return Ice.class.getSimpleName();
+    }
+
+    @Override
     public String getTypeAsString() {
         return type.name();
     }

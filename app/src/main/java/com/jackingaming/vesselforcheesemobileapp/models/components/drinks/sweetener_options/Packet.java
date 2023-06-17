@@ -72,6 +72,11 @@ public class Packet extends SweetenerOptions
     }
 
     @Override
+    public String getClassAsString() {
+        return Packet.class.getSimpleName();
+    }
+
+    @Override
     public String getTypeAsString() {
         return type.name();
     }

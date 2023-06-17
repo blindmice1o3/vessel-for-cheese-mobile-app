@@ -30,6 +30,11 @@ public class Room extends AddInsOptions {
     }
 
     @Override
+    public String getClassAsString() {
+        return Room.class.getSimpleName();
+    }
+
+    @Override
     public String getTypeAsString() {
         return type.name();
     }

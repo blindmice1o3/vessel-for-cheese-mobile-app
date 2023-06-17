@@ -32,6 +32,11 @@ public class IcedTeaBase extends TeaOptions {
     }
 
     @Override
+    public String getClassAsString() {
+        return IcedTeaBase.class.getSimpleName();
+    }
+
+    @Override
     public String getTypeAsString() {
         return type.name();
     }

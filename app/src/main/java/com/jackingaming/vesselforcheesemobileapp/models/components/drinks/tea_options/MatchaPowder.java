@@ -30,6 +30,11 @@ public class MatchaPowder extends TeaOptions {
     }
 
     @Override
+    public String getClassAsString() {
+        return MatchaPowder.class.getSimpleName();
+    }
+
+    @Override
     public String getTypeAsString() {
         return type.name();
     }

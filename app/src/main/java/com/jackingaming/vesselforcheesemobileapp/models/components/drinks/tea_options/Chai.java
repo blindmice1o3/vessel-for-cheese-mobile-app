@@ -68,6 +68,11 @@ public class Chai extends TeaOptions
     }
 
     @Override
+    public String getClassAsString() {
+        return Chai.class.getSimpleName();
+    }
+
+    @Override
     public String getTypeAsString() {
         return type.name();
     }

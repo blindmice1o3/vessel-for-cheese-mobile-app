@@ -32,6 +32,11 @@ public class PullOptions extends EspressoOptions {
     }
 
     @Override
+    public String getClassAsString() {
+        return PullOptions.class.getSimpleName();
+    }
+
+    @Override
     public String getTypeAsString() {
         return type.name();
     }

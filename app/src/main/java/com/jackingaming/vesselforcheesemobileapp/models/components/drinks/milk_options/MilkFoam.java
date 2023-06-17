@@ -30,6 +30,11 @@ public class MilkFoam extends MilkOptions {
     }
 
     @Override
+    public String getClassAsString() {
+        return MilkFoam.class.getSimpleName();
+    }
+
+    @Override
     public String getTypeAsString() {
         return type.name();
     }

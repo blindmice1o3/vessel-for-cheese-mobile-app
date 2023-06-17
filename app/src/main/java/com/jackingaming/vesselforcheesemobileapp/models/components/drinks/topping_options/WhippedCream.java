@@ -30,6 +30,11 @@ public class WhippedCream extends ToppingOptions {
     }
 
     @Override
+    public String getClassAsString() {
+        return WhippedCream.class.getSimpleName();
+    }
+
+    @Override
     public String getTypeAsString() {
         return type.name();
     }

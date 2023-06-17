@@ -70,6 +70,11 @@ public class Liquid extends SweetenerOptions
     }
 
     @Override
+    public String getClassAsString() {
+        return Liquid.class.getSimpleName();
+    }
+
+    @Override
     public String getTypeAsString() {
         return type.name();
     }

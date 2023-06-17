@@ -31,6 +31,11 @@ public class Powder extends AddInsOptions {
     }
 
     @Override
+    public String getClassAsString() {
+        return Powder.class.getSimpleName();
+    }
+
+    @Override
     public String getTypeAsString() {
         return type.name();
     }

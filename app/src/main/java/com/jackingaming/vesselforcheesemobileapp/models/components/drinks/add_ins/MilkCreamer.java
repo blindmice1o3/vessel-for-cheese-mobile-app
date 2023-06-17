@@ -39,6 +39,11 @@ public class MilkCreamer extends AddInsOptions {
     }
 
     @Override
+    public String getClassAsString() {
+        return MilkCreamer.class.getSimpleName();
+    }
+
+    @Override
     public String getTypeAsString() {
         return type.name();
     }

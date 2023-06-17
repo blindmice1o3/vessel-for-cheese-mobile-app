@@ -31,6 +31,11 @@ public class PrepOptions extends EspressoOptions {
     }
 
     @Override
+    public String getClassAsString() {
+        return PrepOptions.class.getSimpleName();
+    }
+
+    @Override
     public String getTypeAsString() {
         return type.name();
     }
