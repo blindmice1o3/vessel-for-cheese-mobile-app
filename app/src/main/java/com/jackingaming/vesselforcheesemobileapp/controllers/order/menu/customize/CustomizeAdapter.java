@@ -87,7 +87,7 @@ public class CustomizeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         public void bind(String nameGroup, List<DrinkComponent> drinkComponents, List<String> drinkComponentsDefault) {
             tvClassNameDrinkComponent.setText((nameGroup));
 
-            WhatsIncludedAdapter adapter = new WhatsIncludedAdapter(drinkComponents, drinkComponentsDefault.toArray(new String[0]), new WhatsIncludedAdapter.WhatsIncludedAdapterListener() {
+            WhatsIncludedAdapter adapter = new WhatsIncludedAdapter(drinkComponents, drinkComponentsDefault, new WhatsIncludedAdapter.WhatsIncludedAdapterListener() {
                 @Override
                 public void onItemClicked(String[] names, String nameDefault) {
                     Log.i(TAG, "onItemClicked(String[] names, String nameDefault)");

@@ -29,17 +29,17 @@ public class WhatsIncludedAdapter extends RecyclerView.Adapter<RecyclerView.View
     }
 
     private List<DrinkComponent> drinkComponents;
-    private String[] drinkComponentsDefaultValuesAsStringArray;
+    private List<String> drinkComponentsDefaultAsString;
     private WhatsIncludedAdapterListener listener;
 
     private int indexSelected = -1;
     private DrinkComponentViewHolder viewHolderSelected;
 
     public WhatsIncludedAdapter(List<DrinkComponent> drinkComponents,
-                                String[] drinkComponentsDefaultValuesAsStringArray,
+                                List<String> drinkComponentsDefaultAsString,
                                 WhatsIncludedAdapterListener listener) {
         this.drinkComponents = drinkComponents;
-        this.drinkComponentsDefaultValuesAsStringArray = drinkComponentsDefaultValuesAsStringArray;
+        this.drinkComponentsDefaultAsString = drinkComponentsDefaultAsString;
         this.listener = listener;
     }
 
@@ -74,10 +74,11 @@ public class WhatsIncludedAdapter extends RecyclerView.Adapter<RecyclerView.View
         Log.i(TAG, "onBindViewHolder()");
 
         DrinkComponent drinkComponent = drinkComponents.get(position);
+        String drinkComponentDefaultAsString = drinkComponentsDefaultAsString.get(position);
         if (holder instanceof DrinkComponentIncrementableViewHolder) {
-            ((DrinkComponentIncrementableViewHolder) holder).bind(drinkComponent);
+            ((DrinkComponentIncrementableViewHolder) holder).bind(drinkComponent, drinkComponentDefaultAsString);
         } else if (holder instanceof DrinkComponentViewHolder) {
-            ((DrinkComponentViewHolder) holder).bind(drinkComponent);
+            ((DrinkComponentViewHolder) holder).bind(drinkComponent, drinkComponentDefaultAsString);
         } else {
             Log.e(TAG, "else-clause identifying specific type of ViewHolder");
         }
@@ -93,19 +94,14 @@ public class WhatsIncludedAdapter extends RecyclerView.Adapter<RecyclerView.View
         Log.i(TAG, "updateDrinkComponentByString(String)");
 
         if (indexSelected > -1) {
-            // Update the underlying model.
             DrinkComponent drinkComponentSelected = drinkComponents.get(indexSelected);
+            String drinkComponentDefaultAsStringSelected = drinkComponentsDefaultAsString.get(indexSelected);
+
+            // Update the underlying model.
             drinkComponentSelected.setTypeByString(name);
 
-            // Check criteria for changing border color.
-            String drinkComponentSelectedDefaultValueAsString = drinkComponentsDefaultValuesAsStringArray[indexSelected];
-            boolean defaultValueSelected = false;
-            if (drinkComponentSelected.getTypeAsString().equals(drinkComponentSelectedDefaultValueAsString)) {
-                defaultValueSelected = true;
-            }
-
             // Update the screen.
-            viewHolderSelected.updateScreenAfterSelection(name, defaultValueSelected);
+            viewHolderSelected.updateScreenAfterSelection(name, drinkComponentDefaultAsStringSelected);
 
             // Tear-down steps.
             indexSelected = -1;
@@ -133,10 +129,27 @@ public class WhatsIncludedAdapter extends RecyclerView.Adapter<RecyclerView.View
             itemView.setOnLongClickListener(this);
         }
 
-        public void updateScreenAfterSelection(String name, boolean defaultValueSelected) {
+        public void updateScreenAfterSelection(String name, String drinkComponentSelectedDefaultAsString) {
             tvName.setText(name);
 
-            if (defaultValueSelected) {
+            // Check criteria for changing border color.
+            updateBorderColor(
+                    isDefault(name, drinkComponentSelectedDefaultAsString)
+            );
+        }
+
+        public void bind(DrinkComponent drinkComponent, String drinkComponentDefaultAsString) {
+            tvBorderTitle.setText(drinkComponent.getClassAsString());
+            tvName.setText(drinkComponent.getTypeAsString());
+
+            // Check criteria for changing border color.
+            updateBorderColor(
+                    isDefault(drinkComponent.getTypeAsString(), drinkComponentDefaultAsString)
+            );
+        }
+
+        private void updateBorderColor(boolean defaultSelected) {
+            if (defaultSelected) {
                 // The selected value is the same as the default value for this drink's type.
                 String colorDefault = "#1B455F";
                 viewBorder.setBackgroundResource(R.drawable.border_drink_component_default);
@@ -149,11 +162,11 @@ public class WhatsIncludedAdapter extends RecyclerView.Adapter<RecyclerView.View
             }
         }
 
-        public void bind(DrinkComponent drinkComponent) {
-            tvBorderTitle.setText(drinkComponent.getClassAsString());
-            tvName.setText(drinkComponent.getTypeAsString());
-
-            ivDropDownImage.setImageResource(R.drawable.ic_menu_arrow_down);
+        private boolean isDefault(String drinkComponentAsString, String drinkComponentDefaultAsString) {
+            boolean defaultSelected =
+                    (drinkComponentAsString.equals(drinkComponentDefaultAsString)) ?
+                            true : false;
+            return defaultSelected;
         }
 
         @Override
@@ -164,7 +177,7 @@ public class WhatsIncludedAdapter extends RecyclerView.Adapter<RecyclerView.View
             if (indexSelected != RecyclerView.NO_POSITION) { // Check if an item was deleted, but the user clicked it before the UI removed it
                 if (listener != null) {
                     String[] names = drinkComponents.get(indexSelected).getEnumValuesAsStringArray();
-                    String nameDefault = drinkComponentsDefaultValuesAsStringArray[indexSelected];
+                    String nameDefault = drinkComponentsDefaultAsString.get(indexSelected);
                     listener.onItemClicked(names, nameDefault);
                 }
             }
@@ -178,7 +191,7 @@ public class WhatsIncludedAdapter extends RecyclerView.Adapter<RecyclerView.View
                 if (listener != null) {
                     DrinkComponent drinkComponent = drinkComponents.get(position);
                     String[] enumsAsString = drinkComponent.getEnumValuesAsStringArray();
-                    String nameDefault = drinkComponentsDefaultValuesAsStringArray[position];
+                    String nameDefault = drinkComponentsDefaultAsString.get(position);
                     listener.onItemLongClicked(enumsAsString, nameDefault);
                     return true;
                 }
@@ -209,60 +222,66 @@ public class WhatsIncludedAdapter extends RecyclerView.Adapter<RecyclerView.View
             itemView.setOnLongClickListener(this);
         }
 
-        public void bind(DrinkComponent drinkComponent) {
+        public void bind(DrinkComponent drinkComponent, String drinkComponentDefaultAsString) {
             tvBorderTitle.setText(drinkComponent.getClassAsString());
             tvName.setText(drinkComponent.getTypeAsString());
 
             Incrementable incrementable = (Incrementable) drinkComponent;
+            String quantityAsString = Integer.toString(incrementable.getQuantity());
+            tvQuantity.setText(quantityAsString);
+            updateBorderColor(
+                    isDefault(quantityAsString, drinkComponentDefaultAsString)
+            );
 
             ivMinus.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     incrementable.onDecrement();
+                    String quantityAsString = Integer.toString(incrementable.getQuantity());
 
                     tvName.setText(drinkComponent.getTypeAsString());
-                    tvQuantity.setText(Integer.toString(incrementable.getQuantity()));
+                    tvQuantity.setText(quantityAsString);
 
-                    String quantityAsString = Integer.toString(incrementable.getQuantity());
-                    String nameTypeDefault = drinkComponentsDefaultValuesAsStringArray[getAdapterPosition()];
-                    if (quantityAsString.equals(nameTypeDefault)) {
-                        // The selected value is the same as the default value for this drink's type.
-                        String colorDefault = "#1B455F";
-                        viewBorder.setBackgroundResource(R.drawable.border_drink_component_default);
-                        tvBorderTitle.setTextColor(Color.parseColor(colorDefault));
-                    } else {
-                        // The selected value is NOT the same as the default value for this drink's type.
-                        String colorCustomized = "#AAFF00";
-                        viewBorder.setBackgroundResource(R.drawable.border_drink_component_customized);
-                        tvBorderTitle.setTextColor(Color.parseColor(colorCustomized));
-                    }
+                    updateBorderColor(
+                            isDefault(quantityAsString, drinkComponentDefaultAsString)
+                    );
                 }
             });
-            tvQuantity.setText(Integer.toString(incrementable.getQuantity()));
-            ivAdd.setImageResource(R.drawable.ic_menu_add);
             ivAdd.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     incrementable.onIncrement();
+                    String quantityAsString = Integer.toString(incrementable.getQuantity());
 
                     tvName.setText(drinkComponent.getTypeAsString());
-                    tvQuantity.setText(Integer.toString(incrementable.getQuantity()));
+                    tvQuantity.setText(quantityAsString);
 
-                    String quantityAsString = Integer.toString(incrementable.getQuantity());
-                    String nameTypeDefault = drinkComponentsDefaultValuesAsStringArray[getAdapterPosition()];
-                    if (quantityAsString.equals(nameTypeDefault)) {
-                        // The selected value is the same as the default value for this drink's type.
-                        String colorDefault = "#1B455F";
-                        viewBorder.setBackgroundResource(R.drawable.border_drink_component_default);
-                        tvBorderTitle.setTextColor(Color.parseColor(colorDefault));
-                    } else {
-                        // The selected value is NOT the same as the default value for this drink's type.
-                        String colorCustomized = "#AAFF00";
-                        viewBorder.setBackgroundResource(R.drawable.border_drink_component_customized);
-                        tvBorderTitle.setTextColor(Color.parseColor(colorCustomized));
-                    }
+                    updateBorderColor(
+                            isDefault(quantityAsString, drinkComponentDefaultAsString)
+                    );
                 }
             });
+        }
+
+        private void updateBorderColor(boolean defaultSelected) {
+            if (defaultSelected) {
+                // The selected value is the same as the default value for this drink's type.
+                String colorDefault = "#1B455F";
+                viewBorder.setBackgroundResource(R.drawable.border_drink_component_default);
+                tvBorderTitle.setTextColor(Color.parseColor(colorDefault));
+            } else {
+                // The selected value is NOT the same as the default value for this drink's type.
+                String colorCustomized = "#AAFF00";
+                viewBorder.setBackgroundResource(R.drawable.border_drink_component_customized);
+                tvBorderTitle.setTextColor(Color.parseColor(colorCustomized));
+            }
+        }
+
+        private boolean isDefault(String quantityAsString, String drinkComponentDefaultAsString) {
+            boolean defaultSelected =
+                    (quantityAsString.equals(drinkComponentDefaultAsString)) ?
+                            true : false;
+            return defaultSelected;
         }
 
         @Override

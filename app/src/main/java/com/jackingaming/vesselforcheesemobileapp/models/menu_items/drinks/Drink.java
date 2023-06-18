@@ -18,11 +18,10 @@ public abstract class Drink extends MenuItem {
     protected boolean iced;
 
     protected Map<String, List<DrinkComponent>> drinkComponents = new HashMap<>();
-    protected Map<String, List<String>> drinkComponentsDefault = new HashMap<>();
+    protected Map<String, List<String>> drinkComponentsDefaultAsString = new HashMap<>();
 
     protected List<DrinkComponent> drinkComponentsWhatsIncluded = new ArrayList<>();
-    protected String[] drinkComponentsWhatsIncludedDefaultValuesAsStringArray;
-    protected List<DrinkComponent> drinkComponentsCustomized = new ArrayList<>();
+    protected List<String> drinkComponentsWhatsIncludedDefaultAsString = new ArrayList<>();
 
     public Drink() {
         super();
@@ -46,12 +45,6 @@ public abstract class Drink extends MenuItem {
         drinkComponentsWhatsIncluded.add(drinkComponent);
     }
 
-    public void addToDrinkComponentsCustomized(DrinkComponent drinkComponent) {
-        Log.i(TAG, "addToDrinkComponentsCustomized(DrinkComponent)");
-        // TODO: screen for duplication (subclasses should override and add rules-check)
-        drinkComponentsCustomized.add(drinkComponent);
-    }
-
     public Map<String, List<DrinkComponent>> getDrinkComponents() {
         return drinkComponents;
     }
@@ -60,16 +53,28 @@ public abstract class Drink extends MenuItem {
         this.drinkComponents = drinkComponents;
     }
 
-    public Map<String, List<String>> getDrinkComponentsDefault() {
-        return drinkComponentsDefault;
+    public Map<String, List<String>> getDrinkComponentsDefaultAsString() {
+        return drinkComponentsDefaultAsString;
     }
 
-    public void setDrinkComponentsDefault(Map<String, List<String>> drinkComponentsDefault) {
-        this.drinkComponentsDefault = drinkComponentsDefault;
+    public void setDrinkComponentsDefaultAsString(Map<String, List<String>> drinkComponentsDefaultAsString) {
+        this.drinkComponentsDefaultAsString = drinkComponentsDefaultAsString;
     }
 
-    public String[] getDrinkComponentsWhatsIncludedDefaultValuesAsStringArray() {
-        return drinkComponentsWhatsIncludedDefaultValuesAsStringArray;
+    public List<DrinkComponent> getDrinkComponentsWhatsIncluded() {
+        return drinkComponentsWhatsIncluded;
+    }
+
+    public void setDrinkComponentsWhatsIncluded(List<DrinkComponent> drinkComponentsWhatsIncluded) {
+        this.drinkComponentsWhatsIncluded = drinkComponentsWhatsIncluded;
+    }
+
+    public List<String> getDrinkComponentsWhatsIncludedDefaultAsString() {
+        return drinkComponentsWhatsIncludedDefaultAsString;
+    }
+
+    public void setDrinkComponentsWhatsIncludedDefaultAsString(List<String> drinkComponentsWhatsIncludedDefaultAsString) {
+        this.drinkComponentsWhatsIncludedDefaultAsString = drinkComponentsWhatsIncludedDefaultAsString;
     }
 
     public DrinkSize.Type getDrinkSize() {
@@ -86,21 +91,5 @@ public abstract class Drink extends MenuItem {
 
     public void setIced(boolean iced) {
         this.iced = iced;
-    }
-
-    public List<DrinkComponent> getDrinkComponentsWhatsIncluded() {
-        return drinkComponentsWhatsIncluded;
-    }
-
-    public void setDrinkComponentsWhatsIncluded(List<DrinkComponent> drinkComponentsWhatsIncluded) {
-        this.drinkComponentsWhatsIncluded = drinkComponentsWhatsIncluded;
-    }
-
-    public List<DrinkComponent> getDrinkComponentsCustomized() {
-        return drinkComponentsCustomized;
-    }
-
-    public void setDrinkComponentsCustomized(List<DrinkComponent> drinkComponentsCustomized) {
-        this.drinkComponentsCustomized = drinkComponentsCustomized;
     }
 }

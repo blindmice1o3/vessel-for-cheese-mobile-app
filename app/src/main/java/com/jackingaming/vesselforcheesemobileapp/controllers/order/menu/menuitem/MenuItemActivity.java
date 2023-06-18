@@ -1,13 +1,5 @@
 package com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import androidx.fragment.app.FragmentResultListener;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,6 +8,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.fragment.app.FragmentResultListener;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
@@ -69,7 +69,6 @@ public class MenuItemActivity extends AppCompatActivity {
 
         TextView tvWhatsIncluded = findViewById(R.id.tv_whats_included);
         RecyclerView rvWhatsIncluded = findViewById(R.id.rv_whats_included);
-//        LinearLayout linearLayout = findViewById(R.id.linearlayout_whatsincluded);
 
         Button buttonCustomize = findViewById(R.id.button_customize);
 
@@ -139,7 +138,7 @@ public class MenuItemActivity extends AppCompatActivity {
 
             WhatsIncludedAdapter adapter = new WhatsIncludedAdapter(
                     drink.getDrinkComponentsWhatsIncluded(),
-                    drink.getDrinkComponentsWhatsIncludedDefaultValuesAsStringArray(),
+                    drink.getDrinkComponentsWhatsIncludedDefaultAsString(),
                     new WhatsIncludedAdapter.WhatsIncludedAdapterListener() {
                         @Override
                         public void onItemClicked(String[] names, String nameDefault) {
