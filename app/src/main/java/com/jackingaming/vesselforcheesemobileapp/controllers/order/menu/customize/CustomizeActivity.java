@@ -1,5 +1,6 @@
 package com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.customize;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,11 +14,16 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jackingaming.vesselforcheesemobileapp.R;
+import com.jackingaming.vesselforcheesemobileapp.models.menu.Menu;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.Drink;
 
 public class CustomizeActivity extends AppCompatActivity {
     public static final String TAG = CustomizeActivity.class.getSimpleName();
     public static final String EXTRA_DRINK = "com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.customize.drink";
+    public static final int REQUEST_CODE = 1;
+    public static final String RESULT_KEY = "com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.customize.key";
+
+    private Drink drink;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +37,7 @@ public class CustomizeActivity extends AppCompatActivity {
         getSupportActionBar().setTitle(" ");
 
         // -----------------------------------------------------------------
-        Drink drink = (Drink) getIntent().getSerializableExtra(EXTRA_DRINK);
+        drink = (Drink) getIntent().getSerializableExtra(EXTRA_DRINK);
         // -----------------------------------------------------------------
 
         TextView tvName = findViewById(R.id.tv_name);
@@ -54,6 +60,9 @@ public class CustomizeActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Log.i(TAG, "buttonDoneCustomizing clicked");
 
+                Intent result = new Intent();
+                result.putExtra(RESULT_KEY, drink);
+                setResult(RESULT_OK, result);
                 finish();
             }
         });
@@ -72,6 +81,9 @@ public class CustomizeActivity extends AppCompatActivity {
         if (item.getItemId() == android.R.id.home) {
             Log.i(TAG, "android.R.id.home");
 
+            Intent result = new Intent();
+            result.putExtra(RESULT_KEY, drink);
+            setResult(RESULT_OK, result);
             finish();
             return true;
         } else {

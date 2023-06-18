@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
@@ -32,6 +33,9 @@ public class MenuItemActivity extends AppCompatActivity {
     public static final String EXTRA_NAME_CATEGORY = "com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem.nameCategory";
     public static final String EXTRA_NAME_SUB_CATEGORY = "com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem.nameSubCategory";
     public static final String EXTRA_POSITION = "com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem.position";
+
+    private Drink drink;
+    private WhatsIncludedAdapter adapter;
 
     public void initHeightAppBarLayoutAsHalfScreen(AppBarLayout appBarLayout) {
         float heightDp = getResources().getDisplayMetrics().heightPixels / 2;
@@ -80,7 +84,7 @@ public class MenuItemActivity extends AppCompatActivity {
 
         if (nameCategory.equals(Menu.HOT_COFFEES)) {
             Log.i(TAG, "Menu.HOT_COFFEES [which implies the selected MenuItem is a Drink]");
-            Drink drink = (Drink) Menu.hotCoffeesAsMap.get(nameSubCategory).get(position);
+            drink = (Drink) Menu.hotCoffeesAsMap.get(nameSubCategory).get(position);
 
             // TODO: add field to MenuItem class: long idImageResource.
 //            ivMenuItemImage.setImageResource(R.drawable.harvest_moon_natsume);
@@ -136,7 +140,7 @@ public class MenuItemActivity extends AppCompatActivity {
                 }
             });
 
-            WhatsIncludedAdapter adapter = new WhatsIncludedAdapter(
+            adapter = new WhatsIncludedAdapter(
                     drink.getDrinkComponentsWhatsIncluded(),
                     drink.getDrinkComponentsWhatsIncludedDefaultAsString(),
                     new WhatsIncludedAdapter.WhatsIncludedAdapterListener() {
@@ -171,7 +175,7 @@ public class MenuItemActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     Intent intentCustomize = new Intent(MenuItemActivity.this, CustomizeActivity.class);
                     intentCustomize.putExtra(CustomizeActivity.EXTRA_DRINK, drink);
-                    startActivity(intentCustomize);
+                    startActivityForResult(intentCustomize, CustomizeActivity.REQUEST_CODE);
                 }
             });
 
@@ -208,5 +212,45 @@ public class MenuItemActivity extends AppCompatActivity {
             Log.i(TAG, "NOT android.R.id.home or R.id.menu_item_info");
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Log.i(TAG, "onActivityResult()");
+
+        if (resultCode == RESULT_OK) {
+            Log.i(TAG, "resultCode == RESULT_OK");
+
+            if (requestCode == CustomizeActivity.REQUEST_CODE) {
+                Log.i(TAG, "requestCode == CustomizeActivity.REQUEST_CODE");
+
+                Drink drinkReturned = (Drink) data.getSerializableExtra(CustomizeActivity.RESULT_KEY);
+                drink.setDrinkComponents(drinkReturned.getDrinkComponents());
+                drink.setDrinkComponentsDefaultAsString(drinkReturned.getDrinkComponentsDefaultAsString());
+                drink.setDrinkComponentsWhatsIncluded(drinkReturned.getDrinkComponentsWhatsIncluded());
+                drink.setDrinkComponentsWhatsIncludedDefaultAsString(drinkReturned.getDrinkComponentsWhatsIncludedDefaultAsString());
+
+                adapter.setDrinkComponents(drink.getDrinkComponentsWhatsIncluded());
+                adapter.setDrinkComponentsDefaultAsString(drink.getDrinkComponentsWhatsIncludedDefaultAsString());
+
+                adapter.notifyDataSetChanged();
+            } else {
+                Log.e(TAG, "requestCode != CustomizeActivity.REQUEST_CODE");
+            }
+        } else {
+            Log.e(TAG, "resultCode != RESULT_OK");
+        }
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.i(TAG, "onStart()");
+
+        if (adapter != null) {
+            adapter.notifyDataSetChanged();
+        }
     }
 }

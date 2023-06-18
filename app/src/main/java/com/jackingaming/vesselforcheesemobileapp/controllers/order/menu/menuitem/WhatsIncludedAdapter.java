@@ -111,6 +111,14 @@ public class WhatsIncludedAdapter extends RecyclerView.Adapter<RecyclerView.View
         }
     }
 
+    public void setDrinkComponents(List<DrinkComponent> drinkComponents) {
+        this.drinkComponents = drinkComponents;
+    }
+
+    public void setDrinkComponentsDefaultAsString(List<String> drinkComponentsDefaultAsString) {
+        this.drinkComponentsDefaultAsString = drinkComponentsDefaultAsString;
+    }
+
     class DrinkComponentViewHolder extends RecyclerView.ViewHolder
             implements View.OnClickListener, View.OnLongClickListener {
 
