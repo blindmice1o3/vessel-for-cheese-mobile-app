@@ -51,7 +51,10 @@ public class CustomizeActivity extends AppCompatActivity {
         tvSize.setText(textDrinkSize);
 
         RecyclerView rvCustomize = findViewById(R.id.rv_customize);
-        rvCustomize.setAdapter(new CustomizeAdapter(this, drink.getDrinkComponents(), drink.getDrinkComponentsDefaultAsString()));
+        rvCustomize.setAdapter(new CustomizeAdapter(
+                this,
+                drink.getDrinkComponents(),
+                drink.getDrinkComponentsDefaultAsString()));
         rvCustomize.setLayoutManager(new LinearLayoutManager(this));
 
         Button buttonDoneCustomizing = findViewById(R.id.button_done_customizing);

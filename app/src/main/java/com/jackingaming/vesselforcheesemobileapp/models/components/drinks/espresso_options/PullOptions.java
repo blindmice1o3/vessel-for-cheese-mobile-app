@@ -1,5 +1,7 @@
 package com.jackingaming.vesselforcheesemobileapp.models.components.drinks.espresso_options;
 
+import android.util.Log;
+
 public class PullOptions extends EspressoOptions {
     public enum Type {
         NONE,
@@ -38,7 +40,7 @@ public class PullOptions extends EspressoOptions {
 
     @Override
     public String getTypeAsString() {
-        return type.name();
+        return (type == null) ? NULL_TYPE_AS_STRING : type.name();
     }
 
     @Override

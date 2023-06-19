@@ -107,7 +107,7 @@ public class WhatsIncludedAdapter extends RecyclerView.Adapter<RecyclerView.View
             indexSelected = -1;
             viewHolderSelected = null;
         } else {
-            Log.e(TAG, "position <= -1");
+            Log.e(TAG, "indexSelected <= -1");
         }
     }
 

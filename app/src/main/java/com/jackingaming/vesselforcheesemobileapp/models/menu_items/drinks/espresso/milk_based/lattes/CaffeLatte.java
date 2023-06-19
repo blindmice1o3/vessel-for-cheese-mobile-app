@@ -3,6 +3,8 @@ package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espre
 import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem.Incrementable;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.espresso_options.EspressoOptions;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.espresso_options.PrepOptions;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.espresso_options.PullOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.espresso_options.RoastOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.espresso_options.Shot;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.milk_options.MilkBase;
@@ -46,6 +48,10 @@ public class CaffeLatte extends Lattes {
         List<DrinkComponent> espressoOptions = new ArrayList<>();
         espressoOptions.add(new RoastOptions(DEFAULT_ROAST_OPTIONS));
         espressoOptions.add(new Shot(DEFAULT_SHOT, DEFAULT_NUMBER_OF_ESPRESSO_SHOTS));
+        // *********************************************
+        espressoOptions.add(new PullOptions(null));
+        espressoOptions.add(new PrepOptions(null));
+        // *********************************************
 
         // MILK_OPTIONS (defaults)
         List<String> milkOptionsDefault = new ArrayList<>();
@@ -64,6 +70,10 @@ public class CaffeLatte extends Lattes {
                 Incrementable incrementable = (Incrementable) drinkComponent;
                 espressoOptionsDefault.add(Integer.toString(incrementable.getQuantity()));
             } else {
+                // TODO: null check for [PullOptions] and [PrepOptions],
+                //  null checking can be a basis for a third/fourth view type
+                //  (INCREMENTABLE) (SINGLE_SELECTION)
+                //  (UNSELECTED_INCREMENTABLE) (UNSELECTED_SINGLE_SELECTION)
                 espressoOptionsDefault.add(drinkComponent.getTypeAsString());
             }
         }
@@ -73,6 +83,32 @@ public class CaffeLatte extends Lattes {
         drinkComponentsDefaultAsString.put(MilkOptions.TAG, milkOptionsDefault);
         drinkComponentsDefaultAsString.put(EspressoOptions.TAG, espressoOptionsDefault);
 
+        // TODO: maybe compile drinkComponentsWhatsIncluded in adapter's constructor
+        //  (remove from class Drink. just use drinkComponents and drinkComponentsDefault).
+
+        for (DrinkComponent drinkComponent : milkOptions) {
+            if (drinkComponent.getTypeAsString().equals(DrinkComponent.NULL_TYPE_AS_STRING)) {
+                continue;
+            } else {
+                drinkComponentsWhatsIncluded.add(drinkComponent);
+            }
+        }
+        for (DrinkComponent drinkComponent : espressoOptions) {
+            if (drinkComponent.getTypeAsString().equals(DrinkComponent.NULL_TYPE_AS_STRING)) {
+                continue;
+            } else {
+                drinkComponentsWhatsIncluded.add(drinkComponent);
+            }
+        }
+        // TODO: replace the 2 addAll() [below] with 2 for-loop [above].
+        // if (drinkComponent.getTypeAsString().equals(DrinkComponent.NULL_TYPE_AS_STRING)) {
+        //                    // type-is-null
+        //                    //this ends up defining where [STANDARD] indicator is shown for ModalBottomSheet.
+        //                } else {
+        //                    // happy-path
+        //                }
+        // TODO: I want all the defaults-as-string,
+        //  but only DrinkComponents with non-null type.
         drinkComponentsWhatsIncluded.addAll(milkOptions);
         drinkComponentsWhatsIncluded.addAll(espressoOptions);
         drinkComponentsWhatsIncludedDefaultAsString.addAll(milkOptionsDefault);

@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.util.Pair;
 import androidx.fragment.app.FragmentResultListener;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -29,22 +28,24 @@ public class CustomizeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     public static final String TAG = CustomizeAdapter.class.getSimpleName();
 
     private AppCompatActivity activity;
-    private Map<String, List<DrinkComponent>> drinkComponents;
-    private Map<String, List<String>> drinkComponentsDefault;
+    private Map<String, List<DrinkComponent>> drinkComponentGroups;
+    private Map<String, List<String>> drinkComponentGroupsDefaultAsString;
     private List<DrinkComponentDetails> dataProcessed = new ArrayList<>();
     // TODO: track indexSelected
+    private Map<String, WhatsIncludedAdapter> adapterSelected = new HashMap<>();
+    private String keyGroupSelected;
 
-    public CustomizeAdapter(AppCompatActivity activity, Map<String, List<DrinkComponent>> drinkComponents, Map<String, List<String>> drinkComponentsDefault) {
+    public CustomizeAdapter(AppCompatActivity activity, Map<String, List<DrinkComponent>> drinkComponentGroups, Map<String, List<String>> drinkComponentGroupsDefaultAsString) {
         this.activity = activity;
-        this.drinkComponents = drinkComponents;
-        this.drinkComponentsDefault = drinkComponentsDefault;
+        this.drinkComponentGroups = drinkComponentGroups;
+        this.drinkComponentGroupsDefaultAsString = drinkComponentGroupsDefaultAsString;
 
         for (int i = 0; i < Menu.DRINK_COMPONENTS_KEYS.size(); i++) {
             String key = Menu.DRINK_COMPONENTS_KEYS.get(i);
             Log.d(TAG, i + ": " + Menu.DRINK_COMPONENTS_KEYS.get(i));
-            if (drinkComponents.containsKey(key)) {
-                List<String> typesDefault = drinkComponentsDefault.get(key);
-                List<DrinkComponent> types = drinkComponents.get(key);
+            if (drinkComponentGroups.containsKey(key)) {
+                List<String> typesDefault = drinkComponentGroupsDefaultAsString.get(key);
+                List<DrinkComponent> types = drinkComponentGroups.get(key);
 
                 dataProcessed.add(new DrinkComponentDetails(key, typesDefault, types));
             }
@@ -72,12 +73,8 @@ public class CustomizeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     @Override
     public int getItemCount() {
-        Log.d(TAG, "dataProcessed.size(): " + dataProcessed.size());
         return dataProcessed.size();
     }
-
-    private Map<String, WhatsIncludedAdapter> adapterSelected = new HashMap<>();
-    private String keyGroupSelected;
 
     class DrinkComponentGroupViewHolder extends RecyclerView.ViewHolder {
 
