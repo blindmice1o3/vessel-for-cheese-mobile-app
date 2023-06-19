@@ -241,16 +241,5 @@ public class MenuItemActivity extends AppCompatActivity {
         } else {
             Log.e(TAG, "resultCode != RESULT_OK");
         }
-
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        Log.i(TAG, "onStart()");
-
-        if (adapter != null) {
-            adapter.notifyDataSetChanged();
-        }
     }
 }

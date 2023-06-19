@@ -21,6 +21,7 @@ import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkC
 import com.jackingaming.vesselforcheesemobileapp.models.menu.Menu;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -30,7 +31,8 @@ public class CustomizeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     private AppCompatActivity activity;
     private Map<String, List<DrinkComponent>> drinkComponents;
     private Map<String, List<String>> drinkComponentsDefault;
-    private List<Pair<List<String>, List<DrinkComponent>>> dataProcessed = new ArrayList<>();
+    private List<DrinkComponentDetails> dataProcessed = new ArrayList<>();
+    // TODO: track indexSelected
 
     public CustomizeAdapter(AppCompatActivity activity, Map<String, List<DrinkComponent>> drinkComponents, Map<String, List<String>> drinkComponentsDefault) {
         this.activity = activity;
@@ -41,10 +43,10 @@ public class CustomizeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             String key = Menu.DRINK_COMPONENTS_KEYS.get(i);
             Log.d(TAG, i + ": " + Menu.DRINK_COMPONENTS_KEYS.get(i));
             if (drinkComponents.containsKey(key)) {
-                List<String> typeDefault = drinkComponentsDefault.get(key);
-                List<DrinkComponent> type = drinkComponents.get(key);
+                List<String> typesDefault = drinkComponentsDefault.get(key);
+                List<DrinkComponent> types = drinkComponents.get(key);
 
-                dataProcessed.add(new Pair(typeDefault, type));
+                dataProcessed.add(new DrinkComponentDetails(key, typesDefault, types));
             }
         }
     }
@@ -58,11 +60,12 @@ public class CustomizeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        List<String> drinkComponentsDefault = dataProcessed.get(position).first;
-        List<DrinkComponent> drinkComponents = dataProcessed.get(position).second;
+        String keyGroup = dataProcessed.get(position).getKeyGroup();
+        List<String> drinkComponentsDefault = dataProcessed.get(position).getDrinkComponentsDefault();
+        List<DrinkComponent> drinkComponents = dataProcessed.get(position).getDrinkComponents();
 
         ((DrinkComponentGroupViewHolder) holder).bind(
-                "Hard-coded title " + position,
+                keyGroup + ": " + position,
                 drinkComponents,
                 drinkComponentsDefault);
     }
@@ -72,6 +75,9 @@ public class CustomizeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         Log.d(TAG, "dataProcessed.size(): " + dataProcessed.size());
         return dataProcessed.size();
     }
+
+    private Map<String, WhatsIncludedAdapter> adapterSelected = new HashMap<>();
+    private String keyGroupSelected;
 
     class DrinkComponentGroupViewHolder extends RecyclerView.ViewHolder {
 
@@ -84,13 +90,15 @@ public class CustomizeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             rvCustomize = itemView.findViewById(R.id.rv_customize);
         }
 
-        public void bind(String nameGroup, List<DrinkComponent> drinkComponents, List<String> drinkComponentsDefault) {
-            tvClassNameDrinkComponent.setText((nameGroup));
+        public void bind(String keyGroup, List<DrinkComponent> drinkComponents, List<String> drinkComponentsDefault) {
+            tvClassNameDrinkComponent.setText((keyGroup));
 
             WhatsIncludedAdapter adapter = new WhatsIncludedAdapter(drinkComponents, drinkComponentsDefault, new WhatsIncludedAdapter.WhatsIncludedAdapterListener() {
                 @Override
                 public void onItemClicked(String[] names, String nameDefault) {
                     Log.i(TAG, "onItemClicked(String[] names, String nameDefault)");
+
+                    keyGroupSelected = keyGroup;
 
                     ModalBottomSheet.newInstance(names, nameDefault).show(activity.getSupportFragmentManager(), ModalBottomSheet.TAG);
                 }
@@ -100,6 +108,8 @@ public class CustomizeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                     Log.i(TAG, "onItemLongClicked(String[] names, String nameDefault)");
                 }
             });
+            adapterSelected.put(keyGroup, adapter);
+
             rvCustomize.setAdapter(adapter);
             rvCustomize.setLayoutManager(new LinearLayoutManager(itemView.getContext()));
             activity.getSupportFragmentManager().setFragmentResultListener(ModalBottomSheet.REQUEST_KEY, activity, new FragmentResultListener() {
@@ -108,7 +118,7 @@ public class CustomizeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                     if (requestKey.equals(ModalBottomSheet.REQUEST_KEY)) {
                         String name = result.getString(ModalBottomSheet.KEY_RESULT);
 
-                        adapter.updateDrinkComponentByString(name);
+                        adapterSelected.get(keyGroupSelected).updateDrinkComponentByString(name);
                     }
                 }
             });
