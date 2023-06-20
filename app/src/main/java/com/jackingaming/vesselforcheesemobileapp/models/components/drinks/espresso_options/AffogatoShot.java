@@ -6,34 +6,34 @@ import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem
 
 public class AffogatoShot extends EspressoOptions
         implements Incrementable {
+    private static final int DEFAULT_QUANTITY_MIN = 0;
     private static final int DEFAULT_QUANTITY_MAX = 4;
+
+    private int quantityMin = DEFAULT_QUANTITY_MIN;
+    private int quantityMax = DEFAULT_QUANTITY_MAX;
 
     @Override
     public void onIncrement() {
-        Log.i(TAG, "onIncrement()");
-        Log.i(TAG, "quantity: " + quantity);
+        Log.i(TAG, "start of onIncrement() --- quantity: " + quantity);
 
         quantity++;
 
-        Log.i(TAG, "quantity: " + quantity);
-        if (quantity > DEFAULT_QUANTITY_MAX) {
-            Log.i(TAG, "quantity > DEFAULT_QUANTITY_MAX --- SETTING quantity = DEFAULT_QUANTITY_MAX");
-            quantity = DEFAULT_QUANTITY_MAX;
+        if (quantity > quantityMax) {
+            Log.i(TAG, "quantity > quantityMax --- SETTING quantity = quantityMax");
+            quantity = quantityMax;
         }
         Log.i(TAG, "end of onIncrement() --- quantity: " + quantity);
     }
 
     @Override
     public void onDecrement() {
-        Log.i(TAG, "onDecrement()");
-        Log.i(TAG, "quantity: " + quantity);
+        Log.i(TAG, "start of onDecrement() --- quantity: " + quantity);
 
         quantity--;
 
-        Log.i(TAG, "quantity: " + quantity);
-        if (quantity < 0) {
-            Log.i(TAG, "quantity < 0 --- SETTING quantity = 0");
-            quantity = 0;
+        if (quantity < quantityMin) {
+            Log.i(TAG, "quantity < quantityMin --- SETTING quantity = quantityMin");
+            quantity = quantityMin;
         }
         Log.i(TAG, "end of onDecrement() --- quantity: " + quantity);
     }
@@ -63,6 +63,22 @@ public class AffogatoShot extends EspressoOptions
         this.type = type;
     }
 
+    public int getQuantityMin() {
+        return quantityMin;
+    }
+
+    public void setQuantityMin(int quantityMin) {
+        this.quantityMin = quantityMin;
+    }
+
+    public int getQuantityMax() {
+        return quantityMax;
+    }
+
+    public void setQuantityMax(int quantityMax) {
+        this.quantityMax = quantityMax;
+    }
+
     @Override
     public String[] getEnumValuesAsStringArray() {
         Type[] enumValues = Type.values();
@@ -80,7 +96,7 @@ public class AffogatoShot extends EspressoOptions
 
     @Override
     public String getTypeAsString() {
-        return type.name();
+        return (type == null) ? NULL_TYPE_AS_STRING : type.name();
     }
 
     @Override

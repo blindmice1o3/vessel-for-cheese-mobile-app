@@ -11,6 +11,8 @@ import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.milk_o
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.milk_options.MilkFoam;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.milk_options.MilkOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.milk_options.Temperature;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.tea_options.Chai;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.tea_options.TeaOptions;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -30,9 +32,11 @@ public class CaffeLatte extends Lattes {
     public static final Temperature.Type DEFAULT_TEMPERATURE = Temperature.Type.MEDIUM;
     public static final RoastOptions.Type DEFAULT_ROAST_OPTIONS = RoastOptions.Type.SIGNATURE;
     public static final Shot.Type DEFAULT_SHOT = Shot.Type.SHOT;
+    public static final int DEFAULT_NUMBER_OF_ESPRESSO_SHOTS_MIN = 1;
     public static final int DEFAULT_NUMBER_OF_ESPRESSO_SHOTS = 2;
     public static final PullOptions.Type DEFAULT_PULL_OPTIONS = PullOptions.Type.NONE;
     public static final PrepOptions.Type DEFAULT_PREP_OPTIONS = PrepOptions.Type.NONE;
+    public static final int DEFAULT_NUMBER_OF_CHAI_SCOOPS = 0;
 
     public static final double DEFAULT_PRICE_SMALL = 2.95;
     public static final double DEFAULT_PRICE_MEDIUM = 3.45;
@@ -50,7 +54,9 @@ public class CaffeLatte extends Lattes {
         // ESPRESSO_OPTIONS
         List<DrinkComponent> espressoOptions = new ArrayList<>();
         espressoOptions.add(new RoastOptions(DEFAULT_ROAST_OPTIONS));
-        espressoOptions.add(new Shot(DEFAULT_SHOT, DEFAULT_NUMBER_OF_ESPRESSO_SHOTS));
+        Shot shot = new Shot(DEFAULT_SHOT, DEFAULT_NUMBER_OF_ESPRESSO_SHOTS);
+        shot.setQuantityMin(DEFAULT_NUMBER_OF_ESPRESSO_SHOTS_MIN);
+        espressoOptions.add(shot);
         // *********************************************
         // TODO: null check for [PullOptions] and [PrepOptions],
         //  null checking can be a basis for a third/fourth view type
@@ -59,6 +65,9 @@ public class CaffeLatte extends Lattes {
         espressoOptions.add(new PullOptions(null));
         espressoOptions.add(new PrepOptions(null));
         // *********************************************
+        // TEA_OPTIONS
+        List<DrinkComponent> teaOptions = new ArrayList<>();
+        teaOptions.add(new Chai(null, DEFAULT_NUMBER_OF_CHAI_SCOOPS));
 
         // MILK_OPTIONS (defaults)
         List<String> milkOptionsDefault = Arrays.asList(
@@ -72,10 +81,16 @@ public class CaffeLatte extends Lattes {
                 DEFAULT_PULL_OPTIONS.name(),
                 DEFAULT_PREP_OPTIONS.name()
         );
+        // TEA_OPTIONS
+        List<String> teaOptionsDefault = Arrays.asList(
+                Integer.toString(DEFAULT_NUMBER_OF_CHAI_SCOOPS)
+        );
 
         drinkComponents.put(MilkOptions.TAG, milkOptions);
         drinkComponents.put(EspressoOptions.TAG, espressoOptions);
+        drinkComponents.put(TeaOptions.TAG, teaOptions);
         drinkComponentsDefaultAsString.put(MilkOptions.TAG, milkOptionsDefault);
         drinkComponentsDefaultAsString.put(EspressoOptions.TAG, espressoOptionsDefault);
+        drinkComponentsDefaultAsString.put(TeaOptions.TAG, teaOptionsDefault);
     }
 }
