@@ -13,6 +13,7 @@ import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.milk_o
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.milk_options.Temperature;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class CaffeLatte extends Lattes {
@@ -30,6 +31,8 @@ public class CaffeLatte extends Lattes {
     public static final RoastOptions.Type DEFAULT_ROAST_OPTIONS = RoastOptions.Type.SIGNATURE;
     public static final Shot.Type DEFAULT_SHOT = Shot.Type.SHOT;
     public static final int DEFAULT_NUMBER_OF_ESPRESSO_SHOTS = 2;
+    public static final PullOptions.Type DEFAULT_PULL_OPTIONS = PullOptions.Type.NONE;
+    public static final PrepOptions.Type DEFAULT_PREP_OPTIONS = PrepOptions.Type.NONE;
 
     public static final double DEFAULT_PRICE_SMALL = 2.95;
     public static final double DEFAULT_PRICE_MEDIUM = 3.45;
@@ -49,34 +52,26 @@ public class CaffeLatte extends Lattes {
         espressoOptions.add(new RoastOptions(DEFAULT_ROAST_OPTIONS));
         espressoOptions.add(new Shot(DEFAULT_SHOT, DEFAULT_NUMBER_OF_ESPRESSO_SHOTS));
         // *********************************************
-//        espressoOptions.add(new PullOptions(null));
-//        espressoOptions.add(new PrepOptions(null));
+        // TODO: null check for [PullOptions] and [PrepOptions],
+        //  null checking can be a basis for a third/fourth view type
+        //  (INCREMENTABLE) (SINGLE_SELECTION)
+        //  (UNSELECTED_INCREMENTABLE) (UNSELECTED_SINGLE_SELECTION)
+        espressoOptions.add(new PullOptions(null));
+        espressoOptions.add(new PrepOptions(null));
         // *********************************************
 
         // MILK_OPTIONS (defaults)
-        List<String> milkOptionsDefault = new ArrayList<>();
-        for (DrinkComponent drinkComponent : milkOptions) {
-            if (drinkComponent instanceof Incrementable) {
-                Incrementable incrementable = (Incrementable) drinkComponent;
-                milkOptionsDefault.add(Integer.toString(incrementable.getQuantity()));
-            } else {
-                milkOptionsDefault.add(drinkComponent.getTypeAsString());
-            }
-        }
+        List<String> milkOptionsDefault = Arrays.asList(
+                DEFAULT_MILK_FOAM.name(),
+                DEFAULT_MILK_BASE.name(),
+                DEFAULT_TEMPERATURE.name());
         // ESPRESSO_OPTIONS (defaults)
-        List<String> espressoOptionsDefault = new ArrayList<>();
-        for (DrinkComponent drinkComponent : espressoOptions) {
-            if (drinkComponent instanceof Incrementable) {
-                Incrementable incrementable = (Incrementable) drinkComponent;
-                espressoOptionsDefault.add(Integer.toString(incrementable.getQuantity()));
-            } else {
-                // TODO: null check for [PullOptions] and [PrepOptions],
-                //  null checking can be a basis for a third/fourth view type
-                //  (INCREMENTABLE) (SINGLE_SELECTION)
-                //  (UNSELECTED_INCREMENTABLE) (UNSELECTED_SINGLE_SELECTION)
-                espressoOptionsDefault.add(drinkComponent.getTypeAsString());
-            }
-        }
+        List<String> espressoOptionsDefault = Arrays.asList(
+                DEFAULT_ROAST_OPTIONS.name(),
+                Integer.toString(DEFAULT_NUMBER_OF_ESPRESSO_SHOTS),
+                DEFAULT_PULL_OPTIONS.name(),
+                DEFAULT_PREP_OPTIONS.name()
+        );
 
         drinkComponents.put(MilkOptions.TAG, milkOptions);
         drinkComponents.put(EspressoOptions.TAG, espressoOptions);
