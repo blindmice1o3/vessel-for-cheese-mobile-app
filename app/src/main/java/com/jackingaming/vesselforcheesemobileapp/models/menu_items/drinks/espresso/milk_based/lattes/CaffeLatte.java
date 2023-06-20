@@ -49,8 +49,8 @@ public class CaffeLatte extends Lattes {
         espressoOptions.add(new RoastOptions(DEFAULT_ROAST_OPTIONS));
         espressoOptions.add(new Shot(DEFAULT_SHOT, DEFAULT_NUMBER_OF_ESPRESSO_SHOTS));
         // *********************************************
-        espressoOptions.add(new PullOptions(null));
-        espressoOptions.add(new PrepOptions(null));
+//        espressoOptions.add(new PullOptions(null));
+//        espressoOptions.add(new PrepOptions(null));
         // *********************************************
 
         // MILK_OPTIONS (defaults)
@@ -82,36 +82,5 @@ public class CaffeLatte extends Lattes {
         drinkComponents.put(EspressoOptions.TAG, espressoOptions);
         drinkComponentsDefaultAsString.put(MilkOptions.TAG, milkOptionsDefault);
         drinkComponentsDefaultAsString.put(EspressoOptions.TAG, espressoOptionsDefault);
-
-        // TODO: maybe compile drinkComponentsWhatsIncluded in adapter's constructor
-        //  (remove from class Drink. just use drinkComponents and drinkComponentsDefault).
-
-        for (DrinkComponent drinkComponent : milkOptions) {
-            if (drinkComponent.getTypeAsString().equals(DrinkComponent.NULL_TYPE_AS_STRING)) {
-                continue;
-            } else {
-                drinkComponentsWhatsIncluded.add(drinkComponent);
-            }
-        }
-        for (DrinkComponent drinkComponent : espressoOptions) {
-            if (drinkComponent.getTypeAsString().equals(DrinkComponent.NULL_TYPE_AS_STRING)) {
-                continue;
-            } else {
-                drinkComponentsWhatsIncluded.add(drinkComponent);
-            }
-        }
-        // TODO: replace the 2 addAll() [below] with 2 for-loop [above].
-        // if (drinkComponent.getTypeAsString().equals(DrinkComponent.NULL_TYPE_AS_STRING)) {
-        //                    // type-is-null
-        //                    //this ends up defining where [STANDARD] indicator is shown for ModalBottomSheet.
-        //                } else {
-        //                    // happy-path
-        //                }
-        // TODO: I want all the defaults-as-string,
-        //  but only DrinkComponents with non-null type.
-        drinkComponentsWhatsIncluded.addAll(milkOptions);
-        drinkComponentsWhatsIncluded.addAll(espressoOptions);
-        drinkComponentsWhatsIncludedDefaultAsString.addAll(milkOptionsDefault);
-        drinkComponentsWhatsIncludedDefaultAsString.addAll(espressoOptionsDefault);
     }
 }

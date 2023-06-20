@@ -6,7 +6,6 @@ import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkC
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.size_options.DrinkSize;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.MenuItem;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,9 +19,6 @@ public abstract class Drink extends MenuItem {
     protected Map<String, List<DrinkComponent>> drinkComponents = new HashMap<>();
     protected Map<String, List<String>> drinkComponentsDefaultAsString = new HashMap<>();
 
-    protected List<DrinkComponent> drinkComponentsWhatsIncluded = new ArrayList<>();
-    protected List<String> drinkComponentsWhatsIncludedDefaultAsString = new ArrayList<>();
-
     public Drink() {
         super();
     }
@@ -34,15 +30,14 @@ public abstract class Drink extends MenuItem {
         this.iced = iced;
     }
 
-    // TODO: abstract method to initDrinkComponentsWhatsIncluded()
+    // TODO: abstract initDrinkComponents()
+    // TODO: abstract initDrinkComponentsDefaultAsString()
     //  (as oppose to CaffeLatte doing this straight in the constructor).
 
-    // TODO: abstract method to initDrinkComponentsWhatsIncludedDefaultValuesAsStringArray().
-
-    public void addToDrinkComponentsWhatsIncluded(DrinkComponent drinkComponent) {
-        Log.i(TAG, "addToDrinkComponentsWhatsIncluded(DrinkComponent)");
+    public void addToDrinkComponents(String key, DrinkComponent drinkComponent) {
+        Log.i(TAG, "addToDrinkComponents(String, DrinkComponent)");
         // TODO: screen for duplication (subclasses should override and add rules-check)
-        drinkComponentsWhatsIncluded.add(drinkComponent);
+//        drinkComponents.get(key).add(drinkComponent);
     }
 
     public Map<String, List<DrinkComponent>> getDrinkComponents() {
@@ -59,22 +54,6 @@ public abstract class Drink extends MenuItem {
 
     public void setDrinkComponentsDefaultAsString(Map<String, List<String>> drinkComponentsDefaultAsString) {
         this.drinkComponentsDefaultAsString = drinkComponentsDefaultAsString;
-    }
-
-    public List<DrinkComponent> getDrinkComponentsWhatsIncluded() {
-        return drinkComponentsWhatsIncluded;
-    }
-
-    public void setDrinkComponentsWhatsIncluded(List<DrinkComponent> drinkComponentsWhatsIncluded) {
-        this.drinkComponentsWhatsIncluded = drinkComponentsWhatsIncluded;
-    }
-
-    public List<String> getDrinkComponentsWhatsIncludedDefaultAsString() {
-        return drinkComponentsWhatsIncludedDefaultAsString;
-    }
-
-    public void setDrinkComponentsWhatsIncludedDefaultAsString(List<String> drinkComponentsWhatsIncludedDefaultAsString) {
-        this.drinkComponentsWhatsIncludedDefaultAsString = drinkComponentsWhatsIncludedDefaultAsString;
     }
 
     public DrinkSize.Type getDrinkSize() {

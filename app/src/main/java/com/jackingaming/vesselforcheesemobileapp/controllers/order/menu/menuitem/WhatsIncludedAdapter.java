@@ -13,7 +13,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.jackingaming.vesselforcheesemobileapp.R;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.Drink;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class WhatsIncludedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {

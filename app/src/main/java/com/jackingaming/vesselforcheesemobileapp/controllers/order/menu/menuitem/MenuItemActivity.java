@@ -14,6 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.core.util.Pair;
 import androidx.fragment.app.FragmentResultListener;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -27,6 +28,10 @@ import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkC
 import com.jackingaming.vesselforcheesemobileapp.models.menu.Menu;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.Drink;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.lattes.CaffeLatte;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class MenuItemActivity extends AppCompatActivity {
     public static final String TAG = MenuItemActivity.class.getSimpleName();
@@ -126,7 +131,8 @@ public class MenuItemActivity extends AppCompatActivity {
             if (!(drink instanceof CaffeLatte)) {
                 String textPreviousWhatsIncluded = tvWhatsIncluded.getText().toString();
                 StringBuilder sb = new StringBuilder();
-                for (DrinkComponent drinkComponent : drink.getDrinkComponentsWhatsIncluded()) {
+                Pair<List<DrinkComponent>, List<String>> pairDefaultAndTypes = generateWhatsIncluded(drink);
+                for (DrinkComponent drinkComponent : pairDefaultAndTypes.first) {
                     sb.append("\n" + drinkComponent.toString());
                 }
                 tvWhatsIncluded.setText(textPreviousWhatsIncluded + ": " + sb.toString());
@@ -140,9 +146,10 @@ public class MenuItemActivity extends AppCompatActivity {
                 }
             });
 
+            Pair<List<DrinkComponent>, List<String>> pairDefaultAndTypes = generateWhatsIncluded(drink);
             adapter = new WhatsIncludedAdapter(
-                    drink.getDrinkComponentsWhatsIncluded(),
-                    drink.getDrinkComponentsWhatsIncludedDefaultAsString(),
+                    pairDefaultAndTypes.first,
+                    pairDefaultAndTypes.second,
                     new WhatsIncludedAdapter.WhatsIncludedAdapterListener() {
                         @Override
                         public void onItemClicked(String[] names, String nameDefault) {
@@ -191,6 +198,37 @@ public class MenuItemActivity extends AppCompatActivity {
         }
     }
 
+    private Pair<List<DrinkComponent>, List<String>> generateWhatsIncluded(Drink drink) {
+        Map<String, List<DrinkComponent>> drinkComponentGroups = drink.getDrinkComponents();
+        Map<String, List<String>> drinkComponentGroupsDefaultAsString = drink.getDrinkComponentsDefaultAsString();
+        List<DrinkComponent> drinkComponentsWhatsIncluded = new ArrayList<>();
+        List<String> drinkComponentsWhatsIncludedDefaultAsString = new ArrayList<>();
+        Log.i(TAG, "!!!!!creating drinkComponentsWhatsIncluded!!!!!");
+        for (int i = 0; i < Menu.DRINK_COMPONENTS_KEYS.size(); i++) {
+            String key = Menu.DRINK_COMPONENTS_KEYS.get(i);
+            if (drinkComponentGroups.containsKey(key)) {
+                Log.i(TAG, i + "contains: " + Menu.DRINK_COMPONENTS_KEYS.get(i));
+                List<String> typesDefault = drinkComponentGroupsDefaultAsString.get(key);
+                List<DrinkComponent> types = drinkComponentGroups.get(key);
+                for (int j = 0; j < types.size(); j++) {
+                    DrinkComponent drinkComponent = types.get(j);
+                    String drinkComponentDefault = typesDefault.get(j);
+                    if (drinkComponent.getTypeAsString().equals(DrinkComponent.NULL_TYPE_AS_STRING)) {
+                        Log.i(TAG, "skipping - drinkComponent.getTypeAsString().equals(DrinkComponent.NULL_TYPE_AS_STRING)");
+                        continue;
+                    } else {
+                        Log.i(TAG, "adding - drinkComponent.getTypeAsString(): " + drinkComponent.getTypeAsString());
+                        drinkComponentsWhatsIncluded.add(drinkComponent);
+                        drinkComponentsWhatsIncludedDefaultAsString.add(drinkComponentDefault);
+                    }
+                }
+            } else {
+                Log.i(TAG, i + "!contains: " + Menu.DRINK_COMPONENTS_KEYS.get(i));
+            }
+        }
+        return new Pair<>(drinkComponentsWhatsIncluded, drinkComponentsWhatsIncludedDefaultAsString);
+    }
+
     @Override
     public boolean onCreateOptionsMenu(android.view.Menu menu) {
         Log.i(TAG, "onCreateOptionsMenu()");
@@ -228,11 +266,10 @@ public class MenuItemActivity extends AppCompatActivity {
                 Drink drinkReturned = (Drink) data.getSerializableExtra(CustomizeActivity.RESULT_KEY);
                 drink.setDrinkComponents(drinkReturned.getDrinkComponents());
                 drink.setDrinkComponentsDefaultAsString(drinkReturned.getDrinkComponentsDefaultAsString());
-                drink.setDrinkComponentsWhatsIncluded(drinkReturned.getDrinkComponentsWhatsIncluded());
-                drink.setDrinkComponentsWhatsIncludedDefaultAsString(drinkReturned.getDrinkComponentsWhatsIncludedDefaultAsString());
 
-                adapter.setDrinkComponents(drink.getDrinkComponentsWhatsIncluded());
-                adapter.setDrinkComponentsDefaultAsString(drink.getDrinkComponentsWhatsIncludedDefaultAsString());
+                Pair<List<DrinkComponent>, List<String>> pairDefaultAndTypes = generateWhatsIncluded(drink);
+                adapter.setDrinkComponents(pairDefaultAndTypes.first);
+                adapter.setDrinkComponentsDefaultAsString(pairDefaultAndTypes.second);
 
                 adapter.notifyDataSetChanged();
             } else {

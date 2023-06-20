@@ -18,6 +18,7 @@ import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem
 import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem.WhatsIncludedAdapter;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
 import com.jackingaming.vesselforcheesemobileapp.models.menu.Menu;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.Drink;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,17 +29,19 @@ public class CustomizeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     public static final String TAG = CustomizeAdapter.class.getSimpleName();
 
     private AppCompatActivity activity;
-    private Map<String, List<DrinkComponent>> drinkComponentGroups;
-    private Map<String, List<String>> drinkComponentGroupsDefaultAsString;
+    private Drink drink;
+
     private List<DrinkComponentDetails> dataProcessed = new ArrayList<>();
     // TODO: track indexSelected
     private Map<String, WhatsIncludedAdapter> adapterSelected = new HashMap<>();
     private String keyGroupSelected;
 
-    public CustomizeAdapter(AppCompatActivity activity, Map<String, List<DrinkComponent>> drinkComponentGroups, Map<String, List<String>> drinkComponentGroupsDefaultAsString) {
+    public CustomizeAdapter(AppCompatActivity activity, Drink drink) {
         this.activity = activity;
-        this.drinkComponentGroups = drinkComponentGroups;
-        this.drinkComponentGroupsDefaultAsString = drinkComponentGroupsDefaultAsString;
+        this.drink = drink;
+
+        Map<String, List<DrinkComponent>> drinkComponentGroups = drink.getDrinkComponents();
+        Map<String, List<String>> drinkComponentGroupsDefaultAsString = drink.getDrinkComponentsDefaultAsString();
 
         for (int i = 0; i < Menu.DRINK_COMPONENTS_KEYS.size(); i++) {
             String key = Menu.DRINK_COMPONENTS_KEYS.get(i);
