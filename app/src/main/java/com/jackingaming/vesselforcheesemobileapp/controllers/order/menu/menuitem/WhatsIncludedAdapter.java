@@ -149,6 +149,15 @@ public class WhatsIncludedAdapter extends RecyclerView.Adapter<RecyclerView.View
         }
 
         public void bind(DrinkComponent drinkComponent, String drinkComponentDefaultAsString) {
+            // TODO:
+            //  if (drinkComponent.getTypeAsString().equals(DrinkComponent.NULL_TYPE_AS_STRING)) {
+            //      use different border/background color and
+            //      change visibility for decrement button and viewport.
+            //  } else {
+            //      normal.
+            //  }
+
+            // **********************************************************************
             tvBorderTitle.setText(drinkComponent.getClassAsString());
             tvName.setText(drinkComponent.getTypeAsString());
 
@@ -156,6 +165,7 @@ public class WhatsIncludedAdapter extends RecyclerView.Adapter<RecyclerView.View
             updateBorderColor(
                     isDefault(drinkComponent.getTypeAsString(), drinkComponentDefaultAsString)
             );
+            // **********************************************************************
         }
 
         private void updateBorderColor(boolean defaultSelected) {
@@ -232,58 +242,76 @@ public class WhatsIncludedAdapter extends RecyclerView.Adapter<RecyclerView.View
             itemView.setOnLongClickListener(this);
         }
 
-        public void bind(DrinkComponent drinkComponent, String drinkComponentDefaultAsString) {
-            tvBorderTitle.setText(drinkComponent.getClassAsString());
-            tvName.setText(drinkComponent.getTypeAsString());
-
+        public void update(DrinkComponent drinkComponent, String drinkComponentDefaultAsString) {
             Incrementable incrementable = (Incrementable) drinkComponent;
             String quantityAsString = Integer.toString(incrementable.getQuantity());
+
+            tvName.setText(drinkComponent.getTypeAsString());
             tvQuantity.setText(quantityAsString);
+
             updateBorderColor(
+                    drinkComponent,
                     isDefault(quantityAsString, drinkComponentDefaultAsString)
             );
+        }
+
+        public void bind(DrinkComponent drinkComponent, String drinkComponentDefaultAsString) {
+            Incrementable incrementable = (Incrementable) drinkComponent;
+
+            tvBorderTitle.setText(drinkComponent.getClassAsString());
 
             ivMinus.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     incrementable.onDecrement();
-                    String quantityAsString = Integer.toString(incrementable.getQuantity());
 
-                    tvName.setText(drinkComponent.getTypeAsString());
-                    tvQuantity.setText(quantityAsString);
-
-                    updateBorderColor(
-                            isDefault(quantityAsString, drinkComponentDefaultAsString)
-                    );
+                    update(drinkComponent, drinkComponentDefaultAsString);
                 }
             });
+
             ivAdd.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     incrementable.onIncrement();
-                    String quantityAsString = Integer.toString(incrementable.getQuantity());
 
-                    tvName.setText(drinkComponent.getTypeAsString());
-                    tvQuantity.setText(quantityAsString);
-
-                    updateBorderColor(
-                            isDefault(quantityAsString, drinkComponentDefaultAsString)
-                    );
+                    update(drinkComponent, drinkComponentDefaultAsString);
                 }
             });
+
+            update(drinkComponent, drinkComponentDefaultAsString);
         }
 
-        private void updateBorderColor(boolean defaultSelected) {
-            if (defaultSelected) {
-                // The selected value is the same as the default value for this drink's type.
-                String colorDefault = "#1B455F";
-                viewBorder.setBackgroundResource(R.drawable.border_drink_component_default);
-                tvBorderTitle.setTextColor(Color.parseColor(colorDefault));
+        private void updateBorderColor(DrinkComponent drinkComponent, boolean defaultSelected) {
+            Incrementable incrementable = (Incrementable) drinkComponent;
+            boolean init = drinkComponent.getTypeAsString().equals(DrinkComponent.NULL_TYPE_AS_STRING);
+            if (init || incrementable.getQuantity() == 0) {
+                tvName.setText("Add " + drinkComponent.getTypeIntendedAsString());
+
+                tvBorderTitle.setVisibility(View.INVISIBLE);
+                ivMinus.setVisibility(View.INVISIBLE);
+                tvQuantity.setVisibility(View.INVISIBLE);
+
+                viewBorder.setBackgroundResource(R.drawable.border_drink_component_null);
             } else {
-                // The selected value is NOT the same as the default value for this drink's type.
-                String colorCustomized = "#AAFF00";
-                viewBorder.setBackgroundResource(R.drawable.border_drink_component_customized);
-                tvBorderTitle.setTextColor(Color.parseColor(colorCustomized));
+                tvName.setText(drinkComponent.getTypeAsString());
+
+                tvBorderTitle.setVisibility(View.VISIBLE);
+                ivMinus.setVisibility(View.VISIBLE);
+                tvQuantity.setVisibility(View.VISIBLE);
+
+                if (defaultSelected) {
+                    // The selected value is the same as the default value for this drink's type.
+                    String colorDefault = "#1B455F";
+                    tvBorderTitle.setTextColor(Color.parseColor(colorDefault));
+
+                    viewBorder.setBackgroundResource(R.drawable.border_drink_component_default);
+                } else {
+                    // The selected value is NOT the same as the default value for this drink's type.
+                    String colorCustomized = "#AAFF00";
+                    tvBorderTitle.setTextColor(Color.parseColor(colorCustomized));
+
+                    viewBorder.setBackgroundResource(R.drawable.border_drink_component_customized);
+                }
             }
         }
 

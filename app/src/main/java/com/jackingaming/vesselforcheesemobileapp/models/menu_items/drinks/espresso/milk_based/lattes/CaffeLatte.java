@@ -67,7 +67,9 @@ public class CaffeLatte extends Lattes {
         // *********************************************
         // TEA_OPTIONS
         List<DrinkComponent> teaOptions = new ArrayList<>();
-        teaOptions.add(new Chai(null, DEFAULT_NUMBER_OF_CHAI_SCOOPS));
+        Chai chai = new Chai(null, DEFAULT_NUMBER_OF_CHAI_SCOOPS);
+        chai.setTypeIntendedAsString(Chai.Type.CHAI.name());
+        teaOptions.add(chai);
 
         // MILK_OPTIONS (defaults)
         List<String> milkOptionsDefault = Arrays.asList(
