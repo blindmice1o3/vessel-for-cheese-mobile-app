@@ -242,23 +242,8 @@ public class WhatsIncludedAdapter extends RecyclerView.Adapter<RecyclerView.View
             itemView.setOnLongClickListener(this);
         }
 
-        public void update(DrinkComponent drinkComponent, String drinkComponentDefaultAsString) {
-            Incrementable incrementable = (Incrementable) drinkComponent;
-            String quantityAsString = Integer.toString(incrementable.getQuantity());
-
-            tvName.setText(drinkComponent.getTypeAsString());
-            tvQuantity.setText(quantityAsString);
-
-            updateBorderColor(
-                    drinkComponent,
-                    isDefault(quantityAsString, drinkComponentDefaultAsString)
-            );
-        }
-
         public void bind(DrinkComponent drinkComponent, String drinkComponentDefaultAsString) {
             Incrementable incrementable = (Incrementable) drinkComponent;
-
-            tvBorderTitle.setText(drinkComponent.getClassAsString());
 
             ivMinus.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -281,10 +266,16 @@ public class WhatsIncludedAdapter extends RecyclerView.Adapter<RecyclerView.View
             update(drinkComponent, drinkComponentDefaultAsString);
         }
 
-        private void updateBorderColor(DrinkComponent drinkComponent, boolean defaultSelected) {
+        private void update(DrinkComponent drinkComponent, String drinkComponentDefaultAsString) {
             Incrementable incrementable = (Incrementable) drinkComponent;
+
+            tvBorderTitle.setText(drinkComponent.getClassAsString());
+            String quantityAsString = Integer.toString(incrementable.getQuantity());
+            tvQuantity.setText(quantityAsString);
+
             boolean init = drinkComponent.getTypeAsString().equals(DrinkComponent.NULL_TYPE_AS_STRING);
-            if (init || incrementable.getQuantity() == 0) {
+            boolean quantityIsZero = incrementable.getQuantity() == 0;
+            if (init || quantityIsZero) {
                 tvName.setText("Add " + drinkComponent.getTypeIntendedAsString());
 
                 tvBorderTitle.setVisibility(View.INVISIBLE);
@@ -299,27 +290,20 @@ public class WhatsIncludedAdapter extends RecyclerView.Adapter<RecyclerView.View
                 ivMinus.setVisibility(View.VISIBLE);
                 tvQuantity.setVisibility(View.VISIBLE);
 
+                boolean defaultSelected =
+                        (quantityAsString.equals(drinkComponentDefaultAsString)) ? true : false;
                 if (defaultSelected) {
-                    // The selected value is the same as the default value for this drink's type.
                     String colorDefault = "#1B455F";
                     tvBorderTitle.setTextColor(Color.parseColor(colorDefault));
 
                     viewBorder.setBackgroundResource(R.drawable.border_drink_component_default);
                 } else {
-                    // The selected value is NOT the same as the default value for this drink's type.
                     String colorCustomized = "#AAFF00";
                     tvBorderTitle.setTextColor(Color.parseColor(colorCustomized));
 
                     viewBorder.setBackgroundResource(R.drawable.border_drink_component_customized);
                 }
             }
-        }
-
-        private boolean isDefault(String quantityAsString, String drinkComponentDefaultAsString) {
-            boolean defaultSelected =
-                    (quantityAsString.equals(drinkComponentDefaultAsString)) ?
-                            true : false;
-            return defaultSelected;
         }
 
         @Override
