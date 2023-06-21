@@ -1,6 +1,8 @@
 package com.jackingaming.vesselforcheesemobileapp.models.components.drinks.topping_options;
 
 public class CinnamonPowder extends ToppingOptions {
+    public static final String DEFAULT_TEXT_INIT = "Add Cinnamon Powder";
+
     public enum Type {
         CINNAMON_POWDER;
     }
@@ -17,6 +19,11 @@ public class CinnamonPowder extends ToppingOptions {
 
     public void setType(Type type) {
         this.type = type;
+    }
+
+    @Override
+    public String getTextInit() {
+        return DEFAULT_TEXT_INIT;
     }
 
     @Override

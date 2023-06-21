@@ -1,6 +1,8 @@
 package com.jackingaming.vesselforcheesemobileapp.models.components.drinks.cup_options;
 
 public class CupSize extends CupOptions {
+    public static final String DEFAULT_TEXT_INIT = "Cup Size";
+
     public enum Type {
         NONE, SHORT, TALL, GRANDE, VENTI, TRENTA;
     }
@@ -17,6 +19,11 @@ public class CupSize extends CupOptions {
 
     public void setType(Type type) {
         this.type = type;
+    }
+
+    @Override
+    public String getTextInit() {
+        return DEFAULT_TEXT_INIT;
     }
 
     @Override

@@ -1,6 +1,8 @@
 package com.jackingaming.vesselforcheesemobileapp.models.components.drinks.topping_options;
 
 public class Topping extends ToppingOptions {
+    public static final String DEFAULT_TEXT_INIT = "Add Topping Options";
+
     public enum Type {
         CINNAMON_DOLCE_SPRINKLES,
         COOKIE_CRUMBLE,
@@ -19,6 +21,11 @@ public class Topping extends ToppingOptions {
 
     public void setType(Type type) {
         this.type = type;
+    }
+
+    @Override
+    public String getTextInit() {
+        return DEFAULT_TEXT_INIT;
     }
 
     @Override

@@ -1,6 +1,8 @@
 package com.jackingaming.vesselforcheesemobileapp.models.components.drinks.size_options;
 
 public class DrinkSize extends SizeOptions {
+    public static final String DEFAULT_TEXT_INIT = "Drink Size";
+
     public enum Type {
         SHORT(8),
         TALL(12),
@@ -34,6 +36,11 @@ public class DrinkSize extends SizeOptions {
 
     public void setType(Type type) {
         this.type = type;
+    }
+
+    @Override
+    public String getTextInit() {
+        return DEFAULT_TEXT_INIT;
     }
 
     @Override

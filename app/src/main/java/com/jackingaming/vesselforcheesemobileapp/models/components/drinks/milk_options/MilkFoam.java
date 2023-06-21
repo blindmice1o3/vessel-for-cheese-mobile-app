@@ -1,6 +1,8 @@
 package com.jackingaming.vesselforcheesemobileapp.models.components.drinks.milk_options;
 
 public class MilkFoam extends MilkOptions {
+    public static final String DEFAULT_TEXT_INIT = "Add Milk Foam";
+
     public enum Type {
         NONE, LIGHT, MEDIUM, EXTRA;
     }
@@ -17,6 +19,11 @@ public class MilkFoam extends MilkOptions {
 
     public void setType(Type type) {
         this.type = type;
+    }
+
+    @Override
+    public String getTextInit() {
+        return DEFAULT_TEXT_INIT;
     }
 
     @Override

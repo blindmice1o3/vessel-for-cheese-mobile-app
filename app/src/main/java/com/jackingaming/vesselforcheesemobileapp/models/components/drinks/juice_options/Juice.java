@@ -1,6 +1,8 @@
 package com.jackingaming.vesselforcheesemobileapp.models.components.drinks.juice_options;
 
 public class Juice extends JuiceOptions {
+    public static final String DEFAULT_TEXT_INIT = "Add Juice Options";
+
     public enum Type {
         APPLE,
         PEACH_BLEND;
@@ -18,6 +20,11 @@ public class Juice extends JuiceOptions {
 
     public void setType(Type type) {
         this.type = type;
+    }
+
+    @Override
+    public String getTextInit() {
+        return DEFAULT_TEXT_INIT;
     }
 
     @Override

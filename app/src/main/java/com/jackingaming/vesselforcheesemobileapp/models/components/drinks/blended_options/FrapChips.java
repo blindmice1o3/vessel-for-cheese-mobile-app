@@ -1,6 +1,8 @@
 package com.jackingaming.vesselforcheesemobileapp.models.components.drinks.blended_options;
 
 public class FrapChips extends BlendedOptions {
+    public static final String DEFAULT_TEXT_INIT = "Add Frappuccino Chips";
+
     public enum Type {
         FRAP_CHIPS;
     }
@@ -17,6 +19,11 @@ public class FrapChips extends BlendedOptions {
 
     public void setType(Type type) {
         this.type = type;
+    }
+
+    @Override
+    public String getTextInit() {
+        return DEFAULT_TEXT_INIT;
     }
 
     @Override

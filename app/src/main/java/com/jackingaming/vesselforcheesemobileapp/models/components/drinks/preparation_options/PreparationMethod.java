@@ -1,6 +1,8 @@
 package com.jackingaming.vesselforcheesemobileapp.models.components.drinks.preparation_options;
 
 public class PreparationMethod extends PreparationOptions {
+    public static final String DEFAULT_TEXT_INIT = "Preparation Method";
+
     public enum Type {
         NONE,
         BLENDED;
@@ -18,6 +20,11 @@ public class PreparationMethod extends PreparationOptions {
 
     public void setType(Type type) {
         this.type = type;
+    }
+
+    @Override
+    public String getTextInit() {
+        return DEFAULT_TEXT_INIT;
     }
 
     @Override

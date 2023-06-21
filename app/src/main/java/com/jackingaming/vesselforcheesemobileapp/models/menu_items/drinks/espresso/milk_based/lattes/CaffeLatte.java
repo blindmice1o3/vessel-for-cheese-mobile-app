@@ -1,6 +1,5 @@
 package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.lattes;
 
-import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem.Incrementable;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.espresso_options.EspressoOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.espresso_options.PrepOptions;
@@ -68,7 +67,6 @@ public class CaffeLatte extends Lattes {
         // TEA_OPTIONS
         List<DrinkComponent> teaOptions = new ArrayList<>();
         Chai chai = new Chai(null, DEFAULT_NUMBER_OF_CHAI_SCOOPS);
-        chai.setTypeIntendedAsString(Chai.Type.CHAI.name());
         teaOptions.add(chai);
 
         // MILK_OPTIONS (defaults)

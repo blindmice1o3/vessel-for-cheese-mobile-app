@@ -1,6 +1,8 @@
 package com.jackingaming.vesselforcheesemobileapp.models.components.drinks.milk_options;
 
 public class Temperature extends MilkOptions {
+    public static final String DEFAULT_TEXT_INIT = "Temperature";
+
     public enum Type {
         WARM, MEDIUM, EXTRA;
     }
@@ -17,6 +19,11 @@ public class Temperature extends MilkOptions {
 
     public void setType(Type type) {
         this.type = type;
+    }
+
+    @Override
+    public String getTextInit() {
+        return DEFAULT_TEXT_INIT;
     }
 
     @Override

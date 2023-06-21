@@ -1,6 +1,8 @@
 package com.jackingaming.vesselforcheesemobileapp.models.components.drinks.blended_options;
 
 public class BlendedPrep extends BlendedOptions {
+    public static final String DEFAULT_TEXT_INIT = "Blended Prep";
+
     public enum Type {
         NONE,
         DOUBLE_BLENDED;
@@ -18,6 +20,11 @@ public class BlendedPrep extends BlendedOptions {
 
     public void setType(Type type) {
         this.type = type;
+    }
+
+    @Override
+    public String getTextInit() {
+        return DEFAULT_TEXT_INIT;
     }
 
     @Override

@@ -1,6 +1,8 @@
 package com.jackingaming.vesselforcheesemobileapp.models.components.drinks.espresso_options;
 
 public class RoastOptions extends EspressoOptions {
+    public static final String DEFAULT_TEXT_INIT = "Espresso Roast Options";
+
     public enum Type {
         NONE,
         BLONDE,
@@ -23,6 +25,11 @@ public class RoastOptions extends EspressoOptions {
 
     public void setType(Type type) {
         this.type = type;
+    }
+
+    @Override
+    public String getTextInit() {
+        return DEFAULT_TEXT_INIT;
     }
 
     @Override

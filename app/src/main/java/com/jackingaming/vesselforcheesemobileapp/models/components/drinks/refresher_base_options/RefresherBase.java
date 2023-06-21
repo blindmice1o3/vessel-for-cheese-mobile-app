@@ -1,6 +1,8 @@
 package com.jackingaming.vesselforcheesemobileapp.models.components.drinks.refresher_base_options;
 
 public class RefresherBase extends RefresherBaseOptions {
+    public static final String DEFAULT_TEXT_INIT = "Add Refresher Bases";
+
     public enum Type {
         KIWI_STARFRUIT,
         MANGO_DRAGONFRUIT,
@@ -20,6 +22,11 @@ public class RefresherBase extends RefresherBaseOptions {
 
     public void setType(Type type) {
         this.type = type;
+    }
+
+    @Override
+    public String getTextInit() {
+        return DEFAULT_TEXT_INIT;
     }
 
     @Override

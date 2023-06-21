@@ -6,6 +6,8 @@ import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem
 
 public class Chai extends TeaOptions
         implements Incrementable {
+    public static final String DEFAULT_TEXT_INIT = "Add Chai";
+
     private static final int DEFAULT_QUANTITY_MIN = 0;
     private static final int DEFAULT_QUANTITY_MAX = Integer.MAX_VALUE;
 
@@ -80,6 +82,11 @@ public class Chai extends TeaOptions
 
     public void setQuantityMax(int quantityMax) {
         this.quantityMax = quantityMax;
+    }
+
+    @Override
+    public String getTextInit() {
+        return DEFAULT_TEXT_INIT;
     }
 
     @Override

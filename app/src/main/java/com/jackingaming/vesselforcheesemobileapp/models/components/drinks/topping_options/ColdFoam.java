@@ -1,6 +1,8 @@
 package com.jackingaming.vesselforcheesemobileapp.models.components.drinks.topping_options;
 
 public class ColdFoam extends ToppingOptions {
+    public static final String DEFAULT_TEXT_INIT = "Add Cold Foam";
+
     public enum Type {
         CHOCOLATE_CREAM,
         PISTACHIO_CREAM,
@@ -20,6 +22,11 @@ public class ColdFoam extends ToppingOptions {
 
     public void setType(Type type) {
         this.type = type;
+    }
+
+    @Override
+    public String getTextInit() {
+        return DEFAULT_TEXT_INIT;
     }
 
     @Override

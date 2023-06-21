@@ -6,6 +6,8 @@ import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem
 
 public class Shot extends EspressoOptions
         implements Incrementable {
+    public static final String DEFAULT_TEXT_INIT = "Add Shots";
+
     private static final int DEFAULT_QUANTITY_MIN = 0;
     private static final int DEFAULT_QUANTITY_MAX = 12;
 
@@ -77,6 +79,11 @@ public class Shot extends EspressoOptions
 
     public void setQuantityMax(int quantityMax) {
         this.quantityMax = quantityMax;
+    }
+
+    @Override
+    public String getTextInit() {
+        return DEFAULT_TEXT_INIT;
     }
 
     @Override

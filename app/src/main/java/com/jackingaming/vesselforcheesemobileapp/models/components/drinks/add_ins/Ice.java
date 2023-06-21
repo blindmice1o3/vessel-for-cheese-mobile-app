@@ -1,6 +1,8 @@
 package com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins;
 
 public class Ice extends AddInsOptions {
+    public static final String DEFAULT_TEXT_INIT = "Add Ice";
+
     public enum Type {
         NONE, LIGHT, MEDIUM, EXTRA;
     }
@@ -17,6 +19,11 @@ public class Ice extends AddInsOptions {
 
     public void setType(Type type) {
         this.type = type;
+    }
+
+    @Override
+    public String getTextInit() {
+        return DEFAULT_TEXT_INIT;
     }
 
     @Override

@@ -1,6 +1,8 @@
 package com.jackingaming.vesselforcheesemobileapp.models.components.drinks.tea_options;
 
 public class MatchaPowder extends TeaOptions {
+    public static final String DEFAULT_TEXT_INIT = "Add Matcha Powder";
+
     public enum Type {
         MATCHA_POWDER;
     }
@@ -17,6 +19,11 @@ public class MatchaPowder extends TeaOptions {
 
     public void setType(Type type) {
         this.type = type;
+    }
+
+    @Override
+    public String getTextInit() {
+        return DEFAULT_TEXT_INIT;
     }
 
     @Override

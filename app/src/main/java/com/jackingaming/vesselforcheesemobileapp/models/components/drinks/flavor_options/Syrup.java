@@ -6,6 +6,8 @@ import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem
 
 public class Syrup extends FlavorOptions
         implements Incrementable {
+    public static final String DEFAULT_TEXT_INIT = "Add Syrups";
+
     @Override
     public void onIncrement() {
         Log.i(TAG, "onIncrement()");
@@ -64,6 +66,11 @@ public class Syrup extends FlavorOptions
 
     public void setType(Type type) {
         this.type = type;
+    }
+
+    @Override
+    public String getTextInit() {
+        return DEFAULT_TEXT_INIT;
     }
 
     @Override

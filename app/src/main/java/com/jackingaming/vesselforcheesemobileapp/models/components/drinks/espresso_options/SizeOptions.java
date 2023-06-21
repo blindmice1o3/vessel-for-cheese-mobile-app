@@ -1,6 +1,8 @@
 package com.jackingaming.vesselforcheesemobileapp.models.components.drinks.espresso_options;
 
 public class SizeOptions extends EspressoOptions {
+    public static final String DEFAULT_TEXT_INIT = "Size Options";
+
     public enum Type {
         SOLO,
         DOPPIO,
@@ -20,6 +22,11 @@ public class SizeOptions extends EspressoOptions {
 
     public void setType(Type type) {
         this.type = type;
+    }
+
+    @Override
+    public String getTextInit() {
+        return DEFAULT_TEXT_INIT;
     }
 
     @Override

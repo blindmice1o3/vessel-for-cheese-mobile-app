@@ -1,6 +1,8 @@
 package com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins;
 
 public class Powder extends AddInsOptions {
+    public static final String DEFAULT_TEXT_INIT = "Add Powders";
+
     public enum Type {
         CHOCOLATE_MALT,
         VANILLA_BEAN;
@@ -18,6 +20,11 @@ public class Powder extends AddInsOptions {
 
     public void setType(Type type) {
         this.type = type;
+    }
+
+    @Override
+    public String getTextInit() {
+        return DEFAULT_TEXT_INIT;
     }
 
     @Override

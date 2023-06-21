@@ -1,6 +1,8 @@
 package com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins;
 
 public class LineTheCup extends AddInsOptions {
+    public static final String DEFAULT_TEXT_INIT = "Line the Cup";
+
     public enum Type {
         NONE,
         CARAMEL_SAUCE,
@@ -19,6 +21,11 @@ public class LineTheCup extends AddInsOptions {
 
     public void setType(Type type) {
         this.type = type;
+    }
+
+    @Override
+    public String getTextInit() {
+        return DEFAULT_TEXT_INIT;
     }
 
     @Override

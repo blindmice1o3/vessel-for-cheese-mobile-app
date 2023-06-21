@@ -1,6 +1,8 @@
 package com.jackingaming.vesselforcheesemobileapp.models.components.drinks.tea_options;
 
 public class IcedTeaSplash extends TeaOptions {
+    public static final String DEFAULT_TEXT_INIT = "Iced Tea Splash";
+
     public enum Type {
         BLACK_TEA,
         GREEN_TEA,
@@ -19,6 +21,11 @@ public class IcedTeaSplash extends TeaOptions {
 
     public void setType(Type type) {
         this.type = type;
+    }
+
+    @Override
+    public String getTextInit() {
+        return DEFAULT_TEXT_INIT;
     }
 
     @Override

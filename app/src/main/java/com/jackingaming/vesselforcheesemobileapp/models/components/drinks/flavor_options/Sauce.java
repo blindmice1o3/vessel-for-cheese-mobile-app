@@ -6,6 +6,8 @@ import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem
 
 public class Sauce extends FlavorOptions
         implements Incrementable {
+    public static final String DEFAULT_TEXT_INIT = "Add Sauces";
+
     @Override
     public void onIncrement() {
         Log.i(TAG, "onIncrement()");
@@ -58,6 +60,11 @@ public class Sauce extends FlavorOptions
 
     public void setType(Type type) {
         this.type = type;
+    }
+
+    @Override
+    public String getTextInit() {
+        return DEFAULT_TEXT_INIT;
     }
 
     @Override

@@ -7,15 +7,7 @@ public abstract class DrinkComponent
     public static final String TAG = DrinkComponent.class.getSimpleName();
     public static final String NULL_TYPE_AS_STRING = "null";
 
-    private String typeIntendedAsString;
-
-    public String getTypeIntendedAsString() {
-        return typeIntendedAsString;
-    }
-
-    public void setTypeIntendedAsString(String typeIntendedAsString) {
-        this.typeIntendedAsString = typeIntendedAsString;
-    }
+    public abstract String getTextInit();
 
     public abstract String[] getEnumValuesAsStringArray();
 

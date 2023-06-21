@@ -1,6 +1,8 @@
 package com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins;
 
 public class MilkCreamer extends AddInsOptions {
+    public static final String DEFAULT_TEXT_INIT = "Add Creamer";
+
     public enum Type {
         TWO_PERCENT,
         BREVE,
@@ -26,6 +28,11 @@ public class MilkCreamer extends AddInsOptions {
 
     public void setType(Type type) {
         this.type = type;
+    }
+
+    @Override
+    public String getTextInit() {
+        return DEFAULT_TEXT_INIT;
     }
 
     @Override

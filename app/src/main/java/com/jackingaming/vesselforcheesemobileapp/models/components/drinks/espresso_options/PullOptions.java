@@ -1,8 +1,8 @@
 package com.jackingaming.vesselforcheesemobileapp.models.components.drinks.espresso_options;
 
-import android.util.Log;
-
 public class PullOptions extends EspressoOptions {
+    public static final String DEFAULT_TEXT_INIT = "Ristretto or Long Shot";
+
     public enum Type {
         NONE,
         LONG,
@@ -21,6 +21,11 @@ public class PullOptions extends EspressoOptions {
 
     public void setType(Type type) {
         this.type = type;
+    }
+
+    @Override
+    public String getTextInit() {
+        return DEFAULT_TEXT_INIT;
     }
 
     @Override

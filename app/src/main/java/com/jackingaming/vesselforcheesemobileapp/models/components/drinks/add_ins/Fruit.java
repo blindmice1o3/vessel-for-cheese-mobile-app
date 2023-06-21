@@ -1,6 +1,8 @@
 package com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins;
 
 public class Fruit extends AddInsOptions {
+    public static final String DEFAULT_TEXT_INIT = "Add Fruit Add-Ins";
+
     public enum Type {
         DRAGONFRUIT_INCLUSION,
         PINEAPPLE_INCLUSION,
@@ -20,6 +22,11 @@ public class Fruit extends AddInsOptions {
 
     public void setType(Type type) {
         this.type = type;
+    }
+
+    @Override
+    public String getTextInit() {
+        return DEFAULT_TEXT_INIT;
     }
 
     @Override

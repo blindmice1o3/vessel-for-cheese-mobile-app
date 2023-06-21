@@ -1,6 +1,8 @@
 package com.jackingaming.vesselforcheesemobileapp.models.components.drinks.lemonade_options;
 
 public class Lemonade extends LemonadeOptions {
+    public static final String DEFAULT_TEXT_INIT = "Add Lemonade";
+
     public enum Type {
         LEMONADE;
     }
@@ -17,6 +19,11 @@ public class Lemonade extends LemonadeOptions {
 
     public void setType(Type type) {
         this.type = type;
+    }
+
+    @Override
+    public String getTextInit() {
+        return DEFAULT_TEXT_INIT;
     }
 
     @Override

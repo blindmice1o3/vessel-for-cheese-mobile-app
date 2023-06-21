@@ -1,6 +1,8 @@
 package com.jackingaming.vesselforcheesemobileapp.models.components.drinks.espresso_options;
 
 public class PrepOptions extends EspressoOptions {
+    public static final String DEFAULT_TEXT_INIT = "Shot Prep";
+
     public enum Type {
         NONE,
         UPSIDE_DOWN;
@@ -18,6 +20,11 @@ public class PrepOptions extends EspressoOptions {
 
     public void setType(Type type) {
         this.type = type;
+    }
+
+    @Override
+    public String getTextInit() {
+        return DEFAULT_TEXT_INIT;
     }
 
     @Override

@@ -1,6 +1,8 @@
 package com.jackingaming.vesselforcheesemobileapp.models.components.drinks.milk_options;
 
 public class MilkBase extends MilkOptions {
+    public static final String DEFAULT_TEXT_INIT = "Milk Base";
+
     public enum Type {
         TWO_PERCENT,
         BREVE,
@@ -26,6 +28,11 @@ public class MilkBase extends MilkOptions {
 
     public void setType(Type type) {
         this.type = type;
+    }
+
+    @Override
+    public String getTextInit() {
+        return DEFAULT_TEXT_INIT;
     }
 
     @Override

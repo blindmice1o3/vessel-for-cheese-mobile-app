@@ -6,6 +6,8 @@ import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem
 
 public class Liquid extends SweetenerOptions
         implements Incrementable {
+    public static final String DEFAULT_TEXT_INIT = "Add Liquid Sweeteners";
+
     @Override
     public void onIncrement() {
         Log.i(TAG, "onIncrement()");
@@ -57,6 +59,11 @@ public class Liquid extends SweetenerOptions
 
     public void setType(Type type) {
         this.type = type;
+    }
+
+    @Override
+    public String getTextInit() {
+        return DEFAULT_TEXT_INIT;
     }
 
     @Override

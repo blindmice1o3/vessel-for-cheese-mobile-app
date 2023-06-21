@@ -1,6 +1,8 @@
 package com.jackingaming.vesselforcheesemobileapp.models.components.drinks.blended_options;
 
 public class FrapRoast extends BlendedOptions {
+    public static final String DEFAULT_TEXT_INIT = "Add Frappuccino Roast pump(s)";
+
     public enum Type {
         FRAP_ROAST;
     }
@@ -17,6 +19,11 @@ public class FrapRoast extends BlendedOptions {
 
     public void setType(Type type) {
         this.type = type;
+    }
+
+    @Override
+    public String getTextInit() {
+        return DEFAULT_TEXT_INIT;
     }
 
     @Override

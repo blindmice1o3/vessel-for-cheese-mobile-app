@@ -6,6 +6,8 @@ import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem
 
 public class Packet extends SweetenerOptions
         implements Incrementable {
+    public static final String DEFAULT_TEXT_INIT = "Add Sweetener Packets";
+
     @Override
     public void onIncrement() {
         Log.i(TAG, "onIncrement()");
@@ -59,6 +61,11 @@ public class Packet extends SweetenerOptions
 
     public void setType(Type type) {
         this.type = type;
+    }
+
+    @Override
+    public String getTextInit() {
+        return DEFAULT_TEXT_INIT;
     }
 
     @Override

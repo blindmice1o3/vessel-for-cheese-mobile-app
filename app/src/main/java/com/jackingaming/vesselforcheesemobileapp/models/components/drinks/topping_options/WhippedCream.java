@@ -1,6 +1,8 @@
 package com.jackingaming.vesselforcheesemobileapp.models.components.drinks.topping_options;
 
 public class WhippedCream extends ToppingOptions {
+    public static final String DEFAULT_TEXT_INIT = "Add Whipped Cream";
+
     public enum Type {
         WHIPPED_CREAM;
     }
@@ -17,6 +19,11 @@ public class WhippedCream extends ToppingOptions {
 
     public void setType(Type type) {
         this.type = type;
+    }
+
+    @Override
+    public String getTextInit() {
+        return DEFAULT_TEXT_INIT;
     }
 
     @Override
