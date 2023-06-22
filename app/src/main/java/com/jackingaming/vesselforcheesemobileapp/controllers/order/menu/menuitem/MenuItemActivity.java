@@ -150,6 +150,7 @@ public class MenuItemActivity extends AppCompatActivity {
             adapter = new WhatsIncludedAdapter(
                     pairDefaultAndTypes.first,
                     pairDefaultAndTypes.second,
+                    drink.getDrinkComponentsStandardRecipe(),
                     new WhatsIncludedAdapter.WhatsIncludedAdapterListener() {
                         @Override
                         public void onItemClicked(String[] names, String nameDefault) {

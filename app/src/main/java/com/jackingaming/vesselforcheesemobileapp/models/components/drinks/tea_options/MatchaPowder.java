@@ -1,5 +1,7 @@
 package com.jackingaming.vesselforcheesemobileapp.models.components.drinks.tea_options;
 
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
+
 public class MatchaPowder extends TeaOptions {
     public static final String DEFAULT_TEXT_INIT = "Add Matcha Powder";
 
@@ -48,6 +50,11 @@ public class MatchaPowder extends TeaOptions {
 
     @Override
     public void setTypeByString(String typeAsString) {
+        if (typeAsString.equals(DrinkComponent.NULL_TYPE_AS_STRING)) {
+            type = null;
+            return;
+        }
+
         Type[] enumValues = Type.values();
         for (int i = 0; i < enumValues.length; i++) {
             if (enumValues[i].name().equals(typeAsString)) {

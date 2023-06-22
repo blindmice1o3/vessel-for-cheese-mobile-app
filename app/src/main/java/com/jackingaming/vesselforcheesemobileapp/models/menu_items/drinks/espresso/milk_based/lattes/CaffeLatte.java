@@ -12,9 +12,9 @@ import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.milk_o
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.milk_options.Temperature;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.tea_options.Chai;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.tea_options.TeaOptions;
+import com.jackingaming.vesselforcheesemobileapp.models.menu.Menu;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class CaffeLatte extends Lattes {
@@ -56,35 +56,27 @@ public class CaffeLatte extends Lattes {
         Shot shot = new Shot(DEFAULT_SHOT, DEFAULT_NUMBER_OF_ESPRESSO_SHOTS);
         shot.setQuantityMin(DEFAULT_NUMBER_OF_ESPRESSO_SHOTS_MIN);
         espressoOptions.add(shot);
-        // *********************************************
-        // TODO: null check for [PullOptions] and [PrepOptions],
-        //  null checking can be a basis for a third/fourth view type
-        //  (INCREMENTABLE) (SINGLE_SELECTION)
-        //  (UNSELECTED_INCREMENTABLE) (UNSELECTED_SINGLE_SELECTION)
         espressoOptions.add(new PullOptions(null));
         espressoOptions.add(new PrepOptions(null));
-        // *********************************************
         // TEA_OPTIONS
         List<DrinkComponent> teaOptions = new ArrayList<>();
         Chai chai = new Chai(null, DEFAULT_NUMBER_OF_CHAI_SCOOPS);
         teaOptions.add(chai);
 
         // MILK_OPTIONS (defaults)
-        List<String> milkOptionsDefault = Arrays.asList(
-                DEFAULT_MILK_FOAM.name(),
-                DEFAULT_MILK_BASE.name(),
-                DEFAULT_TEMPERATURE.name());
+        List<String> milkOptionsDefault = new ArrayList<>();
+        milkOptionsDefault.add(DEFAULT_MILK_FOAM.name());
+        milkOptionsDefault.add(DEFAULT_MILK_BASE.name());
+        milkOptionsDefault.add(DEFAULT_TEMPERATURE.name());
         // ESPRESSO_OPTIONS (defaults)
-        List<String> espressoOptionsDefault = Arrays.asList(
-                DEFAULT_ROAST_OPTIONS.name(),
-                Integer.toString(DEFAULT_NUMBER_OF_ESPRESSO_SHOTS),
-                DEFAULT_PULL_OPTIONS.name(),
-                DEFAULT_PREP_OPTIONS.name()
-        );
-        // TEA_OPTIONS
-        List<String> teaOptionsDefault = Arrays.asList(
-                Integer.toString(DEFAULT_NUMBER_OF_CHAI_SCOOPS)
-        );
+        List<String> espressoOptionsDefault = new ArrayList<>();
+        espressoOptionsDefault.add(DEFAULT_ROAST_OPTIONS.name());
+        espressoOptionsDefault.add(Integer.toString(DEFAULT_NUMBER_OF_ESPRESSO_SHOTS));
+        espressoOptionsDefault.add(DEFAULT_PULL_OPTIONS.name());
+        espressoOptionsDefault.add(DEFAULT_PREP_OPTIONS.name());
+        // TEA_OPTIONS (defaults)
+        List<String> teaOptionsDefault = new ArrayList<>();
+        teaOptionsDefault.add(Integer.toString(DEFAULT_NUMBER_OF_CHAI_SCOOPS));
 
         drinkComponents.put(MilkOptions.TAG, milkOptions);
         drinkComponents.put(EspressoOptions.TAG, espressoOptions);
@@ -92,5 +84,19 @@ public class CaffeLatte extends Lattes {
         drinkComponentsDefaultAsString.put(MilkOptions.TAG, milkOptionsDefault);
         drinkComponentsDefaultAsString.put(EspressoOptions.TAG, espressoOptionsDefault);
         drinkComponentsDefaultAsString.put(TeaOptions.TAG, teaOptionsDefault);
+
+        for (int i = 0; i < Menu.DRINK_COMPONENTS_KEYS.size(); i++) {
+            String key = Menu.DRINK_COMPONENTS_KEYS.get(i);
+            if (drinkComponents.containsKey(key)) {
+                List<DrinkComponent> drinkComponentsGroup = drinkComponents.get(key);
+                for (DrinkComponent drinkComponent : drinkComponentsGroup) {
+                    if (drinkComponent.getTypeAsString().equals(DrinkComponent.NULL_TYPE_AS_STRING)) {
+                        continue;
+                    } else {
+                        drinkComponentsStandardRecipe.add(drinkComponent);
+                    }
+                }
+            }
+        }
     }
 }

@@ -31,6 +31,7 @@ public class CustomizeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     private AppCompatActivity activity;
     private Drink drink;
 
+    private List<DrinkComponent> drinkComponentsStandardRecipe;
     private List<DrinkComponentDetails> dataProcessed = new ArrayList<>();
     // TODO: track indexSelected
     private Map<String, WhatsIncludedAdapter> adapterSelected = new HashMap<>();
@@ -42,6 +43,7 @@ public class CustomizeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
         Map<String, List<DrinkComponent>> drinkComponentGroups = drink.getDrinkComponents();
         Map<String, List<String>> drinkComponentGroupsDefaultAsString = drink.getDrinkComponentsDefaultAsString();
+        drinkComponentsStandardRecipe = drink.getDrinkComponentsStandardRecipe();
 
         for (int i = 0; i < Menu.DRINK_COMPONENTS_KEYS.size(); i++) {
             String key = Menu.DRINK_COMPONENTS_KEYS.get(i);
@@ -69,7 +71,7 @@ public class CustomizeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         List<DrinkComponent> drinkComponents = dataProcessed.get(position).getDrinkComponents();
 
         ((DrinkComponentGroupViewHolder) holder).bind(
-                keyGroup + ": " + position,
+                keyGroup,
                 drinkComponents,
                 drinkComponentsDefault);
     }
@@ -93,21 +95,25 @@ public class CustomizeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         public void bind(String keyGroup, List<DrinkComponent> drinkComponents, List<String> drinkComponentsDefault) {
             tvClassNameDrinkComponent.setText((keyGroup));
 
-            WhatsIncludedAdapter adapter = new WhatsIncludedAdapter(drinkComponents, drinkComponentsDefault, new WhatsIncludedAdapter.WhatsIncludedAdapterListener() {
-                @Override
-                public void onItemClicked(String[] names, String nameDefault) {
-                    Log.i(TAG, "onItemClicked(String[] names, String nameDefault)");
+            WhatsIncludedAdapter adapter = new WhatsIncludedAdapter(
+                    drinkComponents,
+                    drinkComponentsDefault,
+                    drinkComponentsStandardRecipe,
+                    new WhatsIncludedAdapter.WhatsIncludedAdapterListener() {
+                        @Override
+                        public void onItemClicked(String[] names, String nameDefault) {
+                            Log.i(TAG, "onItemClicked(String[] names, String nameDefault)");
 
-                    keyGroupSelected = keyGroup;
+                            keyGroupSelected = keyGroup;
 
-                    ModalBottomSheet.newInstance(names, nameDefault).show(activity.getSupportFragmentManager(), ModalBottomSheet.TAG);
-                }
+                            ModalBottomSheet.newInstance(names, nameDefault).show(activity.getSupportFragmentManager(), ModalBottomSheet.TAG);
+                        }
 
-                @Override
-                public void onItemLongClicked(String[] names, String nameDefault) {
-                    Log.i(TAG, "onItemLongClicked(String[] names, String nameDefault)");
-                }
-            });
+                        @Override
+                        public void onItemLongClicked(String[] names, String nameDefault) {
+                            Log.i(TAG, "onItemLongClicked(String[] names, String nameDefault)");
+                        }
+                    });
             adapterSelected.put(keyGroup, adapter);
 
             rvCustomize.setAdapter(adapter);

@@ -30,6 +30,7 @@ public class WhatsIncludedAdapter extends RecyclerView.Adapter<RecyclerView.View
 
     private List<DrinkComponent> drinkComponents;
     private List<String> drinkComponentsDefaultAsString;
+    private List<DrinkComponent> drinkComponentsStandardRecipe;
     private WhatsIncludedAdapterListener listener;
 
     private int indexSelected = -1;
@@ -37,16 +38,16 @@ public class WhatsIncludedAdapter extends RecyclerView.Adapter<RecyclerView.View
 
     public WhatsIncludedAdapter(List<DrinkComponent> drinkComponents,
                                 List<String> drinkComponentsDefaultAsString,
+                                List<DrinkComponent> drinkComponentsStandardRecipe,
                                 WhatsIncludedAdapterListener listener) {
         this.drinkComponents = drinkComponents;
         this.drinkComponentsDefaultAsString = drinkComponentsDefaultAsString;
+        this.drinkComponentsStandardRecipe = drinkComponentsStandardRecipe;
         this.listener = listener;
     }
 
     @Override
     public int getItemViewType(int position) {
-        Log.i(TAG, "getItemViewType()");
-
         DrinkComponent drinkComponent = drinkComponents.get(position);
         if (drinkComponent instanceof Incrementable) {
             return VIEW_TYPE_INCREMENTABLE;
@@ -58,8 +59,6 @@ public class WhatsIncludedAdapter extends RecyclerView.Adapter<RecyclerView.View
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        Log.i(TAG, "onCreateViewHolder()");
-
         if (viewType == VIEW_TYPE_INCREMENTABLE) {
             View viewIncrementableDrinkComponent = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_drink_component_incrementable, parent, false);
             return new DrinkComponentIncrementableViewHolder(viewIncrementableDrinkComponent);
@@ -86,7 +85,6 @@ public class WhatsIncludedAdapter extends RecyclerView.Adapter<RecyclerView.View
 
     @Override
     public int getItemCount() {
-        Log.i(TAG, "getItemCount()");
         return drinkComponents.size();
     }
 
@@ -96,12 +94,39 @@ public class WhatsIncludedAdapter extends RecyclerView.Adapter<RecyclerView.View
         if (indexSelected > -1) {
             DrinkComponent drinkComponentSelected = drinkComponents.get(indexSelected);
             String drinkComponentDefaultAsStringSelected = drinkComponentsDefaultAsString.get(indexSelected);
+            Log.e(TAG, "drinkComponentSelected: " + drinkComponentSelected.getClassAsString() + ", " + drinkComponentSelected.getTypeAsString());
 
-            // Update the underlying model.
-            drinkComponentSelected.setTypeByString(name);
+            boolean typeSelectedIsDefault =
+                    name.equals(drinkComponentDefaultAsStringSelected);
 
-            // Update the screen.
-            viewHolderSelected.update(drinkComponentSelected, drinkComponentDefaultAsStringSelected);
+            boolean typeSelectedInStandardRecipe = false;
+            for (DrinkComponent drinkComponent : drinkComponentsStandardRecipe) {
+                Log.e(TAG, "drinkComponent from drinkComponentsStandardRecipe: " + drinkComponent.getClassAsString() + ", " + drinkComponent.getTypeAsString());
+                if (drinkComponent.getClassAsString().equals(drinkComponentSelected.getClassAsString())) {
+                    Log.e(TAG, "CLASSES ARE THE SAME, IT'S A PART OF THE STANDARD RECIPE");
+                    typeSelectedInStandardRecipe = true;
+                    break;
+                }
+            }
+            Log.e(TAG, "typeSelectedIsDefault: " + typeSelectedIsDefault);
+            Log.e(TAG, "typeSelectedInStandardRecipe: " + typeSelectedInStandardRecipe);
+            if (typeSelectedIsDefault && !typeSelectedInStandardRecipe) {
+                Log.e(TAG, "!!!if!!! (typeSelectedIsDefault && !typeSelectedInStandardRecipe)");
+                drinkComponentSelected.setTypeByString(DrinkComponent.NULL_TYPE_AS_STRING);
+
+                // TODO: removal isn't working properly (correct for MenuItemActivity,
+                //  but should not remove for CustomizeActivity.
+                drinkComponents.remove(indexSelected);
+                drinkComponentsDefaultAsString.remove(indexSelected);
+                notifyItemRemoved(indexSelected);
+            } else {
+                Log.e(TAG, "!!!else!!!");
+                // Update the underlying model.
+                drinkComponentSelected.setTypeByString(name);
+
+                // Update the screen.
+                viewHolderSelected.update(drinkComponentSelected, drinkComponentDefaultAsStringSelected);
+            }
 
             // Tear-down steps.
             indexSelected = -1;

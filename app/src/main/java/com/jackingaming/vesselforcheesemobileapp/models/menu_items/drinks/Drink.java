@@ -6,6 +6,7 @@ import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkC
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.size_options.DrinkSize;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.MenuItem;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,6 +19,8 @@ public abstract class Drink extends MenuItem {
 
     protected Map<String, List<DrinkComponent>> drinkComponents = new HashMap<>();
     protected Map<String, List<String>> drinkComponentsDefaultAsString = new HashMap<>();
+
+    protected List<DrinkComponent> drinkComponentsStandardRecipe = new ArrayList<>();
 
     public Drink() {
         super();
@@ -54,6 +57,14 @@ public abstract class Drink extends MenuItem {
 
     public void setDrinkComponentsDefaultAsString(Map<String, List<String>> drinkComponentsDefaultAsString) {
         this.drinkComponentsDefaultAsString = drinkComponentsDefaultAsString;
+    }
+
+    public List<DrinkComponent> getDrinkComponentsStandardRecipe() {
+        return drinkComponentsStandardRecipe;
+    }
+
+    public void setDrinkComponentsStandardRecipe(List<DrinkComponent> drinkComponentsStandardRecipe) {
+        this.drinkComponentsStandardRecipe = drinkComponentsStandardRecipe;
     }
 
     public DrinkSize.Type getDrinkSize() {

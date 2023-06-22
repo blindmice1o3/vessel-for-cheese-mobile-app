@@ -3,6 +3,7 @@ package com.jackingaming.vesselforcheesemobileapp.models.components.drinks.sweet
 import android.util.Log;
 
 import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem.Incrementable;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
 
 public class Liquid extends SweetenerOptions
         implements Incrementable {
@@ -88,6 +89,11 @@ public class Liquid extends SweetenerOptions
 
     @Override
     public void setTypeByString(String typeAsString) {
+        if (typeAsString.equals(DrinkComponent.NULL_TYPE_AS_STRING)) {
+            type = null;
+            return;
+        }
+
         Type[] enumValues = Type.values();
         for (int i = 0; i < enumValues.length; i++) {
             if (enumValues[i].name().equals(typeAsString)) {
