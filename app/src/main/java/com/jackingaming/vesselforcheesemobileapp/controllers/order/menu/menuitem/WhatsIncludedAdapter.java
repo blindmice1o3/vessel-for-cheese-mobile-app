@@ -88,6 +88,10 @@ public class WhatsIncludedAdapter extends RecyclerView.Adapter<RecyclerView.View
         return drinkComponents.size();
     }
 
+    protected boolean isWhatsIncludedActivity() {
+        return true;
+    }
+
     public void updateDrinkComponentByString(String name) {
         Log.i(TAG, "updateDrinkComponentByString(String)");
 
@@ -112,15 +116,24 @@ public class WhatsIncludedAdapter extends RecyclerView.Adapter<RecyclerView.View
             Log.e(TAG, "typeSelectedInStandardRecipe: " + typeSelectedInStandardRecipe);
             if (typeSelectedIsDefault && !typeSelectedInStandardRecipe) {
                 Log.e(TAG, "!!!if!!! (typeSelectedIsDefault && !typeSelectedInStandardRecipe)");
-                drinkComponentSelected.setTypeByString(DrinkComponent.NULL_TYPE_AS_STRING);
 
-                // TODO: removal isn't working properly (correct for MenuItemActivity,
-                //  but should not remove for CustomizeActivity.
-                drinkComponents.remove(indexSelected);
-                drinkComponentsDefaultAsString.remove(indexSelected);
-                notifyItemRemoved(indexSelected);
+                if (isWhatsIncludedActivity()) {
+                    // TODO: removal isn't working properly (correct for MenuItemActivity,
+                    //  but should not remove for CustomizeActivity.
+                    drinkComponentSelected.setTypeByString(DrinkComponent.NULL_TYPE_AS_STRING);
+
+                    drinkComponents.remove(indexSelected);
+                    drinkComponentsDefaultAsString.remove(indexSelected);
+                    notifyItemRemoved(indexSelected);
+                } else {
+                    drinkComponentSelected.setTypeByString(DrinkComponent.NULL_TYPE_AS_STRING);
+
+                    // Update the screen.
+                    viewHolderSelected.update(drinkComponentSelected, drinkComponentDefaultAsStringSelected);
+                }
             } else {
                 Log.e(TAG, "!!!else!!!");
+
                 // Update the underlying model.
                 drinkComponentSelected.setTypeByString(name);
 

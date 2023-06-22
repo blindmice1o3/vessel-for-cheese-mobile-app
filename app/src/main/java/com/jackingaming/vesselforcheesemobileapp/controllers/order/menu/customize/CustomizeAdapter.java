@@ -95,7 +95,7 @@ public class CustomizeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         public void bind(String keyGroup, List<DrinkComponent> drinkComponents, List<String> drinkComponentsDefault) {
             tvClassNameDrinkComponent.setText((keyGroup));
 
-            WhatsIncludedAdapter adapter = new WhatsIncludedAdapter(
+            CustomizeInnerAdapter adapter = new CustomizeInnerAdapter(
                     drinkComponents,
                     drinkComponentsDefault,
                     drinkComponentsStandardRecipe,
