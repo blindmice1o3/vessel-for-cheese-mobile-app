@@ -34,7 +34,7 @@ public class WhatsIncludedAdapter extends RecyclerView.Adapter<RecyclerView.View
     private WhatsIncludedAdapterListener listener;
 
     private int indexSelected = -1;
-    private DrinkComponentViewHolder viewHolderSelected;
+    private RecyclerView.ViewHolder viewHolderSelected;
 
     public WhatsIncludedAdapter(List<DrinkComponent> drinkComponents,
                                 List<String> drinkComponentsDefaultAsString,
@@ -129,7 +129,13 @@ public class WhatsIncludedAdapter extends RecyclerView.Adapter<RecyclerView.View
                     drinkComponentSelected.setTypeByString(DrinkComponent.NULL_TYPE_AS_STRING);
 
                     // Update the screen.
-                    viewHolderSelected.update(drinkComponentSelected, drinkComponentDefaultAsStringSelected);
+                    if (viewHolderSelected.getItemViewType() == VIEW_TYPE_SINGLE_SELECTION) {
+                        DrinkComponentViewHolder viewHolderDrinkComponent = (DrinkComponentViewHolder) viewHolderSelected;
+                        viewHolderDrinkComponent.update(drinkComponentSelected, drinkComponentDefaultAsStringSelected);
+                    } else {
+                        DrinkComponentIncrementableViewHolder viewHolderDrinkComponentIncrementable = (DrinkComponentIncrementableViewHolder) viewHolderSelected;
+                        viewHolderDrinkComponentIncrementable.update(drinkComponentSelected, drinkComponentDefaultAsStringSelected);
+                    }
                 }
             } else {
                 Log.e(TAG, "!!!else!!!");
@@ -138,7 +144,13 @@ public class WhatsIncludedAdapter extends RecyclerView.Adapter<RecyclerView.View
                 drinkComponentSelected.setTypeByString(name);
 
                 // Update the screen.
-                viewHolderSelected.update(drinkComponentSelected, drinkComponentDefaultAsStringSelected);
+                if (viewHolderSelected.getItemViewType() == VIEW_TYPE_SINGLE_SELECTION) {
+                    DrinkComponentViewHolder viewHolderDrinkComponent = (DrinkComponentViewHolder) viewHolderSelected;
+                    viewHolderDrinkComponent.update(drinkComponentSelected, drinkComponentDefaultAsStringSelected);
+                } else {
+                    DrinkComponentIncrementableViewHolder viewHolderDrinkComponentIncrementable = (DrinkComponentIncrementableViewHolder) viewHolderSelected;
+                    viewHolderDrinkComponentIncrementable.update(drinkComponentSelected, drinkComponentDefaultAsStringSelected);
+                }
             }
 
             // Tear-down steps.
@@ -338,14 +350,25 @@ public class WhatsIncludedAdapter extends RecyclerView.Adapter<RecyclerView.View
 
         @Override
         public void onClick(View view) {
-//            int position = getAdapterPosition(); // gets item position
-//            Log.i(TAG, "item in RV clicked! position: " + position);
-//            if (position != RecyclerView.NO_POSITION) { // Check if an item was deleted, but the user clicked it before the UI removed it
-//                if (listener != null) {
-//                    listener.onItemClicked(enumsAsString, view.findViewById(R.id.tv_name));
-//                    Log.i(TAG, "intentionally doing nothing");
-//                }
-//            }
+            indexSelected = getAdapterPosition(); // gets item position
+            viewHolderSelected = DrinkComponentIncrementableViewHolder.this;
+            Log.i(TAG, "item in RV clicked! position: " + indexSelected);
+            if (indexSelected != RecyclerView.NO_POSITION) { // Check if an item was deleted, but the user clicked it before the UI removed it
+                if (listener != null) {
+                    String[] names = drinkComponents.get(indexSelected).getEnumValuesAsStringArray();
+                    String nameDefault = drinkComponentsDefaultAsString.get(indexSelected);
+
+                    if (names.length > 1) {
+                        Log.i(TAG, "names.length > 1 --- names.length: " + names.length);
+                        listener.onItemClicked(names, nameDefault);
+                    } else {
+                        Log.i(TAG, "names.length <= 1 --- names.length: " + names.length);
+                        // intentionally doing nothing.
+                        // ivMinus's and ivAdd's click handlers will take care of this.
+                    }
+
+                }
+            }
         }
 
         @Override
