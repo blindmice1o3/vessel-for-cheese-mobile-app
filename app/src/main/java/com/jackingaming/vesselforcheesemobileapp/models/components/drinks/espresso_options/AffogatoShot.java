@@ -8,9 +8,8 @@ import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkC
 public class AffogatoShot extends EspressoOptions
         implements Incrementable {
     public static final String DEFAULT_TEXT_INIT = "Add Affogato-Style Shots";
-
-    private static final int DEFAULT_QUANTITY_MIN = 0;
-    private static final int DEFAULT_QUANTITY_MAX = 4;
+    public static final int DEFAULT_QUANTITY_MIN = 0;
+    public static final int DEFAULT_QUANTITY_MAX = 4;
 
     private int quantityMin = DEFAULT_QUANTITY_MIN;
     private int quantityMax = DEFAULT_QUANTITY_MAX;
@@ -18,6 +17,11 @@ public class AffogatoShot extends EspressoOptions
     @Override
     public void onIncrement() {
         Log.i(TAG, "start of onIncrement() --- quantity: " + quantity);
+
+        if (type == null) {
+            Log.i(TAG, "type == null... returning");
+            return;
+        }
 
         quantity++;
 
@@ -31,6 +35,11 @@ public class AffogatoShot extends EspressoOptions
     @Override
     public void onDecrement() {
         Log.i(TAG, "start of onDecrement() --- quantity: " + quantity);
+
+        if (type == null) {
+            Log.i(TAG, "type == null... returning");
+            return;
+        }
 
         quantity--;
 

@@ -13,6 +13,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.jackingaming.vesselforcheesemobileapp.R;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.flavor_options.FlavorOptions;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.sweetener_options.Liquid;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.sweetener_options.SweetenerOptions;
 
 import java.util.List;
 
@@ -140,16 +143,41 @@ public class WhatsIncludedAdapter extends RecyclerView.Adapter<RecyclerView.View
             } else {
                 Log.e(TAG, "!!!else!!!");
 
-                // Update the underlying model.
-                drinkComponentSelected.setTypeByString(name);
+                if (isWhatsIncludedActivity()) {
+                    // Update the underlying model.
+                    drinkComponentSelected.setTypeByString(name);
 
-                // Update the screen.
-                if (viewHolderSelected.getItemViewType() == VIEW_TYPE_SINGLE_SELECTION) {
-                    DrinkComponentViewHolder viewHolderDrinkComponent = (DrinkComponentViewHolder) viewHolderSelected;
-                    viewHolderDrinkComponent.update(drinkComponentSelected, drinkComponentDefaultAsStringSelected);
+                    // Update the screen.
+                    if (viewHolderSelected.getItemViewType() == VIEW_TYPE_SINGLE_SELECTION) {
+                        DrinkComponentViewHolder viewHolderDrinkComponent = (DrinkComponentViewHolder) viewHolderSelected;
+                        viewHolderDrinkComponent.update(drinkComponentSelected, drinkComponentDefaultAsStringSelected);
+                    } else {
+                        DrinkComponentIncrementableViewHolder viewHolderDrinkComponentIncrementable = (DrinkComponentIncrementableViewHolder) viewHolderSelected;
+                        viewHolderDrinkComponentIncrementable.update(drinkComponentSelected, drinkComponentDefaultAsStringSelected);
+                    }
                 } else {
-                    DrinkComponentIncrementableViewHolder viewHolderDrinkComponentIncrementable = (DrinkComponentIncrementableViewHolder) viewHolderSelected;
-                    viewHolderDrinkComponentIncrementable.update(drinkComponentSelected, drinkComponentDefaultAsStringSelected);
+                    if (drinkComponentSelected instanceof Liquid) {
+                        Liquid liquid = new Liquid(null, 1);
+                        int indexOneBehindSelected = (indexSelected == 0) ?
+                                (0) : (indexSelected - 1);
+                        drinkComponents.add(indexOneBehindSelected, liquid);
+                        drinkComponentsDefaultAsString.add(indexOneBehindSelected, Integer.toString(Liquid.DEFAULT_QUANTITY_MIN));
+
+                        drinkComponentSelected = drinkComponents.get(indexOneBehindSelected);
+                        drinkComponentDefaultAsStringSelected = drinkComponentsDefaultAsString.get(indexOneBehindSelected);
+                    }
+
+                    // Update the underlying model.
+                    drinkComponentSelected.setTypeByString(name);
+
+                    // Update the screen.
+                    if (viewHolderSelected.getItemViewType() == VIEW_TYPE_SINGLE_SELECTION) {
+                        DrinkComponentViewHolder viewHolderDrinkComponent = (DrinkComponentViewHolder) viewHolderSelected;
+                        viewHolderDrinkComponent.update(drinkComponentSelected, drinkComponentDefaultAsStringSelected);
+                    } else {
+                        DrinkComponentIncrementableViewHolder viewHolderDrinkComponentIncrementable = (DrinkComponentIncrementableViewHolder) viewHolderSelected;
+                        viewHolderDrinkComponentIncrementable.update(drinkComponentSelected, drinkComponentDefaultAsStringSelected);
+                    }
                 }
             }
 
@@ -355,14 +383,16 @@ public class WhatsIncludedAdapter extends RecyclerView.Adapter<RecyclerView.View
             Log.i(TAG, "item in RV clicked! position: " + indexSelected);
             if (indexSelected != RecyclerView.NO_POSITION) { // Check if an item was deleted, but the user clicked it before the UI removed it
                 if (listener != null) {
-                    String[] names = drinkComponents.get(indexSelected).getEnumValuesAsStringArray();
+                    DrinkComponent drinkComponentSelected = drinkComponents.get(indexSelected);
+                    Incrementable incrementable = (Incrementable) drinkComponentSelected;
+                    String[] names = drinkComponentSelected.getEnumValuesAsStringArray();
                     String nameDefault = drinkComponentsDefaultAsString.get(indexSelected);
 
-                    if (names.length > 1) {
-                        Log.i(TAG, "names.length > 1 --- names.length: " + names.length);
+                    if (names.length > 1 && incrementable.getQuantity() == 0) {
+                        Log.i(TAG, "(names.length > 1) && (quantity == 0) --- names.length: " + names.length);
                         listener.onItemClicked(names, nameDefault);
                     } else {
-                        Log.i(TAG, "names.length <= 1 --- names.length: " + names.length);
+                        Log.i(TAG, "(names.length <= 1) || (quantity != 0) --- names.length: " + names.length);
                         // intentionally doing nothing.
                         // ivMinus's and ivAdd's click handlers will take care of this.
                     }

@@ -8,9 +8,8 @@ import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkC
 public class Chai extends TeaOptions
         implements Incrementable {
     public static final String DEFAULT_TEXT_INIT = "Add Chai";
-
-    private static final int DEFAULT_QUANTITY_MIN = 0;
-    private static final int DEFAULT_QUANTITY_MAX = Integer.MAX_VALUE;
+    public static final int DEFAULT_QUANTITY_MIN = 0;
+    public static final int DEFAULT_QUANTITY_MAX = Integer.MAX_VALUE;
 
     private int quantityMin = DEFAULT_QUANTITY_MIN;
     private int quantityMax = DEFAULT_QUANTITY_MAX;
@@ -34,6 +33,11 @@ public class Chai extends TeaOptions
     @Override
     public void onDecrement() {
         Log.i(TAG, "start of onDecrement() --- quantity: " + quantity);
+
+        if (type == null) {
+            Log.i(TAG, "type == null... returning");
+            return;
+        }
 
         quantity--;
 
