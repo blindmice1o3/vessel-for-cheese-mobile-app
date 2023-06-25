@@ -151,7 +151,7 @@ public class MenuItemActivity extends AppCompatActivity {
                     pairDefaultAndTypes.first,
                     pairDefaultAndTypes.second,
                     drink.getDrinkComponentsStandardRecipe(),
-                    new WhatsIncludedAdapter.WhatsIncludedAdapterListener() {
+                    new DrinkComponentBaseAdapter.DrinkComponentBaseAdapterListener() {
                         @Override
                         public void onItemClicked(String[] names, String nameDefault) {
                             Log.i(TAG, "onItemClicked(String[] names, String nameDefault)");
