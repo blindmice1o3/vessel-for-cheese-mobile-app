@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jackingaming.vesselforcheesemobileapp.R;
+import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem.DrinkComponentBaseAdapter;
 import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem.ModalBottomSheet;
 import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem.WhatsIncludedAdapter;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
@@ -34,7 +35,7 @@ public class CustomizeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     private List<DrinkComponent> drinkComponentsStandardRecipe;
     private List<DrinkComponentDetails> dataProcessed = new ArrayList<>();
     // TODO: track indexSelected
-    private Map<String, WhatsIncludedAdapter> adapterSelected = new HashMap<>();
+    private Map<String, DrinkComponentBaseAdapter> adapterSelected = new HashMap<>();
     private String keyGroupSelected;
 
     public CustomizeAdapter(AppCompatActivity activity, Drink drink) {
@@ -99,7 +100,7 @@ public class CustomizeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                     drinkComponents,
                     drinkComponentsDefault,
                     drinkComponentsStandardRecipe,
-                    new WhatsIncludedAdapter.WhatsIncludedAdapterListener() {
+                    new DrinkComponentBaseAdapter.DrinkComponentBaseAdapterListener() {
                         @Override
                         public void onItemClicked(String[] names, String nameDefault) {
                             Log.i(TAG, "onItemClicked(String[] names, String nameDefault)");
