@@ -1,6 +1,9 @@
 package com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.customize;
 
+import android.util.Log;
+
 import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem.DrinkComponentBaseAdapter;
+import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem.Incrementable;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.sweetener_options.Liquid;
 
@@ -46,5 +49,24 @@ public class CustomizeInnerAdapter extends DrinkComponentBaseAdapter {
         drinkComponentSelected.setTypeByString(name);
 
         updateScreen(drinkComponentSelected, drinkComponentDefaultAsStringSelected);
+    }
+
+    @Override
+    protected void handleClickForViewHolderIncrementable() {
+        if (listener != null) {
+            DrinkComponent drinkComponentSelected = drinkComponents.get(indexSelected);
+            Incrementable incrementable = (Incrementable) drinkComponentSelected;
+            String[] names = drinkComponentSelected.getEnumValuesAsStringArray();
+            String nameDefault = drinkComponentsDefaultAsString.get(indexSelected);
+
+            if (names.length > 1 && incrementable.getQuantity() == 0) {
+                Log.i(TAG, "(names.length > 1) && (quantity == 0) --- names.length: " + names.length);
+                listener.onItemClicked(names, nameDefault);
+            } else {
+                Log.i(TAG, "(names.length <= 1) || (quantity != 0) --- names.length: " + names.length);
+                // intentionally doing nothing.
+                // ivMinus's and ivAdd's click handlers will take care of this.
+            }
+        }
     }
 }

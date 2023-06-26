@@ -160,12 +160,12 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
         public void bind(DrinkComponent drinkComponent, String drinkComponentDefaultAsString) {
             Log.e(TAG, "bind(DrinkComponent, String)");
 
-            tvBorderTitle.setText(drinkComponent.getClassAsString());
-
             updateScreen(drinkComponent, drinkComponentDefaultAsString);
         }
 
         public void updateScreen(DrinkComponent drinkComponent, String drinkComponentDefaultAsString) {
+            tvBorderTitle.setText(drinkComponent.getClassAsString());
+
             boolean init = drinkComponent.getTypeAsString().equals(DrinkComponent.NULL_TYPE_AS_STRING);
             if (init) {
                 tvName.setText(drinkComponent.getTextInit());
@@ -204,11 +204,7 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
             viewHolderSelected = ViewHolderSingleSelection.this;
             Log.i(TAG, "item in RV clicked! position: " + indexSelected);
             if (indexSelected != RecyclerView.NO_POSITION) { // Check if an item was deleted, but the user clicked it before the UI removed it
-                if (listener != null) {
-                    String[] names = drinkComponents.get(indexSelected).getEnumValuesAsStringArray();
-                    String nameDefault = drinkComponentsDefaultAsString.get(indexSelected);
-                    listener.onItemClicked(names, nameDefault);
-                }
+                handleClickForViewHolderSingleSelection();
             }
         }
 
@@ -216,15 +212,15 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
         public boolean onLongClick(View view) {
             int position = getAdapterPosition(); // gets item position
             Log.i(TAG, "item in RV long-clicked! position: " + position);
-            if (position != RecyclerView.NO_POSITION) { // Check if an item was deleted, but the user clicked it before the UI removed it
-                if (listener != null) {
-                    DrinkComponent drinkComponent = drinkComponents.get(position);
-                    String[] enumsAsString = drinkComponent.getEnumValuesAsStringArray();
-                    String nameDefault = drinkComponentsDefaultAsString.get(position);
-                    listener.onItemLongClicked(enumsAsString, nameDefault);
-                    return true;
-                }
-            }
+//            if (position != RecyclerView.NO_POSITION) { // Check if an item was deleted, but the user clicked it before the UI removed it
+//                if (listener != null) {
+//                    DrinkComponent drinkComponent = drinkComponents.get(position);
+//                    String[] enumsAsString = drinkComponent.getEnumValuesAsStringArray();
+//                    String nameDefault = drinkComponentsDefaultAsString.get(position);
+//                    listener.onItemLongClicked(enumsAsString, nameDefault);
+//                    return true;
+//                }
+//            }
             return false;
         }
     }
@@ -254,14 +250,10 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
         public void bind(DrinkComponent drinkComponent, String drinkComponentDefaultAsString) {
             Log.e(TAG, "bind(DrinkComponent, String)");
 
-            Incrementable incrementable = (Incrementable) drinkComponent;
-
-            tvBorderTitle.setText(drinkComponent.getClassAsString());
-
             ivMinus.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    incrementable.onDecrement();
+                    ((Incrementable) drinkComponent).onDecrement();
 
                     updateScreen(drinkComponent, drinkComponentDefaultAsString);
                 }
@@ -270,7 +262,7 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
             ivAdd.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    incrementable.onIncrement();
+                    ((Incrementable) drinkComponent).onIncrement();
 
                     updateScreen(drinkComponent, drinkComponentDefaultAsString);
                 }
@@ -281,8 +273,9 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
 
         private void updateScreen(DrinkComponent drinkComponent, String drinkComponentDefaultAsString) {
             Incrementable incrementable = (Incrementable) drinkComponent;
-
             String quantityAsString = Integer.toString(incrementable.getQuantity());
+
+            tvBorderTitle.setText(drinkComponent.getClassAsString());
             tvQuantity.setText(quantityAsString);
 
             boolean init = drinkComponent.getTypeAsString().equals(DrinkComponent.NULL_TYPE_AS_STRING);
@@ -328,29 +321,14 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
             viewHolderSelected = ViewHolderIncrementable.this;
             Log.i(TAG, "item in RV clicked! position: " + indexSelected);
             if (indexSelected != RecyclerView.NO_POSITION) { // Check if an item was deleted, but the user clicked it before the UI removed it
-                if (listener != null) {
-                    DrinkComponent drinkComponentSelected = drinkComponents.get(indexSelected);
-                    Incrementable incrementable = (Incrementable) drinkComponentSelected;
-                    String[] names = drinkComponentSelected.getEnumValuesAsStringArray();
-                    String nameDefault = drinkComponentsDefaultAsString.get(indexSelected);
-
-                    if (names.length > 1 && incrementable.getQuantity() == 0) {
-                        Log.i(TAG, "(names.length > 1) && (quantity == 0) --- names.length: " + names.length);
-                        listener.onItemClicked(names, nameDefault);
-                    } else {
-                        Log.i(TAG, "(names.length <= 1) || (quantity != 0) --- names.length: " + names.length);
-                        // intentionally doing nothing.
-                        // ivMinus's and ivAdd's click handlers will take care of this.
-                    }
-
-                }
+                handleClickForViewHolderIncrementable();
             }
         }
 
         @Override
         public boolean onLongClick(View view) {
-//            int position = getAdapterPosition(); // gets item position
-//            Log.i(TAG, "item in RV long-clicked! position: " + position);
+            int position = getAdapterPosition(); // gets item position
+            Log.i(TAG, "item in RV long-clicked! position: " + position);
 //            if (position != RecyclerView.NO_POSITION) { // Check if an item was deleted, but the user clicked it before the UI removed it
 //                if (listener != null) {
 //                    listener.onItemLongClicked(enumsAsString, view.findViewById(R.id.tv_name));
@@ -359,6 +337,18 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
 //                }
 //            }
             return false;
+        }
+    }
+
+    protected void handleClickForViewHolderIncrementable() {
+        // intentionally doing nothing (CustomizeInnerAdapter overrides this).
+    }
+
+    private void handleClickForViewHolderSingleSelection() {
+        if (listener != null) {
+            String[] names = drinkComponents.get(indexSelected).getEnumValuesAsStringArray();
+            String nameDefault = drinkComponentsDefaultAsString.get(indexSelected);
+            listener.onItemClicked(names, nameDefault);
         }
     }
 }
