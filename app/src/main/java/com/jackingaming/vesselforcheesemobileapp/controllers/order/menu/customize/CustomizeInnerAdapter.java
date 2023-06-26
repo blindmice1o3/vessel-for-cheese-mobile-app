@@ -28,11 +28,8 @@ public class CustomizeInnerAdapter extends DrinkComponentBaseAdapter {
     protected void handleSelectionOfEverythingElse(DrinkComponent drinkComponentSelected, String drinkComponentDefaultAsStringSelected, String name) {
         if (drinkComponentSelected instanceof Liquid) {
             Liquid liquid = new Liquid(null, 1);
-            int indexOneBehindSelected = (indexSelected == 0) ?
-                    (0) : (indexSelected - 1);
-            drinkComponents.add(indexOneBehindSelected, liquid);
-            drinkComponentsDefaultAsString.add(indexOneBehindSelected, Integer.toString(Liquid.DEFAULT_QUANTITY_MIN));
-
+            drinkComponents.add(indexSelected, liquid);
+            drinkComponentsDefaultAsString.add(indexSelected, Integer.toString(Liquid.DEFAULT_QUANTITY_MIN));
             // TODO: separate a base version out from WhatsIncludedAdapter,
             //  have both CustomizeInnerAdapter and WhatsIncludedAdapter
             //  inherit from base version.
@@ -41,14 +38,17 @@ public class CustomizeInnerAdapter extends DrinkComponentBaseAdapter {
             //  way the ones with non-null type can have quantity == 0 behave
             //  independently/normally instead of being intertwined with
             //  identifying "invoker").
-            drinkComponentSelected = drinkComponents.get(indexOneBehindSelected);
-            drinkComponentDefaultAsStringSelected = drinkComponentsDefaultAsString.get(indexOneBehindSelected);
+            drinkComponentSelected = drinkComponents.get(indexSelected);
+            drinkComponentDefaultAsStringSelected = drinkComponentsDefaultAsString.get(indexSelected);
+
+            // Update the underlying model.
+            drinkComponentSelected.setTypeByString(name);
+            notifyItemInserted(indexSelected);
+        } else {
+            // Update the underlying model.
+            drinkComponentSelected.setTypeByString(name);
+            updateScreen(drinkComponentSelected, drinkComponentDefaultAsStringSelected);
         }
-
-        // Update the underlying model.
-        drinkComponentSelected.setTypeByString(name);
-
-        updateScreen(drinkComponentSelected, drinkComponentDefaultAsStringSelected);
     }
 
     @Override
@@ -59,11 +59,12 @@ public class CustomizeInnerAdapter extends DrinkComponentBaseAdapter {
             String[] names = drinkComponentSelected.getEnumValuesAsStringArray();
             String nameDefault = drinkComponentsDefaultAsString.get(indexSelected);
 
-            if (names.length > 1 && incrementable.getQuantity() == 0) {
-                Log.i(TAG, "(names.length > 1) && (quantity == 0) --- names.length: " + names.length);
+            if (names.length > 1 &&
+                    drinkComponentSelected.getTypeAsString().equals(DrinkComponent.NULL_TYPE_AS_STRING)) {
+                Log.i(TAG, "(names.length > 1) && (type == null) --- names.length: " + names.length);
                 listener.onItemClicked(names, nameDefault);
             } else {
-                Log.i(TAG, "(names.length <= 1) || (quantity != 0) --- names.length: " + names.length);
+                Log.i(TAG, "(names.length <= 1) || (type != null) --- names.length: " + names.length);
                 // intentionally doing nothing.
                 // ivMinus's and ivAdd's click handlers will take care of this.
             }

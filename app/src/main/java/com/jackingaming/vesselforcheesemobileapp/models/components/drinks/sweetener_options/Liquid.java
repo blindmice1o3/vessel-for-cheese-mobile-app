@@ -95,7 +95,7 @@ public class Liquid extends SweetenerOptions
 
     @Override
     public String getTextInit() {
-        return (quantity == 0) ? (DEFAULT_TEXT_INIT) : ("Add " + type.name());
+        return (type == null) ? (DEFAULT_TEXT_INIT) : ("Add " + type.name());
     }
 
     @Override

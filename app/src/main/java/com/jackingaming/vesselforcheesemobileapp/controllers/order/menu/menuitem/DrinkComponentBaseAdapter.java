@@ -98,7 +98,6 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
 
         boolean typeSelectedIsDefault =
                 name.equals(drinkComponentDefaultAsStringSelected);
-
         boolean typeSelectedInStandardRecipe = false;
         for (DrinkComponent drinkComponent : drinkComponentsStandardRecipe) {
             Log.e(TAG, "drinkComponent from drinkComponentsStandardRecipe ---> class: " + drinkComponent.getClassAsString() + ", type:" + drinkComponent.getTypeAsString());
@@ -281,6 +280,7 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
             boolean init = drinkComponent.getTypeAsString().equals(DrinkComponent.NULL_TYPE_AS_STRING);
             boolean quantityIsZero = incrementable.getQuantity() == 0;
             if (init || quantityIsZero) {
+                Log.e(TAG, "init || quantityIsZero (invisible)");
                 tvName.setText(drinkComponent.getTextInit());
 
                 tvBorderTitle.setVisibility(View.INVISIBLE);
@@ -289,6 +289,7 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
 
                 viewBorder.setBackgroundResource(R.drawable.border_drink_component_null);
             } else {
+                Log.e(TAG, "else (visible)");
                 tvName.setText(drinkComponent.getTypeAsString());
 
                 tvBorderTitle.setVisibility(View.VISIBLE);
