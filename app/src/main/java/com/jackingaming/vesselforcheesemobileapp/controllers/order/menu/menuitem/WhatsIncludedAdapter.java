@@ -12,6 +12,16 @@ public class WhatsIncludedAdapter extends DrinkComponentBaseAdapter {
     }
 
     @Override
+    protected void handleSelectionOfDefaultFromStandardRecipe(DrinkComponent drinkComponentSelected, String drinkComponentDefaultAsStringSelected, String name) {
+        handleSelectionFromStandardRecipe(drinkComponentSelected, drinkComponentDefaultAsStringSelected, name);
+    }
+
+    @Override
+    protected void handleSelectionOfNonDefaultFromStandardRecipe(DrinkComponent drinkComponentSelected, String drinkComponentDefaultAsStringSelected, String name) {
+        handleSelectionFromStandardRecipe(drinkComponentSelected, drinkComponentDefaultAsStringSelected, name);
+    }
+
+    @Override
     protected void handleSelectionOfDefaultFromNonStandardRecipe(DrinkComponent drinkComponentSelected, String drinkComponentDefaultAsStringSelected) {
         // Update the underlying model.
         drinkComponentSelected.setTypeByString(DrinkComponent.NULL_TYPE_AS_STRING);
@@ -22,7 +32,11 @@ public class WhatsIncludedAdapter extends DrinkComponentBaseAdapter {
     }
 
     @Override
-    protected void handleSelectionOfEverythingElse(DrinkComponent drinkComponentSelected, String drinkComponentDefaultAsStringSelected, String name) {
+    protected void handleSelectionOfNonDefaultFromNonStandardRecipe(DrinkComponent drinkComponentSelected, String drinkComponentDefaultAsStringSelected, String name) {
+        handleSelectionFromStandardRecipe(drinkComponentSelected, drinkComponentDefaultAsStringSelected, name);
+    }
+
+    private void handleSelectionFromStandardRecipe(DrinkComponent drinkComponentSelected, String drinkComponentDefaultAsStringSelected, String name) {
         // Update the underlying model.
         drinkComponentSelected.setTypeByString(name);
 

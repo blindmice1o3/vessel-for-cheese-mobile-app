@@ -109,14 +109,25 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
         }
         Log.e(TAG, "typeSelectedIsDefault: " + typeSelectedIsDefault);
         Log.e(TAG, "typeSelectedInStandardRecipe: " + typeSelectedInStandardRecipe);
-        if (typeSelectedIsDefault && !typeSelectedInStandardRecipe) {
-            Log.e(TAG, "!!!if!!! (typeSelectedIsDefault && !typeSelectedInStandardRecipe)");
 
-            handleSelectionOfDefaultFromNonStandardRecipe(drinkComponentSelected, null);
+        if (typeSelectedInStandardRecipe) {
+            // Standard
+            if (typeSelectedIsDefault) {
+                handleSelectionOfDefaultFromStandardRecipe(drinkComponentSelected,
+                        drinkComponentDefaultAsStringSelected, name);
+            } else {
+                handleSelectionOfNonDefaultFromStandardRecipe(drinkComponentSelected,
+                        drinkComponentDefaultAsStringSelected, name);
+            }
         } else {
-            Log.e(TAG, "!!!else!!!");
-
-            handleSelectionOfEverythingElse(drinkComponentSelected, drinkComponentDefaultAsStringSelected, name);
+            // Non-Standard (Allowables)
+            if (typeSelectedIsDefault) {
+                handleSelectionOfDefaultFromNonStandardRecipe(drinkComponentSelected,
+                        null);
+            } else {
+                handleSelectionOfNonDefaultFromNonStandardRecipe(drinkComponentSelected,
+                        drinkComponentDefaultAsStringSelected, name);
+            }
         }
 
         // Tear-down steps.
@@ -124,7 +135,8 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
         viewHolderSelected = null;
     }
 
-    protected void updateScreen(DrinkComponent drinkComponentSelected, String drinkComponentDefaultAsStringSelected) {
+    protected void updateScreen(DrinkComponent drinkComponentSelected,
+                                String drinkComponentDefaultAsStringSelected) {
         if (viewHolderSelected.getItemViewType() == VIEW_TYPE_SINGLE_SELECTION) {
             ViewHolderSingleSelection viewHolderSingleSelection = (ViewHolderSingleSelection) viewHolderSelected;
             viewHolderSingleSelection.updateScreen(drinkComponentSelected, drinkComponentDefaultAsStringSelected);
@@ -134,9 +146,13 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
         }
     }
 
-    abstract protected void handleSelectionOfDefaultFromNonStandardRecipe(DrinkComponent drinkComponentSelected, String drinkComponentDefaultAsStringSelected);
+    protected abstract void handleSelectionOfDefaultFromStandardRecipe(DrinkComponent drinkComponentSelected, String drinkComponentDefaultAsStringSelected, String name);
 
-    abstract protected void handleSelectionOfEverythingElse(DrinkComponent drinkComponentSelected, String drinkComponentDefaultAsStringSelected, String name);
+    protected abstract void handleSelectionOfNonDefaultFromStandardRecipe(DrinkComponent drinkComponentSelected, String drinkComponentDefaultAsStringSelected, String name);
+
+    protected abstract void handleSelectionOfDefaultFromNonStandardRecipe(DrinkComponent drinkComponentSelected, String drinkComponentDefaultAsStringSelected);
+
+    protected abstract void handleSelectionOfNonDefaultFromNonStandardRecipe(DrinkComponent drinkComponentSelected, String drinkComponentDefaultAsStringSelected, String name);
 
     class ViewHolderSingleSelection extends RecyclerView.ViewHolder
             implements View.OnClickListener, View.OnLongClickListener {
@@ -339,6 +355,7 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
 //            }
             return false;
         }
+
     }
 
     protected void handleClickForViewHolderIncrementable() {
@@ -353,3 +370,5 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
         }
     }
 }
+
+

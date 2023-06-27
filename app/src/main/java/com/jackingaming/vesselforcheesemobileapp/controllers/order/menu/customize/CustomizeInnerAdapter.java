@@ -17,6 +17,18 @@ public class CustomizeInnerAdapter extends DrinkComponentBaseAdapter {
     }
 
     @Override
+    protected void handleSelectionOfDefaultFromStandardRecipe(DrinkComponent drinkComponentSelected, String drinkComponentDefaultAsStringSelected, String name) {
+        handleSelectionOfEverythingElse(drinkComponentSelected,
+                drinkComponentDefaultAsStringSelected, name);
+    }
+
+    @Override
+    protected void handleSelectionOfNonDefaultFromStandardRecipe(DrinkComponent drinkComponentSelected, String drinkComponentDefaultAsStringSelected, String name) {
+        handleSelectionOfEverythingElse(drinkComponentSelected,
+                drinkComponentDefaultAsStringSelected, name);
+    }
+
+    @Override
     protected void handleSelectionOfDefaultFromNonStandardRecipe(DrinkComponent drinkComponentSelected, String drinkComponentDefaultAsStringSelected) {
         // Update the underlying model.
         drinkComponentSelected.setTypeByString(DrinkComponent.NULL_TYPE_AS_STRING);
@@ -25,15 +37,17 @@ public class CustomizeInnerAdapter extends DrinkComponentBaseAdapter {
     }
 
     @Override
-    protected void handleSelectionOfEverythingElse(DrinkComponent drinkComponentSelected, String drinkComponentDefaultAsStringSelected, String name) {
+    protected void handleSelectionOfNonDefaultFromNonStandardRecipe(DrinkComponent drinkComponentSelected, String drinkComponentDefaultAsStringSelected, String name) {
+        handleSelectionOfEverythingElse(drinkComponentSelected,
+                drinkComponentDefaultAsStringSelected, name);
+    }
+
+    private void handleSelectionOfEverythingElse(DrinkComponent drinkComponentSelected, String drinkComponentDefaultAsStringSelected, String name) {
         if (drinkComponentSelected instanceof Liquid) {
             Liquid liquid = new Liquid(null, 1);
             drinkComponents.add(indexSelected, liquid);
             drinkComponentsDefaultAsString.add(indexSelected, Integer.toString(Liquid.DEFAULT_QUANTITY_MIN));
-            // TODO: separate a base version out from WhatsIncludedAdapter,
-            //  have both CustomizeInnerAdapter and WhatsIncludedAdapter
-            //  inherit from base version.
-            //
+            
             // TODO: maybe used quantity = -1 to identify the "invoker" (this
             //  way the ones with non-null type can have quantity == 0 behave
             //  independently/normally instead of being intertwined with
