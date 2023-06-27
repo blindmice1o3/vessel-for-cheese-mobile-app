@@ -7,6 +7,7 @@ import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.sweetener_options.Liquid;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CustomizeInnerAdapter extends DrinkComponentBaseAdapter {
@@ -47,7 +48,7 @@ public class CustomizeInnerAdapter extends DrinkComponentBaseAdapter {
             Liquid liquid = new Liquid(null, 1);
             drinkComponents.add(indexSelected, liquid);
             drinkComponentsDefaultAsString.add(indexSelected, Integer.toString(Liquid.DEFAULT_QUANTITY_MIN));
-            
+
             // TODO: maybe used quantity = -1 to identify the "invoker" (this
             //  way the ones with non-null type can have quantity == 0 behave
             //  independently/normally instead of being intertwined with
@@ -69,14 +70,29 @@ public class CustomizeInnerAdapter extends DrinkComponentBaseAdapter {
     protected void handleClickForViewHolderIncrementable() {
         if (listener != null) {
             DrinkComponent drinkComponentSelected = drinkComponents.get(indexSelected);
-            Incrementable incrementable = (Incrementable) drinkComponentSelected;
             String[] names = drinkComponentSelected.getEnumValuesAsStringArray();
+            Incrementable incrementable = (Incrementable) drinkComponentSelected;
             String nameDefault = drinkComponentsDefaultAsString.get(indexSelected);
+
+            List<String> namesFiltered = new ArrayList<>();
+            for (String name : names) {
+                boolean selectedPreviously = false;
+
+                for (DrinkComponent drinkComponent : drinkComponents) {
+                    if (name.equals(drinkComponent.getTypeAsString())) {
+                        selectedPreviously = true;
+                    }
+                }
+
+                if (!selectedPreviously) {
+                    namesFiltered.add(name);
+                }
+            }
 
             if (names.length > 1 &&
                     drinkComponentSelected.getTypeAsString().equals(DrinkComponent.NULL_TYPE_AS_STRING)) {
                 Log.i(TAG, "(names.length > 1) && (type == null) --- names.length: " + names.length);
-                listener.onItemClicked(names, nameDefault);
+                listener.onItemClicked(namesFiltered.toArray(new String[0]), nameDefault);
             } else {
                 Log.i(TAG, "(names.length <= 1) || (type != null) --- names.length: " + names.length);
                 // intentionally doing nothing.
