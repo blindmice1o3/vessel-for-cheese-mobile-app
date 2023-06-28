@@ -6,6 +6,8 @@ import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem
 import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem.Incrementable;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.sweetener_options.Liquid;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.sweetener_options.Packet;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.sweetener_options.SweetenerOptions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,10 +46,21 @@ public class CustomizeInnerAdapter extends DrinkComponentBaseAdapter {
     }
 
     private void handleSelectionOfEverythingElse(DrinkComponent drinkComponentSelected, String drinkComponentDefaultAsStringSelected, String name) {
-        if (drinkComponentSelected instanceof Liquid) {
-            Liquid liquid = new Liquid(null, 1);
-            drinkComponents.add(indexSelected, liquid);
-            drinkComponentsDefaultAsString.add(indexSelected, Integer.toString(Liquid.DEFAULT_QUANTITY_MIN));
+        if (drinkComponentSelected instanceof SweetenerOptions) {
+            DrinkComponent drinkComponentToAdd = null;
+            int drinkComponentDefaultAsStringToAdd = 0;
+            if (drinkComponentSelected instanceof Liquid) {
+                drinkComponentToAdd = new Liquid(null, 1);
+                drinkComponentDefaultAsStringToAdd = Liquid.DEFAULT_QUANTITY_MIN;
+
+            } else if (drinkComponentSelected instanceof Packet) {
+                drinkComponentToAdd = new Packet(null, 1);
+                drinkComponentDefaultAsStringToAdd = Packet.DEFAULT_QUANTITY_MIN;
+            }
+
+
+            drinkComponents.add(indexSelected, drinkComponentToAdd);
+            drinkComponentsDefaultAsString.add(indexSelected, Integer.toString(drinkComponentDefaultAsStringToAdd));
 
             // TODO: maybe used quantity = -1 to identify the "invoker" (this
             //  way the ones with non-null type can have quantity == 0 behave

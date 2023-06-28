@@ -11,6 +11,7 @@ import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.milk_o
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.milk_options.MilkOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.milk_options.Temperature;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.sweetener_options.Liquid;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.sweetener_options.Packet;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.sweetener_options.SweetenerOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.tea_options.Chai;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.tea_options.TeaOptions;
@@ -39,6 +40,7 @@ public class CaffeLatte extends Lattes {
     public static final PrepOptions.Type DEFAULT_PREP_OPTIONS = PrepOptions.Type.NONE;
     public static final int DEFAULT_NUMBER_OF_CHAI_SCOOPS = 0;
     public static final int DEFAULT_NUMBER_OF_SWEETENER_LIQUID_PUMPS = 0;
+    public static final int DEFAULT_NUMBER_OF_SWEETENER_PACKET_PACKS = 0;
 
     public static final double DEFAULT_PRICE_SMALL = 2.95;
     public static final double DEFAULT_PRICE_MEDIUM = 3.45;
@@ -69,6 +71,8 @@ public class CaffeLatte extends Lattes {
         List<DrinkComponent> sweetenerOptions = new ArrayList<>();
         Liquid liquid = new Liquid(null, DEFAULT_NUMBER_OF_SWEETENER_LIQUID_PUMPS);
         sweetenerOptions.add(liquid);
+        Packet packet = new Packet(null, DEFAULT_NUMBER_OF_SWEETENER_PACKET_PACKS);
+        sweetenerOptions.add(packet);
 
         // MILK_OPTIONS (defaults)
         List<String> milkOptionsDefault = new ArrayList<>();
@@ -87,6 +91,7 @@ public class CaffeLatte extends Lattes {
         // SWEETENER_OPTIONS (defaults)
         List<String> sweetenerOptionsDefault = new ArrayList<>();
         sweetenerOptionsDefault.add(Integer.toString(DEFAULT_NUMBER_OF_SWEETENER_LIQUID_PUMPS));
+        sweetenerOptionsDefault.add(Integer.toString(DEFAULT_NUMBER_OF_SWEETENER_PACKET_PACKS));
 
         drinkComponents.put(MilkOptions.TAG, milkOptions);
         drinkComponents.put(EspressoOptions.TAG, espressoOptions);
