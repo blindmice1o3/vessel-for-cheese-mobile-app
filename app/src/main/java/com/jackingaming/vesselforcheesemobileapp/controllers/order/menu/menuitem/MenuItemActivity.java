@@ -214,14 +214,24 @@ public class MenuItemActivity extends AppCompatActivity {
                 for (int j = 0; j < types.size(); j++) {
                     DrinkComponent drinkComponent = types.get(j);
                     String drinkComponentDefault = typesDefault.get(j);
+
+                    if (drinkComponent instanceof Incrementable) {
+                        int quantity = ((Incrementable) drinkComponent).getQuantity();
+
+                        if (quantity == DrinkComponent.QUANTITY_FOR_INVOKER) {
+                            Log.i(TAG, "skipping - quantity == DrinkComponent.QUANTITY_FOR_INVOKER");
+                            continue;
+                        }
+                    }
+
                     if (drinkComponent.getTypeAsString().equals(DrinkComponent.NULL_TYPE_AS_STRING)) {
                         Log.i(TAG, "skipping - drinkComponent.getTypeAsString().equals(DrinkComponent.NULL_TYPE_AS_STRING)");
                         continue;
-                    } else {
-                        Log.i(TAG, "adding - drinkComponent.getTypeAsString(): " + drinkComponent.getTypeAsString());
-                        drinkComponentsWhatsIncluded.add(drinkComponent);
-                        drinkComponentsWhatsIncludedDefaultAsString.add(drinkComponentDefault);
                     }
+
+                    Log.i(TAG, "adding - drinkComponent.getTypeAsString(): " + drinkComponent.getTypeAsString());
+                    drinkComponentsWhatsIncluded.add(drinkComponent);
+                    drinkComponentsWhatsIncludedDefaultAsString.add(drinkComponentDefault);
                 }
             } else {
                 Log.i(TAG, i + "!contains: " + Menu.DRINK_COMPONENTS_KEYS.get(i));

@@ -33,8 +33,13 @@ public class CustomizeInnerAdapter extends DrinkComponentBaseAdapter {
 
     @Override
     protected void handleSelectionOfDefaultFromNonStandardRecipe(DrinkComponent drinkComponentSelected, String drinkComponentDefaultAsStringSelected) {
-        // Update the underlying model.
-        drinkComponentSelected.setTypeByString(DrinkComponent.NULL_TYPE_AS_STRING);
+        if (drinkComponentSelected instanceof Incrementable) {
+            // Update the underlying model.
+            ((Incrementable) drinkComponentSelected).setQuantity(DrinkComponent.QUANTITY_FOR_INVOKER);
+        } else {
+            // Update the underlying model.
+            drinkComponentSelected.setTypeByString(DrinkComponent.NULL_TYPE_AS_STRING);
+        }
 
         updateScreen(drinkComponentSelected, drinkComponentDefaultAsStringSelected);
     }
@@ -52,12 +57,10 @@ public class CustomizeInnerAdapter extends DrinkComponentBaseAdapter {
             if (drinkComponentSelected instanceof Liquid) {
                 drinkComponentToAdd = new Liquid(null, 1);
                 drinkComponentDefaultAsStringToAdd = Liquid.DEFAULT_QUANTITY_MIN;
-
             } else if (drinkComponentSelected instanceof Packet) {
                 drinkComponentToAdd = new Packet(null, 1);
                 drinkComponentDefaultAsStringToAdd = Packet.DEFAULT_QUANTITY_MIN;
             }
-
 
             drinkComponents.add(indexSelected, drinkComponentToAdd);
             drinkComponentsDefaultAsString.add(indexSelected, Integer.toString(drinkComponentDefaultAsStringToAdd));
@@ -83,33 +86,39 @@ public class CustomizeInnerAdapter extends DrinkComponentBaseAdapter {
     protected void handleClickForViewHolderIncrementable() {
         if (listener != null) {
             DrinkComponent drinkComponentSelected = drinkComponents.get(indexSelected);
-            String[] names = drinkComponentSelected.getEnumValuesAsStringArray();
+            String drinkComponentDefaultAsString = drinkComponentsDefaultAsString.get(indexSelected);
             Incrementable incrementable = (Incrementable) drinkComponentSelected;
-            String nameDefault = drinkComponentsDefaultAsString.get(indexSelected);
+            int quantity = incrementable.getQuantity();
 
-            List<String> namesFiltered = new ArrayList<>();
-            for (String name : names) {
-                boolean selectedPreviously = false;
+            if (quantity == DrinkComponent.QUANTITY_FOR_INVOKER) {
+                Log.i(TAG, "quantity == DrinkComponent.QUANTITY_FOR_INVOKER");
 
-                for (DrinkComponent drinkComponent : drinkComponents) {
-                    if (name.equals(drinkComponent.getTypeAsString())) {
-                        selectedPreviously = true;
+                String[] enumValues = drinkComponentSelected.getEnumValuesAsStringArray();
+                if (enumValues.length > 1) {
+                    Log.i(TAG, "enumValues.length > 1");
+                    List<String> enumValuesFiltered = new ArrayList<>();
+                    for (String enumValueAsString : enumValues) {
+                        boolean selectedPreviously = false;
+
+                        for (DrinkComponent drinkComponent : drinkComponents) {
+                            if (enumValueAsString.equals(drinkComponent.getTypeAsString())) {
+                                selectedPreviously = true;
+                            }
+                        }
+
+                        if (!selectedPreviously) {
+                            enumValuesFiltered.add(enumValueAsString);
+                        }
                     }
-                }
 
-                if (!selectedPreviously) {
-                    namesFiltered.add(name);
+                    listener.onItemClicked(enumValuesFiltered.toArray(new String[0]), drinkComponentDefaultAsString);
+                } else {
+                    Log.i(TAG, "enumValues.length <= 1");
+                    incrementable.setQuantity(1);
+                    updateScreen(drinkComponentSelected, drinkComponentDefaultAsString);
                 }
-            }
-
-            if (names.length > 1 &&
-                    drinkComponentSelected.getTypeAsString().equals(DrinkComponent.NULL_TYPE_AS_STRING)) {
-                Log.i(TAG, "(names.length > 1) && (type == null) --- names.length: " + names.length);
-                listener.onItemClicked(namesFiltered.toArray(new String[0]), nameDefault);
             } else {
-                Log.i(TAG, "(names.length <= 1) || (type != null) --- names.length: " + names.length);
-                // intentionally doing nothing.
-                // ivMinus's and ivAdd's click handlers will take care of this.
+                Log.i(TAG, "quantity != DrinkComponent.QUANTITY_FOR_INVOKER");
             }
         }
     }

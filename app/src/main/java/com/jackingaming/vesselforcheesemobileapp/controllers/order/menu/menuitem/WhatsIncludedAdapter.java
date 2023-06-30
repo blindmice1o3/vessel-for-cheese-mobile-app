@@ -23,8 +23,13 @@ public class WhatsIncludedAdapter extends DrinkComponentBaseAdapter {
 
     @Override
     protected void handleSelectionOfDefaultFromNonStandardRecipe(DrinkComponent drinkComponentSelected, String drinkComponentDefaultAsStringSelected) {
-        // Update the underlying model.
-        drinkComponentSelected.setTypeByString(DrinkComponent.NULL_TYPE_AS_STRING);
+        if (drinkComponentSelected instanceof Incrementable) {
+            // Update the underlying model.
+            ((Incrementable) drinkComponentSelected).setQuantity(DrinkComponent.QUANTITY_FOR_INVOKER);
+        } else {
+            // Update the underlying model.
+            drinkComponentSelected.setTypeByString(DrinkComponent.NULL_TYPE_AS_STRING);
+        }
 
         drinkComponents.remove(indexSelected);
         drinkComponentsDefaultAsString.remove(indexSelected);
