@@ -86,7 +86,7 @@ public class CustomizeInnerAdapter extends DrinkComponentBaseAdapter {
     protected void handleClickForViewHolderIncrementable() {
         if (listener != null) {
             DrinkComponent drinkComponentSelected = drinkComponents.get(indexSelected);
-            String drinkComponentDefaultAsString = drinkComponentsDefaultAsString.get(indexSelected);
+            String drinkComponentDefaultAsStringSelected = drinkComponentsDefaultAsString.get(indexSelected);
             Incrementable incrementable = (Incrementable) drinkComponentSelected;
             int quantity = incrementable.getQuantity();
 
@@ -111,11 +111,17 @@ public class CustomizeInnerAdapter extends DrinkComponentBaseAdapter {
                         }
                     }
 
-                    listener.onItemClicked(enumValuesFiltered.toArray(new String[0]), drinkComponentDefaultAsString);
+                    if (enumValuesFiltered.size() == 1) {
+                        drinkComponentSelected.setTypeByString(enumValuesFiltered.get(0));
+                        incrementable.setQuantity(1);
+                        updateScreen(drinkComponentSelected, drinkComponentDefaultAsStringSelected);
+                    } else {
+                        listener.onItemClicked(enumValuesFiltered.toArray(new String[0]), drinkComponentDefaultAsStringSelected);
+                    }
                 } else {
                     Log.i(TAG, "enumValues.length <= 1");
                     incrementable.setQuantity(1);
-                    updateScreen(drinkComponentSelected, drinkComponentDefaultAsString);
+                    updateScreen(drinkComponentSelected, drinkComponentDefaultAsStringSelected);
                 }
             } else {
                 Log.i(TAG, "quantity != DrinkComponent.QUANTITY_FOR_INVOKER");
