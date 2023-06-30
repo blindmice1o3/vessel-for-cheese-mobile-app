@@ -17,8 +17,10 @@ public class Chai extends TeaOptions
     @Override
     public void onIncrement() {
         Log.i(TAG, "start of onIncrement() --- quantity: " + quantity);
-        if (type == null) {
-            type = Type.CHAI;
+
+        if (quantity == QUANTITY_FOR_INVOKER) {
+            Log.i(TAG, "quantity == QUANTITY_FOR_INVOKER");
+            return;
         }
 
         quantity++;
@@ -34,8 +36,8 @@ public class Chai extends TeaOptions
     public void onDecrement() {
         Log.i(TAG, "start of onDecrement() --- quantity: " + quantity);
 
-        if (type == null) {
-            Log.i(TAG, "type == null... returning");
+        if (quantity == QUANTITY_FOR_INVOKER) {
+            Log.i(TAG, "quantity == QUANTITY_FOR_INVOKER");
             return;
         }
 
@@ -51,6 +53,11 @@ public class Chai extends TeaOptions
     @Override
     public int getQuantity() {
         return quantity;
+    }
+
+    @Override
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     public enum Type {
@@ -91,7 +98,7 @@ public class Chai extends TeaOptions
 
     @Override
     public String getTextInit() {
-        return DEFAULT_TEXT_INIT;
+        return (type == null) ? (DEFAULT_TEXT_INIT) : ("Add " + type.name());
     }
 
     @Override

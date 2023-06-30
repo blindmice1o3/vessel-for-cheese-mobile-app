@@ -8,29 +8,44 @@ import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkC
 public class Sauce extends FlavorOptions
         implements Incrementable {
     public static final String DEFAULT_TEXT_INIT = "Add Sauces";
+    public static final int DEFAULT_QUANTITY_MIN = 0;
+    public static final int DEFAULT_QUANTITY_MAX = Integer.MAX_VALUE;
+
+    private int quantityMin = DEFAULT_QUANTITY_MIN;
+    private int quantityMax = DEFAULT_QUANTITY_MAX;
 
     @Override
     public void onIncrement() {
-        Log.i(TAG, "onIncrement()");
-        Log.i(TAG, "quantity: " + quantity);
+        Log.i(TAG, "start of onIncrement() --- quantity: " + quantity);
+
+        if (quantity == QUANTITY_FOR_INVOKER) {
+            Log.i(TAG, "quantity == QUANTITY_FOR_INVOKER");
+            return;
+        }
 
         quantity++;
 
-        Log.i(TAG, "quantity: " + quantity);
+        if (quantity > quantityMax) {
+            Log.i(TAG, "quantity > quantityMax --- SETTING quantity = quantityMax");
+            quantity = quantityMax;
+        }
         Log.i(TAG, "end of onIncrement() --- quantity: " + quantity);
     }
 
     @Override
     public void onDecrement() {
-        Log.i(TAG, "onDecrement()");
-        Log.i(TAG, "quantity: " + quantity);
+        Log.i(TAG, "start of onDecrement() --- quantity: " + quantity);
+
+        if (quantity == QUANTITY_FOR_INVOKER) {
+            Log.i(TAG, "quantity == QUANTITY_FOR_INVOKER");
+            return;
+        }
 
         quantity--;
 
-        Log.i(TAG, "quantity: " + quantity);
-        if (quantity < 0) {
-            Log.i(TAG, "quantity < 0 --- SETTING quantity = 0");
-            quantity = 0;
+        if (quantity < quantityMin) {
+            Log.i(TAG, "quantity < quantityMin --- SETTING quantity = quantityMin");
+            quantity = quantityMin;
         }
         Log.i(TAG, "end of onDecrement() --- quantity: " + quantity);
     }
@@ -38,6 +53,11 @@ public class Sauce extends FlavorOptions
     @Override
     public int getQuantity() {
         return quantity;
+    }
+
+    @Override
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     public enum Type {
@@ -65,7 +85,7 @@ public class Sauce extends FlavorOptions
 
     @Override
     public String getTextInit() {
-        return DEFAULT_TEXT_INIT;
+        return (type == null) ? (DEFAULT_TEXT_INIT) : ("Add " + type.name());
     }
 
     @Override

@@ -38,6 +38,7 @@ public class CaffeLatte extends Lattes {
     public static final int DEFAULT_NUMBER_OF_ESPRESSO_SHOTS = 2;
     public static final PullOptions.Type DEFAULT_PULL_OPTIONS = PullOptions.Type.NONE;
     public static final PrepOptions.Type DEFAULT_PREP_OPTIONS = PrepOptions.Type.NONE;
+    public static final Chai.Type DEFAULT_CHAI = Chai.Type.CHAI;
     public static final int DEFAULT_NUMBER_OF_CHAI_SCOOPS = 0;
     public static final int DEFAULT_NUMBER_OF_SWEETENER_LIQUID_PUMPS = 0;
     public static final int DEFAULT_NUMBER_OF_SWEETENER_PACKET_PACKS = 0;
@@ -65,13 +66,13 @@ public class CaffeLatte extends Lattes {
         espressoOptions.add(new PrepOptions(null));
         // TEA_OPTIONS
         List<DrinkComponent> teaOptions = new ArrayList<>();
-        Chai chai = new Chai(null, DEFAULT_NUMBER_OF_CHAI_SCOOPS);
+        Chai chai = new Chai(DEFAULT_CHAI, DrinkComponent.QUANTITY_FOR_INVOKER);
         teaOptions.add(chai);
         // SWEETENER_OPTIONS
         List<DrinkComponent> sweetenerOptions = new ArrayList<>();
-        Liquid liquid = new Liquid(null, DEFAULT_NUMBER_OF_SWEETENER_LIQUID_PUMPS);
+        Liquid liquid = new Liquid(null, DrinkComponent.QUANTITY_FOR_INVOKER);
         sweetenerOptions.add(liquid);
-        Packet packet = new Packet(null, DEFAULT_NUMBER_OF_SWEETENER_PACKET_PACKS);
+        Packet packet = new Packet(null, DrinkComponent.QUANTITY_FOR_INVOKER);
         sweetenerOptions.add(packet);
 
         // MILK_OPTIONS (defaults)

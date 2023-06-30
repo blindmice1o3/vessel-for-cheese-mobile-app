@@ -6,6 +6,7 @@ public abstract class DrinkComponent
         implements Serializable {
     public static final String TAG = DrinkComponent.class.getSimpleName();
     public static final String NULL_TYPE_AS_STRING = "null";
+    public static final int QUANTITY_FOR_INVOKER = -1;
 
     public abstract String getTextInit();
 

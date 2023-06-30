@@ -288,13 +288,14 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
 
         private void updateScreen(DrinkComponent drinkComponent, String drinkComponentDefaultAsString) {
             Incrementable incrementable = (Incrementable) drinkComponent;
-            String quantityAsString = Integer.toString(incrementable.getQuantity());
+            int quantity = incrementable.getQuantity();
+            String quantityAsString = Integer.toString(quantity);
 
             tvBorderTitle.setText(drinkComponent.getClassAsString());
             tvQuantity.setText(quantityAsString);
 
-            boolean init = drinkComponent.getTypeAsString().equals(DrinkComponent.NULL_TYPE_AS_STRING);
-            boolean quantityIsZero = incrementable.getQuantity() == 0;
+            boolean init = quantity < 0;
+            boolean quantityIsZero = quantity == 0;
             if (init || quantityIsZero) {
                 Log.e(TAG, "init || quantityIsZero (invisible)");
                 tvName.setText(drinkComponent.getTextInit());

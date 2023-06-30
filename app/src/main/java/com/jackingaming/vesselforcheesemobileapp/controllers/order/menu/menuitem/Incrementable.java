@@ -6,4 +6,6 @@ public interface Incrementable {
     void onDecrement();
 
     int getQuantity();
+
+    void setQuantity(int quantity);
 }
