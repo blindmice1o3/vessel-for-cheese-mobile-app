@@ -6,6 +6,9 @@ import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.espres
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.espresso_options.PullOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.espresso_options.RoastOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.espresso_options.Shot;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.flavor_options.FlavorOptions;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.flavor_options.Sauce;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.flavor_options.Syrup;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.milk_options.MilkBase;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.milk_options.MilkFoam;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.milk_options.MilkOptions;
@@ -42,6 +45,8 @@ public class CaffeLatte extends Lattes {
     public static final int DEFAULT_NUMBER_OF_CHAI_SCOOPS = 0;
     public static final int DEFAULT_NUMBER_OF_SWEETENER_LIQUID_PUMPS = 0;
     public static final int DEFAULT_NUMBER_OF_SWEETENER_PACKET_PACKS = 0;
+    public static final int DEFAULT_NUMBER_OF_FLAVOR_SAUCE_PUMPS = 0;
+    public static final int DEFAULT_NUMBER_OF_FLAVOR_SYRUP_PUMPS = 0;
 
     public static final double DEFAULT_PRICE_SMALL = 2.95;
     public static final double DEFAULT_PRICE_MEDIUM = 3.45;
@@ -74,6 +79,12 @@ public class CaffeLatte extends Lattes {
         sweetenerOptions.add(liquid);
         Packet packet = new Packet(null, DrinkComponent.QUANTITY_FOR_INVOKER);
         sweetenerOptions.add(packet);
+        // FLAVOR_OPTIONS
+        List<DrinkComponent> flavorOptions = new ArrayList<>();
+        Sauce sauce = new Sauce(null, DrinkComponent.QUANTITY_FOR_INVOKER);
+        flavorOptions.add(sauce);
+        Syrup syrup = new Syrup(null, DrinkComponent.QUANTITY_FOR_INVOKER);
+        flavorOptions.add(syrup);
 
         // MILK_OPTIONS (defaults)
         List<String> milkOptionsDefault = new ArrayList<>();
@@ -93,15 +104,21 @@ public class CaffeLatte extends Lattes {
         List<String> sweetenerOptionsDefault = new ArrayList<>();
         sweetenerOptionsDefault.add(Integer.toString(DEFAULT_NUMBER_OF_SWEETENER_LIQUID_PUMPS));
         sweetenerOptionsDefault.add(Integer.toString(DEFAULT_NUMBER_OF_SWEETENER_PACKET_PACKS));
+        // FLAVOR_OPTIONS (defaults)
+        List<String> flavorOptionsDefault = new ArrayList<>();
+        flavorOptionsDefault.add(Integer.toString(DEFAULT_NUMBER_OF_FLAVOR_SAUCE_PUMPS));
+        flavorOptionsDefault.add(Integer.toString(DEFAULT_NUMBER_OF_FLAVOR_SYRUP_PUMPS));
 
         drinkComponents.put(MilkOptions.TAG, milkOptions);
         drinkComponents.put(EspressoOptions.TAG, espressoOptions);
         drinkComponents.put(TeaOptions.TAG, teaOptions);
         drinkComponents.put(SweetenerOptions.TAG, sweetenerOptions);
+        drinkComponents.put(FlavorOptions.TAG, flavorOptions);
         drinkComponentsDefaultAsString.put(MilkOptions.TAG, milkOptionsDefault);
         drinkComponentsDefaultAsString.put(EspressoOptions.TAG, espressoOptionsDefault);
         drinkComponentsDefaultAsString.put(TeaOptions.TAG, teaOptionsDefault);
         drinkComponentsDefaultAsString.put(SweetenerOptions.TAG, sweetenerOptionsDefault);
+        drinkComponentsDefaultAsString.put(FlavorOptions.TAG, flavorOptionsDefault);
 
         for (int i = 0; i < Menu.DRINK_COMPONENTS_KEYS.size(); i++) {
             String key = Menu.DRINK_COMPONENTS_KEYS.get(i);

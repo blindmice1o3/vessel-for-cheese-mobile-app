@@ -83,6 +83,22 @@ public class Sauce extends FlavorOptions
         this.type = type;
     }
 
+    public int getQuantityMin() {
+        return quantityMin;
+    }
+
+    public void setQuantityMin(int quantityMin) {
+        this.quantityMin = quantityMin;
+    }
+
+    public int getQuantityMax() {
+        return quantityMax;
+    }
+
+    public void setQuantityMax(int quantityMax) {
+        this.quantityMax = quantityMax;
+    }
+
     @Override
     public String getTextInit() {
         return (type == null) ? (DEFAULT_TEXT_INIT) : ("Add " + type.name());
@@ -105,7 +121,7 @@ public class Sauce extends FlavorOptions
 
     @Override
     public String getTypeAsString() {
-        return type.name();
+        return (type == null) ? NULL_TYPE_AS_STRING : type.name();
     }
 
     @Override

@@ -5,6 +5,9 @@ import android.util.Log;
 import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem.DrinkComponentBaseAdapter;
 import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem.Incrementable;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.flavor_options.FlavorOptions;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.flavor_options.Sauce;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.flavor_options.Syrup;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.sweetener_options.Liquid;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.sweetener_options.Packet;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.sweetener_options.SweetenerOptions;
@@ -51,7 +54,8 @@ public class CustomizeInnerAdapter extends DrinkComponentBaseAdapter {
     }
 
     private void handleSelectionOfEverythingElse(DrinkComponent drinkComponentSelected, String drinkComponentDefaultAsStringSelected, String name) {
-        if (drinkComponentSelected instanceof SweetenerOptions) {
+        if (drinkComponentSelected instanceof SweetenerOptions ||
+                drinkComponentSelected instanceof FlavorOptions) {
             DrinkComponent drinkComponentToAdd = null;
             int drinkComponentDefaultAsStringToAdd = 0;
             if (drinkComponentSelected instanceof Liquid) {
@@ -60,15 +64,17 @@ public class CustomizeInnerAdapter extends DrinkComponentBaseAdapter {
             } else if (drinkComponentSelected instanceof Packet) {
                 drinkComponentToAdd = new Packet(null, 1);
                 drinkComponentDefaultAsStringToAdd = Packet.DEFAULT_QUANTITY_MIN;
+            } else if (drinkComponentSelected instanceof Sauce) {
+                drinkComponentToAdd = new Sauce(null, 1);
+                drinkComponentDefaultAsStringToAdd = Sauce.DEFAULT_QUANTITY_MIN;
+            } else if (drinkComponentSelected instanceof Syrup) {
+                drinkComponentToAdd = new Syrup(null, 1);
+                drinkComponentDefaultAsStringToAdd = Syrup.DEFAULT_QUANTITY_MIN;
             }
 
             drinkComponents.add(indexSelected, drinkComponentToAdd);
             drinkComponentsDefaultAsString.add(indexSelected, Integer.toString(drinkComponentDefaultAsStringToAdd));
 
-            // TODO: maybe used quantity = -1 to identify the "invoker" (this
-            //  way the ones with non-null type can have quantity == 0 behave
-            //  independently/normally instead of being intertwined with
-            //  identifying "invoker").
             drinkComponentSelected = drinkComponents.get(indexSelected);
             drinkComponentDefaultAsStringSelected = drinkComponentsDefaultAsString.get(indexSelected);
 
