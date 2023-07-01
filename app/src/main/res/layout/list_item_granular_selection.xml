@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <!-- border -->
+    <View
+        android:id="@+id/view_border"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/listPreferredItemHeight"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/border_drink_component_default" />
+
+    <!-- border's title -->
+    <TextView
+        android:id="@+id/tv_border_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_marginStart="16dp"
+        android:background="@color/white"
+        android:paddingStart="4dp"
+        android:paddingEnd="4dp"
+        android:textColor="#1B455F" />
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="?android:attr/listPreferredItemHeight"
+        android:layout_gravity="start|center_vertical"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="18dp" />
+
+    <ImageView
+        android:id="@+id/iv_drop_down_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|center_vertical"
+        android:layout_marginEnd="20dp"
+        android:src="@drawable/ic_menu_add" />
+</FrameLayout>

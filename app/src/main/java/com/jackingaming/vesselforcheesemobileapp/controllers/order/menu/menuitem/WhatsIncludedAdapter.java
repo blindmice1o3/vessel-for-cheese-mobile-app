@@ -25,7 +25,10 @@ public class WhatsIncludedAdapter extends DrinkComponentBaseAdapter {
     protected void handleSelectionOfDefaultFromNonStandardRecipe(DrinkComponent drinkComponentSelected, String drinkComponentDefaultAsStringSelected) {
         if (drinkComponentSelected instanceof Incrementable) {
             // Update the underlying model.
-            ((Incrementable) drinkComponentSelected).setQuantity(DrinkComponent.QUANTITY_FOR_INVOKER);
+            ((Incrementable) drinkComponentSelected).setQuantity(Incrementable.QUANTITY_FOR_INVOKER);
+        } else if (drinkComponentSelected instanceof Granular) {
+            // Update the underlying model.
+            drinkComponentSelected.setTypeByString(DrinkComponent.NULL_TYPE_AS_STRING);
         } else {
             // Update the underlying model.
             drinkComponentSelected.setTypeByString(DrinkComponent.NULL_TYPE_AS_STRING);
@@ -42,10 +45,27 @@ public class WhatsIncludedAdapter extends DrinkComponentBaseAdapter {
     }
 
     private void handleSelectionFromStandardRecipe(DrinkComponent drinkComponentSelected, String drinkComponentDefaultAsStringSelected, String name) {
-        // Update the underlying model.
-        drinkComponentSelected.setTypeByString(name);
+        if (drinkComponentSelected instanceof Incrementable) {
+            // Update the underlying model.
+            drinkComponentSelected.setTypeByString(name);
+            updateScreen(drinkComponentSelected, drinkComponentDefaultAsStringSelected);
+        } else if (drinkComponentSelected instanceof Granular) {
+            Granular.Amount amountSelected = null;
+            for (int i = 0; i < Granular.Amount.values().length; i++) {
+                if (name.equals(Granular.Amount.values()[i].name())) {
+                    amountSelected = Granular.Amount.values()[i];
+                    break;
+                }
+            }
 
-        updateScreen(drinkComponentSelected, drinkComponentDefaultAsStringSelected);
+            // Update the underlying model.
+            ((Granular) drinkComponentSelected).setAmount(amountSelected);
+            updateScreen(drinkComponentSelected, drinkComponentDefaultAsStringSelected);
+        } else {
+            // Update the underlying model.
+            drinkComponentSelected.setTypeByString(name);
+            updateScreen(drinkComponentSelected, drinkComponentDefaultAsStringSelected);
+        }
     }
 
     public void setDrinkComponents(List<DrinkComponent> drinkComponents) {

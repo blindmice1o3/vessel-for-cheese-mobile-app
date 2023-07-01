@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.jackingaming.vesselforcheesemobileapp.R;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.topping_options.WhippedCream;
 
 import java.util.List;
 
@@ -22,6 +23,12 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
     protected static final int VIEW_TYPE_INCREMENTABLE = 0;
     protected static final int VIEW_TYPE_GRANULAR_SELECTION = 1;
     protected static final int VIEW_TYPE_SIMPLE_SELECTION = 2;
+
+    private static final String COLOR_DEFAULT = "#1B455F";
+    private static final String COLOR_CUSTOMIZED = "#AAFF00";
+    private static final int BACKGROUND_BORDER_INIT = R.drawable.border_drink_component_null;
+    private static final int BACKGROUND_BORDER_DEFAULT = R.drawable.border_drink_component_default;
+    private static final int BACKGROUND_BORDER_CUSTOMIZED = R.drawable.border_drink_component_customized;
 
     public interface DrinkComponentBaseAdapterListener {
         void onItemClicked(String[] names, String nameDefault);
@@ -52,6 +59,8 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
         DrinkComponent drinkComponent = drinkComponents.get(position);
         if (drinkComponent instanceof Incrementable) {
             return VIEW_TYPE_INCREMENTABLE;
+        } else if (drinkComponent instanceof Granular) {
+            return VIEW_TYPE_GRANULAR_SELECTION;
         } else {
             return VIEW_TYPE_SIMPLE_SELECTION;
         }
@@ -63,6 +72,9 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
         if (viewType == VIEW_TYPE_INCREMENTABLE) {
             View viewIncrementable = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_incrementable, parent, false);
             return new ViewHolderIncrementable(viewIncrementable);
+        } else if (viewType == VIEW_TYPE_GRANULAR_SELECTION) {
+            View viewGranularSelection = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_granular_selection, parent, false);
+            return new ViewHolderGranularSelection(viewGranularSelection);
         } else {
             View viewSimpleSelection = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_simple_selection, parent, false);
             return new ViewHolderSimpleSelection(viewSimpleSelection);
@@ -75,6 +87,8 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
         String drinkComponentDefaultAsString = drinkComponentsDefaultAsString.get(position);
         if (holder instanceof ViewHolderIncrementable) {
             ((ViewHolderIncrementable) holder).bind(drinkComponent, drinkComponentDefaultAsString);
+        } else if (holder instanceof ViewHolderGranularSelection) {
+            ((ViewHolderGranularSelection) holder).bind(drinkComponent, drinkComponentDefaultAsString);
         } else {
             ((ViewHolderSimpleSelection) holder).bind(drinkComponent, drinkComponentDefaultAsString);
         }
@@ -138,12 +152,15 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
 
     protected void updateScreen(DrinkComponent drinkComponentSelected,
                                 String drinkComponentDefaultAsStringSelected) {
-        if (viewHolderSelected.getItemViewType() == VIEW_TYPE_SIMPLE_SELECTION) {
-            ViewHolderSimpleSelection viewHolderSimpleSelection = (ViewHolderSimpleSelection) viewHolderSelected;
-            viewHolderSimpleSelection.updateScreen(drinkComponentSelected, drinkComponentDefaultAsStringSelected);
-        } else {
+        if (viewHolderSelected.getItemViewType() == VIEW_TYPE_INCREMENTABLE) {
             ViewHolderIncrementable viewHolderIncrementable = (ViewHolderIncrementable) viewHolderSelected;
             viewHolderIncrementable.updateScreen(drinkComponentSelected, drinkComponentDefaultAsStringSelected);
+        } else if (viewHolderSelected.getItemViewType() == VIEW_TYPE_GRANULAR_SELECTION) {
+            ViewHolderGranularSelection viewHolderGranularSelection = (ViewHolderGranularSelection) viewHolderSelected;
+            viewHolderGranularSelection.updateScreen(drinkComponentSelected, drinkComponentDefaultAsStringSelected);
+        } else {
+            ViewHolderSimpleSelection viewHolderSimpleSelection = (ViewHolderSimpleSelection) viewHolderSelected;
+            viewHolderSimpleSelection.updateScreen(drinkComponentSelected, drinkComponentDefaultAsStringSelected);
         }
     }
 
@@ -154,6 +171,94 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
     protected abstract void handleSelectionOfDefaultFromNonStandardRecipe(DrinkComponent drinkComponentSelected, String drinkComponentDefaultAsStringSelected);
 
     protected abstract void handleSelectionOfNonDefaultFromNonStandardRecipe(DrinkComponent drinkComponentSelected, String drinkComponentDefaultAsStringSelected, String name);
+
+    class ViewHolderGranularSelection extends RecyclerView.ViewHolder
+            implements View.OnClickListener, View.OnLongClickListener {
+
+        private View viewBorder;
+        private TextView tvBorderTitle;
+        private TextView tvName;
+        private ImageView ivDropDownImage;
+
+        public ViewHolderGranularSelection(@NonNull View itemView) {
+            super(itemView);
+            viewBorder = itemView.findViewById(R.id.view_border);
+            tvBorderTitle = itemView.findViewById(R.id.tv_border_title);
+            tvName = itemView.findViewById(R.id.tv_name);
+            ivDropDownImage = itemView.findViewById(R.id.iv_drop_down_image);
+            itemView.setOnClickListener(this);
+            itemView.setOnLongClickListener(this);
+        }
+
+        public void bind(DrinkComponent drinkComponent, String drinkComponentDefaultAsString) {
+            updateScreen(drinkComponent, drinkComponentDefaultAsString);
+        }
+
+        public void updateScreen(DrinkComponent drinkComponent, String drinkComponentDefaultAsString) {
+            tvBorderTitle.setText(drinkComponent.getClassAsString());
+
+            String typeAsString = drinkComponent.getTypeAsString();
+            boolean init = typeAsString.equals(DrinkComponent.NULL_TYPE_AS_STRING);
+            if (init) {
+                tvName.setText(drinkComponent.getTextInit());
+                ivDropDownImage.setImageResource(R.drawable.ic_menu_add);
+
+                tvBorderTitle.setVisibility(View.INVISIBLE);
+
+                viewBorder.setBackgroundResource(BACKGROUND_BORDER_INIT);
+            } else {
+                Granular.Amount amount = ((Granular) drinkComponent).getAmount();
+                String textBasedOnAmount = (amount == Granular.Amount.MEDIUM) ?
+                        (typeAsString) : (amount.name() + " " + typeAsString);
+                tvName.setText(textBasedOnAmount);
+                ivDropDownImage.setImageResource(R.drawable.ic_menu_arrow_down);
+
+                tvBorderTitle.setVisibility(View.VISIBLE);
+
+                boolean defaultSelected =
+                        (amount.name().equals(drinkComponentDefaultAsString)) ? true : false;
+                updateBorderColor(defaultSelected);
+            }
+        }
+
+        private void updateBorderColor(boolean defaultSelected) {
+            if (defaultSelected) {
+                tvBorderTitle.setTextColor(Color.parseColor(COLOR_DEFAULT));
+
+                viewBorder.setBackgroundResource(BACKGROUND_BORDER_DEFAULT);
+            } else {
+                tvBorderTitle.setTextColor(Color.parseColor(COLOR_CUSTOMIZED));
+
+                viewBorder.setBackgroundResource(BACKGROUND_BORDER_CUSTOMIZED);
+            }
+        }
+
+        @Override
+        public void onClick(View view) {
+            indexSelected = getAdapterPosition(); // gets item position
+            viewHolderSelected = ViewHolderGranularSelection.this;
+            Log.i(TAG, "item in RV clicked! position: " + indexSelected);
+            if (indexSelected != RecyclerView.NO_POSITION) { // Check if an item was deleted, but the user clicked it before the UI removed it
+                handleClickForViewHolderGranularSelection();
+            }
+        }
+
+        @Override
+        public boolean onLongClick(View view) {
+            int position = getAdapterPosition(); // gets item position
+            Log.i(TAG, "item in RV long-clicked! position: " + position);
+//            if (position != RecyclerView.NO_POSITION) { // Check if an item was deleted, but the user clicked it before the UI removed it
+//                if (listener != null) {
+//                    DrinkComponent drinkComponent = drinkComponents.get(position);
+//                    String[] enumsAsString = drinkComponent.getEnumValuesAsStringArray();
+//                    String nameDefault = drinkComponentsDefaultAsString.get(position);
+//                    listener.onItemLongClicked(enumsAsString, nameDefault);
+//                    return true;
+//                }
+//            }
+            return false;
+        }
+    }
 
     class ViewHolderSimpleSelection extends RecyclerView.ViewHolder
             implements View.OnClickListener, View.OnLongClickListener {
@@ -174,8 +279,6 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
         }
 
         public void bind(DrinkComponent drinkComponent, String drinkComponentDefaultAsString) {
-            Log.e(TAG, "bind(DrinkComponent, String)");
-
             updateScreen(drinkComponent, drinkComponentDefaultAsString);
         }
 
@@ -188,7 +291,7 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
 
                 tvBorderTitle.setVisibility(View.INVISIBLE);
 
-                viewBorder.setBackgroundResource(R.drawable.border_drink_component_null);
+                viewBorder.setBackgroundResource(BACKGROUND_BORDER_INIT);
             } else {
                 tvName.setText(drinkComponent.getTypeAsString());
 
@@ -202,15 +305,13 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
 
         private void updateBorderColor(boolean defaultSelected) {
             if (defaultSelected) {
-                String colorDefault = "#1B455F";
-                tvBorderTitle.setTextColor(Color.parseColor(colorDefault));
+                tvBorderTitle.setTextColor(Color.parseColor(COLOR_DEFAULT));
 
-                viewBorder.setBackgroundResource(R.drawable.border_drink_component_default);
+                viewBorder.setBackgroundResource(BACKGROUND_BORDER_DEFAULT);
             } else {
-                String colorCustomized = "#AAFF00";
-                tvBorderTitle.setTextColor(Color.parseColor(colorCustomized));
+                tvBorderTitle.setTextColor(Color.parseColor(COLOR_CUSTOMIZED));
 
-                viewBorder.setBackgroundResource(R.drawable.border_drink_component_customized);
+                viewBorder.setBackgroundResource(BACKGROUND_BORDER_CUSTOMIZED);
             }
         }
 
@@ -264,7 +365,7 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
         }
 
         public void bind(DrinkComponent drinkComponent, String drinkComponentDefaultAsString) {
-            Log.e(TAG, "bind(DrinkComponent, String)");
+            updateScreen(drinkComponent, drinkComponentDefaultAsString);
 
             ivMinus.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -283,8 +384,6 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
                     updateScreen(drinkComponent, drinkComponentDefaultAsString);
                 }
             });
-
-            updateScreen(drinkComponent, drinkComponentDefaultAsString);
         }
 
         private void updateScreen(DrinkComponent drinkComponent, String drinkComponentDefaultAsString) {
@@ -305,7 +404,7 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
                 ivMinus.setVisibility(View.INVISIBLE);
                 tvQuantity.setVisibility(View.INVISIBLE);
 
-                viewBorder.setBackgroundResource(R.drawable.border_drink_component_null);
+                viewBorder.setBackgroundResource(BACKGROUND_BORDER_INIT);
             } else {
                 Log.e(TAG, "else (visible)");
                 tvName.setText(drinkComponent.getTypeAsString());
@@ -322,15 +421,13 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
 
         private void updateBorderColor(boolean defaultSelected) {
             if (defaultSelected) {
-                String colorDefault = "#1B455F";
-                tvBorderTitle.setTextColor(Color.parseColor(colorDefault));
+                tvBorderTitle.setTextColor(Color.parseColor(COLOR_DEFAULT));
 
-                viewBorder.setBackgroundResource(R.drawable.border_drink_component_default);
+                viewBorder.setBackgroundResource(BACKGROUND_BORDER_DEFAULT);
             } else {
-                String colorCustomized = "#AAFF00";
-                tvBorderTitle.setTextColor(Color.parseColor(colorCustomized));
+                tvBorderTitle.setTextColor(Color.parseColor(COLOR_CUSTOMIZED));
 
-                viewBorder.setBackgroundResource(R.drawable.border_drink_component_customized);
+                viewBorder.setBackgroundResource(BACKGROUND_BORDER_CUSTOMIZED);
             }
         }
 
@@ -371,6 +468,36 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
             listener.onItemClicked(names, nameDefault);
         }
     }
+
+    private void handleClickForViewHolderGranularSelection() {
+        Log.d(TAG, "handleClickForViewHolderGranularSelection()");
+
+        DrinkComponent drinkComponentSelected = drinkComponents.get(indexSelected);
+        String drinkComponentDefaultAsStringSelected = drinkComponentsDefaultAsString.get(indexSelected);
+        if (drinkComponentSelected.getTypeAsString().equals(DrinkComponent.NULL_TYPE_AS_STRING)) {
+            Log.d(TAG, "drinkComponentSelected.getTypeAsString().equals(DrinkComponent.NULL_TYPE_AS_STRING)()");
+
+            if (drinkComponentSelected instanceof WhippedCream) {
+                Log.d(TAG, "drinkComponentSelected instanceof WhippedCream");
+
+                drinkComponentSelected.setTypeByString(WhippedCream.Type.WHIPPED_CREAM.name());
+                ((Granular) drinkComponentSelected).setAmount(Granular.Amount.MEDIUM);
+                updateScreen(drinkComponentSelected, drinkComponentDefaultAsStringSelected);
+            } else {
+                Log.d(TAG, "drinkComponentSelected NOT instanceof WhippedCream");
+            }
+        } else {
+            Log.d(TAG, "NOT drinkComponentSelected.getTypeAsString().equals(DrinkComponent.NULL_TYPE_AS_STRING)()");
+
+            if (listener != null) {
+                String[] names = new String[Granular.Amount.values().length];
+                for (int i = 0; i < Granular.Amount.values().length; i++) {
+                    names[i] = Granular.Amount.values()[i].name();
+                }
+
+                String nameDefault = drinkComponentsDefaultAsString.get(indexSelected);
+                listener.onItemClicked(names, nameDefault);
+            }
+        }
+    }
 }
-
-

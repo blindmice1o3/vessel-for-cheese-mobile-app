@@ -218,7 +218,7 @@ public class MenuItemActivity extends AppCompatActivity {
                     if (drinkComponent instanceof Incrementable) {
                         int quantity = ((Incrementable) drinkComponent).getQuantity();
 
-                        if (quantity == DrinkComponent.QUANTITY_FOR_INVOKER) {
+                        if (quantity == Incrementable.QUANTITY_FOR_INVOKER) {
                             Log.i(TAG, "skipping - quantity == DrinkComponent.QUANTITY_FOR_INVOKER");
                             continue;
                         }

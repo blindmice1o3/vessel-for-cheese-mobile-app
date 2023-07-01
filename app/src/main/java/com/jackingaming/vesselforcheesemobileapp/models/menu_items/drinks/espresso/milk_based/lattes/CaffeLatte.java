@@ -1,5 +1,7 @@
 package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.lattes;
 
+import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem.Granular;
+import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem.Incrementable;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.espresso_options.EspressoOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.espresso_options.PrepOptions;
@@ -18,6 +20,8 @@ import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.sweete
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.sweetener_options.SweetenerOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.tea_options.Chai;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.tea_options.TeaOptions;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.topping_options.ToppingOptions;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.topping_options.WhippedCream;
 import com.jackingaming.vesselforcheesemobileapp.models.menu.Menu;
 
 import java.util.ArrayList;
@@ -47,6 +51,7 @@ public class CaffeLatte extends Lattes {
     public static final int DEFAULT_NUMBER_OF_SWEETENER_PACKET_PACKS = 0;
     public static final int DEFAULT_NUMBER_OF_FLAVOR_SAUCE_PUMPS = 0;
     public static final int DEFAULT_NUMBER_OF_FLAVOR_SYRUP_PUMPS = 0;
+    public static final Granular.Amount DEFAULT_WHIPPED_CREAM_AMOUNT = Granular.Amount.NO;
 
     public static final double DEFAULT_PRICE_SMALL = 2.95;
     public static final double DEFAULT_PRICE_MEDIUM = 3.45;
@@ -71,20 +76,24 @@ public class CaffeLatte extends Lattes {
         espressoOptions.add(new PrepOptions(null));
         // TEA_OPTIONS
         List<DrinkComponent> teaOptions = new ArrayList<>();
-        Chai chai = new Chai(DEFAULT_CHAI, DrinkComponent.QUANTITY_FOR_INVOKER);
+        Chai chai = new Chai(DEFAULT_CHAI, Incrementable.QUANTITY_FOR_INVOKER);
         teaOptions.add(chai);
         // SWEETENER_OPTIONS
         List<DrinkComponent> sweetenerOptions = new ArrayList<>();
-        Liquid liquid = new Liquid(null, DrinkComponent.QUANTITY_FOR_INVOKER);
+        Liquid liquid = new Liquid(null, Incrementable.QUANTITY_FOR_INVOKER);
         sweetenerOptions.add(liquid);
-        Packet packet = new Packet(null, DrinkComponent.QUANTITY_FOR_INVOKER);
+        Packet packet = new Packet(null, Incrementable.QUANTITY_FOR_INVOKER);
         sweetenerOptions.add(packet);
         // FLAVOR_OPTIONS
         List<DrinkComponent> flavorOptions = new ArrayList<>();
-        Sauce sauce = new Sauce(null, DrinkComponent.QUANTITY_FOR_INVOKER);
+        Sauce sauce = new Sauce(null, Incrementable.QUANTITY_FOR_INVOKER);
         flavorOptions.add(sauce);
-        Syrup syrup = new Syrup(null, DrinkComponent.QUANTITY_FOR_INVOKER);
+        Syrup syrup = new Syrup(null, Incrementable.QUANTITY_FOR_INVOKER);
         flavorOptions.add(syrup);
+        // TOPPING_OPTIONS
+        List<DrinkComponent> toppingOptions = new ArrayList<>();
+        WhippedCream whippedCream = new WhippedCream(null, Granular.Amount.NO);
+        toppingOptions.add(whippedCream);
 
         // MILK_OPTIONS (defaults)
         List<String> milkOptionsDefault = new ArrayList<>();
@@ -108,17 +117,22 @@ public class CaffeLatte extends Lattes {
         List<String> flavorOptionsDefault = new ArrayList<>();
         flavorOptionsDefault.add(Integer.toString(DEFAULT_NUMBER_OF_FLAVOR_SAUCE_PUMPS));
         flavorOptionsDefault.add(Integer.toString(DEFAULT_NUMBER_OF_FLAVOR_SYRUP_PUMPS));
+        // TOPPING_OPTIONS (defaults)
+        List<String> toppingOptionsDefault = new ArrayList<>();
+        toppingOptionsDefault.add(DEFAULT_WHIPPED_CREAM_AMOUNT.name());
 
         drinkComponents.put(MilkOptions.TAG, milkOptions);
         drinkComponents.put(EspressoOptions.TAG, espressoOptions);
         drinkComponents.put(TeaOptions.TAG, teaOptions);
         drinkComponents.put(SweetenerOptions.TAG, sweetenerOptions);
         drinkComponents.put(FlavorOptions.TAG, flavorOptions);
+        drinkComponents.put(ToppingOptions.TAG, toppingOptions);
         drinkComponentsDefaultAsString.put(MilkOptions.TAG, milkOptionsDefault);
         drinkComponentsDefaultAsString.put(EspressoOptions.TAG, espressoOptionsDefault);
         drinkComponentsDefaultAsString.put(TeaOptions.TAG, teaOptionsDefault);
         drinkComponentsDefaultAsString.put(SweetenerOptions.TAG, sweetenerOptionsDefault);
         drinkComponentsDefaultAsString.put(FlavorOptions.TAG, flavorOptionsDefault);
+        drinkComponentsDefaultAsString.put(ToppingOptions.TAG, toppingOptionsDefault);
 
         for (int i = 0; i < Menu.DRINK_COMPONENTS_KEYS.size(); i++) {
             String key = Menu.DRINK_COMPONENTS_KEYS.get(i);
