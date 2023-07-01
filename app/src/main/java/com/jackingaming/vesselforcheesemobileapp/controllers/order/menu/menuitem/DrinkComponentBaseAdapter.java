@@ -20,7 +20,8 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
     public static final String TAG = DrinkComponentBaseAdapter.class.getSimpleName();
 
     protected static final int VIEW_TYPE_INCREMENTABLE = 0;
-    protected static final int VIEW_TYPE_SINGLE_SELECTION = 1;
+    protected static final int VIEW_TYPE_GRANULAR_SELECTION = 1;
+    protected static final int VIEW_TYPE_SIMPLE_SELECTION = 2;
 
     public interface DrinkComponentBaseAdapterListener {
         void onItemClicked(String[] names, String nameDefault);
@@ -52,7 +53,7 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
         if (drinkComponent instanceof Incrementable) {
             return VIEW_TYPE_INCREMENTABLE;
         } else {
-            return VIEW_TYPE_SINGLE_SELECTION;
+            return VIEW_TYPE_SIMPLE_SELECTION;
         }
     }
 
@@ -63,8 +64,8 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
             View viewIncrementable = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_incrementable, parent, false);
             return new ViewHolderIncrementable(viewIncrementable);
         } else {
-            View viewSingleSelection = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_single_selection, parent, false);
-            return new ViewHolderSingleSelection(viewSingleSelection);
+            View viewSimpleSelection = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_simple_selection, parent, false);
+            return new ViewHolderSimpleSelection(viewSimpleSelection);
         }
     }
 
@@ -75,7 +76,7 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
         if (holder instanceof ViewHolderIncrementable) {
             ((ViewHolderIncrementable) holder).bind(drinkComponent, drinkComponentDefaultAsString);
         } else {
-            ((ViewHolderSingleSelection) holder).bind(drinkComponent, drinkComponentDefaultAsString);
+            ((ViewHolderSimpleSelection) holder).bind(drinkComponent, drinkComponentDefaultAsString);
         }
     }
 
@@ -137,9 +138,9 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
 
     protected void updateScreen(DrinkComponent drinkComponentSelected,
                                 String drinkComponentDefaultAsStringSelected) {
-        if (viewHolderSelected.getItemViewType() == VIEW_TYPE_SINGLE_SELECTION) {
-            ViewHolderSingleSelection viewHolderSingleSelection = (ViewHolderSingleSelection) viewHolderSelected;
-            viewHolderSingleSelection.updateScreen(drinkComponentSelected, drinkComponentDefaultAsStringSelected);
+        if (viewHolderSelected.getItemViewType() == VIEW_TYPE_SIMPLE_SELECTION) {
+            ViewHolderSimpleSelection viewHolderSimpleSelection = (ViewHolderSimpleSelection) viewHolderSelected;
+            viewHolderSimpleSelection.updateScreen(drinkComponentSelected, drinkComponentDefaultAsStringSelected);
         } else {
             ViewHolderIncrementable viewHolderIncrementable = (ViewHolderIncrementable) viewHolderSelected;
             viewHolderIncrementable.updateScreen(drinkComponentSelected, drinkComponentDefaultAsStringSelected);
@@ -154,7 +155,7 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
 
     protected abstract void handleSelectionOfNonDefaultFromNonStandardRecipe(DrinkComponent drinkComponentSelected, String drinkComponentDefaultAsStringSelected, String name);
 
-    class ViewHolderSingleSelection extends RecyclerView.ViewHolder
+    class ViewHolderSimpleSelection extends RecyclerView.ViewHolder
             implements View.OnClickListener, View.OnLongClickListener {
 
         private View viewBorder;
@@ -162,7 +163,7 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
         private TextView tvName;
         private ImageView ivDropDownImage;
 
-        public ViewHolderSingleSelection(@NonNull View itemView) {
+        public ViewHolderSimpleSelection(@NonNull View itemView) {
             super(itemView);
             viewBorder = itemView.findViewById(R.id.view_border);
             tvBorderTitle = itemView.findViewById(R.id.tv_border_title);
@@ -216,10 +217,10 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
         @Override
         public void onClick(View view) {
             indexSelected = getAdapterPosition(); // gets item position
-            viewHolderSelected = ViewHolderSingleSelection.this;
+            viewHolderSelected = ViewHolderSimpleSelection.this;
             Log.i(TAG, "item in RV clicked! position: " + indexSelected);
             if (indexSelected != RecyclerView.NO_POSITION) { // Check if an item was deleted, but the user clicked it before the UI removed it
-                handleClickForViewHolderSingleSelection();
+                handleClickForViewHolderSimpleSelection();
             }
         }
 
@@ -363,7 +364,7 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
         // intentionally doing nothing (CustomizeInnerAdapter overrides this).
     }
 
-    private void handleClickForViewHolderSingleSelection() {
+    private void handleClickForViewHolderSimpleSelection() {
         if (listener != null) {
             String[] names = drinkComponents.get(indexSelected).getEnumValuesAsStringArray();
             String nameDefault = drinkComponentsDefaultAsString.get(indexSelected);
