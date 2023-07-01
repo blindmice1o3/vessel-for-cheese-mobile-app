@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.jackingaming.vesselforcheesemobileapp.R;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.topping_options.CinnamonPowder;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.topping_options.WhippedCream;
 
 import java.util.List;
@@ -477,15 +478,21 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
         if (drinkComponentSelected.getTypeAsString().equals(DrinkComponent.NULL_TYPE_AS_STRING)) {
             Log.d(TAG, "drinkComponentSelected.getTypeAsString().equals(DrinkComponent.NULL_TYPE_AS_STRING)()");
 
-            if (drinkComponentSelected instanceof WhippedCream) {
+            if (drinkComponentSelected instanceof CinnamonPowder) {
+                Log.d(TAG, "drinkComponentSelected instanceof CinnamonPowder");
+
+                drinkComponentSelected.setTypeByString(CinnamonPowder.Type.CINNAMON_POWDER.name());
+                ((Granular) drinkComponentSelected).setAmount(Granular.Amount.MEDIUM);
+            } else if (drinkComponentSelected instanceof WhippedCream) {
                 Log.d(TAG, "drinkComponentSelected instanceof WhippedCream");
 
                 drinkComponentSelected.setTypeByString(WhippedCream.Type.WHIPPED_CREAM.name());
                 ((Granular) drinkComponentSelected).setAmount(Granular.Amount.MEDIUM);
-                updateScreen(drinkComponentSelected, drinkComponentDefaultAsStringSelected);
             } else {
-                Log.d(TAG, "drinkComponentSelected NOT instanceof WhippedCream");
+                Log.d(TAG, "drinkComponentSelected NOT instanceof WhippedCream or CinnamonPowder");
             }
+
+            updateScreen(drinkComponentSelected, drinkComponentDefaultAsStringSelected);
         } else {
             Log.d(TAG, "NOT drinkComponentSelected.getTypeAsString().equals(DrinkComponent.NULL_TYPE_AS_STRING)()");
 
