@@ -31,6 +31,7 @@ public class WhatsIncludedAdapter extends DrinkComponentBaseAdapter {
         } else if (drinkComponentSelected instanceof Granular) {
             // Update the underlying model.
             drinkComponentSelected.setTypeByString(DrinkComponent.NULL_TYPE_AS_STRING);
+            ((Granular) drinkComponentSelected).setAmount(Granular.Amount.NO);
         } else {
             // Update the underlying model.
             drinkComponentSelected.setTypeByString(DrinkComponent.NULL_TYPE_AS_STRING);
