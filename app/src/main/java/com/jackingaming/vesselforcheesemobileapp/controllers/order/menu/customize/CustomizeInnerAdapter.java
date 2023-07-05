@@ -74,16 +74,16 @@ public class CustomizeInnerAdapter extends DrinkComponentBaseAdapter {
                     // Update the underlying model.
                     drinkComponentSelected.setTypeByString(DrinkComponent.NULL_TYPE_AS_STRING);
                     ((Granular) drinkComponentSelected).setAmount(Granular.Amount.NO);
-                    drinkComponents.remove(indexSelected);
-                    drinkComponentsDefaultAsString.remove(indexSelected);
-                    notifyItemRemoved(indexSelected);
+                    updateScreen(drinkComponentSelected, drinkComponentDefaultAsStringSelected);
                 } else {
                     Log.i(TAG, "enumValuesNotInsideDrink.size() != 0");
 
                     // Update the underlying model.
                     drinkComponentSelected.setTypeByString(DrinkComponent.NULL_TYPE_AS_STRING);
                     ((Granular) drinkComponentSelected).setAmount(Granular.Amount.NO);
-                    updateScreen(drinkComponentSelected, drinkComponentDefaultAsStringSelected);
+                    drinkComponents.remove(indexSelected);
+                    drinkComponentsDefaultAsString.remove(indexSelected);
+                    notifyItemRemoved(indexSelected);
                 }
             }
         } else {
@@ -192,8 +192,13 @@ public class CustomizeInnerAdapter extends DrinkComponentBaseAdapter {
                         drinkComponents.add(indexSelected, drinkComponentToAdd);
                         drinkComponentsDefaultAsString.add(indexSelected, drinkComponentDefaultAsStringToAdd);
                         notifyItemInserted(indexSelected);
+                    } else if (enumValuesNotInsideDrink.size() == 1) {
+                        // LAST
+                        ((Granular) drinkComponentSelected).setAmount(Granular.Amount.MEDIUM);
+                        drinkComponentSelected.setTypeByString(enumValuesNotInsideDrink.get(0));
+                        updateScreen(drinkComponentSelected, drinkComponentDefaultAsStringSelected);
                     } else {
-                        Log.i(TAG, "enumValuesNotInsideDrink.size() != 2");
+                        Log.i(TAG, "enumValuesNotInsideDrink.size() != 2 and enumValuesNotInsideDrink.size() != 1");
 
                         DrinkComponent drinkComponentToAdd = null;
                         if (drinkComponentSelected instanceof ColdFoam) {
