@@ -21,7 +21,9 @@ import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.sweete
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.tea_options.Chai;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.tea_options.TeaOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.topping_options.CinnamonPowder;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.topping_options.ColdFoam;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.topping_options.Drizzle;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.topping_options.Topping;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.topping_options.ToppingOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.topping_options.WhippedCream;
 import com.jackingaming.vesselforcheesemobileapp.models.menu.Menu;
@@ -52,8 +54,10 @@ public class CaffeLatte extends Lattes {
     public static final int DEFAULT_NUMBER_OF_SWEETENER_PACKET_PACKS = 0;
     public static final int DEFAULT_NUMBER_OF_FLAVOR_SAUCE_PUMPS = 0;
     public static final int DEFAULT_NUMBER_OF_FLAVOR_SYRUP_PUMPS = 0;
+    public static final Granular.Amount DEFAULT_COLD_FOAM_AMOUNT = Granular.Amount.NO;
     public static final Granular.Amount DEFAULT_CINNAMON_POWDER_AMOUNT = Granular.Amount.NO;
     public static final Granular.Amount DEFAULT_DRIZZLE_AMOUNT = Granular.Amount.NO;
+    public static final Granular.Amount DEFAULT_TOPPING_AMOUNT = Granular.Amount.NO;
     public static final Granular.Amount DEFAULT_WHIPPED_CREAM_AMOUNT = Granular.Amount.NO;
 
     public static final double DEFAULT_PRICE_SMALL = 2.95;
@@ -95,10 +99,14 @@ public class CaffeLatte extends Lattes {
         flavorOptions.add(syrup);
         // TOPPING_OPTIONS
         List<DrinkComponent> toppingOptions = new ArrayList<>();
+        ColdFoam coldFoam = new ColdFoam(null, Granular.Amount.NO);
+        toppingOptions.add(coldFoam);
         CinnamonPowder cinnamonPowder = new CinnamonPowder(null, Granular.Amount.NO);
         toppingOptions.add(cinnamonPowder);
         Drizzle drizzle = new Drizzle(null, Granular.Amount.NO);
         toppingOptions.add(drizzle);
+        Topping topping = new Topping(null, Granular.Amount.NO);
+        toppingOptions.add(topping);
         WhippedCream whippedCream = new WhippedCream(null, Granular.Amount.NO);
         toppingOptions.add(whippedCream);
 
@@ -126,8 +134,10 @@ public class CaffeLatte extends Lattes {
         flavorOptionsDefault.add(Integer.toString(DEFAULT_NUMBER_OF_FLAVOR_SYRUP_PUMPS));
         // TOPPING_OPTIONS (defaults)
         List<String> toppingOptionsDefault = new ArrayList<>();
+        toppingOptionsDefault.add(DEFAULT_COLD_FOAM_AMOUNT.name());
         toppingOptionsDefault.add(DEFAULT_CINNAMON_POWDER_AMOUNT.name());
         toppingOptionsDefault.add(DEFAULT_DRIZZLE_AMOUNT.name());
+        toppingOptionsDefault.add(DEFAULT_TOPPING_AMOUNT.name());
         toppingOptionsDefault.add(DEFAULT_WHIPPED_CREAM_AMOUNT.name());
 
         drinkComponents.put(MilkOptions.TAG, milkOptions);

@@ -1,9 +1,21 @@
 package com.jackingaming.vesselforcheesemobileapp.models.components.drinks.topping_options;
 
+import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem.Granular;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
 
-public class Topping extends ToppingOptions {
+public class Topping extends ToppingOptions
+        implements Granular {
     public static final String DEFAULT_TEXT_INIT = "Add Topping Options";
+
+    @Override
+    public Amount getAmount() {
+        return amount;
+    }
+
+    @Override
+    public void setAmount(Amount amount) {
+        this.amount = amount;
+    }
 
     public enum Type {
         CINNAMON_DOLCE_SPRINKLES,
@@ -12,9 +24,11 @@ public class Topping extends ToppingOptions {
     }
 
     private Type type;
+    private Amount amount;
 
-    public Topping(Type type) {
+    public Topping(Type type, Amount amount) {
         this.type = type;
+        this.amount = amount;
     }
 
     public Type getType() {
@@ -27,7 +41,7 @@ public class Topping extends ToppingOptions {
 
     @Override
     public String getTextInit() {
-        return DEFAULT_TEXT_INIT;
+        return (type == null) ? (DEFAULT_TEXT_INIT) : ("Add " + type.name());
     }
 
     @Override
@@ -47,7 +61,7 @@ public class Topping extends ToppingOptions {
 
     @Override
     public String getTypeAsString() {
-        return type.name();
+        return (type == null) ? NULL_TYPE_AS_STRING : type.name();
     }
 
     @Override
