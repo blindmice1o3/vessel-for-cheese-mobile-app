@@ -53,45 +53,6 @@ public class CustomizeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 List<String> typesDefault = drinkComponentGroupsDefaultAsString.get(key);
                 List<DrinkComponent> types = drinkComponentGroups.get(key);
 
-                // TODO: filter types for duplicate Granular "invoker"
-                for (int j = 0; j < types.size(); j++) {
-                    DrinkComponent drinkComponent = types.get(j);
-                    Log.e(TAG, "drinkComponent.getTypeAsString(): " + drinkComponent.getTypeAsString());
-
-                    if (drinkComponent instanceof Granular) {
-                        if (drinkComponent.getTypeAsString().equals(DrinkComponent.NULL_TYPE_AS_STRING)) {
-                            String classDrinkComponent = drinkComponent.getClassAsString();
-
-                            List<Integer> indexesOfDuplicate = new ArrayList<>();
-                            for (int k = 0; k < types.size(); k++) {
-                                DrinkComponent drinkComponentInner = types.get(k);
-                                Log.e(TAG, "drinkComponentInner.getTypeAsString(): " + drinkComponentInner.getTypeAsString());
-
-                                if (drinkComponentInner == drinkComponent) {
-                                    Log.e(TAG, "drinkComponentInner == drinkComponent");
-                                    continue;
-                                }
-
-                                if (drinkComponentInner.getTypeAsString().equals(DrinkComponent.NULL_TYPE_AS_STRING)) {
-                                    String classDrinkComponentInner = drinkComponentInner.getClassAsString();
-                                    if (classDrinkComponentInner.equals(classDrinkComponent)) {
-                                        Log.e(TAG, "classDrinkComponentInner.equals(classDrinkComponent)");
-                                        Log.e(TAG, "ADD: " + drinkComponentInner.getClassAsString() + ", " + drinkComponentInner.getTypeAsString());
-                                        indexesOfDuplicate.add(k);
-                                    }
-                                }
-                            }
-
-                            for (Integer indexOfRemoval : indexesOfDuplicate) {
-                                DrinkComponent drinkComponentRemoval = types.remove(indexOfRemoval.intValue());
-                                String drinkComponentDefaultRemoval = typesDefault.remove(indexOfRemoval.intValue());
-                                Log.e(TAG, "successfulRemoval: " + drinkComponentRemoval.getClassAsString() + ", " + drinkComponentRemoval.getTypeAsString());
-                                Log.e(TAG, "default value: " + drinkComponentDefaultRemoval);
-                            }
-                        }
-                    }
-                }
-
                 dataProcessed.add(new DrinkComponentDetails(key, typesDefault, types));
             }
         }

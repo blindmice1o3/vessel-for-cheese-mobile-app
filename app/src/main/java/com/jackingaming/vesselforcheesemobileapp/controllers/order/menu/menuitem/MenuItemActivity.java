@@ -181,6 +181,10 @@ public class MenuItemActivity extends AppCompatActivity {
             buttonCustomize.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    // ***********************************
+                    removeDuplicateGranularInvoker(drink);
+                    // ***********************************
+
                     Intent intentCustomize = new Intent(MenuItemActivity.this, CustomizeActivity.class);
                     intentCustomize.putExtra(CustomizeActivity.EXTRA_DRINK, drink);
                     startActivityForResult(intentCustomize, CustomizeActivity.REQUEST_CODE);
@@ -196,6 +200,58 @@ public class MenuItemActivity extends AppCompatActivity {
             );
         } else {
             Log.e(TAG, "nameCategory does NOT equals " + Menu.HOT_COFFEES);
+        }
+    }
+
+    private void removeDuplicateGranularInvoker(Drink drink) {
+        Map<String, List<DrinkComponent>> drinkComponents = drink.getDrinkComponents();
+        Map<String, List<String>> drinkComponentsDefaultAsString = drink.getDrinkComponentsDefaultAsString();
+
+        for (int i = 0; i < Menu.DRINK_COMPONENTS_KEYS.size(); i++) {
+            String key = Menu.DRINK_COMPONENTS_KEYS.get(i);
+            Log.d(TAG, i + ": " + Menu.DRINK_COMPONENTS_KEYS.get(i));
+            if (drinkComponents.containsKey(key)) {
+                List<DrinkComponent> drinkComponentsGroup = drinkComponents.get(key);
+                List<String> drinkComponentsDefaultAsStringGroup = drinkComponentsDefaultAsString.get(key);
+
+                for (int j = 0; j < drinkComponentsGroup.size(); j++) {
+                    DrinkComponent drinkComponent = drinkComponentsGroup.get(j);
+                    Log.e(TAG, "drinkComponent.getTypeAsString(): " + drinkComponent.getTypeAsString());
+
+                    if (drinkComponent instanceof Granular) {
+                        if (drinkComponent.getTypeAsString().equals(DrinkComponent.NULL_TYPE_AS_STRING)) {
+                            String classDrinkComponent = drinkComponent.getClassAsString();
+
+                            List<Integer> indexesOfDuplicate = new ArrayList<>();
+                            for (int k = 0; k < drinkComponentsGroup.size(); k++) {
+                                DrinkComponent drinkComponentInner = drinkComponentsGroup.get(k);
+                                Log.e(TAG, "drinkComponentInner.getTypeAsString(): " + drinkComponentInner.getTypeAsString());
+
+                                if (drinkComponentInner == drinkComponent) {
+                                    Log.e(TAG, "drinkComponentInner == drinkComponent");
+                                    continue;
+                                }
+
+                                if (drinkComponentInner.getTypeAsString().equals(DrinkComponent.NULL_TYPE_AS_STRING)) {
+                                    String classDrinkComponentInner = drinkComponentInner.getClassAsString();
+                                    if (classDrinkComponentInner.equals(classDrinkComponent)) {
+                                        Log.e(TAG, "classDrinkComponentInner.equals(classDrinkComponent)");
+                                        Log.e(TAG, "ADD: " + drinkComponentInner.getClassAsString() + ", " + drinkComponentInner.getTypeAsString());
+                                        indexesOfDuplicate.add(k);
+                                    }
+                                }
+                            }
+
+                            for (Integer indexOfRemoval : indexesOfDuplicate) {
+                                DrinkComponent drinkComponentRemoval = drinkComponentsGroup.remove(indexOfRemoval.intValue());
+                                String drinkComponentDefaultRemoval = drinkComponentsDefaultAsStringGroup.remove(indexOfRemoval.intValue());
+                                Log.e(TAG, "successfulRemoval: " + drinkComponentRemoval.getClassAsString() + ", " + drinkComponentRemoval.getTypeAsString());
+                                Log.e(TAG, "default value: " + drinkComponentDefaultRemoval);
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 
