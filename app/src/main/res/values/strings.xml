@@ -571,4 +571,22 @@
     50, 11, 0.0
     -->
 
+    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+    <!--
+    OLEATO
+    [Oleato]
+    Oleato Golden Foam Cold Brew
+    Cold foam contrasts with dark, smooth cold brew, yielding an inviting aroma with lush Partanna infused cold foam.
+    380, 19, 34.0
+
+    Oleato Caffe Latte with Oatmilk
+    Starbucks Blonde Espresso infused with Partanna extra virgin olive oil, steamed with oatmilk. Velvety smooth. Deliciously lush.
+    330, 6, 23.0
+
+    Oleato Iced Shaken Espresso with Oatmilk and Toffeenut
+    Layers of flavor - coffee forward and lightly sweetened with notes of toasted nuts, rich espresso, and creamy oatmilk infused with Partanna extra virgin olive oil.
+    250, 12, 17.0
+    -->
+
 </resources>
