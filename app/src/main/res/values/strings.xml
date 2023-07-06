@@ -230,4 +230,135 @@
     A smooth, frothy vanilla flavoured luxury. For those times when you'd rather not indulge in the rich flavour of our world-famous espresso - but still desire a hot, creamy vanilla beverage.
     350, 43, 14.0
     -->
+
+    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+    <!--
+    COLD_DRINKS
+    [StarbucksRefreshers]
+    Dragon Drink Starbucks Refreshers Beverage
+    This tropical-inspired pick-me-up - crafted with sweet mango and dragonfruit flavors and hand-shaken with creamy coconutmilk, ice and a scoop of real diced dragonfruit - creates a refreshing and surprising delight in the fall.
+    130, 23, 3.0
+
+    Mango Dragonfruit Starbucks Refreshers Beverage
+    A tropical-inspired pick-me-up - crafted with a refreshing combination of sweet mango and dragonfruit flavors and hand-shaken with ice plus a scoop of real diced dragonfruit.
+    90, 19, 0.0
+
+    Mango Dragonfruit Lemonade Starbucks Refreshers Beverage
+    This tropical-inspired pick-me-up - crafted with a clever combination of vibrant lemonade, sweet mango and refreshing dragonfruit flavors and hand-shaken with ice plus a scoop of real diced dragonfruit.
+    140, 31, 0.0
+
+    Strawberry Acai Lemonade Starbucks Refreshers Beverage
+    Sweet strawberry flavors, passion fruit and acai notes balanced with the delightful zing of lemonade, served over ice with freeze-dried strawberry pieces. The ultimate pick-me-up your afternoon is calling for.
+    140, 32, 0.0
+
+    Paradise Drink Starbucks Refreshers Beverage
+    Tropical flavors of pineapple and passionfruit combine with diced pineapple and creamy coconutmilk to create a delicious island escape.
+    140, 23, 2.5
+
+    Pineapple Passionfruit Starbucks Refreshers Beverage
+    Tropical flavors of pineapple and passionfruit mix with diced pineapple to create an island escape - oh so refreshing.
+    100, 19, 0.0
+
+    Pineapple Passionfruit Lemonade Starbucks Refreshers Beverage
+    Tropical flavors of pineapple and passionfruit combine with diced pineapple and refreshing lemonade to create a taste of sunshine in a cup.
+    140, 30, 0.0
+
+    Pink Drink Starbucks Refreshers Beverage
+    Our crisp Strawberry Acai Refreshers beverage - with accents of passion fruit and combined with creamy coconutmilk - evokes a fruity and refreshing sip of spring, no matter what time of year.
+    140, 25, 2.5
+
+    Strawberry Acai Starbucks Refreshers Beverage
+    Sweet strawberry flavors accented by passion fruit and acai notes, shaken with ice and real strawberry pieces - a welcoming sweet spot of refreshment.
+    100, 21, 0.0
+
+    [Juice]
+    Starbucks BAYA Energy Mango Guava
+    Starbucks BAYA Energy Mango Guava crafted with mango juice and tropical guava flavor to lift you with some feel-good energy. It comes with 160 mg of caffeine naturally found in the fruit of the coffee plant. Taste how Starbucks does energy!
+    90, 23, 0.0
+
+    Evolution Fresh Organic Vital Berry
+    Bright berries, orange and mango blend together for a satisfying smoothie with a delicious punch of vitamin C.
+    140, 32, 0.0
+
+    Evolution Fresh Organic Defense Up
+    A refreshing smoothie packed with bright flavor thanks to organic oranges, pineapples, mangoes, apples and acerola cherries. An excellent source of vitamin C, made with 100% juice and no added sweeteners or artificial flavors.
+    170, 37, 0.0
+
+    Evolution Fresh Orange
+    Once you try this orange juice - cold-pressed with oranges picked and squeezed at their peak of sweetness - you'll never go back to any other. Vitamin C-packed and made with 100% juice, no added sweeteners or any artificial flavors.
+    170, 35, 0.0
+
+    Evolution Fresh Organic Super Fruit Greens
+    Here's a satisfying way to get your greens: a fruit and vegetable smoothie packed with goodness including mango puree, spinach, spirulina, chlorella, and Vitamin C. Made with 100% juice and no added sweeteners or artificial flavors.
+    180, 36, 0.0
+
+    Evolution Fresh Mighty Watermelon
+    A naturally refreshing and hydrating juice with just a touch of lemon, our fruit is picked at its absolute peak of sweetness then cold-pressed using high pressure processing for maximum flavor and nutrients. 100% juice with no added sweeteners or artificial flavors.
+    130, 25, 0.0
+
+    Tree Top Apple Juice Box
+    This childhood favorite contains 100% of your daily vitamin C with just the right amount of sweetness.
+    120, 26, 0.0
+
+    Starbucks Baya Energy Raspberry Lime
+    Starbucks Baya Energy Raspberry Lime crafted with the brightness of raspberry juice and a spritz of lime to lift you with some feel-good energy. It comes with 160 mg of caffeine naturally found in the fruit of the coffee plant. Taste how Starbucks does energy!
+    90, 22, 0.0
+
+    Lemonade
+    Awaken your taste buds with the zing of refreshing lemonade - this tangy, fresh sip puts a little zip in your step.
+    120, 27, 0.0
+
+    Blended Strawberry Lemonade
+    Awaken your taste buds with the zing of refreshing lemonade infused with a hint of delicious strawberry flavor and blended with ice. A light, fresh beverage that puts a little zip in your step.
+    190, 45, 0.0
+
+    [Milk]
+    Horizon Chocolate Organic Milk
+    Great for snacks, travel and more, this chocolate organic milk box is a convenient way to experience your milk on the go and everywhere.
+    150, 23, 2.5
+
+    Horizon Organic Lowfat Milk Box
+    Great for snacks, travel and more, this organic lowfat milk box is a convenient way to experience your milk on the go and everywhere.
+    -, -, -
+
+    Cold Milk
+    Skim, 2%, soy, almond, or coconutmilk served chilled or over ice. Simply refreshing.
+    260, 25, 10.0
+
+    Horizon Organic Vanilla Milk Box
+    Grab a mini carton of organic milk to complement a treat from our pastry case or pack into a lunch bag. Enjoy a sip and a touch of tasty vanilla.
+    140, 21, 2.5
+
+    [SparklingWater]
+    Galvanina Sparkling Water
+    The essential refresher. Our Sparkling, natural mineral water will quench your thirst with effervescent ease.
+    0, 0, 0.0
+
+    Spindrift Grapefruit Sparkling Water
+    Pink, tangy, grapefruits squeezed into sparkling water - along with touches of orange and lemon - for an effervescent, delightfully refreshing beverage.
+    15, 3, 0.0
+
+    Spindrift Raspberry Lime Sparkling Water
+    Raspberry and lime squeezed into sparkling water for an effervescent, delightfully refreshing beverage.
+    9, 1, 0.0
+
+    Galvanina Sparkling Water - Lime
+    Natural, thirst-quenching mineral water with a twist of refreshing lime.
+    0, 0, 0.0
+
+    [Water]
+    DASANI Bottled Water
+    DASANI Bottled Water
+    -, -, -
+
+    Ethos Bottled Water
+    For every bottle of Ethos water you buy, Starbucks will donate 5 cents to support humanitarian programs in coffee - growing communities, providing clean, safe water to those in need.
+    -, -, -
+
+    Hawaii Volcanic Water
+    Hawaii's signature natural artesian water from the Big Island - rejuvenating and replenishening.
+    0, 0, 0.0
+    -->
+    
 </resources>
