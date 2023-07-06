@@ -501,4 +501,74 @@
     0, 0, 0.0
     -->
 
+    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+    <!--
+    ICED_TEAS
+    [BottledTeas]
+    Teavana Sparkling Unsweetened Peach Nectarine Green Tea
+    This special unsweetened combination of peach and nectarine flavors plus green tea adds a delicious sparkle of nourishment to your day.
+    0, 0, 0.0
+
+    Teavana Mango Black Tea
+    We start with fine black tea then blend it with refreshing mango notes and hints of crisp lime, giving your day a refreshing lift.
+    100, 22, 0.0
+
+    [IcedBlackTeas]
+    Iced Black Tea
+    Premium black tea sweetened just right and shaken with ice to create an ideal iced tea - a rich and flavorful black tea journey awaits you.
+    0, 0, 0.0
+
+    Iced Black Tea Lemonade
+    Premium black tea sweetened just right, then shaken with refreshing lemonade and ice for this Arnold Palmer-inspired beverage. A distinguished, satisfying treat.
+    50, 11, 0.0
+
+    Iced Royal English Breakfast Tea Latte
+    A select blend of rich, full-leaf black teas from India and Sri Lanka sweetened with liquid cane sugar and combined with milk and ice.
+    140, 25, 2.5
+
+    Iced London Fog Tea Latte
+    Bright, citrusy spark of bergamot blends with subtle hints of lavender and mixes with vanilla syrup, milk and ice to create this delicious reinvention of a classic Earl Grey tea.
+    140, 25, 2.5
+
+    [IcedChaiTeas]
+    Iced Chai Tea Latte
+    Black tea infused with cinnamon, clove, and other warming spices are combined with milk and ice for the perfect balance of sweet and spicy.
+    240, 42, 4.0
+
+    [IcedGreenTeas]
+    Iced Peach Green Tea
+    Green tea is layered together with flavors of spearmint, lemon verbena and lemongrass for a taste that's really peachy keen.
+    60, 12, 0.0
+
+    Iced Peach Green Tea Lemonade
+    Green tea is layered together with flavors of spearmint, lemon verbena, lemongrass and a splash of lemonade over ice for a patio-ready refreshment of surprise and delight.
+    80, 18, 0.0
+
+    Iced Matcha Tea Latte
+    Smooth and creamy matcha sweetened just right and served with milk over ice. Green has never tasted so good.
+    200, 28, 5.0
+
+    Iced Green Tea
+    Green tea blended with mint, lemongrass and lemon verbena, and given a good shake with ice. Lightly flavored and oh-so-refreshing!
+    0, 0, 0.0
+
+    Iced Green Tea Lemonade
+    Green tea blended with mint, lemongrass, lemon verbena and lemonade, and given a good shake with ice. Lightly flavored and oh-so-refreshing!
+    50, 11, 0.0
+
+    Iced Matcha Lemonade
+    Our finely ground Teavana matcha green tea combined with crisp lemonade, then shaken with ice, creates a refreshingly sweet, delicious drink and a delightfully vibrant, green hue.
+    120, 27, 0.0
+
+    [IcedHerbalTeas]
+    Iced Passion Tango Tea
+    A blend of hibiscus, lemongrass and apple hand-shaken with ice: a refreshingly vibrant tea infused with the color of passion
+    0, 0, 0.0
+
+    Iced Passion Tango Tea Lemonade
+    Our blend of hibiscus, lemongrass and apple hand-shaken with ice, lemonade and, of course, passion.
+    50, 11, 0.0
+    -->
+
 </resources>
