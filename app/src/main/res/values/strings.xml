@@ -360,5 +360,88 @@
     Hawaii's signature natural artesian water from the Big Island - rejuvenating and replenishening.
     0, 0, 0.0
     -->
-    
+
+    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+    <!--
+    FRAPPUCCINO_BLENDED_BEVERAGES
+    [CoffeeFrappuccino]
+    Chocolate Java Mint Frappuccino Blended Beverage
+    Coffee and flavors of sweet chocolate and refreshing mint blended with rich Frappuccino chips for a smooth treat finished with a layer of mocha sauce, whipped cream and chocolate-mint cookie crumble.
+    490, 69, 20.0
+
+    Mocha Cookie Crumble Frappuccino
+    Frappuccino Roast coffee, mocha sauce and Frappuccino chips blended with milk and ice, layered on top of whipped cream and chocolate cookie crumble and topped with vanilla whipped cream, mocha drizzle and even more chocolate cookie crumble. Each sip is as good as the last... all the way to the end.
+    480, 55, 24.0
+
+    Caramel Ribbon Crunch Frappuccino Blended Beverage
+    Buttery caramel syrup blended with coffee, milk and ice, then topped with a layer of dark caramel sauce, whipped cream, caramel drizzle and a crunchy caramel-sugar topping - oh-so-beautifully delicious.
+    470, 60, 22.0
+
+    Espresso Frappuccino Blended Beverage
+    Coffee is combined with a shot of espresso and milk, then blended with ice to give you a nice little jolt and lots of sipping joy.
+    210, 42, 2.5
+
+    Coffee Frappuccino Blended Beverage
+    Coffee meets milk and ice in a blender for a rumble-and-tumble togetherness to create one of our most-beloved original Frappuccino blended beverages.
+    230, 45, 3.0
+
+    Caffe Vanilla Frappuccino Blended Beverage
+    We take Frappuccino roast coffee and vanilla bean powder, combine them with milk and ice, topped with whipped cream. Tastes like happiness.
+    410, 63, 15.0
+
+    Caramel Frappuccino Blended Beverage
+    Caramel syrup meets coffee, milk and ice for a rendezvous in the blender, while whipped cream and buttery caramel sauce layer the love on top. To change things up, try it affogato-style with a hot espresso shot poured right over the top.
+    380, 54, 16.0
+
+    Mocha Frappuccino Blended Beverage
+    Mocha sauce, Frappuccino Roast coffee, milk and ice all come together for a mocha flavor that'll leave you wanting more. To change things up, try it affogato-style with a hot espresso shot poured right over the top.
+    370, 51, 15.0
+
+    Java Chip Frappuccino Blended Beverage
+    We blend mocha sauce and Frappuccino chips with coffee, milk and ice, then top it off with whipped cream and a mocha drizzle to bring you endless java joy.
+    440, 59, 19.0
+
+    White Chocolate Mocha Frappuccino Blended Beverage
+    White chocolate Frappuccino Roast coffee, milk and ice get together for what might be the best thing that happens to you all day. Oh, and there's whipped cream on top.
+    420, 61, 17.0
+
+    [CremeFrappuccino]
+    Chocolate Mint Creme Frappuccino Blended Beverage
+    Flavors of sweet chocolate and refreshing mint blended with rich Frappuccino chips for a smooth treat finished with a layer of mocha sauce, whipped cream and chocolate-mint cookie crumble.
+    450, 57, 21.0
+
+    Chocolate Cookie Crumble Creme Frappuccino
+    Mocha sauce and Frappuccino chips are blended with milk and ice, layered on top of whipped cream and chocolate cookie crumble and topped with vanilla whipped cream, mocha drizzle and even more chocolate cookie crumble. These layers ensure each sip is as good as the last; all the way to the end.
+    460, 46, 25.0
+
+    Caramel Ribbon Crunch Creme Frappuccino Blended Beverage
+    Buttery caramel syrup is blended with milk and ice, then topped with a layer of dark caramel sauce, whipped cream, caramel drizzle and a crunchy caramel-sugar topping - oh-so-beautifully delicious.
+    420, 46, 22.0
+
+    Strawberry Creme Frappuccino Blended Beverage
+    Summer's favorite berry is the star of this delicious Frappuccino Blended Beverage - a blend of ice, milk and strawberry puree layered on top of a splash of strawberry puree and finished with vanilla whipped cream.
+    370, 51, 16.0
+
+    Chai Creme Frappuccino
+    A creamy blend of spicy classic chai, milk and ice. Topped with sweetened whipped cream and a dash of cinnamon. Spice up your afternoon treat.
+    340, 45, 16.0
+
+    Double Chocolaty Chip Creme Frappuccino Blended Beverage
+    Rich mocha-flavored sauce meets up with chocolaty chips, milk and ice for a blender bash. Top it off with sweetened whipped cream and mocha drizzle for a real party in your mouth.
+    250, 30, 10.0
+
+    Matcha Creme Frappuccino Blended Beverage
+    This blend of sweetened premium matcha green tea, milk and ice - topped off with sweetened whipped cream - inspires a delicious boost and good green vibes.
+    420, 61, 16.0
+
+    Vanilla Bean Creme Frappuccino Blended Creme
+    This rich and creamy blend of vanilla bean, milk and ice topped with whipped cream takes va-va-vanilla flavor to another level. To change things up, try it affogato-style with a hot espresso shot poured right over the top.
+    380, 52, 16.0
+
+    White Chocolate Creme Frappuccino Blended Beverage
+    A smooth blend of white chocolate sauce, milk and ice topped with whipped cream for a remarkable flavor that surprisingly wows.
+    380, 49, 18.0
+    -->
+
 </resources>
