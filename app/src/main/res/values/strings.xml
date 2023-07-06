@@ -444,4 +444,61 @@
     380, 49, 18.0
     -->
 
+    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+    <!--
+    HOT_TEAS
+    [ChaiTeas]
+    Chai Tea Latte
+    Black tea infused with cinnamon, clove and other warming spices is combined with steamed milk and topped with foam for the perfect balance of sweet and spicy. An iconic chai cup.
+    240, 42, 4.5
+
+    Chai Tea
+    Black tea infused with warm clove, cardamom, cinnamon and ginger notes. A bold, distinctive chai tea.
+    0, 0, 0.0
+
+    [BlackTeas]
+    Earl Grey Tea
+    We take a strong black tea base and add the essence of bergamot, a citrus fruit with subtle lemon and floral lavender notes, to create this aromatically awesome tea flavor.
+    0, 0, 0.0
+
+    Teavana London Fog Tea Latte
+    Bright, citrusy spark of Italian bergamot blends with subtle hints of lavender, vanilla syrup, and steamed milk for this frothy reinvention of classic Earl Grey tea.
+    180, 29, 4.0
+
+    Royal English Breakfast Tea
+    Each sip of this beloved morning black tea unfolds to reveal the complexity of the high-grown full leaves. An elegant, time-honored classic that brings a royal nod to every cup.
+    0, 0, 0.0
+
+    Royal English Breakfast Tea Latte
+    A select blend of rich, full-leaf black teas from India and Sri Lanka sweetened with liquid cane sugar and topped with steamed milk and a velvety foam. Each and every sip - smooth and silky.
+    150, 21, 4.0
+
+    [GreenTeas]
+    Emperor's Clouds & Mist
+    This gently smoky, softly sweet green tea - cultivated at 3,500 feet and shrouded in ethereal clouds and mist - is tasty no matter what language you say it in.
+    0, 0, 0.0
+
+    Matcha Tea Latte
+    Smooth and creamy matcha sweetened just right and served with steamed milk. This favorite will transport your senses to pure green delight.
+    240, 32, 7.0
+
+    Honey Citrus Mint Tea
+    A customer creation so popular it's now on the menu. Jade Citrus Mint green tea, Peach Tranquility herbal tea, hot water, steamed lemonade and a touch of honey mingle tastefully well together for a tea that comforts from the inside out.
+    130, 30, 0.0
+
+    Jade Citrus Mint Brewed Tea
+    Green tea, lemon verbena, lemongrass and a hint of spearmint mingle for a bright, refreshing, citrusy green tea experience.
+    0, 0, 0.0
+
+    [HerbalTeas]
+    Mint Majesty
+    A blend of mint and a pinch of lemon verbena creates a refreshing flavor that's supercool for a caffeine-free herbal tea.
+    0, 0, 0.0
+
+    Peach Tranquility
+    A sweet fusion of peach, candied pineapple, chamomile blossoms, lemon verbena and rose hips come together in this caffeine-free herbal tea. Sip back and relax.
+    0, 0, 0.0
+    -->
+
 </resources>
