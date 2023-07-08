@@ -589,4 +589,102 @@
     250, 12, 17.0
     -->
 
+    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+    <!--
+    HOT_BREAKFAST
+    [BreakfastSandwiches&Wraps]
+    Chicken, Maple Butter & Egg Sandwich
+    Breaded white-meat chicken, fluffy eggs and a maple-butter spread on a toasted oat-biscuit roll - a satisfyingly savory sandwich with a hint of sweetness. - HIGH-PROTEIN
+    450, 6, 24.0
+
+    Bacon, Sausage & Egg Wrap
+    Double-smoked bacon, savory pork sausage and cage-free scrambled eggs combined with Cheddar cheese and potatoes -- all wrapped in a flour tortilla. - HIGH-PROTEIN
+    640, 2, 33.0
+
+    Impossible Breakfast Sandwich
+    The savory Impossible Sausage Made from Plants combined with a cage-free fried egg and aged Cheddar cheese on an artisan sesame ciabatta bun. - VEGETARIAN - HIGH-PROTEIN
+    420, 4, 22.0
+
+    Bacon, Gouda & Egg Sandwich
+    Sizzling applewood-smoked bacon, Parmesan cage-free egg frittata and melted age Gouda on an artisan roll. - HIGH-PROTEIN
+    360, 2, 18.0
+
+    Double-Smoked Bacon, Cheddar & Egg Sandwich
+    Bacon smoked for six hours over hickory wood chips, stacked with a cage-free fried egg, topped with a melted slice of sharp Cheddar cheese - all on our signature croissant bun. - HIGH-PROTEIN
+    500, 8, 27.0
+
+    Turkey Bacon, Cheddar & Egg White Sandwich
+    Sizzling turkey bacon and cage-free egg whites paired with a creamy, melted, reduced-fat white Cheddar cheese on a wheat English muffin. - HIGH-PROTEIN
+    230, 2, 5.0
+
+    Sausage, Cheddar & Egg Sandwich
+    A savory sausage patty, fluffy cage-free eggs and aged Cheddar cheese on a perfectly toasted English muffin. - HIGH-PROTEIN
+    480, 2, 29.0
+
+    Spinach, Feta & Egg White Wrap
+    Cage-free egg whites are combined with spinach, feta cheese and sun-dried tomato cream cheese inside a whole-wheat wrap. - VEGETARIAN - HIGH-PROTEIN
+    290, 5, 8.0
+
+    Avocado Spread
+    Avocadoes mixed with lime, sea salt, garlic and a touch of spice - specially packaged to maintain freshness without the use of heat, additives or preservatives.
+    90, 0, 8.0
+
+    [SousVideEggBites]
+    Kale & Mushroom Egg Bites
+    Chopped kale and portabella mushrooms delicately folded into cage-free eggs with Monterey Jack cheese and cooked using the French "sous vide" technique to create a velvety texture that's full of flavor. - VEGETARIAN - HIGH-PROTEIN
+    230, 1, 14.0
+
+    Bacon & Gruyere Egg Bites
+    Applewood-smoked bacon and aged Gruyere Monterey Jack cheeses folded into cage-free eggs and cooked using the French "sous vide" technique to create a velvety texture that's full of flavor. - HIGH-PROTEIN
+    300, 2, 20.0
+
+    Egg White & Roasted Red Pepper Egg Bites
+    Cage-free egg whites combined with Monterey Jack cheese, spinach and fire-roasted red peppers and cooked using the French "sous vide" technique to create a velvety texture that's full of flavor. - VEGETARIAN - HIGH-PROTEIN
+    170, 3, 8.0
+
+    OATMEAL_&_YOGURT
+    [Oatmeal&Yogurt]
+
+    BAKERY
+    [Bagels]
+
+    [CakePops]
+
+    [CookiesBrownies&Bars]
+
+    [Croissants]
+
+    [LoavesCakes&Buns]
+
+    [Danishes&Doughnuts]
+
+    [Muffins&Scones]
+
+    LUNCH
+    [WarmSandwiches]
+
+    [ProteinBoxes]
+
+    SNACKS_&_SWEETS
+    [Biscotti&Cookies]
+
+    [Chocolates&Candy]
+
+    [Fruits&Nuts]
+
+    [Gum&Mints]
+
+    [Popcorn&Chips]
+
+    [Meat&Cheese]
+
+    [SnackBars]
+
+    [Spreads]
+
+    -->
+
 </resources>
