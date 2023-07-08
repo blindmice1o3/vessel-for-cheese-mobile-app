@@ -647,43 +647,293 @@
 
     OATMEAL_&_YOGURT
     [Oatmeal&Yogurt]
+    Rolled & Steel-Cut Oatmeal
+    A blend of rolled and whole-grain steel-cut oats to customize any way you want with a selection of toppings: dried fruit, nut medley, brown sugar, agave or blueberries. -VEGETARIAN
+    410, 34, 12.0
+
+    Berry Trio Parfait
+    Nonfat vanilla yogurt combined with sliced strawberries, whole blueberries, raspberries and topped with a crisp honey-oat granola. -VEGETARIAN -HIGH-PROTEIN
+    240, 25, 2.5
+
+    Strawberry Overnight Grains
+    Steel-cut oats, quinoa, chia seeds and coconutmilk combined with fresh strawberries and topped with shaved coconut and toasted almonds. -VEGAN
+    300, 20, 16.0
 
     BAKERY
     [Bagels]
+    Plain Bagel
+    Classic soft, chewy and thick New York-style bagel. Available with cream cheese or butter. - VEGAN - VEGETARIAN
+    280, 2, 1.5
+
+    Everything Bagel
+    Soft, chewy and thick New York-style bagel topped with onion, garlic, salt, poppy and sesame seeds. Available with cream cheese or butter. - VEGAN - VEGETARIAN
+    290, 5, 3.0
+
+    Avocado Spread
+    Avocadoes mixed with lime, sea salt, garlic and a touch of spice - specially packaged to maintain freshness without the use of heat, additives or preservatives.
+    90, 0, 8.0
 
     [CakePops]
+    Bumblebee Cake Pop
+    Vanilla cake mixed with buttercream, dipped in yellow chocolaty icing and finished with a bumblebee-face design - VEGETARIAN
+    160, 17, 8.0
+
+    Cookies & Cream Cake Pop
+    Chocolate cake blended with creamy, sandwich-cookie buttercream and cookie bits, dipped in white-chocolaty coating and finished with dark-chocolaty cookie crumb. - VEGETARIAN
+    140, 15, 7.0
+
+    Birthday Cake Pop
+    Bite-sized vanilla cake mixed with vanilla buttercream, dipped in pink chocolaty icing and topped with white sprinkles. - VEGETARIAN
+    160, 16, 8.0
+
+    Chocolate Cake Pop
+    Bite-sized chocolate cake mixed with chocolate buttercream, dipped in chocolaty icing and topped with white sprinkles. - VEGETARIAN
+    150, 16, 8.0
 
     [CookiesBrownies&Bars]
+    Bullseye Cookie
+    This Target-exclusive sugar cookie frosted with icing shaped like a Bullseye face: the perfect pick-me-up for any dog lover!
+    240, 14, 14.0
+
+    Double Chocolate Brownie
+    Rich chocolate brownie with generous chunks of semisweet chocolate. - VEGETARIAN
+    480, 37, 28.0
+
+    Chocolate Chip Cookie
+    Semisweet chocolate chips mixed in a thick, chewy cookie -- soft on the inside and crunchy on the outside. - VEGETARIAN
+    360, 31, 18.0
+
+    Marshmallow Dream Bar
+    This crispy, chewy marshmallow bar, made of ooey-gooey, soft marshmallows, crispy rice, creates a sweet treat that'll make you snack like a kid again.
+    230, 24, 5.0
 
     [Croissants]
+    Ham & Swiss Croissant
+    Hickory-smoked ham and melted Swiss cheese wrapped in a butter croissant with soft, flaky layers and a golden-brown crust.
+    320, 5, 17.0
+
+    Butter Croissant
+    Classic butter croissant with soft, flaky layers and a golden-brown crust. - VEGETARIAN
+    250, 4, 14.0
+
+    Chocolate Croissant
+    Two generous pieces of chocolate wrapped in a butter croissant with soft, flaky layers and a golden-brown crust. - VEGETARIAN
+    300, 11, 18.0
 
     [LoavesCakes&Buns]
+    Cinnamon Coffee Cake
+    Buttery, moist, coffee cake swirled with a cinnamon-sugar blend and finished with a crunchy streusel topping. - VEGETARIAN
+    380, 35, 15.0
+
+    Iced Lemon Loaf
+    Citrusy, buttery, moist lemon pound cake topped with a sweet icing. - VEGETARIAN
+    450, 40, 19.0
+
+    Pumpkin & Pepita Loaf
+    Gently spiced pumpkin bread topped with crunchy pepitas. - VEGETARIAN
+    390, 38, 14.0
+
+    Banana Walnut & Pecan Loaf
+    Bananas, walnuts and pecans mixed into a moist, nutty, classic banana bread. - VEGETARIAN
+    410, 28, 20.0
 
     [Danishes&Doughnuts]
+    Glazed Doughnut
+    Old-fashioned cake doughnut glazed with sweet icing. - VEGETARIAN
+    480, 30, 27.0
+
+    Cheese Danish
+    Flaky, butter croissant dough with soft, warm cheese in the center. - VEGETARIAN
+    290, 11, 14.0
 
     [Muffins&Scones]
+    Blueberry Scone
+    Buttermilk scone with blueberries, creme fraiche and a hint of lemon zest. - VEGETARIAN
+    380, 22, 17.0
+
+    Petite Vanilla Bean Scone
+    Moist, fluffy, petite scone made with real vanilla beans and vanilla extract. - VEGETARIAN
+    120, 8, 4.5
+
+    Blueberry Muffin
+    Soft muffin with sweet, juicy blueberries and a hint of lemon, finished with a crunchy sugar topping. - VEGETARIAN
+    330, 29, 14.0
 
     LUNCH
     [WarmSandwiches]
+    Crispy Grilled Cheese on Sourdough
+    A blend of white Cheddar and mozzarella cheeses on sourdough bread, topped with a Parmesan butter spread. - VEGETARIAN - HIGH-PROTEIN
+    520, 1, 27.0
+
+    Ham & Swiss on Baguette
+    Ham and Swiss cheese meld with Dijon butter on a toasted baguette. - HIGH-PROTEIN
+    480, 2, 23.0
+
+    Turkey, Provolone & Pesto on Ciabatta
+    Thick-sliced turkey breast, melted provolone cheese, dry-roasted red peppers and basil pesto on a ciabatta roll. - HIGH-PROTEIN
+    520, 3, 19.0
+
+    Tomato & Mozzarella on Focaccia
+    Roasted tomatoes, mozzarella, spinach and basil pesto layered on toasted focaccia bread. - VEGETARIAN - HIGH-PROTEIN
+    360, 2, 12.0
+
+    Avocado Spread
+    Avocadoes mixed with lime, sea salt, garlic and a touch of spice - specially packaged to maintain freshness without the use of heat, additives or preservatives.
+    90, 0, 8.0
 
     [ProteinBoxes]
+    Eggs & Gouda Protein Box
+    Two cage-free hard-boiled eggs with Gouda and multigrain crackers plus a blend of dried apricots and apples, peanut butter spread and salt and pepper. - VEGETARIAN - HIGH-PROTEIN
+    530, 23, 28.0
+
+    Cheese Trio Protein Box
+    Brie, Gouda and aged sharp Cheddar cheese paired with olive oil and sea-salt crackers, plus a blend of dried apricots and cranberries. - VEGETARIAN - HIGH-PROTEIN
+    520, 40, 24.0
+
+    Cheddar & Uncured Salami Protein Box
+    Flavorful salami, aged sharp and white Cheddar cheeses and olive oil and sea-salt crackers paired with a blend of dried cranberries, almonds, walnuts and pepitas. - HIGH-PROTEIN
+    470, 14, 31.0
+
+    Chickpea Bites & Avocado Protein Box
+    Falafel-inspired chickpea bites are paired with snap peas, mini carrots, avocado spread and a blend of dried cranberries, almonds, pepitas and sunflower seeds. - VEGAN
+    560, 7, 37.0
+
+    Eggs & Cheddar Protein Box
+    Two cage-free hard-boiled eggs, sliced tart apples, grapes and white Cheddar cheese come together with multigrain muesli bread and honey peanut butter.
+    470, 21, 25.0
+
+    PB&J Protein Box
+    Natural peanut butter and strawberry jam spread on soft, honey wheat bread and served with string cheese, apples, mini carrots and Greek yogurt ranch dip plus chocolate-covered raisins. - VEGETARIAN - HIGH-PROTEIN
+    520, 30, 27.0
+
+    Cheese & Fruit Protein Box
+    Brie, Gouda and aged Cheddar cheeses paired with olive oil and sea-salt crackers, apples and grapes.
+    470, 17, 28.0
 
     SNACKS_&_SWEETS
     [Biscotti&Cookies]
+    Madeleines
+    Made with quality ingredients, these rich and buttery French cakes are soft and moist in the center and baked with lightly crisped edges.
+    220, 17, 11.0
+
+    Vanilla Biscotti with Almonds
+    These crispy, delicious vanilla cookies topped with crunchy almonds are love at first bite. Perfect for dipping into your favorite coffee or espresso beverage.
+    200, 10, 9.0
+
+    Shortbread Cookies
+    Our two-pack of butter shortbread cookies made with quality ingredients create a melt-in-your-mouth texture in every bite.
+    170, 8, 9.0
+
+    Rip van Wafels - Honey & Oats
+    A blend of vanilla, honey and oats come together to create a uniquely textured cookie - crispy and chewy goodness.
+    130, 8, 6.0
 
     [Chocolates&Candy]
+    Salted Almond Chocolate Bites
+    Triple chocolate-covered almonds with gray sea salt: a flavorful nutty-salty experience.
+    300, 19, 22.0
+
+    Dark Chocolate Covered Espresso Beans
+    Our espresso coffee beans (the best in the world) get even better when drenched in a layer of luscious dark chocolate.
+    260, 22, 15.0
+
+    Dark Chocolate Peanut Butter Cups
+    What happens when the best-tasting peanut butter in the world is delicately placed into the highest-quality, dark chocolate available? Peanut-butter cup perfection.
+    220, 16, 14.0
 
     [Fruits&Nuts]
+    Squirrel Brand Fruit & Nut
+    Premium cashews and pure California almonds loaded with juicy cranberries and mouthwatering blueberries. Ah, such a delightful blend of sweet and savory.
+    -, -, -
+
+    Peter Rabbit Organics Strawberry Banana
+    These convenient, squeezable, resealable pouches contain USDA organic banana-strawberry puree with a hint of lemon juice. Perfect for busy moms on the go.
+    80, 17, 0.0
 
     [Gum&Mints]
+    Spearmint Gum
+    A strong and crisp mint flavor that freshens breath after coffee, leaves breath feeling fresh for hours.
+    -, -, -
 
     [Popcorn&Chips]
+    Starbucks Butter Popcorn
+    Perfectly buttery with just the right amount of salt, this fluffy snack favorite makes movie theaters everywhere jealous.
+    -, -, -
+
+    Salt & Vinegar Kettle Potato Chips
+    With the perfect sprinkling of vinegar and salt, these chips add a flavorful crunch to any afternoon - a wave of pure delight.
+    270, 0, 13.0
+
+    Perfectly Salted Chips
+    Kettle potato chips perfectly salted for a naturally delicious snack with undeniable flavour and crunch.
+    280, 0, 14.0
 
     [Meat&Cheese]
+    Country Archer - Hickory Smoked Turkey Jerkey
+    This small-batch, handcrafted turkey jerkey: hickory-smoked and prepared the way it was always intended, with slices of real turkey breast, true smoke flavor and no nonsense.
+    70, 4, 1.0
+
+    Country Archer Original Beef Jerky
+    This artisan jerky unfolds with layers of incredible flavor including soy sauce, brown sugar, garlic and pineapple juice.
+    70, 4, 1.0
+
+    String Cheese
+    As a mess-free car snack or a quick add-on to round out their lunch box - this string cheese is always a fan favorite. Made with low-moisture part-skim mozzarella cheese. - VEGETARIAN
+    80, 0, 6.0
 
     [SnackBars]
+    Perfect Bar - Dark Chocolate Chip Peanut Butter
+    The original peanut butter bar receives an upgrade with a sprinkle of Fair Trade dark chocolate chips and a pinch of sea salt. Plus, protein-packed with 20 organic superfoods, this guilt-free go-to bar satisfies any salty-sweet craving.
+    320, 18, 19.0
+
+    Perfect Bar Peanut Butter
+    One bite and you'll taste why this recipe is indeed "perfect." Made with ground organic peanut butter and honey, and packed with organic superfoods, this bar is gluten-free, soy-free and truly tasty.
+    330, 18, 18.0
+
+    KIND - Almond Coconut Cashew Chai
+    A sweet & nutty blend of toasted coconut, almonds and cashews is combined with exotically spiced chai for a rich and delicious snack you'll savor from beginning to end.
+    200, 8, 14.0
+
+    KIND Blueberry Vanilla & Cashew Bar
+    A chewy blend of blueberries and cashews, combined with the sweet taste of vanilla. It's goodness on the go.
+    180, 7, 12.0
+
+    KIND Peanut Butter Dark Chocolate Bar
+    A satisfying blend of peanuts and cocoa bound together in honey. This snack bar delights from the first bite till the last.
+    200, 9, 14.0
+
+    KIND Salted Caramel & Dark Chocolate Nut Bar
+    Whole cashews and pecans combined with the smooth, rich flavors of salted caramel and dark chocolate may seem indulgent, but this snack - made with just 5g of sugar - only tastes like dessert.
+    200, 5, 15.0
+
+    That's It - Apple + Blueberry Bar
+    Fruit bars made from only two ingredients: apples and blueberries. Seriously, that's it!
+    100, 19, 0.0
+
+    That's It - Apple + Mango Bar
+    Fruit bars made from only two ingredients: apples and mangoes. For real, that's it!
+    100, 23, 0.0
+
+    This Bar Saves Lives - Dark Chocolate Cherry & Sea Salt Bar
+    Packed with crunchy almonds, tart cherries and cranberries, then drizzled with antioxidant-rich dark chocolate. It's gluten free, kosher, made with Rainforest Alliance-certified cocoa and just plain awesome. For every bar sold, This Bar Saves Lives will give a packet of life-saving food to a child in need, in different areas around the world.
+    160, 12, 6.0
+
+    This Bar Saves Lives - Dark Chocolate Peanut Butter
+    A decadent blend of chocolate, crunchy almonds, creamy peanut butter and a dash of sea salt make this a tasty bar. Making it even more amazing is that it's gluten free, Non-GMO Project Verified, kosher, and for every bar sold, a packet of life-saving food is given to a child in need, in different areas around the world.
+    190, 7, 10.0
+
+    This Bar Saves Lives Madagascar Vanilla Almond & Honey Bar
+    Crunchy almonds and mega-3 rich flax seeds wrapped in a dash of vanilla and honey. This delicious bar is just plain awesome. Plus, for every bar sold, This Bar Saves Lives will give a packet of lifesaving food to a child in need.
+    180, 6, 9.0
+
+    This Bar Saves Lives - Wild Blueberry Pistachio Bar
+    A delicious and healthy blend of nuts, seeds and antioxidant-rich blueberries. It's non-GMO, gluten free, kosher and just plain awesome. For every bar sold, This Bar Saves Lives will give a packet of life-saving food to a child in need, in different areas around the world.
+    160, 8, 7.0
 
     [Spreads]
+    Avocado Spread
+    Avocadoes mixed with lime, sea salt, garlic and a touch of spice - specially packaged to maintain freshness without the use of heat, additives or preservatives.
+    90, 0, 8.0
 
     -->
 
