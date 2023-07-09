@@ -271,18 +271,23 @@ public class MenuItemActivity extends AppCompatActivity {
                     DrinkComponent drinkComponent = types.get(j);
                     String drinkComponentDefault = typesDefault.get(j);
 
-                    if (drinkComponent instanceof Incrementable) {
+                    if (drinkComponent.getTypeAsString().equals(DrinkComponent.NULL_TYPE_AS_STRING)) {
+                        Log.i(TAG, "skipping - drinkComponent.getTypeAsString().equals(DrinkComponent.NULL_TYPE_AS_STRING)");
+                        continue;
+                    } else if (drinkComponent instanceof Granular) {
+                        Granular.Amount amount = ((Granular) drinkComponent).getAmount();
+
+                        if (amount == Granular.Amount.NO) {
+                            Log.i(TAG, "skipping - amount == Granular.Amount.NO");
+                            continue;
+                        }
+                    } else if (drinkComponent instanceof Incrementable) {
                         int quantity = ((Incrementable) drinkComponent).getQuantity();
 
                         if (quantity == Incrementable.QUANTITY_FOR_INVOKER) {
                             Log.i(TAG, "skipping - quantity == DrinkComponent.QUANTITY_FOR_INVOKER");
                             continue;
                         }
-                    }
-
-                    if (drinkComponent.getTypeAsString().equals(DrinkComponent.NULL_TYPE_AS_STRING)) {
-                        Log.i(TAG, "skipping - drinkComponent.getTypeAsString().equals(DrinkComponent.NULL_TYPE_AS_STRING)");
-                        continue;
                     }
 
                     Log.i(TAG, "adding - drinkComponent.getTypeAsString(): " + drinkComponent.getTypeAsString());
