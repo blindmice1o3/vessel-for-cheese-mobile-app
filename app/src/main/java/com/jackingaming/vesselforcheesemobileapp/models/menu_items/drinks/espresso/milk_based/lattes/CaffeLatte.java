@@ -40,7 +40,8 @@ public class CaffeLatte extends Lattes {
     public static final int DEFAULT_SUGAR_IN_GRAM = 18;
     public static final float DEFAULT_FAT_IN_GRAM = 7.0f;
 
-    public static final MilkFoam.Type DEFAULT_MILK_FOAM = MilkFoam.Type.MEDIUM;
+    public static final MilkFoam.Type DEFAULT_MILK_FOAM = MilkFoam.Type.MILK_FOAM;
+    public static final Granular.Amount DEFAULT_MILK_FOAM_AMOUNT = Granular.Amount.MEDIUM;
     public static final MilkBase.Type DEFAULT_MILK_BASE = MilkBase.Type.TWO_PERCENT;
     public static final Temperature.Type DEFAULT_TEMPERATURE = Temperature.Type.MEDIUM;
     public static final RoastOptions.Type DEFAULT_ROAST_OPTIONS = RoastOptions.Type.SIGNATURE;
@@ -70,7 +71,7 @@ public class CaffeLatte extends Lattes {
                 DEFAULT_PRICE_MEDIUM, DEFAULT_ICED);
         // MILK_OPTIONS
         List<DrinkComponent> milkOptions = new ArrayList<>();
-        milkOptions.add(new MilkFoam(DEFAULT_MILK_FOAM));
+        milkOptions.add(new MilkFoam(DEFAULT_MILK_FOAM, DEFAULT_MILK_FOAM_AMOUNT));
         milkOptions.add(new MilkBase(DEFAULT_MILK_BASE));
         milkOptions.add(new Temperature(DEFAULT_TEMPERATURE));
         // ESPRESSO_OPTIONS
@@ -112,7 +113,7 @@ public class CaffeLatte extends Lattes {
 
         // MILK_OPTIONS (defaults)
         List<String> milkOptionsDefault = new ArrayList<>();
-        milkOptionsDefault.add(DEFAULT_MILK_FOAM.name());
+        milkOptionsDefault.add(DEFAULT_MILK_FOAM_AMOUNT.name());
         milkOptionsDefault.add(DEFAULT_MILK_BASE.name());
         milkOptionsDefault.add(DEFAULT_TEMPERATURE.name());
         // ESPRESSO_OPTIONS (defaults)

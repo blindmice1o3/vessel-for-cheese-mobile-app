@@ -1,18 +1,32 @@
 package com.jackingaming.vesselforcheesemobileapp.models.components.drinks.milk_options;
 
+import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem.Granular;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
 
-public class MilkFoam extends MilkOptions {
+public class MilkFoam extends MilkOptions
+        implements Granular {
     public static final String DEFAULT_TEXT_INIT = "Add Milk Foam";
 
+    @Override
+    public Amount getAmount() {
+        return amount;
+    }
+
+    @Override
+    public void setAmount(Amount amount) {
+        this.amount = amount;
+    }
+
     public enum Type {
-        NONE, LIGHT, MEDIUM, EXTRA;
+        MILK_FOAM;
     }
 
     private Type type;
+    private Amount amount;
 
-    public MilkFoam(Type type) {
+    public MilkFoam(Type type, Amount amount) {
         this.type = type;
+        this.amount = amount;
     }
 
     public Type getType() {
@@ -25,7 +39,7 @@ public class MilkFoam extends MilkOptions {
 
     @Override
     public String getTextInit() {
-        return DEFAULT_TEXT_INIT;
+        return (type == null) ? (DEFAULT_TEXT_INIT) : ("Add " + type.name());
     }
 
     @Override
