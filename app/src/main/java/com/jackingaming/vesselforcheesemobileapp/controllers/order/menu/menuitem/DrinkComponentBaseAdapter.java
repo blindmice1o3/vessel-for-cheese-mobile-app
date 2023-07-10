@@ -44,6 +44,10 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
     protected int indexSelected = -1;
     protected RecyclerView.ViewHolder viewHolderSelected;
 
+    public DrinkComponentBaseAdapter() {
+
+    }
+
     public DrinkComponentBaseAdapter(List<DrinkComponent> drinkComponents,
                                      List<String> drinkComponentsDefaultAsString,
                                      List<DrinkComponent> drinkComponentsStandardRecipe,
