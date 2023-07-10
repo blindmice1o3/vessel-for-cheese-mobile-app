@@ -6,7 +6,7 @@ public class CupSize extends CupOptions {
     public static final String DEFAULT_TEXT_INIT = "Cup Size";
 
     public enum Type {
-        NONE, SHORT, TALL, GRANDE, VENTI, TRENTA;
+        NO, TALL, GRANDE, VENTI;
     }
 
     private Type type;
@@ -45,7 +45,7 @@ public class CupSize extends CupOptions {
 
     @Override
     public String getTypeAsString() {
-        return type.name();
+        return (type == null) ? NULL_TYPE_AS_STRING : type.name();
     }
 
     @Override

@@ -5,6 +5,7 @@ import android.util.Log;
 import androidx.core.util.Pair;
 
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.cup_options.CupSize;
 import com.jackingaming.vesselforcheesemobileapp.models.menu.Menu;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.Drink;
 
@@ -42,6 +43,12 @@ public class WhatsIncludedAdapter extends DrinkComponentBaseAdapter {
                 for (int j = 0; j < types.size(); j++) {
                     DrinkComponent drinkComponent = types.get(j);
                     String drinkComponentDefault = typesDefault.get(j);
+
+                    if (drinkComponent instanceof CupSize &&
+                            drinkComponent.getTypeAsString().equals(CupSize.Type.NO.name())) {
+                        Log.i(TAG, "skipping - drinkComponent.getTypeAsString().equals(DrinkComponent.NULL_TYPE_AS_STRING)");
+                        continue;
+                    }
 
                     if (drinkComponent.getTypeAsString().equals(DrinkComponent.NULL_TYPE_AS_STRING)) {
                         Log.i(TAG, "skipping - drinkComponent.getTypeAsString().equals(DrinkComponent.NULL_TYPE_AS_STRING)");
@@ -150,6 +157,15 @@ public class WhatsIncludedAdapter extends DrinkComponentBaseAdapter {
             updateScreen(drinkComponentSelected, drinkComponentDefaultAsStringSelected);
         } else {
             Log.i(TAG, "drinkComponentSelected NOT instanceof Incrementable nor Granular");
+
+            if (drinkComponentSelected instanceof CupSize &&
+                    name.equals(CupSize.Type.NO.name())) {
+                // Update the underlying model.
+                drinkComponentSelected.setTypeByString(CupSize.Type.NO.name());
+                drinkComponents.remove(indexSelected);
+                drinkComponentsDefaultAsString.remove(indexSelected);
+                notifyItemRemoved(indexSelected);
+            }
 
             // Update the underlying model.
             drinkComponentSelected.setTypeByString(name);
