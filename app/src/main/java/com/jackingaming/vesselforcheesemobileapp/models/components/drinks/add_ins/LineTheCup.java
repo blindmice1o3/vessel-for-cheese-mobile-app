@@ -6,7 +6,7 @@ public class LineTheCup extends AddInsOptions {
     public static final String DEFAULT_TEXT_INIT = "Line the Cup";
 
     public enum Type {
-        NONE,
+        NO,
         CARAMEL_SAUCE,
         MOCHA_SAUCE;
     }
@@ -47,7 +47,7 @@ public class LineTheCup extends AddInsOptions {
 
     @Override
     public String getTypeAsString() {
-        return type.name();
+        return (type == null) ? NULL_TYPE_AS_STRING : type.name();
     }
 
     @Override

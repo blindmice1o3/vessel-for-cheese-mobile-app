@@ -3,6 +3,8 @@ package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espre
 import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem.Granular;
 import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem.Incrementable;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.AddInsOptions;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.LineTheCup;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.cup_options.CupOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.cup_options.CupSize;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.espresso_options.EspressoOptions;
@@ -62,6 +64,7 @@ public class CaffeLatte extends Lattes {
     public static final Granular.Amount DEFAULT_DRIZZLE_AMOUNT = Granular.Amount.NO;
     public static final Granular.Amount DEFAULT_TOPPING_AMOUNT = Granular.Amount.NO;
     public static final Granular.Amount DEFAULT_WHIPPED_CREAM_AMOUNT = Granular.Amount.NO;
+    public static final LineTheCup.Type DEFAULT_LINE_THE_CUP = LineTheCup.Type.NO;
     public static final CupSize.Type DEFAULT_CUP_SIZE = CupSize.Type.NO;
 
     public static final double DEFAULT_PRICE_SMALL = 2.95;
@@ -113,6 +116,10 @@ public class CaffeLatte extends Lattes {
         toppingOptions.add(topping);
         WhippedCream whippedCream = new WhippedCream(null, Granular.Amount.NO);
         toppingOptions.add(whippedCream);
+        // ADD_INS_OPTIONS
+        List<DrinkComponent> addInsOptions = new ArrayList<>();
+        LineTheCup lineTheCup = new LineTheCup(DEFAULT_LINE_THE_CUP);
+        addInsOptions.add(lineTheCup);
         // CUP_OPTIONS
         List<DrinkComponent> cupOptions = new ArrayList<>();
         CupSize cupSize = new CupSize(DEFAULT_CUP_SIZE);
@@ -147,6 +154,9 @@ public class CaffeLatte extends Lattes {
         toppingOptionsDefault.add(DEFAULT_DRIZZLE_AMOUNT.name());
         toppingOptionsDefault.add(DEFAULT_TOPPING_AMOUNT.name());
         toppingOptionsDefault.add(DEFAULT_WHIPPED_CREAM_AMOUNT.name());
+        // ADD_INS_OPTIONS
+        List<String> addInsOptionsDefault = new ArrayList<>();
+        addInsOptionsDefault.add(DEFAULT_LINE_THE_CUP.name());
         // CUP_OPTIONS (defaults)
         List<String> cupOptionsDefault = new ArrayList<>();
         cupOptionsDefault.add(DEFAULT_CUP_SIZE.name());
@@ -157,6 +167,7 @@ public class CaffeLatte extends Lattes {
         drinkComponents.put(SweetenerOptions.TAG, sweetenerOptions);
         drinkComponents.put(FlavorOptions.TAG, flavorOptions);
         drinkComponents.put(ToppingOptions.TAG, toppingOptions);
+        drinkComponents.put(AddInsOptions.TAG, addInsOptions);
         drinkComponents.put(CupOptions.TAG, cupOptions);
         drinkComponentsDefaultAsString.put(MilkOptions.TAG, milkOptionsDefault);
         drinkComponentsDefaultAsString.put(EspressoOptions.TAG, espressoOptionsDefault);
@@ -164,6 +175,7 @@ public class CaffeLatte extends Lattes {
         drinkComponentsDefaultAsString.put(SweetenerOptions.TAG, sweetenerOptionsDefault);
         drinkComponentsDefaultAsString.put(FlavorOptions.TAG, flavorOptionsDefault);
         drinkComponentsDefaultAsString.put(ToppingOptions.TAG, toppingOptionsDefault);
+        drinkComponentsDefaultAsString.put(AddInsOptions.TAG, addInsOptionsDefault);
         drinkComponentsDefaultAsString.put(CupOptions.TAG, cupOptionsDefault);
 
         for (int i = 0; i < Menu.DRINK_COMPONENTS_KEYS.size(); i++) {
@@ -172,7 +184,6 @@ public class CaffeLatte extends Lattes {
                 List<DrinkComponent> drinkComponentsGroup = drinkComponents.get(key);
                 for (DrinkComponent drinkComponent : drinkComponentsGroup) {
                     if (drinkComponent.getTypeAsString().equals(DrinkComponent.NULL_TYPE_AS_STRING)) {
-                        // TODO: add other conditions to skip (such as simplying being LineTheCup, CupSizes)
                         continue;
                     } else {
                         drinkComponentsStandardRecipe.add(drinkComponent);

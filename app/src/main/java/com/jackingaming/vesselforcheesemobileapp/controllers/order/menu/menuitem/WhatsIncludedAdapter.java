@@ -5,6 +5,7 @@ import android.util.Log;
 import androidx.core.util.Pair;
 
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.LineTheCup;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.cup_options.CupSize;
 import com.jackingaming.vesselforcheesemobileapp.models.menu.Menu;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.Drink;
@@ -44,12 +45,6 @@ public class WhatsIncludedAdapter extends DrinkComponentBaseAdapter {
                     DrinkComponent drinkComponent = types.get(j);
                     String drinkComponentDefault = typesDefault.get(j);
 
-                    if (drinkComponent instanceof CupSize &&
-                            drinkComponent.getTypeAsString().equals(CupSize.Type.NO.name())) {
-                        Log.i(TAG, "skipping - drinkComponent.getTypeAsString().equals(DrinkComponent.NULL_TYPE_AS_STRING)");
-                        continue;
-                    }
-
                     if (drinkComponent.getTypeAsString().equals(DrinkComponent.NULL_TYPE_AS_STRING)) {
                         Log.i(TAG, "skipping - drinkComponent.getTypeAsString().equals(DrinkComponent.NULL_TYPE_AS_STRING)");
                         continue;
@@ -67,6 +62,14 @@ public class WhatsIncludedAdapter extends DrinkComponentBaseAdapter {
                             Log.i(TAG, "skipping - quantity == DrinkComponent.QUANTITY_FOR_INVOKER");
                             continue;
                         }
+                    } else if (drinkComponent instanceof CupSize &&
+                            drinkComponent.getTypeAsString().equals(drinkComponentDefault)) {
+                        Log.i(TAG, "skipping - drinkComponent instanceof CupSize && drinkComponent.getTypeAsString().equals(drinkComponentDefault)");
+                        continue;
+                    } else if (drinkComponent instanceof LineTheCup &&
+                            drinkComponent.getTypeAsString().equals(drinkComponentDefault)) {
+                        Log.i(TAG, "skipping - drinkComponent instanceof LineTheCup && drinkComponent.getTypeAsString().equals(drinkComponentDefault)");
+                        continue;
                     }
 
                     Log.i(TAG, "adding - drinkComponent.getTypeAsString(): " + drinkComponent.getTypeAsString());
@@ -159,17 +162,24 @@ public class WhatsIncludedAdapter extends DrinkComponentBaseAdapter {
             Log.i(TAG, "drinkComponentSelected NOT instanceof Incrementable nor Granular");
 
             if (drinkComponentSelected instanceof CupSize &&
-                    name.equals(CupSize.Type.NO.name())) {
+                    name.equals(drinkComponentDefaultAsStringSelected)) {
                 // Update the underlying model.
-                drinkComponentSelected.setTypeByString(CupSize.Type.NO.name());
+                drinkComponentSelected.setTypeByString(drinkComponentDefaultAsStringSelected);
                 drinkComponents.remove(indexSelected);
                 drinkComponentsDefaultAsString.remove(indexSelected);
                 notifyItemRemoved(indexSelected);
+            } else if (drinkComponentSelected instanceof LineTheCup &&
+                    name.equals(drinkComponentDefaultAsStringSelected)) {
+                // Update the underlying model.
+                drinkComponentSelected.setTypeByString(drinkComponentDefaultAsStringSelected);
+                drinkComponents.remove(indexSelected);
+                drinkComponentsDefaultAsString.remove(indexSelected);
+                notifyItemRemoved(indexSelected);
+            } else {
+                // Update the underlying model.
+                drinkComponentSelected.setTypeByString(name);
+                updateScreen(drinkComponentSelected, drinkComponentDefaultAsStringSelected);
             }
-
-            // Update the underlying model.
-            drinkComponentSelected.setTypeByString(name);
-            updateScreen(drinkComponentSelected, drinkComponentDefaultAsStringSelected);
         }
     }
 
