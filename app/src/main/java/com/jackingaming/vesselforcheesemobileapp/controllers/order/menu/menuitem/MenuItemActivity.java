@@ -1,19 +1,23 @@
 package com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem;
 
 import android.content.Intent;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.core.content.ContextCompat;
 import androidx.core.util.Pair;
 import androidx.fragment.app.FragmentResultListener;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -27,6 +31,7 @@ import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.customiz
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
 import com.jackingaming.vesselforcheesemobileapp.models.menu.Menu;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.Drink;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.DrinkSize;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.lattes.CaffeLatte;
 
 import java.util.ArrayList;
@@ -73,8 +78,6 @@ public class MenuItemActivity extends AppCompatActivity {
 
         TextView tvContent = findViewById(R.id.tv_content);
         tvContent.setText(nameCategory + " | " + nameSubCategory + " | position: " + position);
-
-        TextView tvSizeOptions = findViewById(R.id.tv_size_options);
 
         TextView tvWhatsIncluded = findViewById(R.id.tv_whats_included);
         RecyclerView rvWhatsIncluded = findViewById(R.id.rv_whats_included);
@@ -126,17 +129,79 @@ public class MenuItemActivity extends AppCompatActivity {
             String textPreviousContent = tvContent.getText().toString();
             tvContent.setText(textPreviousContent + ": " + drink.getName());
 
-            tvSizeOptions.setText(drink.getDrinkSize().toString());
+            LinearLayout linearLayoutDrinkSizeOptions = findViewById(R.id.linearlayout_drink_size_options);
+            DrinkSize[] drinkSizesAllowed = drink.getDrinkSizesAllowed();
+            for (int i = 0; i < drinkSizesAllowed.length; i++) {
+                ImageView imageView = new ImageView(this);
+                imageView.setLayoutParams(new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.WRAP_CONTENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT,
+                        1.0f));
 
-//            if (!(drink instanceof CaffeLatte)) {
-//                String textPreviousWhatsIncluded = tvWhatsIncluded.getText().toString();
-//                StringBuilder sb = new StringBuilder();
-//                Pair<List<DrinkComponent>, List<String>> pairDefaultAndTypes = generateWhatsIncluded(drink);
-//                for (DrinkComponent drinkComponent : pairDefaultAndTypes.first) {
-//                    sb.append("\n" + drinkComponent.toString());
-//                }
-//                tvWhatsIncluded.setText(textPreviousWhatsIncluded + ": " + sb.toString());
-//            }
+                DrinkSize drinkSize = drinkSizesAllowed[i];
+                int imageResource = 0;
+                switch (drinkSize) {
+                    case SHORT:
+                        imageResource = R.drawable.drinksize_short;
+                        break;
+                    case TALL:
+                        imageResource = R.drawable.drinksize_tall;
+                        break;
+                    case GRANDE:
+                        imageResource = R.drawable.drinksize_grande;
+                        break;
+                    case VENTI_HOT:
+                        imageResource = R.drawable.drinksize_venti;
+                        break;
+                    case VENTI_ICED:
+                        imageResource = R.drawable.drinksize_venti;
+                        break;
+                    case TRENTA:
+                        imageResource = R.drawable.drinksize_trenta;
+                        break;
+                    case UNIQUE:
+                        imageResource = R.drawable.drinksize_short;
+                        break;
+                    case UNDEFINED:
+                        imageResource = R.drawable.drinksize_short;
+                        break;
+                }
+                imageView.setImageResource(imageResource);
+
+                imageView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(MenuItemActivity.this, "drinkSize: " + drinkSize.name(), Toast.LENGTH_SHORT).show();
+
+                        // @@@@@@@@@@@@@@@@@@@@@@@@@@@
+                        drink.setDrinkSize(drinkSize);
+                        // @@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+                        for (int j = 0; j < linearLayoutDrinkSizeOptions.getChildCount(); j++) {
+                            if (drinkSizesAllowed[j] == drinkSize) {
+                                ((ImageView) linearLayoutDrinkSizeOptions.getChildAt(j)).setColorFilter(
+                                        ContextCompat.getColor(MenuItemActivity.this, R.color.purple_200),
+                                        PorterDuff.Mode.MULTIPLY
+                                );
+                            } else {
+                                ((ImageView) linearLayoutDrinkSizeOptions.getChildAt(j)).setColorFilter(
+                                        ContextCompat.getColor(MenuItemActivity.this, R.color.white),
+                                        PorterDuff.Mode.MULTIPLY
+                                );
+                            }
+                        }
+                    }
+                });
+
+                if (drinkSize == drink.getDrinkSize()) {
+                    imageView.setColorFilter(
+                            ContextCompat.getColor(this, R.color.purple_200),
+                            PorterDuff.Mode.MULTIPLY
+                    );
+                }
+
+                linearLayoutDrinkSizeOptions.addView(imageView);
+            }
 
             tvWhatsIncluded.setOnClickListener(new View.OnClickListener() {
                 @Override

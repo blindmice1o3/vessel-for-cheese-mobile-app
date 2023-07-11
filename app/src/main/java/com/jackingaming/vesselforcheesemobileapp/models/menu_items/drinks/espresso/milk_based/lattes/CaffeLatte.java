@@ -31,6 +31,7 @@ import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.toppin
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.topping_options.ToppingOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.topping_options.WhippedCream;
 import com.jackingaming.vesselforcheesemobileapp.models.menu.Menu;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.DrinkSize;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -66,6 +67,7 @@ public class CaffeLatte extends Lattes {
     public static final Granular.Amount DEFAULT_WHIPPED_CREAM_AMOUNT = Granular.Amount.NO;
     public static final LineTheCup.Type DEFAULT_LINE_THE_CUP = LineTheCup.Type.NO;
     public static final CupSize.Type DEFAULT_CUP_SIZE = CupSize.Type.NO;
+    public static final DrinkSize[] DEFAULT_DRINK_SIZES_ALLOWED = {DrinkSize.SHORT, DrinkSize.TALL, DrinkSize.GRANDE, DrinkSize.VENTI_HOT};
 
     public static final double DEFAULT_PRICE_SMALL = 2.95;
     public static final double DEFAULT_PRICE_MEDIUM = 3.45;
@@ -191,5 +193,7 @@ public class CaffeLatte extends Lattes {
                 }
             }
         }
+
+        drinkSizesAllowed = DEFAULT_DRINK_SIZES_ALLOWED;
     }
 }

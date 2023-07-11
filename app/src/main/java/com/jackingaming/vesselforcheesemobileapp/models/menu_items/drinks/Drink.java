@@ -18,8 +18,8 @@ public abstract class Drink extends MenuItem {
 
     protected Map<String, List<DrinkComponent>> drinkComponents = new HashMap<>();
     protected Map<String, List<String>> drinkComponentsDefaultAsString = new HashMap<>();
-
     protected List<DrinkComponent> drinkComponentsStandardRecipe = new ArrayList<>();
+    protected DrinkSize[] drinkSizesAllowed;
 
     public Drink() {
         super();
@@ -34,6 +34,8 @@ public abstract class Drink extends MenuItem {
 
     // TODO: abstract initDrinkComponents()
     // TODO: abstract initDrinkComponentsDefaultAsString()
+    // TODO: abstract initDrinkComponentsStandardRecipe()
+    // TODO: abstract initDrinkSizesAllowed()
     //  (as oppose to CaffeLatte doing this straight in the constructor).
 
     public void addToDrinkComponents(String key, DrinkComponent drinkComponent) {
@@ -72,6 +74,14 @@ public abstract class Drink extends MenuItem {
 
     public void setDrinkSize(DrinkSize drinkSize) {
         this.drinkSize = drinkSize;
+    }
+
+    public DrinkSize[] getDrinkSizesAllowed() {
+        return drinkSizesAllowed;
+    }
+
+    public void setDrinkSizesAllowed(DrinkSize[] drinkSizesAllowed) {
+        this.drinkSizesAllowed = drinkSizesAllowed;
     }
 
     public boolean isIced() {

@@ -46,6 +46,11 @@ public class CustomizeActivity extends AppCompatActivity {
         TextView tvSize = findViewById(R.id.tv_size);
 
         String nameDrinkInLowercase = drink.getDrinkSize().name().toLowerCase();
+        if (nameDrinkInLowercase.length() >= "venti".length() &&
+                nameDrinkInLowercase.substring(0, 5).equals("venti")) {
+            Log.d(TAG, "@@@ VENTI @@@");
+            nameDrinkInLowercase = "venti";
+        }
         String textDrinkSize = capitalizeFirstLetter(nameDrinkInLowercase) + " " +
                 drink.getDrinkSize().getSizeInFlOz() + " " + " fl oz";
         tvSize.setText(textDrinkSize);
