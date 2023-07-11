@@ -3,7 +3,6 @@ package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks;
 import android.util.Log;
 
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
-import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.size_options.DrinkSize;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.MenuItem;
 
 import java.util.ArrayList;
@@ -14,7 +13,7 @@ import java.util.Map;
 public abstract class Drink extends MenuItem {
     public static final String TAG = Drink.class.getSimpleName();
 
-    protected DrinkSize.Type drinkSize;
+    protected DrinkSize drinkSize;
     protected boolean iced;
 
     protected Map<String, List<DrinkComponent>> drinkComponents = new HashMap<>();
@@ -27,9 +26,9 @@ public abstract class Drink extends MenuItem {
     }
 
     public Drink(String name, String description, int calories, int sugarInGram, float fatInGram,
-                 double price, DrinkSize.Type drinkSizeDefault, boolean iced) {
+                 double price, DrinkSize drinkSizeDefault, boolean iced) {
         super(name, description, calories, sugarInGram, fatInGram, price);
-        drinkSize = drinkSizeDefault;
+        this.drinkSize = drinkSizeDefault;
         this.iced = iced;
     }
 
@@ -67,11 +66,11 @@ public abstract class Drink extends MenuItem {
         this.drinkComponentsStandardRecipe = drinkComponentsStandardRecipe;
     }
 
-    public DrinkSize.Type getDrinkSize() {
+    public DrinkSize getDrinkSize() {
         return drinkSize;
     }
 
-    public void setDrinkSize(DrinkSize.Type drinkSize) {
+    public void setDrinkSize(DrinkSize drinkSize) {
         this.drinkSize = drinkSize;
     }
 

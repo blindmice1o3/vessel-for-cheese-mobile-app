@@ -11,7 +11,6 @@ import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.lemona
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.milk_options.MilkOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.preparation_options.PreparationOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.refresher_base_options.RefresherBaseOptions;
-import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.size_options.SizeOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.sweetener_options.SweetenerOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.tea_options.TeaOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.topping_options.ToppingOptions;
@@ -81,7 +80,6 @@ public class Menu {
             MilkOptions.TAG,
             PreparationOptions.TAG,
             RefresherBaseOptions.TAG,
-            SizeOptions.TAG,
             SweetenerOptions.TAG,
             TeaOptions.TAG,
             ToppingOptions.TAG

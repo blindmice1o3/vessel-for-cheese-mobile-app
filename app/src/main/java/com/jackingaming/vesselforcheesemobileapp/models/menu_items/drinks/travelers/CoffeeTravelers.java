@@ -1,11 +1,11 @@
 package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.travelers;
 
-import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.size_options.DrinkSize;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.DrinkSize;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.Drink;
 
 public abstract class CoffeeTravelers extends Drink {
     public static final String TAG = CoffeeTravelers.class.getSimpleName();
-    public static final DrinkSize.Type DEFAULT_DRINK_SIZE = DrinkSize.Type.UNIQUE;
+    public static final DrinkSize DEFAULT_DRINK_SIZE = DrinkSize.UNIQUE;
 
     public CoffeeTravelers() {
     }
