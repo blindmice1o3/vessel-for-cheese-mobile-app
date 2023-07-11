@@ -70,19 +70,19 @@ public class Menu {
     public static final String COFFEE_TRAVELERS = "Coffee Travelers";
 
     public static final List<String> DRINK_COMPONENTS_KEYS = Arrays.asList(
-            AddInsOptions.TAG,
-            BlendedOptions.TAG,
-            CupOptions.TAG,
-            EspressoOptions.TAG,
-            FlavorOptions.TAG,
-            JuiceOptions.TAG,
             LemonadeOptions.TAG,
-            MilkOptions.TAG,
             PreparationOptions.TAG,
+            MilkOptions.TAG,
+            EspressoOptions.TAG,
+            BlendedOptions.TAG,
             RefresherBaseOptions.TAG,
-            SweetenerOptions.TAG,
             TeaOptions.TAG,
-            ToppingOptions.TAG
+            JuiceOptions.TAG,
+            SweetenerOptions.TAG,
+            FlavorOptions.TAG,
+            ToppingOptions.TAG,
+            AddInsOptions.TAG,
+            CupOptions.TAG
     );
 
     public static final List<MenuItemCategory> hotCoffees = Arrays.asList(
