@@ -79,7 +79,6 @@ public class MenuItemActivity extends AppCompatActivity {
         TextView tvContent = findViewById(R.id.tv_content);
         tvContent.setText(nameCategory + " | " + nameSubCategory + " | position: " + position);
 
-        TextView tvWhatsIncluded = findViewById(R.id.tv_whats_included);
         RecyclerView rvWhatsIncluded = findViewById(R.id.rv_whats_included);
 
         Button buttonCustomize = findViewById(R.id.button_customize);
@@ -202,14 +201,6 @@ public class MenuItemActivity extends AppCompatActivity {
 
                 linearLayoutDrinkSizeOptions.addView(imageView);
             }
-
-            tvWhatsIncluded.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    String[] names = {"Colin", "Mulan", "Muly", "Muhang", "Mushu"};
-                    ModalBottomSheet.newInstance(names, "Colin").show(getSupportFragmentManager(), ModalBottomSheet.TAG);
-                }
-            });
 
             adapter = new WhatsIncludedAdapter(drink,
                     new DrinkComponentBaseAdapter.DrinkComponentBaseAdapterListener() {
