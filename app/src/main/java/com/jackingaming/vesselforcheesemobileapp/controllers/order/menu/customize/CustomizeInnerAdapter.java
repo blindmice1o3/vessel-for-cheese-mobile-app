@@ -28,20 +28,24 @@ public class CustomizeInnerAdapter extends DrinkComponentBaseAdapter {
     }
 
     @Override
-    protected void handleSelectionOfDefaultFromStandardRecipe(DrinkComponent drinkComponentSelected, String drinkComponentDefaultAsStringSelected, String name) {
+    protected void handleSelectionOfDefaultForStandardRecipe(DrinkComponent drinkComponentSelected, String drinkComponentDefaultAsStringSelected, String name) {
+        Log.i(TAG, "handleSelectionOfDefaultForStandardRecipe()");
+
         handleSelectionOfEverythingElse(drinkComponentSelected,
                 drinkComponentDefaultAsStringSelected, name);
     }
 
     @Override
-    protected void handleSelectionOfNonDefaultFromStandardRecipe(DrinkComponent drinkComponentSelected, String drinkComponentDefaultAsStringSelected, String name) {
+    protected void handleSelectionOfNonDefaultForStandardRecipe(DrinkComponent drinkComponentSelected, String drinkComponentDefaultAsStringSelected, String name) {
+        Log.i(TAG, "handleSelectionOfNonDefaultForStandardRecipe()");
+
         handleSelectionOfEverythingElse(drinkComponentSelected,
                 drinkComponentDefaultAsStringSelected, name);
     }
 
     @Override
-    protected void handleSelectionOfDefaultFromNonStandardRecipe(DrinkComponent drinkComponentSelected, String drinkComponentDefaultAsStringSelected) {
-        Log.i(TAG, "handleSelectionOfDefaultFromNonStandardRecipe()");
+    protected void handleSelectionOfDefaultForAllowable(DrinkComponent drinkComponentSelected, String drinkComponentDefaultAsStringSelected, String name) {
+        Log.i(TAG, "handleSelectionOfDefaultForAllowable()");
 
         if (drinkComponentSelected instanceof Incrementable) {
             Log.i(TAG, "drinkComponentSelected instanceof Incrementable");
@@ -96,13 +100,15 @@ public class CustomizeInnerAdapter extends DrinkComponentBaseAdapter {
     }
 
     @Override
-    protected void handleSelectionOfNonDefaultFromNonStandardRecipe(DrinkComponent drinkComponentSelected, String drinkComponentDefaultAsStringSelected, String name) {
+    protected void handleSelectionOfNonDefaultForAllowable(DrinkComponent drinkComponentSelected, String drinkComponentDefaultAsStringSelected, String name) {
+        Log.i(TAG, "handleSelectionOfNonDefaultForAllowable()");
+
         handleSelectionOfEverythingElse(drinkComponentSelected,
                 drinkComponentDefaultAsStringSelected, name);
     }
 
     private void handleSelectionOfEverythingElse(DrinkComponent drinkComponentSelected, String drinkComponentDefaultAsStringSelected, String name) {
-        Log.i(TAG, "handleSelectionOfEverythingElse()");
+        Log.i(TAG, "---> handleSelectionOfEverythingElse()");
 
         if (drinkComponentSelected instanceof Incrementable) {
             Log.i(TAG, "drinkComponentSelected instanceof Incrementable");

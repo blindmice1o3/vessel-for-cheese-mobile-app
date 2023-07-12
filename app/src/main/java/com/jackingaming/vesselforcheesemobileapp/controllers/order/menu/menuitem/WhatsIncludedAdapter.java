@@ -84,17 +84,57 @@ public class WhatsIncludedAdapter extends DrinkComponentBaseAdapter {
     }
 
     @Override
-    protected void handleSelectionOfDefaultFromStandardRecipe(DrinkComponent drinkComponentSelected, String drinkComponentDefaultAsStringSelected, String name) {
-        handleSelectionFromStandardRecipe(drinkComponentSelected, drinkComponentDefaultAsStringSelected, name);
+    protected void handleSelectionOfDefaultForStandardRecipe(DrinkComponent drinkComponentSelected, String drinkComponentDefaultAsStringSelected, String name) {
+        Log.i(TAG, "handleSelectionOfDefaultForStandardRecipe()");
+
+        if (drinkComponentSelected instanceof Incrementable) {
+            Log.i(TAG, "drinkComponentSelected instanceof Incrementable");
+
+            // Update the underlying model.
+            drinkComponentSelected.setTypeByString(name);
+            updateScreen(drinkComponentSelected, drinkComponentDefaultAsStringSelected);
+        } else if (drinkComponentSelected instanceof Granular) {
+            Log.i(TAG, "drinkComponentSelected instanceof Granular");
+
+            Granular.Amount amountSelected = null;
+            for (int i = 0; i < Granular.Amount.values().length; i++) {
+                if (name.equals(Granular.Amount.values()[i].name())) {
+                    amountSelected = Granular.Amount.values()[i];
+                    break;
+                }
+            }
+
+            // Update the underlying model.
+            ((Granular) drinkComponentSelected).setAmount(amountSelected);
+            updateScreen(drinkComponentSelected, drinkComponentDefaultAsStringSelected);
+        } else {
+            Log.i(TAG, "drinkComponentSelected NOT instanceof Incrementable nor Granular");
+
+            // Update the underlying model.
+            drinkComponentSelected.setTypeByString(name);
+
+            if (drinkComponentSelected instanceof CupSize ||
+                    drinkComponentSelected instanceof LineTheCup) {
+                drinkComponents.remove(indexSelected);
+                drinkComponentsDefaultAsString.remove(indexSelected);
+                notifyItemRemoved(indexSelected);
+            } else {
+                updateScreen(drinkComponentSelected, drinkComponentDefaultAsStringSelected);
+            }
+        }
     }
 
     @Override
-    protected void handleSelectionOfNonDefaultFromStandardRecipe(DrinkComponent drinkComponentSelected, String drinkComponentDefaultAsStringSelected, String name) {
-        handleSelectionFromStandardRecipe(drinkComponentSelected, drinkComponentDefaultAsStringSelected, name);
+    protected void handleSelectionOfNonDefaultForStandardRecipe(DrinkComponent drinkComponentSelected, String drinkComponentDefaultAsStringSelected, String name) {
+        Log.i(TAG, "handleSelectionOfNonDefaultForStandardRecipe()");
+
+        handleSelectionOfNonDefault(drinkComponentSelected, drinkComponentDefaultAsStringSelected, name);
     }
 
     @Override
-    protected void handleSelectionOfDefaultFromNonStandardRecipe(DrinkComponent drinkComponentSelected, String drinkComponentDefaultAsStringSelected) {
+    protected void handleSelectionOfDefaultForAllowable(DrinkComponent drinkComponentSelected, String drinkComponentDefaultAsStringSelected, String name) {
+        Log.i(TAG, "handleSelectionOfDefaultForAllowable()");
+
         if (drinkComponentSelected instanceof Incrementable) {
             // Update the underlying model.
             ((Incrementable) drinkComponentSelected).setQuantity(Incrementable.QUANTITY_FOR_INVOKER);
@@ -131,19 +171,20 @@ public class WhatsIncludedAdapter extends DrinkComponentBaseAdapter {
     }
 
     @Override
-    protected void handleSelectionOfNonDefaultFromNonStandardRecipe(DrinkComponent drinkComponentSelected, String drinkComponentDefaultAsStringSelected, String name) {
-        handleSelectionFromStandardRecipe(drinkComponentSelected, drinkComponentDefaultAsStringSelected, name);
+    protected void handleSelectionOfNonDefaultForAllowable(DrinkComponent drinkComponentSelected, String drinkComponentDefaultAsStringSelected, String name) {
+        Log.i(TAG, "handleSelectionOfNonDefaultForAllowable()");
+
+        handleSelectionOfNonDefault(drinkComponentSelected, drinkComponentDefaultAsStringSelected, name);
     }
 
-    private void handleSelectionFromStandardRecipe(DrinkComponent drinkComponentSelected, String drinkComponentDefaultAsStringSelected, String name) {
-        Log.i(TAG, "handleSelectionFromStandardRecipe()");
+    private void handleSelectionOfNonDefault(DrinkComponent drinkComponentSelected, String drinkComponentDefaultAsStringSelected, String name) {
+        Log.i(TAG, "---> handleSelectionOfNonDefault()");
 
         if (drinkComponentSelected instanceof Incrementable) {
             Log.i(TAG, "drinkComponentSelected instanceof Incrementable");
 
             // Update the underlying model.
             drinkComponentSelected.setTypeByString(name);
-            updateScreen(drinkComponentSelected, drinkComponentDefaultAsStringSelected);
         } else if (drinkComponentSelected instanceof Granular) {
             Log.i(TAG, "drinkComponentSelected instanceof Granular");
 
@@ -157,38 +198,13 @@ public class WhatsIncludedAdapter extends DrinkComponentBaseAdapter {
 
             // Update the underlying model.
             ((Granular) drinkComponentSelected).setAmount(amountSelected);
-            updateScreen(drinkComponentSelected, drinkComponentDefaultAsStringSelected);
         } else {
             Log.i(TAG, "drinkComponentSelected NOT instanceof Incrementable nor Granular");
 
-            if (drinkComponentSelected instanceof CupSize &&
-                    name.equals(drinkComponentDefaultAsStringSelected)) {
-                // Update the underlying model.
-                drinkComponentSelected.setTypeByString(drinkComponentDefaultAsStringSelected);
-                drinkComponents.remove(indexSelected);
-                drinkComponentsDefaultAsString.remove(indexSelected);
-                notifyItemRemoved(indexSelected);
-            } else if (drinkComponentSelected instanceof LineTheCup &&
-                    name.equals(drinkComponentDefaultAsStringSelected)) {
-                // Update the underlying model.
-                drinkComponentSelected.setTypeByString(drinkComponentDefaultAsStringSelected);
-                drinkComponents.remove(indexSelected);
-                drinkComponentsDefaultAsString.remove(indexSelected);
-                notifyItemRemoved(indexSelected);
-            } else {
-                // Update the underlying model.
-                drinkComponentSelected.setTypeByString(name);
-                updateScreen(drinkComponentSelected, drinkComponentDefaultAsStringSelected);
-            }
+            // Update the underlying model.
+            drinkComponentSelected.setTypeByString(name);
         }
-    }
 
-    public void setDrinkComponents(List<DrinkComponent> drinkComponents) {
-        this.drinkComponents = drinkComponents;
-    }
-
-    public void setDrinkComponentsDefaultAsString
-            (List<String> drinkComponentsDefaultAsString) {
-        this.drinkComponentsDefaultAsString = drinkComponentsDefaultAsString;
+        updateScreen(drinkComponentSelected, drinkComponentDefaultAsStringSelected);
     }
 }

@@ -132,19 +132,19 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
         if (typeSelectedInStandardRecipe) {
             // Standard
             if (typeSelectedIsDefault) {
-                handleSelectionOfDefaultFromStandardRecipe(drinkComponentSelected,
+                handleSelectionOfDefaultForStandardRecipe(drinkComponentSelected,
                         drinkComponentDefaultAsStringSelected, name);
             } else {
-                handleSelectionOfNonDefaultFromStandardRecipe(drinkComponentSelected,
+                handleSelectionOfNonDefaultForStandardRecipe(drinkComponentSelected,
                         drinkComponentDefaultAsStringSelected, name);
             }
         } else {
             // Non-Standard (Allowables)
             if (typeSelectedIsDefault) {
-                handleSelectionOfDefaultFromNonStandardRecipe(drinkComponentSelected,
-                        null);
+                handleSelectionOfDefaultForAllowable(drinkComponentSelected,
+                        drinkComponentDefaultAsStringSelected, name);
             } else {
-                handleSelectionOfNonDefaultFromNonStandardRecipe(drinkComponentSelected,
+                handleSelectionOfNonDefaultForAllowable(drinkComponentSelected,
                         drinkComponentDefaultAsStringSelected, name);
             }
         }
@@ -168,13 +168,13 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
         }
     }
 
-    protected abstract void handleSelectionOfDefaultFromStandardRecipe(DrinkComponent drinkComponentSelected, String drinkComponentDefaultAsStringSelected, String name);
+    protected abstract void handleSelectionOfDefaultForStandardRecipe(DrinkComponent drinkComponentSelected, String drinkComponentDefaultAsStringSelected, String name);
 
-    protected abstract void handleSelectionOfNonDefaultFromStandardRecipe(DrinkComponent drinkComponentSelected, String drinkComponentDefaultAsStringSelected, String name);
+    protected abstract void handleSelectionOfNonDefaultForStandardRecipe(DrinkComponent drinkComponentSelected, String drinkComponentDefaultAsStringSelected, String name);
 
-    protected abstract void handleSelectionOfDefaultFromNonStandardRecipe(DrinkComponent drinkComponentSelected, String drinkComponentDefaultAsStringSelected);
+    protected abstract void handleSelectionOfDefaultForAllowable(DrinkComponent drinkComponentSelected, String drinkComponentDefaultAsStringSelected, String name);
 
-    protected abstract void handleSelectionOfNonDefaultFromNonStandardRecipe(DrinkComponent drinkComponentSelected, String drinkComponentDefaultAsStringSelected, String name);
+    protected abstract void handleSelectionOfNonDefaultForAllowable(DrinkComponent drinkComponentSelected, String drinkComponentDefaultAsStringSelected, String name);
 
     class ViewHolderGranularSelection extends RecyclerView.ViewHolder
             implements View.OnClickListener, View.OnLongClickListener {
