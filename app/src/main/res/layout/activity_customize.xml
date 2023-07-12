@@ -26,7 +26,6 @@
             android:textStyle="bold" />
     </androidx.appcompat.widget.Toolbar>
 
-
     <com.jackingaming.vesselforcheesemobileapp.views.CircularBorderedImageView
         android:id="@+id/iv_thumbnail"
         android:layout_width="75dp"
@@ -78,9 +77,31 @@
         android:text="Done customizing"
         app:icon="@drawable/ic_menu_emoticons"
         app:iconGravity="textStart"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/button_cart"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/rv_customize" />
+
+    <Button
+        android:id="@+id/button_cart"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Cart"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="@dimen/marginEnd_fab"
+        android:layout_marginBottom="@dimen/marginBottom_fab"
+        android:text="Add to order"
+        app:layout_anchor="@id/rv_customize"
+        app:layout_anchorGravity="bottom|end"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

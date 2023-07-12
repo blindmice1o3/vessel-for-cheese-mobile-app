@@ -18,7 +18,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.content.ContextCompat;
-import androidx.core.util.Pair;
 import androidx.fragment.app.FragmentResultListener;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -32,7 +31,6 @@ import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkC
 import com.jackingaming.vesselforcheesemobileapp.models.menu.Menu;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.Drink;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.DrinkSize;
-import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.lattes.CaffeLatte;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -87,7 +85,23 @@ public class MenuItemActivity extends AppCompatActivity {
         TextView tvCaloriesSugarFat = findViewById(R.id.tv_calories_sugar_fat);
         Button buttonNutritionAndIngredient = findViewById(R.id.button_nutrition_and_ingredient);
 
+        Button buttonCart = findViewById(R.id.button_cart);
+        buttonCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.i(TAG, "buttonCart clicked");
+                // TODO: start ReviewOrderActivity
+            }
+        });
+
         ExtendedFloatingActionButton extendedFloatingActionButton = findViewById(R.id.fab);
+        extendedFloatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.i(TAG, "extendedFloatingActionButton clicked");
+                // TODO: add to order
+            }
+        });
 
         if (nameCategory.equals(Menu.HOT_COFFEES)) {
             Log.i(TAG, "Menu.HOT_COFFEES [which implies the selected MenuItem is a Drink]");

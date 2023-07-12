@@ -13,8 +13,8 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.jackingaming.vesselforcheesemobileapp.R;
-import com.jackingaming.vesselforcheesemobileapp.models.menu.Menu;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.Drink;
 
 public class CustomizeActivity extends AppCompatActivity {
@@ -69,6 +69,24 @@ public class CustomizeActivity extends AppCompatActivity {
                 result.putExtra(RESULT_KEY, drink);
                 setResult(RESULT_OK, result);
                 finish();
+            }
+        });
+
+        Button buttonCart = findViewById(R.id.button_cart);
+        buttonCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.i(TAG, "buttonCart clicked");
+                // TODO: start ReviewOrderActivity
+            }
+        });
+
+        ExtendedFloatingActionButton extendedFloatingActionButton = findViewById(R.id.fab);
+        extendedFloatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.i(TAG, "extendedFloatingActionButton clicked");
+                // TODO: add to order
             }
         });
     }
