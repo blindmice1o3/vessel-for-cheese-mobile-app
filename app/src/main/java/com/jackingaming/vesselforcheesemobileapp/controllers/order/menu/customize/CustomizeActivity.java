@@ -58,6 +58,7 @@ public class CustomizeActivity extends AppCompatActivity {
         RecyclerView rvCustomize = findViewById(R.id.rv_customize);
         rvCustomize.setAdapter(new CustomizeAdapter(this, drink));
         rvCustomize.setLayoutManager(new LinearLayoutManager(this));
+        rvCustomize.setNestedScrollingEnabled(false);
 
         Button buttonDoneCustomizing = findViewById(R.id.button_done_customizing);
         buttonDoneCustomizing.setOnClickListener(new View.OnClickListener() {
