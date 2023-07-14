@@ -18,15 +18,23 @@ import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.jackingaming.vesselforcheesemobileapp.R;
+import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem.Granular;
+import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem.Incrementable;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
+import com.jackingaming.vesselforcheesemobileapp.models.menu.Menu;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.MenuItem;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.Drink;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class ReviewOrderActivity extends AppCompatActivity {
     public static final String TAG = ReviewOrderActivity.class.getSimpleName();
     public static final String EXTRA_ORDER = "com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.revieworder.order";
 
     private List<MenuItem> order;
+    private List<List<DrinkComponent>> customizationsFromOrder = new ArrayList<>();
 
     public void initHeightAppBarLayoutAsSixthScreen(AppBarLayout appBarLayout) {
         float heightDp = getResources().getDisplayMetrics().heightPixels / 6;

@@ -34,6 +34,11 @@ import com.jackingaming.vesselforcheesemobileapp.models.menu.Menu;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.Drink;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.DrinkSize;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -106,7 +111,24 @@ public class MenuItemActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Log.i(TAG, "extendedFloatingActionButton clicked");
 
-                OrderFragment.getInstance().addMenuItemToOrder(drink);
+                Drink original = drink;
+                Drink copy = null;
+                try {
+                    // Serialize the object
+                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                    ObjectOutputStream oos = new ObjectOutputStream(baos);
+                    oos.writeObject(original);
+                    oos.close();
+
+                    // Deserialize the object
+                    ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
+                    ObjectInputStream ois = new ObjectInputStream(bais);
+                    copy = (Drink) ois.readObject();
+                } catch (IOException | ClassNotFoundException exception) {
+                    exception.printStackTrace();
+                }
+
+                OrderFragment.getInstance().addMenuItemToOrder(copy);
             }
         });
 

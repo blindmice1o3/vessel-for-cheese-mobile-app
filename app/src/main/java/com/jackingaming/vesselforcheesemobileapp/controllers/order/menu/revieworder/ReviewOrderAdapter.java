@@ -9,13 +9,21 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jackingaming.vesselforcheesemobileapp.R;
+import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem.Granular;
+import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem.Incrementable;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
+import com.jackingaming.vesselforcheesemobileapp.models.menu.Menu;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.MenuItem;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.Drink;
 import com.jackingaming.vesselforcheesemobileapp.views.CircularBorderedImageView;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class ReviewOrderAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public static final String TAG = ReviewOrderAdapter.class.getSimpleName();
@@ -78,7 +86,49 @@ public class ReviewOrderAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
             tvName.setText(menuItem.getName());
 
-            // TODO: rvCustomizations
+            // TODO: pass filtered list to DrinkComponentAdapter
+            List<DrinkComponent> drinkComponentsAsList = new ArrayList<>();
+            if (menuItem instanceof Drink) {
+                Map<String, List<DrinkComponent>> drinkComponents = ((Drink) menuItem).getDrinkComponents();
+                Map<String, List<String>> drinkComponentsDefaultAsString = ((Drink) menuItem).getDrinkComponentsDefaultAsString();
+                for (String key : Menu.DRINK_COMPONENTS_KEYS) {
+                    if (drinkComponents.containsKey(key)) {
+                        List<DrinkComponent> drinkComponentsGroup = drinkComponents.get(key);
+                        List<String> drinkComponentsDefaultAsStringGroup = drinkComponentsDefaultAsString.get(key);
+                        for (int i = 0; i < drinkComponentsGroup.size(); i++) {
+                            DrinkComponent drinkComponent = drinkComponentsGroup.get(i);
+                            String drinkComponentDefaultAsString = drinkComponentsDefaultAsStringGroup.get(i);
+
+                            if (drinkComponent.getTypeAsString().equals(DrinkComponent.NULL_TYPE_AS_STRING)) {
+                                continue;
+                            }
+
+                            if (drinkComponent instanceof Incrementable) {
+                                String quantityAsString = Integer.toString(((Incrementable) drinkComponent).getQuantity());
+                                if (quantityAsString.equals(drinkComponentDefaultAsString)) {
+                                    continue;
+                                }
+                            } else if (drinkComponent instanceof Granular) {
+                                String amountAsString = ((Granular) drinkComponent).getAmount().name();
+                                if (amountAsString.equals(drinkComponentDefaultAsString)) {
+                                    continue;
+                                }
+                            } else {
+                                String typeAsString = drinkComponent.getTypeAsString();
+                                if (typeAsString.equals(drinkComponentDefaultAsString)) {
+                                    continue;
+                                }
+                            }
+
+                            drinkComponentsAsList.add(drinkComponent);
+                        }
+                    }
+                }
+            } else {
+                Log.e(TAG, "NOT menuItem instanceof Drink");
+            }
+            rvCustomizations.setAdapter(new DrinkComponentAdapter(drinkComponentsAsList));
+            rvCustomizations.setLayoutManager(new LinearLayoutManager(rvCustomizations.getContext()));
 
             ivAdd.setOnClickListener(new View.OnClickListener() {
                 @Override

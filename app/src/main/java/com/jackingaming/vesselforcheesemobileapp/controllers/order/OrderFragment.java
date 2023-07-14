@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,10 +20,15 @@ import com.jackingaming.vesselforcheesemobileapp.controllers.order.favorites.Fav
 import com.jackingaming.vesselforcheesemobileapp.controllers.order.featured.FeaturedFragment;
 import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.category.MenuFragment;
 import com.jackingaming.vesselforcheesemobileapp.controllers.order.previous.PreviousFragment;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.espresso_options.Shot;
+import com.jackingaming.vesselforcheesemobileapp.models.menu.Menu;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.MenuItem;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.Drink;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
