@@ -26,12 +26,15 @@ import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.jackingaming.vesselforcheesemobileapp.R;
+import com.jackingaming.vesselforcheesemobileapp.controllers.order.OrderFragment;
 import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.customize.CustomizeActivity;
+import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.revieworder.ReviewOrderActivity;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
 import com.jackingaming.vesselforcheesemobileapp.models.menu.Menu;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.Drink;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.DrinkSize;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -90,7 +93,10 @@ public class MenuItemActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Log.i(TAG, "buttonCart clicked");
-                // TODO: start ReviewOrderActivity
+
+                Intent intentReviewOrder = new Intent(MenuItemActivity.this, ReviewOrderActivity.class);
+                intentReviewOrder.putExtra(ReviewOrderActivity.EXTRA_ORDER, (Serializable) OrderFragment.getInstance().getOrder());
+                startActivity(intentReviewOrder);
             }
         });
 
@@ -99,7 +105,8 @@ public class MenuItemActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Log.i(TAG, "extendedFloatingActionButton clicked");
-                // TODO: add to order
+
+                OrderFragment.getInstance().addMenuItemToOrder(drink);
             }
         });
 

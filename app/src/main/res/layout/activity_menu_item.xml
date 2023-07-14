@@ -208,6 +208,7 @@
         android:layout_gravity="bottom|end"
         android:layout_marginEnd="@dimen/marginEnd_fab"
         android:layout_marginBottom="@dimen/marginBottom_fab"
+        android:gravity="center"
         android:text="Add to order"
         app:layout_anchor="@id/linearlayout_main"
         app:layout_anchorGravity="bottom|end" />

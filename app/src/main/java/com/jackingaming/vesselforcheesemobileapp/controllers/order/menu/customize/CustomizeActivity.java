@@ -15,7 +15,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.jackingaming.vesselforcheesemobileapp.R;
+import com.jackingaming.vesselforcheesemobileapp.controllers.order.OrderFragment;
+import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem.MenuItemActivity;
+import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.revieworder.ReviewOrderActivity;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.Drink;
+
+import java.io.Serializable;
 
 public class CustomizeActivity extends AppCompatActivity {
     public static final String TAG = CustomizeActivity.class.getSimpleName();
@@ -78,7 +83,10 @@ public class CustomizeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Log.i(TAG, "buttonCart clicked");
-                // TODO: start ReviewOrderActivity
+
+                Intent intentReviewOrder = new Intent(CustomizeActivity.this, ReviewOrderActivity.class);
+                intentReviewOrder.putExtra(ReviewOrderActivity.EXTRA_ORDER, (Serializable) OrderFragment.getInstance().getOrder());
+                startActivity(intentReviewOrder);
             }
         });
 
@@ -87,7 +95,8 @@ public class CustomizeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Log.i(TAG, "extendedFloatingActionButton clicked");
-                // TODO: add to order
+
+                OrderFragment.getInstance().addMenuItemToOrder(drink);
             }
         });
     }
@@ -112,7 +121,7 @@ public class CustomizeActivity extends AppCompatActivity {
             return true;
         } else {
             Log.i(TAG, "NOT android.R.id.home");
+            return super.onOptionsItemSelected(item);
         }
-        return super.onOptionsItemSelected(item);
     }
 }

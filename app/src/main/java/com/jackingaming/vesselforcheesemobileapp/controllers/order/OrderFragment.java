@@ -19,6 +19,10 @@ import com.jackingaming.vesselforcheesemobileapp.controllers.order.favorites.Fav
 import com.jackingaming.vesselforcheesemobileapp.controllers.order.featured.FeaturedFragment;
 import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.category.MenuFragment;
 import com.jackingaming.vesselforcheesemobileapp.controllers.order.previous.PreviousFragment;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.MenuItem;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -27,6 +31,13 @@ import com.jackingaming.vesselforcheesemobileapp.controllers.order.previous.Prev
  */
 public class OrderFragment extends Fragment {
     public static final String TAG = OrderFragment.class.getSimpleName();
+
+    private static OrderFragment instance;
+    private List<MenuItem> order = new ArrayList<>();
+
+    public void addMenuItemToOrder(MenuItem menuItem) {
+        order.add(menuItem);
+    }
 
     private Fragment[] fragments = {
             MenuFragment.newInstance(null, null),
@@ -42,17 +53,20 @@ public class OrderFragment extends Fragment {
             "Favorites"
     };
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
     public OrderFragment() {
         // Required empty public constructor
+    }
+
+
+    public static OrderFragment getInstance() {
+        if (instance == null) {
+            instance = new OrderFragment();
+        }
+        return instance;
+    }
+
+    public List<MenuItem> getOrder() {
+        return order;
     }
 
     /**
@@ -67,8 +81,8 @@ public class OrderFragment extends Fragment {
     public static OrderFragment newInstance(String param1, String param2) {
         OrderFragment fragment = new OrderFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+//        args.putString(ARG_PARAM1, param1);
+//        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -76,10 +90,6 @@ public class OrderFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
