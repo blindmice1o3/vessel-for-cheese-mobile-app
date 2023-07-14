@@ -14,7 +14,7 @@
         android:theme="@style/Theme.VesselForCheeseMobileApp"
         tools:targetApi="31">
         <activity
-            android:name=".controllers.order.menu.review.ReviewOrderActivity"
+            android:name=".controllers.order.menu.revieworder.ReviewOrderActivity"
             android:exported="false" />
         <activity
             android:name=".controllers.order.menu.customize.CustomizeActivity"

@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
                         collapsingToolbarLayout.setTitle("Scan");
                         return true;
                     case R.id.action_order:
-                        replaceFragmentInFCV(OrderFragment.newInstance(null, null));
+                        replaceFragmentInFCV(OrderFragment.getInstance());
                         collapsingToolbarLayout.setTitle("Order");
                         return true;
                     case R.id.action_gift:

@@ -26,12 +26,20 @@ import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.jackingaming.vesselforcheesemobileapp.R;
+import com.jackingaming.vesselforcheesemobileapp.controllers.order.OrderFragment;
 import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.customize.CustomizeActivity;
+import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.revieworder.ReviewOrderActivity;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
 import com.jackingaming.vesselforcheesemobileapp.models.menu.Menu;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.Drink;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.DrinkSize;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -90,7 +98,10 @@ public class MenuItemActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Log.i(TAG, "buttonCart clicked");
-                // TODO: start ReviewOrderActivity
+
+                Intent intentReviewOrder = new Intent(MenuItemActivity.this, ReviewOrderActivity.class);
+                intentReviewOrder.putExtra(ReviewOrderActivity.EXTRA_ORDER, (Serializable) OrderFragment.getInstance().getOrder());
+                startActivity(intentReviewOrder);
             }
         });
 
@@ -99,7 +110,25 @@ public class MenuItemActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Log.i(TAG, "extendedFloatingActionButton clicked");
-                // TODO: add to order
+
+                Drink original = drink;
+                Drink copy = null;
+                try {
+                    // Serialize the object
+                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                    ObjectOutputStream oos = new ObjectOutputStream(baos);
+                    oos.writeObject(original);
+                    oos.close();
+
+                    // Deserialize the object
+                    ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
+                    ObjectInputStream ois = new ObjectInputStream(bais);
+                    copy = (Drink) ois.readObject();
+                } catch (IOException | ClassNotFoundException exception) {
+                    exception.printStackTrace();
+                }
+
+                OrderFragment.getInstance().addMenuItemToOrder(copy);
             }
         });
 
