@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jackingaming.vesselforcheesemobileapp.R;
+import com.jackingaming.vesselforcheesemobileapp.controllers.order.OrderFragment;
 import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem.Granular;
 import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem.Incrementable;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
@@ -133,14 +134,34 @@ public class ReviewOrderAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             ivAdd.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Log.i(TAG, "add clicked");
+                    int position = getAdapterPosition();
+                    Log.i(TAG, "add clicked, position: " + position);
+
+                    MenuItem menuItem = order.get(position);
+                    if (menuItem instanceof Drink) {
+                        Log.i(TAG, "menuItem instanceof Drink");
+                        Drink drink = (Drink) menuItem;
+
+                        int indexNext = position + 1;
+                        OrderFragment.getInstance().addMenuItemToOrder(indexNext, drink);
+                        ((ReviewOrderActivity) itemView.getContext()).updateToolbarTitle();
+                        notifyItemInserted(indexNext);
+                    } else {
+                        Log.e(TAG, "NOT menuItem instanceof Drink");
+                    }
                 }
             });
 
             ivMinus.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Log.i(TAG, "minus clicked");
+                    int position = getAdapterPosition();
+                    Log.i(TAG, "minus clicked, position: " + position);
+
+                    MenuItem menuItemRemoved = OrderFragment.getInstance().removeMenuItemFromOrder(position);
+                    ((ReviewOrderActivity) itemView.getContext()).updateToolbarTitle();
+                    notifyItemRemoved(position);
+                    // TODO: store menuItemRemoved to implement a SnackBar [undo] behavior
                 }
             });
         }

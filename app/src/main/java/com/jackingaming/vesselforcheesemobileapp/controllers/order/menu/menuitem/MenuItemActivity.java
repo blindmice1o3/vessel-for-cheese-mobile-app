@@ -100,7 +100,6 @@ public class MenuItemActivity extends AppCompatActivity {
                 Log.i(TAG, "buttonCart clicked");
 
                 Intent intentReviewOrder = new Intent(MenuItemActivity.this, ReviewOrderActivity.class);
-                intentReviewOrder.putExtra(ReviewOrderActivity.EXTRA_ORDER, (Serializable) OrderFragment.getInstance().getOrder());
                 startActivity(intentReviewOrder);
             }
         });
@@ -111,24 +110,7 @@ public class MenuItemActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Log.i(TAG, "extendedFloatingActionButton clicked");
 
-                Drink original = drink;
-                Drink copy = null;
-                try {
-                    // Serialize the object
-                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                    ObjectOutputStream oos = new ObjectOutputStream(baos);
-                    oos.writeObject(original);
-                    oos.close();
-
-                    // Deserialize the object
-                    ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
-                    ObjectInputStream ois = new ObjectInputStream(bais);
-                    copy = (Drink) ois.readObject();
-                } catch (IOException | ClassNotFoundException exception) {
-                    exception.printStackTrace();
-                }
-
-                OrderFragment.getInstance().addMenuItemToOrder(copy);
+                OrderFragment.getInstance().addMenuItemToOrder(drink);
             }
         });
 

@@ -18,6 +18,7 @@ import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.jackingaming.vesselforcheesemobileapp.R;
+import com.jackingaming.vesselforcheesemobileapp.controllers.order.OrderFragment;
 import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem.Granular;
 import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem.Incrementable;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
@@ -33,6 +34,8 @@ public class ReviewOrderActivity extends AppCompatActivity {
     public static final String TAG = ReviewOrderActivity.class.getSimpleName();
     public static final String EXTRA_ORDER = "com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.revieworder.order";
 
+    private CollapsingToolbarLayout collapsingToolbarLayout;
+
     private List<MenuItem> order;
     private List<List<DrinkComponent>> customizationsFromOrder = new ArrayList<>();
 
@@ -42,21 +45,25 @@ public class ReviewOrderActivity extends AppCompatActivity {
         lp.height = (int) heightDp;
     }
 
+    public void updateToolbarTitle() {
+        String formatString = "Review order (%d)";
+        collapsingToolbarLayout.setTitle(String.format(formatString, order.size()));
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_review_order);
 
-        // -----------------------------------------------------------------
-        order = (List<MenuItem>) getIntent().getSerializableExtra(EXTRA_ORDER);
-        // -----------------------------------------------------------------
+        // --------------------------------------------
+        order = OrderFragment.getInstance().getOrder();
+        // --------------------------------------------
 
         AppBarLayout appBarLayout = findViewById(R.id.app_bar_layout);
         initHeightAppBarLayoutAsSixthScreen(appBarLayout);
 
-        String formatString = "Review order (%d)";
-        CollapsingToolbarLayout collapsingToolbarLayout = findViewById(R.id.collapsing_toolbar_layout);
-        collapsingToolbarLayout.setTitle(String.format(formatString, order.size()));
+        collapsingToolbarLayout = findViewById(R.id.collapsing_toolbar_layout);
+        updateToolbarTitle();
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_menu_arrow_down);

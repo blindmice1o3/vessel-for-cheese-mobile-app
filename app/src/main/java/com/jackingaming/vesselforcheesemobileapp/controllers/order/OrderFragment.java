@@ -26,6 +26,11 @@ import com.jackingaming.vesselforcheesemobileapp.models.menu.Menu;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.MenuItem;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.Drink;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -41,8 +46,39 @@ public class OrderFragment extends Fragment {
     private static OrderFragment instance;
     private List<MenuItem> order = new ArrayList<>();
 
+    public MenuItem removeMenuItemFromOrder(int index) {
+        return order.remove(index);
+    }
+
     public void addMenuItemToOrder(MenuItem menuItem) {
-        order.add(menuItem);
+        int indexEnd = order.size();
+        addMenuItemToOrder(indexEnd, menuItem);
+    }
+
+    public void addMenuItemToOrder(int index, MenuItem menuItem) {
+        Log.i(TAG, "addMenuItemToOrder()");
+
+        if (menuItem instanceof Drink) {
+            Drink original = (Drink) menuItem;
+            Drink copy = null;
+            try {
+                // Serialize the object
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                ObjectOutputStream oos = new ObjectOutputStream(baos);
+                oos.writeObject(original);
+                oos.close();
+
+                // Deserialize the object
+                ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
+                ObjectInputStream ois = new ObjectInputStream(bais);
+                copy = (Drink) ois.readObject();
+            } catch (IOException | ClassNotFoundException exception) {
+                exception.printStackTrace();
+            }
+            order.add(index, copy);
+        } else {
+            Log.e(TAG, "NOT menuItem instanceof Drink");
+        }
     }
 
     private Fragment[] fragments = {
