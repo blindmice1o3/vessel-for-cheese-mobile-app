@@ -72,7 +72,7 @@ public class CustomizeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     @Override
     public int getItemViewType(int position) {
         DrinkComponentDetails drinkComponentDetails = dataProcessed.get(position);
-        
+
         if (drinkComponentDetails.getKeyGroup().equals(IDENTIFIER_TOP_BANNER)) {
             return VIEW_TYPE_TOP_BANNER;
         } else if (drinkComponentDetails.getKeyGroup().equals(IDENTIFIER_DONE_CUSTOMIZING_BUTTON)) {
@@ -195,21 +195,12 @@ public class CustomizeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
             tvName.setText(drink.getName());
 
-            String nameDrinkInLowercase = drink.getDrinkSize().name().toLowerCase();
-            if (nameDrinkInLowercase.length() >= "venti".length() &&
-                    nameDrinkInLowercase.substring(0, 5).equals("venti")) {
-                Log.d(TAG, "@@@ VENTI @@@");
-                nameDrinkInLowercase = "venti";
-            }
-            String textDrinkSize = capitalizeFirstLetter(nameDrinkInLowercase) + " " +
-                    drink.getDrinkSize().getSizeInFlOz() + " " + " fl oz";
-            tvSize.setText(textDrinkSize);
-        }
-
-        private String capitalizeFirstLetter(String text) {
-            char[] c = text.toCharArray();
-            c[0] = Character.toUpperCase(c[0]);
-            return new String(c);
+            String templateString = "%s %d fl oz";
+            tvSize.setText(
+                    String.format(templateString,
+                            drink.getDrinkSize().getUserFriendlyName(),
+                            drink.getDrinkSize().getSizeInFlOz())
+            );
         }
     }
 

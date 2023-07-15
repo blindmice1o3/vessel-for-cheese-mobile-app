@@ -19,4 +19,19 @@ public enum DrinkSize {
     public int getSizeInFlOz() {
         return sizeInFlOz;
     }
+
+    public String getUserFriendlyName() {
+        String nameDrinkInLowercase = name().toLowerCase();
+        if (nameDrinkInLowercase.length() >= "venti".length() &&
+                nameDrinkInLowercase.substring(0, 5).equals("venti")) {
+            nameDrinkInLowercase = "venti";
+        }
+        return capitalizeFirstLetter(nameDrinkInLowercase);
+    }
+
+    private String capitalizeFirstLetter(String text) {
+        char[] c = text.toCharArray();
+        c[0] = Character.toUpperCase(c[0]);
+        return new String(c);
+    }
 }

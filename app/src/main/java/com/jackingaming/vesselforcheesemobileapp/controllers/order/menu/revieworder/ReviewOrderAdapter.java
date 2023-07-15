@@ -88,7 +88,7 @@ public class ReviewOrderAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             tvName.setText(menuItem.getName());
 
             // TODO: pass filtered list to DrinkComponentAdapter
-            List<DrinkComponent> drinkComponentsAsList = new ArrayList<>();
+            List<String> drinkComponentsCustomAsString = new ArrayList<>();
             if (menuItem instanceof Drink) {
                 Map<String, List<DrinkComponent>> drinkComponents = ((Drink) menuItem).getDrinkComponents();
                 Map<String, List<String>> drinkComponentsDefaultAsString = ((Drink) menuItem).getDrinkComponentsDefaultAsString();
@@ -121,14 +121,29 @@ public class ReviewOrderAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                                 }
                             }
 
-                            drinkComponentsAsList.add(drinkComponent);
+                            String drinkComponentDetails = null;
+                            if (drinkComponent instanceof Incrementable) {
+                                drinkComponentDetails = drinkComponent.getClassAsString() + " | " + drinkComponent.getTypeAsString() +
+                                        " | " + ((Incrementable) drinkComponent).getQuantity();
+                            } else if (drinkComponent instanceof Granular) {
+                                drinkComponentDetails = drinkComponent.getClassAsString() + " | " + drinkComponent.getTypeAsString() +
+                                        " | " + ((Granular) drinkComponent).getAmount();
+                            } else {
+                                drinkComponentDetails = drinkComponent.getClassAsString() + " | " + drinkComponent.getTypeAsString();
+                            }
+
+                            drinkComponentsCustomAsString.add(drinkComponentDetails);
                         }
                     }
                 }
+
+                // Display DrinkSize at top of list
+                String drinkSizeAsString = ((Drink) menuItem).getDrinkSize().getUserFriendlyName();
+                drinkComponentsCustomAsString.add(0, drinkSizeAsString);
             } else {
                 Log.e(TAG, "NOT menuItem instanceof Drink");
             }
-            rvCustomizations.setAdapter(new DrinkComponentAdapter(drinkComponentsAsList));
+            rvCustomizations.setAdapter(new DrinkComponentAdapter(drinkComponentsCustomAsString));
             rvCustomizations.setLayoutManager(new LinearLayoutManager(rvCustomizations.getContext()));
 
             ivAdd.setOnClickListener(new View.OnClickListener() {

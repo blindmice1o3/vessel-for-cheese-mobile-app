@@ -18,10 +18,10 @@ import java.util.List;
 public class DrinkComponentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public static final String TAG = DrinkComponentAdapter.class.getSimpleName();
 
-    List<DrinkComponent> drinkComponentsAsList;
+    List<String> drinkComponentsCustomAsString;
 
-    public DrinkComponentAdapter(List<DrinkComponent> drinkComponentsAsList) {
-        this.drinkComponentsAsList = drinkComponentsAsList;
+    public DrinkComponentAdapter(List<String> drinkComponentsCustomAsString) {
+        this.drinkComponentsCustomAsString = drinkComponentsCustomAsString;
     }
 
     @NonNull
@@ -33,13 +33,13 @@ public class DrinkComponentAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        DrinkComponent drinkComponent = drinkComponentsAsList.get(position);
-        ((DrinkComponentViewHolder) holder).bind(drinkComponent);
+        String drinkComponentAsString = drinkComponentsCustomAsString.get(position);
+        ((DrinkComponentViewHolder) holder).bind(drinkComponentAsString);
     }
 
     @Override
     public int getItemCount() {
-        return drinkComponentsAsList.size();
+        return drinkComponentsCustomAsString.size();
     }
 
     class DrinkComponentViewHolder extends RecyclerView.ViewHolder {
@@ -51,19 +51,8 @@ public class DrinkComponentAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             tvName = itemView.findViewById(R.id.tv_name);
         }
 
-        public void bind(DrinkComponent drinkComponent) {
-            String drinkComponentDetails = null;
-            if (drinkComponent instanceof Incrementable) {
-                drinkComponentDetails = drinkComponent.getClassAsString() + " | " + drinkComponent.getTypeAsString() +
-                        " | " + ((Incrementable) drinkComponent).getQuantity();
-            } else if (drinkComponent instanceof Granular) {
-                drinkComponentDetails = drinkComponent.getClassAsString() + " | " + drinkComponent.getTypeAsString() +
-                        " | " + ((Granular) drinkComponent).getAmount();
-            } else {
-                drinkComponentDetails = drinkComponent.getClassAsString() + " | " + drinkComponent.getTypeAsString();
-            }
-
-            tvName.setText(drinkComponentDetails);
+        public void bind(String drinkComponentAsString) {
+            tvName.setText(drinkComponentAsString);
         }
     }
 }
