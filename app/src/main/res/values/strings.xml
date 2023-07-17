@@ -2,6 +2,11 @@
     <string name="app_name">VesselForCheeseMobileApp</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="dialog_title_drink_size_changed">Some customizations updated for this size</string>
+    <string name="dialog_message_drink_size_changed">Recipe is based on size, so we\'ve updated some ingredients to the standard amount. Make sure to check your customizations before you place your order.</string>
+    <string name="dialog_positive_button_drink_size_changed">Got it</string>
+
     <!--
     COLD_COFFEES
     [ColdBrews]

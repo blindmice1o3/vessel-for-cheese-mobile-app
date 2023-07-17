@@ -85,6 +85,15 @@ public class Menu {
             CupOptions.TAG
     );
 
+    public static final List<String> DRINK_SIZE_CHANGED_KEYS = Arrays.asList(
+            AddInsOptions.TAG,
+            BlendedOptions.TAG,
+            EspressoOptions.TAG,
+            TeaOptions.TAG,
+            SweetenerOptions.TAG,
+            FlavorOptions.TAG
+    );
+
     public static final List<MenuItemCategory> hotCoffees = Arrays.asList(
             new MenuItemCategory(AMERICANOS, R.drawable.harvest_moon_natsume),
             new MenuItemCategory(BREWED_COFFEES, R.drawable.harvest_moon_natsume),

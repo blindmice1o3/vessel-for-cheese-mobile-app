@@ -198,7 +198,16 @@ public class MenuItemActivity extends AppCompatActivity {
                         Toast.makeText(MenuItemActivity.this, "drinkSize: " + drinkSize.name(), Toast.LENGTH_SHORT).show();
 
                         // @@@@@@@@@@@@@@@@@@@@@@@@@@@
-                        drink.setDrinkSize(drinkSize);
+                        boolean changedUserCustomizations =
+                                drink.updateDrinkSize(drinkSize);
+                        if (changedUserCustomizations) {
+                            Log.i(TAG, "changedUserCustomizations: " + changedUserCustomizations);
+                            // TODO: Display AlertDialog with message about standard recipe.
+                            Toast.makeText(MenuItemActivity.this, "changedUserCustomizations", Toast.LENGTH_SHORT).show();
+                        }
+                        // always update (default value may have changed)
+                        adapter.init(drink);
+                        adapter.notifyDataSetChanged();
                         // @@@@@@@@@@@@@@@@@@@@@@@@@@@
 
                         for (int j = 0; j < linearLayoutDrinkSizeOptions.getChildCount(); j++) {
