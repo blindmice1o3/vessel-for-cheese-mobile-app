@@ -1,18 +1,75 @@
 package com.jackingaming.vesselforcheesemobileapp.models.components.drinks.blended_options;
 
+import android.util.Log;
+
+import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem.Incrementable;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
 
-public class FrapChips extends BlendedOptions {
+public class FrapChips extends BlendedOptions
+        implements Incrementable {
     public static final String DEFAULT_TEXT_INIT = "Add Frappuccino Chips";
+    public static final int DEFAULT_QUANTITY_MIN = 0;
+    public static final int DEFAULT_QUANTITY_MAX = Integer.MAX_VALUE;
+
+    private int quantityMin = DEFAULT_QUANTITY_MIN;
+    private int quantityMax = DEFAULT_QUANTITY_MAX;
+
+    @Override
+    public void onIncrement() {
+        Log.i(TAG, "start of onIncrement() --- quantity: " + quantity);
+
+        if (quantity == QUANTITY_FOR_INVOKER) {
+            Log.i(TAG, "quantity == QUANTITY_FOR_INVOKER");
+            return;
+        }
+
+        quantity++;
+
+        if (quantity > quantityMax) {
+            Log.i(TAG, "quantity > quantityMax --- SETTING quantity = quantityMax");
+            quantity = quantityMax;
+        }
+        Log.i(TAG, "end of onIncrement() --- quantity: " + quantity);
+    }
+
+    @Override
+    public void onDecrement() {
+        Log.i(TAG, "start of onDecrement() --- quantity: " + quantity);
+
+        if (quantity == QUANTITY_FOR_INVOKER) {
+            Log.i(TAG, "quantity == QUANTITY_FOR_INVOKER");
+            return;
+        }
+
+        quantity--;
+
+        if (quantity < quantityMin) {
+            Log.i(TAG, "quantity < quantityMin --- SETTING quantity = quantityMin");
+            quantity = quantityMin;
+        }
+        Log.i(TAG, "end of onDecrement() --- quantity: " + quantity);
+    }
+
+    @Override
+    public int getQuantity() {
+        return quantity;
+    }
+
+    @Override
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
 
     public enum Type {
         FRAP_CHIPS;
     }
 
     private Type type;
+    private int quantity;
 
-    public FrapChips(Type type) {
+    public FrapChips(Type type, int quantity) {
         this.type = type;
+        this.quantity = quantity;
     }
 
     public Type getType() {
@@ -23,9 +80,25 @@ public class FrapChips extends BlendedOptions {
         this.type = type;
     }
 
+    public int getQuantityMin() {
+        return quantityMin;
+    }
+
+    public void setQuantityMin(int quantityMin) {
+        this.quantityMin = quantityMin;
+    }
+
+    public int getQuantityMax() {
+        return quantityMax;
+    }
+
+    public void setQuantityMax(int quantityMax) {
+        this.quantityMax = quantityMax;
+    }
+
     @Override
     public String getTextInit() {
-        return DEFAULT_TEXT_INIT;
+        return (type == null) ? (DEFAULT_TEXT_INIT) : ("Add " + type.name());
     }
 
     @Override
@@ -45,7 +118,7 @@ public class FrapChips extends BlendedOptions {
 
     @Override
     public String getTypeAsString() {
-        return type.name();
+        return (type == null) ? NULL_TYPE_AS_STRING : type.name();
     }
 
     @Override

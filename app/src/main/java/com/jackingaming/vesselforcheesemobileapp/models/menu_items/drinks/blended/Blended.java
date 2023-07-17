@@ -31,4 +31,32 @@ public abstract class Blended extends Drink {
 
         return NUMBER_OF_PUMP_INDEPENDENT_OF_DRINK_SIZE;
     }
+
+    @Override
+    public int getNumberOfScoopByDrinkSize(DrinkSize drinkSizeNew) {
+        Log.i(TAG, "getNumberOfScoopByDrinkSize(DrinkSize)");
+
+        int numberOfScoopNew = NUMBER_OF_SCOOP_INDEPENDENT_OF_DRINK_SIZE;
+        switch (drinkSizeNew) {
+            case SHORT:
+                numberOfScoopNew = 1;
+                break;
+            case TALL:
+                numberOfScoopNew = 2;
+                break;
+            case GRANDE:
+                numberOfScoopNew = 3;
+                break;
+            case VENTI_HOT:
+            case VENTI_ICED:
+                numberOfScoopNew = 4;
+                break;
+            case TRENTA:
+            case UNIQUE:
+            case UNDEFINED:
+                break;
+        }
+
+        return numberOfScoopNew;
+    }
 }

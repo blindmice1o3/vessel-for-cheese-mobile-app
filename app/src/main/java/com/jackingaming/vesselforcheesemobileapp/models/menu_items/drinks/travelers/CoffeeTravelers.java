@@ -30,4 +30,11 @@ public abstract class CoffeeTravelers extends Drink {
 
         return NUMBER_OF_PUMP_INDEPENDENT_OF_DRINK_SIZE;
     }
+
+    @Override
+    public int getNumberOfScoopByDrinkSize(DrinkSize drinkSizeNew) {
+        Log.i(TAG, "getNumberOfScoopByDrinkSize(DrinkSize)");
+
+        return NUMBER_OF_SCOOP_INDEPENDENT_OF_DRINK_SIZE;
+    }
 }

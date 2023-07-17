@@ -6,6 +6,7 @@ import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.AddInsOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.blended_options.BlendedOptions;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.blended_options.FrapChips;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.espresso_options.EspressoOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.espresso_options.Shot;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.flavor_options.FlavorOptions;
@@ -14,6 +15,7 @@ import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.flavor
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.sweetener_options.Liquid;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.sweetener_options.SweetenerOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.tea_options.Chai;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.tea_options.MatchaPowder;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.tea_options.TeaOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.menu.Menu;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.MenuItem;
@@ -27,6 +29,7 @@ public abstract class Drink extends MenuItem {
     public static final String TAG = Drink.class.getSimpleName();
     public static final int NUMBER_OF_SHOT_INDEPENDENT_OF_DRINK_SIZE = -1;
     public static final int NUMBER_OF_PUMP_INDEPENDENT_OF_DRINK_SIZE = -1;
+    public static final int NUMBER_OF_SCOOP_INDEPENDENT_OF_DRINK_SIZE = -1;
 
     protected DrinkSize drinkSize;
     protected boolean iced;
@@ -56,6 +59,8 @@ public abstract class Drink extends MenuItem {
     public abstract int getNumberOfShotByDrinkSize(DrinkSize drinkSizeNew);
 
     public abstract int getNumberOfPumpByDrinkSize(DrinkSize drinkSizeNew);
+
+    public abstract int getNumberOfScoopByDrinkSize(DrinkSize drinkSizeNew);
 
     public void addToDrinkComponents(String key, DrinkComponent drinkComponent) {
         Log.i(TAG, "addToDrinkComponents(String, DrinkComponent)");
@@ -113,6 +118,51 @@ public abstract class Drink extends MenuItem {
                 } else if (key.equals(BlendedOptions.TAG)) {
                     Log.i(TAG, "key.equals(BlendedOptions.TAG)");
 
+                    for (int i = 0; i < drinkComponentsGroup.size(); i++) {
+                        DrinkComponent drinkComponent = drinkComponentsGroup.get(i);
+
+                        if (drinkComponentsStandardRecipe.contains(drinkComponent)) {
+                            Log.i(TAG, "drinkComponentsStandardRecipe.contains() drinkComponent (Class, Type): (" + drinkComponent.getClassAsString() + ", " + drinkComponent.getTypeAsString() + ")");
+
+                            if (drinkComponent instanceof FrapChips) {
+                                Log.i(TAG, "drinkComponent instanceof FrapChips");
+                                Incrementable incrementable = (Incrementable) drinkComponent;
+
+                                int quantityNew = getNumberOfScoopByDrinkSize(drinkSizeNew);
+
+                                if (quantityNew == NUMBER_OF_SCOOP_INDEPENDENT_OF_DRINK_SIZE) {
+                                    Log.e(TAG, "quantityNew == NUMBER_OF_SCOOP_INDEPENDENT_OF_DRINK_SIZE");
+                                    return false;
+                                }
+
+                                int quantityInDrink = incrementable.getQuantity();
+                                int quantityDefaultInDrink = Integer.parseInt(drinkComponentsDefaultAsString.get(key).get(i));
+                                if (quantityInDrink == quantityDefaultInDrink) {
+                                    // user left as default value
+
+                                    if (quantityInDrink == quantityNew) {
+                                        // new drink size did NOT change quantity
+                                    } else {
+                                        // new drink size CHANGED quantity
+                                        incrementable.setQuantity(quantityNew);
+                                    }
+                                } else {
+                                    // user had customized
+
+                                    if (quantityInDrink == quantityNew) {
+                                        // new drink size did NOT change quantity
+                                    } else {
+                                        // new drink size CHANGED quantity
+                                        incrementable.setQuantity(quantityNew);
+                                        changedUserCustomizations = true;
+                                    }
+                                }
+
+                                // update drinkComponent's associate default value
+                                drinkComponentsDefaultAsString.get(key).set(i, Integer.toString(quantityNew));
+                            }
+                        }
+                    }
                 } else if (key.equals(EspressoOptions.TAG)) {
                     Log.i(TAG, "key.equals(EspressoOptions.TAG)");
 
@@ -174,6 +224,42 @@ public abstract class Drink extends MenuItem {
 
                                 if (quantityNew == NUMBER_OF_PUMP_INDEPENDENT_OF_DRINK_SIZE) {
                                     Log.e(TAG, "quantityNew == NUMBER_OF_PUMP_INDEPENDENT_OF_DRINK_SIZE");
+                                    return false;
+                                }
+
+                                int quantityInDrink = incrementable.getQuantity();
+                                int quantityDefaultInDrink = Integer.parseInt(drinkComponentsDefaultAsString.get(key).get(i));
+                                if (quantityInDrink == quantityDefaultInDrink) {
+                                    // user left as default value
+
+                                    if (quantityInDrink == quantityNew) {
+                                        // new drink size did NOT change quantity
+                                    } else {
+                                        // new drink size CHANGED quantity
+                                        incrementable.setQuantity(quantityNew);
+                                    }
+                                } else {
+                                    // user had customized
+
+                                    if (quantityInDrink == quantityNew) {
+                                        // new drink size did NOT change quantity
+                                    } else {
+                                        // new drink size CHANGED quantity
+                                        incrementable.setQuantity(quantityNew);
+                                        changedUserCustomizations = true;
+                                    }
+                                }
+
+                                // update drinkComponent's associate default value
+                                drinkComponentsDefaultAsString.get(key).set(i, Integer.toString(quantityNew));
+                            } else if (drinkComponent instanceof MatchaPowder) {
+                                Log.i(TAG, "drinkComponent instanceof MatchaPowder");
+                                Incrementable incrementable = (Incrementable) drinkComponent;
+
+                                int quantityNew = getNumberOfScoopByDrinkSize(drinkSizeNew);
+
+                                if (quantityNew == NUMBER_OF_SCOOP_INDEPENDENT_OF_DRINK_SIZE) {
+                                    Log.e(TAG, "quantityNew == NUMBER_OF_SCOOP_INDEPENDENT_OF_DRINK_SIZE");
                                     return false;
                                 }
 
