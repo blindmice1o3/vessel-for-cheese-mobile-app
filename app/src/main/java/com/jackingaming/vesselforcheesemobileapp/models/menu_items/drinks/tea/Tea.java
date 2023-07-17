@@ -23,4 +23,11 @@ public abstract class Tea extends Drink {
 
         return NUMBER_OF_SHOT_INDEPENDENT_OF_DRINK_SIZE;
     }
+
+    @Override
+    public int getNumberOfPumpByDrinkSize(DrinkSize drinkSizeNew) {
+        Log.i(TAG, "getNumberOfPumpByDrinkSize(DrinkSize)");
+
+        return NUMBER_OF_PUMP_INDEPENDENT_OF_DRINK_SIZE;
+    }
 }

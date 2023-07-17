@@ -122,4 +122,69 @@ public abstract class Espresso extends Drink {
 
         return numberOfShotNew;
     }
+
+    @Override
+    public int getNumberOfPumpByDrinkSize(DrinkSize drinkSizeNew) {
+        Log.i(TAG, "getNumberOfPumpByDrinkSize(DrinkSize)");
+
+        int numberOfPumpNew = NUMBER_OF_PUMP_INDEPENDENT_OF_DRINK_SIZE;
+        if (this instanceof Lattes ||
+                this instanceof Cappuccinos ||
+                this instanceof Mochas ||
+                this instanceof Americanos ||
+                this instanceof FlatWhites ||
+                this instanceof IcedShakenEspressos) {
+            Log.i(TAG, "this instanceof Lattes || this instanceof Cappuccinos || this instanceof Mochas");
+            switch (drinkSizeNew) {
+                case SHORT:
+                    numberOfPumpNew = 2;
+                    break;
+                case TALL:
+                    numberOfPumpNew = 3;
+                    break;
+                case GRANDE:
+                    numberOfPumpNew = 4;
+                    break;
+                case VENTI_HOT:
+                    numberOfPumpNew = 5;
+                    break;
+                case VENTI_ICED:
+                    numberOfPumpNew = 6;
+                    break;
+                case TRENTA:
+                case UNIQUE:
+                case UNDEFINED:
+                    break;
+            }
+        } else if (this instanceof Macchiatos &&
+                !(this instanceof EspressoMacchiato)) {
+            Log.i(TAG, "this instanceof Macchiatos && !(this instanceof EspressoMacchiato)");
+            // TODO: double check on EspressoMacchiato shot-by-DrinkSize
+            switch (drinkSizeNew) {
+                case SHORT:
+                    numberOfPumpNew = 1;
+                    break;
+                case TALL:
+                    numberOfPumpNew = 2;
+                    break;
+                case GRANDE:
+                    numberOfPumpNew = 3;
+                    break;
+                case VENTI_HOT:
+                    numberOfPumpNew = 4;
+                    break;
+                case VENTI_ICED:
+                    numberOfPumpNew = 5;
+                    break;
+                case TRENTA:
+                case UNIQUE:
+                case UNDEFINED:
+                    break;
+            }
+        } else {
+            Log.e(TAG, "else-clause");
+        }
+
+        return numberOfPumpNew;
+    }
 }

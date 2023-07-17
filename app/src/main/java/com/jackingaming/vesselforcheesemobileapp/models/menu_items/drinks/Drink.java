@@ -2,6 +2,7 @@ package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks;
 
 import android.util.Log;
 
+import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem.Incrementable;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.AddInsOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.blended_options.BlendedOptions;
@@ -10,7 +11,9 @@ import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.espres
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.flavor_options.FlavorOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.flavor_options.Sauce;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.flavor_options.Syrup;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.sweetener_options.Liquid;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.sweetener_options.SweetenerOptions;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.tea_options.Chai;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.tea_options.TeaOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.menu.Menu;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.MenuItem;
@@ -23,6 +26,7 @@ import java.util.Map;
 public abstract class Drink extends MenuItem {
     public static final String TAG = Drink.class.getSimpleName();
     public static final int NUMBER_OF_SHOT_INDEPENDENT_OF_DRINK_SIZE = -1;
+    public static final int NUMBER_OF_PUMP_INDEPENDENT_OF_DRINK_SIZE = -1;
 
     protected DrinkSize drinkSize;
     protected boolean iced;
@@ -50,6 +54,8 @@ public abstract class Drink extends MenuItem {
     //  (as oppose to CaffeLatte doing this straight in the constructor).
 
     public abstract int getNumberOfShotByDrinkSize(DrinkSize drinkSizeNew);
+
+    public abstract int getNumberOfPumpByDrinkSize(DrinkSize drinkSizeNew);
 
     public void addToDrinkComponents(String key, DrinkComponent drinkComponent) {
         Log.i(TAG, "addToDrinkComponents(String, DrinkComponent)");
@@ -114,7 +120,8 @@ public abstract class Drink extends MenuItem {
                         DrinkComponent drinkComponent = drinkComponentsGroup.get(i);
 
                         if (drinkComponent instanceof Shot) {
-                            Shot shot = (Shot) drinkComponent;
+                            Log.i(TAG, "drinkComponent instanceof Shot");
+                            Incrementable incrementable = (Incrementable) drinkComponent;
 
                             int quantityNew = getNumberOfShotByDrinkSize(drinkSizeNew);
 
@@ -123,25 +130,25 @@ public abstract class Drink extends MenuItem {
                                 return false;
                             }
 
-                            int quantityInDrink = shot.getQuantity();
+                            int quantityInDrink = incrementable.getQuantity();
                             int quantityDefaultInDrink = Integer.parseInt(drinkComponentsDefaultAsString.get(key).get(i));
                             if (quantityInDrink == quantityDefaultInDrink) {
                                 // user left as default value
 
                                 if (quantityInDrink == quantityNew) {
-                                    // new drink size did not change number of shot
+                                    // new drink size did NOT change quantity
                                 } else {
-                                    // new drink size CHANGED number of shot
-                                    shot.setQuantity(quantityNew);
+                                    // new drink size CHANGED quantity
+                                    incrementable.setQuantity(quantityNew);
                                 }
                             } else {
                                 // user had customized
 
                                 if (quantityInDrink == quantityNew) {
-                                    // new drink size did not change number of shot
+                                    // new drink size did NOT change quantity
                                 } else {
-                                    // new drink size CHANGED number of shot
-                                    shot.setQuantity(quantityNew);
+                                    // new drink size CHANGED quantity
+                                    incrementable.setQuantity(quantityNew);
                                     changedUserCustomizations = true;
                                 }
                             }
@@ -153,21 +160,139 @@ public abstract class Drink extends MenuItem {
                 } else if (key.equals(TeaOptions.TAG)) {
                     Log.i(TAG, "key.equals(TeaOptions.TAG)");
 
-                    // TODO: [Chai]
+                    for (int i = 0; i < drinkComponentsGroup.size(); i++) {
+                        DrinkComponent drinkComponent = drinkComponentsGroup.get(i);
+
+                        if (drinkComponent instanceof Chai) {
+                            Log.i(TAG, "drinkComponent instanceof Chai");
+                            Incrementable incrementable = (Incrementable) drinkComponent;
+
+                            int quantityNew = getNumberOfPumpByDrinkSize(drinkSizeNew);
+
+                            if (quantityNew == NUMBER_OF_PUMP_INDEPENDENT_OF_DRINK_SIZE) {
+                                Log.e(TAG, "quantityNew == NUMBER_OF_PUMP_INDEPENDENT_OF_DRINK_SIZE");
+                                return false;
+                            }
+
+                            int quantityInDrink = incrementable.getQuantity();
+                            int quantityDefaultInDrink = Integer.parseInt(drinkComponentsDefaultAsString.get(key).get(i));
+                            if (quantityInDrink == quantityDefaultInDrink) {
+                                // user left as default value
+
+                                if (quantityInDrink == quantityNew) {
+                                    // new drink size did NOT change quantity
+                                } else {
+                                    // new drink size CHANGED quantity
+                                    incrementable.setQuantity(quantityNew);
+                                }
+                            } else {
+                                // user had customized
+
+                                if (quantityInDrink == quantityNew) {
+                                    // new drink size did NOT change quantity
+                                } else {
+                                    // new drink size CHANGED quantity
+                                    incrementable.setQuantity(quantityNew);
+                                    changedUserCustomizations = true;
+                                }
+                            }
+
+                            // TODO: BUG -> only for DrinkComponent from StandardRecipe,
+                            //  otherwise default value = 0.
+                            // update drinkComponent's associate default value
+                            drinkComponentsDefaultAsString.get(key).set(i, Integer.toString(quantityNew));
+                        }
+                    }
                 } else if (key.equals(SweetenerOptions.TAG)) {
                     Log.i(TAG, "key.equals(SweetenerOptions.TAG)");
 
-                    // TODO: [Liquid], NOT [Packet]
+                    for (int i = 0; i < drinkComponentsGroup.size(); i++) {
+                        DrinkComponent drinkComponent = drinkComponentsGroup.get(i);
+
+                        if (drinkComponent instanceof Liquid) {
+                            Log.i(TAG, "drinkComponent instanceof Liquid");
+                            Incrementable incrementable = (Incrementable) drinkComponent;
+
+                            int quantityNew = getNumberOfPumpByDrinkSize(drinkSizeNew);
+
+                            if (quantityNew == NUMBER_OF_PUMP_INDEPENDENT_OF_DRINK_SIZE) {
+                                Log.e(TAG, "quantityNew == NUMBER_OF_PUMP_INDEPENDENT_OF_DRINK_SIZE");
+                                return false;
+                            }
+
+                            int quantityInDrink = incrementable.getQuantity();
+                            int quantityDefaultInDrink = Integer.parseInt(drinkComponentsDefaultAsString.get(key).get(i));
+                            if (quantityInDrink == quantityDefaultInDrink) {
+                                // user left as default value
+
+                                if (quantityInDrink == quantityNew) {
+                                    // new drink size did NOT change quantity
+                                } else {
+                                    // new drink size CHANGED quantity
+                                    incrementable.setQuantity(quantityNew);
+                                }
+                            } else {
+                                // user had customized
+
+                                if (quantityInDrink == quantityNew) {
+                                    // new drink size did NOT change quantity
+                                } else {
+                                    // new drink size CHANGED quantity
+                                    incrementable.setQuantity(quantityNew);
+                                    changedUserCustomizations = true;
+                                }
+                            }
+
+                            // TODO: BUG -> only for DrinkComponent from StandardRecipe,
+                            //  otherwise default value = 0.
+                            // update drinkComponent's associate default value
+                            drinkComponentsDefaultAsString.get(key).set(i, Integer.toString(quantityNew));
+                        }
+                    }
                 } else if (key.equals(FlavorOptions.TAG)) {
                     Log.i(TAG, "key.equals(FlavorOptions.TAG)");
 
-                    // TODO: [Sauce] and [Syrup]
                     for (int i = 0; i < drinkComponentsGroup.size(); i++) {
                         DrinkComponent drinkComponent = drinkComponentsGroup.get(i);
 
                         if (drinkComponent instanceof Sauce || drinkComponent instanceof Syrup) {
-                            // TODO: !!! change value of drinkComponentsDefaultAsString !!!
+                            Log.i(TAG, "drinkComponent instanceof Sauce || drinkComponent instanceof Syrup");
+                            Incrementable incrementable = (Incrementable) drinkComponent;
 
+                            int quantityNew = getNumberOfPumpByDrinkSize(drinkSizeNew);
+
+                            if (quantityNew == NUMBER_OF_PUMP_INDEPENDENT_OF_DRINK_SIZE) {
+                                Log.e(TAG, "quantityNew == NUMBER_OF_PUMP_INDEPENDENT_OF_DRINK_SIZE");
+                                return false;
+                            }
+
+                            int quantityInDrink = incrementable.getQuantity();
+                            int quantityDefaultInDrink = Integer.parseInt(drinkComponentsDefaultAsString.get(key).get(i));
+                            if (quantityInDrink == quantityDefaultInDrink) {
+                                // user left as default value
+
+                                if (quantityInDrink == quantityNew) {
+                                    // new drink size did NOT change quantity
+                                } else {
+                                    // new drink size CHANGED quantity
+                                    incrementable.setQuantity(quantityNew);
+                                }
+                            } else {
+                                // user had customized
+
+                                if (quantityInDrink == quantityNew) {
+                                    // new drink size did NOT change quantity
+                                } else {
+                                    // new drink size CHANGED quantity
+                                    incrementable.setQuantity(quantityNew);
+                                    changedUserCustomizations = true;
+                                }
+                            }
+
+                            // TODO: BUG -> only for DrinkComponent from StandardRecipe,
+                            //  otherwise default value = 0.
+                            // update drinkComponent's associate default value
+                            drinkComponentsDefaultAsString.get(key).set(i, Integer.toString(quantityNew));
                         }
                     }
                 } else {
