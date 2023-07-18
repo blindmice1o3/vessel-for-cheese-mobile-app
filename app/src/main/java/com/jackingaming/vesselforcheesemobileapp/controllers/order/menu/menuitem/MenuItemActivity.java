@@ -1,5 +1,7 @@
 package com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
@@ -197,18 +199,16 @@ public class MenuItemActivity extends AppCompatActivity {
                     public void onClick(View view) {
                         Toast.makeText(MenuItemActivity.this, "drinkSize: " + drinkSize.name(), Toast.LENGTH_SHORT).show();
 
-                        // @@@@@@@@@@@@@@@@@@@@@@@@@@@
+                        // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
                         boolean changedUserCustomizations =
                                 drink.updateDrinkSize(drinkSize);
                         if (changedUserCustomizations) {
-                            Log.i(TAG, "changedUserCustomizations: " + changedUserCustomizations);
-                            // TODO: Display AlertDialog with message about standard recipe.
-                            Toast.makeText(MenuItemActivity.this, "changedUserCustomizations", Toast.LENGTH_SHORT).show();
+                            showDialogChangedUserCustomizations();
                         }
                         // always update (default value may have changed)
                         adapter.init(drink);
                         adapter.notifyDataSetChanged();
-                        // @@@@@@@@@@@@@@@@@@@@@@@@@@@
+                        // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
                         for (int j = 0; j < linearLayoutDrinkSizeOptions.getChildCount(); j++) {
                             if (drinkSizesAllowed[j] == drinkSize) {
@@ -287,6 +287,11 @@ public class MenuItemActivity extends AppCompatActivity {
         } else {
             Log.e(TAG, "nameCategory does NOT equals " + Menu.HOT_COFFEES);
         }
+    }
+
+    private void showDialogChangedUserCustomizations() {
+        ChangedUserCustomizationsDialogFragment.newInstance()
+                .show(getSupportFragmentManager(), TAG);
     }
 
     private void removeDuplicateGranularInvoker(Drink drink) {
