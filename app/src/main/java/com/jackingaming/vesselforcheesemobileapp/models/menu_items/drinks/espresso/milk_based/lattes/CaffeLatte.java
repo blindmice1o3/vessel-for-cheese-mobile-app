@@ -1,10 +1,11 @@
 package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.lattes;
 
-import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem.Granular;
-import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem.Incrementable;
+import com.jackingaming.vesselforcheesemobileapp.models.components.Granular;
+import com.jackingaming.vesselforcheesemobileapp.models.components.Incrementable;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.AddInsOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.LineTheCup;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.mixed_type.powders.base.Powders;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.cup_options.CupOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.cup_options.CupSize;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.espresso_options.EspressoOptions;
@@ -66,6 +67,7 @@ public class CaffeLatte extends Lattes {
     public static final Granular.Amount DEFAULT_TOPPING_AMOUNT = Granular.Amount.NO;
     public static final Granular.Amount DEFAULT_WHIPPED_CREAM_AMOUNT = Granular.Amount.NO;
     public static final LineTheCup.Type DEFAULT_LINE_THE_CUP = LineTheCup.Type.NO;
+    public static final String DEFAULT_POWDERS = DrinkComponent.NULL_TYPE_AS_STRING;
     public static final CupSize.Type DEFAULT_CUP_SIZE = CupSize.Type.NO;
     public static final DrinkSize[] DEFAULT_DRINK_SIZES_ALLOWED = {DrinkSize.SHORT, DrinkSize.TALL, DrinkSize.GRANDE, DrinkSize.VENTI_HOT};
 
@@ -122,6 +124,8 @@ public class CaffeLatte extends Lattes {
         List<DrinkComponent> addInsOptions = new ArrayList<>();
         LineTheCup lineTheCup = new LineTheCup(DEFAULT_LINE_THE_CUP);
         addInsOptions.add(lineTheCup);
+        Powders powders = new Powders();
+        addInsOptions.add(powders);
         // CUP_OPTIONS
         List<DrinkComponent> cupOptions = new ArrayList<>();
         CupSize cupSize = new CupSize(DEFAULT_CUP_SIZE);
@@ -159,6 +163,7 @@ public class CaffeLatte extends Lattes {
         // ADD_INS_OPTIONS
         List<String> addInsOptionsDefault = new ArrayList<>();
         addInsOptionsDefault.add(DEFAULT_LINE_THE_CUP.name());
+        addInsOptionsDefault.add(DEFAULT_POWDERS);
         // CUP_OPTIONS (defaults)
         List<String> cupOptionsDefault = new ArrayList<>();
         cupOptionsDefault.add(DEFAULT_CUP_SIZE.name());

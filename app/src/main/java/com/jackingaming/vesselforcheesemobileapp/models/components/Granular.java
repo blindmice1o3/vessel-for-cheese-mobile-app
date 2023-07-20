@@ -1,4 +1,4 @@
-package com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem;
+package com.jackingaming.vesselforcheesemobileapp.models.components;
 
 public interface Granular {
     enum Amount { NO, LIGHT, MEDIUM, EXTRA; }

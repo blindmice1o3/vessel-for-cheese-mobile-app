@@ -3,9 +3,14 @@ package com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.customi
 import android.util.Log;
 
 import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem.DrinkComponentBaseAdapter;
-import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem.Granular;
-import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem.Incrementable;
+import com.jackingaming.vesselforcheesemobileapp.models.components.Granular;
+import com.jackingaming.vesselforcheesemobileapp.models.components.Incrementable;
+import com.jackingaming.vesselforcheesemobileapp.models.components.MixedType;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.mixed_type.fruits.base.Fruits;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.mixed_type.powders.base.Powders;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.mixed_type.powders.derived.ChocolateMaltPowder;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.mixed_type.powders.derived.VanillaBeanPowder;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.flavor_options.FlavorOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.flavor_options.Sauce;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.flavor_options.Syrup;
@@ -43,6 +48,45 @@ public class CustomizeInnerAdapter extends DrinkComponentBaseAdapter {
                 drinkComponentDefaultAsStringSelected, name);
     }
 
+    private void handleSelectionOfDefaultForAllowableGranular(DrinkComponent drinkComponentSelected, String drinkComponentDefaultAsStringSelected) {
+        Log.i(TAG, "handleSelectionOfDefaultForAllowableGranular(DrinkComponent, String)");
+
+        String[] enumValues = drinkComponentSelected.getEnumValuesAsStringArray();
+        if (enumValues.length == 1) {
+            Log.i(TAG, "enumValues.length == 1");
+
+            // Update the underlying model.
+            drinkComponentSelected.setTypeByString(DrinkComponent.NULL_TYPE_AS_STRING);
+            ((Granular) drinkComponentSelected).setAmount(Granular.Amount.NO);
+            updateScreen(drinkComponentSelected, drinkComponentDefaultAsStringSelected);
+        } else {
+            Log.i(TAG, "enumValues.length != 1");
+
+            List<String> enumValuesNotInsideDrink = findEnumValuesNotInsideDrink(enumValues);
+            for (String enumValue : enumValuesNotInsideDrink) {
+                Log.i(TAG, "enumValue: " + enumValue);
+            }
+
+            if (enumValuesNotInsideDrink.size() == 0) {
+                Log.i(TAG, "enumValuesNotInsideDrink.size() == 0");
+
+                // Update the underlying model.
+                drinkComponentSelected.setTypeByString(DrinkComponent.NULL_TYPE_AS_STRING);
+                ((Granular) drinkComponentSelected).setAmount(Granular.Amount.NO);
+                updateScreen(drinkComponentSelected, drinkComponentDefaultAsStringSelected);
+            } else {
+                Log.i(TAG, "enumValuesNotInsideDrink.size() != 0");
+
+                // Update the underlying model.
+                drinkComponentSelected.setTypeByString(DrinkComponent.NULL_TYPE_AS_STRING);
+                ((Granular) drinkComponentSelected).setAmount(Granular.Amount.NO);
+                drinkComponents.remove(indexSelected);
+                drinkComponentsDefaultAsString.remove(indexSelected);
+                notifyItemRemoved(indexSelected);
+            }
+        }
+    }
+
     @Override
     protected void handleSelectionOfDefaultForAllowable(DrinkComponent drinkComponentSelected, String drinkComponentDefaultAsStringSelected, String name) {
         Log.i(TAG, "handleSelectionOfDefaultForAllowable()");
@@ -50,48 +94,33 @@ public class CustomizeInnerAdapter extends DrinkComponentBaseAdapter {
         if (drinkComponentSelected instanceof Incrementable) {
             Log.i(TAG, "drinkComponentSelected instanceof Incrementable");
 
+            if (drinkComponentSelected instanceof MixedType) {
+                Log.i(TAG, "drinkComponentSelected instanceof MixedType");
+
+                // Intentionally blank.
+            }
+
             // Update the underlying model.
             ((Incrementable) drinkComponentSelected).setQuantity(Incrementable.QUANTITY_FOR_INVOKER);
             updateScreen(drinkComponentSelected, drinkComponentDefaultAsStringSelected);
         } else if (drinkComponentSelected instanceof Granular) {
             Log.i(TAG, "drinkComponentSelected instanceof Granular");
 
-            String[] enumValues = drinkComponentSelected.getEnumValuesAsStringArray();
-            if (enumValues.length == 1) {
-                Log.i(TAG, "enumValues.length == 1");
+            if (drinkComponentSelected instanceof MixedType) {
+                Log.i(TAG, "drinkComponentSelected instanceof MixedType");
 
                 // Update the underlying model.
                 drinkComponentSelected.setTypeByString(DrinkComponent.NULL_TYPE_AS_STRING);
                 ((Granular) drinkComponentSelected).setAmount(Granular.Amount.NO);
                 updateScreen(drinkComponentSelected, drinkComponentDefaultAsStringSelected);
-            } else {
-                Log.i(TAG, "enumValues.length != 1");
+                // TODO:
 
-                List<String> enumValuesNotInsideDrink = findEnumValuesNotInsideDrink(enumValues);
-                for (String enumValue : enumValuesNotInsideDrink) {
-                    Log.i(TAG, "enumValue: " + enumValue);
-                }
-
-                if (enumValuesNotInsideDrink.size() == 0) {
-                    Log.i(TAG, "enumValuesNotInsideDrink.size() == 0");
-
-                    // Update the underlying model.
-                    drinkComponentSelected.setTypeByString(DrinkComponent.NULL_TYPE_AS_STRING);
-                    ((Granular) drinkComponentSelected).setAmount(Granular.Amount.NO);
-                    updateScreen(drinkComponentSelected, drinkComponentDefaultAsStringSelected);
-                } else {
-                    Log.i(TAG, "enumValuesNotInsideDrink.size() != 0");
-
-                    // Update the underlying model.
-                    drinkComponentSelected.setTypeByString(DrinkComponent.NULL_TYPE_AS_STRING);
-                    ((Granular) drinkComponentSelected).setAmount(Granular.Amount.NO);
-                    drinkComponents.remove(indexSelected);
-                    drinkComponentsDefaultAsString.remove(indexSelected);
-                    notifyItemRemoved(indexSelected);
-                }
+                return;
             }
+
+            handleSelectionOfDefaultForAllowableGranular(drinkComponentSelected, drinkComponentDefaultAsStringSelected);
         } else {
-            Log.i(TAG, "NOT drinkComponentSelected instanceof Incrementable and NOT drinkComponentSelected instanceof Granular");
+            Log.i(TAG, "drinkComponentSelected NOT instanceof Incrementable nor Granular");
 
             // Update the underlying model.
             drinkComponentSelected.setTypeByString(DrinkComponent.NULL_TYPE_AS_STRING);
@@ -110,6 +139,8 @@ public class CustomizeInnerAdapter extends DrinkComponentBaseAdapter {
     private void handleSelectionOfEverythingElse(DrinkComponent drinkComponentSelected, String drinkComponentDefaultAsStringSelected, String name) {
         Log.i(TAG, "---> handleSelectionOfEverythingElse()");
 
+        // TODO: Important to check for MixedType AFTER Incrementable and Granular.
+
         if (drinkComponentSelected instanceof Incrementable) {
             Log.i(TAG, "drinkComponentSelected instanceof Incrementable");
 
@@ -121,27 +152,26 @@ public class CustomizeInnerAdapter extends DrinkComponentBaseAdapter {
                 int drinkComponentDefaultAsStringToAdd = 0;
                 if (drinkComponentSelected instanceof Liquid) {
                     drinkComponentToAdd = new Liquid(null, 1);
-                    drinkComponentToAdd.setTypeByString(name);
                     drinkComponentDefaultAsStringToAdd = Liquid.DEFAULT_QUANTITY_MIN;
                 } else if (drinkComponentSelected instanceof Packet) {
                     drinkComponentToAdd = new Packet(null, 1);
-                    drinkComponentToAdd.setTypeByString(name);
                     drinkComponentDefaultAsStringToAdd = Packet.DEFAULT_QUANTITY_MIN;
                 } else if (drinkComponentSelected instanceof Sauce) {
                     drinkComponentToAdd = new Sauce(null, 1);
-                    drinkComponentToAdd.setTypeByString(name);
                     drinkComponentDefaultAsStringToAdd = Sauce.DEFAULT_QUANTITY_MIN;
                 } else if (drinkComponentSelected instanceof Syrup) {
                     drinkComponentToAdd = new Syrup(null, 1);
-                    drinkComponentToAdd.setTypeByString(name);
                     drinkComponentDefaultAsStringToAdd = Syrup.DEFAULT_QUANTITY_MIN;
+                } else {
+                    Log.e(TAG, "drinkComponentSelected NOT instanceof Liquid nor Packet nor Sauce nor Syrup");
                 }
+                drinkComponentToAdd.setTypeByString(name);
 
                 drinkComponents.add(indexSelected, drinkComponentToAdd);
                 drinkComponentsDefaultAsString.add(indexSelected, Integer.toString(drinkComponentDefaultAsStringToAdd));
                 notifyItemInserted(indexSelected);
             } else {
-                Log.i(TAG, "NOT drinkComponentSelected instanceof SweetenerOptions || drinkComponentSelected instanceof FlavorOptions");
+                Log.i(TAG, "drinkComponentSelected NOT instanceof SweetenerOptions nor FlavorOptions");
 
                 // Update the underlying model.
                 drinkComponentSelected.setTypeByString(name);
@@ -182,6 +212,7 @@ public class CustomizeInnerAdapter extends DrinkComponentBaseAdapter {
 
                         // SECOND-TO-LAST
                         DrinkComponent drinkComponentToAdd = null;
+                        String drinkComponentDefaultAsStringToAdd = null;
                         if (drinkComponentSelected instanceof ColdFoam) {
                             Log.i(TAG, "drinkComponentSelected instanceof ColdFoam");
                             drinkComponentToAdd = new ColdFoam(null, Granular.Amount.MEDIUM);
@@ -191,9 +222,11 @@ public class CustomizeInnerAdapter extends DrinkComponentBaseAdapter {
                         } else if (drinkComponentSelected instanceof Topping) {
                             Log.i(TAG, "drinkComponentSelected instanceof Topping");
                             drinkComponentToAdd = new Topping(null, Granular.Amount.MEDIUM);
+                        } else {
+                            Log.e(TAG, "drinkComponentSelected NOT instanceof ColdFoam nor Drizzle nor Topping");
                         }
                         drinkComponentToAdd.setTypeByString(nameDrinkComponentToAdd);
-                        String drinkComponentDefaultAsStringToAdd = Granular.Amount.NO.name();
+                        drinkComponentDefaultAsStringToAdd = Granular.Amount.NO.name();
 
                         drinkComponents.add(indexSelected, drinkComponentToAdd);
                         drinkComponentsDefaultAsString.add(indexSelected, drinkComponentDefaultAsStringToAdd);
@@ -207,6 +240,7 @@ public class CustomizeInnerAdapter extends DrinkComponentBaseAdapter {
                         Log.i(TAG, "enumValuesNotInsideDrink.size() != 2 and enumValuesNotInsideDrink.size() != 1");
 
                         DrinkComponent drinkComponentToAdd = null;
+                        String drinkComponentDefaultAsStringToAdd = null;
                         if (drinkComponentSelected instanceof ColdFoam) {
                             Log.i(TAG, "drinkComponentSelected instanceof ColdFoam");
                             drinkComponentToAdd = new ColdFoam(null, Granular.Amount.MEDIUM);
@@ -216,16 +250,18 @@ public class CustomizeInnerAdapter extends DrinkComponentBaseAdapter {
                         } else if (drinkComponentSelected instanceof Topping) {
                             Log.i(TAG, "drinkComponentSelected instanceof Topping");
                             drinkComponentToAdd = new Topping(null, Granular.Amount.MEDIUM);
+                        } else {
+                            Log.e(TAG, "drinkComponentSelected NOT instanceof ColdFoam nor Drizzle nor Topping");
                         }
                         drinkComponentToAdd.setTypeByString(name);
-                        String drinkComponentDefaultAsStringToAdd = Granular.Amount.NO.name();
+                        drinkComponentDefaultAsStringToAdd = Granular.Amount.NO.name();
 
                         drinkComponents.add(indexSelected, drinkComponentToAdd);
                         drinkComponentsDefaultAsString.add(indexSelected, drinkComponentDefaultAsStringToAdd);
                         notifyItemInserted(indexSelected);
                     }
                 } else {
-                    Log.i(TAG, "NOT drinkComponentSelected instanceof ToppingOptions");
+                    Log.e(TAG, "drinkComponentSelected NOT instanceof ToppingOptions");
 
                     // Update the underlying model.
                     drinkComponentSelected.setTypeByString(name);
@@ -246,8 +282,32 @@ public class CustomizeInnerAdapter extends DrinkComponentBaseAdapter {
                 ((Granular) drinkComponentSelected).setAmount(amountSelected);
                 updateScreen(drinkComponentSelected, drinkComponentDefaultAsStringSelected);
             }
+        } else if (drinkComponentSelected instanceof MixedType) {
+            Log.i(TAG, "drinkComponentSelected instanceof MixedType");
+
+            DrinkComponent drinkComponentToAdd = null;
+            String drinkComponentDefaultAsStringToAdd = null;
+            if (drinkComponentSelected instanceof Powders) {
+                if (name.equals(Powders.Type.CHOCOLATE_MALT.name())) {
+                    drinkComponentToAdd = new ChocolateMaltPowder(ChocolateMaltPowder.Type.CHOCOLATE_MALT_POWDER, Granular.Amount.MEDIUM);
+                    drinkComponentDefaultAsStringToAdd = Granular.Amount.NO.name();
+                } else if (name.equals(Powders.Type.VANILLA_BEAN.name())) {
+                    drinkComponentToAdd = new VanillaBeanPowder(VanillaBeanPowder.Type.VANILLA_BEAN_POWDER, 1);
+                    drinkComponentDefaultAsStringToAdd = Integer.toString(0);
+                } else {
+                    Log.e(TAG, "NOT name.equals(Powders.Type.CHOCOLATE_MALT.name()) nor name.equals(Powders.Type.VANILLA_BEAN.name())");
+                }
+
+                drinkComponents.add(indexSelected, drinkComponentToAdd);
+                drinkComponentsDefaultAsString.add(indexSelected, drinkComponentDefaultAsStringToAdd);
+                notifyItemInserted(indexSelected);
+            } else if (drinkComponentSelected instanceof Fruits) {
+                // TODO:
+            } else {
+                Log.e(TAG, "drinkComponentSelected NOT instanceof Powders nor Fruits");
+            }
         } else {
-            Log.i(TAG, "drinkComponentSelected NOT instanceof Incrementable nor Granular");
+            Log.i(TAG, "drinkComponentSelected NOT instanceof Incrementable nor Granular nor MixedType");
 
             // Update the underlying model.
             drinkComponentSelected.setTypeByString(name);

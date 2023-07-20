@@ -1,32 +1,24 @@
-package com.jackingaming.vesselforcheesemobileapp.models.components.drinks.topping_options;
+package com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.mixed_type.fruits.base;
 
-import com.jackingaming.vesselforcheesemobileapp.models.components.Granular;
+import com.jackingaming.vesselforcheesemobileapp.models.components.MixedType;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.AddInsOptions;
 
-public class CinnamonPowder extends ToppingOptions
-        implements Granular {
-    public static final String DEFAULT_TEXT_INIT = "Add Cinnamon Powder";
-
-    @Override
-    public Amount getAmount() {
-        return amount;
-    }
-
-    @Override
-    public void setAmount(Amount amount) {
-        this.amount = amount;
-    }
+public class Fruits extends AddInsOptions
+        implements MixedType {
+    public static final String DEFAULT_TEXT_INIT = "Add Fruit Add-Ins";
 
     public enum Type {
-        CINNAMON_POWDER;
+        DRAGONFRUIT_INCLUSION,
+        PINEAPPLE_INCLUSION,
+        STRAWBERRY_INCLUSION,
+        STRAWBERRY_PUREE;
     }
 
     private Type type;
-    private Amount amount;
 
-    public CinnamonPowder(Type type, Amount amount) {
+    public Fruits(Type type) {
         this.type = type;
-        this.amount = amount;
     }
 
     public Type getType() {
@@ -39,7 +31,7 @@ public class CinnamonPowder extends ToppingOptions
 
     @Override
     public String getTextInit() {
-        return (type == null) ? (DEFAULT_TEXT_INIT) : ("Add " + type.name());
+        return DEFAULT_TEXT_INIT;
     }
 
     @Override
@@ -54,12 +46,12 @@ public class CinnamonPowder extends ToppingOptions
 
     @Override
     public String getClassAsString() {
-        return CinnamonPowder.class.getSimpleName();
+        return Fruits.class.getSimpleName();
     }
 
     @Override
     public String getTypeAsString() {
-        return (type == null) ? NULL_TYPE_AS_STRING : type.name();
+        return type.name();
     }
 
     @Override

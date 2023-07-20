@@ -1,6 +1,6 @@
 package com.jackingaming.vesselforcheesemobileapp.models.components.drinks.topping_options;
 
-import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem.Granular;
+import com.jackingaming.vesselforcheesemobileapp.models.components.Granular;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
 
 public class Drizzle extends ToppingOptions
