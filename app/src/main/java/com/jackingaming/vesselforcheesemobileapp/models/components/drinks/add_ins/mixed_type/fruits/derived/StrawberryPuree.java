@@ -1,31 +1,40 @@
-package com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.mixed_type.fruits.base;
+package com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.mixed_type.fruits.derived;
 
-import com.jackingaming.vesselforcheesemobileapp.models.components.MixedType;
+import com.jackingaming.vesselforcheesemobileapp.models.components.Granular;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
-import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.AddInsOptions;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.mixed_type.fruits.base.Fruits;
 
-public class Fruits extends AddInsOptions
-        implements MixedType {
-    public static final String DEFAULT_TEXT_INIT = "Add Fruit Add-Ins";
+public class StrawberryPuree extends Fruits
+        implements Granular {
+    public static final String DEFAULT_TEXT_INIT = "Add Strawberry Puree";
+
+    @Override
+    public Amount getAmount() {
+        return amount;
+    }
+
+    @Override
+    public void setAmount(Amount amount) {
+        this.amount = amount;
+    }
 
     public enum Type {
-        DRAGONFRUIT_FRUIT,
-        PINEAPPLE_FRUIT,
-        STRAWBERRY_FRUIT,
-        STRAWBERRY_PUREE_FRUIT;
+        STRAWBERRY_PUREE;
     }
 
     private Type type;
+    private Amount amount;
 
-    public Fruits() {
-
+    public StrawberryPuree(Type type, Amount amount) {
+        this.type = type;
+        this.amount = amount;
     }
 
-    public Type getType() {
+    public Type getTypeUnmixed() {
         return type;
     }
 
-    public void setType(Type type) {
+    public void setTypeUnmixed(Type type) {
         this.type = type;
     }
 
@@ -46,7 +55,7 @@ public class Fruits extends AddInsOptions
 
     @Override
     public String getClassAsString() {
-        return Fruits.class.getSimpleName();
+        return StrawberryPuree.class.getSimpleName();
     }
 
     @Override
