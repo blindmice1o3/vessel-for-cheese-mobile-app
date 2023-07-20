@@ -185,8 +185,7 @@ public class CaffeLatte extends Lattes {
         drinkComponentsDefaultAsString.put(AddInsOptions.TAG, addInsOptionsDefault);
         drinkComponentsDefaultAsString.put(CupOptions.TAG, cupOptionsDefault);
 
-        for (int i = 0; i < Menu.DRINK_COMPONENTS_KEYS.size(); i++) {
-            String key = Menu.DRINK_COMPONENTS_KEYS.get(i);
+        for (String key : Menu.DRINK_COMPONENTS_KEYS) {
             if (drinkComponents.containsKey(key)) {
                 List<DrinkComponent> drinkComponentsGroup = drinkComponents.get(key);
                 for (DrinkComponent drinkComponent : drinkComponentsGroup) {

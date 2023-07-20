@@ -1,5 +1,7 @@
 package com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
@@ -25,14 +27,23 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 import com.jackingaming.vesselforcheesemobileapp.R;
+import com.jackingaming.vesselforcheesemobileapp.controllers.order.OrderFragment;
 import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.customize.CustomizeActivity;
 import com.jackingaming.vesselforcheesemobileapp.models.components.Granular;
+import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.revieworder.ReviewOrderActivity;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
 import com.jackingaming.vesselforcheesemobileapp.models.menu.Menu;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.Drink;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.DrinkSize;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -85,24 +96,6 @@ public class MenuItemActivity extends AppCompatActivity {
         TextView tvDescription = findViewById(R.id.tv_description);
         TextView tvCaloriesSugarFat = findViewById(R.id.tv_calories_sugar_fat);
         Button buttonNutritionAndIngredient = findViewById(R.id.button_nutrition_and_ingredient);
-
-        Button buttonCart = findViewById(R.id.button_cart);
-        buttonCart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.i(TAG, "buttonCart clicked");
-                // TODO: start ReviewOrderActivity
-            }
-        });
-
-        ExtendedFloatingActionButton extendedFloatingActionButton = findViewById(R.id.fab);
-        extendedFloatingActionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.i(TAG, "extendedFloatingActionButton clicked");
-                // TODO: add to order
-            }
-        });
 
         if (nameCategory.equals(Menu.HOT_COFFEES)) {
             Log.i(TAG, "Menu.HOT_COFFEES [which implies the selected MenuItem is a Drink]");
@@ -187,9 +180,16 @@ public class MenuItemActivity extends AppCompatActivity {
                     public void onClick(View view) {
                         Toast.makeText(MenuItemActivity.this, "drinkSize: " + drinkSize.name(), Toast.LENGTH_SHORT).show();
 
-                        // @@@@@@@@@@@@@@@@@@@@@@@@@@@
-                        drink.setDrinkSize(drinkSize);
-                        // @@@@@@@@@@@@@@@@@@@@@@@@@@@
+                        // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+                        boolean changedUserCustomizations =
+                                drink.updateDrinkSize(drinkSize);
+                        if (changedUserCustomizations) {
+                            showDialogChangedUserCustomizations();
+                        }
+                        // always update (default value may have changed)
+                        adapter.init(drink);
+                        adapter.notifyDataSetChanged();
+                        // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
                         for (int j = 0; j < linearLayoutDrinkSizeOptions.getChildCount(); j++) {
                             if (drinkSizesAllowed[j] == drinkSize) {
@@ -268,6 +268,35 @@ public class MenuItemActivity extends AppCompatActivity {
         } else {
             Log.e(TAG, "nameCategory does NOT equals " + Menu.HOT_COFFEES);
         }
+
+        Button buttonCart = findViewById(R.id.button_cart);
+        buttonCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.i(TAG, "buttonCart clicked");
+
+                Intent intentReviewOrder = new Intent(MenuItemActivity.this, ReviewOrderActivity.class);
+                startActivity(intentReviewOrder);
+            }
+        });
+
+        ExtendedFloatingActionButton extendedFloatingActionButton = findViewById(R.id.fab);
+        extendedFloatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.i(TAG, "extendedFloatingActionButton clicked");
+
+                OrderFragment.getInstance().addMenuItemToOrder(drink);
+
+                Snackbar.make(view, drink.getName() + " added", Snackbar.LENGTH_LONG)
+                        .show();
+            }
+        });
+    }
+
+    private void showDialogChangedUserCustomizations() {
+        ChangedUserCustomizationsDialogFragment.newInstance()
+                .show(getSupportFragmentManager(), TAG);
     }
 
     private void removeDuplicateGranularInvoker(Drink drink) {

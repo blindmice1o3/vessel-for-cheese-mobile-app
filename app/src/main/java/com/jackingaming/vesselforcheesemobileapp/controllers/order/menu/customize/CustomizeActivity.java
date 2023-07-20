@@ -14,8 +14,19 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 import com.jackingaming.vesselforcheesemobileapp.R;
+import com.jackingaming.vesselforcheesemobileapp.controllers.order.OrderFragment;
+import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem.MenuItemActivity;
+import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.revieworder.ReviewOrderActivity;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.Drink;
+
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 
 public class CustomizeActivity extends AppCompatActivity {
     public static final String TAG = CustomizeActivity.class.getSimpleName();
@@ -40,45 +51,18 @@ public class CustomizeActivity extends AppCompatActivity {
         drink = (Drink) getIntent().getSerializableExtra(EXTRA_DRINK);
         // -----------------------------------------------------------------
 
-        TextView tvName = findViewById(R.id.tv_name);
-        tvName.setText(drink.getName());
-
-        TextView tvSize = findViewById(R.id.tv_size);
-
-        String nameDrinkInLowercase = drink.getDrinkSize().name().toLowerCase();
-        if (nameDrinkInLowercase.length() >= "venti".length() &&
-                nameDrinkInLowercase.substring(0, 5).equals("venti")) {
-            Log.d(TAG, "@@@ VENTI @@@");
-            nameDrinkInLowercase = "venti";
-        }
-        String textDrinkSize = capitalizeFirstLetter(nameDrinkInLowercase) + " " +
-                drink.getDrinkSize().getSizeInFlOz() + " " + " fl oz";
-        tvSize.setText(textDrinkSize);
-
         RecyclerView rvCustomize = findViewById(R.id.rv_customize);
         rvCustomize.setAdapter(new CustomizeAdapter(this, drink));
         rvCustomize.setLayoutManager(new LinearLayoutManager(this));
-        rvCustomize.setNestedScrollingEnabled(false);
-
-        Button buttonDoneCustomizing = findViewById(R.id.button_done_customizing);
-        buttonDoneCustomizing.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.i(TAG, "buttonDoneCustomizing clicked");
-
-                Intent result = new Intent();
-                result.putExtra(RESULT_KEY, drink);
-                setResult(RESULT_OK, result);
-                finish();
-            }
-        });
 
         Button buttonCart = findViewById(R.id.button_cart);
         buttonCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Log.i(TAG, "buttonCart clicked");
-                // TODO: start ReviewOrderActivity
+
+                Intent intentReviewOrder = new Intent(CustomizeActivity.this, ReviewOrderActivity.class);
+                startActivity(intentReviewOrder);
             }
         });
 
@@ -87,15 +71,13 @@ public class CustomizeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Log.i(TAG, "extendedFloatingActionButton clicked");
-                // TODO: add to order
+
+                OrderFragment.getInstance().addMenuItemToOrder(drink);
+
+                Snackbar.make(view, drink.getName() + " added", Snackbar.LENGTH_LONG)
+                        .show();
             }
         });
-    }
-
-    private String capitalizeFirstLetter(String text) {
-        char[] c = text.toCharArray();
-        c[0] = Character.toUpperCase(c[0]);
-        return new String(c);
     }
 
     @Override
@@ -112,7 +94,7 @@ public class CustomizeActivity extends AppCompatActivity {
             return true;
         } else {
             Log.i(TAG, "NOT android.R.id.home");
+            return super.onOptionsItemSelected(item);
         }
-        return super.onOptionsItemSelected(item);
     }
 }
