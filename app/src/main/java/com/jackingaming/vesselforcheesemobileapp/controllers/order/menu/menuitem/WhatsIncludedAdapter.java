@@ -4,6 +4,9 @@ import android.util.Log;
 
 import androidx.core.util.Pair;
 
+import com.jackingaming.vesselforcheesemobileapp.models.components.Granular;
+import com.jackingaming.vesselforcheesemobileapp.models.components.Incrementable;
+import com.jackingaming.vesselforcheesemobileapp.models.components.MixedType;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.LineTheCup;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.cup_options.CupSize;
@@ -136,12 +139,28 @@ public class WhatsIncludedAdapter extends DrinkComponentBaseAdapter {
         Log.i(TAG, "handleSelectionOfDefaultForAllowable()");
 
         if (drinkComponentSelected instanceof Incrementable) {
+            Log.i(TAG, "drinkComponentSelected instanceof Incrementable");
+
+            if (drinkComponentSelected instanceof MixedType) {
+                Log.i(TAG, "drinkComponentSelected instanceof MixedType");
+
+                // Intentionally blank.
+            }
+
             // Update the underlying model.
             ((Incrementable) drinkComponentSelected).setQuantity(Incrementable.QUANTITY_FOR_INVOKER);
             drinkComponents.remove(indexSelected);
             drinkComponentsDefaultAsString.remove(indexSelected);
             notifyItemRemoved(indexSelected);
         } else if (drinkComponentSelected instanceof Granular) {
+            Log.i(TAG, "drinkComponentSelected instanceof Granular");
+
+            if (drinkComponentSelected instanceof MixedType) {
+                Log.i(TAG, "drinkComponentSelected instanceof MixedType");
+
+                // Intentionally blank.
+            }
+
             String[] enumValues = drinkComponentSelected.getEnumValuesAsStringArray();
             List<String> enumValuesNotInsideDrink = findEnumValuesNotInsideDrink(enumValues);
 
@@ -162,6 +181,8 @@ public class WhatsIncludedAdapter extends DrinkComponentBaseAdapter {
             drinkComponentsDefaultAsString.remove(indexSelected);
             notifyItemRemoved(indexSelected);
         } else {
+            Log.i(TAG, "drinkComponentSelected NOT instanceof Incrementable nor Granular");
+
             // Update the underlying model.
             drinkComponentSelected.setTypeByString(DrinkComponent.NULL_TYPE_AS_STRING);
             drinkComponents.remove(indexSelected);

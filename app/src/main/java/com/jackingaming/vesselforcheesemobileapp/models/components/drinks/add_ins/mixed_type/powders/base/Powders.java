@@ -1,8 +1,11 @@
-package com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins;
+package com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.mixed_type.powders.base;
 
+import com.jackingaming.vesselforcheesemobileapp.models.components.MixedType;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.AddInsOptions;
 
-public class Powder extends AddInsOptions {
+public class Powders extends AddInsOptions
+        implements MixedType {
     public static final String DEFAULT_TEXT_INIT = "Add Powders";
 
     public enum Type {
@@ -12,8 +15,8 @@ public class Powder extends AddInsOptions {
 
     private Type type;
 
-    public Powder(Type type) {
-        this.type = type;
+    public Powders() {
+
     }
 
     public Type getType() {
@@ -26,7 +29,7 @@ public class Powder extends AddInsOptions {
 
     @Override
     public String getTextInit() {
-        return DEFAULT_TEXT_INIT;
+        return (type == null) ? (DEFAULT_TEXT_INIT) : ("Add " + type.name());
     }
 
     @Override
@@ -41,12 +44,12 @@ public class Powder extends AddInsOptions {
 
     @Override
     public String getClassAsString() {
-        return Powder.class.getSimpleName();
+        return Powders.class.getSimpleName();
     }
 
     @Override
     public String getTypeAsString() {
-        return type.name();
+        return (type == null) ? NULL_TYPE_AS_STRING : type.name();
     }
 
     @Override

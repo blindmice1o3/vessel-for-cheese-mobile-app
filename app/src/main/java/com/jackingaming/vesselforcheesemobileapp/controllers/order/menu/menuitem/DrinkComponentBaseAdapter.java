@@ -12,6 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jackingaming.vesselforcheesemobileapp.R;
+import com.jackingaming.vesselforcheesemobileapp.models.components.Granular;
+import com.jackingaming.vesselforcheesemobileapp.models.components.Incrementable;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
 
 import java.util.ArrayList;

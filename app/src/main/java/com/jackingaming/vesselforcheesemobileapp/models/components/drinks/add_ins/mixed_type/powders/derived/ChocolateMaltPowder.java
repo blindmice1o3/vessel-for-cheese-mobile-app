@@ -1,11 +1,12 @@
-package com.jackingaming.vesselforcheesemobileapp.models.components.drinks.topping_options;
+package com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.mixed_type.powders.derived;
 
 import com.jackingaming.vesselforcheesemobileapp.models.components.Granular;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.mixed_type.powders.base.Powders;
 
-public class CinnamonPowder extends ToppingOptions
+public class ChocolateMaltPowder extends Powders
         implements Granular {
-    public static final String DEFAULT_TEXT_INIT = "Add Cinnamon Powder";
+    public static final String DEFAULT_TEXT_INIT = "Add Chocolate Malt Powder";
 
     @Override
     public Amount getAmount() {
@@ -18,22 +19,22 @@ public class CinnamonPowder extends ToppingOptions
     }
 
     public enum Type {
-        CINNAMON_POWDER;
+        CHOCOLATE_MALT_POWDER;
     }
 
     private Type type;
     private Amount amount;
 
-    public CinnamonPowder(Type type, Amount amount) {
+    public ChocolateMaltPowder(Type type, Amount amount) {
         this.type = type;
         this.amount = amount;
     }
 
-    public Type getType() {
+    public Type getTypeUnmixed() {
         return type;
     }
 
-    public void setType(Type type) {
+    public void setTypeUnmixed(Type type) {
         this.type = type;
     }
 
@@ -54,7 +55,7 @@ public class CinnamonPowder extends ToppingOptions
 
     @Override
     public String getClassAsString() {
-        return CinnamonPowder.class.getSimpleName();
+        return ChocolateMaltPowder.class.getSimpleName();
     }
 
     @Override

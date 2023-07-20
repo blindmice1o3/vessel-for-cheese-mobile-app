@@ -1,15 +1,16 @@
-package com.jackingaming.vesselforcheesemobileapp.models.components.drinks.espresso_options;
+package com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.mixed_type.fruits.derived;
 
 import android.util.Log;
 
 import com.jackingaming.vesselforcheesemobileapp.models.components.Incrementable;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.mixed_type.fruits.base.Fruits;
 
-public class AffogatoShot extends EspressoOptions
+public class FruitInclusion extends Fruits
         implements Incrementable {
-    public static final String DEFAULT_TEXT_INIT = "Add Affogato-Style Shots";
+    public static final String DEFAULT_TEXT_INIT = "Add Fruit Inclusion";
     public static final int DEFAULT_QUANTITY_MIN = 0;
-    public static final int DEFAULT_QUANTITY_MAX = 4;
+    public static final int DEFAULT_QUANTITY_MAX = 12;
 
     private int quantityMin = DEFAULT_QUANTITY_MIN;
     private int quantityMax = DEFAULT_QUANTITY_MAX;
@@ -61,22 +62,24 @@ public class AffogatoShot extends EspressoOptions
     }
 
     public enum Type {
-        AFFOGATO_SHOT;
+        DRAGONFRUIT_INCLUSION,
+        PINEAPPLE_INCLUSION,
+        STRAWBERRY_INCLUSION;
     }
 
     private Type type;
     private int quantity;
 
-    public AffogatoShot(Type type, int quantity) {
+    public FruitInclusion(Type type, int quantity) {
         this.type = type;
         this.quantity = quantity;
     }
 
-    public Type getType() {
+    public Type getTypeUnmixed() {
         return type;
     }
 
-    public void setType(Type type) {
+    public void setTypeUnmixed(Type type) {
         this.type = type;
     }
 
@@ -113,7 +116,7 @@ public class AffogatoShot extends EspressoOptions
 
     @Override
     public String getClassAsString() {
-        return AffogatoShot.class.getSimpleName();
+        return FruitInclusion.class.getSimpleName();
     }
 
     @Override

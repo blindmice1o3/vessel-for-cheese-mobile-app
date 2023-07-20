@@ -1,34 +1,46 @@
-package com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins;
+package com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.mixed_type.fruits.derived;
 
+import com.jackingaming.vesselforcheesemobileapp.models.components.Granular;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.mixed_type.fruits.base.Fruits;
 
-public class Fruit extends AddInsOptions {
-    public static final String DEFAULT_TEXT_INIT = "Add Fruit Add-Ins";
+public class StrawberryPuree extends Fruits
+        implements Granular {
+    public static final String DEFAULT_TEXT_INIT = "Add Strawberry Puree";
+
+    @Override
+    public Amount getAmount() {
+        return amount;
+    }
+
+    @Override
+    public void setAmount(Amount amount) {
+        this.amount = amount;
+    }
 
     public enum Type {
-        DRAGONFRUIT_INCLUSION,
-        PINEAPPLE_INCLUSION,
-        STRAWBERRY_INCLUSION,
         STRAWBERRY_PUREE;
     }
 
     private Type type;
+    private Amount amount;
 
-    public Fruit(Type type) {
+    public StrawberryPuree(Type type, Amount amount) {
         this.type = type;
+        this.amount = amount;
     }
 
-    public Type getType() {
+    public Type getTypeUnmixed() {
         return type;
     }
 
-    public void setType(Type type) {
+    public void setTypeUnmixed(Type type) {
         this.type = type;
     }
 
     @Override
     public String getTextInit() {
-        return DEFAULT_TEXT_INIT;
+        return (type == null) ? (DEFAULT_TEXT_INIT) : ("Add " + type.name());
     }
 
     @Override
@@ -43,12 +55,12 @@ public class Fruit extends AddInsOptions {
 
     @Override
     public String getClassAsString() {
-        return Fruit.class.getSimpleName();
+        return StrawberryPuree.class.getSimpleName();
     }
 
     @Override
     public String getTypeAsString() {
-        return type.name();
+        return (type == null) ? NULL_TYPE_AS_STRING : type.name();
     }
 
     @Override
