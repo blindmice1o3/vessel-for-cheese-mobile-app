@@ -27,6 +27,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 import com.jackingaming.vesselforcheesemobileapp.R;
 import com.jackingaming.vesselforcheesemobileapp.controllers.order.OrderFragment;
 import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.customize.CustomizeActivity;
@@ -94,27 +95,6 @@ public class MenuItemActivity extends AppCompatActivity {
         TextView tvDescription = findViewById(R.id.tv_description);
         TextView tvCaloriesSugarFat = findViewById(R.id.tv_calories_sugar_fat);
         Button buttonNutritionAndIngredient = findViewById(R.id.button_nutrition_and_ingredient);
-
-        Button buttonCart = findViewById(R.id.button_cart);
-        buttonCart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.i(TAG, "buttonCart clicked");
-
-                Intent intentReviewOrder = new Intent(MenuItemActivity.this, ReviewOrderActivity.class);
-                startActivity(intentReviewOrder);
-            }
-        });
-
-        ExtendedFloatingActionButton extendedFloatingActionButton = findViewById(R.id.fab);
-        extendedFloatingActionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.i(TAG, "extendedFloatingActionButton clicked");
-
-                OrderFragment.getInstance().addMenuItemToOrder(drink);
-            }
-        });
 
         if (nameCategory.equals(Menu.HOT_COFFEES)) {
             Log.i(TAG, "Menu.HOT_COFFEES [which implies the selected MenuItem is a Drink]");
@@ -287,6 +267,30 @@ public class MenuItemActivity extends AppCompatActivity {
         } else {
             Log.e(TAG, "nameCategory does NOT equals " + Menu.HOT_COFFEES);
         }
+
+        Button buttonCart = findViewById(R.id.button_cart);
+        buttonCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.i(TAG, "buttonCart clicked");
+
+                Intent intentReviewOrder = new Intent(MenuItemActivity.this, ReviewOrderActivity.class);
+                startActivity(intentReviewOrder);
+            }
+        });
+
+        ExtendedFloatingActionButton extendedFloatingActionButton = findViewById(R.id.fab);
+        extendedFloatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.i(TAG, "extendedFloatingActionButton clicked");
+
+                OrderFragment.getInstance().addMenuItemToOrder(drink);
+
+                Snackbar.make(view, drink.getName() + " added", Snackbar.LENGTH_LONG)
+                        .show();
+            }
+        });
     }
 
     private void showDialogChangedUserCustomizations() {

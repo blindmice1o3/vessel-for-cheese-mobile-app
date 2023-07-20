@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.jackingaming.vesselforcheesemobileapp.R;
 import com.jackingaming.vesselforcheesemobileapp.controllers.order.OrderFragment;
 import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem.Granular;
@@ -37,6 +38,10 @@ public class ReviewOrderAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     private List<MenuItem> order;
     private ReviewOrderAdapterListener listener;
+
+    private MenuItem menuItemRemoved = null;
+    private int indexOfRemoval = -1;
+    private boolean dismissHadBeenCalled = false;
 
     public ReviewOrderAdapter(List<MenuItem> order, ReviewOrderAdapterListener listener) {
         this.order = order;
@@ -161,6 +166,9 @@ public class ReviewOrderAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                         OrderFragment.getInstance().addMenuItemToOrder(indexNext, drink);
                         ((ReviewOrderActivity) itemView.getContext()).updateToolbarTitle();
                         notifyItemInserted(indexNext);
+
+                        Snackbar.make(view, drink.getName() + " added", Snackbar.LENGTH_LONG)
+                                .show();
                     } else {
                         Log.e(TAG, "NOT menuItem instanceof Drink");
                     }
@@ -170,13 +178,47 @@ public class ReviewOrderAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             ivMinus.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    int position = getAdapterPosition();
-                    Log.i(TAG, "minus clicked, position: " + position);
+                    indexOfRemoval = getAdapterPosition();
+                    Log.i(TAG, "minus clicked, indexOfRemoval: " + indexOfRemoval);
 
-                    MenuItem menuItemRemoved = OrderFragment.getInstance().removeMenuItemFromOrder(position);
-                    ((ReviewOrderActivity) itemView.getContext()).updateToolbarTitle();
-                    notifyItemRemoved(position);
-                    // TODO: store menuItemRemoved to implement a SnackBar [undo] behavior
+                    MenuItem menuItem = order.get(indexOfRemoval);
+                    if (menuItem instanceof Drink) {
+                        Log.i(TAG, "menuItem instanceof Drink");
+                        Drink drink = (Drink) menuItem;
+
+                        menuItemRemoved = OrderFragment.getInstance().removeMenuItemFromOrder(indexOfRemoval);
+                        ((ReviewOrderActivity) itemView.getContext()).updateToolbarTitle();
+                        notifyItemRemoved(indexOfRemoval);
+
+                        Snackbar.make(view, drink.getName() + " removed", Snackbar.LENGTH_SHORT)
+                                .setAction("Undo", new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        Log.i(TAG, "undo button clicked");
+                                        if (!dismissHadBeenCalled) {
+                                            dismissHadBeenCalled = true;
+
+                                            OrderFragment.getInstance().addMenuItemToOrder(indexOfRemoval, menuItemRemoved);
+                                            ((ReviewOrderActivity) itemView.getContext()).updateToolbarTitle();
+                                            notifyItemInserted(indexOfRemoval);
+                                        }
+                                    }
+                                })
+                                .addCallback(new Snackbar.Callback() {
+                                    @Override
+                                    public void onDismissed(Snackbar transientBottomBar, int event) {
+                                        super.onDismissed(transientBottomBar, event);
+                                        Log.i(TAG, "Snackbar.Callback.onDismissed()");
+
+                                        dismissHadBeenCalled = false;
+                                        indexOfRemoval = -1;
+                                        menuItemRemoved = null;
+                                    }
+                                })
+                                .show();
+                    } else {
+                        Log.e(TAG, "NOT menuItem instanceof Drink");
+                    }
                 }
             });
         }

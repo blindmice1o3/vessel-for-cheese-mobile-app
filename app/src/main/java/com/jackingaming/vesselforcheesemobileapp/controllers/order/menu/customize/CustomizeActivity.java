@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 import com.jackingaming.vesselforcheesemobileapp.R;
 import com.jackingaming.vesselforcheesemobileapp.controllers.order.OrderFragment;
 import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem.MenuItemActivity;
@@ -72,6 +73,9 @@ public class CustomizeActivity extends AppCompatActivity {
                 Log.i(TAG, "extendedFloatingActionButton clicked");
 
                 OrderFragment.getInstance().addMenuItemToOrder(drink);
+
+                Snackbar.make(view, drink.getName() + " added", Snackbar.LENGTH_LONG)
+                        .show();
             }
         });
     }
