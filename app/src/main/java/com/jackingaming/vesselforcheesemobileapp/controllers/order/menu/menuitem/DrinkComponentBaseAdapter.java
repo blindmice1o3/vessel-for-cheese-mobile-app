@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.jackingaming.vesselforcheesemobileapp.R;
 import com.jackingaming.vesselforcheesemobileapp.models.components.Granular;
 import com.jackingaming.vesselforcheesemobileapp.models.components.Incrementable;
+import com.jackingaming.vesselforcheesemobileapp.models.components.MixedType;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
 
 import java.util.ArrayList;
@@ -298,6 +299,12 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
                 tvBorderTitle.setVisibility(View.INVISIBLE);
 
                 viewBorder.setBackgroundResource(BACKGROUND_BORDER_INIT);
+
+                int imageDropDown = R.drawable.ic_menu_arrow_down;
+                if (drinkComponent instanceof MixedType) {
+                    imageDropDown = R.drawable.ic_menu_add;
+                }
+                ivDropDownImage.setImageResource(imageDropDown);
             } else {
                 tvName.setText(drinkComponent.getTypeAsString());
 
@@ -306,6 +313,9 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
                 boolean defaultSelected =
                         (drinkComponent.getTypeAsString().equals(drinkComponentDefaultAsString)) ? true : false;
                 updateBorderColor(defaultSelected);
+
+                int imageDropDown = R.drawable.ic_menu_arrow_down;
+                ivDropDownImage.setImageResource(imageDropDown);
             }
         }
 

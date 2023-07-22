@@ -5,6 +5,7 @@ import com.jackingaming.vesselforcheesemobileapp.models.components.Incrementable
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.AddInsOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.LineTheCup;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.mixed_type.fruits.base.Fruits;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.mixed_type.powders.base.Powders;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.cup_options.CupOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.cup_options.CupSize;
@@ -126,6 +127,9 @@ public class CaffeLatte extends Lattes {
         addInsOptions.add(lineTheCup);
         Powders powders = new Powders();
         addInsOptions.add(powders);
+        // TODO: remove later (currently testing)
+        Fruits fruits = new Fruits();
+        addInsOptions.add(fruits);
         // CUP_OPTIONS
         List<DrinkComponent> cupOptions = new ArrayList<>();
         CupSize cupSize = new CupSize(DEFAULT_CUP_SIZE);
@@ -164,6 +168,8 @@ public class CaffeLatte extends Lattes {
         List<String> addInsOptionsDefault = new ArrayList<>();
         addInsOptionsDefault.add(DEFAULT_LINE_THE_CUP.name());
         addInsOptionsDefault.add(DEFAULT_POWDERS);
+        // TODO: remove later (currently testing)
+        addInsOptionsDefault.add(DrinkComponent.NULL_TYPE_AS_STRING);
         // CUP_OPTIONS (defaults)
         List<String> cupOptionsDefault = new ArrayList<>();
         cupOptionsDefault.add(DEFAULT_CUP_SIZE.name());

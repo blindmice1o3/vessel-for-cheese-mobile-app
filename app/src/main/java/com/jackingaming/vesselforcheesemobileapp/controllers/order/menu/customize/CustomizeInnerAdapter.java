@@ -8,6 +8,8 @@ import com.jackingaming.vesselforcheesemobileapp.models.components.Incrementable
 import com.jackingaming.vesselforcheesemobileapp.models.components.MixedType;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.mixed_type.fruits.base.Fruits;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.mixed_type.fruits.derived.FruitInclusion;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.mixed_type.fruits.derived.StrawberryPuree;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.mixed_type.powders.base.Powders;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.mixed_type.powders.derived.ChocolateMaltPowder;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.mixed_type.powders.derived.VanillaBeanPowder;
@@ -288,21 +290,51 @@ public class CustomizeInnerAdapter extends DrinkComponentBaseAdapter {
             DrinkComponent drinkComponentToAdd = null;
             String drinkComponentDefaultAsStringToAdd = null;
             if (drinkComponentSelected instanceof Powders) {
+                // TODO: account for AddInsOptions -> Powders
+                //  that are already inside the drink
+                //  (compared to how many types that are NOT inside).
+
                 if (name.equals(Powders.Type.CHOCOLATE_MALT.name())) {
                     drinkComponentToAdd = new ChocolateMaltPowder(ChocolateMaltPowder.Type.CHOCOLATE_MALT_POWDER, Granular.Amount.MEDIUM);
                     drinkComponentDefaultAsStringToAdd = Granular.Amount.NO.name();
                 } else if (name.equals(Powders.Type.VANILLA_BEAN.name())) {
+                    // TODO: quantity should depend on DrinkSize
                     drinkComponentToAdd = new VanillaBeanPowder(VanillaBeanPowder.Type.VANILLA_BEAN_POWDER, 1);
                     drinkComponentDefaultAsStringToAdd = Integer.toString(0);
                 } else {
-                    Log.e(TAG, "NOT name.equals(Powders.Type.CHOCOLATE_MALT.name()) nor name.equals(Powders.Type.VANILLA_BEAN.name())");
+                    Log.e(TAG, "name NOT .equals() CHOCOLATE_MALT.name() nor VANILLA_BEAN.name()");
                 }
 
                 drinkComponents.add(indexSelected, drinkComponentToAdd);
                 drinkComponentsDefaultAsString.add(indexSelected, drinkComponentDefaultAsStringToAdd);
                 notifyItemInserted(indexSelected);
             } else if (drinkComponentSelected instanceof Fruits) {
-                // TODO:
+                // TODO: account for AddInsOptions -> Powders
+                //  that are already inside the drink
+                //  (compared to how many types that are NOT inside).
+
+                if (name.equals(Fruits.Type.DRAGONFRUIT_FRUIT.name())) {
+                    // TODO: quantity should depend on DrinkSize
+                    drinkComponentToAdd = new FruitInclusion(FruitInclusion.Type.DRAGONFRUIT_INCLUSION, 2);
+                    drinkComponentDefaultAsStringToAdd = Integer.toString(0);
+                } else if (name.equals(Fruits.Type.PINEAPPLE_FRUIT.name())) {
+                    // TODO: quantity should depend on DrinkSize
+                    drinkComponentToAdd = new FruitInclusion(FruitInclusion.Type.PINEAPPLE_INCLUSION, 2);
+                    drinkComponentDefaultAsStringToAdd = Integer.toString(0);
+                } else if (name.equals(Fruits.Type.STRAWBERRY_FRUIT.name())) {
+                    // TODO: quantity should depend on DrinkSize
+                    drinkComponentToAdd = new FruitInclusion(FruitInclusion.Type.STRAWBERRY_INCLUSION, 2);
+                    drinkComponentDefaultAsStringToAdd = Integer.toString(0);
+                } else if (name.equals(Fruits.Type.STRAWBERRY_PUREE_FRUIT.name())) {
+                    drinkComponentToAdd = new StrawberryPuree(StrawberryPuree.Type.STRAWBERRY_PUREE, Granular.Amount.MEDIUM);
+                    drinkComponentDefaultAsStringToAdd = Granular.Amount.NO.name();
+                } else {
+                    Log.e(TAG, "name NOT .equals() DRAGONFRUIT_FRUIT.name() nor PINEAPPLE_FRUIT.name() nor STRAWBERRY_FRUIT.name() nor STRAWBERRY_PUREE_FRUIT.name()");
+                }
+
+                drinkComponents.add(indexSelected, drinkComponentToAdd);
+                drinkComponentsDefaultAsString.add(indexSelected, drinkComponentDefaultAsStringToAdd);
+                notifyItemInserted(indexSelected);
             } else {
                 Log.e(TAG, "drinkComponentSelected NOT instanceof Powders nor Fruits");
             }
