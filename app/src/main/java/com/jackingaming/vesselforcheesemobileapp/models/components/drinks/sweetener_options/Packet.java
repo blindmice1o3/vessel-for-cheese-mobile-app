@@ -126,18 +126,20 @@ public class Packet extends SweetenerOptions
     }
 
     @Override
-    public void setTypeByString(String typeAsString) {
+    public boolean setTypeByString(String typeAsString) {
         if (typeAsString.equals(DrinkComponent.NULL_TYPE_AS_STRING)) {
             type = null;
-            return;
+            return true;
         }
 
         Type[] enumValues = Type.values();
         for (int i = 0; i < enumValues.length; i++) {
             if (enumValues[i].name().equals(typeAsString)) {
                 type = enumValues[i];
-                break;
+                return true;
             }
         }
+
+        return false;
     }
 }

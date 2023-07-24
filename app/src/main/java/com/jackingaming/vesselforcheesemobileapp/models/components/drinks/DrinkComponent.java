@@ -15,5 +15,5 @@ public abstract class DrinkComponent
 
     public abstract String getTypeAsString();
 
-    public abstract void setTypeByString(String typeAsString);
+    public abstract boolean setTypeByString(String typeAsString);
 }

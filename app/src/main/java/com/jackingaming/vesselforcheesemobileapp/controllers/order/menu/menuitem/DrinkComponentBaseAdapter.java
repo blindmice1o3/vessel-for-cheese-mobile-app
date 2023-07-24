@@ -487,6 +487,8 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
             return;
         }
 
+        // TODO: [MixedType] should filter list of what's already inside drink.
+
         String[] names = drinkComponents.get(indexSelected).getEnumValuesAsStringArray();
         String nameDefault = drinkComponentsDefaultAsString.get(indexSelected);
         listener.onItemClicked(names, nameDefault);

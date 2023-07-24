@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.jackingaming.vesselforcheesemobileapp.models.components.Incrementable;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.mixed_type.fruits.derived.StrawberryPuree;
 
 public class FrapRoast extends BlendedOptions
         implements Incrementable {
@@ -122,18 +123,20 @@ public class FrapRoast extends BlendedOptions
     }
 
     @Override
-    public void setTypeByString(String typeAsString) {
+    public boolean setTypeByString(String typeAsString) {
         if (typeAsString.equals(DrinkComponent.NULL_TYPE_AS_STRING)) {
             type = null;
-            return;
+            return true;
         }
 
         Type[] enumValues = Type.values();
         for (int i = 0; i < enumValues.length; i++) {
             if (enumValues[i].name().equals(typeAsString)) {
                 type = enumValues[i];
-                break;
+                return true;
             }
         }
+
+        return false;
     }
 }
