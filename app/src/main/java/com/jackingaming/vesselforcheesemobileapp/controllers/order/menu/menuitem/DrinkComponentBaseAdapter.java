@@ -16,6 +16,12 @@ import com.jackingaming.vesselforcheesemobileapp.models.components.Granular;
 import com.jackingaming.vesselforcheesemobileapp.models.components.Incrementable;
 import com.jackingaming.vesselforcheesemobileapp.models.components.MixedType;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.mixed_type.fruits.base.Fruits;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.mixed_type.fruits.derived.FruitInclusion;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.mixed_type.fruits.derived.StrawberryPuree;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.mixed_type.powders.base.Powders;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.mixed_type.powders.derived.ChocolateMaltPowder;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.mixed_type.powders.derived.VanillaBeanPowder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -488,10 +494,195 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
         }
 
         // TODO: [MixedType] should filter list of what's already inside drink.
+        if (drinkComponents.get(indexSelected) instanceof MixedType) {
+            Log.i(TAG, "(drinkComponents.get(indexSelected) instanceof MixedType");
 
-        String[] names = drinkComponents.get(indexSelected).getEnumValuesAsStringArray();
-        String nameDefault = drinkComponentsDefaultAsString.get(indexSelected);
-        listener.onItemClicked(names, nameDefault);
+            List<DrinkComponent> drinkComponentsInsideDrink = new ArrayList<>();
+            List<DrinkComponent> drinkComponentsNotInsideDrink = new ArrayList<>();
+            // POWDERS
+            if (drinkComponents.get(indexSelected) instanceof Powders) {
+                Log.i(TAG, "(drinkComponents.get(indexSelected) instanceof Powders");
+
+                // FIND DRINK COMPONENTS THAT ARE [inside] THE DRINK
+                for (DrinkComponent drinkComponentInsideDrink : drinkComponents) {
+                    if (drinkComponentInsideDrink instanceof Powders) {
+                        Log.i(TAG, "drinkComponentInsideDrink instanceof Powders");
+                        if (drinkComponentInsideDrink instanceof Incrementable) {
+                            Log.i(TAG, "drinkComponentInsideDrink instanceof Incrementable");
+                            // Incrementable
+                            if (((Incrementable) drinkComponentInsideDrink).getQuantity() > 0) {
+                                Log.i(TAG, "((Incrementable) drinkComponentInsideDrink).getQuantity() > 0 --- ADD");
+                                drinkComponentsInsideDrink.add(drinkComponentInsideDrink);
+                            } else {
+                                Log.i(TAG, "((Incrementable) drinkComponentInsideDrink).getQuantity() <= 0 --- skip");
+                                continue;
+                            }
+                        } else if (drinkComponentInsideDrink instanceof Granular) {
+                            Log.i(TAG, "drinkComponentInsideDrink instanceof Granular");
+                            // Granular
+                            if (((Granular) drinkComponentInsideDrink).getAmount() != Granular.Amount.NO) {
+                                Log.i(TAG, "((Granular) drinkComponentInsideDrink).getAmount() != Granular.Amount.NO --- ADD");
+                                drinkComponentsInsideDrink.add(drinkComponentInsideDrink);
+                            } else {
+                                Log.i(TAG, "((Granular) drinkComponentInsideDrink).getAmount() == Granular.Amount.NO --- skip");
+                                continue;
+                            }
+                        } else {
+                            Log.e(TAG, "drinkComponentInsideDrink NOT instanceof Incrementable nor Granular --- skip");
+                            continue;
+                        }
+                    }
+                }
+
+                int numberOfTypeTotalPowders = Powders.Type.values().length;
+                int numberOfTypeAlreadyInsideDrinkPowders = drinkComponentsInsideDrink.size();
+                Log.e(TAG, "numberOfTypeTotalPowders: " + numberOfTypeTotalPowders);
+                Log.e(TAG, "numberOfTypeAlreadyInsideDrinkPowders: " + numberOfTypeAlreadyInsideDrinkPowders);
+
+                // FIND DRINK COMPONENTS THAT ARE [outside] THE DRINK
+                for (VanillaBeanPowder.Type typeVanillaBeanPowder : VanillaBeanPowder.Type.values()) {
+                    boolean isInside = false;
+                    for (DrinkComponent drinkComponentAlreadyInsideDrink : drinkComponentsInsideDrink) {
+                        if (typeVanillaBeanPowder.name().equals(drinkComponentAlreadyInsideDrink.getTypeAsString())) {
+                            isInside = true;
+                        }
+                    }
+                    if (!isInside) {
+                        Log.i(TAG, "!isInside: " + typeVanillaBeanPowder.name() + "... ADD");
+                        drinkComponentsNotInsideDrink.add(new VanillaBeanPowder(typeVanillaBeanPowder, 2));
+                    }
+                }
+                for (ChocolateMaltPowder.Type typeChocolateMaltPowder : ChocolateMaltPowder.Type.values()) {
+                    boolean isInside = false;
+                    for (DrinkComponent drinkComponentAlreadyInsideDrink : drinkComponentsInsideDrink) {
+                        if (typeChocolateMaltPowder.name().equals(drinkComponentAlreadyInsideDrink.getTypeAsString())) {
+                            isInside = true;
+                        }
+                    }
+                    if (!isInside) {
+                        Log.i(TAG, "!isInside: " + typeChocolateMaltPowder.name() + "... ADD");
+                        drinkComponentsNotInsideDrink.add(new ChocolateMaltPowder(typeChocolateMaltPowder, Granular.Amount.MEDIUM));
+                    }
+                }
+
+                // MAP FROM concrete TO abstract
+                String[] names = new String[drinkComponentsNotInsideDrink.size()];
+                for (int i = 0; i < drinkComponentsNotInsideDrink.size(); i++) {
+                    DrinkComponent drinkComponentNotInsideDrink = drinkComponentsNotInsideDrink.get(i);
+
+                    if (drinkComponentNotInsideDrink.getTypeAsString().equals(
+                            VanillaBeanPowder.Type.VANILLA_BEAN_POWDER.name())) {
+                        names[i] = Powders.Type.VANILLA_BEAN.name();
+                    } else if (drinkComponentNotInsideDrink.getTypeAsString().equals(
+                            ChocolateMaltPowder.Type.CHOCOLATE_MALT_POWDER.name())) {
+                        names[i] = Powders.Type.CHOCOLATE_MALT.name();
+                    } else {
+                        Log.e(TAG, "drinkComponentNotInsideDrink.getTypeAsString() NOT .equals() VANILLA_BEAN_POWDER.name() nor CHOCOLATE_MALT_POWDER.name()");
+                    }
+                }
+
+                listener.onItemClicked(names, "NO_DEFAULT_FOR_MIXED_TYPE_INVOKER");
+            }
+            // FRUITS
+            else if (drinkComponents.get(indexSelected) instanceof Fruits) {
+                Log.i(TAG, "(drinkComponents.get(indexSelected) instanceof Fruits");
+
+                // FIND DRINK COMPONENTS THAT ARE [inside] THE DRINK
+                for (DrinkComponent drinkComponentInsideDrink : drinkComponents) {
+                    if (drinkComponentInsideDrink instanceof Fruits) {
+                        Log.i(TAG, "drinkComponentInsideDrink instanceof Fruits");
+
+                        if (drinkComponentInsideDrink instanceof Incrementable) {
+                            Log.i(TAG, "drinkComponentInsideDrink instanceof Incrementable");
+                            // Incrementable
+                            if (((Incrementable) drinkComponentInsideDrink).getQuantity() > 0) {
+                                Log.i(TAG, "((Incrementable) drinkComponentInsideDrink).getQuantity() > 0 --- ADD");
+                                drinkComponentsInsideDrink.add(drinkComponentInsideDrink);
+                            } else {
+                                Log.i(TAG, "((Incrementable) drinkComponentInsideDrink).getQuantity() <= 0 --- skip");
+                                continue;
+                            }
+                        } else if (drinkComponentInsideDrink instanceof Granular) {
+                            Log.i(TAG, "drinkComponentInsideDrink instanceof Granular");
+                            // Granular
+                            if (((Granular) drinkComponentInsideDrink).getAmount() != Granular.Amount.NO) {
+                                Log.i(TAG, "((Granular) drinkComponentInsideDrink).getAmount() != Granular.Amount.NO --- ADD");
+                                drinkComponentsInsideDrink.add(drinkComponentInsideDrink);
+                            } else {
+                                Log.i(TAG, "((Granular) drinkComponentInsideDrink).getAmount() == Granular.Amount.NO --- skip");
+                                continue;
+                            }
+                        } else {
+                            Log.e(TAG, "drinkComponentInsideDrink NOT instanceof Incrementable nor Granular --- skip");
+                            continue;
+                        }
+                    }
+                }
+
+                int numberOfTypeTotalFruits = Fruits.Type.values().length;
+                int numberOfTypeAlreadyInsideDrinkFruits = drinkComponentsInsideDrink.size();
+                Log.e(TAG, "numberOfTypeTotalFruits: " + numberOfTypeTotalFruits);
+                Log.e(TAG, "numberOfTypeAlreadyInsideDrinkFruits: " + numberOfTypeAlreadyInsideDrinkFruits);
+
+                // FIND DRINK COMPONENTS THAT ARE [outside] THE DRINK
+                for (FruitInclusion.Type typeFruitInclusion : FruitInclusion.Type.values()) {
+                    boolean isInside = false;
+                    for (DrinkComponent drinkComponentAlreadyInsideDrink : drinkComponentsInsideDrink) {
+                        if (typeFruitInclusion.name().equals(drinkComponentAlreadyInsideDrink.getTypeAsString())) {
+                            isInside = true;
+                        }
+                    }
+                    if (!isInside) {
+                        Log.i(TAG, "!isInside: " + typeFruitInclusion.name() + "... ADD");
+                        drinkComponentsNotInsideDrink.add(new FruitInclusion(typeFruitInclusion, 2));
+                    }
+                }
+                for (StrawberryPuree.Type typeStrawberryPuree : StrawberryPuree.Type.values()) {
+                    boolean isInside = false;
+                    for (DrinkComponent drinkComponentAlreadyInsideDrink : drinkComponentsInsideDrink) {
+                        if (typeStrawberryPuree.name().equals(drinkComponentAlreadyInsideDrink.getTypeAsString())) {
+                            isInside = true;
+                        }
+                    }
+                    if (!isInside) {
+                        Log.i(TAG, "!isInside: " + typeStrawberryPuree.name() + "... ADD");
+                        drinkComponentsNotInsideDrink.add(new StrawberryPuree(typeStrawberryPuree, Granular.Amount.MEDIUM));
+                    }
+                }
+
+                // MAP FROM concrete TO abstract
+                String[] names = new String[drinkComponentsNotInsideDrink.size()];
+                for (int i = 0; i < drinkComponentsNotInsideDrink.size(); i++) {
+                    DrinkComponent drinkComponentNotInsideDrink = drinkComponentsNotInsideDrink.get(i);
+
+                    if (drinkComponentNotInsideDrink.getTypeAsString().equals(
+                            FruitInclusion.Type.DRAGONFRUIT_INCLUSION.name())) {
+                        names[i] = Fruits.Type.DRAGONFRUIT_FRUIT.name();
+                    } else if (drinkComponentNotInsideDrink.getTypeAsString().equals(
+                            FruitInclusion.Type.PINEAPPLE_INCLUSION.name())) {
+                        names[i] = Fruits.Type.PINEAPPLE_FRUIT.name();
+                    } else if (drinkComponentNotInsideDrink.getTypeAsString().equals(
+                            FruitInclusion.Type.STRAWBERRY_INCLUSION.name())) {
+                        names[i] = Fruits.Type.STRAWBERRY_FRUIT.name();
+                    } else if (drinkComponentNotInsideDrink.getTypeAsString().equals(
+                            StrawberryPuree.Type.STRAWBERRY_PUREE.name())) {
+                        names[i] = Fruits.Type.STRAWBERRY_PUREE_FRUIT.name();
+                    } else {
+                        Log.e(TAG, "drinkComponentNotInsideDrink.getTypeAsString() NOT .equals() DRAGONFRUIT_INCLUSION.name() nor PINEAPPLE_INCLUSION.name() nor STRAWBERRY_INCLUSION.name() nor STRAWBERRY_PUREE.name()");
+                    }
+                }
+
+                listener.onItemClicked(names, "NO_DEFAULT_FOR_MIXED_TYPE_INVOKER");
+            } else {
+                Log.e(TAG, "drinkComponents.get(indexSelected) NOT instanceof Powders nor Fruits");
+            }
+        } else {
+            Log.i(TAG, "(drinkComponents.get(indexSelected) NOT instanceof MixedType");
+
+            String[] names = drinkComponents.get(indexSelected).getEnumValuesAsStringArray();
+            String nameDefault = drinkComponentsDefaultAsString.get(indexSelected);
+            listener.onItemClicked(names, nameDefault);
+        }
     }
 
     private void handleClickForViewHolderGranularSelection() {
