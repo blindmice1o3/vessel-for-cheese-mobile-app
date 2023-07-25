@@ -4,7 +4,11 @@ import android.util.Log;
 
 import com.jackingaming.vesselforcheesemobileapp.models.components.Incrementable;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.mixed_type.fruits.derived.FruitInclusion;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.mixed_type.powders.base.Powders;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class VanillaBeanPowder extends Powders
         implements Incrementable {
@@ -71,6 +75,17 @@ public class VanillaBeanPowder extends Powders
     public VanillaBeanPowder(Type type, int quantity) {
         this.type = type;
         this.quantity = quantity;
+    }
+
+    public static List<String> getEnumValuesAsStringForMixedType() {
+        Type[] enumValues = Type.values();
+        List<String> enumValuesAsString = new ArrayList<>();
+        for (int i = 0; i < enumValues.length; i++) {
+            enumValuesAsString.add(
+                    enumValues[i].name()
+            );
+        }
+        return enumValuesAsString;
     }
 
     public Type getTypeUnmixed() {

@@ -4,6 +4,9 @@ import com.jackingaming.vesselforcheesemobileapp.models.components.Granular;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.mixed_type.fruits.base.Fruits;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class StrawberryPuree extends Fruits
         implements Granular {
     public static final String DEFAULT_TEXT_INIT = "Add Strawberry Puree";
@@ -28,6 +31,17 @@ public class StrawberryPuree extends Fruits
     public StrawberryPuree(Type type, Amount amount) {
         this.type = type;
         this.amount = amount;
+    }
+
+    public static List<String> getEnumValuesAsStringForMixedType() {
+        Type[] enumValues = Type.values();
+        List<String> enumValuesAsString = new ArrayList<>();
+        for (int i = 0; i < enumValues.length; i++) {
+            enumValuesAsString.add(
+                    enumValues[i].name()
+            );
+        }
+        return enumValuesAsString;
     }
 
     public Type getTypeUnmixed() {
