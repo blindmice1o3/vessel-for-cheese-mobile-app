@@ -97,4 +97,14 @@ public class CustomizeActivity extends AppCompatActivity {
             return super.onOptionsItemSelected(item);
         }
     }
+
+    @Override
+    public void onBackPressed() {
+        Log.i(TAG, "onBackPressed()");
+
+        Intent result = new Intent();
+        result.putExtra(RESULT_KEY, drink);
+        setResult(RESULT_OK, result);
+        super.onBackPressed();
+    }
 }
