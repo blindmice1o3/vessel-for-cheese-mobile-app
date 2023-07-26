@@ -95,7 +95,7 @@ public class WhatsIncludedAdapter extends DrinkComponentBaseAdapter {
 
             // Update the underlying model.
             drinkComponentSelected.setTypeByString(name);
-            updateScreen(drinkComponentSelected, drinkComponentDefaultAsStringSelected);
+            notifyItemChanged(indexSelected);
         } else if (drinkComponentSelected instanceof Granular) {
             Log.i(TAG, "drinkComponentSelected instanceof Granular");
 
@@ -109,7 +109,7 @@ public class WhatsIncludedAdapter extends DrinkComponentBaseAdapter {
 
             // Update the underlying model.
             ((Granular) drinkComponentSelected).setAmount(amountSelected);
-            updateScreen(drinkComponentSelected, drinkComponentDefaultAsStringSelected);
+            notifyItemChanged(indexSelected);
         } else {
             Log.i(TAG, "drinkComponentSelected NOT instanceof Incrementable nor Granular");
 
@@ -122,7 +122,7 @@ public class WhatsIncludedAdapter extends DrinkComponentBaseAdapter {
                 drinkComponentsDefaultAsString.remove(indexSelected);
                 notifyItemRemoved(indexSelected);
             } else {
-                updateScreen(drinkComponentSelected, drinkComponentDefaultAsStringSelected);
+                notifyItemChanged(indexSelected);
             }
         }
     }
@@ -226,6 +226,6 @@ public class WhatsIncludedAdapter extends DrinkComponentBaseAdapter {
             drinkComponentSelected.setTypeByString(name);
         }
 
-        updateScreen(drinkComponentSelected, drinkComponentDefaultAsStringSelected);
+        notifyItemChanged(indexSelected);
     }
 }

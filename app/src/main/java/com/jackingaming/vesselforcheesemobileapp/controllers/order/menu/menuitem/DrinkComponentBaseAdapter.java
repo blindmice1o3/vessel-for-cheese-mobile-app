@@ -163,20 +163,6 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
         viewHolderSelected = null;
     }
 
-    protected void updateScreen(DrinkComponent drinkComponentSelected,
-                                String drinkComponentDefaultAsStringSelected) {
-        if (viewHolderSelected.getItemViewType() == VIEW_TYPE_INCREMENTABLE) {
-            ViewHolderIncrementable viewHolderIncrementable = (ViewHolderIncrementable) viewHolderSelected;
-            viewHolderIncrementable.updateScreen(drinkComponentSelected, drinkComponentDefaultAsStringSelected);
-        } else if (viewHolderSelected.getItemViewType() == VIEW_TYPE_GRANULAR_SELECTION) {
-            ViewHolderGranularSelection viewHolderGranularSelection = (ViewHolderGranularSelection) viewHolderSelected;
-            viewHolderGranularSelection.updateScreen(drinkComponentSelected, drinkComponentDefaultAsStringSelected);
-        } else {
-            ViewHolderSimpleSelection viewHolderSimpleSelection = (ViewHolderSimpleSelection) viewHolderSelected;
-            viewHolderSimpleSelection.updateScreen(drinkComponentSelected, drinkComponentDefaultAsStringSelected);
-        }
-    }
-
     protected abstract void handleSelectionOfDefaultForStandardRecipe(DrinkComponent drinkComponentSelected, String drinkComponentDefaultAsStringSelected, String name);
 
     protected abstract void handleSelectionOfNonDefaultForStandardRecipe(DrinkComponent drinkComponentSelected, String drinkComponentDefaultAsStringSelected, String name);
@@ -637,19 +623,25 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
         if (drinkComponentSelected.getTypeAsString().equals(DrinkComponent.NULL_TYPE_AS_STRING)) {
             Log.i(TAG, "drinkComponentSelected.getTypeAsString().equals(DrinkComponent.NULL_TYPE_AS_STRING)");
 
-            String[] enumValues = drinkComponentSelected.getEnumValuesAsStringArray();
-            if (enumValues.length == 1) {
-                Log.i(TAG, "enumValues.length == 1");
+            String[] enumValuesAsString = drinkComponentSelected.getEnumValuesAsStringArray();
+            List<String> enumValuesNotInsideDrink = findEnumValuesNotInsideDrink(enumValuesAsString);
+            // Special case where Granular's Type only has [one] value (e.g. WhippedCream):
+            // -convert "invoker" to that value.
+            if (enumValuesNotInsideDrink.size() == 1) {
+                Log.i(TAG, "enumValuesNotInsideDrink.size() == 1");
 
-                drinkComponentSelected.setTypeByString(enumValues[0]);
+                drinkComponentSelected.setTypeByString(enumValuesAsString[0]);
                 ((Granular) drinkComponentSelected).setAmount(Granular.Amount.MEDIUM);
-                updateScreen(drinkComponentSelected, drinkComponentDefaultAsStringSelected);
-            } else {
-                Log.i(TAG, "enumValues.length != 1");
+                notifyItemChanged(indexSelected);
+            }
+            // Granular's Type has [more-than-one] values:
+            // -display bottom modal sheet.
+            else {
+                Log.i(TAG, "enumValuesNotInsideDrink.size() != 1");
 
-                List<String> enumValuesFiltered = findEnumValuesNotInsideDrink(enumValues);
+                // TODO: clean Granular's "invoker" bottom modal sheet handler.
 
-                listener.onItemClicked(enumValuesFiltered.toArray(new String[0]), drinkComponentDefaultAsStringSelected);
+                listener.onItemClicked(enumValuesNotInsideDrink.toArray(new String[0]), drinkComponentDefaultAsStringSelected);
             }
         } else {
             Log.i(TAG, "NOT drinkComponentSelected.getTypeAsString().equals(DrinkComponent.NULL_TYPE_AS_STRING)");

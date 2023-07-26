@@ -1,10 +1,5 @@
 package com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.customize;
 
-import static com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.mixed_type.fruits.base.Fruits.Type.DRAGONFRUIT_FRUIT;
-import static com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.mixed_type.fruits.base.Fruits.Type.PINEAPPLE_FRUIT;
-import static com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.mixed_type.fruits.base.Fruits.Type.STRAWBERRY_FRUIT;
-import static com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.mixed_type.fruits.base.Fruits.Type.STRAWBERRY_PUREE_FRUIT;
-
 import android.util.Log;
 
 import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem.DrinkComponentBaseAdapter;
@@ -65,7 +60,7 @@ public class CustomizeInnerAdapter extends DrinkComponentBaseAdapter {
             // Update the underlying model.
             drinkComponentSelected.setTypeByString(DrinkComponent.NULL_TYPE_AS_STRING);
             ((Granular) drinkComponentSelected).setAmount(Granular.Amount.NO);
-            updateScreen(drinkComponentSelected, drinkComponentDefaultAsStringSelected);
+            notifyItemChanged(indexSelected);
         } else {
             Log.i(TAG, "enumValues.length != 1");
 
@@ -80,7 +75,7 @@ public class CustomizeInnerAdapter extends DrinkComponentBaseAdapter {
                 // Update the underlying model.
                 drinkComponentSelected.setTypeByString(DrinkComponent.NULL_TYPE_AS_STRING);
                 ((Granular) drinkComponentSelected).setAmount(Granular.Amount.NO);
-                updateScreen(drinkComponentSelected, drinkComponentDefaultAsStringSelected);
+                notifyItemChanged(indexSelected);
             } else {
                 Log.i(TAG, "enumValuesNotInsideDrink.size() != 0");
 
@@ -109,7 +104,7 @@ public class CustomizeInnerAdapter extends DrinkComponentBaseAdapter {
 
             // Update the underlying model.
             ((Incrementable) drinkComponentSelected).setQuantity(Incrementable.QUANTITY_FOR_INVOKER);
-            updateScreen(drinkComponentSelected, drinkComponentDefaultAsStringSelected);
+            notifyItemChanged(indexSelected);
         } else if (drinkComponentSelected instanceof Granular) {
             Log.i(TAG, "drinkComponentSelected instanceof Granular");
 
@@ -119,7 +114,7 @@ public class CustomizeInnerAdapter extends DrinkComponentBaseAdapter {
                 // Update the underlying model.
                 drinkComponentSelected.setTypeByString(DrinkComponent.NULL_TYPE_AS_STRING);
                 ((Granular) drinkComponentSelected).setAmount(Granular.Amount.NO);
-                updateScreen(drinkComponentSelected, drinkComponentDefaultAsStringSelected);
+                notifyItemChanged(indexSelected);
                 // TODO:
 
                 return;
@@ -131,7 +126,7 @@ public class CustomizeInnerAdapter extends DrinkComponentBaseAdapter {
 
             // Update the underlying model.
             drinkComponentSelected.setTypeByString(DrinkComponent.NULL_TYPE_AS_STRING);
-            updateScreen(drinkComponentSelected, drinkComponentDefaultAsStringSelected);
+            notifyItemChanged(indexSelected);
         }
     }
 
@@ -182,7 +177,7 @@ public class CustomizeInnerAdapter extends DrinkComponentBaseAdapter {
 
                 // Update the underlying model.
                 drinkComponentSelected.setTypeByString(name);
-                updateScreen(drinkComponentSelected, drinkComponentDefaultAsStringSelected);
+                notifyItemChanged(indexSelected);
             }
         } else if (drinkComponentSelected instanceof Granular) {
             Log.i(TAG, "drinkComponentSelected instanceof Granular");
@@ -193,86 +188,43 @@ public class CustomizeInnerAdapter extends DrinkComponentBaseAdapter {
                 if (drinkComponentSelected instanceof ToppingOptions) {
                     Log.i(TAG, "drinkComponentSelected instanceof ToppingOptions");
 
+                    // ADD USER'S SELECTION
+                    DrinkComponent drinkComponentToAdd = null;
+                    String drinkComponentDefaultAsStringToAdd = null;
+                    if (drinkComponentSelected instanceof ColdFoam) {
+                        Log.i(TAG, "drinkComponentSelected instanceof ColdFoam");
+                        drinkComponentToAdd = new ColdFoam(null, Granular.Amount.MEDIUM);
+                    } else if (drinkComponentSelected instanceof Drizzle) {
+                        Log.i(TAG, "drinkComponentSelected instanceof Drizzle");
+                        drinkComponentToAdd = new Drizzle(null, Granular.Amount.MEDIUM);
+                    } else if (drinkComponentSelected instanceof Topping) {
+                        Log.i(TAG, "drinkComponentSelected instanceof Topping");
+                        drinkComponentToAdd = new Topping(null, Granular.Amount.MEDIUM);
+                    } else {
+                        Log.e(TAG, "drinkComponentSelected NOT instanceof ColdFoam nor Drizzle nor Topping");
+                    }
+                    drinkComponentToAdd.setTypeByString(name);
+                    drinkComponentDefaultAsStringToAdd = Granular.Amount.NO.name();
+
+                    drinkComponents.add(indexSelected, drinkComponentToAdd);
+                    drinkComponentsDefaultAsString.add(indexSelected, drinkComponentDefaultAsStringToAdd);
+                    notifyItemInserted(indexSelected);
+
                     String[] enumValues = drinkComponentSelected.getEnumValuesAsStringArray();
                     List<String> enumValuesNotInsideDrink = findEnumValuesNotInsideDrink(enumValues);
-                    // this handleSelection...() is only called when (enumValues.length > 1).
-                    // special case when only 2 choices left (one choice is the user selection,
-                    // the other is the left-over choice... the "invoker" should be converted to this).
-                    if (enumValuesNotInsideDrink.size() == 2) {
-                        Log.i(TAG, "enumValuesNotInsideDrink.size() == 2");
-
-                        String nameDrinkComponentToAdd = null;
-                        String nameDrinkComponentLast = null;
-                        if (name.equals(enumValuesNotInsideDrink.get(0))) {
-                            Log.i(TAG, "user selected index 0");
-                            nameDrinkComponentToAdd = enumValuesNotInsideDrink.get(0);
-                            nameDrinkComponentLast = enumValuesNotInsideDrink.get(1);
-                        } else {
-                            Log.i(TAG, "user selected index 1");
-                            nameDrinkComponentToAdd = enumValuesNotInsideDrink.get(1);
-                            nameDrinkComponentLast = enumValuesNotInsideDrink.get(0);
-                        }
+                    // CHECK CONDITION TO CONVERT "INVOKER" TO LAST OPTION
+                    if (enumValuesNotInsideDrink.size() == 1) {
                         // LAST
                         ((Granular) drinkComponentSelected).setAmount(Granular.Amount.NO);
-                        drinkComponentSelected.setTypeByString(nameDrinkComponentLast);
-                        updateScreen(drinkComponentSelected, drinkComponentDefaultAsStringSelected);
-
-                        // SECOND-TO-LAST
-                        DrinkComponent drinkComponentToAdd = null;
-                        String drinkComponentDefaultAsStringToAdd = null;
-                        if (drinkComponentSelected instanceof ColdFoam) {
-                            Log.i(TAG, "drinkComponentSelected instanceof ColdFoam");
-                            drinkComponentToAdd = new ColdFoam(null, Granular.Amount.MEDIUM);
-                        } else if (drinkComponentSelected instanceof Drizzle) {
-                            Log.i(TAG, "drinkComponentSelected instanceof Drizzle");
-                            drinkComponentToAdd = new Drizzle(null, Granular.Amount.MEDIUM);
-                        } else if (drinkComponentSelected instanceof Topping) {
-                            Log.i(TAG, "drinkComponentSelected instanceof Topping");
-                            drinkComponentToAdd = new Topping(null, Granular.Amount.MEDIUM);
-                        } else {
-                            Log.e(TAG, "drinkComponentSelected NOT instanceof ColdFoam nor Drizzle nor Topping");
-                        }
-                        drinkComponentToAdd.setTypeByString(nameDrinkComponentToAdd);
-                        drinkComponentDefaultAsStringToAdd = Granular.Amount.NO.name();
-
-                        drinkComponents.add(indexSelected, drinkComponentToAdd);
-                        drinkComponentsDefaultAsString.add(indexSelected, drinkComponentDefaultAsStringToAdd);
-                        notifyItemInserted(indexSelected);
-                    } else if (enumValuesNotInsideDrink.size() == 1) {
-                        // LAST
-                        ((Granular) drinkComponentSelected).setAmount(Granular.Amount.MEDIUM);
                         drinkComponentSelected.setTypeByString(enumValuesNotInsideDrink.get(0));
-                        updateScreen(drinkComponentSelected, drinkComponentDefaultAsStringSelected);
-                    } else {
-                        Log.i(TAG, "enumValuesNotInsideDrink.size() != 2 and enumValuesNotInsideDrink.size() != 1");
-
-                        DrinkComponent drinkComponentToAdd = null;
-                        String drinkComponentDefaultAsStringToAdd = null;
-                        if (drinkComponentSelected instanceof ColdFoam) {
-                            Log.i(TAG, "drinkComponentSelected instanceof ColdFoam");
-                            drinkComponentToAdd = new ColdFoam(null, Granular.Amount.MEDIUM);
-                        } else if (drinkComponentSelected instanceof Drizzle) {
-                            Log.i(TAG, "drinkComponentSelected instanceof Drizzle");
-                            drinkComponentToAdd = new Drizzle(null, Granular.Amount.MEDIUM);
-                        } else if (drinkComponentSelected instanceof Topping) {
-                            Log.i(TAG, "drinkComponentSelected instanceof Topping");
-                            drinkComponentToAdd = new Topping(null, Granular.Amount.MEDIUM);
-                        } else {
-                            Log.e(TAG, "drinkComponentSelected NOT instanceof ColdFoam nor Drizzle nor Topping");
-                        }
-                        drinkComponentToAdd.setTypeByString(name);
-                        drinkComponentDefaultAsStringToAdd = Granular.Amount.NO.name();
-
-                        drinkComponents.add(indexSelected, drinkComponentToAdd);
-                        drinkComponentsDefaultAsString.add(indexSelected, drinkComponentDefaultAsStringToAdd);
-                        notifyItemInserted(indexSelected);
+                        notifyItemChanged(indexSelected + 1);
                     }
                 } else {
                     Log.e(TAG, "drinkComponentSelected NOT instanceof ToppingOptions");
 
                     // Update the underlying model.
                     drinkComponentSelected.setTypeByString(name);
-                    updateScreen(drinkComponentSelected, drinkComponentDefaultAsStringSelected);
+                    notifyItemChanged(indexSelected);
                 }
             } else {
                 Log.i(TAG, "NOT drinkComponentSelected.getTypeAsString().equals(DrinkComponent.NULL_TYPE_AS_STRING)");
@@ -287,7 +239,7 @@ public class CustomizeInnerAdapter extends DrinkComponentBaseAdapter {
 
                 // Update the underlying model.
                 ((Granular) drinkComponentSelected).setAmount(amountSelected);
-                updateScreen(drinkComponentSelected, drinkComponentDefaultAsStringSelected);
+                notifyItemChanged(indexSelected);
             }
         } else if (drinkComponentSelected instanceof MixedType) {
             Log.i(TAG, "drinkComponentSelected instanceof MixedType");
@@ -506,7 +458,7 @@ public class CustomizeInnerAdapter extends DrinkComponentBaseAdapter {
 
             // Update the underlying model.
             drinkComponentSelected.setTypeByString(name);
-            updateScreen(drinkComponentSelected, drinkComponentDefaultAsStringSelected);
+            notifyItemChanged(indexSelected);
         }
     }
 
@@ -533,7 +485,7 @@ public class CustomizeInnerAdapter extends DrinkComponentBaseAdapter {
 
                 drinkComponentSelected.setTypeByString(enumValues[0]);
                 ((Incrementable) drinkComponentSelected).setQuantity(1);
-                updateScreen(drinkComponentSelected, drinkComponentDefaultAsStringSelected);
+                notifyItemChanged(indexSelected);
             } else {
                 Log.i(TAG, "enumValues.length != 1");
 
@@ -565,7 +517,7 @@ public class CustomizeInnerAdapter extends DrinkComponentBaseAdapter {
                 if (enumValuesFiltered.size() == 1) {
                     drinkComponentSelected.setTypeByString(enumValuesFiltered.get(0));
                     ((Incrementable) drinkComponentSelected).setQuantity(1);
-                    updateScreen(drinkComponentSelected, drinkComponentDefaultAsStringSelected);
+                    notifyItemChanged(indexSelected);
                 } else {
                     listener.onItemClicked(enumValuesFiltered.toArray(new String[0]), drinkComponentDefaultAsStringSelected);
                 }
