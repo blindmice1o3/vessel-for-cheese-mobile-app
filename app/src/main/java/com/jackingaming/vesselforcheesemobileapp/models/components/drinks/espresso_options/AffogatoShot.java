@@ -138,4 +138,16 @@ public class AffogatoShot extends EspressoOptions
 
         return false;
     }
+
+    @Override
+    public DrinkComponent newInstanceViaTypeAsString(String typeAsString, int quantity) {
+        AffogatoShot affogatoShot = new AffogatoShot(null, 1);
+        affogatoShot.setTypeByString(typeAsString);
+        return affogatoShot;
+    }
+
+    @Override
+    public int getDefaultQuantityMin() {
+        return DEFAULT_QUANTITY_MIN;
+    }
 }

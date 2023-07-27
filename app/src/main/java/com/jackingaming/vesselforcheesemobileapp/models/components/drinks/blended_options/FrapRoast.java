@@ -4,7 +4,6 @@ import android.util.Log;
 
 import com.jackingaming.vesselforcheesemobileapp.models.components.Incrementable;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
-import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.mixed_type.fruits.derived.StrawberryPuree;
 
 public class FrapRoast extends BlendedOptions
         implements Incrementable {
@@ -138,5 +137,17 @@ public class FrapRoast extends BlendedOptions
         }
 
         return false;
+    }
+
+    @Override
+    public DrinkComponent newInstanceViaTypeAsString(String typeAsString, int quantity) {
+        FrapRoast frapRoast = new FrapRoast(null, 1);
+        frapRoast.setTypeByString(typeAsString);
+        return frapRoast;
+    }
+
+    @Override
+    public int getDefaultQuantityMin() {
+        return DEFAULT_QUANTITY_MIN;
     }
 }

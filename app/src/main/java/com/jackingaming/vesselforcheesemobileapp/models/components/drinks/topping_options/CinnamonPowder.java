@@ -79,4 +79,11 @@ public class CinnamonPowder extends ToppingOptions
 
         return false;
     }
+
+    @Override
+    public DrinkComponent newInstanceViaTypeAsString(String typeAsString, Amount amount) {
+        CinnamonPowder cinnamonPowder = new CinnamonPowder(null, amount);
+        cinnamonPowder.setTypeByString(typeAsString);
+        return cinnamonPowder;
+    }
 }

@@ -142,4 +142,16 @@ public class Packet extends SweetenerOptions
 
         return false;
     }
+
+    @Override
+    public DrinkComponent newInstanceViaTypeAsString(String typeAsString, int quantity) {
+        Packet packet = new Packet(null, 1);
+        packet.setTypeByString(typeAsString);
+        return packet;
+    }
+
+    @Override
+    public int getDefaultQuantityMin() {
+        return DEFAULT_QUANTITY_MIN;
+    }
 }

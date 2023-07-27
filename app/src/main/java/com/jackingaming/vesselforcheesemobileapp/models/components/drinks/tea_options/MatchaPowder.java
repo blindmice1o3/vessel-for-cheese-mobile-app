@@ -138,4 +138,16 @@ public class MatchaPowder extends TeaOptions
 
         return false;
     }
+
+    @Override
+    public DrinkComponent newInstanceViaTypeAsString(String typeAsString, int quantity) {
+        MatchaPowder matchaPowder = new MatchaPowder(null, 1);
+        matchaPowder.setTypeByString(typeAsString);
+        return matchaPowder;
+    }
+
+    @Override
+    public int getDefaultQuantityMin() {
+        return DEFAULT_QUANTITY_MIN;
+    }
 }

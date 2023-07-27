@@ -82,4 +82,11 @@ public class ColdFoam extends ToppingOptions
 
         return false;
     }
+
+    @Override
+    public DrinkComponent newInstanceViaTypeAsString(String typeAsString, Amount amount) {
+        ColdFoam coldFoam = new ColdFoam(null, amount);
+        coldFoam.setTypeByString(typeAsString);
+        return coldFoam;
+    }
 }

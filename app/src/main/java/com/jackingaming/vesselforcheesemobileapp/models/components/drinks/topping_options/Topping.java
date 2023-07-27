@@ -81,4 +81,11 @@ public class Topping extends ToppingOptions
 
         return false;
     }
+
+    @Override
+    public DrinkComponent newInstanceViaTypeAsString(String typeAsString, Amount amount) {
+        Topping topping = new Topping(null, amount);
+        topping.setTypeByString(typeAsString);
+        return topping;
+    }
 }

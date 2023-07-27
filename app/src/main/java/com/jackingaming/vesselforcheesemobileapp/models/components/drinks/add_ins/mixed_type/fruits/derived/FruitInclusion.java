@@ -155,4 +155,16 @@ public class FruitInclusion extends Fruits
 
         return false;
     }
+
+    @Override
+    public DrinkComponent newInstanceViaTypeAsString(String typeAsString, int quantity) {
+        FruitInclusion fruitInclusion = new FruitInclusion(null, 1);
+        fruitInclusion.setTypeByString(typeAsString);
+        return fruitInclusion;
+    }
+
+    @Override
+    public int getDefaultQuantityMin() {
+        return DEFAULT_QUANTITY_MIN;
+    }
 }

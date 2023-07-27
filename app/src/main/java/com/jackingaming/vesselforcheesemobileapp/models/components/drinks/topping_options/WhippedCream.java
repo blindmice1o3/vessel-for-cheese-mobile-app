@@ -79,4 +79,11 @@ public class WhippedCream extends ToppingOptions
 
         return false;
     }
+
+    @Override
+    public DrinkComponent newInstanceViaTypeAsString(String typeAsString, Amount amount) {
+        WhippedCream whippedCream = new WhippedCream(null, amount);
+        whippedCream.setTypeByString(typeAsString);
+        return whippedCream;
+    }
 }

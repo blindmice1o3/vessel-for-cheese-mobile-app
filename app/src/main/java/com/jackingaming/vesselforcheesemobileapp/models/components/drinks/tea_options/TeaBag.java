@@ -138,4 +138,16 @@ public class TeaBag extends TeaOptions
 
         return false;
     }
+
+    @Override
+    public DrinkComponent newInstanceViaTypeAsString(String typeAsString, int quantity) {
+        TeaBag teaBag = new TeaBag(null, 1);
+        teaBag.setTypeByString(typeAsString);
+        return teaBag;
+    }
+
+    @Override
+    public int getDefaultQuantityMin() {
+        return DEFAULT_QUANTITY_MIN;
+    }
 }

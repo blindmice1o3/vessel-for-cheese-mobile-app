@@ -141,4 +141,16 @@ public class Sauce extends FlavorOptions
 
         return false;
     }
+
+    @Override
+    public DrinkComponent newInstanceViaTypeAsString(String typeAsString, int quantity) {
+        Sauce sauce = new Sauce(null, quantity);
+        sauce.setTypeByString(typeAsString);
+        return sauce;
+    }
+
+    @Override
+    public int getDefaultQuantityMin() {
+        return DEFAULT_QUANTITY_MIN;
+    }
 }

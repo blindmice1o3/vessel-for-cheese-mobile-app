@@ -80,4 +80,11 @@ public class Drizzle extends ToppingOptions
 
         return false;
     }
+
+    @Override
+    public DrinkComponent newInstanceViaTypeAsString(String typeAsString, Amount amount) {
+        Drizzle drizzle = new Drizzle(null, amount);
+        drizzle.setTypeByString(typeAsString);
+        return drizzle;
+    }
 }

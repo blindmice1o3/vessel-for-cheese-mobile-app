@@ -140,4 +140,16 @@ public class Liquid extends SweetenerOptions
 
         return false;
     }
+
+    @Override
+    public DrinkComponent newInstanceViaTypeAsString(String typeAsString, int quantity) {
+        Liquid liquid = new Liquid(null, 1);
+        liquid.setTypeByString(typeAsString);
+        return liquid;
+    }
+
+    @Override
+    public int getDefaultQuantityMin() {
+        return DEFAULT_QUANTITY_MIN;
+    }
 }

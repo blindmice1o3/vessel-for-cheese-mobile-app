@@ -138,4 +138,16 @@ public class Chai extends TeaOptions
 
         return false;
     }
+
+    @Override
+    public DrinkComponent newInstanceViaTypeAsString(String typeAsString, int quantity) {
+        Chai chai = new Chai(null, 1);
+        chai.setTypeByString(typeAsString);
+        return chai;
+    }
+
+    @Override
+    public int getDefaultQuantityMin() {
+        return DEFAULT_QUANTITY_MIN;
+    }
 }

@@ -147,4 +147,16 @@ public class Syrup extends FlavorOptions
 
         return false;
     }
+
+    @Override
+    public DrinkComponent newInstanceViaTypeAsString(String typeAsString, int quantity) {
+        Syrup syrup = new Syrup(null, quantity);
+        syrup.setTypeByString(typeAsString);
+        return syrup;
+    }
+
+    @Override
+    public int getDefaultQuantityMin() {
+        return DEFAULT_QUANTITY_MIN;
+    }
 }

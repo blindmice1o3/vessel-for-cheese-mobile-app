@@ -138,4 +138,16 @@ public class FrapChips extends BlendedOptions
 
         return false;
     }
+
+    @Override
+    public DrinkComponent newInstanceViaTypeAsString(String typeAsString, int quantity) {
+        FrapChips frapChips = new FrapChips(null, 1);
+        frapChips.setTypeByString(typeAsString);
+        return frapChips;
+    }
+
+    @Override
+    public int getDefaultQuantityMin() {
+        return DEFAULT_QUANTITY_MIN;
+    }
 }

@@ -79,4 +79,11 @@ public class MilkFoam extends MilkOptions
 
         return false;
     }
+
+    @Override
+    public DrinkComponent newInstanceViaTypeAsString(String typeAsString, Amount amount) {
+        MilkFoam milkFoam = new MilkFoam(null, amount);
+        milkFoam.setTypeByString(typeAsString);
+        return milkFoam;
+    }
 }

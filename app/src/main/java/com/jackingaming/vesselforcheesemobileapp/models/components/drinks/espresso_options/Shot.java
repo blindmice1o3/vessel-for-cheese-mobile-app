@@ -138,4 +138,16 @@ public class Shot extends EspressoOptions
 
         return false;
     }
+
+    @Override
+    public DrinkComponent newInstanceViaTypeAsString(String typeAsString, int quantity) {
+        Shot shot = new Shot(null, 1);
+        shot.setTypeByString(typeAsString);
+        return shot;
+    }
+
+    @Override
+    public int getDefaultQuantityMin() {
+        return DEFAULT_QUANTITY_MIN;
+    }
 }

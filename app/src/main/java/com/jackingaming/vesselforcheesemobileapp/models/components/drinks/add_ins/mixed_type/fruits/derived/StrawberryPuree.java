@@ -94,4 +94,11 @@ public class StrawberryPuree extends Fruits
 
         return false;
     }
+
+    @Override
+    public DrinkComponent newInstanceViaTypeAsString(String typeAsString, Amount amount) {
+        StrawberryPuree strawberryPuree = new StrawberryPuree(null, amount);
+        strawberryPuree.setTypeByString(typeAsString);
+        return strawberryPuree;
+    }
 }
