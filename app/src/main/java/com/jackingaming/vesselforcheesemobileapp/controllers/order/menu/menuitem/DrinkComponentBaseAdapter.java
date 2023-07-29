@@ -559,114 +559,38 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
             Log.i(TAG, "(drinkComponents.get(indexSelected) instanceof Powders");
 
             // FIND DRINK COMPONENTS THAT ARE [not inside] THE DRINK
-            for (String enumValueAsString : VanillaBeanPowder.getEnumValuesAsStringForMixedType()) {
-                Log.i(TAG, "VanillaBeanPowder - enumValueAsString: " + enumValueAsString);
-                boolean isInsideDrink = false;
+            List<String> vanillaBeanPowderAsStringNotInsideDrink = findEnumValuesNotInsideDrink(
+                    VanillaBeanPowder.getEnumValuesAsStringForMixedType().toArray(new String[0])
+            );
+            List<String> chocolateMaltPowderAsStringNotInsideDrink = findEnumValuesNotInsideDrink(
+                    ChocolateMaltPowder.getEnumValuesAsStringForMixedType().toArray(new String[0])
+            );
+            drinkComponentsAsStringNotInsideDrink.addAll(vanillaBeanPowderAsStringNotInsideDrink);
+            drinkComponentsAsStringNotInsideDrink.addAll(chocolateMaltPowderAsStringNotInsideDrink);
 
-                for (DrinkComponent drinkComponent : drinkComponents) {
-                    Log.i(TAG, "drinkComponent CLASS: " + drinkComponent.getClassAsString() + ", TYPE: " + drinkComponent.getTypeAsString());
-                    if (enumValueAsString.equals(drinkComponent.getTypeAsString())) {
-                        Log.i(TAG, "isInsideDrink = true SKIP");
-                        isInsideDrink = true;
-                    }
-                }
-
-                if (!isInsideDrink) {
-                    Log.i(TAG, "!isInsideDrink ADD");
-                    drinkComponentsAsStringNotInsideDrink.add(enumValueAsString);
-                }
-            }
-            for (String enumValueAsString : ChocolateMaltPowder.getEnumValuesAsStringForMixedType()) {
-                Log.i(TAG, "ChocolateMaltPowder - enumValueAsString: " + enumValueAsString);
-                boolean isInsideDrink = false;
-
-                for (DrinkComponent drinkComponent : drinkComponents) {
-                    Log.i(TAG, "drinkComponent CLASS: " + drinkComponent.getClassAsString() + ", TYPE: " + drinkComponent.getTypeAsString());
-                    if (enumValueAsString.equals(drinkComponent.getTypeAsString())) {
-                        Log.i(TAG, "isInsideDrink = true SKIP");
-                        isInsideDrink = true;
-                    }
-                }
-
-                if (!isInsideDrink) {
-                    Log.i(TAG, "!isInsideDrink ADD");
-                    drinkComponentsAsStringNotInsideDrink.add(enumValueAsString);
-                }
-            }
-
-            // MAP FROM concrete TO abstract
-            List<String> names = new ArrayList<>();
-            for (String drinkComponentNotInsideDrink : drinkComponentsAsStringNotInsideDrink) {
-                for (String typeVanillaBeanPowder : VanillaBeanPowder.getEnumValuesAsStringForMixedType()) {
-                    if (drinkComponentNotInsideDrink.equals(typeVanillaBeanPowder)) {
-                        names.add(typeVanillaBeanPowder);
-                    }
-                }
-                for (String typeChocolateMaltPowder : ChocolateMaltPowder.getEnumValuesAsStringForMixedType()) {
-                    if (drinkComponentNotInsideDrink.equals(typeChocolateMaltPowder)) {
-                        names.add(typeChocolateMaltPowder);
-                    }
-                }
-            }
-
-            listener.onItemClicked(names.toArray(new String[0]), "NO_DEFAULT_FOR_MIXED_TYPE_INVOKER");
+            listener.onItemClicked(
+                    drinkComponentsAsStringNotInsideDrink.toArray(new String[0]),
+                    "NO_DEFAULT_FOR_MIXED_TYPE_INVOKER"
+            );
         }
         // FRUITS
         else if (drinkComponents.get(indexSelected) instanceof Fruits) {
             Log.i(TAG, "(drinkComponents.get(indexSelected) instanceof Fruits");
 
             // FIND DRINK COMPONENTS THAT ARE [not inside] THE DRINK
-            for (String enumValueAsString : FruitInclusion.getEnumValuesAsStringForMixedType()) {
-                Log.i(TAG, "FruitInclusion - enumValueAsString: " + enumValueAsString);
-                boolean isInsideDrink = false;
+            List<String> fruitInclusionAsStringNotInsideDrink = findEnumValuesNotInsideDrink(
+                    FruitInclusion.getEnumValuesAsStringForMixedType().toArray(new String[0])
+            );
+            List<String> strawberryPureeAsStringNotInsideDrink = findEnumValuesNotInsideDrink(
+                    StrawberryPuree.getEnumValuesAsStringForMixedType().toArray(new String[0])
+            );
+            drinkComponentsAsStringNotInsideDrink.addAll(fruitInclusionAsStringNotInsideDrink);
+            drinkComponentsAsStringNotInsideDrink.addAll(strawberryPureeAsStringNotInsideDrink);
 
-                for (DrinkComponent drinkComponent : drinkComponents) {
-                    Log.i(TAG, "drinkComponent CLASS: " + drinkComponent.getClassAsString() + ", TYPE: " + drinkComponent.getTypeAsString());
-                    if (enumValueAsString.equals(drinkComponent.getTypeAsString())) {
-                        Log.i(TAG, "isInsideDrink = true SKIP");
-                        isInsideDrink = true;
-                    }
-                }
-
-                if (!isInsideDrink) {
-                    Log.i(TAG, "!isInsideDrink ADD");
-                    drinkComponentsAsStringNotInsideDrink.add(enumValueAsString);
-                }
-            }
-            for (String enumValueAsString : StrawberryPuree.getEnumValuesAsStringForMixedType()) {
-                Log.i(TAG, "StrawberryPuree - enumValueAsString: " + enumValueAsString);
-                boolean isInsideDrink = false;
-
-                for (DrinkComponent drinkComponent : drinkComponents) {
-                    Log.i(TAG, "drinkComponent CLASS: " + drinkComponent.getClassAsString() + ", TYPE: " + drinkComponent.getTypeAsString());
-                    if (enumValueAsString.equals(drinkComponent.getTypeAsString())) {
-                        Log.i(TAG, "isInsideDrink = true SKIP");
-                        isInsideDrink = true;
-                    }
-                }
-
-                if (!isInsideDrink) {
-                    Log.i(TAG, "!isInsideDrink ADD");
-                    drinkComponentsAsStringNotInsideDrink.add(enumValueAsString);
-                }
-            }
-
-            // MAP FROM concrete TO abstract
-            List<String> names = new ArrayList<>();
-            for (String drinkComponentNotInsideDrink : drinkComponentsAsStringNotInsideDrink) {
-                for (String typeFruitInclusion : FruitInclusion.getEnumValuesAsStringForMixedType()) {
-                    if (drinkComponentNotInsideDrink.equals(typeFruitInclusion)) {
-                        names.add(typeFruitInclusion);
-                    }
-                }
-                for (String typeStrawberryPuree : StrawberryPuree.getEnumValuesAsStringForMixedType()) {
-                    if (drinkComponentNotInsideDrink.equals(typeStrawberryPuree)) {
-                        names.add(typeStrawberryPuree);
-                    }
-                }
-            }
-
-            listener.onItemClicked(names.toArray(new String[0]), "NO_DEFAULT_FOR_MIXED_TYPE_INVOKER");
+            listener.onItemClicked(
+                    drinkComponentsAsStringNotInsideDrink.toArray(new String[0]),
+                    "NO_DEFAULT_FOR_MIXED_TYPE_INVOKER"
+            );
         } else {
             Log.e(TAG, "drinkComponents.get(indexSelected) NOT instanceof Powders nor Fruits");
         }
