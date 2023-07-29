@@ -29,9 +29,10 @@ import java.util.List;
 public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public static final String TAG = DrinkComponentBaseAdapter.class.getSimpleName();
 
-    protected static final int VIEW_TYPE_INCREMENTABLE = 0;
+    protected static final int VIEW_TYPE_INCREMENTABLE_SELECTION = 0;
     protected static final int VIEW_TYPE_GRANULAR_SELECTION = 1;
-    protected static final int VIEW_TYPE_SIMPLE_SELECTION = 2;
+    protected static final int VIEW_TYPE_MIXED_TYPE_SELECTION = 2;
+    protected static final int VIEW_TYPE_SIMPLE_SELECTION = 3;
 
     private static final String COLOR_DEFAULT = "#1B455F";
     private static final String COLOR_CUSTOMIZED = "#AAFF00";
@@ -71,9 +72,11 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
     public int getItemViewType(int position) {
         DrinkComponent drinkComponent = drinkComponents.get(position);
         if (drinkComponent instanceof Incrementable) {
-            return VIEW_TYPE_INCREMENTABLE;
+            return VIEW_TYPE_INCREMENTABLE_SELECTION;
         } else if (drinkComponent instanceof Granular) {
             return VIEW_TYPE_GRANULAR_SELECTION;
+        } else if (drinkComponent instanceof MixedType) {
+            return VIEW_TYPE_MIXED_TYPE_SELECTION;
         } else {
             return VIEW_TYPE_SIMPLE_SELECTION;
         }
@@ -82,12 +85,15 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        if (viewType == VIEW_TYPE_INCREMENTABLE) {
+        if (viewType == VIEW_TYPE_INCREMENTABLE_SELECTION) {
             View viewIncrementable = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_incrementable, parent, false);
-            return new ViewHolderIncrementable(viewIncrementable);
+            return new ViewHolderIncrementableSelection(viewIncrementable);
         } else if (viewType == VIEW_TYPE_GRANULAR_SELECTION) {
             View viewGranularSelection = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_granular_selection, parent, false);
             return new ViewHolderGranularSelection(viewGranularSelection);
+        } else if (viewType == VIEW_TYPE_MIXED_TYPE_SELECTION) {
+            View viewMixedTypeSelection = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_mixed_type_selection, parent, false);
+            return new ViewHolderSimpleSelection(viewMixedTypeSelection);
         } else {
             View viewSimpleSelection = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_simple_selection, parent, false);
             return new ViewHolderSimpleSelection(viewSimpleSelection);
@@ -98,10 +104,12 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         DrinkComponent drinkComponent = drinkComponents.get(position);
         String drinkComponentDefaultAsString = drinkComponentsDefaultAsString.get(position);
-        if (holder instanceof ViewHolderIncrementable) {
-            ((ViewHolderIncrementable) holder).bind(drinkComponent, drinkComponentDefaultAsString);
+        if (holder instanceof ViewHolderIncrementableSelection) {
+            ((ViewHolderIncrementableSelection) holder).bind(drinkComponent, drinkComponentDefaultAsString);
         } else if (holder instanceof ViewHolderGranularSelection) {
             ((ViewHolderGranularSelection) holder).bind(drinkComponent, drinkComponentDefaultAsString);
+        } else if (holder instanceof ViewHolderMixedTypeSelection) {
+            ((ViewHolderMixedTypeSelection) holder).bind(drinkComponent, drinkComponentDefaultAsString);
         } else {
             ((ViewHolderSimpleSelection) holder).bind(drinkComponent, drinkComponentDefaultAsString);
         }
@@ -170,6 +178,88 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
     protected abstract void handleSelectionOfDefaultForAllowable(DrinkComponent drinkComponentSelected, String drinkComponentDefaultAsStringSelected, String name);
 
     protected abstract void handleSelectionOfNonDefaultForAllowable(DrinkComponent drinkComponentSelected, String drinkComponentDefaultAsStringSelected, String name);
+
+    class ViewHolderMixedTypeSelection extends RecyclerView.ViewHolder
+            implements View.OnClickListener, View.OnLongClickListener {
+
+        private View viewBorder;
+        private TextView tvBorderTitle;
+        private TextView tvName;
+        private ImageView ivDropDownImage;
+
+        public ViewHolderMixedTypeSelection(@NonNull View itemView) {
+            super(itemView);
+            viewBorder = itemView.findViewById(R.id.view_border);
+            tvBorderTitle = itemView.findViewById(R.id.tv_border_title);
+            tvName = itemView.findViewById(R.id.tv_name);
+            ivDropDownImage = itemView.findViewById(R.id.iv_drop_down_image);
+            itemView.setOnClickListener(this);
+            itemView.setOnLongClickListener(this);
+        }
+
+        public void bind(DrinkComponent drinkComponent, String drinkComponentDefaultAsString) {
+            updateScreen(drinkComponent, drinkComponentDefaultAsString);
+        }
+
+        public void updateScreen(DrinkComponent drinkComponent, String drinkComponentDefaultAsString) {
+            tvBorderTitle.setText(drinkComponent.getClassAsString());
+
+            boolean init = drinkComponent.getTypeAsString().equals(DrinkComponent.NULL_TYPE_AS_STRING);
+            if (init) {
+                tvName.setText(drinkComponent.getTextInit());
+
+                tvBorderTitle.setVisibility(View.INVISIBLE);
+
+                viewBorder.setBackgroundResource(BACKGROUND_BORDER_INIT);
+            } else {
+                tvName.setText(drinkComponent.getTypeAsString());
+
+                tvBorderTitle.setVisibility(View.VISIBLE);
+
+                boolean defaultSelected =
+                        (drinkComponent.getTypeAsString().equals(drinkComponentDefaultAsString)) ? true : false;
+                updateBorderColor(defaultSelected);
+            }
+        }
+
+        private void updateBorderColor(boolean defaultSelected) {
+            if (defaultSelected) {
+                tvBorderTitle.setTextColor(Color.parseColor(COLOR_DEFAULT));
+
+                viewBorder.setBackgroundResource(BACKGROUND_BORDER_DEFAULT);
+            } else {
+                tvBorderTitle.setTextColor(Color.parseColor(COLOR_CUSTOMIZED));
+
+                viewBorder.setBackgroundResource(BACKGROUND_BORDER_CUSTOMIZED);
+            }
+        }
+
+        @Override
+        public void onClick(View view) {
+            indexSelected = getAdapterPosition(); // gets item position
+            viewHolderSelected = ViewHolderMixedTypeSelection.this;
+            Log.i(TAG, "item in RV clicked! position: " + indexSelected);
+            if (indexSelected != RecyclerView.NO_POSITION) { // Check if an item was deleted, but the user clicked it before the UI removed it
+                handleClickForViewHolderMixedTypeSelection();
+            }
+        }
+
+        @Override
+        public boolean onLongClick(View view) {
+            int position = getAdapterPosition(); // gets item position
+            Log.i(TAG, "item in RV long-clicked! position: " + position);
+//            if (position != RecyclerView.NO_POSITION) { // Check if an item was deleted, but the user clicked it before the UI removed it
+//                if (listener != null) {
+//                    DrinkComponent drinkComponent = drinkComponents.get(position);
+//                    String[] enumsAsString = drinkComponent.getEnumValuesAsStringArray();
+//                    String nameDefault = drinkComponentsDefaultAsString.get(position);
+//                    listener.onItemLongClicked(enumsAsString, nameDefault);
+//                    return true;
+//                }
+//            }
+            return false;
+        }
+    }
 
     class ViewHolderGranularSelection extends RecyclerView.ViewHolder
             implements View.OnClickListener, View.OnLongClickListener {
@@ -259,98 +349,7 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
         }
     }
 
-    class ViewHolderSimpleSelection extends RecyclerView.ViewHolder
-            implements View.OnClickListener, View.OnLongClickListener {
-
-        private View viewBorder;
-        private TextView tvBorderTitle;
-        private TextView tvName;
-        private ImageView ivDropDownImage;
-
-        public ViewHolderSimpleSelection(@NonNull View itemView) {
-            super(itemView);
-            viewBorder = itemView.findViewById(R.id.view_border);
-            tvBorderTitle = itemView.findViewById(R.id.tv_border_title);
-            tvName = itemView.findViewById(R.id.tv_name);
-            ivDropDownImage = itemView.findViewById(R.id.iv_drop_down_image);
-            itemView.setOnClickListener(this);
-            itemView.setOnLongClickListener(this);
-        }
-
-        public void bind(DrinkComponent drinkComponent, String drinkComponentDefaultAsString) {
-            updateScreen(drinkComponent, drinkComponentDefaultAsString);
-        }
-
-        public void updateScreen(DrinkComponent drinkComponent, String drinkComponentDefaultAsString) {
-            tvBorderTitle.setText(drinkComponent.getClassAsString());
-
-            boolean init = drinkComponent.getTypeAsString().equals(DrinkComponent.NULL_TYPE_AS_STRING);
-            if (init) {
-                tvName.setText(drinkComponent.getTextInit());
-
-                tvBorderTitle.setVisibility(View.INVISIBLE);
-
-                viewBorder.setBackgroundResource(BACKGROUND_BORDER_INIT);
-
-                int imageDropDown = R.drawable.ic_menu_arrow_down;
-                if (drinkComponent instanceof MixedType) {
-                    imageDropDown = R.drawable.ic_menu_add;
-                }
-                ivDropDownImage.setImageResource(imageDropDown);
-            } else {
-                tvName.setText(drinkComponent.getTypeAsString());
-
-                tvBorderTitle.setVisibility(View.VISIBLE);
-
-                boolean defaultSelected =
-                        (drinkComponent.getTypeAsString().equals(drinkComponentDefaultAsString)) ? true : false;
-                updateBorderColor(defaultSelected);
-
-                int imageDropDown = R.drawable.ic_menu_arrow_down;
-                ivDropDownImage.setImageResource(imageDropDown);
-            }
-        }
-
-        private void updateBorderColor(boolean defaultSelected) {
-            if (defaultSelected) {
-                tvBorderTitle.setTextColor(Color.parseColor(COLOR_DEFAULT));
-
-                viewBorder.setBackgroundResource(BACKGROUND_BORDER_DEFAULT);
-            } else {
-                tvBorderTitle.setTextColor(Color.parseColor(COLOR_CUSTOMIZED));
-
-                viewBorder.setBackgroundResource(BACKGROUND_BORDER_CUSTOMIZED);
-            }
-        }
-
-        @Override
-        public void onClick(View view) {
-            indexSelected = getAdapterPosition(); // gets item position
-            viewHolderSelected = ViewHolderSimpleSelection.this;
-            Log.i(TAG, "item in RV clicked! position: " + indexSelected);
-            if (indexSelected != RecyclerView.NO_POSITION) { // Check if an item was deleted, but the user clicked it before the UI removed it
-                handleClickForViewHolderSimpleSelection();
-            }
-        }
-
-        @Override
-        public boolean onLongClick(View view) {
-            int position = getAdapterPosition(); // gets item position
-            Log.i(TAG, "item in RV long-clicked! position: " + position);
-//            if (position != RecyclerView.NO_POSITION) { // Check if an item was deleted, but the user clicked it before the UI removed it
-//                if (listener != null) {
-//                    DrinkComponent drinkComponent = drinkComponents.get(position);
-//                    String[] enumsAsString = drinkComponent.getEnumValuesAsStringArray();
-//                    String nameDefault = drinkComponentsDefaultAsString.get(position);
-//                    listener.onItemLongClicked(enumsAsString, nameDefault);
-//                    return true;
-//                }
-//            }
-            return false;
-        }
-    }
-
-    class ViewHolderIncrementable extends RecyclerView.ViewHolder
+    class ViewHolderIncrementableSelection extends RecyclerView.ViewHolder
             implements View.OnClickListener, View.OnLongClickListener {
 
         private View viewBorder;
@@ -360,7 +359,7 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
         private TextView tvQuantity;
         private ImageView ivMinus;
 
-        public ViewHolderIncrementable(@NonNull View itemView) {
+        public ViewHolderIncrementableSelection(@NonNull View itemView) {
             super(itemView);
             viewBorder = itemView.findViewById(R.id.view_border);
             tvBorderTitle = itemView.findViewById(R.id.tv_border_title);
@@ -442,7 +441,7 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
         @Override
         public void onClick(View view) {
             indexSelected = getAdapterPosition(); // gets item position
-            viewHolderSelected = ViewHolderIncrementable.this;
+            viewHolderSelected = ViewHolderIncrementableSelection.this;
             Log.i(TAG, "item in RV clicked! position: " + indexSelected);
             if (indexSelected != RecyclerView.NO_POSITION) { // Check if an item was deleted, but the user clicked it before the UI removed it
                 handleClickForViewHolderIncrementable();
@@ -462,150 +461,214 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
 //            }
             return false;
         }
-
     }
 
-    protected void handleClickForViewHolderIncrementable() {
-        Log.i(TAG, "handleClickForViewHolderIncrementable()");
+    class ViewHolderSimpleSelection extends RecyclerView.ViewHolder
+            implements View.OnClickListener, View.OnLongClickListener {
 
-        // intentionally doing nothing (CustomizeInnerAdapter overrides this).
+        private View viewBorder;
+        private TextView tvBorderTitle;
+        private TextView tvName;
+        private ImageView ivDropDownImage;
+
+        public ViewHolderSimpleSelection(@NonNull View itemView) {
+            super(itemView);
+            viewBorder = itemView.findViewById(R.id.view_border);
+            tvBorderTitle = itemView.findViewById(R.id.tv_border_title);
+            tvName = itemView.findViewById(R.id.tv_name);
+            ivDropDownImage = itemView.findViewById(R.id.iv_drop_down_image);
+            itemView.setOnClickListener(this);
+            itemView.setOnLongClickListener(this);
+        }
+
+        public void bind(DrinkComponent drinkComponent, String drinkComponentDefaultAsString) {
+            updateScreen(drinkComponent, drinkComponentDefaultAsString);
+        }
+
+        public void updateScreen(DrinkComponent drinkComponent, String drinkComponentDefaultAsString) {
+            tvBorderTitle.setText(drinkComponent.getClassAsString());
+
+            boolean init = drinkComponent.getTypeAsString().equals(DrinkComponent.NULL_TYPE_AS_STRING);
+            if (init) {
+                tvName.setText(drinkComponent.getTextInit());
+
+                tvBorderTitle.setVisibility(View.INVISIBLE);
+
+                viewBorder.setBackgroundResource(BACKGROUND_BORDER_INIT);
+            } else {
+                tvName.setText(drinkComponent.getTypeAsString());
+
+                tvBorderTitle.setVisibility(View.VISIBLE);
+
+                boolean defaultSelected =
+                        (drinkComponent.getTypeAsString().equals(drinkComponentDefaultAsString)) ? true : false;
+                updateBorderColor(defaultSelected);
+            }
+        }
+
+        private void updateBorderColor(boolean defaultSelected) {
+            if (defaultSelected) {
+                tvBorderTitle.setTextColor(Color.parseColor(COLOR_DEFAULT));
+
+                viewBorder.setBackgroundResource(BACKGROUND_BORDER_DEFAULT);
+            } else {
+                tvBorderTitle.setTextColor(Color.parseColor(COLOR_CUSTOMIZED));
+
+                viewBorder.setBackgroundResource(BACKGROUND_BORDER_CUSTOMIZED);
+            }
+        }
+
+        @Override
+        public void onClick(View view) {
+            indexSelected = getAdapterPosition(); // gets item position
+            viewHolderSelected = ViewHolderSimpleSelection.this;
+            Log.i(TAG, "item in RV clicked! position: " + indexSelected);
+            if (indexSelected != RecyclerView.NO_POSITION) { // Check if an item was deleted, but the user clicked it before the UI removed it
+                handleClickForViewHolderSimpleSelection();
+            }
+        }
+
+        @Override
+        public boolean onLongClick(View view) {
+            int position = getAdapterPosition(); // gets item position
+            Log.i(TAG, "item in RV long-clicked! position: " + position);
+//            if (position != RecyclerView.NO_POSITION) { // Check if an item was deleted, but the user clicked it before the UI removed it
+//                if (listener != null) {
+//                    DrinkComponent drinkComponent = drinkComponents.get(position);
+//                    String[] enumsAsString = drinkComponent.getEnumValuesAsStringArray();
+//                    String nameDefault = drinkComponentsDefaultAsString.get(position);
+//                    listener.onItemLongClicked(enumsAsString, nameDefault);
+//                    return true;
+//                }
+//            }
+            return false;
+        }
     }
 
-    private void handleClickForViewHolderSimpleSelection() {
-        Log.i(TAG, "handleClickForViewHolderSimpleSelection()");
+    private void handleClickForViewHolderMixedTypeSelection() {
+        Log.i(TAG, "handleClickForViewHolderMixedTypeSelection()");
 
         if (listener == null) {
             Log.e(TAG, "listener == null");
             return;
         }
 
-        // TODO: [MixedType] should filter list of what's already inside drink.
-        if (drinkComponents.get(indexSelected) instanceof MixedType) {
-            Log.i(TAG, "(drinkComponents.get(indexSelected) instanceof MixedType");
+        List<String> drinkComponentsAsStringNotInsideDrink = new ArrayList<>();
+        // POWDERS
+        if (drinkComponents.get(indexSelected) instanceof Powders) {
+            Log.i(TAG, "(drinkComponents.get(indexSelected) instanceof Powders");
 
-            List<String> drinkComponentsAsStringNotInsideDrink = new ArrayList<>();
-            // POWDERS
-            if (drinkComponents.get(indexSelected) instanceof Powders) {
-                Log.i(TAG, "(drinkComponents.get(indexSelected) instanceof Powders");
+            // FIND DRINK COMPONENTS THAT ARE [not inside] THE DRINK
+            for (String enumValueAsString : VanillaBeanPowder.getEnumValuesAsStringForMixedType()) {
+                Log.i(TAG, "VanillaBeanPowder - enumValueAsString: " + enumValueAsString);
+                boolean isInsideDrink = false;
 
-                // FIND DRINK COMPONENTS THAT ARE [not inside] THE DRINK
-                for (String enumValueAsString : VanillaBeanPowder.getEnumValuesAsStringForMixedType()) {
-                    Log.i(TAG, "VanillaBeanPowder - enumValueAsString: " + enumValueAsString);
-                    boolean isInsideDrink = false;
-
-                    for (DrinkComponent drinkComponent : drinkComponents) {
-                        Log.i(TAG, "drinkComponent CLASS: " + drinkComponent.getClassAsString() + ", TYPE: " + drinkComponent.getTypeAsString());
-                        if (enumValueAsString.equals(drinkComponent.getTypeAsString())) {
-                            Log.i(TAG, "isInsideDrink = true SKIP");
-                            isInsideDrink = true;
-                        }
-                    }
-
-                    if (!isInsideDrink) {
-                        Log.i(TAG, "!isInsideDrink ADD");
-                        drinkComponentsAsStringNotInsideDrink.add(enumValueAsString);
-                    }
-                }
-                for (String enumValueAsString : ChocolateMaltPowder.getEnumValuesAsStringForMixedType()) {
-                    Log.i(TAG, "ChocolateMaltPowder - enumValueAsString: " + enumValueAsString);
-                    boolean isInsideDrink = false;
-
-                    for (DrinkComponent drinkComponent : drinkComponents) {
-                        Log.i(TAG, "drinkComponent CLASS: " + drinkComponent.getClassAsString() + ", TYPE: " + drinkComponent.getTypeAsString());
-                        if (enumValueAsString.equals(drinkComponent.getTypeAsString())) {
-                            Log.i(TAG, "isInsideDrink = true SKIP");
-                            isInsideDrink = true;
-                        }
-                    }
-
-                    if (!isInsideDrink) {
-                        Log.i(TAG, "!isInsideDrink ADD");
-                        drinkComponentsAsStringNotInsideDrink.add(enumValueAsString);
+                for (DrinkComponent drinkComponent : drinkComponents) {
+                    Log.i(TAG, "drinkComponent CLASS: " + drinkComponent.getClassAsString() + ", TYPE: " + drinkComponent.getTypeAsString());
+                    if (enumValueAsString.equals(drinkComponent.getTypeAsString())) {
+                        Log.i(TAG, "isInsideDrink = true SKIP");
+                        isInsideDrink = true;
                     }
                 }
 
-                // MAP FROM concrete TO abstract
-                List<String> names = new ArrayList<>();
-                for (String drinkComponentNotInsideDrink : drinkComponentsAsStringNotInsideDrink) {
-                    for (String typeVanillaBeanPowder : VanillaBeanPowder.getEnumValuesAsStringForMixedType()) {
-                        if (drinkComponentNotInsideDrink.equals(typeVanillaBeanPowder)) {
-                            names.add(typeVanillaBeanPowder);
-                        }
-                    }
-                    for (String typeChocolateMaltPowder : ChocolateMaltPowder.getEnumValuesAsStringForMixedType()) {
-                        if (drinkComponentNotInsideDrink.equals(typeChocolateMaltPowder)) {
-                            names.add(typeChocolateMaltPowder);
-                        }
-                    }
+                if (!isInsideDrink) {
+                    Log.i(TAG, "!isInsideDrink ADD");
+                    drinkComponentsAsStringNotInsideDrink.add(enumValueAsString);
                 }
-
-                listener.onItemClicked(names.toArray(new String[0]), "NO_DEFAULT_FOR_MIXED_TYPE_INVOKER");
             }
-            // FRUITS
-            else if (drinkComponents.get(indexSelected) instanceof Fruits) {
-                Log.i(TAG, "(drinkComponents.get(indexSelected) instanceof Fruits");
+            for (String enumValueAsString : ChocolateMaltPowder.getEnumValuesAsStringForMixedType()) {
+                Log.i(TAG, "ChocolateMaltPowder - enumValueAsString: " + enumValueAsString);
+                boolean isInsideDrink = false;
 
-                // FIND DRINK COMPONENTS THAT ARE [not inside] THE DRINK
-                for (String enumValueAsString : FruitInclusion.getEnumValuesAsStringForMixedType()) {
-                    Log.i(TAG, "FruitInclusion - enumValueAsString: " + enumValueAsString);
-                    boolean isInsideDrink = false;
-
-                    for (DrinkComponent drinkComponent : drinkComponents) {
-                        Log.i(TAG, "drinkComponent CLASS: " + drinkComponent.getClassAsString() + ", TYPE: " + drinkComponent.getTypeAsString());
-                        if (enumValueAsString.equals(drinkComponent.getTypeAsString())) {
-                            Log.i(TAG, "isInsideDrink = true SKIP");
-                            isInsideDrink = true;
-                        }
-                    }
-
-                    if (!isInsideDrink) {
-                        Log.i(TAG, "!isInsideDrink ADD");
-                        drinkComponentsAsStringNotInsideDrink.add(enumValueAsString);
-                    }
-                }
-                for (String enumValueAsString : StrawberryPuree.getEnumValuesAsStringForMixedType()) {
-                    Log.i(TAG, "StrawberryPuree - enumValueAsString: " + enumValueAsString);
-                    boolean isInsideDrink = false;
-
-                    for (DrinkComponent drinkComponent : drinkComponents) {
-                        Log.i(TAG, "drinkComponent CLASS: " + drinkComponent.getClassAsString() + ", TYPE: " + drinkComponent.getTypeAsString());
-                        if (enumValueAsString.equals(drinkComponent.getTypeAsString())) {
-                            Log.i(TAG, "isInsideDrink = true SKIP");
-                            isInsideDrink = true;
-                        }
-                    }
-
-                    if (!isInsideDrink) {
-                        Log.i(TAG, "!isInsideDrink ADD");
-                        drinkComponentsAsStringNotInsideDrink.add(enumValueAsString);
+                for (DrinkComponent drinkComponent : drinkComponents) {
+                    Log.i(TAG, "drinkComponent CLASS: " + drinkComponent.getClassAsString() + ", TYPE: " + drinkComponent.getTypeAsString());
+                    if (enumValueAsString.equals(drinkComponent.getTypeAsString())) {
+                        Log.i(TAG, "isInsideDrink = true SKIP");
+                        isInsideDrink = true;
                     }
                 }
 
-                // MAP FROM concrete TO abstract
-                List<String> names = new ArrayList<>();
-                for (String drinkComponentNotInsideDrink : drinkComponentsAsStringNotInsideDrink) {
-                    for (String typeFruitInclusion : FruitInclusion.getEnumValuesAsStringForMixedType()) {
-                        if (drinkComponentNotInsideDrink.equals(typeFruitInclusion)) {
-                            names.add(typeFruitInclusion);
-                        }
-                    }
-                    for (String typeStrawberryPuree : StrawberryPuree.getEnumValuesAsStringForMixedType()) {
-                        if (drinkComponentNotInsideDrink.equals(typeStrawberryPuree)) {
-                            names.add(typeStrawberryPuree);
-                        }
-                    }
+                if (!isInsideDrink) {
+                    Log.i(TAG, "!isInsideDrink ADD");
+                    drinkComponentsAsStringNotInsideDrink.add(enumValueAsString);
                 }
-
-                listener.onItemClicked(names.toArray(new String[0]), "NO_DEFAULT_FOR_MIXED_TYPE_INVOKER");
-            } else {
-                Log.e(TAG, "drinkComponents.get(indexSelected) NOT instanceof Powders nor Fruits");
             }
+
+            // MAP FROM concrete TO abstract
+            List<String> names = new ArrayList<>();
+            for (String drinkComponentNotInsideDrink : drinkComponentsAsStringNotInsideDrink) {
+                for (String typeVanillaBeanPowder : VanillaBeanPowder.getEnumValuesAsStringForMixedType()) {
+                    if (drinkComponentNotInsideDrink.equals(typeVanillaBeanPowder)) {
+                        names.add(typeVanillaBeanPowder);
+                    }
+                }
+                for (String typeChocolateMaltPowder : ChocolateMaltPowder.getEnumValuesAsStringForMixedType()) {
+                    if (drinkComponentNotInsideDrink.equals(typeChocolateMaltPowder)) {
+                        names.add(typeChocolateMaltPowder);
+                    }
+                }
+            }
+
+            listener.onItemClicked(names.toArray(new String[0]), "NO_DEFAULT_FOR_MIXED_TYPE_INVOKER");
+        }
+        // FRUITS
+        else if (drinkComponents.get(indexSelected) instanceof Fruits) {
+            Log.i(TAG, "(drinkComponents.get(indexSelected) instanceof Fruits");
+
+            // FIND DRINK COMPONENTS THAT ARE [not inside] THE DRINK
+            for (String enumValueAsString : FruitInclusion.getEnumValuesAsStringForMixedType()) {
+                Log.i(TAG, "FruitInclusion - enumValueAsString: " + enumValueAsString);
+                boolean isInsideDrink = false;
+
+                for (DrinkComponent drinkComponent : drinkComponents) {
+                    Log.i(TAG, "drinkComponent CLASS: " + drinkComponent.getClassAsString() + ", TYPE: " + drinkComponent.getTypeAsString());
+                    if (enumValueAsString.equals(drinkComponent.getTypeAsString())) {
+                        Log.i(TAG, "isInsideDrink = true SKIP");
+                        isInsideDrink = true;
+                    }
+                }
+
+                if (!isInsideDrink) {
+                    Log.i(TAG, "!isInsideDrink ADD");
+                    drinkComponentsAsStringNotInsideDrink.add(enumValueAsString);
+                }
+            }
+            for (String enumValueAsString : StrawberryPuree.getEnumValuesAsStringForMixedType()) {
+                Log.i(TAG, "StrawberryPuree - enumValueAsString: " + enumValueAsString);
+                boolean isInsideDrink = false;
+
+                for (DrinkComponent drinkComponent : drinkComponents) {
+                    Log.i(TAG, "drinkComponent CLASS: " + drinkComponent.getClassAsString() + ", TYPE: " + drinkComponent.getTypeAsString());
+                    if (enumValueAsString.equals(drinkComponent.getTypeAsString())) {
+                        Log.i(TAG, "isInsideDrink = true SKIP");
+                        isInsideDrink = true;
+                    }
+                }
+
+                if (!isInsideDrink) {
+                    Log.i(TAG, "!isInsideDrink ADD");
+                    drinkComponentsAsStringNotInsideDrink.add(enumValueAsString);
+                }
+            }
+
+            // MAP FROM concrete TO abstract
+            List<String> names = new ArrayList<>();
+            for (String drinkComponentNotInsideDrink : drinkComponentsAsStringNotInsideDrink) {
+                for (String typeFruitInclusion : FruitInclusion.getEnumValuesAsStringForMixedType()) {
+                    if (drinkComponentNotInsideDrink.equals(typeFruitInclusion)) {
+                        names.add(typeFruitInclusion);
+                    }
+                }
+                for (String typeStrawberryPuree : StrawberryPuree.getEnumValuesAsStringForMixedType()) {
+                    if (drinkComponentNotInsideDrink.equals(typeStrawberryPuree)) {
+                        names.add(typeStrawberryPuree);
+                    }
+                }
+            }
+
+            listener.onItemClicked(names.toArray(new String[0]), "NO_DEFAULT_FOR_MIXED_TYPE_INVOKER");
         } else {
-            Log.i(TAG, "(drinkComponents.get(indexSelected) NOT instanceof MixedType");
-
-            String[] names = drinkComponents.get(indexSelected).getEnumValuesAsStringArray();
-            String nameDefault = drinkComponentsDefaultAsString.get(indexSelected);
-            listener.onItemClicked(names, nameDefault);
+            Log.e(TAG, "drinkComponents.get(indexSelected) NOT instanceof Powders nor Fruits");
         }
     }
 
@@ -654,6 +717,82 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
 
             listener.onItemClicked(names, nameDefault);
         }
+    }
+
+    protected void handleClickForViewHolderIncrementable() {
+        Log.i(TAG, "handleClickForViewHolderIncrementable()");
+
+        if (listener == null) {
+            Log.e(TAG, "listener == null");
+            return;
+        }
+
+        DrinkComponent drinkComponentSelected = drinkComponents.get(indexSelected);
+        String drinkComponentDefaultAsStringSelected = drinkComponentsDefaultAsString.get(indexSelected);
+        int quantity = ((Incrementable) drinkComponentSelected).getQuantity();
+
+        if (quantity == Incrementable.QUANTITY_FOR_INVOKER) {
+            Log.i(TAG, "quantity == Incrementable.QUANTITY_FOR_INVOKER");
+
+            String[] enumValues = drinkComponentSelected.getEnumValuesAsStringArray();
+            if (enumValues.length == 1) {
+                Log.i(TAG, "enumValues.length == 1");
+
+                drinkComponentSelected.setTypeByString(enumValues[0]);
+                ((Incrementable) drinkComponentSelected).setQuantity(1);
+                notifyItemChanged(indexSelected);
+            } else {
+                Log.i(TAG, "enumValues.length != 1");
+
+                List<String> enumValuesFiltered = new ArrayList<>();
+                for (String enumValueAsString : enumValues) {
+                    boolean isInsideDrink = false;
+
+                    for (DrinkComponent drinkComponent : drinkComponents) {
+                        if (enumValueAsString.equals(drinkComponent.getTypeAsString())) {
+                            isInsideDrink = true;
+                        }
+                    }
+
+                    if (!isInsideDrink) {
+                        enumValuesFiltered.add(enumValueAsString);
+                    }
+                }
+
+                // TODO: redo below check (move to after making the second-to-last selection),
+                //  maybe do a check here for (enumValuesFiltered.size() == 2) [second to last]...
+                //  but potential the user doesn't select (they may [dismiss] the bottom sheet).
+
+                // TODO: below check is NEEDED. but still have another check after making
+                //  second-to-last selection. Think through DrinkComponent with 3 Type values...
+                //  (1) all 3 already inside drink    |  enumValuesFiltered.size() == 0
+                //  (2) 2 already inside drink, 1 not |  enumValuesFiltered.size() == 1
+                //  (3) 1 already inside drink, 2 not |  enumValuesFiltered.size() == 2 (potential second-to-last)
+                //  (4) none inside drink, 3 not      |  enumValuesFiltered.size() == 3
+                if (enumValuesFiltered.size() == 1) {
+                    drinkComponentSelected.setTypeByString(enumValuesFiltered.get(0));
+                    ((Incrementable) drinkComponentSelected).setQuantity(1);
+                    notifyItemChanged(indexSelected);
+                } else {
+                    listener.onItemClicked(enumValuesFiltered.toArray(new String[0]), drinkComponentDefaultAsStringSelected);
+                }
+            }
+        } else {
+            Log.i(TAG, "quantity != Incrementable.QUANTITY_FOR_INVOKER");
+        }
+    }
+
+    private void handleClickForViewHolderSimpleSelection() {
+        Log.i(TAG, "handleClickForViewHolderSimpleSelection()");
+
+        if (listener == null) {
+            Log.e(TAG, "listener == null");
+            return;
+        }
+
+        String[] names = drinkComponents.get(indexSelected).getEnumValuesAsStringArray();
+        String nameDefault = drinkComponentsDefaultAsString.get(indexSelected);
+        listener.onItemClicked(names, nameDefault);
     }
 
     protected List<String> findEnumValuesNotInsideDrink(String[] enumValues) {
