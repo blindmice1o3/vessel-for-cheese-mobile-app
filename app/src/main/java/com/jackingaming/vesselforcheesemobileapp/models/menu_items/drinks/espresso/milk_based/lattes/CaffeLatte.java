@@ -164,7 +164,7 @@ public class CaffeLatte extends Lattes {
         toppingOptionsDefault.add(DEFAULT_DRIZZLE_AMOUNT.name());
         toppingOptionsDefault.add(DEFAULT_TOPPING_AMOUNT.name());
         toppingOptionsDefault.add(DEFAULT_WHIPPED_CREAM_AMOUNT.name());
-        // ADD_INS_OPTIONS
+        // ADD_INS_OPTIONS (defaults)
         List<String> addInsOptionsDefault = new ArrayList<>();
         addInsOptionsDefault.add(DEFAULT_LINE_THE_CUP.name());
         addInsOptionsDefault.add(DEFAULT_POWDERS);

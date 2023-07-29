@@ -188,6 +188,8 @@ public class CustomizeInnerAdapter extends DrinkComponentBaseAdapter {
             DrinkComponent drinkComponentToAdd = null;
             String drinkComponentDefaultAsStringToAdd = null;
             if (drinkComponentSelected instanceof Powders) {
+                Log.i(TAG, "drinkComponentSelected instanceof Powders");
+
                 for (String typeVanillaBeanPowder : VanillaBeanPowder.getEnumValuesAsStringForMixedType()) {
                     if (name.equals(typeVanillaBeanPowder)) {
                         // TODO: quantity should depend on DrinkSize
@@ -289,8 +291,12 @@ public class CustomizeInnerAdapter extends DrinkComponentBaseAdapter {
                     drinkComponents.set(indexSelected + 1, drinkComponentNotInsideDrink);
                     drinkComponentsDefaultAsString.set(indexSelected + 1, drinkComponentDefaultNotInsideDrink);
                     notifyItemChanged(indexSelected + 1);
+                } else {
+                    Log.i(TAG, "NOT lastOption");
                 }
             } else if (drinkComponentSelected instanceof Fruits) {
+                Log.i(TAG, "drinkComponentSelected instanceof Fruits");
+
                 for (String typeFruitInclusion : FruitInclusion.getEnumValuesAsStringForMixedType()) {
                     if (name.equals(typeFruitInclusion)) {
                         // TODO: quantity should depend on DrinkSize

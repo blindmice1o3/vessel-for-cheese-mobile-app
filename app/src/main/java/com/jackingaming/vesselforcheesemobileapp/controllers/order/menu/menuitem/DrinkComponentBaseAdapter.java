@@ -93,7 +93,7 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
             return new ViewHolderGranularSelection(viewGranularSelection);
         } else if (viewType == VIEW_TYPE_MIXED_TYPE_SELECTION) {
             View viewMixedTypeSelection = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_mixed_type_selection, parent, false);
-            return new ViewHolderSimpleSelection(viewMixedTypeSelection);
+            return new ViewHolderMixedTypeSelection(viewMixedTypeSelection);
         } else {
             View viewSimpleSelection = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_simple_selection, parent, false);
             return new ViewHolderSimpleSelection(viewSimpleSelection);
@@ -401,10 +401,9 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
             tvBorderTitle.setText(drinkComponent.getClassAsString());
             tvQuantity.setText(quantityAsString);
 
-            boolean init = quantity < 0;
+            boolean init = quantity == Incrementable.QUANTITY_FOR_INVOKER;
             boolean quantityIsZero = quantity == 0;
             if (init || quantityIsZero) {
-                Log.e(TAG, "init || quantityIsZero (invisible)");
                 tvName.setText(drinkComponent.getTextInit());
 
                 tvBorderTitle.setVisibility(View.INVISIBLE);
@@ -444,7 +443,7 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
             viewHolderSelected = ViewHolderIncrementableSelection.this;
             Log.i(TAG, "item in RV clicked! position: " + indexSelected);
             if (indexSelected != RecyclerView.NO_POSITION) { // Check if an item was deleted, but the user clicked it before the UI removed it
-                handleClickForViewHolderIncrementable();
+                handleClickForViewHolderIncrementableSelection();
             }
         }
 
@@ -553,46 +552,54 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
             return;
         }
 
-        List<String> drinkComponentsAsStringNotInsideDrink = new ArrayList<>();
+        DrinkComponent drinkComponentSelected = drinkComponents.get(indexSelected);
+        String drinkComponentDefaultAsStringSelected = drinkComponentsDefaultAsString.get(indexSelected);
+
         // POWDERS
-        if (drinkComponents.get(indexSelected) instanceof Powders) {
-            Log.i(TAG, "(drinkComponents.get(indexSelected) instanceof Powders");
+        if (drinkComponentSelected instanceof Powders) {
+            Log.i(TAG, "(drinkComponentSelected instanceof Powders");
 
             // FIND DRINK COMPONENTS THAT ARE [not inside] THE DRINK
+            List<String> drinkComponentsAsStringNotInsideDrink = new ArrayList<>();
+            // INCREMENTABLE
             List<String> vanillaBeanPowderAsStringNotInsideDrink = findEnumValuesNotInsideDrink(
                     VanillaBeanPowder.getEnumValuesAsStringForMixedType().toArray(new String[0])
             );
+            drinkComponentsAsStringNotInsideDrink.addAll(vanillaBeanPowderAsStringNotInsideDrink);
+            // GRANULAR
             List<String> chocolateMaltPowderAsStringNotInsideDrink = findEnumValuesNotInsideDrink(
                     ChocolateMaltPowder.getEnumValuesAsStringForMixedType().toArray(new String[0])
             );
-            drinkComponentsAsStringNotInsideDrink.addAll(vanillaBeanPowderAsStringNotInsideDrink);
             drinkComponentsAsStringNotInsideDrink.addAll(chocolateMaltPowderAsStringNotInsideDrink);
 
             listener.onItemClicked(
                     drinkComponentsAsStringNotInsideDrink.toArray(new String[0]),
-                    "NO_DEFAULT_FOR_MIXED_TYPE_INVOKER"
+                    drinkComponentDefaultAsStringSelected
             );
         }
         // FRUITS
-        else if (drinkComponents.get(indexSelected) instanceof Fruits) {
-            Log.i(TAG, "(drinkComponents.get(indexSelected) instanceof Fruits");
+        else if (drinkComponentSelected instanceof Fruits) {
+            Log.i(TAG, "(drinkComponentSelected instanceof Fruits");
 
             // FIND DRINK COMPONENTS THAT ARE [not inside] THE DRINK
+            List<String> drinkComponentsAsStringNotInsideDrink = new ArrayList<>();
+            // INCREMENTABLE
             List<String> fruitInclusionAsStringNotInsideDrink = findEnumValuesNotInsideDrink(
                     FruitInclusion.getEnumValuesAsStringForMixedType().toArray(new String[0])
             );
+            drinkComponentsAsStringNotInsideDrink.addAll(fruitInclusionAsStringNotInsideDrink);
+            // GRANULAR
             List<String> strawberryPureeAsStringNotInsideDrink = findEnumValuesNotInsideDrink(
                     StrawberryPuree.getEnumValuesAsStringForMixedType().toArray(new String[0])
             );
-            drinkComponentsAsStringNotInsideDrink.addAll(fruitInclusionAsStringNotInsideDrink);
             drinkComponentsAsStringNotInsideDrink.addAll(strawberryPureeAsStringNotInsideDrink);
 
             listener.onItemClicked(
                     drinkComponentsAsStringNotInsideDrink.toArray(new String[0]),
-                    "NO_DEFAULT_FOR_MIXED_TYPE_INVOKER"
+                    drinkComponentDefaultAsStringSelected
             );
         } else {
-            Log.e(TAG, "drinkComponents.get(indexSelected) NOT instanceof Powders nor Fruits");
+            Log.e(TAG, "drinkComponentSelected NOT instanceof Powders nor Fruits");
         }
     }
 
@@ -628,7 +635,10 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
 
                 // TODO: clean Granular's "invoker" bottom modal sheet handler.
 
-                listener.onItemClicked(enumValuesNotInsideDrink.toArray(new String[0]), drinkComponentDefaultAsStringSelected);
+                listener.onItemClicked(
+                        enumValuesNotInsideDrink.toArray(new String[0]),
+                        drinkComponentDefaultAsStringSelected
+                );
             }
         } else {
             Log.i(TAG, "NOT drinkComponentSelected.getTypeAsString().equals(DrinkComponent.NULL_TYPE_AS_STRING)");
@@ -643,8 +653,8 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
         }
     }
 
-    protected void handleClickForViewHolderIncrementable() {
-        Log.i(TAG, "handleClickForViewHolderIncrementable()");
+    protected void handleClickForViewHolderIncrementableSelection() {
+        Log.i(TAG, "handleClickForViewHolderIncrementableSelection()");
 
         if (listener == null) {
             Log.e(TAG, "listener == null");
@@ -655,51 +665,22 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
         String drinkComponentDefaultAsStringSelected = drinkComponentsDefaultAsString.get(indexSelected);
         int quantity = ((Incrementable) drinkComponentSelected).getQuantity();
 
-        if (quantity == Incrementable.QUANTITY_FOR_INVOKER) {
-            Log.i(TAG, "quantity == Incrementable.QUANTITY_FOR_INVOKER");
+        boolean init = quantity == Incrementable.QUANTITY_FOR_INVOKER;
+        if (init) {
+            Log.i(TAG, "init = quantity == Incrementable.QUANTITY_FOR_INVOKER");
 
             String[] enumValues = drinkComponentSelected.getEnumValuesAsStringArray();
-            if (enumValues.length == 1) {
-                Log.i(TAG, "enumValues.length == 1");
+            List<String> enumValuesFiltered = findEnumValuesNotInsideDrink(enumValues);
 
-                drinkComponentSelected.setTypeByString(enumValues[0]);
+            if (enumValuesFiltered.size() == 1) {
+                drinkComponentSelected.setTypeByString(enumValuesFiltered.get(0));
                 ((Incrementable) drinkComponentSelected).setQuantity(1);
                 notifyItemChanged(indexSelected);
             } else {
-                Log.i(TAG, "enumValues.length != 1");
-
-                List<String> enumValuesFiltered = new ArrayList<>();
-                for (String enumValueAsString : enumValues) {
-                    boolean isInsideDrink = false;
-
-                    for (DrinkComponent drinkComponent : drinkComponents) {
-                        if (enumValueAsString.equals(drinkComponent.getTypeAsString())) {
-                            isInsideDrink = true;
-                        }
-                    }
-
-                    if (!isInsideDrink) {
-                        enumValuesFiltered.add(enumValueAsString);
-                    }
-                }
-
-                // TODO: redo below check (move to after making the second-to-last selection),
-                //  maybe do a check here for (enumValuesFiltered.size() == 2) [second to last]...
-                //  but potential the user doesn't select (they may [dismiss] the bottom sheet).
-
-                // TODO: below check is NEEDED. but still have another check after making
-                //  second-to-last selection. Think through DrinkComponent with 3 Type values...
-                //  (1) all 3 already inside drink    |  enumValuesFiltered.size() == 0
-                //  (2) 2 already inside drink, 1 not |  enumValuesFiltered.size() == 1
-                //  (3) 1 already inside drink, 2 not |  enumValuesFiltered.size() == 2 (potential second-to-last)
-                //  (4) none inside drink, 3 not      |  enumValuesFiltered.size() == 3
-                if (enumValuesFiltered.size() == 1) {
-                    drinkComponentSelected.setTypeByString(enumValuesFiltered.get(0));
-                    ((Incrementable) drinkComponentSelected).setQuantity(1);
-                    notifyItemChanged(indexSelected);
-                } else {
-                    listener.onItemClicked(enumValuesFiltered.toArray(new String[0]), drinkComponentDefaultAsStringSelected);
-                }
+                listener.onItemClicked(
+                        enumValuesFiltered.toArray(new String[0]),
+                        drinkComponentDefaultAsStringSelected
+                );
             }
         } else {
             Log.i(TAG, "quantity != Incrementable.QUANTITY_FOR_INVOKER");
@@ -716,6 +697,7 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
 
         String[] names = drinkComponents.get(indexSelected).getEnumValuesAsStringArray();
         String nameDefault = drinkComponentsDefaultAsString.get(indexSelected);
+
         listener.onItemClicked(names, nameDefault);
     }
 
