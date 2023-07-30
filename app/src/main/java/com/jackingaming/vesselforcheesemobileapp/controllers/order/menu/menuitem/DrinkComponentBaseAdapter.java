@@ -555,12 +555,11 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
         DrinkComponent drinkComponentSelected = drinkComponents.get(indexSelected);
         String drinkComponentDefaultAsStringSelected = drinkComponentsDefaultAsString.get(indexSelected);
 
-        // POWDERS
+        // FIND DRINK COMPONENTS THAT ARE [not inside] THE DRINK
+        List<String> drinkComponentsAsStringNotInsideDrink = new ArrayList<>();
         if (drinkComponentSelected instanceof Powders) {
             Log.i(TAG, "(drinkComponentSelected instanceof Powders");
 
-            // FIND DRINK COMPONENTS THAT ARE [not inside] THE DRINK
-            List<String> drinkComponentsAsStringNotInsideDrink = new ArrayList<>();
             // INCREMENTABLE
             List<String> vanillaBeanPowderAsStringNotInsideDrink = findEnumValuesNotInsideDrink(
                     VanillaBeanPowder.getEnumValuesAsStringForMixedType().toArray(new String[0])
@@ -571,18 +570,11 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
                     ChocolateMaltPowder.getEnumValuesAsStringForMixedType().toArray(new String[0])
             );
             drinkComponentsAsStringNotInsideDrink.addAll(chocolateMaltPowderAsStringNotInsideDrink);
-
-            listener.onItemClicked(
-                    drinkComponentsAsStringNotInsideDrink.toArray(new String[0]),
-                    drinkComponentDefaultAsStringSelected
-            );
         }
         // FRUITS
         else if (drinkComponentSelected instanceof Fruits) {
             Log.i(TAG, "(drinkComponentSelected instanceof Fruits");
 
-            // FIND DRINK COMPONENTS THAT ARE [not inside] THE DRINK
-            List<String> drinkComponentsAsStringNotInsideDrink = new ArrayList<>();
             // INCREMENTABLE
             List<String> fruitInclusionAsStringNotInsideDrink = findEnumValuesNotInsideDrink(
                     FruitInclusion.getEnumValuesAsStringForMixedType().toArray(new String[0])
@@ -593,14 +585,14 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
                     StrawberryPuree.getEnumValuesAsStringForMixedType().toArray(new String[0])
             );
             drinkComponentsAsStringNotInsideDrink.addAll(strawberryPureeAsStringNotInsideDrink);
-
-            listener.onItemClicked(
-                    drinkComponentsAsStringNotInsideDrink.toArray(new String[0]),
-                    drinkComponentDefaultAsStringSelected
-            );
         } else {
             Log.e(TAG, "drinkComponentSelected NOT instanceof Powders nor Fruits");
         }
+
+        listener.onItemClicked(
+                drinkComponentsAsStringNotInsideDrink.toArray(new String[0]),
+                drinkComponentDefaultAsStringSelected
+        );
     }
 
     private void handleClickForViewHolderGranularSelection() {
