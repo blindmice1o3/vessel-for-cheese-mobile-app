@@ -70,7 +70,6 @@ public class CaffeLatte extends Lattes {
     public static final LineTheCup.Type DEFAULT_LINE_THE_CUP = LineTheCup.Type.NO;
     public static final String DEFAULT_POWDERS = DrinkComponent.NULL_TYPE_AS_STRING;
     public static final CupSize.Type DEFAULT_CUP_SIZE = CupSize.Type.NO;
-    public static final DrinkSize[] DEFAULT_DRINK_SIZES_ALLOWED = {DrinkSize.SHORT, DrinkSize.TALL, DrinkSize.GRANDE, DrinkSize.VENTI_HOT};
 
     public static final double DEFAULT_PRICE_SMALL = 2.95;
     public static final double DEFAULT_PRICE_MEDIUM = 3.45;

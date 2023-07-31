@@ -7,6 +7,8 @@ public abstract class EspressoShots extends Espresso {
     public static final String TAG = EspressoShots.class.getSimpleName();
     public static final DrinkSize DEFAULT_DRINK_SIZE = DrinkSize.UNIQUE;
 
+    public static final DrinkSize[] DEFAULT_DRINK_SIZES_ALLOWED = {DrinkSize.UNIQUE};
+
     public EspressoShots() {
     }
 

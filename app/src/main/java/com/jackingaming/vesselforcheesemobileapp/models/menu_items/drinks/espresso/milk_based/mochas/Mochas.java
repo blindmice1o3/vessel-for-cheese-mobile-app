@@ -1,9 +1,12 @@
 package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.mochas;
 
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.DrinkSize;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.MilkBased;
 
 public abstract class Mochas extends MilkBased {
     public static final String TAG = Mochas.class.getSimpleName();
+
+    public static final DrinkSize[] DEFAULT_DRINK_SIZES_ALLOWED = {DrinkSize.SHORT, DrinkSize.TALL, DrinkSize.GRANDE, DrinkSize.VENTI_HOT};
 
     public Mochas() {
     }
