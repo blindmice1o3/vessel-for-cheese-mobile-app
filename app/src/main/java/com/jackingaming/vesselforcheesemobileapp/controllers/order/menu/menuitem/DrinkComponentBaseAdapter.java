@@ -616,7 +616,7 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
             if (enumValuesNotInsideDrink.size() == 1) {
                 Log.i(TAG, "enumValuesNotInsideDrink.size() == 1");
 
-                drinkComponentSelected.setTypeByString(enumValuesAsString[0]);
+                drinkComponentSelected.setTypeByString(enumValuesNotInsideDrink.get(0));
                 ((Granular) drinkComponentSelected).setAmount(Granular.Amount.MEDIUM);
                 notifyItemChanged(indexSelected);
             }

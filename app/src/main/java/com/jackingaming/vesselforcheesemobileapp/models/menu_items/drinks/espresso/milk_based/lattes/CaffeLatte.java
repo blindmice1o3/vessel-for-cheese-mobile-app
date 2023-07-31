@@ -33,7 +33,6 @@ import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.toppin
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.topping_options.ToppingOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.topping_options.WhippedCream;
 import com.jackingaming.vesselforcheesemobileapp.models.menu.Menu;
-import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.DrinkSize;
 
 import java.util.ArrayList;
 import java.util.List;
