@@ -415,6 +415,7 @@ public class MenuItemActivity extends AppCompatActivity {
                 Drink drinkReturned = (Drink) data.getSerializableExtra(CustomizeActivity.RESULT_KEY);
                 drink.setDrinkComponents(drinkReturned.getDrinkComponents());
                 drink.setDrinkComponentsDefaultAsString(drinkReturned.getDrinkComponentsDefaultAsString());
+                drink.setDrinkComponentsStandardRecipe(drinkReturned.getDrinkComponentsStandardRecipe());
 
                 adapter.init(drink);
                 adapter.notifyDataSetChanged();
