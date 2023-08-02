@@ -44,38 +44,23 @@ public class CustomizeInnerAdapter extends DrinkComponentBaseAdapter {
         Log.i(TAG, "handleSelectionOfDefaultForAllowableGranular(DrinkComponent, String)");
 
         String[] enumValues = drinkComponentSelected.getEnumValuesAsStringArray();
-        if (enumValues.length == 1) {
-            Log.i(TAG, "enumValues.length == 1");
+        List<String> enumValuesNotInsideDrink = findEnumValuesNotInsideDrink(enumValues);
+        if (enumValuesNotInsideDrink.size() == 0) {
+            Log.i(TAG, "enumValuesNotInsideDrink.size() == 0");
 
             // Update the underlying model.
             drinkComponentSelected.setTypeByString(DrinkComponent.NULL_TYPE_AS_STRING);
             ((Granular) drinkComponentSelected).setAmount(Granular.Amount.NO);
             notifyItemChanged(indexSelected);
         } else {
-            Log.i(TAG, "enumValues.length != 1");
+            Log.i(TAG, "enumValuesNotInsideDrink.size() != 0");
 
-            List<String> enumValuesNotInsideDrink = findEnumValuesNotInsideDrink(enumValues);
-            for (String enumValue : enumValuesNotInsideDrink) {
-                Log.i(TAG, "enumValue: " + enumValue);
-            }
-
-            if (enumValuesNotInsideDrink.size() == 0) {
-                Log.i(TAG, "enumValuesNotInsideDrink.size() == 0");
-
-                // Update the underlying model.
-                drinkComponentSelected.setTypeByString(DrinkComponent.NULL_TYPE_AS_STRING);
-                ((Granular) drinkComponentSelected).setAmount(Granular.Amount.NO);
-                notifyItemChanged(indexSelected);
-            } else {
-                Log.i(TAG, "enumValuesNotInsideDrink.size() != 0");
-
-                // Update the underlying model.
-                drinkComponentSelected.setTypeByString(DrinkComponent.NULL_TYPE_AS_STRING);
-                ((Granular) drinkComponentSelected).setAmount(Granular.Amount.NO);
-                drinkComponents.remove(indexSelected);
-                drinkComponentsDefaultAsString.remove(indexSelected);
-                notifyItemRemoved(indexSelected);
-            }
+            // Update the underlying model.
+            drinkComponentSelected.setTypeByString(DrinkComponent.NULL_TYPE_AS_STRING);
+            ((Granular) drinkComponentSelected).setAmount(Granular.Amount.NO);
+            drinkComponents.remove(indexSelected);
+            drinkComponentsDefaultAsString.remove(indexSelected);
+            notifyItemRemoved(indexSelected);
         }
     }
 
@@ -90,6 +75,7 @@ public class CustomizeInnerAdapter extends DrinkComponentBaseAdapter {
                 Log.i(TAG, "drinkComponentSelected instanceof MixedType");
 
                 // Intentionally blank.
+                return;
             }
 
             // Update the underlying model.
@@ -309,7 +295,7 @@ public class CustomizeInnerAdapter extends DrinkComponentBaseAdapter {
                 for (String typeFruitInclusion : FruitInclusion.getEnumValuesAsStringForMixedType()) {
                     if (name.equals(typeFruitInclusion)) {
                         // TODO: quantity should depend on DrinkSize
-                        drinkComponentToAdd = new FruitInclusion(null, 2);
+                        drinkComponentToAdd = new FruitInclusion(null, 1);
                         drinkComponentToAdd.setTypeByString(name);
                         drinkComponentDefaultAsStringToAdd = Integer.toString(0);
                     }

@@ -606,26 +606,21 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
         DrinkComponent drinkComponentSelected = drinkComponents.get(indexSelected);
         String drinkComponentDefaultAsStringSelected = drinkComponentsDefaultAsString.get(indexSelected);
 
-        if (drinkComponentSelected.getTypeAsString().equals(DrinkComponent.NULL_TYPE_AS_STRING)) {
+        boolean init = drinkComponentSelected.getTypeAsString().equals(DrinkComponent.NULL_TYPE_AS_STRING);
+        if (init) {
             Log.i(TAG, "drinkComponentSelected.getTypeAsString().equals(DrinkComponent.NULL_TYPE_AS_STRING)");
 
             String[] enumValuesAsString = drinkComponentSelected.getEnumValuesAsStringArray();
             List<String> enumValuesNotInsideDrink = findEnumValuesNotInsideDrink(enumValuesAsString);
-            // Special case where Granular's Type only has [one] value (e.g. WhippedCream):
-            // -convert "invoker" to that value.
+
             if (enumValuesNotInsideDrink.size() == 1) {
                 Log.i(TAG, "enumValuesNotInsideDrink.size() == 1");
 
                 drinkComponentSelected.setTypeByString(enumValuesNotInsideDrink.get(0));
                 ((Granular) drinkComponentSelected).setAmount(Granular.Amount.MEDIUM);
                 notifyItemChanged(indexSelected);
-            }
-            // Granular's Type has [more-than-one] values:
-            // -display bottom modal sheet.
-            else {
+            } else {
                 Log.i(TAG, "enumValuesNotInsideDrink.size() != 1");
-
-                // TODO: clean Granular's "invoker" bottom modal sheet handler.
 
                 listener.onItemClicked(
                         enumValuesNotInsideDrink.toArray(new String[0]),
@@ -656,27 +651,28 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
         DrinkComponent drinkComponentSelected = drinkComponents.get(indexSelected);
         String drinkComponentDefaultAsStringSelected = drinkComponentsDefaultAsString.get(indexSelected);
 
-//        boolean init = quantity == Incrementable.QUANTITY_FOR_INVOKER;
         boolean init = drinkComponentSelected.getTypeAsString().equals(DrinkComponent.NULL_TYPE_AS_STRING);
         if (init) {
-//            Log.i(TAG, "init = quantity == Incrementable.QUANTITY_FOR_INVOKER");
             Log.i(TAG, "drinkComponentSelected.getTypeAsString().equals(DrinkComponent.NULL_TYPE_AS_STRING)");
 
             String[] enumValues = drinkComponentSelected.getEnumValuesAsStringArray();
             List<String> enumValuesNotInsideDrink = findEnumValuesNotInsideDrink(enumValues);
 
             if (enumValuesNotInsideDrink.size() == 1) {
+                Log.i(TAG, "enumValuesNotInsideDrink.size() == 1");
+
                 drinkComponentSelected.setTypeByString(enumValuesNotInsideDrink.get(0));
                 ((Incrementable) drinkComponentSelected).setQuantity(1);
                 notifyItemChanged(indexSelected);
             } else {
+                Log.i(TAG, "enumValuesNotInsideDrink.size() != 1");
+
                 listener.onItemClicked(
                         enumValuesNotInsideDrink.toArray(new String[0]),
                         drinkComponentDefaultAsStringSelected
                 );
             }
         } else {
-//            Log.i(TAG, "quantity != Incrementable.QUANTITY_FOR_INVOKER");
             Log.i(TAG, "NOT drinkComponentSelected.getTypeAsString().equals(DrinkComponent.NULL_TYPE_AS_STRING)");
 
             boolean quantityLessThanOne = ((Incrementable) drinkComponentSelected).getQuantity() < 1;
