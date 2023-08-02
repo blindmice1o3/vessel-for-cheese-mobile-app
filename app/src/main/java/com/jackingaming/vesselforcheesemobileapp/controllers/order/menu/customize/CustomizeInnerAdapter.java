@@ -143,6 +143,15 @@ public class CustomizeInnerAdapter extends DrinkComponentBaseAdapter {
             drinkComponents.add(indexSelected, drinkComponentToAdd);
             drinkComponentsDefaultAsString.add(indexSelected, Integer.toString(drinkComponentDefaultAsStringToAdd));
             notifyItemInserted(indexSelected);
+
+            // CHECK CONDITION TO CONVERT "INVOKER" TO LAST OPTION
+            String[] enumValues = drinkComponentSelected.getEnumValuesAsStringArray();
+            List<String> enumValuesNotInsideDrink = findEnumValuesNotInsideDrink(enumValues);
+            if (enumValuesNotInsideDrink.size() == 1) {
+                drinkComponentSelected.setTypeByString(enumValuesNotInsideDrink.get(0));
+                ((Incrementable) drinkComponentSelected).setQuantity(0);
+                notifyItemChanged(indexSelected + 1);
+            }
         } else if (drinkComponentSelected instanceof Granular) {
             Log.i(TAG, "drinkComponentSelected instanceof Granular");
 
@@ -161,8 +170,8 @@ public class CustomizeInnerAdapter extends DrinkComponentBaseAdapter {
                 String[] enumValues = drinkComponentSelected.getEnumValuesAsStringArray();
                 List<String> enumValuesNotInsideDrink = findEnumValuesNotInsideDrink(enumValues);
                 if (enumValuesNotInsideDrink.size() == 1) {
-                    ((Granular) drinkComponentSelected).setAmount(Granular.Amount.NO);
                     drinkComponentSelected.setTypeByString(enumValuesNotInsideDrink.get(0));
+                    ((Granular) drinkComponentSelected).setAmount(Granular.Amount.NO);
                     notifyItemChanged(indexSelected + 1);
                 }
             } else {

@@ -401,9 +401,9 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
             tvBorderTitle.setText(drinkComponent.getClassAsString());
             tvQuantity.setText(quantityAsString);
 
-            boolean init = quantity == Incrementable.QUANTITY_FOR_INVOKER;
-            boolean quantityIsZero = quantity == 0;
-            if (init || quantityIsZero) {
+            boolean init = drinkComponent.getTypeAsString().equals(DrinkComponent.NULL_TYPE_AS_STRING);
+            boolean quantityLessThanOne = quantity < 1;
+            if (init || quantityLessThanOne) {
                 tvName.setText(drinkComponent.getTextInit());
 
                 tvBorderTitle.setVisibility(View.INVISIBLE);
@@ -655,27 +655,35 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
 
         DrinkComponent drinkComponentSelected = drinkComponents.get(indexSelected);
         String drinkComponentDefaultAsStringSelected = drinkComponentsDefaultAsString.get(indexSelected);
-        int quantity = ((Incrementable) drinkComponentSelected).getQuantity();
 
-        boolean init = quantity == Incrementable.QUANTITY_FOR_INVOKER;
+//        boolean init = quantity == Incrementable.QUANTITY_FOR_INVOKER;
+        boolean init = drinkComponentSelected.getTypeAsString().equals(DrinkComponent.NULL_TYPE_AS_STRING);
         if (init) {
-            Log.i(TAG, "init = quantity == Incrementable.QUANTITY_FOR_INVOKER");
+//            Log.i(TAG, "init = quantity == Incrementable.QUANTITY_FOR_INVOKER");
+            Log.i(TAG, "drinkComponentSelected.getTypeAsString().equals(DrinkComponent.NULL_TYPE_AS_STRING)");
 
             String[] enumValues = drinkComponentSelected.getEnumValuesAsStringArray();
-            List<String> enumValuesFiltered = findEnumValuesNotInsideDrink(enumValues);
+            List<String> enumValuesNotInsideDrink = findEnumValuesNotInsideDrink(enumValues);
 
-            if (enumValuesFiltered.size() == 1) {
-                drinkComponentSelected.setTypeByString(enumValuesFiltered.get(0));
+            if (enumValuesNotInsideDrink.size() == 1) {
+                drinkComponentSelected.setTypeByString(enumValuesNotInsideDrink.get(0));
                 ((Incrementable) drinkComponentSelected).setQuantity(1);
                 notifyItemChanged(indexSelected);
             } else {
                 listener.onItemClicked(
-                        enumValuesFiltered.toArray(new String[0]),
+                        enumValuesNotInsideDrink.toArray(new String[0]),
                         drinkComponentDefaultAsStringSelected
                 );
             }
         } else {
-            Log.i(TAG, "quantity != Incrementable.QUANTITY_FOR_INVOKER");
+//            Log.i(TAG, "quantity != Incrementable.QUANTITY_FOR_INVOKER");
+            Log.i(TAG, "NOT drinkComponentSelected.getTypeAsString().equals(DrinkComponent.NULL_TYPE_AS_STRING)");
+
+            boolean quantityLessThanOne = ((Incrementable) drinkComponentSelected).getQuantity() < 1;
+            if (quantityLessThanOne) {
+                ((Incrementable) drinkComponentSelected).setQuantity(1);
+                notifyItemChanged(indexSelected);
+            }
         }
     }
 
