@@ -7,203 +7,6 @@
     <string name="dialog_message_drink_size_changed">Recipe is based on size, so we\'ve updated some ingredients to the standard amount. Make sure to check your customizations before you place your order.</string>
     <string name="dialog_positive_button_drink_size_changed">Got it</string>
 
-    <!--
-    COLD_COFFEES
-    [ColdBrews]
-    Oleato Golden Foam Cold Brew
-    Cold foam contrasts with dark, smooth cold brew, yielding an inviting aroma with lush Partanna infused cold foam.
-    380, 19, 34.0
-
-    White Chocolate Macadamia Cream Cold Brew
-    Starbucks signature cold brew sweetened with macadamia syrup, topped with a silky white-chocolate macadamia cream cold foam and finished with toasted cookie crumbles.
-    240, 30, 11.0
-
-    Cinnamon Caramel Cream Cold Brew
-    Starbucks Cold Brew packed with flavors of cinnamon caramel, topped with vanilla sweet cream cold foam and dusted with even more flavor for a special personal treat.
-    250, 32, 12.0
-
-    Chocolate Cream Cold Brew
-    Starbucks Cold Brew sweetened with vanilla syrup and topped with a silky, chocolaty cream cold foam.
-    250, 28, 14.0
-
-    Salted Caramel Cream Cold Brew
-    Here's a savory-meets-sweet refreshing beverage certain to delight: our signature, super-smooth cold brew, sweetened with a touch of caramel and topped with a salted, rich cold foam.
-    240, 26, 14.0
-
-    Starbucks Cold Brew Coffee
-    Handcrafted in small batches daily, slow-steeped in cool water for 20 hours, without touching heat-Starbucks Cold Brew is made from our custom blend of beans grown to steep long and cold for a super-smooth flavor.
-    5, 0, 0.0
-
-    Vanilla Sweet Cream Cold Brew
-    Our slow-steeped custom blend of Starbucks Cold Brew coffee accented with vanilla and topped with a delicate float of house-made vanilla sweet cream that cascades throughout the cup. It's over-the-top and super-smooth.
-    110, 14, 5.0
-
-    Starbucks Cold Brew Coffee with Milk
-    Handcrafted in small batches daily, slow-steeped in cool water for 20 hours, without touching heat and finished with a splash of milk-Starbucks Cold Brew is made from our custom blend of beans grown to steep long and cold for a super-smooth flavor.
-    35, 3, 1.5
-
-    [NitroColdBrews]
-    Cinnamon Caramel Cream Nitro Cold Brew
-    Starbucks Nitro packed with flavors of cinnamon caramel, topped with vanilla sweet cream cold foam and dusted with even more flavor for a special personal treat.
-    260, 33, 13.0
-
-    Nitro Cold Brew
-    Our small-batch cold brew-slow-steeped for a super-smooth taste-gets even better. We're infusing it with nitrogen to create a sweet flavor without sugar and cascading, velvety crema. Perfection is served.
-    5, 0, 0.0
-
-    Vanilla Sweet Cream Nitro Cold Brew
-    Served cold, straight from the tap, our Nitro Cold Brew is topped with a float of house-made vanilla sweet cream. The result: a cascade of velvety coffee more sippable than ever.
-    70, 4, 5.0
-
-    [IcedAmericano]
-    Iced Caffe Americano
-    Espresso shots topped with cold water produce a light layer of crema, then served over ice. The result: a wonderfully rich cup with depth and nuance. Pro Tip: For an additional boost, ask your barista to try this with an extra shot.
-    15, 0, 0.0
-
-    [IcedCoffees]
-    Iced Coffee
-    Freshly brewed Starbucks Iced Coffee Blend served chilled and sweetened over ice. An absolutely, seriously, refreshingly lift to any day.
-    80, 20, 0.0
-
-    Iced Coffee with Milk
-    Freshly brewed Starbucks Iced Coffee Blend with milk served chilled and sweetened over ice. An absolutely, seriously, refreshingly lift to any day.
-    110, 23, 1.5
-
-    Iced Espresso
-    Our smooth signature Espresso Roast over ice boasts rich, robust flavor and caramelly sweetness. A recipe of perfection at the heart of every handcrafted espresso we serve.
-    10, 0, 0.0
-
-    [IcedShakenEspresso]
-    Oleato Iced Shaken Espresso with Oatmilk and Toffeenut
-    Layers of flavor - coffee forward and lightly sweetened with notes of toasted nuts, rich espresso, and creamy oatmilk infused with Partanna extra virgin olive oil.
-    250, 12, 17.0
-
-    Iced Toasted Vanilla Oatmilk Shaken Espresso
-    Starbucks Blonde espresso combined with notes of caramelized vanilla shaken together and topped with oatmilk for an energizing treat to boost your day.
-    140, 11, 4.5
-
-    Iced Brown Sugar Oatmilk Shaken Espresso
-    First we shake Starbucks Blonde espresso, brown sugar and cinnamon together, and then top it off with oatmilk and ice for a cool lift to power you through your day.
-    120, 12, 3.0
-
-    Iced Chocolate Almondmilk Shaken Espresso
-    Starbucks Blonde espresso meets cocoa and notes of malt, shaken together and topped with almondmilk and ice for an invigorating treat to power you through your day.
-    110, 16, 3.0
-
-    Iced Shaken Espresso
-    Made with the rich, full-bodied espresso you love - then shaken, chilled and mellowed with sweetness and a touch of milk to create a delightfully and deliciously convenient on-the-go drink.
-    100, 14, 2.0
-
-    [IcedFlatWhites]
-    Iced Flat White
-    Smooth ristretto shots of espresso get the perfect amount of whole milk and ice to create a not-too-strong, not-too-creamy, just-right flavor.
-    150, 11, 8.0
-
-    Iced Honey Almondmilk Flat White
-    This iced flat white - intentionally made with almondmilk and Starbucks Blonde Espresso Roast poured over ice with a hint of honey - creates a perfect amount of cool, creamy, nutty sweetness.
-    100, 17, 2.5
-
-    [IcedLattes]
-    Starbucks Reserve Iced Latte
-    Small-lot Starbucks Reserve espresso combined with milk and served over ice creates perfectly handcrafted sips of cool.
-    210, 16, 11.0
-
-    Starbucks Reserve Iced Hazelnut Bianco Latte
-    House-made hazelnut-praline-infused milk combined with our small-lot Starbucks Reserve espresso and served over ice - a true character of sweetly chilled nut love.
-    280, 26, 13.0
-
-    Iced Caffe Latte
-    Our dark, rich espresso combined with milk and served over ice. A perfect milk-forward cooldown.
-    130, 11, 4.5
-
-    Iced Cinnamon Dolce Latte
-    We add freshly steamed milk and cinnamon dolce-flavored syrup to our classic espresso and ice, topped with sweetened whipped cream and a cinnamon dolce topping to bring you specialness in a treat.
-    300, 35, 13.0
-
-    Iced Starbucks Blonde Vanilla Latte
-    Seriously smooth and subtly sweet Starbucks Blonde Espresso, milk, ice and vanilla syrup come together to create a delightful twist on a beloved espresso classic.
-    190, 28, 4.0
-
-    [IcedMacchiatos]
-    Iced Caramel Macchiato
-    We combine our rich, full-bodied espresso with vanilla-flavored syrup, milk and ice, then top it off with a caramel drizzle for an oh-so-sweet finish.
-    250, 34, 7.0
-
-    [IcedMochas]
-    Iced White Chocolate Mocha
-    Our signature espresso meets white chocolate sauce, milk and ice, and then is finished off with sweetened whipped cream to create this supreme white chocolate delight.
-    420, 48, 20.0
-
-    Iced Caffe Mocha
-    Our rich, full-bodied espresso combined with bittersweet mocha sauce, milk and ice, then topped with sweetened whipped cream. The classic iced coffee drink that always sweetly satisfies.
-    350, 30, 17.0
-
-    Starbucks Reserve Iced Dark Chocolate Mocha
-    Our small-lot Starbucks Reserve espresso - combined with cocoa and ground chocolate, then topped with cold milk and served over iced - makes a perfect mocha companion day or night.
-    260, 28, 10.0
-
-    [IcedCloverBrewedCoffees]
-    Iced Clover Starbucks Reserve Rwanda Sholi
-    Notes of Raspberry & Toffee The founding principle of Abateraninkunga ba Sholi, a woman-founded coffee cooperative in the Muhanga District of central Rwanda, is one of community suport through coffee. The name translates to "mutual assistance," and the members of Sholi bring exceptional coffee and renewed strength to the local economy. There's deep satisfaction in enjoying this coffee - and helping the spirit of Sholi live on.
-    10, 0, 0.0
-
-    Iced Clover Starbucks Reserve Papua New Guinea Moanti
-    Notes of Milk Chocolate & Hazelnut Moanti Ise is a one-woman force for change. In the Eastern Highlands of Papua New Guinea, she single-handedly brought hundreds of smallholder farmers together, creating a high-quality supply chain that is improving lives. We are in awe of her accomplishments and honored to share this exceptional cup.
-    10, 0, 0.0
-
-    Iced Clover Starbucks Reserve Ecuador Loja
-    Notes of Dried Apricot & Caramel The terroir of Ecuador's Loja province is ideal for growing coffee, but it's only part of the equation. These beans were carefully cultivated by smallholder farmers whose efforts pay off beautifully in this complex cup. We're excited to share a rare and delicious find from a tiny origin with enormous potential.
-    10, 0, 0.0
-
-    Iced Clover Starbucks Reserve Costa Rica Naranjo
-    Apricot & Almond The brilliant hues of the Costa Rican oxcart celebrate coffee's vitality in the Naranjo region, where smallholder farmers in the Naranjo Cooperative worked together to produce this elevated lot rooted in community pride.
-    10, 0, 0.0
-
-    Iced Organic Yukon Blend Clover
-    Lively acidity and deep, earthy notes meld together in this classic blend. When you taste it, you get the balance and brightness of Latin American coffees along with the heft and the lingering herbal spiciness from Sumatran beans. Hearty, rugged and untamed - simply a great coffee.
-    10, 0, 0.0
-
-    Iced Pike Place Roast Clover
-    Well-rounded with subtle notes of cocoa and toasted nuts balancing the smooth mouthfeel.
-    10, 0, 0.0
-
-    Iced Caffe Verona Clover
-    Well-balanced and rich with a dark cocoa texture. Try it with a piece of dark chocolate to bring out even more sweetness.
-    5, 0, 0.0
-
-    Iced Espresso Roast Clover
-    Intense, caramelly sweet and perfect with milk.
-    10, 0, 0.0
-
-    Iced Clover Brewed Italian Roast
-    This is Starbucks quintessential dark roast - expertly crafted to bring out sweetness and intensity. It showcases the precision and skill of our roasters, who created a coffee slightly darker than our Espresso Roast without the smoky edge of French Roast. A great iced cup of coffee with enriched flavor.
-    10, 0, 0.0
-
-    Iced Komodo Dragon Clover
-    Earthy and layered with notes of fresh herbs and a lingering spice, this blend is the essence of coffees from Indonesia.
-    10, 0, 0.0
-
-    Iced Veranda Blend Clover
-    In Latin America, coffee farms are often run by families, with their own homes on the same land where their coffee grows. We've sipped coffee with these farmers for decades, sitting on their verandas, overlooking the lush beauty of the coffee trees rolling out in the distance. Most times it was a lightly roasted coffee like this one. It took us more than 80 tries to get it right - mellow and flavorful with a nice softness.
-    10, 0, 0.0
-
-    Iced Sumatra Clover
-    Full-bodied with a smooth mouthfeel, lingering flavors of dried herbs and fresh earth, and almost no acidity.
-    5, 0, 0.0
-
-    Iced Clover Brewed Decaf Pike Place Roast
-    Our signature medium-roasted coffee with a smooth, well-rounded blend of Latin American coffees with subtly rich flavors of chocolate and toasted nuts - a delightfully iced decaf drink perfect for every day.
-    10, 0, 0.0
-
-    Iced Decaf Sumatra Clover
-    Full-bodied with a smooth mouthfeel, lingering flavors of dried herbs and fresh earth, and almost no acidity.
-    10, 0, 0.0
-
-    Iced Clover Brewed Decaf Espresso Roast
-    This intense, caramelly sweet blend goes perfectly with steamed milk. Brewed decaf as you like it.
-    10, 0, 0.0
-    -->
-
     <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 
     <!--
@@ -592,6 +395,72 @@
     Oleato Iced Shaken Espresso with Oatmilk and Toffeenut
     Layers of flavor - coffee forward and lightly sweetened with notes of toasted nuts, rich espresso, and creamy oatmilk infused with Partanna extra virgin olive oil.
     250, 12, 17.0
+    -->
+
+    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+    <!--
+    COLD_COFFEES
+    [IcedCloverBrewedCoffees]
+    Iced Clover Starbucks Reserve Rwanda Sholi
+    Notes of Raspberry & Toffee The founding principle of Abateraninkunga ba Sholi, a woman-founded coffee cooperative in the Muhanga District of central Rwanda, is one of community suport through coffee. The name translates to "mutual assistance," and the members of Sholi bring exceptional coffee and renewed strength to the local economy. There's deep satisfaction in enjoying this coffee - and helping the spirit of Sholi live on.
+    10, 0, 0.0
+
+    Iced Clover Starbucks Reserve Papua New Guinea Moanti
+    Notes of Milk Chocolate & Hazelnut Moanti Ise is a one-woman force for change. In the Eastern Highlands of Papua New Guinea, she single-handedly brought hundreds of smallholder farmers together, creating a high-quality supply chain that is improving lives. We are in awe of her accomplishments and honored to share this exceptional cup.
+    10, 0, 0.0
+
+    Iced Clover Starbucks Reserve Ecuador Loja
+    Notes of Dried Apricot & Caramel The terroir of Ecuador's Loja province is ideal for growing coffee, but it's only part of the equation. These beans were carefully cultivated by smallholder farmers whose efforts pay off beautifully in this complex cup. We're excited to share a rare and delicious find from a tiny origin with enormous potential.
+    10, 0, 0.0
+
+    Iced Clover Starbucks Reserve Costa Rica Naranjo
+    Apricot & Almond The brilliant hues of the Costa Rican oxcart celebrate coffee's vitality in the Naranjo region, where smallholder farmers in the Naranjo Cooperative worked together to produce this elevated lot rooted in community pride.
+    10, 0, 0.0
+
+    Iced Organic Yukon Blend Clover
+    Lively acidity and deep, earthy notes meld together in this classic blend. When you taste it, you get the balance and brightness of Latin American coffees along with the heft and the lingering herbal spiciness from Sumatran beans. Hearty, rugged and untamed - simply a great coffee.
+    10, 0, 0.0
+
+    Iced Pike Place Roast Clover
+    Well-rounded with subtle notes of cocoa and toasted nuts balancing the smooth mouthfeel.
+    10, 0, 0.0
+
+    Iced Caffe Verona Clover
+    Well-balanced and rich with a dark cocoa texture. Try it with a piece of dark chocolate to bring out even more sweetness.
+    5, 0, 0.0
+
+    Iced Espresso Roast Clover
+    Intense, caramelly sweet and perfect with milk.
+    10, 0, 0.0
+
+    Iced Clover Brewed Italian Roast
+    This is Starbucks quintessential dark roast - expertly crafted to bring out sweetness and intensity. It showcases the precision and skill of our roasters, who created a coffee slightly darker than our Espresso Roast without the smoky edge of French Roast. A great iced cup of coffee with enriched flavor.
+    10, 0, 0.0
+
+    Iced Komodo Dragon Clover
+    Earthy and layered with notes of fresh herbs and a lingering spice, this blend is the essence of coffees from Indonesia.
+    10, 0, 0.0
+
+    Iced Veranda Blend Clover
+    In Latin America, coffee farms are often run by families, with their own homes on the same land where their coffee grows. We've sipped coffee with these farmers for decades, sitting on their verandas, overlooking the lush beauty of the coffee trees rolling out in the distance. Most times it was a lightly roasted coffee like this one. It took us more than 80 tries to get it right - mellow and flavorful with a nice softness.
+    10, 0, 0.0
+
+    Iced Sumatra Clover
+    Full-bodied with a smooth mouthfeel, lingering flavors of dried herbs and fresh earth, and almost no acidity.
+    5, 0, 0.0
+
+    Iced Clover Brewed Decaf Pike Place Roast
+    Our signature medium-roasted coffee with a smooth, well-rounded blend of Latin American coffees with subtly rich flavors of chocolate and toasted nuts - a delightfully iced decaf drink perfect for every day.
+    10, 0, 0.0
+
+    Iced Decaf Sumatra Clover
+    Full-bodied with a smooth mouthfeel, lingering flavors of dried herbs and fresh earth, and almost no acidity.
+    10, 0, 0.0
+
+    Iced Clover Brewed Decaf Espresso Roast
+    This intense, caramelly sweet blend goes perfectly with steamed milk. Brewed decaf as you like it.
+    10, 0, 0.0
     -->
 
     <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->

@@ -19,32 +19,32 @@ import com.jackingaming.vesselforcheesemobileapp.models.menu.categories.MenuItem
 import com.jackingaming.vesselforcheesemobileapp.models.menu.categories.TitleCategory;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.MenuItem;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.UndefinedMenuItem;
-import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.CaffeMisto;
-import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.CostaRicaNaranjo;
-import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.DarkRoast;
-import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.DecafPikePlaceRoast;
-import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.EcuadorLoja;
-import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.GreenApronBlend;
-import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.PapuaNewGuineaMoanti;
-import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.PikePlaceRoast;
-import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.RwandaSholi;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.hot.CaffeMisto;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.hot.CostaRicaNaranjo;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.hot.DarkRoast;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.hot.DecafPikePlaceRoast;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.hot.EcuadorLoja;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.hot.GreenApronBlend;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.hot.PapuaNewGuineaMoanti;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.hot.PikePlaceRoast;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.hot.RwandaSholi;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.cappuccinos.Cappuccino;
-import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.flat_whites.FlatWhite;
-import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.flat_whites.HoneyAlmondmilkFlatWhite;
-import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.lattes.CaffeLatte;
-import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.lattes.CinnamonDolceLatte;
-import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.lattes.OleatoCaffeLatteWithOatmilk;
-import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.lattes.StarbucksBlondeVanillaLatte;
-import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.lattes.StarbucksReserveHazelnutBiancoLatte;
-import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.lattes.StarbucksReserveLatte;
-import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.macchiatos.CaramelMacchiato;
-import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.macchiatos.EspressoMacchiato;
-import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.mochas.CaffeMocha;
-import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.mochas.StarbucksReserveDarkChocolateMocha;
-import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.mochas.WhiteChocolateMocha;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.flat_whites.hot.FlatWhite;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.flat_whites.hot.HoneyAlmondmilkFlatWhite;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.lattes.hot.CaffeLatte;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.lattes.hot.CinnamonDolceLatte;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.lattes.hot.OleatoCaffeLatteWithOatmilk;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.lattes.hot.StarbucksBlondeVanillaLatte;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.lattes.hot.StarbucksReserveHazelnutBiancoLatte;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.lattes.hot.StarbucksReserveLatte;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.macchiatos.hot.CaramelMacchiato;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.macchiatos.hot.EspressoMacchiato;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.mochas.hot.CaffeMocha;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.mochas.hot.StarbucksReserveDarkChocolateMocha;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.mochas.hot.WhiteChocolateMocha;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.straight_shots.EspressoConPanna;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.straight_shots.ShotEspresso;
-import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.water_based.americanos.CaffeAmericano;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.water_based.americanos.hot.CaffeAmericano;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.other.Water;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.travelers.VerandaBlend;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.foods.Bread;
@@ -58,6 +58,7 @@ import java.util.Map;
 
 public class Menu {
     public static final String TAG = Menu.class.getSimpleName();
+
     public static final String HOT_COFFEES = "Hot Coffees";
     public static final String AMERICANOS = "Americanos";
     public static final String BREWED_COFFEES = "Brewed Coffees";
@@ -68,6 +69,17 @@ public class Menu {
     public static final String MACCHIATOS = "Macchiatos";
     public static final String MOCHAS = "Mochas";
     public static final String COFFEE_TRAVELERS = "Coffee Travelers";
+
+    public static final String COLD_COFFEES = "Cold Coffees";
+    public static final String COLD_BREWS = "Cold Brews";
+    public static final String NITRO_COLD_BREWS = "Nitro Cold Brews";
+    public static final String ICED_AMERICANO = "Iced Americano";
+    public static final String ICED_COFFEES = "Iced Coffees";
+    public static final String ICED_SHAKEN_ESPRESSO = "Iced Shaken Espresso";
+    public static final String ICED_FLAT_WHITES = "Iced Flat Whites";
+    public static final String ICED_LATTES = "Iced Lattes";
+    public static final String ICED_MACCHIATOS = "Iced Macchiatos";
+    public static final String ICED_MOCHAS = "Iced Mochas";
 
     public static final List<String> DRINK_COMPONENTS_KEYS = Arrays.asList(
             LemonadeOptions.TAG,
@@ -104,6 +116,18 @@ public class Menu {
             new MenuItemCategory(MACCHIATOS, R.drawable.harvest_moon_natsume),
             new MenuItemCategory(MOCHAS, R.drawable.harvest_moon_natsume),
             new MenuItemCategory(COFFEE_TRAVELERS, R.drawable.harvest_moon_natsume)
+    );
+
+    public static final List<MenuItemCategory> coldCoffees = Arrays.asList(
+            new MenuItemCategory(COLD_BREWS, R.drawable.harvest_moon_natsume),
+            new MenuItemCategory(NITRO_COLD_BREWS, R.drawable.harvest_moon_natsume),
+            new MenuItemCategory(ICED_AMERICANO, R.drawable.harvest_moon_natsume),
+            new MenuItemCategory(ICED_COFFEES, R.drawable.harvest_moon_natsume),
+            new MenuItemCategory(ICED_SHAKEN_ESPRESSO, R.drawable.harvest_moon_natsume),
+            new MenuItemCategory(ICED_FLAT_WHITES, R.drawable.harvest_moon_natsume),
+            new MenuItemCategory(ICED_LATTES, R.drawable.harvest_moon_natsume),
+            new MenuItemCategory(ICED_MACCHIATOS, R.drawable.harvest_moon_natsume),
+            new MenuItemCategory(ICED_MOCHAS, R.drawable.harvest_moon_natsume)
     );
 
     // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -186,7 +210,7 @@ public class Menu {
             new MenuItemCategory("Hot Teas", R.drawable.harvest_moon_natsume),
             new MenuItemCategory("Hot Drinks", R.drawable.harvest_moon_natsume),
             new MenuItemCategory("Blended Beverages", R.drawable.harvest_moon_natsume),
-            new MenuItemCategory("Cold Coffees", R.drawable.harvest_moon_natsume),
+            new MenuItemCategory(COLD_COFFEES, R.drawable.harvest_moon_natsume),
             new MenuItemCategory("Iced Teas", R.drawable.harvest_moon_natsume),
             new MenuItemCategory("Cold Drinks", R.drawable.harvest_moon_natsume)
     );
