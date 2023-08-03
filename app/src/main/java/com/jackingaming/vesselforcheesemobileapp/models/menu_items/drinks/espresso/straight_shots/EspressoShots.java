@@ -7,7 +7,7 @@ public abstract class EspressoShots extends Espresso {
     public static final String TAG = EspressoShots.class.getSimpleName();
     public static final DrinkSize DEFAULT_DRINK_SIZE = DrinkSize.UNIQUE;
 
-    public static final DrinkSize[] DEFAULT_DRINK_SIZES_ALLOWED = {DrinkSize.UNIQUE};
+    public static final DrinkSize[] UNIQUE_DEFAULT_DRINK_SIZES_ALLOWED = {DrinkSize.UNIQUE};
 
     public EspressoShots() {
     }
@@ -15,5 +15,7 @@ public abstract class EspressoShots extends Espresso {
     public EspressoShots(String name, String description, int calories, int sugarInGram, float fatInGram,
                          double price, boolean iced) {
         super(name, description, calories, sugarInGram, fatInGram, price, DEFAULT_DRINK_SIZE, iced);
+
+        drinkSizesAllowed = UNIQUE_DEFAULT_DRINK_SIZES_ALLOWED;
     }
 }

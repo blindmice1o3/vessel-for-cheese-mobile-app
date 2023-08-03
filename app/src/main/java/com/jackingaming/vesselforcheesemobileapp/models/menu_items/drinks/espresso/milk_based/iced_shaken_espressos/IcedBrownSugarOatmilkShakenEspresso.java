@@ -1,6 +1,6 @@
 package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.iced_shaken_espressos;
 
-public class IcedBrownSugarOatmilkShakenEspresso {
+public class IcedBrownSugarOatmilkShakenEspresso extends IcedShakenEspressos {
     public static final String TAG = IcedBrownSugarOatmilkShakenEspresso.class.getSimpleName();
 
     public static final String DEFAULT_NAME = "Iced Brown Sugar Oatmilk Shaken Espresso";
@@ -13,4 +13,9 @@ public class IcedBrownSugarOatmilkShakenEspresso {
     public static final double DEFAULT_PRICE_MEDIUM = 3.45;
     public static final double DEFAULT_PRICE_LARGE = 3.70;
     public static final boolean DEFAULT_ICED = false;
+
+    public IcedBrownSugarOatmilkShakenEspresso() {
+        super(DEFAULT_NAME, DEFAULT_DESCRIPTION, DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
+                DEFAULT_PRICE_MEDIUM, DEFAULT_ICED);
+    }
 }

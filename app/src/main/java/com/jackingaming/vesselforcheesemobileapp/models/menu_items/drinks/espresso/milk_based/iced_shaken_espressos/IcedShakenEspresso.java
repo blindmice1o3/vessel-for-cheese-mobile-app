@@ -1,6 +1,6 @@
 package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.iced_shaken_espressos;
 
-public class IcedShakenEspresso {
+public class IcedShakenEspresso extends IcedShakenEspressos {
     public static final String TAG = IcedShakenEspresso.class.getSimpleName();
 
     public static final String DEFAULT_NAME = "Iced Shaken Espresso";
@@ -13,4 +13,9 @@ public class IcedShakenEspresso {
     public static final double DEFAULT_PRICE_MEDIUM = 3.45;
     public static final double DEFAULT_PRICE_LARGE = 3.70;
     public static final boolean DEFAULT_ICED = false;
+
+    public IcedShakenEspresso() {
+        super(DEFAULT_NAME, DEFAULT_DESCRIPTION, DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
+                DEFAULT_PRICE_MEDIUM, DEFAULT_ICED);
+    }
 }

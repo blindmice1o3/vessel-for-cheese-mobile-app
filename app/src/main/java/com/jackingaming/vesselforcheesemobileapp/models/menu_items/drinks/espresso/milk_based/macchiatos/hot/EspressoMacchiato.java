@@ -11,7 +11,7 @@ public class EspressoMacchiato extends Macchiatos {
     public static final int DEFAULT_SUGAR_IN_GRAM = 0;
     public static final float DEFAULT_FAT_IN_GRAM = 0.0f;
 
-    public static final DrinkSize[] DEFAULT_DRINK_SIZES_ALLOWED = {DrinkSize.UNIQUE};
+    public static final DrinkSize[] UNIQUE_DEFAULT_DRINK_SIZES_ALLOWED = {DrinkSize.UNIQUE};
 
     public static final double DEFAULT_PRICE_SMALL = 1.95;
     public static final double DEFAULT_PRICE_MEDIUM = 2.45;
@@ -22,6 +22,6 @@ public class EspressoMacchiato extends Macchiatos {
         super(DEFAULT_NAME, DEFAULT_DESCRIPTION, DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
                 DEFAULT_PRICE_MEDIUM, DEFAULT_ICED);
 
-        drinkSizesAllowed = DEFAULT_DRINK_SIZES_ALLOWED;
+        drinkSizesAllowed = UNIQUE_DEFAULT_DRINK_SIZES_ALLOWED;
     }
 }

@@ -201,7 +201,5 @@ public class CaffeLatte extends Lattes {
                 }
             }
         }
-
-        drinkSizesAllowed = DEFAULT_DRINK_SIZES_ALLOWED;
     }
 }

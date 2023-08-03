@@ -73,7 +73,6 @@ public class CaramelMacchiato extends Macchiatos {
     public static final LineTheCup.Type DEFAULT_LINE_THE_CUP = LineTheCup.Type.NO;
     public static final String DEFAULT_POWDERS = DrinkComponent.NULL_TYPE_AS_STRING;
     public static final CupSize.Type DEFAULT_CUP_SIZE = CupSize.Type.NO;
-    public static final DrinkSize[] DEFAULT_DRINK_SIZES_ALLOWED = {DrinkSize.SHORT, DrinkSize.TALL, DrinkSize.GRANDE, DrinkSize.VENTI_HOT};
 
     public static final double DEFAULT_PRICE_SMALL = 1.95;
     public static final double DEFAULT_PRICE_MEDIUM = 2.45;
@@ -207,7 +206,5 @@ public class CaramelMacchiato extends Macchiatos {
                 }
             }
         }
-
-        drinkSizesAllowed = DEFAULT_DRINK_SIZES_ALLOWED;
     }
 }

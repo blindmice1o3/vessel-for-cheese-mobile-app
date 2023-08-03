@@ -1,6 +1,6 @@
 package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.iced_shaken_espressos;
 
-public class OleatoIcedShakenEspressoWithOatmilkAndToffeenut {
+public class OleatoIcedShakenEspressoWithOatmilkAndToffeenut extends IcedShakenEspressos {
     public static final String TAG = OleatoIcedShakenEspressoWithOatmilkAndToffeenut.class.getSimpleName();
 
     public static final String DEFAULT_NAME = "Oleato Iced Shaken Espresso with Oatmilk and Toffeenut";
@@ -13,4 +13,9 @@ public class OleatoIcedShakenEspressoWithOatmilkAndToffeenut {
     public static final double DEFAULT_PRICE_MEDIUM = 3.45;
     public static final double DEFAULT_PRICE_LARGE = 3.70;
     public static final boolean DEFAULT_ICED = false;
+
+    public OleatoIcedShakenEspressoWithOatmilkAndToffeenut() {
+        super(DEFAULT_NAME, DEFAULT_DESCRIPTION, DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
+                DEFAULT_PRICE_MEDIUM, DEFAULT_ICED);
+    }
 }

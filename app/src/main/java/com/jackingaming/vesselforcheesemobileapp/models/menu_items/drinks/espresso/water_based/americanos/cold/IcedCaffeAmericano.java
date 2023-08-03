@@ -1,6 +1,6 @@
 package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.water_based.americanos.cold;
 
-public class IcedCaffeAmericano {
+public class IcedCaffeAmericano extends IcedAmericano {
     public static final String TAG = IcedCaffeAmericano.class.getSimpleName();
 
     public static final String DEFAULT_NAME = "Iced Caffe Americano";
@@ -13,4 +13,9 @@ public class IcedCaffeAmericano {
     public static final double DEFAULT_PRICE_MEDIUM = 3.45;
     public static final double DEFAULT_PRICE_LARGE = 3.70;
     public static final boolean DEFAULT_ICED = false;
+
+    public IcedCaffeAmericano() {
+        super(DEFAULT_NAME, DEFAULT_DESCRIPTION, DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
+                DEFAULT_PRICE_MEDIUM, DEFAULT_ICED);
+    }
 }

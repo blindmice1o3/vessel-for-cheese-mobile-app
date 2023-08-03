@@ -1,6 +1,6 @@
 package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.cold.coldbrews;
 
-public class StarbucksColdBrewCoffeeWithMilk {
+public class StarbucksColdBrewCoffeeWithMilk extends ColdBrews {
     public static final String TAG = StarbucksColdBrewCoffeeWithMilk.class.getSimpleName();
 
     public static final String DEFAULT_NAME = "Starbucks Cold Brew Coffee with Milk";
@@ -13,4 +13,9 @@ public class StarbucksColdBrewCoffeeWithMilk {
     public static final double DEFAULT_PRICE_MEDIUM = 3.45;
     public static final double DEFAULT_PRICE_LARGE = 3.70;
     public static final boolean DEFAULT_ICED = false;
+
+    public StarbucksColdBrewCoffeeWithMilk() {
+        super(DEFAULT_NAME, DEFAULT_DESCRIPTION, DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
+                DEFAULT_PRICE_MEDIUM, DEFAULT_ICED);
+    }
 }

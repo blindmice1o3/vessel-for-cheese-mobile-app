@@ -17,7 +17,5 @@ public class StarbucksReserveHazelnutBiancoLatte extends Lattes {
     public StarbucksReserveHazelnutBiancoLatte() {
         super(DEFAULT_NAME, DEFAULT_DESCRIPTION, DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
                 DEFAULT_PRICE_MEDIUM, DEFAULT_ICED);
-
-        drinkSizesAllowed = DEFAULT_DRINK_SIZES_ALLOWED;
     }
 }

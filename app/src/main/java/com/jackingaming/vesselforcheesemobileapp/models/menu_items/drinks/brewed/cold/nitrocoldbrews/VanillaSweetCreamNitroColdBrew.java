@@ -1,6 +1,6 @@
 package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.cold.nitrocoldbrews;
 
-public class VanillaSweetCreamNitroColdBrew {
+public class VanillaSweetCreamNitroColdBrew extends NitroColdBrews {
     public static final String TAG = VanillaSweetCreamNitroColdBrew.class.getSimpleName();
 
     public static final String DEFAULT_NAME = "Vanilla Sweet Cream Nitro Cold Brew";
@@ -13,4 +13,9 @@ public class VanillaSweetCreamNitroColdBrew {
     public static final double DEFAULT_PRICE_MEDIUM = 3.45;
     public static final double DEFAULT_PRICE_LARGE = 3.70;
     public static final boolean DEFAULT_ICED = false;
+
+    public VanillaSweetCreamNitroColdBrew() {
+        super(DEFAULT_NAME, DEFAULT_DESCRIPTION, DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
+                DEFAULT_PRICE_MEDIUM, DEFAULT_ICED);
+    }
 }

@@ -1,6 +1,6 @@
 package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.lattes.cold;
 
-public class IcedCinnamonDolceLatte {
+public class IcedCinnamonDolceLatte extends IcedLattes {
     public static final String TAG = IcedCinnamonDolceLatte.class.getSimpleName();
 
     public static final String DEFAULT_NAME = "Iced Cinnamon Dolce Latte";
@@ -13,4 +13,9 @@ public class IcedCinnamonDolceLatte {
     public static final double DEFAULT_PRICE_MEDIUM = 3.45;
     public static final double DEFAULT_PRICE_LARGE = 3.70;
     public static final boolean DEFAULT_ICED = false;
+
+    public IcedCinnamonDolceLatte() {
+        super(DEFAULT_NAME, DEFAULT_DESCRIPTION, DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
+                DEFAULT_PRICE_MEDIUM, DEFAULT_ICED);
+    }
 }

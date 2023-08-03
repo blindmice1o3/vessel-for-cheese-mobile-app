@@ -17,6 +17,8 @@ public abstract class BrewedCoffees extends Drink {
     public BrewedCoffees(String name, String description, int calories, int sugarInGram, float fatInGram,
                          double price, boolean iced) {
         super(name, description, calories, sugarInGram, fatInGram, price, DEFAULT_DRINK_SIZE, iced);
+
+        drinkSizesAllowed = DEFAULT_DRINK_SIZES_ALLOWED;
     }
 
     @Override

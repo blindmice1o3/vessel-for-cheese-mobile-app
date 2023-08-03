@@ -1,6 +1,6 @@
 package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.cold.coldbrews;
 
-public class SaltedCaramelCreamColdBrew {
+public class SaltedCaramelCreamColdBrew extends ColdBrews {
     public static final String TAG = SaltedCaramelCreamColdBrew.class.getSimpleName();
 
     public static final String DEFAULT_NAME = "Salted Caramel Cream Cold Brew";
@@ -13,4 +13,9 @@ public class SaltedCaramelCreamColdBrew {
     public static final double DEFAULT_PRICE_MEDIUM = 3.45;
     public static final double DEFAULT_PRICE_LARGE = 3.70;
     public static final boolean DEFAULT_ICED = false;
+
+    public SaltedCaramelCreamColdBrew() {
+        super(DEFAULT_NAME, DEFAULT_DESCRIPTION, DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
+                DEFAULT_PRICE_MEDIUM, DEFAULT_ICED);
+    }
 }

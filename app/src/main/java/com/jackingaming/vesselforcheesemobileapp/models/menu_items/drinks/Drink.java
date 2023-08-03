@@ -27,7 +27,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public abstract class Drink extends MenuItem {
+public abstract class Drink extends MenuItem
+        implements DrinkSizeChangeResponder {
     public static final String TAG = Drink.class.getSimpleName();
     public static final int QUANTITY_INDEPENDENT_OF_DRINK_SIZE = -1;
 
@@ -55,16 +56,6 @@ public abstract class Drink extends MenuItem {
     // TODO: abstract initDrinkComponentsStandardRecipe()
     // TODO: abstract initDrinkSizesAllowed()
     //  (as oppose to CaffeLatte doing this straight in the constructor).
-
-    public abstract int getNumberOfShotByDrinkSize(DrinkSize drinkSizeNew);
-
-    public abstract int getNumberOfPumpByDrinkSize(DrinkSize drinkSizeNew);
-
-    public abstract int getNumberOfScoopByDrinkSize(DrinkSize drinkSizeNew);
-
-    public abstract int getNumberOfFrapRoastByDrinkSize(DrinkSize drinkSizeNew);
-
-    public abstract int getNumberOfTeaBagByDrinkSize(DrinkSize drinkSizeNew);
 
     public void addToDrinkComponents(String key, DrinkComponent drinkComponent) {
         Log.i(TAG, "addToDrinkComponents(String, DrinkComponent)");

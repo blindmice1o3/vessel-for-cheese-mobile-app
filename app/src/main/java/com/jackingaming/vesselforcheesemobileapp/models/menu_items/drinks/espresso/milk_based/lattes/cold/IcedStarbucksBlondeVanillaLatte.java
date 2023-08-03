@@ -1,6 +1,6 @@
 package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.lattes.cold;
 
-public class IcedStarbucksBlondeVanillaLatte {
+public class IcedStarbucksBlondeVanillaLatte extends IcedLattes {
     public static final String TAG = IcedStarbucksBlondeVanillaLatte.class.getSimpleName();
 
     public static final String DEFAULT_NAME = "Iced Starbucks Blonde Vanilla Latte";
@@ -13,4 +13,9 @@ public class IcedStarbucksBlondeVanillaLatte {
     public static final double DEFAULT_PRICE_MEDIUM = 3.45;
     public static final double DEFAULT_PRICE_LARGE = 3.70;
     public static final boolean DEFAULT_ICED = false;
+
+    public IcedStarbucksBlondeVanillaLatte() {
+        super(DEFAULT_NAME, DEFAULT_DESCRIPTION, DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
+                DEFAULT_PRICE_MEDIUM, DEFAULT_ICED);
+    }
 }

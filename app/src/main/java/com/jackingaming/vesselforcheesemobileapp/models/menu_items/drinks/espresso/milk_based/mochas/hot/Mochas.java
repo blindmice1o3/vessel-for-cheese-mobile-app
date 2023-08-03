@@ -6,7 +6,8 @@ import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espres
 public abstract class Mochas extends MilkBased {
     public static final String TAG = Mochas.class.getSimpleName();
 
-    public static final DrinkSize[] DEFAULT_DRINK_SIZES_ALLOWED = {DrinkSize.SHORT, DrinkSize.TALL, DrinkSize.GRANDE, DrinkSize.VENTI_HOT};
+    public static final DrinkSize[] DEFAULT_DRINK_SIZES_ALLOWED =
+            {DrinkSize.SHORT, DrinkSize.TALL, DrinkSize.GRANDE, DrinkSize.VENTI_HOT};
 
     public Mochas() {
     }
@@ -14,5 +15,7 @@ public abstract class Mochas extends MilkBased {
     public Mochas(String name, String description, int calories, int sugarInGram, float fatInGram,
                   double price, boolean iced) {
         super(name, description, calories, sugarInGram, fatInGram, price, iced);
+
+        drinkSizesAllowed = DEFAULT_DRINK_SIZES_ALLOWED;
     }
 }
