@@ -83,6 +83,7 @@ public class Sauce extends FlavorOptions
         this.type = type;
     }
 
+    @Override
     public int getQuantityMin() {
         return quantityMin;
     }
@@ -147,10 +148,5 @@ public class Sauce extends FlavorOptions
         Sauce sauce = new Sauce(null, quantity);
         sauce.setTypeByString(typeAsString);
         return sauce;
-    }
-
-    @Override
-    public int getDefaultQuantityMin() {
-        return DEFAULT_QUANTITY_MIN;
     }
 }

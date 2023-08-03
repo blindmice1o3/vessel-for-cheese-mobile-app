@@ -89,6 +89,7 @@ public class Syrup extends FlavorOptions
         this.type = type;
     }
 
+    @Override
     public int getQuantityMin() {
         return quantityMin;
     }
@@ -153,10 +154,5 @@ public class Syrup extends FlavorOptions
         Syrup syrup = new Syrup(null, quantity);
         syrup.setTypeByString(typeAsString);
         return syrup;
-    }
-
-    @Override
-    public int getDefaultQuantityMin() {
-        return DEFAULT_QUANTITY_MIN;
     }
 }

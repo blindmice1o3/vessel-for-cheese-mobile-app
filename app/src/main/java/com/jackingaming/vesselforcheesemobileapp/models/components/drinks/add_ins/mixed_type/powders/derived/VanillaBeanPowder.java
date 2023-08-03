@@ -95,6 +95,7 @@ public class VanillaBeanPowder extends Powders
         this.type = type;
     }
 
+    @Override
     public int getQuantityMin() {
         return quantityMin;
     }
@@ -159,10 +160,5 @@ public class VanillaBeanPowder extends Powders
         VanillaBeanPowder vanillaBeanPowder = new VanillaBeanPowder(null, 1);
         vanillaBeanPowder.setTypeByString(typeAsString);
         return vanillaBeanPowder;
-    }
-
-    @Override
-    public int getDefaultQuantityMin() {
-        return DEFAULT_QUANTITY_MIN;
     }
 }

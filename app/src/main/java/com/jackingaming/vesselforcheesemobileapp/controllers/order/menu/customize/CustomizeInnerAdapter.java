@@ -125,7 +125,7 @@ public class CustomizeInnerAdapter extends DrinkComponentBaseAdapter {
             // ADD USER'S SELECTION
             DrinkComponent drinkComponentToAdd =
                     ((Incrementable) drinkComponentSelected).newInstanceViaTypeAsString(name, 1);
-            int drinkComponentDefaultAsStringToAdd = ((Incrementable) drinkComponentSelected).getDefaultQuantityMin();
+            int drinkComponentDefaultAsStringToAdd = ((Incrementable) drinkComponentSelected).getQuantityMin();
             drinkComponents.add(indexSelected, drinkComponentToAdd);
             drinkComponentsDefaultAsString.add(indexSelected, Integer.toString(drinkComponentDefaultAsStringToAdd));
             notifyItemInserted(indexSelected);

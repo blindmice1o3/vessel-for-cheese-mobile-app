@@ -80,6 +80,7 @@ public class MatchaPowder extends TeaOptions
         this.type = type;
     }
 
+    @Override
     public int getQuantityMin() {
         return quantityMin;
     }
@@ -144,10 +145,5 @@ public class MatchaPowder extends TeaOptions
         MatchaPowder matchaPowder = new MatchaPowder(null, 1);
         matchaPowder.setTypeByString(typeAsString);
         return matchaPowder;
-    }
-
-    @Override
-    public int getDefaultQuantityMin() {
-        return DEFAULT_QUANTITY_MIN;
     }
 }

@@ -97,6 +97,7 @@ public class FruitInclusion extends Fruits
         this.type = type;
     }
 
+    @Override
     public int getQuantityMin() {
         return quantityMin;
     }
@@ -161,10 +162,5 @@ public class FruitInclusion extends Fruits
         FruitInclusion fruitInclusion = new FruitInclusion(null, 1);
         fruitInclusion.setTypeByString(typeAsString);
         return fruitInclusion;
-    }
-
-    @Override
-    public int getDefaultQuantityMin() {
-        return DEFAULT_QUANTITY_MIN;
     }
 }

@@ -15,5 +15,5 @@ public interface Incrementable {
 
     DrinkComponent newInstanceViaTypeAsString(String typeAsString, int quantity);
 
-    int getDefaultQuantityMin();
+    int getQuantityMin();
 }

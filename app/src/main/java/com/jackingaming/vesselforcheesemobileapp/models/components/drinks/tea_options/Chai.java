@@ -80,6 +80,7 @@ public class Chai extends TeaOptions
         this.type = type;
     }
 
+    @Override
     public int getQuantityMin() {
         return quantityMin;
     }
@@ -144,10 +145,5 @@ public class Chai extends TeaOptions
         Chai chai = new Chai(null, 1);
         chai.setTypeByString(typeAsString);
         return chai;
-    }
-
-    @Override
-    public int getDefaultQuantityMin() {
-        return DEFAULT_QUANTITY_MIN;
     }
 }

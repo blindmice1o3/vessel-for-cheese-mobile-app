@@ -80,6 +80,7 @@ public class FrapRoast extends BlendedOptions
         this.type = type;
     }
 
+    @Override
     public int getQuantityMin() {
         return quantityMin;
     }
@@ -144,10 +145,5 @@ public class FrapRoast extends BlendedOptions
         FrapRoast frapRoast = new FrapRoast(null, 1);
         frapRoast.setTypeByString(typeAsString);
         return frapRoast;
-    }
-
-    @Override
-    public int getDefaultQuantityMin() {
-        return DEFAULT_QUANTITY_MIN;
     }
 }

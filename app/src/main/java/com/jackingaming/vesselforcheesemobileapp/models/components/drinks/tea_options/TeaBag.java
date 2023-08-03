@@ -80,6 +80,7 @@ public class TeaBag extends TeaOptions
         this.type = type;
     }
 
+    @Override
     public int getQuantityMin() {
         return quantityMin;
     }
@@ -144,10 +145,5 @@ public class TeaBag extends TeaOptions
         TeaBag teaBag = new TeaBag(null, 1);
         teaBag.setTypeByString(typeAsString);
         return teaBag;
-    }
-
-    @Override
-    public int getDefaultQuantityMin() {
-        return DEFAULT_QUANTITY_MIN;
     }
 }

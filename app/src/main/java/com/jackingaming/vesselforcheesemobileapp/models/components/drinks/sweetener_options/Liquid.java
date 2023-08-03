@@ -82,6 +82,7 @@ public class Liquid extends SweetenerOptions
         this.type = type;
     }
 
+    @Override
     public int getQuantityMin() {
         return quantityMin;
     }
@@ -146,10 +147,5 @@ public class Liquid extends SweetenerOptions
         Liquid liquid = new Liquid(null, 1);
         liquid.setTypeByString(typeAsString);
         return liquid;
-    }
-
-    @Override
-    public int getDefaultQuantityMin() {
-        return DEFAULT_QUANTITY_MIN;
     }
 }

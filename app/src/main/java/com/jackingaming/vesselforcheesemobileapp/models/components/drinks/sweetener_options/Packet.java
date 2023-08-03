@@ -84,6 +84,7 @@ public class Packet extends SweetenerOptions
         this.type = type;
     }
 
+    @Override
     public int getQuantityMin() {
         return quantityMin;
     }
@@ -148,10 +149,5 @@ public class Packet extends SweetenerOptions
         Packet packet = new Packet(null, 1);
         packet.setTypeByString(typeAsString);
         return packet;
-    }
-
-    @Override
-    public int getDefaultQuantityMin() {
-        return DEFAULT_QUANTITY_MIN;
     }
 }

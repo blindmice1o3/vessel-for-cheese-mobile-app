@@ -80,6 +80,7 @@ public class FrapChips extends BlendedOptions
         this.type = type;
     }
 
+    @Override
     public int getQuantityMin() {
         return quantityMin;
     }
@@ -144,10 +145,5 @@ public class FrapChips extends BlendedOptions
         FrapChips frapChips = new FrapChips(null, 1);
         frapChips.setTypeByString(typeAsString);
         return frapChips;
-    }
-
-    @Override
-    public int getDefaultQuantityMin() {
-        return DEFAULT_QUANTITY_MIN;
     }
 }

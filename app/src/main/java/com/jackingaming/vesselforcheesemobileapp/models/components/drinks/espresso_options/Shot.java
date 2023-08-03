@@ -80,6 +80,7 @@ public class Shot extends EspressoOptions
         this.type = type;
     }
 
+    @Override
     public int getQuantityMin() {
         return quantityMin;
     }
@@ -144,10 +145,5 @@ public class Shot extends EspressoOptions
         Shot shot = new Shot(null, 1);
         shot.setTypeByString(typeAsString);
         return shot;
-    }
-
-    @Override
-    public int getDefaultQuantityMin() {
-        return DEFAULT_QUANTITY_MIN;
     }
 }

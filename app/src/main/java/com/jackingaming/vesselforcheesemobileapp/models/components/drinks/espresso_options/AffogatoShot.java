@@ -80,6 +80,7 @@ public class AffogatoShot extends EspressoOptions
         this.type = type;
     }
 
+    @Override
     public int getQuantityMin() {
         return quantityMin;
     }
@@ -144,10 +145,5 @@ public class AffogatoShot extends EspressoOptions
         AffogatoShot affogatoShot = new AffogatoShot(null, 1);
         affogatoShot.setTypeByString(typeAsString);
         return affogatoShot;
-    }
-
-    @Override
-    public int getDefaultQuantityMin() {
-        return DEFAULT_QUANTITY_MIN;
     }
 }
