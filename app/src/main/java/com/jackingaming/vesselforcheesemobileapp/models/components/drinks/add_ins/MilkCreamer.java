@@ -1,9 +1,21 @@
 package com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins;
 
+import com.jackingaming.vesselforcheesemobileapp.models.components.Granular;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
 
-public class MilkCreamer extends AddInsOptions {
+public class MilkCreamer extends AddInsOptions
+        implements Granular {
     public static final String DEFAULT_TEXT_INIT = "Add Creamer";
+
+    @Override
+    public Amount getAmount() {
+        return amount;
+    }
+
+    @Override
+    public void setAmount(Amount amount) {
+        this.amount = amount;
+    }
 
     public enum Type {
         TWO_PERCENT,
@@ -19,9 +31,11 @@ public class MilkCreamer extends AddInsOptions {
     }
 
     private Type type;
+    private Amount amount;
 
-    public MilkCreamer(Type type) {
+    public MilkCreamer(Type type, Amount amount) {
         this.type = type;
+        this.amount = amount;
     }
 
     public Type getType() {
@@ -34,7 +48,7 @@ public class MilkCreamer extends AddInsOptions {
 
     @Override
     public String getTextInit() {
-        return DEFAULT_TEXT_INIT;
+        return (type == null) ? (DEFAULT_TEXT_INIT) : ("Add " + type.name());
     }
 
     @Override
@@ -54,7 +68,7 @@ public class MilkCreamer extends AddInsOptions {
 
     @Override
     public String getTypeAsString() {
-        return type.name();
+        return (type == null) ? NULL_TYPE_AS_STRING : type.name();
     }
 
     @Override
@@ -73,5 +87,12 @@ public class MilkCreamer extends AddInsOptions {
         }
 
         return false;
+    }
+
+    @Override
+    public DrinkComponent newInstanceViaTypeAsString(String typeAsString, Amount amount) {
+        MilkCreamer milkCreamer = new MilkCreamer(null, amount);
+        milkCreamer.setTypeByString(typeAsString);
+        return milkCreamer;
     }
 }

@@ -5,7 +5,6 @@ import com.jackingaming.vesselforcheesemobileapp.models.components.Incrementable
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.AddInsOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.LineTheCup;
-import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.mixed_type.fruits.base.Fruits;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.mixed_type.powders.base.Powders;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.cup_options.CupOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.cup_options.CupSize;
@@ -78,6 +77,7 @@ public class CaffeLatte extends Lattes {
     public CaffeLatte() {
         super(DEFAULT_NAME, DEFAULT_DESCRIPTION, DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
                 DEFAULT_PRICE_MEDIUM, DEFAULT_ICED);
+
         // MILK_OPTIONS
         List<DrinkComponent> milkOptions = new ArrayList<>();
         milkOptions.add(new MilkFoam(DEFAULT_MILK_FOAM, DEFAULT_MILK_FOAM_AMOUNT));
@@ -93,45 +93,29 @@ public class CaffeLatte extends Lattes {
         espressoOptions.add(new PrepOptions(null));
         // TEA_OPTIONS
         List<DrinkComponent> teaOptions = new ArrayList<>();
-        Chai chai = new Chai(null, Incrementable.QUANTITY_FOR_INVOKER);
-        teaOptions.add(chai);
+        teaOptions.add(new Chai(null, Incrementable.QUANTITY_FOR_INVOKER));
         // SWEETENER_OPTIONS
         List<DrinkComponent> sweetenerOptions = new ArrayList<>();
-        Liquid liquid = new Liquid(null, Incrementable.QUANTITY_FOR_INVOKER);
-        sweetenerOptions.add(liquid);
-        Packet packet = new Packet(null, Incrementable.QUANTITY_FOR_INVOKER);
-        sweetenerOptions.add(packet);
+        sweetenerOptions.add(new Liquid(null, Incrementable.QUANTITY_FOR_INVOKER));
+        sweetenerOptions.add(new Packet(null, Incrementable.QUANTITY_FOR_INVOKER));
         // FLAVOR_OPTIONS
         List<DrinkComponent> flavorOptions = new ArrayList<>();
-        Sauce sauce = new Sauce(null, Incrementable.QUANTITY_FOR_INVOKER);
-        flavorOptions.add(sauce);
-        Syrup syrup = new Syrup(null, Incrementable.QUANTITY_FOR_INVOKER);
-        flavorOptions.add(syrup);
+        flavorOptions.add(new Sauce(null, Incrementable.QUANTITY_FOR_INVOKER));
+        flavorOptions.add(new Syrup(null, Incrementable.QUANTITY_FOR_INVOKER));
         // TOPPING_OPTIONS
         List<DrinkComponent> toppingOptions = new ArrayList<>();
-        ColdFoam coldFoam = new ColdFoam(null, Granular.Amount.NO);
-        toppingOptions.add(coldFoam);
-        CinnamonPowder cinnamonPowder = new CinnamonPowder(null, Granular.Amount.NO);
-        toppingOptions.add(cinnamonPowder);
-        Drizzle drizzle = new Drizzle(null, Granular.Amount.NO);
-        toppingOptions.add(drizzle);
-        Topping topping = new Topping(null, Granular.Amount.NO);
-        toppingOptions.add(topping);
-        WhippedCream whippedCream = new WhippedCream(null, Granular.Amount.NO);
-        toppingOptions.add(whippedCream);
+        toppingOptions.add(new ColdFoam(null, Granular.Amount.NO));
+        toppingOptions.add(new CinnamonPowder(null, Granular.Amount.NO));
+        toppingOptions.add(new Drizzle(null, Granular.Amount.NO));
+        toppingOptions.add(new Topping(null, Granular.Amount.NO));
+        toppingOptions.add(new WhippedCream(null, Granular.Amount.NO));
         // ADD_INS_OPTIONS
         List<DrinkComponent> addInsOptions = new ArrayList<>();
-        LineTheCup lineTheCup = new LineTheCup(DEFAULT_LINE_THE_CUP);
-        addInsOptions.add(lineTheCup);
-        Powders powders = new Powders();
-        addInsOptions.add(powders);
-        // TODO: remove later (currently testing)
-        Fruits fruits = new Fruits();
-        addInsOptions.add(fruits);
+        addInsOptions.add(new LineTheCup(DEFAULT_LINE_THE_CUP));
+        addInsOptions.add(new Powders());
         // CUP_OPTIONS
         List<DrinkComponent> cupOptions = new ArrayList<>();
-        CupSize cupSize = new CupSize(DEFAULT_CUP_SIZE);
-        cupOptions.add(cupSize);
+        cupOptions.add(new CupSize(DEFAULT_CUP_SIZE));
 
         // MILK_OPTIONS (defaults)
         List<String> milkOptionsDefault = new ArrayList<>();
@@ -166,8 +150,6 @@ public class CaffeLatte extends Lattes {
         List<String> addInsOptionsDefault = new ArrayList<>();
         addInsOptionsDefault.add(DEFAULT_LINE_THE_CUP.name());
         addInsOptionsDefault.add(DEFAULT_POWDERS);
-        // TODO: remove later (currently testing)
-        addInsOptionsDefault.add(DrinkComponent.NULL_TYPE_AS_STRING);
         // CUP_OPTIONS (defaults)
         List<String> cupOptionsDefault = new ArrayList<>();
         cupOptionsDefault.add(DEFAULT_CUP_SIZE.name());
