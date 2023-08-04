@@ -2,6 +2,10 @@ package com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.categor
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -10,17 +14,9 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Toast;
-
 import com.jackingaming.vesselforcheesemobileapp.R;
 import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.subcategory.MenuItemCategoryActivity;
 import com.jackingaming.vesselforcheesemobileapp.models.menu.Menu;
-import com.jackingaming.vesselforcheesemobileapp.models.menu.categories.Category;
-
-import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -39,7 +35,6 @@ public class MenuFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    private List<Category> categories = Menu.categories;
     private CategoryAdapter adapter;
 
     public MenuFragment() {
@@ -82,16 +77,40 @@ public class MenuFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        adapter = new CategoryAdapter(categories, new CategoryAdapter.CategoryAdapterListener() {
+        adapter = new CategoryAdapter(Menu.categories, new CategoryAdapter.CategoryAdapterListener() {
             @Override
             public void onItemClicked(int position, View view) {
-                // TODO:
-                String nameOfCategory = categories.get(position).getName();
+                // TODO: HOT_COFFEES, COLD_COFFEES, ...
+                String nameOfCategory = Menu.categories.get(position).getName();
                 if (nameOfCategory.equals(Menu.HOT_COFFEES)) {
-                    int numberOfMenuItems = Menu.americanos.size() + Menu.brewedCoffees.size() + Menu.cappuccinos.size() + Menu.espressoShots.size() + Menu.flatWhites.size() + Menu.lattes.size() + Menu.macchiatos.size() + Menu.mochas.size() + Menu.coffeeTravelers.size();
+                    int numberOfMenuItems = Menu.americanos.size() +
+                            Menu.brewedCoffees.size() +
+                            Menu.cappuccinos.size() +
+                            Menu.espressoShots.size() +
+                            Menu.flatWhites.size() +
+                            Menu.lattes.size() +
+                            Menu.macchiatos.size() +
+                            Menu.mochas.size() +
+                            Menu.coffeeTravelers.size();
 
                     Intent intent = new Intent(getContext(), MenuItemCategoryActivity.class);
                     intent.putExtra(MenuItemCategoryActivity.EXTRA_TITLE, Menu.HOT_COFFEES);
+                    intent.putExtra(MenuItemCategoryActivity.EXTRA_SIZE, numberOfMenuItems);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+                } else if (nameOfCategory.equals(Menu.COLD_COFFEES)) {
+                    int numberOfMenuItems = Menu.coldBrews.size() +
+                            Menu.nitroColdBrews.size() +
+                            Menu.icedAmericano.size() +
+                            Menu.icedCoffees.size() +
+                            Menu.icedShakenEspresso.size() +
+                            Menu.icedFlatWhites.size() +
+                            Menu.icedLattes.size() +
+                            Menu.icedMacchiatos.size() +
+                            Menu.icedMochas.size();
+
+                    Intent intent = new Intent(getContext(), MenuItemCategoryActivity.class);
+                    intent.putExtra(MenuItemCategoryActivity.EXTRA_TITLE, Menu.COLD_COFFEES);
                     intent.putExtra(MenuItemCategoryActivity.EXTRA_SIZE, numberOfMenuItems);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);

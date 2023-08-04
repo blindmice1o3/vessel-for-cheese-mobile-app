@@ -95,9 +95,11 @@ public class MenuItemActivity extends AppCompatActivity {
         TextView tvCaloriesSugarFat = findViewById(R.id.tv_calories_sugar_fat);
         Button buttonNutritionAndIngredient = findViewById(R.id.button_nutrition_and_ingredient);
 
-        if (nameCategory.equals(Menu.HOT_COFFEES)) {
-            Log.i(TAG, "Menu.HOT_COFFEES [which implies the selected MenuItem is a Drink]");
-            drink = createCopyOfDrinkFromMenu(nameSubCategory, position);
+        if (nameCategory.equals(Menu.HOT_COFFEES) ||
+                nameCategory.equals(Menu.COLD_COFFEES)) {
+            Log.i(TAG, "Menu.HOT_COFFEES || Menu.COLD_COFFEES " +
+                    "[which implies the selected MenuItem is a Drink]");
+            drink = createCopyOfDrinkFromMenu(nameCategory, nameSubCategory, position);
 
             // TODO: add field to MenuItem class: long idImageResource.
 //            ivMenuItemImage.setImageResource(R.drawable.harvest_moon_natsume);
@@ -292,8 +294,15 @@ public class MenuItemActivity extends AppCompatActivity {
         });
     }
 
-    private Drink createCopyOfDrinkFromMenu(String nameSubCategory, int position) {
-        MenuItem menuItem = Menu.hotCoffeesAsMap.get(nameSubCategory).get(position);
+    private Drink createCopyOfDrinkFromMenu(String nameCategory, String nameSubCategory, int position) {
+        MenuItem menuItem = null;
+        if (nameCategory.equals(Menu.HOT_COFFEES)) {
+            menuItem = Menu.hotCoffeesAsMap.get(nameSubCategory).get(position);
+        } else if (nameCategory.equals(Menu.COLD_COFFEES)) {
+            menuItem = Menu.coldCoffeesAsMap.get(nameSubCategory).get(position);
+        } else {
+            Log.e(TAG, "nameCategory NOT equals() Menu.HOT_COFFEES nor Menu.COLD_COFFEES");
+        }
 
         if (menuItem instanceof Drink) {
             Drink original = (Drink) menuItem;

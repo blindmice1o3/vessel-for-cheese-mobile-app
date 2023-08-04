@@ -1,5 +1,10 @@
 package com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.subcategory;
 
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -8,16 +13,14 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.Bundle;
-import android.util.Log;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.Toast;
-
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.jackingaming.vesselforcheesemobileapp.R;
 import com.jackingaming.vesselforcheesemobileapp.models.menu.Menu;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.MenuItem;
+
+import java.util.List;
+import java.util.Map;
 
 public class MenuItemCategoryActivity extends AppCompatActivity {
     public static final String TAG = MenuItemCategoryActivity.class.getSimpleName();
@@ -52,7 +55,15 @@ public class MenuItemCategoryActivity extends AppCompatActivity {
 
         // TODO: change from just Brewed Coffees to all 9 sub-categories of Hot Coffees.
         // TODO: use Menu.hotCoffeesAsMap
-        SubCategoryAdapter adapter = new SubCategoryAdapter(Menu.hotCoffeesAsMap, new SubCategoryAdapter.SubCategoryAdapterListener() {
+        Map<String, List<MenuItem>> categorySelected = null;
+        if (title.equals(Menu.HOT_COFFEES)) {
+            categorySelected = Menu.hotCoffeesAsMap;
+        } else if (title.equals(Menu.COLD_COFFEES)) {
+            categorySelected = Menu.coldCoffeesAsMap;
+        } else {
+            Log.e(TAG, "title NOT equals() Menu.HOT_COFFEES nor Menu.COLD_COFFEES");
+        }
+        SubCategoryAdapter adapter = new SubCategoryAdapter(title, categorySelected, new SubCategoryAdapter.SubCategoryAdapterListener() {
             @Override
             public void onItemClicked(int position, View view) {
                 Toast.makeText(MenuItemCategoryActivity.this, "onItemClicked() position: " + position, Toast.LENGTH_SHORT).show();
@@ -77,7 +88,7 @@ public class MenuItemCategoryActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+    public boolean onOptionsItemSelected(@NonNull android.view.MenuItem item) {
         Log.i(TAG, "onOptionsItemSelected()");
         if (item.getItemId() == android.R.id.home) {
             Log.i(TAG, "up button (android.R.id.home) was pressed");

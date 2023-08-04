@@ -29,11 +29,13 @@ public class SubCategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         void onItemLongClicked(int position, View view);
     }
 
-    private Map<String, List<MenuItem>> hotCoffeesAsMap;
+    private String title;
+    private Map<String, List<MenuItem>> categorySelected;
     private SubCategoryAdapterListener listener;
 
-    public SubCategoryAdapter(Map<String, List<MenuItem>> hotCoffeesAsMap, SubCategoryAdapterListener listener) {
-        this.hotCoffeesAsMap = hotCoffeesAsMap;
+    public SubCategoryAdapter(String title, Map<String, List<MenuItem>> categorySelected, SubCategoryAdapterListener listener) {
+        this.title = title;
+        this.categorySelected = categorySelected;
         this.listener = listener;
     }
 
@@ -53,38 +55,67 @@ public class SubCategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         Log.i(TAG, "position == " + position);
 
         String nameSubCategory = null;
-        if (position == 0) {
-            nameSubCategory = Menu.AMERICANOS;
-        } else if (position == 1) {
-            nameSubCategory = Menu.BREWED_COFFEES;
-        } else if (position == 2) {
-            nameSubCategory = Menu.CAPPUCCINOS;
-        } else if (position == 3) {
-            nameSubCategory = Menu.ESPRESSO_SHOTS;
-        } else if (position == 4) {
-            nameSubCategory = Menu.FLAT_WHITES;
-        } else if (position == 5) {
-            nameSubCategory = Menu.LATTES;
-        } else if (position == 6) {
-            nameSubCategory = Menu.MACCHIATOS;
-        } else if (position == 7) {
-            nameSubCategory = Menu.MOCHAS;
-        } else if (position == 8) {
-            nameSubCategory = Menu.COFFEE_TRAVELERS;
+        if (title.equals(Menu.HOT_COFFEES)) {
+            Log.i(TAG, "title.equals(Menu.HOT_COFFEES)");
+
+            if (position == 0) {
+                nameSubCategory = Menu.AMERICANOS;
+            } else if (position == 1) {
+                nameSubCategory = Menu.BREWED_COFFEES;
+            } else if (position == 2) {
+                nameSubCategory = Menu.CAPPUCCINOS;
+            } else if (position == 3) {
+                nameSubCategory = Menu.ESPRESSO_SHOTS;
+            } else if (position == 4) {
+                nameSubCategory = Menu.FLAT_WHITES;
+            } else if (position == 5) {
+                nameSubCategory = Menu.LATTES;
+            } else if (position == 6) {
+                nameSubCategory = Menu.MACCHIATOS;
+            } else if (position == 7) {
+                nameSubCategory = Menu.MOCHAS;
+            } else if (position == 8) {
+                nameSubCategory = Menu.COFFEE_TRAVELERS;
+            } else {
+                Log.e(TAG, "else-clause");
+            }
+        } else if (title.equals(Menu.COLD_COFFEES)) {
+            Log.i(TAG, "title.equals(Menu.COLD_COFFEES)");
+
+            if (position == 0) {
+                nameSubCategory = Menu.COLD_BREWS;
+            } else if (position == 1) {
+                nameSubCategory = Menu.NITRO_COLD_BREWS;
+            } else if (position == 2) {
+                nameSubCategory = Menu.ICED_AMERICANO;
+            } else if (position == 3) {
+                nameSubCategory = Menu.ICED_COFFEES;
+            } else if (position == 4) {
+                nameSubCategory = Menu.ICED_SHAKEN_ESPRESSO;
+            } else if (position == 5) {
+                nameSubCategory = Menu.ICED_FLAT_WHITES;
+            } else if (position == 6) {
+                nameSubCategory = Menu.ICED_LATTES;
+            } else if (position == 7) {
+                nameSubCategory = Menu.ICED_MACCHIATOS;
+            } else if (position == 8) {
+                nameSubCategory = Menu.ICED_MOCHAS;
+            } else {
+                Log.e(TAG, "else-clause");
+            }
         } else {
-            Log.e(TAG, "else-clause");
-            nameSubCategory = Menu.AMERICANOS;
+            Log.e(TAG, "title NOT equals() Menu.HOT_COFFEES nor Menu.COLD_COFFEES");
         }
 
-        List<MenuItem> menuItems = hotCoffeesAsMap.get(nameSubCategory);
+        List<MenuItem> menuItems = categorySelected.get(nameSubCategory);
         SubCategoryViewHolder subCategoryViewHolder = (SubCategoryViewHolder) holder;
         subCategoryViewHolder.bind(nameSubCategory, menuItems);
     }
 
     @Override
     public int getItemCount() {
-        Log.i(TAG, "onItemCount() size: " + hotCoffeesAsMap.keySet().size());
-        return hotCoffeesAsMap.keySet().size();
+        Log.i(TAG, "onItemCount() size: " + categorySelected.keySet().size());
+        return categorySelected.keySet().size();
     }
 
     class SubCategoryViewHolder extends RecyclerView.ViewHolder
@@ -112,7 +143,7 @@ public class SubCategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                     Toast.makeText(view.getContext(), "onItemClicked() position: " + position, Toast.LENGTH_SHORT).show();
                     // TODO: start MenuItemActivity
                     Intent intent = new Intent(view.getContext(), MenuItemActivity.class);
-                    intent.putExtra(MenuItemActivity.EXTRA_NAME_CATEGORY, Menu.HOT_COFFEES);
+                    intent.putExtra(MenuItemActivity.EXTRA_NAME_CATEGORY, title);
                     intent.putExtra(MenuItemActivity.EXTRA_NAME_SUB_CATEGORY, nameSubCategory);
                     intent.putExtra(MenuItemActivity.EXTRA_POSITION, position);
                     rvSubCategory.getContext().startActivity(intent);
