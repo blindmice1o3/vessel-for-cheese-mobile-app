@@ -1,18 +1,32 @@
 package com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins;
 
+import com.jackingaming.vesselforcheesemobileapp.models.components.Granular;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
 
-public class Ice extends AddInsOptions {
+public class Ice extends AddInsOptions
+        implements Granular {
     public static final String DEFAULT_TEXT_INIT = "Add Ice";
 
+    @Override
+    public Amount getAmount() {
+        return amount;
+    }
+
+    @Override
+    public void setAmount(Amount amount) {
+        this.amount = amount;
+    }
+
     public enum Type {
-        NONE, LIGHT, MEDIUM, EXTRA;
+        ICE;
     }
 
     private Type type;
+    private Amount amount;
 
-    public Ice(Type type) {
+    public Ice(Type type, Amount amount) {
         this.type = type;
+        this.amount = amount;
     }
 
     public Type getType() {
@@ -25,7 +39,7 @@ public class Ice extends AddInsOptions {
 
     @Override
     public String getTextInit() {
-        return DEFAULT_TEXT_INIT;
+        return (type == null) ? (DEFAULT_TEXT_INIT) : ("Add " + type.name());
     }
 
     @Override
@@ -45,7 +59,7 @@ public class Ice extends AddInsOptions {
 
     @Override
     public String getTypeAsString() {
-        return type.name();
+        return (type == null) ? NULL_TYPE_AS_STRING : type.name();
     }
 
     @Override
@@ -64,5 +78,12 @@ public class Ice extends AddInsOptions {
         }
 
         return false;
+    }
+
+    @Override
+    public DrinkComponent newInstanceViaTypeAsString(String typeAsString, Amount amount) {
+        Ice ice = new Ice(null, amount);
+        ice.setTypeByString(typeAsString);
+        return ice;
     }
 }

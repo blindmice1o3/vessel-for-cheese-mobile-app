@@ -25,7 +25,7 @@ public class Temperature extends MilkOptions {
 
     @Override
     public String getTextInit() {
-        return (type == null) ? (DEFAULT_TEXT_INIT) : ("Add " + type.name());
+        return DEFAULT_TEXT_INIT;
     }
 
     @Override

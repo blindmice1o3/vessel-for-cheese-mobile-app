@@ -1,9 +1,21 @@
 package com.jackingaming.vesselforcheesemobileapp.models.components.drinks.juice_options;
 
+import com.jackingaming.vesselforcheesemobileapp.models.components.Granular;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
 
-public class Juice extends JuiceOptions {
+public class Juice extends JuiceOptions
+        implements Granular {
     public static final String DEFAULT_TEXT_INIT = "Add Juice Options";
+
+    @Override
+    public Amount getAmount() {
+        return amount;
+    }
+
+    @Override
+    public void setAmount(Amount amount) {
+        this.amount = amount;
+    }
 
     public enum Type {
         APPLE,
@@ -11,9 +23,11 @@ public class Juice extends JuiceOptions {
     }
 
     private Type type;
+    private Amount amount;
 
-    public Juice(Type type) {
+    public Juice(Type type, Amount amount) {
         this.type = type;
+        this.amount = amount;
     }
 
     public Type getType() {
@@ -26,7 +40,7 @@ public class Juice extends JuiceOptions {
 
     @Override
     public String getTextInit() {
-        return DEFAULT_TEXT_INIT;
+        return (type == null) ? (DEFAULT_TEXT_INIT) : ("Add " + type.name());
     }
 
     @Override
@@ -46,7 +60,7 @@ public class Juice extends JuiceOptions {
 
     @Override
     public String getTypeAsString() {
-        return type.name();
+        return (type == null) ? NULL_TYPE_AS_STRING : type.name();
     }
 
     @Override
@@ -65,5 +79,12 @@ public class Juice extends JuiceOptions {
         }
 
         return false;
+    }
+
+    @Override
+    public DrinkComponent newInstanceViaTypeAsString(String typeAsString, Amount amount) {
+        Juice juice = new Juice(null, amount);
+        juice.setTypeByString(typeAsString);
+        return juice;
     }
 }

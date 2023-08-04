@@ -1,20 +1,34 @@
 package com.jackingaming.vesselforcheesemobileapp.models.components.drinks.tea_options;
 
+import com.jackingaming.vesselforcheesemobileapp.models.components.Granular;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
 
-public class IcedTeaBase extends TeaOptions {
-    public static final String DEFAULT_TEXT_INIT = "Iced Tea Base";
+public class IcedTea extends TeaOptions
+        implements Granular {
+    public static final String DEFAULT_TEXT_INIT = "Add Iced Tea";
+
+    @Override
+    public Amount getAmount() {
+        return amount;
+    }
+
+    @Override
+    public void setAmount(Amount amount) {
+        this.amount = amount;
+    }
 
     public enum Type {
-        BLACK_TEA,
-        GREEN_TEA,
-        PASSION_TANGO_TEA;
+        SPLASH_OF_BLACK_TEA,
+        SPLASH_OF_GREEN_TEA,
+        SPLASH_OF_PASSION_TANGO_TEA;
     }
 
     private Type type;
+    private Amount amount;
 
-    public IcedTeaBase(Type type) {
+    public IcedTea(Type type, Amount amount) {
         this.type = type;
+        this.amount = amount;
     }
 
     public Type getType() {
@@ -27,7 +41,7 @@ public class IcedTeaBase extends TeaOptions {
 
     @Override
     public String getTextInit() {
-        return DEFAULT_TEXT_INIT;
+        return (type == null) ? (DEFAULT_TEXT_INIT) : ("Add " + type.name());
     }
 
     @Override
@@ -42,12 +56,12 @@ public class IcedTeaBase extends TeaOptions {
 
     @Override
     public String getClassAsString() {
-        return IcedTeaBase.class.getSimpleName();
+        return IcedTea.class.getSimpleName();
     }
 
     @Override
     public String getTypeAsString() {
-        return type.name();
+        return (type == null) ? NULL_TYPE_AS_STRING : type.name();
     }
 
     @Override
@@ -66,5 +80,12 @@ public class IcedTeaBase extends TeaOptions {
         }
 
         return false;
+    }
+
+    @Override
+    public DrinkComponent newInstanceViaTypeAsString(String typeAsString, Amount amount) {
+        IcedTea icedTea = new IcedTea(null, amount);
+        icedTea.setTypeByString(typeAsString);
+        return icedTea;
     }
 }

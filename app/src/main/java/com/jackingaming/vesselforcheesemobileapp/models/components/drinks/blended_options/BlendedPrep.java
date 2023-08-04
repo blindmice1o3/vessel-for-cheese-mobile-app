@@ -46,7 +46,7 @@ public class BlendedPrep extends BlendedOptions {
 
     @Override
     public String getTypeAsString() {
-        return type.name();
+        return (type == null) ? NULL_TYPE_AS_STRING : type.name();
     }
 
     @Override

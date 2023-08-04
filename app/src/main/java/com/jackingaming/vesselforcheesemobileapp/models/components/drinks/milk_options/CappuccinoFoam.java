@@ -3,7 +3,7 @@ package com.jackingaming.vesselforcheesemobileapp.models.components.drinks.milk_
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
 
 public class CappuccinoFoam extends MilkOptions {
-    public static final String DEFAULT_TEXT_INIT = "Add Cappuccino Foam";
+    public static final String DEFAULT_TEXT_INIT = "Cappuccino Foam";
 
     public enum Type {
         EXTRA_DRY, DRY, MEDIUM, WET, EXTRA_WET;
@@ -25,7 +25,7 @@ public class CappuccinoFoam extends MilkOptions {
 
     @Override
     public String getTextInit() {
-        return (type == null) ? (DEFAULT_TEXT_INIT) : ("Add " + type.name());
+        return DEFAULT_TEXT_INIT;
     }
 
     @Override
