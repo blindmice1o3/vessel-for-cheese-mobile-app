@@ -1,6 +1,6 @@
 package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.hot;
 
-public class GreenApronBlend extends BrewedCoffees {
+public class GreenApronBlend extends HotBrewedCoffees {
     public static final String TAG = GreenApronBlend.class.getSimpleName();
 
     public static final String DEFAULT_NAME = "Green Apron Blend";

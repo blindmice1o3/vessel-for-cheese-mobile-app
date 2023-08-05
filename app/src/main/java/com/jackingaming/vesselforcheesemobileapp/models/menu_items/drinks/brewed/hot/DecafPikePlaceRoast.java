@@ -1,6 +1,6 @@
 package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.hot;
 
-public class DecafPikePlaceRoast extends BrewedCoffees {
+public class DecafPikePlaceRoast extends HotBrewedCoffees {
     public static final String TAG = DecafPikePlaceRoast.class.getSimpleName();
 
     public static final String DEFAULT_NAME = "Decaf Pike Place Roast";

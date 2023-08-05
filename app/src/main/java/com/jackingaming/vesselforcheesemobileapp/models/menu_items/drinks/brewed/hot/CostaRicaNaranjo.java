@@ -1,6 +1,6 @@
 package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.hot;
 
-public class CostaRicaNaranjo extends BrewedCoffees {
+public class CostaRicaNaranjo extends HotBrewedCoffees {
     public static final String TAG = CostaRicaNaranjo.class.getSimpleName();
 
     public static final String DEFAULT_NAME = "Clover Starbucks Reserve Costa Rica Naranjo";

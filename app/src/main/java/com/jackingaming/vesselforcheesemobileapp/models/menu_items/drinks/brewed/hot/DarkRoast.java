@@ -1,6 +1,6 @@
 package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.hot;
 
-public class DarkRoast extends BrewedCoffees {
+public class DarkRoast extends HotBrewedCoffees {
     public static final String TAG = DarkRoast.class.getSimpleName();
 
     public static final String DEFAULT_NAME = "Featured Starbucks Dark Roast Coffee";

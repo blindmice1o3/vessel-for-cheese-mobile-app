@@ -5,12 +5,17 @@ import android.util.Log;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.Drink;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.DrinkSize;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.cappuccinos.Cappuccinos;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.flat_whites.cold.IcedFlatWhites;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.flat_whites.hot.FlatWhites;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.iced_shaken_espressos.IcedShakenEspressos;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.lattes.cold.IcedLattes;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.lattes.hot.Lattes;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.macchiatos.cold.IcedMacchiatos;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.macchiatos.hot.EspressoMacchiato;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.macchiatos.hot.Macchiatos;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.mochas.cold.IcedMochas;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.mochas.hot.Mochas;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.water_based.americanos.cold.IcedAmericano;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.water_based.americanos.hot.Americanos;
 
 public abstract class Espresso extends Drink {
@@ -29,30 +34,11 @@ public abstract class Espresso extends Drink {
         Log.i(TAG, "getNumberOfShotByDrinkSize(DrinkSize)");
 
         int numberOfShotNew = QUANTITY_INDEPENDENT_OF_DRINK_SIZE;
-        if (this instanceof Lattes ||
-                this instanceof Cappuccinos ||
-                this instanceof Mochas) {
-            Log.i(TAG, "this instanceof Lattes || this instanceof Cappuccinos || this instanceof Mochas");
-            switch (drinkSizeNew) {
-                case SHORT:
-                case TALL:
-                    numberOfShotNew = 1;
-                    break;
-                case GRANDE:
-                case VENTI_HOT:
-                    numberOfShotNew = 2;
-                    break;
-                case VENTI_ICED:
-                    numberOfShotNew = 3;
-                    break;
-                case TRENTA:
-                case UNIQUE:
-                case UNDEFINED:
-                    break;
-            }
-        } else if (this instanceof Macchiatos &&
-                !(this instanceof EspressoMacchiato)) {
-            Log.i(TAG, "this instanceof Macchiatos && !(this instanceof EspressoMacchiato)");
+        if (this instanceof Lattes || this instanceof IcedLattes ||
+                this instanceof Mochas || this instanceof IcedMochas ||
+                this instanceof Cappuccinos || this instanceof IcedMacchiatos ||
+                this instanceof Macchiatos && !(this instanceof EspressoMacchiato)) {
+            Log.i(TAG, "this instanceof Lattes || this instanceof IcedLattes || this instanceof Mochas || this instanceof IcedMochas || this instanceof Cappuccinos || this instanceof IcedMacchiatos || this instanceof Macchiatos && !(this instanceof EspressoMacchiato)");
             // TODO: double check on EspressoMacchiato shot-by-DrinkSize
             switch (drinkSizeNew) {
                 case SHORT:
@@ -71,8 +57,8 @@ public abstract class Espresso extends Drink {
                 case UNDEFINED:
                     break;
             }
-        } else if (this instanceof Americanos) {
-            Log.i(TAG, "this instanceof Americanos");
+        } else if (this instanceof Americanos || this instanceof IcedAmericano) {
+            Log.i(TAG, "this instanceof Americanos || this instanceof IcedAmericano");
             switch (drinkSizeNew) {
                 case SHORT:
                     numberOfShotNew = 1;
@@ -92,9 +78,9 @@ public abstract class Espresso extends Drink {
                 case UNDEFINED:
                     break;
             }
-        } else if (this instanceof FlatWhites ||
+        } else if (this instanceof FlatWhites || this instanceof IcedFlatWhites ||
                 this instanceof IcedShakenEspressos) {
-            Log.i(TAG, "this instanceof FlatWhites || this instanceof IcedShakenEspressos");
+            Log.i(TAG, "this instanceof FlatWhites || this instanceof IcedFlatWhites || this instanceof IcedShakenEspressos");
             switch (drinkSizeNew) {
                 case SHORT:
                 case TALL:
@@ -124,13 +110,12 @@ public abstract class Espresso extends Drink {
         Log.i(TAG, "getNumberOfPumpByDrinkSize(DrinkSize)");
 
         int numberOfPumpNew = QUANTITY_INDEPENDENT_OF_DRINK_SIZE;
-        if (this instanceof Lattes ||
-                this instanceof Cappuccinos ||
-                this instanceof Mochas ||
-                this instanceof Americanos ||
-                this instanceof FlatWhites ||
-                this instanceof IcedShakenEspressos) {
-            Log.i(TAG, "this instanceof Lattes || this instanceof Cappuccinos || this instanceof Mochas");
+        if (this instanceof Lattes || this instanceof IcedLattes ||
+                this instanceof Mochas || this instanceof IcedMochas ||
+                this instanceof Americanos || this instanceof IcedAmericano ||
+                this instanceof FlatWhites || this instanceof IcedShakenEspressos ||
+                this instanceof Cappuccinos) {
+            Log.i(TAG, "this instanceof Lattes || this instanceof IcedLattes || this instanceof Mochas || this instanceof IcedMochas || this instanceof Americanos || this instanceof IcedAmericano || this instanceof FlatWhites || this instanceof IcedShakenEspressos || this instanceof Cappuccinos");
             switch (drinkSizeNew) {
                 case SHORT:
                     numberOfPumpNew = 2;
@@ -152,9 +137,9 @@ public abstract class Espresso extends Drink {
                 case UNDEFINED:
                     break;
             }
-        } else if (this instanceof Macchiatos &&
-                !(this instanceof EspressoMacchiato)) {
-            Log.i(TAG, "this instanceof Macchiatos && !(this instanceof EspressoMacchiato)");
+        } else if (this instanceof Macchiatos && !(this instanceof EspressoMacchiato)
+                || this instanceof IcedMacchiatos) {
+            Log.i(TAG, "this instanceof Macchiatos && !(this instanceof EspressoMacchiato) || this instanceof IcedMacchiatos");
             // TODO: double check on EspressoMacchiato shot-by-DrinkSize
             switch (drinkSizeNew) {
                 case SHORT:

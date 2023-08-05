@@ -1,6 +1,6 @@
 package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.hot;
 
-public class EcuadorLoja extends BrewedCoffees {
+public class EcuadorLoja extends HotBrewedCoffees {
     public static final String TAG = EcuadorLoja.class.getSimpleName();
 
     public static final String DEFAULT_NAME = "Clover Starbucks Reserve Ecuador Loja";

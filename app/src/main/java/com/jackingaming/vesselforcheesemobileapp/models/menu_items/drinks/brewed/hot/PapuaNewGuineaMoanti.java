@@ -1,6 +1,6 @@
 package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.hot;
 
-public class PapuaNewGuineaMoanti extends BrewedCoffees {
+public class PapuaNewGuineaMoanti extends HotBrewedCoffees {
     public static final String TAG = PapuaNewGuineaMoanti.class.getSimpleName();
 
     public static final String DEFAULT_NAME = "Clover Starbucks Reserve Papua New Guinea Moanti";

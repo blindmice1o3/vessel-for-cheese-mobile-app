@@ -1,6 +1,6 @@
 package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.hot;
 
-public class RwandaSholi extends BrewedCoffees {
+public class RwandaSholi extends HotBrewedCoffees {
     public static final String TAG = RwandaSholi.class.getSimpleName();
 
     public static final String DEFAULT_NAME = "Clover Starbucks Reserve Rwanda Sholi";

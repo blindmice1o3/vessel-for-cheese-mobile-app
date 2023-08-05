@@ -1,6 +1,6 @@
 package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.hot;
 
-public class CaffeMisto extends BrewedCoffees {
+public class CaffeMisto extends HotBrewedCoffees {
     public static final String TAG = CaffeMisto.class.getSimpleName();
 
     public static final String DEFAULT_NAME = "Caffe Misto";

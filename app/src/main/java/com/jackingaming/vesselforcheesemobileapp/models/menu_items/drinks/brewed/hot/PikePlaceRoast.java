@@ -32,7 +32,7 @@ import com.jackingaming.vesselforcheesemobileapp.models.menu.Menu;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PikePlaceRoast extends BrewedCoffees {
+public class PikePlaceRoast extends HotBrewedCoffees {
     public static final String TAG = PikePlaceRoast.class.getSimpleName();
 
     public static final String DEFAULT_NAME = "Featured Medium Roast - Pike Place Roast";
