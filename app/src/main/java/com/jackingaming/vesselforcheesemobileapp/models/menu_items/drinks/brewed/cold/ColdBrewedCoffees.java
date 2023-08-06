@@ -3,7 +3,7 @@ package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewe
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.DrinkSize;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.BrewedCoffees;
 
-public class ColdBrewedCoffees extends BrewedCoffees {
+public abstract class ColdBrewedCoffees extends BrewedCoffees {
     public static final String TAG = ColdBrewedCoffees.class.getSimpleName();
     public static final DrinkSize DEFAULT_DRINK_SIZE = DrinkSize.GRANDE;
 

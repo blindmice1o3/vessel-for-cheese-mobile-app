@@ -5,7 +5,7 @@ import android.util.Log;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.Drink;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.DrinkSize;
 
-public class BrewedCoffees extends Drink {
+public abstract class BrewedCoffees extends Drink {
     public static final String TAG = BrewedCoffees.class.getSimpleName();
 
     public BrewedCoffees() {
