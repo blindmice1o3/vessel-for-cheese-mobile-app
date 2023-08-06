@@ -48,7 +48,6 @@ public class IcedCaffeLatte extends IcedLattes {
     public static final RoastOptions.Type DEFAULT_ROAST_OPTIONS = RoastOptions.Type.SIGNATURE;
     public static final Shot.Type DEFAULT_SHOT = Shot.Type.SHOT;
     public static final int DEFAULT_NUMBER_OF_ESPRESSO_SHOTS_MIN = 1;
-    public static final int DEFAULT_NUMBER_OF_ESPRESSO_SHOTS = 2;
     public static final PullOptions.Type DEFAULT_PULL_OPTIONS = PullOptions.Type.NONE;
     public static final PrepOptions.Type DEFAULT_PREP_OPTIONS = PrepOptions.Type.NONE;
     public static final int DEFAULT_NUMBER_OF_CHAI_SCOOPS = 0;
@@ -82,7 +81,8 @@ public class IcedCaffeLatte extends IcedLattes {
         // ESPRESSO_OPTIONS
         List<DrinkComponent> espressoOptions = new ArrayList<>();
         espressoOptions.add(new RoastOptions(DEFAULT_ROAST_OPTIONS));
-        Shot shot = new Shot(DEFAULT_SHOT, DEFAULT_NUMBER_OF_ESPRESSO_SHOTS);
+        int numberOfShotByDrinkSize = getNumberOfShotByDrinkSize(DEFAULT_DRINK_SIZE);
+        Shot shot = new Shot(DEFAULT_SHOT, numberOfShotByDrinkSize);
         shot.setQuantityMin(DEFAULT_NUMBER_OF_ESPRESSO_SHOTS_MIN);
         espressoOptions.add(shot);
         espressoOptions.add(new PullOptions(null));
@@ -120,7 +120,7 @@ public class IcedCaffeLatte extends IcedLattes {
         // ESPRESSO_OPTIONS (defaults)
         List<String> espressoOptionsDefault = new ArrayList<>();
         espressoOptionsDefault.add(DEFAULT_ROAST_OPTIONS.name());
-        espressoOptionsDefault.add(Integer.toString(DEFAULT_NUMBER_OF_ESPRESSO_SHOTS));
+        espressoOptionsDefault.add(Integer.toString(numberOfShotByDrinkSize));
         espressoOptionsDefault.add(DEFAULT_PULL_OPTIONS.name());
         espressoOptionsDefault.add(DEFAULT_PREP_OPTIONS.name());
         // TEA_OPTIONS (defaults)

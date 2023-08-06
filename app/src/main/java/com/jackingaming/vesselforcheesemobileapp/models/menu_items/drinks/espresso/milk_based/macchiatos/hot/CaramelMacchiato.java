@@ -52,7 +52,6 @@ public class CaramelMacchiato extends Macchiatos {
     public static final RoastOptions.Type DEFAULT_ROAST_OPTIONS = RoastOptions.Type.SIGNATURE;
     public static final Shot.Type DEFAULT_SHOT = Shot.Type.SHOT;
     public static final int DEFAULT_NUMBER_OF_ESPRESSO_SHOTS_MIN = 1;
-    public static final int DEFAULT_NUMBER_OF_ESPRESSO_SHOTS = 2;
     public static final PullOptions.Type DEFAULT_PULL_OPTIONS = PullOptions.Type.NONE;
     public static final PrepOptions.Type DEFAULT_PREP_OPTIONS = PrepOptions.Type.NONE;
     public static final int DEFAULT_NUMBER_OF_CHAI_SCOOPS = 0;
@@ -60,7 +59,6 @@ public class CaramelMacchiato extends Macchiatos {
     public static final int DEFAULT_NUMBER_OF_SWEETENER_PACKET_PACKS = 0;
     public static final int DEFAULT_NUMBER_OF_FLAVOR_SAUCE_PUMPS = 0;
     public static final Syrup.Type DEFAULT_SYRUP_VANILLA = Syrup.Type.VANILLA;
-    public static final int DEFAULT_NUMBER_OF_SYRUP_VANILLA_PUMPS = 3;
     public static final int DEFAULT_NUMBER_OF_FLAVOR_SYRUP_PUMPS = 0;
     public static final Granular.Amount DEFAULT_COLD_FOAM_AMOUNT = Granular.Amount.NO;
     public static final Granular.Amount DEFAULT_CINNAMON_POWDER_AMOUNT = Granular.Amount.NO;
@@ -90,7 +88,8 @@ public class CaramelMacchiato extends Macchiatos {
         // ESPRESSO_OPTIONS
         List<DrinkComponent> espressoOptions = new ArrayList<>();
         espressoOptions.add(new RoastOptions(DEFAULT_ROAST_OPTIONS));
-        Shot shot = new Shot(DEFAULT_SHOT, DEFAULT_NUMBER_OF_ESPRESSO_SHOTS);
+        int numberOfShotByDrinkSize = getNumberOfShotByDrinkSize(DEFAULT_DRINK_SIZE);
+        Shot shot = new Shot(DEFAULT_SHOT, numberOfShotByDrinkSize);
         shot.setQuantityMin(DEFAULT_NUMBER_OF_ESPRESSO_SHOTS_MIN);
         espressoOptions.add(shot);
         espressoOptions.add(new PullOptions(null));
@@ -104,7 +103,8 @@ public class CaramelMacchiato extends Macchiatos {
         sweetenerOptions.add(new Packet(null, Incrementable.QUANTITY_FOR_INVOKER));
         // FLAVOR_OPTIONS
         List<DrinkComponent> flavorOptions = new ArrayList<>();
-        Syrup syrupVanilla = new Syrup(DEFAULT_SYRUP_VANILLA, DEFAULT_NUMBER_OF_SYRUP_VANILLA_PUMPS);
+        int numberOfPumpByDrinkSize = getNumberOfPumpByDrinkSize(DEFAULT_DRINK_SIZE);
+        Syrup syrupVanilla = new Syrup(DEFAULT_SYRUP_VANILLA, numberOfPumpByDrinkSize);
         flavorOptions.add(syrupVanilla);
         flavorOptions.add(new Sauce(null, Incrementable.QUANTITY_FOR_INVOKER));
         flavorOptions.add(new Syrup(null, Incrementable.QUANTITY_FOR_INVOKER));
@@ -133,7 +133,7 @@ public class CaramelMacchiato extends Macchiatos {
         // ESPRESSO_OPTIONS (defaults)
         List<String> espressoOptionsDefault = new ArrayList<>();
         espressoOptionsDefault.add(DEFAULT_ROAST_OPTIONS.name());
-        espressoOptionsDefault.add(Integer.toString(DEFAULT_NUMBER_OF_ESPRESSO_SHOTS));
+        espressoOptionsDefault.add(Integer.toString(numberOfShotByDrinkSize));
         espressoOptionsDefault.add(DEFAULT_PULL_OPTIONS.name());
         espressoOptionsDefault.add(DEFAULT_PREP_OPTIONS.name());
         // TEA_OPTIONS (defaults)
@@ -145,7 +145,7 @@ public class CaramelMacchiato extends Macchiatos {
         sweetenerOptionsDefault.add(Integer.toString(DEFAULT_NUMBER_OF_SWEETENER_PACKET_PACKS));
         // FLAVOR_OPTIONS (defaults)
         List<String> flavorOptionsDefault = new ArrayList<>();
-        flavorOptionsDefault.add(Integer.toString(DEFAULT_NUMBER_OF_SYRUP_VANILLA_PUMPS));
+        flavorOptionsDefault.add(Integer.toString(numberOfPumpByDrinkSize));
         flavorOptionsDefault.add(Integer.toString(DEFAULT_NUMBER_OF_FLAVOR_SAUCE_PUMPS));
         flavorOptionsDefault.add(Integer.toString(DEFAULT_NUMBER_OF_FLAVOR_SYRUP_PUMPS));
         // TOPPING_OPTIONS (defaults)
