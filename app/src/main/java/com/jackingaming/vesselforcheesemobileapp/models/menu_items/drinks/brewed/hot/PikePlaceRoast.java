@@ -84,17 +84,17 @@ public class PikePlaceRoast extends HotBrewedCoffees {
         flavorOptions.add(new Syrup(null, Incrementable.QUANTITY_FOR_INVOKER));
         // TOPPING_OPTIONS
         List<DrinkComponent> toppingOptions = new ArrayList<>();
-        toppingOptions.add(new ColdFoam(null, Granular.Amount.NO));
-        toppingOptions.add(new CinnamonPowder(null, Granular.Amount.NO));
-        toppingOptions.add(new Drizzle(null, Granular.Amount.NO));
-        toppingOptions.add(new Topping(null, Granular.Amount.NO));
-        toppingOptions.add(new WhippedCream(null, Granular.Amount.NO));
+        toppingOptions.add(new ColdFoam(null, DEFAULT_COLD_FOAM_AMOUNT));
+        toppingOptions.add(new CinnamonPowder(null, DEFAULT_CINNAMON_POWDER_AMOUNT));
+        toppingOptions.add(new Drizzle(null, DEFAULT_DRIZZLE_AMOUNT));
+        toppingOptions.add(new Topping(null, DEFAULT_TOPPING_AMOUNT));
+        toppingOptions.add(new WhippedCream(null, DEFAULT_WHIPPED_CREAM_AMOUNT));
         // ADD_INS_OPTIONS
         List<DrinkComponent> addInsOptions = new ArrayList<>();
         addInsOptions.add(new LineTheCup(DEFAULT_LINE_THE_CUP));
         addInsOptions.add(new Powders());
-        addInsOptions.add(new MilkCreamer(null, Granular.Amount.NO));
-        addInsOptions.add(new Room(null, Granular.Amount.NO));
+        addInsOptions.add(new MilkCreamer(null, DEFAULT_MILK_CREAMER_AMOUNT));
+        addInsOptions.add(new Room(null, DEFAULT_ROOM_AMOUNT));
         // CUP_OPTIONS
         List<DrinkComponent> cupOptions = new ArrayList<>();
         CupSize cupSize = new CupSize(DEFAULT_CUP_SIZE);

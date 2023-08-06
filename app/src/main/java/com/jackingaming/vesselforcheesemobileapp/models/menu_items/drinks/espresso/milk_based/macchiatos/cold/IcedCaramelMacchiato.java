@@ -107,14 +107,15 @@ public class IcedCaramelMacchiato extends IcedMacchiatos {
         List<DrinkComponent> toppingOptions = new ArrayList<>();
         Drizzle drizzleCaramel = new Drizzle(DEFAULT_DRIZZLE_CARAMEL, DEFAULT_DRIZZLE_CARAMEL_AMOUNT);
         toppingOptions.add(drizzleCaramel);
-        toppingOptions.add(new ColdFoam(null, Granular.Amount.NO));
-        toppingOptions.add(new CinnamonPowder(null, Granular.Amount.NO));
-        toppingOptions.add(new Drizzle(null, Granular.Amount.NO));
-        toppingOptions.add(new Topping(null, Granular.Amount.NO));
-        toppingOptions.add(new WhippedCream(null, Granular.Amount.NO));
+        toppingOptions.add(new ColdFoam(null, DEFAULT_COLD_FOAM_AMOUNT));
+        toppingOptions.add(new CinnamonPowder(null, DEFAULT_CINNAMON_POWDER_AMOUNT));
+        toppingOptions.add(new Drizzle(null, DEFAULT_DRIZZLE_AMOUNT));
+        toppingOptions.add(new Topping(null, DEFAULT_TOPPING_AMOUNT));
+        toppingOptions.add(new WhippedCream(null, DEFAULT_WHIPPED_CREAM_AMOUNT));
         // ADD_INS_OPTIONS
         List<DrinkComponent> addInsOptions = new ArrayList<>();
-        addInsOptions.add(new Ice(DEFAULT_ICE, DEFAULT_ICE_AMOUNT));
+        Ice ice = new Ice(DEFAULT_ICE, DEFAULT_ICE_AMOUNT);
+        addInsOptions.add(ice);
         addInsOptions.add(new LineTheCup(DEFAULT_LINE_THE_CUP));
         addInsOptions.add(new Powders());
         // CUP_OPTIONS
