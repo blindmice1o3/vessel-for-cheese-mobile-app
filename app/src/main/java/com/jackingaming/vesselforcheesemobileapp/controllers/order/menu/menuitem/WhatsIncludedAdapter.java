@@ -35,6 +35,7 @@ public class WhatsIncludedAdapter extends DrinkComponentBaseAdapter {
     private Pair<List<DrinkComponent>, List<String>> generateWhatsIncluded(Drink drink) {
         Map<String, List<DrinkComponent>> drinkComponentGroups = drink.getDrinkComponents();
         Map<String, List<String>> drinkComponentGroupsDefaultAsString = drink.getDrinkComponentsDefaultAsString();
+        List<DrinkComponent> drinkComponentsStandardRecipe = drink.getDrinkComponentsStandardRecipe();
         List<DrinkComponent> drinkComponentsWhatsIncluded = new ArrayList<>();
         List<String> drinkComponentsWhatsIncludedDefaultAsString = new ArrayList<>();
         Log.i(TAG, "!!!!!creating drinkComponentsWhatsIncluded!!!!!");
@@ -48,36 +49,44 @@ public class WhatsIncludedAdapter extends DrinkComponentBaseAdapter {
                     DrinkComponent drinkComponent = types.get(j);
                     String drinkComponentDefault = typesDefault.get(j);
 
-                    if (drinkComponent.getTypeAsString().equals(DrinkComponent.NULL_TYPE_AS_STRING)) {
-                        Log.i(TAG, "skipping - drinkComponent.getTypeAsString().equals(DrinkComponent.NULL_TYPE_AS_STRING)");
-                        continue;
-                    } else if (drinkComponent instanceof Granular) {
-                        Granular.Amount amount = ((Granular) drinkComponent).getAmount();
+                    if (drinkComponentsStandardRecipe.contains(drinkComponent)) {
+                        Log.e(TAG, "drinkComponentsStandardRecipe.contains(drinkComponent)");
 
-                        if (amount == Granular.Amount.NO) {
-                            Log.i(TAG, "skipping - amount == Granular.Amount.NO");
+                        if ((drinkComponent instanceof CupSize && drinkComponent.getTypeAsString().equals(drinkComponentDefault)) ||
+                                (drinkComponent instanceof LineTheCup && drinkComponent.getTypeAsString().equals(drinkComponentDefault))) {
+                            Log.i(TAG, "skipping - (drinkComponent instanceof CupSize && drinkComponent.getTypeAsString().equals(drinkComponentDefault)) || (drinkComponent instanceof LineTheCup && drinkComponent.getTypeAsString().equals(drinkComponentDefault)) - drinkComponent.getTypeAsString(): " + drinkComponent.getTypeAsString());
                             continue;
                         }
-                    } else if (drinkComponent instanceof Incrementable) {
-                        int quantity = ((Incrementable) drinkComponent).getQuantity();
 
-                        if (quantity == Incrementable.QUANTITY_FOR_INVOKER) {
-                            Log.i(TAG, "skipping - quantity == DrinkComponent.QUANTITY_FOR_INVOKER");
+                        Log.i(TAG, "adding - drinkComponent.getTypeAsString(): " + drinkComponent.getTypeAsString());
+                        drinkComponentsWhatsIncluded.add(drinkComponent);
+                        drinkComponentsWhatsIncludedDefaultAsString.add(drinkComponentDefault);
+                    } else {
+                        Log.e(TAG, "NOT drinkComponentsStandardRecipe.contains(drinkComponent)");
+
+                        if (drinkComponent.getTypeAsString().equals(DrinkComponent.NULL_TYPE_AS_STRING)) {
+                            Log.i(TAG, "skipping - drinkComponent.getTypeAsString().equals(DrinkComponent.NULL_TYPE_AS_STRING) - drinkComponent.getTypeAsString(): " + drinkComponent.getTypeAsString());
                             continue;
+                        } else if (drinkComponent instanceof Granular) {
+                            Granular.Amount amount = ((Granular) drinkComponent).getAmount();
+
+                            if (amount == Granular.Amount.NO) {
+                                Log.i(TAG, "skipping - amount == Granular.Amount.NO - drinkComponent.getTypeAsString(): " + drinkComponent.getTypeAsString());
+                                continue;
+                            }
+                        } else if (drinkComponent instanceof Incrementable) {
+                            int quantity = ((Incrementable) drinkComponent).getQuantity();
+
+                            if (quantity == Incrementable.QUANTITY_FOR_INVOKER) {
+                                Log.i(TAG, "skipping - quantity == DrinkComponent.QUANTITY_FOR_INVOKER - drinkComponent.getTypeAsString(): " + drinkComponent.getTypeAsString());
+                                continue;
+                            }
                         }
-                    } else if (drinkComponent instanceof CupSize &&
-                            drinkComponent.getTypeAsString().equals(drinkComponentDefault)) {
-                        Log.i(TAG, "skipping - drinkComponent instanceof CupSize && drinkComponent.getTypeAsString().equals(drinkComponentDefault)");
-                        continue;
-                    } else if (drinkComponent instanceof LineTheCup &&
-                            drinkComponent.getTypeAsString().equals(drinkComponentDefault)) {
-                        Log.i(TAG, "skipping - drinkComponent instanceof LineTheCup && drinkComponent.getTypeAsString().equals(drinkComponentDefault)");
-                        continue;
+
+                        Log.i(TAG, "adding - drinkComponent.getTypeAsString(): " + drinkComponent.getTypeAsString());
+                        drinkComponentsWhatsIncluded.add(drinkComponent);
+                        drinkComponentsWhatsIncludedDefaultAsString.add(drinkComponentDefault);
                     }
-
-                    Log.i(TAG, "adding - drinkComponent.getTypeAsString(): " + drinkComponent.getTypeAsString());
-                    drinkComponentsWhatsIncluded.add(drinkComponent);
-                    drinkComponentsWhatsIncludedDefaultAsString.add(drinkComponentDefault);
                 }
             } else {
                 Log.i(TAG, i + "!contains: " + Menu.DRINK_COMPONENTS_KEYS.get(i));
