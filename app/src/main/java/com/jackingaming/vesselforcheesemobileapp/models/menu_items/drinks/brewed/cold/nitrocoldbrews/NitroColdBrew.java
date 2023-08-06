@@ -12,10 +12,9 @@ public class NitroColdBrew extends NitroColdBrews {
     public static final double DEFAULT_PRICE_SMALL = 2.95;
     public static final double DEFAULT_PRICE_MEDIUM = 3.45;
     public static final double DEFAULT_PRICE_LARGE = 3.70;
-    public static final boolean DEFAULT_ICED = false;
 
     public NitroColdBrew() {
         super(DEFAULT_NAME, DEFAULT_DESCRIPTION, DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
-                DEFAULT_PRICE_MEDIUM, DEFAULT_ICED);
+                DEFAULT_PRICE_MEDIUM);
     }
 }

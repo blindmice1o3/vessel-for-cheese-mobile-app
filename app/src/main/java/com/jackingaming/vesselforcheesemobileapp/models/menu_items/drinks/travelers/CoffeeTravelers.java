@@ -15,8 +15,9 @@ public abstract class CoffeeTravelers extends Drink {
     }
 
     public CoffeeTravelers(String name, String description, int calories, int sugarInGram, float fatInGram,
-                           double price, boolean iced) {
-        super(name, description, calories, sugarInGram, fatInGram, price, DEFAULT_DRINK_SIZE, iced);
+                           double price) {
+        super(name, description, calories, sugarInGram, fatInGram,
+                price, DEFAULT_DRINK_SIZE);
 
         drinkSizesAllowed = UNIQUE_DEFAULT_DRINK_SIZES_ALLOWED;
     }

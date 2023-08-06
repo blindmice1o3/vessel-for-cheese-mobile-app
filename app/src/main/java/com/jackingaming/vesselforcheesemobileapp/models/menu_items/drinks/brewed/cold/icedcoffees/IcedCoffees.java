@@ -9,7 +9,8 @@ public abstract class IcedCoffees extends ColdBrewedCoffees {
     }
 
     public IcedCoffees(String name, String description, int calories, int sugarInGram, float fatInGram,
-                       double price, boolean iced) {
-        super(name, description, calories, sugarInGram, fatInGram, price, iced);
+                       double price) {
+        super(name, description, calories, sugarInGram, fatInGram,
+                price);
     }
 }

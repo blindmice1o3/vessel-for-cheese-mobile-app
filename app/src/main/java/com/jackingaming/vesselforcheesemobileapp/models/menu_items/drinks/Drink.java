@@ -32,12 +32,10 @@ public abstract class Drink extends MenuItem
     public static final String TAG = Drink.class.getSimpleName();
     public static final int QUANTITY_INDEPENDENT_OF_DRINK_SIZE = -1;
 
-    protected DrinkSize drinkSize;
-    protected boolean iced;
-
     protected Map<String, List<DrinkComponent>> drinkComponents = new HashMap<>();
     protected Map<String, List<String>> drinkComponentsDefaultAsString = new HashMap<>();
     protected List<DrinkComponent> drinkComponentsStandardRecipe = new ArrayList<>();
+    protected DrinkSize drinkSize;
     protected DrinkSize[] drinkSizesAllowed;
 
     public Drink() {
@@ -45,10 +43,10 @@ public abstract class Drink extends MenuItem
     }
 
     public Drink(String name, String description, int calories, int sugarInGram, float fatInGram,
-                 double price, DrinkSize drinkSizeDefault, boolean iced) {
-        super(name, description, calories, sugarInGram, fatInGram, price);
+                 double price, DrinkSize drinkSizeDefault) {
+        super(name, description, calories, sugarInGram, fatInGram,
+                price);
         this.drinkSize = drinkSizeDefault;
-        this.iced = iced;
     }
 
     // TODO: abstract initDrinkComponents()
@@ -61,38 +59,6 @@ public abstract class Drink extends MenuItem
         Log.i(TAG, "addToDrinkComponents(String, DrinkComponent)");
         // TODO: screen for duplication (subclasses should override and add rules-check)
 //        drinkComponents.get(key).add(drinkComponent);
-    }
-
-    public Map<String, List<DrinkComponent>> getDrinkComponents() {
-        return drinkComponents;
-    }
-
-    public void setDrinkComponents(Map<String, List<DrinkComponent>> drinkComponents) {
-        this.drinkComponents = drinkComponents;
-    }
-
-    public Map<String, List<String>> getDrinkComponentsDefaultAsString() {
-        return drinkComponentsDefaultAsString;
-    }
-
-    public void setDrinkComponentsDefaultAsString(Map<String, List<String>> drinkComponentsDefaultAsString) {
-        this.drinkComponentsDefaultAsString = drinkComponentsDefaultAsString;
-    }
-
-    public List<DrinkComponent> getDrinkComponentsStandardRecipe() {
-        return drinkComponentsStandardRecipe;
-    }
-
-    public void setDrinkComponentsStandardRecipe(List<DrinkComponent> drinkComponentsStandardRecipe) {
-        this.drinkComponentsStandardRecipe = drinkComponentsStandardRecipe;
-    }
-
-    public DrinkSize getDrinkSize() {
-        return drinkSize;
-    }
-
-    public void setDrinkSize(DrinkSize drinkSize) {
-        this.drinkSize = drinkSize;
     }
 
     private boolean updateQuantityByDrinkSize(DrinkComponent drinkComponent, int quantityNew, String key, int i) {
@@ -288,19 +254,43 @@ public abstract class Drink extends MenuItem
         return changedUserCustomizations;
     }
 
+    public Map<String, List<DrinkComponent>> getDrinkComponents() {
+        return drinkComponents;
+    }
+
+    public void setDrinkComponents(Map<String, List<DrinkComponent>> drinkComponents) {
+        this.drinkComponents = drinkComponents;
+    }
+
+    public Map<String, List<String>> getDrinkComponentsDefaultAsString() {
+        return drinkComponentsDefaultAsString;
+    }
+
+    public void setDrinkComponentsDefaultAsString(Map<String, List<String>> drinkComponentsDefaultAsString) {
+        this.drinkComponentsDefaultAsString = drinkComponentsDefaultAsString;
+    }
+
+    public List<DrinkComponent> getDrinkComponentsStandardRecipe() {
+        return drinkComponentsStandardRecipe;
+    }
+
+    public void setDrinkComponentsStandardRecipe(List<DrinkComponent> drinkComponentsStandardRecipe) {
+        this.drinkComponentsStandardRecipe = drinkComponentsStandardRecipe;
+    }
+
+    public DrinkSize getDrinkSize() {
+        return drinkSize;
+    }
+
+    public void setDrinkSize(DrinkSize drinkSize) {
+        this.drinkSize = drinkSize;
+    }
+
     public DrinkSize[] getDrinkSizesAllowed() {
         return drinkSizesAllowed;
     }
 
     public void setDrinkSizesAllowed(DrinkSize[] drinkSizesAllowed) {
         this.drinkSizesAllowed = drinkSizesAllowed;
-    }
-
-    public boolean isIced() {
-        return iced;
-    }
-
-    public void setIced(boolean iced) {
-        this.iced = iced;
     }
 }

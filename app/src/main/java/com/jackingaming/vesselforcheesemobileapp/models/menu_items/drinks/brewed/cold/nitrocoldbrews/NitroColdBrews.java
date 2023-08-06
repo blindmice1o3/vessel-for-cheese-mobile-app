@@ -13,8 +13,9 @@ public abstract class NitroColdBrews extends ColdBrewedCoffees {
     }
 
     public NitroColdBrews(String name, String description, int calories, int sugarInGram, float fatInGram,
-                          double price, boolean iced) {
-        super(name, description, calories, sugarInGram, fatInGram, price, iced);
+                          double price) {
+        super(name, description, calories, sugarInGram, fatInGram,
+                price);
 
         drinkSizesAllowed = DEFAULT_DRINK_SIZES_ALLOWED;
     }

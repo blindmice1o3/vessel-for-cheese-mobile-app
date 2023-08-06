@@ -12,10 +12,9 @@ public class EspressoConPanna extends EspressoShots {
     public static final double DEFAULT_PRICE_SMALL = 0.75;
     public static final double DEFAULT_PRICE_MEDIUM = 1.40;
     public static final double DEFAULT_PRICE_LARGE = 1.95;
-    public static final boolean DEFAULT_ICED = false;
 
     public EspressoConPanna() {
         super(DEFAULT_NAME, DEFAULT_DESCRIPTION, DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
-                DEFAULT_PRICE_SMALL, DEFAULT_ICED);
+                DEFAULT_PRICE_SMALL);
     }
 }

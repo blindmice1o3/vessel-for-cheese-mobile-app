@@ -72,11 +72,10 @@ public class IcedCaramelMacchiato extends IcedMacchiatos {
     public static final double DEFAULT_PRICE_SMALL = 2.95;
     public static final double DEFAULT_PRICE_MEDIUM = 3.45;
     public static final double DEFAULT_PRICE_LARGE = 3.70;
-    public static final boolean DEFAULT_ICED = false;
 
     public IcedCaramelMacchiato() {
         super(DEFAULT_NAME, DEFAULT_DESCRIPTION, DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
-                DEFAULT_PRICE_MEDIUM, DEFAULT_ICED);
+                DEFAULT_PRICE_MEDIUM);
 
         // MILK_OPTIONS
         List<DrinkComponent> milkOptions = new ArrayList<>();
@@ -84,7 +83,7 @@ public class IcedCaramelMacchiato extends IcedMacchiatos {
         // ESPRESSO_OPTIONS
         List<DrinkComponent> espressoOptions = new ArrayList<>();
         espressoOptions.add(new RoastOptions(DEFAULT_ROAST_OPTIONS));
-        int numberOfShotByDrinkSize = getNumberOfShotByDrinkSize(DEFAULT_DRINK_SIZE);
+        int numberOfShotByDrinkSize = getNumberOfShotByDrinkSize(drinkSize);
         Shot shot = new Shot(DEFAULT_SHOT, numberOfShotByDrinkSize);
         shot.setQuantityMin(DEFAULT_NUMBER_OF_ESPRESSO_SHOTS_MIN);
         espressoOptions.add(shot);
@@ -99,7 +98,7 @@ public class IcedCaramelMacchiato extends IcedMacchiatos {
         sweetenerOptions.add(new Packet(null, Incrementable.QUANTITY_FOR_INVOKER));
         // FLAVOR_OPTIONS
         List<DrinkComponent> flavorOptions = new ArrayList<>();
-        int numberOfPumpByDrinkSize = getNumberOfPumpByDrinkSize(DEFAULT_DRINK_SIZE);
+        int numberOfPumpByDrinkSize = getNumberOfPumpByDrinkSize(drinkSize);
         Syrup syrupVanilla = new Syrup(DEFAULT_SYRUP_VANILLA, numberOfPumpByDrinkSize);
         flavorOptions.add(syrupVanilla);
         flavorOptions.add(new Sauce(null, Incrementable.QUANTITY_FOR_INVOKER));
