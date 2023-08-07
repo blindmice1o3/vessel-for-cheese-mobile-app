@@ -11,9 +11,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jackingaming.vesselforcheesemobileapp.R;
-import com.jackingaming.vesselforcheesemobileapp.models.menu.categories.Category;
-import com.jackingaming.vesselforcheesemobileapp.models.menu.categories.MenuItemCategory;
-import com.jackingaming.vesselforcheesemobileapp.models.menu.categories.TitleCategory;
+import com.jackingaming.vesselforcheesemobileapp.models.menu.category.Category;
+import com.jackingaming.vesselforcheesemobileapp.models.menu.category.MenuItemCategory;
+import com.jackingaming.vesselforcheesemobileapp.models.menu.category.TitleCategory;
 
 import java.util.List;
 
@@ -24,9 +24,13 @@ public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private static final int VIEW_TYPE_CATEGORY = 1;
 
     public interface CategoryAdapterListener {
-        void onItemClicked(int position, View view);
+        void onMenuItemCategoryClicked(View view, String nameOfCategorySelected);
 
-        void onItemLongClicked(int position, View view);
+        void onMenuItemCategoryLongClicked(View view, String nameOfCategorySelected);
+
+        void onTitleCategoryClicked(View view, String nameOfCategorySelected);
+
+        void onTitleCategoryLongClicked(View view, String nameOfCategorySelected);
     }
 
     private List<Category> categories;
@@ -59,15 +63,15 @@ public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         switch (viewType) {
             case VIEW_TYPE_TITLE:
                 View viewTitle = inflater.inflate(R.layout.list_item_title, parent, false);
-                viewHolder = new ViewHolderTitle(viewTitle);
+                viewHolder = new ViewHolderTitleCategory(viewTitle);
                 break;
             case VIEW_TYPE_CATEGORY:
                 View viewCategory = inflater.inflate(R.layout.list_item_category, parent, false);
-                viewHolder = new ViewHolderCategory(viewCategory);
+                viewHolder = new ViewHolderMenuItemCategory(viewCategory);
                 break;
             default:
                 View viewDefault = inflater.inflate(R.layout.list_item_title, parent, false);
-                viewHolder = new ViewHolderTitle(viewDefault);
+                viewHolder = new ViewHolderTitleCategory(viewDefault);
                 break;
         }
 
@@ -78,17 +82,17 @@ public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         switch (holder.getItemViewType()) {
             case VIEW_TYPE_TITLE:
-                ViewHolderTitle viewHolderTitle = (ViewHolderTitle) holder;
+                ViewHolderTitleCategory viewHolderTitleCategory = (ViewHolderTitleCategory) holder;
                 TitleCategory titleCategory = (TitleCategory) categories.get(position);
-                viewHolderTitle.bind(titleCategory);
+                viewHolderTitleCategory.bind(titleCategory);
                 break;
             case VIEW_TYPE_CATEGORY:
-                ViewHolderCategory viewHolderCategory = (ViewHolderCategory) holder;
+                ViewHolderMenuItemCategory viewHolderMenuItemCategory = (ViewHolderMenuItemCategory) holder;
                 MenuItemCategory menuItemCategory = (MenuItemCategory) categories.get(position);
-                viewHolderCategory.bind(menuItemCategory);
+                viewHolderMenuItemCategory.bind(menuItemCategory);
                 break;
             default:
-                ViewHolderTitle viewHolderDefault = (ViewHolderTitle) holder;
+                ViewHolderTitleCategory viewHolderDefault = (ViewHolderTitleCategory) holder;
                 TitleCategory defaultCategory = (TitleCategory) categories.get(position);
                 viewHolderDefault.bind(defaultCategory);
                 break;
@@ -100,12 +104,12 @@ public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         return categories.size();
     }
 
-    class ViewHolderCategory extends RecyclerView.ViewHolder
+    class ViewHolderMenuItemCategory extends RecyclerView.ViewHolder
             implements View.OnClickListener, View.OnLongClickListener {
         private ImageView ivThumbnail;
         private TextView tvName;
 
-        public ViewHolderCategory(@NonNull View itemView) {
+        public ViewHolderMenuItemCategory(@NonNull View itemView) {
             super(itemView);
             ivThumbnail = itemView.findViewById(R.id.iv_thumbnail);
             tvName = itemView.findViewById(R.id.tv_name);
@@ -124,7 +128,8 @@ public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             Log.i(TAG, "item in RV clicked! position: " + position);
             if (position != RecyclerView.NO_POSITION) { // Check if an item was deleted, but the user clicked it before the UI removed it
                 if (listener != null) {
-                    listener.onItemClicked(position, view);
+                    Category categorySelected = categories.get(position);
+                    listener.onMenuItemCategoryClicked(view, categorySelected.getName());
                 }
             }
         }
@@ -135,7 +140,8 @@ public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             Log.i(TAG, "item in RV long-clicked! position: " + position);
             if (position != RecyclerView.NO_POSITION) { // Check if an item was deleted, but the user clicked it before the UI removed it
                 if (listener != null) {
-                    listener.onItemLongClicked(position, view);
+                    Category categorySelected = categories.get(position);
+                    listener.onMenuItemCategoryLongClicked(view, categorySelected.getName());
                     return true;
                 }
             }
@@ -143,12 +149,12 @@ public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
     }
 
-    class ViewHolderTitle extends RecyclerView.ViewHolder
+    class ViewHolderTitleCategory extends RecyclerView.ViewHolder
             implements View.OnClickListener, View.OnLongClickListener {
         private TextView tvName;
         private TextView tvSize;
 
-        public ViewHolderTitle(@NonNull View itemView) {
+        public ViewHolderTitleCategory(@NonNull View itemView) {
             super(itemView);
             tvName = itemView.findViewById(R.id.tv_name);
             tvSize = itemView.findViewById(R.id.tv_size);
@@ -169,7 +175,8 @@ public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             Log.i(TAG, "item in RV clicked! position: " + position);
             if (position != RecyclerView.NO_POSITION) { // Check if an item was deleted, but the user clicked it before the UI removed it
                 if (listener != null) {
-                    listener.onItemClicked(position, view);
+                    Category categorySelected = categories.get(position);
+                    listener.onTitleCategoryClicked(view, categorySelected.getName());
                 }
             }
         }
@@ -180,7 +187,8 @@ public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             Log.i(TAG, "item in RV long-clicked! position: " + position);
             if (position != RecyclerView.NO_POSITION) { // Check if an item was deleted, but the user clicked it before the UI removed it
                 if (listener != null) {
-                    listener.onItemLongClicked(position, view);
+                    Category categorySelected = categories.get(position);
+                    listener.onTitleCategoryLongClicked(view, categorySelected.getName());
                     return true;
                 }
             }

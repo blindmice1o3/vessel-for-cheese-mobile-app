@@ -56,12 +56,54 @@ public class MenuItemCategoryActivity extends AppCompatActivity {
         // TODO: change from just Brewed Coffees to all 9 sub-categories of Hot Coffees.
         // TODO: use Menu.hotCoffeesAsMap
         Map<String, List<MenuItem>> categorySelected = null;
-        if (title.equals(Menu.HOT_COFFEES)) {
+        if (title.equals(Menu.OILEETO)) {
+            categorySelected = Menu.oileetoAsMap;
+        } else if (title.equals(Menu.HOT_COFFEES)) {
             categorySelected = Menu.hotCoffeesAsMap;
+        } else if (title.equals(Menu.HOT_TEAS)) {
+            categorySelected = Menu.hotTeasAsMap;
+        } else if (title.equals(Menu.HOT_DRINKS)) {
+            categorySelected = Menu.hotDrinksAsMap;
+        } else if (title.equals(Menu.BLENDED_BEVERAGES)) {
+            categorySelected = Menu.blendedBeveragesAsMap;
         } else if (title.equals(Menu.COLD_COFFEES)) {
             categorySelected = Menu.coldCoffeesAsMap;
+        } else if (title.equals(Menu.ICED_TEAS)) {
+            categorySelected = Menu.icedTeasAsMap;
+        } else if (title.equals(Menu.COLD_DRINKS)) {
+            categorySelected = Menu.coldDrinksAsMap;
+        } else if (title.equals(Menu.HOT_BREAKFAST)) {
+            categorySelected = Menu.hotBreakfastAsMap;
+        } else if (title.equals(Menu.OATMEAL_AND_YOGURT)) {
+            categorySelected = Menu.oatmealAndYogurtAsMap;
+        } else if (title.equals(Menu.BAKERY)) {
+            categorySelected = Menu.bakeryAsMap;
+        } else if (title.equals(Menu.LUNCH)) {
+            categorySelected = Menu.lunchAsMap;
+        } else if (title.equals(Menu.SNACKS_AND_SWEETS)) {
+            categorySelected = Menu.snacksAndSweetsAsMap;
+        } else if (title.equals(Menu.WHOLE_BEAN)) {
+            categorySelected = Menu.wholeBeanAsMap;
+        } else if (title.equals(Menu.INSTANT_COFFEE)) {
+            categorySelected = Menu.instantCoffeeAsMap;
+        } else if (title.equals(Menu.COLD_CUPS)) {
+            categorySelected = Menu.coldCupsAsMap;
+        } else if (title.equals(Menu.TUMBLERS)) {
+            categorySelected = Menu.tumblersAsMap;
+        } else if (title.equals(Menu.MUGS)) {
+            categorySelected = Menu.mugsAsMap;
+        } else if (title.equals(Menu.WATER_BOTTLES)) {
+            categorySelected = Menu.waterBottlesAsMap;
+        } else if (title.equals(Menu.OTHER)) {
+            categorySelected = Menu.otherAsMap;
+        } else if (title.equals(Menu.HAPPY_BIRTHDAY)) {
+            categorySelected = Menu.happyBirthdayAsMap;
+        } else if (title.equals(Menu.THANK_YOU)) {
+            categorySelected = Menu.thankYouAsMap;
+        } else if (title.equals(Menu.TRADITIONAL)) {
+            categorySelected = Menu.traditionalAsMap;
         } else {
-            Log.e(TAG, "title NOT equals() Menu.HOT_COFFEES nor Menu.COLD_COFFEES");
+            Log.e(TAG, "title NOT equals() current listed options from MenuItemCategoryActivity.onCreate()");
         }
         SubCategoryAdapter adapter = new SubCategoryAdapter(title, categorySelected, new SubCategoryAdapter.SubCategoryAdapterListener() {
             @Override

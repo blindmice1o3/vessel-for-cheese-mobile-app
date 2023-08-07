@@ -2,10 +2,10 @@ package com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.categor
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,6 +17,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.jackingaming.vesselforcheesemobileapp.R;
 import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.subcategory.MenuItemCategoryActivity;
 import com.jackingaming.vesselforcheesemobileapp.models.menu.Menu;
+import com.jackingaming.vesselforcheesemobileapp.models.menu.category.Category;
+import com.jackingaming.vesselforcheesemobileapp.models.menu.category.MenuItemCategory;
+
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -35,6 +39,8 @@ public class MenuFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    // SUBCLASSES: (1) TitleCategory, (2) MenuItemCategory
+    private List<Category> categories = Menu.categories;
     private CategoryAdapter adapter;
 
     public MenuFragment() {
@@ -77,51 +83,57 @@ public class MenuFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        adapter = new CategoryAdapter(Menu.categories, new CategoryAdapter.CategoryAdapterListener() {
+
+        adapter = new CategoryAdapter(categories, new CategoryAdapter.CategoryAdapterListener() {
             @Override
-            public void onItemClicked(int position, View view) {
-                // TODO: HOT_COFFEES, COLD_COFFEES, ...
-                String nameOfCategory = Menu.categories.get(position).getName();
-                if (nameOfCategory.equals(Menu.HOT_COFFEES)) {
-                    int numberOfMenuItems = Menu.americanos.size() +
-                            Menu.brewedCoffees.size() +
-                            Menu.cappuccinos.size() +
-                            Menu.espressoShots.size() +
-                            Menu.flatWhites.size() +
-                            Menu.lattes.size() +
-                            Menu.macchiatos.size() +
-                            Menu.mochas.size() +
-                            Menu.coffeeTravelers.size();
+            public void onMenuItemCategoryClicked(View view, String nameOfCategorySelected) {
+                Log.i(TAG, "onMenuItemCategoryClicked(View, String) nameOfCategorySelected: " + nameOfCategorySelected);
 
-                    Intent intent = new Intent(getContext(), MenuItemCategoryActivity.class);
-                    intent.putExtra(MenuItemCategoryActivity.EXTRA_TITLE, Menu.HOT_COFFEES);
-                    intent.putExtra(MenuItemCategoryActivity.EXTRA_SIZE, numberOfMenuItems);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(intent);
-                } else if (nameOfCategory.equals(Menu.COLD_COFFEES)) {
-                    int numberOfMenuItems = Menu.coldBrews.size() +
-                            Menu.nitroColdBrews.size() +
-                            Menu.icedAmericano.size() +
-                            Menu.icedCoffees.size() +
-                            Menu.icedShakenEspresso.size() +
-                            Menu.icedFlatWhites.size() +
-                            Menu.icedLattes.size() +
-                            Menu.icedMacchiatos.size() +
-                            Menu.icedMochas.size();
+                int numberOfMenuItemsViaMap = 0;
+                if (nameOfCategorySelected.equals(Menu.HOT_COFFEES)) {
+                    Log.i(TAG, "nameOfCategorySelected.equals(Menu.HOT_COFFEES)");
 
-                    Intent intent = new Intent(getContext(), MenuItemCategoryActivity.class);
-                    intent.putExtra(MenuItemCategoryActivity.EXTRA_TITLE, Menu.COLD_COFFEES);
-                    intent.putExtra(MenuItemCategoryActivity.EXTRA_SIZE, numberOfMenuItems);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(intent);
+                    for (MenuItemCategory menuItemCategory : Menu.hotCoffees) {
+                        String keyHotCoffees = menuItemCategory.getName();
+                        numberOfMenuItemsViaMap += Menu.hotCoffeesAsMap.get(keyHotCoffees).size();
+                    }
+                } else if (nameOfCategorySelected.equals(Menu.COLD_COFFEES)) {
+                    Log.i(TAG, "nameOfCategorySelected.equals(Menu.COLD_COFFEES)");
+
+                    for (MenuItemCategory menuItemCategory : Menu.coldCoffees) {
+                        String keyColdCoffees = menuItemCategory.getName();
+                        numberOfMenuItemsViaMap += Menu.coldCoffeesAsMap.get(keyColdCoffees).size();
+                    }
                 } else {
-                    Toast.makeText(getContext(), "onItemClicked() position: " + position, Toast.LENGTH_SHORT).show();
+                    Log.e(TAG, "nameOfCategorySelected NOT equals() Menu.HOT_COFFEES nor Menu.COLD_COFFEES");
                 }
+                Log.i(TAG, "numberOfMenuItemsViaMap: " + numberOfMenuItemsViaMap);
+
+                Intent intent = new Intent(getContext(), MenuItemCategoryActivity.class);
+                intent.putExtra(MenuItemCategoryActivity.EXTRA_TITLE, nameOfCategorySelected);
+                intent.putExtra(MenuItemCategoryActivity.EXTRA_SIZE, numberOfMenuItemsViaMap);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
             }
 
             @Override
-            public void onItemLongClicked(int position, View view) {
-                Toast.makeText(getContext(), "onItemLongClicked() position: " + position, Toast.LENGTH_SHORT).show();
+            public void onMenuItemCategoryLongClicked(View view, String nameOfCategorySelected) {
+                Log.i(TAG, "onMenuItemCategoryLongClicked(View, String) nameOfCategorySelected: " + nameOfCategorySelected);
+
+                // TODO:
+            }
+
+            @Override
+            public void onTitleCategoryClicked(View view, String nameOfCategorySelected) {
+                Log.i(TAG, "onTitleCategoryClicked(View, String) nameOfCategorySelected: " + nameOfCategorySelected);
+
+                // TODO:
+            }
+
+            @Override
+            public void onTitleCategoryLongClicked(View view, String nameOfCategorySelected) {
+                Log.i(TAG, "onTitleCategoryLongClicked(View, String) nameOfCategorySelected: " + nameOfCategorySelected);
+
                 // TODO:
             }
         });

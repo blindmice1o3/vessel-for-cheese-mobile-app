@@ -14,11 +14,10 @@ import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.refres
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.sweetener_options.SweetenerOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.tea_options.TeaOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.topping_options.ToppingOptions;
-import com.jackingaming.vesselforcheesemobileapp.models.menu.categories.Category;
-import com.jackingaming.vesselforcheesemobileapp.models.menu.categories.MenuItemCategory;
-import com.jackingaming.vesselforcheesemobileapp.models.menu.categories.TitleCategory;
+import com.jackingaming.vesselforcheesemobileapp.models.menu.category.Category;
+import com.jackingaming.vesselforcheesemobileapp.models.menu.category.MenuItemCategory;
+import com.jackingaming.vesselforcheesemobileapp.models.menu.category.TitleCategory;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.MenuItem;
-import com.jackingaming.vesselforcheesemobileapp.models.menu_items.UndefinedMenuItem;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.cold.coldbrews.ChocolateCreamColdBrew;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.cold.coldbrews.CinnamonCaramelCreamColdBrew;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.cold.coldbrews.OleatoGoldenFoamColdBrew;
@@ -76,10 +75,7 @@ import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espres
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.straight_shots.ShotEspresso;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.water_based.americanos.cold.IcedCaffeAmericano;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.water_based.americanos.hot.CaffeAmericano;
-import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.other.Water;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.travelers.VerandaBlend;
-import com.jackingaming.vesselforcheesemobileapp.models.menu_items.foods.Bread;
-import com.jackingaming.vesselforcheesemobileapp.models.menu_items.sides.SteamedVegetable;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -90,27 +86,7 @@ import java.util.Map;
 public class Menu {
     public static final String TAG = Menu.class.getSimpleName();
 
-    public static final String HOT_COFFEES = "Hot Coffees";
-    public static final String AMERICANOS = "Americanos";
-    public static final String BREWED_COFFEES = "Brewed Coffees";
-    public static final String CAPPUCCINOS = "Cappuccinos";
-    public static final String ESPRESSO_SHOTS = "Espresso Shots";
-    public static final String FLAT_WHITES = "Flat Whites";
-    public static final String LATTES = "Lattes";
-    public static final String MACCHIATOS = "Macchiatos";
-    public static final String MOCHAS = "Mochas";
-    public static final String COFFEE_TRAVELERS = "Coffee Travelers";
-
-    public static final String COLD_COFFEES = "Cold Coffees";
-    public static final String COLD_BREWS = "Cold Brews";
-    public static final String NITRO_COLD_BREWS = "Nitro Cold Brews";
-    public static final String ICED_AMERICANO = "Iced Americano";
-    public static final String ICED_COFFEES = "Iced Coffees";
-    public static final String ICED_SHAKEN_ESPRESSO = "Iced Shaken Espresso";
-    public static final String ICED_FLAT_WHITES = "Iced Flat Whites";
-    public static final String ICED_LATTES = "Iced Lattes";
-    public static final String ICED_MACCHIATOS = "Iced Macchiatos";
-    public static final String ICED_MOCHAS = "Iced Mochas";
+    // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
     public static final List<String> DRINK_COMPONENTS_KEYS = Arrays.asList(
             LemonadeOptions.TAG,
@@ -136,6 +112,19 @@ public class Menu {
             SweetenerOptions.TAG,
             FlavorOptions.TAG
     );
+
+    // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+    public static final String HOT_COFFEES = "Hot Coffees";
+    public static final String AMERICANOS = "Americanos";
+    public static final String BREWED_COFFEES = "Brewed Coffees";
+    public static final String CAPPUCCINOS = "Cappuccinos";
+    public static final String ESPRESSO_SHOTS = "Espresso Shots";
+    public static final String FLAT_WHITES = "Flat Whites";
+    public static final String LATTES = "Lattes";
+    public static final String MACCHIATOS = "Macchiatos";
+    public static final String MOCHAS = "Mochas";
+    public static final String COFFEE_TRAVELERS = "Coffee Travelers";
 
     public static final List<MenuItemCategory> hotCoffees = Arrays.asList(
             new MenuItemCategory(AMERICANOS, R.drawable.harvest_moon_natsume),
@@ -220,6 +209,17 @@ public class Menu {
     }
 
     // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+    public static final String COLD_COFFEES = "Cold Coffees";
+    public static final String COLD_BREWS = "Cold Brews";
+    public static final String NITRO_COLD_BREWS = "Nitro Cold Brews";
+    public static final String ICED_AMERICANO = "Iced Americano";
+    public static final String ICED_COFFEES = "Iced Coffees";
+    public static final String ICED_SHAKEN_ESPRESSO = "Iced Shaken Espresso";
+    public static final String ICED_FLAT_WHITES = "Iced Flat Whites";
+    public static final String ICED_LATTES = "Iced Lattes";
+    public static final String ICED_MACCHIATOS = "Iced Macchiatos";
+    public static final String ICED_MOCHAS = "Iced Mochas";
 
     public static final List<MenuItemCategory> coldCoffees = Arrays.asList(
             new MenuItemCategory(COLD_BREWS, R.drawable.harvest_moon_natsume),
@@ -307,481 +307,236 @@ public class Menu {
 
     // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
+    public static final String OILEETO = "Oileeto";
+
+    public static final Map<String, List<MenuItem>> oileetoAsMap = new HashMap<String, List<MenuItem>>();
+
+    // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+    // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+    public static final String HOT_TEAS = "Hot Teas";
+
+    public static final Map<String, List<MenuItem>> hotTeasAsMap = new HashMap<String, List<MenuItem>>();
+
+    // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+    // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+    public static final String HOT_DRINKS = "Hot Drinks";
+
+    public static final Map<String, List<MenuItem>> hotDrinksAsMap = new HashMap<String, List<MenuItem>>();
+
+    // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+    // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+    public static final String BLENDED_BEVERAGES = "Blended Beverages";
+
+    public static final Map<String, List<MenuItem>> blendedBeveragesAsMap = new HashMap<String, List<MenuItem>>();
+
+    // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+    // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+    public static final String ICED_TEAS = "Iced Teas";
+
+    public static final Map<String, List<MenuItem>> icedTeasAsMap = new HashMap<String, List<MenuItem>>();
+
+    // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+    // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+    public static final String COLD_DRINKS = "Cold Drinks";
+
+    public static final Map<String, List<MenuItem>> coldDrinksAsMap = new HashMap<String, List<MenuItem>>();
+
+    // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+    // ======================================================================
+
+    public static final String HOT_BREAKFAST = "Hot Breakfast";
+
+    public static final Map<String, List<MenuItem>> hotBreakfastAsMap = new HashMap<String, List<MenuItem>>();
+
+    // ======================================================================
+
+    // ======================================================================
+
+    public static final String OATMEAL_AND_YOGURT = "Oatmeal & Yogurt";
+
+    public static final Map<String, List<MenuItem>> oatmealAndYogurtAsMap = new HashMap<String, List<MenuItem>>();
+
+    // ======================================================================
+
+    // ======================================================================
+
+    public static final String BAKERY = "Bakery";
+
+    public static final Map<String, List<MenuItem>> bakeryAsMap = new HashMap<String, List<MenuItem>>();
+
+    // ======================================================================
+
+    // ======================================================================
+
+    public static final String LUNCH = "Lunch";
+
+    public static final Map<String, List<MenuItem>> lunchAsMap = new HashMap<String, List<MenuItem>>();
+
+    // ======================================================================
+
+    // ======================================================================
+
+    public static final String SNACKS_AND_SWEETS = "Snacks & Sweets";
+
+    public static final Map<String, List<MenuItem>> snacksAndSweetsAsMap = new HashMap<String, List<MenuItem>>();
+
+    // ======================================================================
+
+    // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+    public static final String WHOLE_BEAN = "Whole Bean";
+
+    public static final Map<String, List<MenuItem>> wholeBeanAsMap = new HashMap<String, List<MenuItem>>();
+
+    // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+    // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+    public static final String INSTANT_COFFEE = "Instant Coffee";
+
+    public static final Map<String, List<MenuItem>> instantCoffeeAsMap = new HashMap<String, List<MenuItem>>();
+
+    // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+    // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+    public static final String COLD_CUPS = "Cold Cups";
+
+    public static final Map<String, List<MenuItem>> coldCupsAsMap = new HashMap<String, List<MenuItem>>();
+
+    // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+    // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+    public static final String TUMBLERS = "Tumblers";
+
+    public static final Map<String, List<MenuItem>> tumblersAsMap = new HashMap<String, List<MenuItem>>();
+
+    // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+    // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+    public static final String MUGS = "Mugs";
+
+    public static final Map<String, List<MenuItem>> mugsAsMap = new HashMap<String, List<MenuItem>>();
+
+    // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+    // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+    public static final String WATER_BOTTLES = "Water Bottles";
+
+    public static final Map<String, List<MenuItem>> waterBottlesAsMap = new HashMap<String, List<MenuItem>>();
+
+    // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+    // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+    public static final String OTHER = "Other";
+
+    public static final Map<String, List<MenuItem>> otherAsMap = new HashMap<String, List<MenuItem>>();
+
+    // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+    // ######################################################################
+
+    public static final String HAPPY_BIRTHDAY = "Happy Birthday";
+
+    public static final Map<String, List<MenuItem>> happyBirthdayAsMap = new HashMap<String, List<MenuItem>>();
+
+    // ######################################################################
+
+    // ######################################################################
+
+    public static final String THANK_YOU = "Thank You";
+
+    public static final Map<String, List<MenuItem>> thankYouAsMap = new HashMap<String, List<MenuItem>>();
+
+    // ######################################################################
+
+    // ######################################################################
+
+    public static final String TRADITIONAL = "Traditional";
+
+    public static final Map<String, List<MenuItem>> traditionalAsMap = new HashMap<String, List<MenuItem>>();
+
+    // ######################################################################
+
+    // **********************************************************************
+    // class: MenuFragment
+    // **********************************************************************
+
     public static final List<Category> drinks = Arrays.asList(
-            new MenuItemCategory("Oileeto", R.drawable.harvest_moon_natsume),
+            new MenuItemCategory(OILEETO, R.drawable.harvest_moon_natsume),
             new MenuItemCategory(HOT_COFFEES, R.drawable.harvest_moon_natsume),
-            new MenuItemCategory("Hot Teas", R.drawable.harvest_moon_natsume),
-            new MenuItemCategory("Hot Drinks", R.drawable.harvest_moon_natsume),
-            new MenuItemCategory("Blended Beverages", R.drawable.harvest_moon_natsume),
+            new MenuItemCategory(HOT_TEAS, R.drawable.harvest_moon_natsume),
+            new MenuItemCategory(HOT_DRINKS, R.drawable.harvest_moon_natsume),
+            new MenuItemCategory(BLENDED_BEVERAGES, R.drawable.harvest_moon_natsume),
             new MenuItemCategory(COLD_COFFEES, R.drawable.harvest_moon_natsume),
-            new MenuItemCategory("Iced Teas", R.drawable.harvest_moon_natsume),
-            new MenuItemCategory("Cold Drinks", R.drawable.harvest_moon_natsume)
+            new MenuItemCategory(ICED_TEAS, R.drawable.harvest_moon_natsume),
+            new MenuItemCategory(COLD_DRINKS, R.drawable.harvest_moon_natsume)
     );
 
     public static final List<Category> food = Arrays.asList(
-            new MenuItemCategory("Hot Breakfast", R.drawable.harvest_moon_natsume),
-            new MenuItemCategory("Oatmeal & Yogurt", R.drawable.harvest_moon_natsume),
-            new MenuItemCategory("Bakery", R.drawable.harvest_moon_natsume),
-            new MenuItemCategory("Lunch", R.drawable.harvest_moon_natsume),
-            new MenuItemCategory("Snacks & Sweets", R.drawable.harvest_moon_natsume)
+            new MenuItemCategory(HOT_BREAKFAST, R.drawable.harvest_moon_natsume),
+            new MenuItemCategory(OATMEAL_AND_YOGURT, R.drawable.harvest_moon_natsume),
+            new MenuItemCategory(BAKERY, R.drawable.harvest_moon_natsume),
+            new MenuItemCategory(LUNCH, R.drawable.harvest_moon_natsume),
+            new MenuItemCategory(SNACKS_AND_SWEETS, R.drawable.harvest_moon_natsume)
     );
 
     public static final List<Category> atHomeCoffee = Arrays.asList(
-            new MenuItemCategory("Whole Bean", R.drawable.harvest_moon_natsume),
-            new MenuItemCategory("Instant Coffee", R.drawable.harvest_moon_natsume)
+            new MenuItemCategory(WHOLE_BEAN, R.drawable.harvest_moon_natsume),
+            new MenuItemCategory(INSTANT_COFFEE, R.drawable.harvest_moon_natsume)
     );
 
     public static final List<Category> merchandise = Arrays.asList(
-            new MenuItemCategory("Cold Cups", R.drawable.harvest_moon_natsume),
-            new MenuItemCategory("Tumblers", R.drawable.harvest_moon_natsume),
-            new MenuItemCategory("Mugs", R.drawable.harvest_moon_natsume),
-            new MenuItemCategory("Water Bottles", R.drawable.harvest_moon_natsume),
-            new MenuItemCategory("Other", R.drawable.harvest_moon_natsume)
+            new MenuItemCategory(COLD_CUPS, R.drawable.harvest_moon_natsume),
+            new MenuItemCategory(TUMBLERS, R.drawable.harvest_moon_natsume),
+            new MenuItemCategory(MUGS, R.drawable.harvest_moon_natsume),
+            new MenuItemCategory(WATER_BOTTLES, R.drawable.harvest_moon_natsume),
+            new MenuItemCategory(OTHER, R.drawable.harvest_moon_natsume)
     );
 
     public static final List<Category> giftCards = Arrays.asList(
-            new MenuItemCategory("Happy Birthday", R.drawable.harvest_moon_natsume),
-            new MenuItemCategory("Thank You", R.drawable.harvest_moon_natsume),
-            new MenuItemCategory("Traditional", R.drawable.harvest_moon_natsume)
+            new MenuItemCategory(HAPPY_BIRTHDAY, R.drawable.harvest_moon_natsume),
+            new MenuItemCategory(THANK_YOU, R.drawable.harvest_moon_natsume),
+            new MenuItemCategory(TRADITIONAL, R.drawable.harvest_moon_natsume)
     );
+
+    // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+    public static final String DRINKS = "Drinks";
+    public static final String FOOD = "Food";
+    public static final String AT_HOME_COFFEE = "At Home Coffee";
+    public static final String MERCHANDISE = "Merchandise";
+    public static final String GIFT_CARDS = "Gift Cards";
+
+    // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
     public static final List<Category> categories = new ArrayList<Category>();
 
     static {
-        categories.add(new TitleCategory("Drinks", drinks.size()));
+        categories.add(new TitleCategory(DRINKS, drinks.size()));
         categories.addAll(drinks);
-        categories.add(new TitleCategory("Food", food.size()));
+        categories.add(new TitleCategory(FOOD, food.size()));
         categories.addAll(food);
-        categories.add(new TitleCategory("At Home Coffee", atHomeCoffee.size()));
+        categories.add(new TitleCategory(AT_HOME_COFFEE, atHomeCoffee.size()));
         categories.addAll(atHomeCoffee);
-        categories.add(new TitleCategory("Merchandise", merchandise.size()));
+        categories.add(new TitleCategory(MERCHANDISE, merchandise.size()));
         categories.addAll(merchandise);
-        categories.add(new TitleCategory("Gift Cards", giftCards.size()));
+        categories.add(new TitleCategory(GIFT_CARDS, giftCards.size()));
         categories.addAll(giftCards);
     }
-
-//    public static String parseDrinkComponentForStringRepresentation(DrinkComponent drinkComponent) {
-//        String stringRepresentationOfDrinkComponent = null;
-//        if (drinkComponent instanceof AddInsOptions) {
-//            AddInsOptions addInsOptions = (AddInsOptions) drinkComponent;
-//            stringRepresentationOfDrinkComponent = addInsOptions.toString();
-//        } else if (drinkComponent instanceof BlendedOptions) {
-//            BlendedOptions blendedOptions = (BlendedOptions) drinkComponent;
-//            stringRepresentationOfDrinkComponent = blendedOptions.toString();
-//        } else if (drinkComponent instanceof CupOptions) {
-//            CupOptions cupOptions = (CupOptions) drinkComponent;
-//            stringRepresentationOfDrinkComponent = cupOptions.toString();
-//        } else if (drinkComponent instanceof EspressoOptions) {
-//            EspressoOptions espressoOptions = (EspressoOptions) drinkComponent;
-//            stringRepresentationOfDrinkComponent = espressoOptions.toString();
-//        } else if (drinkComponent instanceof FlavorOptions) {
-//            FlavorOptions flavorOptions = (FlavorOptions) drinkComponent;
-//            stringRepresentationOfDrinkComponent = flavorOptions.toString();
-//        } else if (drinkComponent instanceof JuiceOptions) {
-//            JuiceOptions juiceOptions = (JuiceOptions) drinkComponent;
-//            stringRepresentationOfDrinkComponent = juiceOptions.toString();
-//        } else if (drinkComponent instanceof LemonadeOptions) {
-//            LemonadeOptions lemonadeOptions = (LemonadeOptions) drinkComponent;
-//            stringRepresentationOfDrinkComponent = lemonadeOptions.toString();
-//        } else if (drinkComponent instanceof MilkOptions) {
-//            MilkOptions milkOptions = (MilkOptions) drinkComponent;
-//            stringRepresentationOfDrinkComponent = milkOptions.toString();
-//        } else if (drinkComponent instanceof PreparationOptions) {
-//            PreparationOptions preparationOptions = (PreparationOptions) drinkComponent;
-//            stringRepresentationOfDrinkComponent = preparationOptions.toString();
-//        } else if (drinkComponent instanceof RefresherBaseOptions) {
-//            RefresherBaseOptions refresherBaseOptions = (RefresherBaseOptions) drinkComponent;
-//            stringRepresentationOfDrinkComponent = refresherBaseOptions.toString();
-//        } else if (drinkComponent instanceof SizeOptions) {
-//            SizeOptions sizeOptions = (SizeOptions) drinkComponent;
-//            stringRepresentationOfDrinkComponent = sizeOptions.toString();
-//        } else if (drinkComponent instanceof SweetenerOptions) {
-//            SweetenerOptions sweetenerOptions = (SweetenerOptions) drinkComponent;
-//            stringRepresentationOfDrinkComponent = sweetenerOptions.toString();
-//        } else if (drinkComponent instanceof TeaOptions) {
-//            TeaOptions teaOptions = (TeaOptions) drinkComponent;
-//            stringRepresentationOfDrinkComponent = teaOptions.toString();
-//        } else if (drinkComponent instanceof ToppingOptions) {
-//            ToppingOptions toppingOptions = (ToppingOptions) drinkComponent;
-//            stringRepresentationOfDrinkComponent = toppingOptions.toString();
-//        } else {
-//            if (drinkComponent instanceof UndefinedDrinkComponent) {
-//                UndefinedDrinkComponent undefinedDrinkComponent = (UndefinedDrinkComponent) drinkComponent;
-//                stringRepresentationOfDrinkComponent = undefinedDrinkComponent.toString();
-//            } else {
-//                stringRepresentationOfDrinkComponent = drinkComponent.getClass().getSimpleName();
-//            }
-//        }
-//        return stringRepresentationOfDrinkComponent;
-//    }
-
-    // TODO: instantiateSyrupByButtonTag(String)
-    // TODO: instantiateMilkByButtonTag(String)
-    // TODO: instantiateCustomizationByButtonTag(String)
-//    public static DrinkComponent instantiateDrinkComponentByButtonTag(String tagOfSelectedButton) {
-//        DrinkComponent drinkComponentSelected = null;
-//        // FlavorOptions.Syrup
-//        if (tagOfSelectedButton.equals(FlavorOptions.Syrup.BROWN_SUGAR.name())) {
-//            drinkComponentSelected = new FlavorOptions(FlavorOptions.Syrup.BROWN_SUGAR);
-//        } else if (tagOfSelectedButton.equals(FlavorOptions.Syrup.CARAMEL.name())) {
-//            drinkComponentSelected = new FlavorOptions(FlavorOptions.Syrup.CARAMEL);
-//        } else if (tagOfSelectedButton.equals(FlavorOptions.Syrup.CINNAMON_DOLCE.name())) {
-//            drinkComponentSelected = new FlavorOptions(FlavorOptions.Syrup.CINNAMON_DOLCE);
-//        } else if (tagOfSelectedButton.equals(FlavorOptions.Syrup.HAZELNUT.name())) {
-//            drinkComponentSelected = new FlavorOptions(FlavorOptions.Syrup.HAZELNUT);
-//        } else if (tagOfSelectedButton.equals(FlavorOptions.Syrup.PEPPERMINT.name())) {
-//            drinkComponentSelected = new FlavorOptions(FlavorOptions.Syrup.PEPPERMINT);
-//        } else if (tagOfSelectedButton.equals(FlavorOptions.Syrup.RASPBERRY.name())) {
-//            drinkComponentSelected = new FlavorOptions(FlavorOptions.Syrup.RASPBERRY);
-//        } else if (tagOfSelectedButton.equals(FlavorOptions.Syrup.SUGAR_FREE_VANILLA.name())) {
-//            drinkComponentSelected = new FlavorOptions(FlavorOptions.Syrup.SUGAR_FREE_VANILLA);
-//        } else if (tagOfSelectedButton.equals(FlavorOptions.Syrup.TOASTED_VANILLA.name())) {
-//            drinkComponentSelected = new FlavorOptions(FlavorOptions.Syrup.TOASTED_VANILLA);
-//        } else if (tagOfSelectedButton.equals(FlavorOptions.Syrup.TOFFEE_NUT.name())) {
-//            drinkComponentSelected = new FlavorOptions(FlavorOptions.Syrup.TOFFEE_NUT);
-//        } else if (tagOfSelectedButton.equals(FlavorOptions.Syrup.VANILLA.name())) {
-//            drinkComponentSelected = new FlavorOptions(FlavorOptions.Syrup.VANILLA);
-//        }
-//        // FlavorOptions.Sauce
-//        else if (tagOfSelectedButton.equals(FlavorOptions.Sauce.DARK_CARAMEL.name())) {
-//            drinkComponentSelected = new FlavorOptions(FlavorOptions.Sauce.DARK_CARAMEL);
-//        } else if (tagOfSelectedButton.equals(FlavorOptions.Sauce.MOCHA.name())) {
-//            drinkComponentSelected = new FlavorOptions(FlavorOptions.Sauce.MOCHA);
-//        } else if (tagOfSelectedButton.equals(FlavorOptions.Sauce.PISTACHIO.name())) {
-//            drinkComponentSelected = new FlavorOptions(FlavorOptions.Sauce.PISTACHIO);
-//        } else if (tagOfSelectedButton.equals(FlavorOptions.Sauce.WHITE_CHOCOLATE_MOCHA.name())) {
-//            drinkComponentSelected = new FlavorOptions(FlavorOptions.Sauce.WHITE_CHOCOLATE_MOCHA);
-//        }
-//        // SweetenerOptions.Liquid
-//        else if (tagOfSelectedButton.equals(SweetenerOptions.Liquid.CLASSIC.name())) {
-//            drinkComponentSelected = new SweetenerOptions(SweetenerOptions.Liquid.CLASSIC);
-//        } else if (tagOfSelectedButton.equals(SweetenerOptions.Liquid.HONEY_BLEND.name())) {
-//            drinkComponentSelected = new SweetenerOptions(SweetenerOptions.Liquid.HONEY_BLEND);
-//        } else if (tagOfSelectedButton.equals(SweetenerOptions.Liquid.LIQUID_CANE.name())) {
-//            drinkComponentSelected = new SweetenerOptions(SweetenerOptions.Liquid.LIQUID_CANE);
-//        }
-//        // TeaOptions.Chai
-//        else if (tagOfSelectedButton.equals(TeaOptions.Chai.CHAI.name())) {
-//            drinkComponentSelected = new TeaOptions(TeaOptions.Chai.CHAI);
-//        }
-//        // MilkOptions.MilkBase
-//        else if (tagOfSelectedButton.equals(MilkOptions.MilkBase.TWO_PERCENT.name())) {
-//            drinkComponentSelected = new MilkOptions(MilkOptions.MilkBase.TWO_PERCENT);
-//        } else if (tagOfSelectedButton.equals(MilkOptions.MilkBase.BREVE.name())) {
-//            drinkComponentSelected = new MilkOptions(MilkOptions.MilkBase.BREVE);
-//        } else if (tagOfSelectedButton.equals(MilkOptions.MilkBase.COCONUT.name())) {
-//            drinkComponentSelected = new MilkOptions(MilkOptions.MilkBase.COCONUT);
-//        } else if (tagOfSelectedButton.equals(MilkOptions.MilkBase.HEAVY_CREAM.name())) {
-//            drinkComponentSelected = new MilkOptions(MilkOptions.MilkBase.HEAVY_CREAM);
-//        } else if (tagOfSelectedButton.equals(MilkOptions.MilkBase.NONFAT_MILK.name())) {
-//            drinkComponentSelected = new MilkOptions(MilkOptions.MilkBase.NONFAT_MILK);
-//        } else if (tagOfSelectedButton.equals(MilkOptions.MilkBase.OATMILK.name())) {
-//            drinkComponentSelected = new MilkOptions(MilkOptions.MilkBase.OATMILK);
-//        } else if (tagOfSelectedButton.equals(MilkOptions.MilkBase.SOY.name())) {
-//            drinkComponentSelected = new MilkOptions(MilkOptions.MilkBase.SOY);
-//        } else if (tagOfSelectedButton.equals(MilkOptions.MilkBase.VANILLA_SWEET_CREAM.name())) {
-//            drinkComponentSelected = new MilkOptions(MilkOptions.MilkBase.VANILLA_SWEET_CREAM);
-//        } else if (tagOfSelectedButton.equals(MilkOptions.MilkBase.WHOLE_MILK.name())) {
-//            drinkComponentSelected = new MilkOptions(MilkOptions.MilkBase.WHOLE_MILK);
-//        } else if (tagOfSelectedButton.equals(MilkOptions.MilkBase.ALMOND.name())) {
-//            drinkComponentSelected = new MilkOptions(MilkOptions.MilkBase.ALMOND);
-//        }
-//        // CUSTOMIZATIONS
-//        else if (tagOfSelectedButton.equals(AddInsOptions.Ice.class.getSimpleName())) {
-//            drinkComponentSelected = new AddInsOptions(AddInsOptions.Ice.MEDIUM);
-//        } else if (tagOfSelectedButton.equals(AddInsOptions.Water.class.getSimpleName())) {
-//            drinkComponentSelected = new AddInsOptions(AddInsOptions.Water.MEDIUM);
-//        } else if (tagOfSelectedButton.equals(ToppingOptions.WhippedCream.class.getSimpleName())) {
-//            drinkComponentSelected = new ToppingOptions(ToppingOptions.WhippedCream.WHIPPED_CREAM);
-//        } else if (tagOfSelectedButton.equals(AddInsOptions.MilkCreamer.VANILLA_SWEET_CREAM.name())) {
-//            drinkComponentSelected = new AddInsOptions(AddInsOptions.MilkCreamer.VANILLA_SWEET_CREAM);
-//        } else if (tagOfSelectedButton.equals(SweetenerOptions.Packet.SPLENDA.name())) {
-//            drinkComponentSelected = new SweetenerOptions(SweetenerOptions.Packet.SPLENDA);
-//        } else if (tagOfSelectedButton.equals(SweetenerOptions.Packet.SUGAR.name())) {
-//            drinkComponentSelected = new SweetenerOptions(SweetenerOptions.Packet.SUGAR);
-//        } else if (tagOfSelectedButton.equals(SweetenerOptions.Packet.STEVIA_IN_THE_RAW.name())) {
-//            drinkComponentSelected = new SweetenerOptions(SweetenerOptions.Packet.STEVIA_IN_THE_RAW);
-//        } else if (tagOfSelectedButton.equals(SweetenerOptions.Packet.HONEY.name())) {
-//            drinkComponentSelected = new SweetenerOptions(SweetenerOptions.Packet.HONEY);
-//        } else if (tagOfSelectedButton.equals(SweetenerOptions.Packet.SUGAR_IN_THE_RAW.name())) {
-//            drinkComponentSelected = new SweetenerOptions(SweetenerOptions.Packet.SUGAR_IN_THE_RAW);
-//        } else if (tagOfSelectedButton.equals(AddInsOptions.Fruit.STRAWBERRY_PUREE.name())) {
-//            drinkComponentSelected = new AddInsOptions(AddInsOptions.Fruit.STRAWBERRY_PUREE);
-//        } else if (tagOfSelectedButton.equals(BlendedOptions.FrapChips.FRAP_CHIPS.name())) {
-//            drinkComponentSelected = new BlendedOptions(BlendedOptions.FrapChips.FRAP_CHIPS);
-//        } else if (tagOfSelectedButton.equals(AddInsOptions.Powder.VANILLA_BEAN.name())) {
-//            drinkComponentSelected = new AddInsOptions(AddInsOptions.Powder.VANILLA_BEAN);
-//        } else if (tagOfSelectedButton.equals(TeaOptions.MatchaPowder.MATCHA_POWDER.name())) {
-//            drinkComponentSelected = new TeaOptions(TeaOptions.MatchaPowder.MATCHA_POWDER);
-//        } else if (tagOfSelectedButton.equals(AddInsOptions.Powder.CHOCOLATE_MALT.name())) {
-//            drinkComponentSelected = new AddInsOptions(AddInsOptions.Powder.CHOCOLATE_MALT);
-//        } else if (tagOfSelectedButton.equals("Mocha_Drizzle")) {
-//            drinkComponentSelected = new AddInsOptions(AddInsOptions.LineTheCup.MOCHA_SAUCE);
-//        } else if (tagOfSelectedButton.equals("Caramel_Drizzle")) {
-//            drinkComponentSelected = new AddInsOptions(AddInsOptions.LineTheCup.CARAMEL_SAUCE);
-//        } else if (tagOfSelectedButton.equals(TeaOptions.IcedTeaSplash.BLACK_TEA.name())) {
-//            drinkComponentSelected = new TeaOptions(TeaOptions.IcedTeaSplash.BLACK_TEA);
-//        } else if (tagOfSelectedButton.equals(TeaOptions.IcedTeaSplash.GREEN_TEA.name())) {
-//            drinkComponentSelected = new TeaOptions(TeaOptions.IcedTeaSplash.GREEN_TEA);
-//        } else if (tagOfSelectedButton.equals(TeaOptions.IcedTeaSplash.PASSION_TANGO_TEA.name())) {
-//            drinkComponentSelected = new TeaOptions(TeaOptions.IcedTeaSplash.PASSION_TANGO_TEA);
-//        } else if (tagOfSelectedButton.equals(RefresherBaseOptions.RefresherBase.PINEAPPLE_PASSIONFRUIT.name())) {
-//            drinkComponentSelected = new RefresherBaseOptions(RefresherBaseOptions.RefresherBase.PINEAPPLE_PASSIONFRUIT);
-//        } else if (tagOfSelectedButton.equals(RefresherBaseOptions.RefresherBase.STRAWBERRY_ACAI.name())) {
-//            drinkComponentSelected = new RefresherBaseOptions(RefresherBaseOptions.RefresherBase.STRAWBERRY_ACAI);
-//        } else if (tagOfSelectedButton.equals(RefresherBaseOptions.RefresherBase.MANGO_DRAGONFRUIT.name())) {
-//            drinkComponentSelected = new RefresherBaseOptions(RefresherBaseOptions.RefresherBase.MANGO_DRAGONFRUIT);
-//        } else if (tagOfSelectedButton.equals(MilkOptions.MilkFoam.class.getSimpleName())) {
-//            drinkComponentSelected = new MilkOptions(MilkOptions.MilkFoam.MEDIUM);
-//        } else if (tagOfSelectedButton.equals(AddInsOptions.Room.class.getSimpleName())) {
-//            drinkComponentSelected = new AddInsOptions(AddInsOptions.Room.MEDIUM);
-//        } else if (tagOfSelectedButton.equals(ToppingOptions.ColdFoam.VANILLA_SWEET_CREAM.name())) {
-//            drinkComponentSelected = new ToppingOptions(ToppingOptions.ColdFoam.VANILLA_SWEET_CREAM);
-//        } else if (tagOfSelectedButton.equals(JuiceOptions.Juice.PEACH_BLEND.name())) {
-//            drinkComponentSelected = new JuiceOptions(JuiceOptions.Juice.PEACH_BLEND);
-//        } else if (tagOfSelectedButton.equals(RefresherBaseOptions.RefresherBase.KIWI_STARFRUIT.name())) {
-//            drinkComponentSelected = new RefresherBaseOptions(RefresherBaseOptions.RefresherBase.KIWI_STARFRUIT);
-//        } else if (tagOfSelectedButton.equals(LemonadeOptions.Lemonade.LEMONADE.name())) {
-//            drinkComponentSelected = new LemonadeOptions(LemonadeOptions.Lemonade.LEMONADE);
-//        } else if (tagOfSelectedButton.equals(JuiceOptions.Juice.APPLE.name())) {
-//            drinkComponentSelected = new JuiceOptions(JuiceOptions.Juice.APPLE);
-//        }
-//        // UNDEFINED
-//        else {
-//            drinkComponentSelected = new UndefinedDrinkComponent();
-//        }
-//
-//        return drinkComponentSelected;
-//    }
-
-    public static MenuItem instantiateMenuItemByButtonTag(String tagOfSelectedButton) {
-        MenuItem menuItemSelected = null;
-        // FOODS
-        if (tagOfSelectedButton.equals(Bread.DEFAULT_NAME)) {
-            menuItemSelected = new Bread();
-        }
-        // DRINKS
-        else if (tagOfSelectedButton.equals(Water.DEFAULT_NAME)) {
-            menuItemSelected = new Water();
-        } else if (tagOfSelectedButton.equals(GreenApronBlend.DEFAULT_NAME)) {
-            menuItemSelected = new GreenApronBlend();
-        } else if (tagOfSelectedButton.equals(CaffeLatte.DEFAULT_NAME)) {
-            menuItemSelected = new CaffeLatte();
-        } else if (tagOfSelectedButton.equals(ShotEspresso.DEFAULT_NAME)) {
-            menuItemSelected = new ShotEspresso();
-        }
-        // SIDES
-        else if (tagOfSelectedButton.equals(SteamedVegetable.DEFAULT_NAME)) {
-            menuItemSelected = new SteamedVegetable();
-        }
-        // UNDEFINED
-        else {
-            menuItemSelected = new UndefinedMenuItem();
-        }
-
-        return menuItemSelected;
-    }
-
-    public static List<String> createListOfButtonTitleFoods() {
-        List<String> allFoods = new ArrayList<String>();
-
-        allFoods.add(Bread.DEFAULT_NAME);
-        allFoods.add("NULL");
-        allFoods.add("NULL");
-
-        allFoods.add("NULL");
-        allFoods.add("NULL");
-        allFoods.add("NULL");
-
-        allFoods.add("NULL");
-        allFoods.add("NULL");
-        allFoods.add("NULL");
-
-        allFoods.add("NULL");
-        allFoods.add("NULL");
-        allFoods.add("NULL");
-
-        return allFoods;
-    }
-
-    public static List<String> createListOfButtonTitleDrinks() {
-        List<String> allDrinks = new ArrayList<String>();
-
-        allDrinks.add(Water.DEFAULT_NAME);
-        allDrinks.add(GreenApronBlend.DEFAULT_NAME);
-        allDrinks.add(CaffeLatte.DEFAULT_NAME);
-        allDrinks.add(ShotEspresso.DEFAULT_NAME);
-        allDrinks.add("NULL");
-
-        allDrinks.add("NULL");
-        allDrinks.add("NULL");
-        allDrinks.add("NULL");
-        allDrinks.add("NULL");
-        allDrinks.add("NULL");
-
-        allDrinks.add("NULL");
-        allDrinks.add("NULL");
-        allDrinks.add("NULL");
-        allDrinks.add("NULL");
-        allDrinks.add("NULL");
-
-        allDrinks.add("NULL");
-        allDrinks.add("NULL");
-        allDrinks.add("NULL");
-        allDrinks.add("NULL");
-        allDrinks.add("NULL");
-
-        allDrinks.add("NULL");
-        allDrinks.add("NULL");
-        allDrinks.add("NULL");
-        allDrinks.add("NULL");
-        allDrinks.add("NULL");
-
-        return allDrinks;
-    }
-
-    public static List<String> createListOfButtonTitleSides() {
-        List<String> allSides = new ArrayList<String>();
-
-        allSides.add(SteamedVegetable.DEFAULT_NAME);
-        allSides.add("NULL");
-        allSides.add("NULL");
-
-        allSides.add("NULL");
-        allSides.add("NULL");
-        allSides.add("NULL");
-
-        return allSides;
-    }
-
-//    public static List<String> createListOfButtonTitleFlavors() {
-//        List<String> allFlavors = new ArrayList<String>();
-//
-//        allFlavors.add(FlavorOptions.Syrup.CARAMEL.name());
-//        allFlavors.add(FlavorOptions.Syrup.CINNAMON_DOLCE.name());
-//        allFlavors.add(FlavorOptions.Syrup.HAZELNUT.name());
-//        allFlavors.add(FlavorOptions.Syrup.TOFFEE_NUT.name());
-//        allFlavors.add(FlavorOptions.Syrup.VANILLA.name());
-//
-//        allFlavors.add(SweetenerOptions.Liquid.CLASSIC.name());
-//        allFlavors.add(FlavorOptions.Syrup.PEPPERMINT.name());
-//        allFlavors.add(FlavorOptions.Syrup.RASPBERRY.name());
-//        allFlavors.add(FlavorOptions.Syrup.TOASTED_VANILLA.name());
-//        allFlavors.add(FlavorOptions.Syrup.BROWN_SUGAR.name());
-//
-//        allFlavors.add(TeaOptions.Chai.CHAI.name());
-//        allFlavors.add(SweetenerOptions.Liquid.HONEY_BLEND.name());
-//        allFlavors.add(SweetenerOptions.Liquid.LIQUID_CANE.name());
-//        allFlavors.add("NULL");
-//        allFlavors.add("NULL");
-//
-//        allFlavors.add(FlavorOptions.Syrup.SUGAR_FREE_VANILLA.name());
-//        allFlavors.add("NULL");
-//        allFlavors.add("NULL");
-//        allFlavors.add("NULL");
-//        allFlavors.add("NULL");
-//
-//        allFlavors.add(FlavorOptions.Sauce.MOCHA.name());
-//        allFlavors.add(FlavorOptions.Sauce.WHITE_CHOCOLATE_MOCHA.name());
-//        allFlavors.add(FlavorOptions.Sauce.DARK_CARAMEL.name());
-//        allFlavors.add("NULL");
-//        allFlavors.add("NULL");
-//
-//        allFlavors.add(FlavorOptions.Sauce.PISTACHIO.name());
-//        allFlavors.add("NULL");
-//        allFlavors.add("NULL");
-//        allFlavors.add("NULL");
-//        allFlavors.add("More_Seasonal_Syrup");
-//
-//        return allFlavors;
-//    }
-//
-//    public static List<String> createListOfButtonTitleMilkCreamers() {
-//        List<String> allCreamers = new ArrayList<String>();
-//
-//        allCreamers.add(AddInsOptions.MilkCreamer.NONFAT_MILK.name());
-//        allCreamers.add(AddInsOptions.MilkCreamer.VANILLA_SWEET_CREAM.name());
-//        allCreamers.add(AddInsOptions.MilkCreamer.TWO_PERCENT.name());
-//        allCreamers.add(AddInsOptions.MilkCreamer.WHOLE_MILK.name());
-//        allCreamers.add(AddInsOptions.MilkCreamer.SOY.name());
-//        allCreamers.add(AddInsOptions.MilkCreamer.OATMILK.name());
-//        allCreamers.add(AddInsOptions.MilkCreamer.COCONUT.name());
-//        allCreamers.add(AddInsOptions.MilkCreamer.ALMOND.name());
-//        allCreamers.add(AddInsOptions.MilkCreamer.BREVE.name());
-//        allCreamers.add(AddInsOptions.MilkCreamer.HEAVY_CREAM.name());
-//
-//        return allCreamers;
-//    }
-//
-//    public static List<String> createListOfButtonTitleMilkBases() {
-//        List<String> allMilks = new ArrayList<String>();
-//
-//        allMilks.add(MilkOptions.MilkBase.NONFAT_MILK.name());
-//        allMilks.add(MilkOptions.MilkBase.VANILLA_SWEET_CREAM.name());
-//        allMilks.add(MilkOptions.MilkBase.TWO_PERCENT.name());
-//        allMilks.add(MilkOptions.MilkBase.WHOLE_MILK.name());
-//        allMilks.add(MilkOptions.MilkBase.SOY.name());
-//        allMilks.add(MilkOptions.MilkBase.OATMILK.name());
-//        allMilks.add(MilkOptions.MilkBase.COCONUT.name());
-//        allMilks.add(MilkOptions.MilkBase.ALMOND.name());
-//        allMilks.add(MilkOptions.MilkBase.BREVE.name());
-//        allMilks.add(MilkOptions.MilkBase.HEAVY_CREAM.name());
-//
-//        return allMilks;
-//    }
-//
-//    public static List<String> createListOfButtonTitleCustomizations() {
-//        List<String> allCustomizations = new ArrayList<String>();
-//
-//        allCustomizations.add(AddInsOptions.Ice.class.getSimpleName());
-//        allCustomizations.add(AddInsOptions.Water.class.getSimpleName());
-//        allCustomizations.add(ToppingOptions.WhippedCream.class.getSimpleName());
-//        allCustomizations.add(AddInsOptions.MilkCreamer.VANILLA_SWEET_CREAM.name());
-//        allCustomizations.add("NULL");
-//        allCustomizations.add("NULL");
-//
-//        allCustomizations.add("Agave"); // TODO: suppose to be in FOODS-oatmeal.
-//        allCustomizations.add(SweetenerOptions.Packet.SPLENDA.name());
-//        allCustomizations.add(SweetenerOptions.Packet.SUGAR.name());
-//        allCustomizations.add(SweetenerOptions.Packet.STEVIA_IN_THE_RAW.name());
-//        allCustomizations.add(SweetenerOptions.Packet.HONEY.name());
-//        allCustomizations.add(SweetenerOptions.Packet.SUGAR_IN_THE_RAW.name());
-//
-//        allCustomizations.add("Banana"); // TODO: suppose to be in FOODS-discontinued.
-//        allCustomizations.add(AddInsOptions.Fruit.STRAWBERRY_PUREE.name());
-//        allCustomizations.add(BlendedOptions.FrapChips.FRAP_CHIPS.name());
-//        allCustomizations.add(AddInsOptions.Powder.VANILLA_BEAN.name());
-//        allCustomizations.add(TeaOptions.MatchaPowder.MATCHA_POWDER.name());
-//        allCustomizations.add(AddInsOptions.Powder.CHOCOLATE_MALT.name());
-//
-//        allCustomizations.add("Mocha_Drizzle");
-//        allCustomizations.add("Caramel_Drizzle");
-//        allCustomizations.add("No_topping");
-//        allCustomizations.add("Coconut_Flakes");
-//        allCustomizations.add("Add_Blueberries"); // TODO: suppose to be in FOODS-oatmeal.
-//        allCustomizations.add("Strawberry_Drizzle");
-//
-//        allCustomizations.add(TeaOptions.IcedTeaSplash.BLACK_TEA.name());
-//        allCustomizations.add(TeaOptions.IcedTeaSplash.GREEN_TEA.name());
-//        allCustomizations.add(TeaOptions.IcedTeaSplash.PASSION_TANGO_TEA.name());
-//        allCustomizations.add(RefresherBaseOptions.RefresherBase.PINEAPPLE_PASSIONFRUIT.name());
-//        allCustomizations.add(RefresherBaseOptions.RefresherBase.STRAWBERRY_ACAI.name());
-//        allCustomizations.add(RefresherBaseOptions.RefresherBase.MANGO_DRAGONFRUIT.name());
-//
-//        allCustomizations.add(MilkOptions.MilkFoam.class.getSimpleName());
-//        allCustomizations.add(AddInsOptions.Room.class.getSimpleName());
-//        allCustomizations.add(ToppingOptions.ColdFoam.VANILLA_SWEET_CREAM.name());
-//        allCustomizations.add(JuiceOptions.Juice.PEACH_BLEND.name());
-//        allCustomizations.add(RefresherBaseOptions.RefresherBase.KIWI_STARFRUIT.name());
-//        allCustomizations.add(LemonadeOptions.Lemonade.LEMONADE.name());
-//
-//        allCustomizations.add("Extra_Hot");
-//        allCustomizations.add("Warm");
-//        allCustomizations.add("Temperature");
-//        allCustomizations.add(JuiceOptions.Juice.APPLE.name());
-//        allCustomizations.add("More_Custom_Toppings_and_Inclusions");
-//        allCustomizations.add("More_Custom_Directions");
-//
-//        return allCustomizations;
-//    }
 }

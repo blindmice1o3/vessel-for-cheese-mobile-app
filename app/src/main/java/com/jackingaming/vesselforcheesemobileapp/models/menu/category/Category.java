@@ -1,4 +1,4 @@
-package com.jackingaming.vesselforcheesemobileapp.models.menu.categories;
+package com.jackingaming.vesselforcheesemobileapp.models.menu.category;
 
 public abstract class Category {
     private String name;
