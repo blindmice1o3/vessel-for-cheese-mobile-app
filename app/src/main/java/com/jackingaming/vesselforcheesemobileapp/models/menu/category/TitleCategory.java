@@ -1,18 +1,21 @@
 package com.jackingaming.vesselforcheesemobileapp.models.menu.category;
 
 public class TitleCategory extends Category {
-    private int sizeCategory;
+    public static final String TAG = TitleCategory.class.getSimpleName();
+    public static final int NULL_ID_IMAGE = -1;
 
-    public TitleCategory(String name, int sizeCategory) {
-        super(name);
-        this.sizeCategory = sizeCategory;
+    private int numberOfParentCategory;
+
+    public TitleCategory(String name, int numberOfParentCategory) {
+        super(name, NULL_ID_IMAGE);
+        this.numberOfParentCategory = numberOfParentCategory;
     }
 
-    public int getSizeCategory() {
-        return sizeCategory;
+    public int getNumberOfParentCategory() {
+        return numberOfParentCategory;
     }
 
-    public void setSizeCategory(int sizeCategory) {
-        this.sizeCategory = sizeCategory;
+    public void setNumberOfParentCategory(int numberOfParentCategory) {
+        this.numberOfParentCategory = numberOfParentCategory;
     }
 }

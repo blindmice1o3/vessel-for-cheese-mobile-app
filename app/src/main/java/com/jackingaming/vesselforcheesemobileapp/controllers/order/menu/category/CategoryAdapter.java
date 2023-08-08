@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.jackingaming.vesselforcheesemobileapp.R;
 import com.jackingaming.vesselforcheesemobileapp.models.menu.category.Category;
-import com.jackingaming.vesselforcheesemobileapp.models.menu.category.MenuItemCategory;
+import com.jackingaming.vesselforcheesemobileapp.models.menu.category.ParentCategory;
 import com.jackingaming.vesselforcheesemobileapp.models.menu.category.TitleCategory;
 
 import java.util.List;
@@ -20,17 +20,18 @@ import java.util.List;
 public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public static final String TAG = CategoryAdapter.class.getSimpleName();
 
-    private static final int VIEW_TYPE_TITLE = 0;
-    private static final int VIEW_TYPE_CATEGORY = 1;
+    private static final int VIEW_TYPE_NULL = -1;
+    private static final int VIEW_TYPE_TITLE_CATEGORY = 0;
+    private static final int VIEW_TYPE_PARENT_CATEGORY = 1;
 
     public interface CategoryAdapterListener {
-        void onMenuItemCategoryClicked(View view, String nameOfCategorySelected);
+        void onParentCategoryClicked(View view, ParentCategory parentCategorySelected);
 
-        void onMenuItemCategoryLongClicked(View view, String nameOfCategorySelected);
+        void onParentCategoryLongClicked(View view, ParentCategory parentCategorySelected);
 
-        void onTitleCategoryClicked(View view, String nameOfCategorySelected);
+        void onTitleCategoryClicked(View view, TitleCategory titleCategorySelected);
 
-        void onTitleCategoryLongClicked(View view, String nameOfCategorySelected);
+        void onTitleCategoryLongClicked(View view, TitleCategory titleCategorySelected);
     }
 
     private List<Category> categories;
@@ -46,11 +47,11 @@ public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         Category category = categories.get(position);
 
         if (category instanceof TitleCategory) {
-            return VIEW_TYPE_TITLE;
-        } else if (category instanceof MenuItemCategory) {
-            return VIEW_TYPE_CATEGORY;
+            return VIEW_TYPE_TITLE_CATEGORY;
+        } else if (category instanceof ParentCategory) {
+            return VIEW_TYPE_PARENT_CATEGORY;
         } else {
-            return -1;
+            return VIEW_TYPE_NULL;
         }
     }
 
@@ -61,16 +62,16 @@ public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         RecyclerView.ViewHolder viewHolder;
 
         switch (viewType) {
-            case VIEW_TYPE_TITLE:
-                View viewTitle = inflater.inflate(R.layout.list_item_title, parent, false);
-                viewHolder = new ViewHolderTitleCategory(viewTitle);
+            case VIEW_TYPE_TITLE_CATEGORY:
+                View viewTitleCategory = inflater.inflate(R.layout.list_item_title_category, parent, false);
+                viewHolder = new ViewHolderTitleCategory(viewTitleCategory);
                 break;
-            case VIEW_TYPE_CATEGORY:
-                View viewCategory = inflater.inflate(R.layout.list_item_category, parent, false);
-                viewHolder = new ViewHolderMenuItemCategory(viewCategory);
+            case VIEW_TYPE_PARENT_CATEGORY:
+                View viewParentCategory = inflater.inflate(R.layout.list_item_parent_category, parent, false);
+                viewHolder = new ViewHolderParentCategory(viewParentCategory);
                 break;
             default:
-                View viewDefault = inflater.inflate(R.layout.list_item_title, parent, false);
+                View viewDefault = inflater.inflate(R.layout.list_item_title_category, parent, false);
                 viewHolder = new ViewHolderTitleCategory(viewDefault);
                 break;
         }
@@ -81,15 +82,15 @@ public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         switch (holder.getItemViewType()) {
-            case VIEW_TYPE_TITLE:
+            case VIEW_TYPE_TITLE_CATEGORY:
                 ViewHolderTitleCategory viewHolderTitleCategory = (ViewHolderTitleCategory) holder;
                 TitleCategory titleCategory = (TitleCategory) categories.get(position);
                 viewHolderTitleCategory.bind(titleCategory);
                 break;
-            case VIEW_TYPE_CATEGORY:
-                ViewHolderMenuItemCategory viewHolderMenuItemCategory = (ViewHolderMenuItemCategory) holder;
-                MenuItemCategory menuItemCategory = (MenuItemCategory) categories.get(position);
-                viewHolderMenuItemCategory.bind(menuItemCategory);
+            case VIEW_TYPE_PARENT_CATEGORY:
+                ViewHolderParentCategory viewHolderParentCategory = (ViewHolderParentCategory) holder;
+                ParentCategory parentCategory = (ParentCategory) categories.get(position);
+                viewHolderParentCategory.bind(parentCategory);
                 break;
             default:
                 ViewHolderTitleCategory viewHolderDefault = (ViewHolderTitleCategory) holder;
@@ -104,55 +105,17 @@ public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         return categories.size();
     }
 
-    class ViewHolderMenuItemCategory extends RecyclerView.ViewHolder
-            implements View.OnClickListener, View.OnLongClickListener {
-        private ImageView ivThumbnail;
-        private TextView tvName;
-
-        public ViewHolderMenuItemCategory(@NonNull View itemView) {
-            super(itemView);
-            ivThumbnail = itemView.findViewById(R.id.iv_thumbnail);
-            tvName = itemView.findViewById(R.id.tv_name);
-            itemView.setOnClickListener(this);
-            itemView.setOnLongClickListener(this);
-        }
-
-        public void bind(MenuItemCategory menuItemCategory) {
-            ivThumbnail.setImageResource(menuItemCategory.getIdImage());
-            tvName.setText(menuItemCategory.getName());
-        }
-
-        @Override
-        public void onClick(View view) {
-            int position = getAdapterPosition(); // gets item position
-            Log.i(TAG, "item in RV clicked! position: " + position);
-            if (position != RecyclerView.NO_POSITION) { // Check if an item was deleted, but the user clicked it before the UI removed it
-                if (listener != null) {
-                    Category categorySelected = categories.get(position);
-                    listener.onMenuItemCategoryClicked(view, categorySelected.getName());
-                }
-            }
-        }
-
-        @Override
-        public boolean onLongClick(View view) {
-            int position = getAdapterPosition(); // gets item position
-            Log.i(TAG, "item in RV long-clicked! position: " + position);
-            if (position != RecyclerView.NO_POSITION) { // Check if an item was deleted, but the user clicked it before the UI removed it
-                if (listener != null) {
-                    Category categorySelected = categories.get(position);
-                    listener.onMenuItemCategoryLongClicked(view, categorySelected.getName());
-                    return true;
-                }
-            }
-            return false;
-        }
-    }
-
     class ViewHolderTitleCategory extends RecyclerView.ViewHolder
             implements View.OnClickListener, View.OnLongClickListener {
         private TextView tvName;
         private TextView tvSize;
+
+        public void bind(TitleCategory titleCategory) {
+            tvName.setText(titleCategory.getName());
+            tvSize.setText(
+                    String.format("See all %d", titleCategory.getNumberOfParentCategory())
+            );
+        }
 
         public ViewHolderTitleCategory(@NonNull View itemView) {
             super(itemView);
@@ -162,21 +125,14 @@ public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             itemView.setOnLongClickListener(this);
         }
 
-        public void bind(TitleCategory titleCategory) {
-            tvName.setText(titleCategory.getName());
-            tvSize.setText(
-                    String.format("See all %d", titleCategory.getSizeCategory())
-            );
-        }
-
         @Override
         public void onClick(View view) {
             int position = getAdapterPosition(); // gets item position
             Log.i(TAG, "item in RV clicked! position: " + position);
             if (position != RecyclerView.NO_POSITION) { // Check if an item was deleted, but the user clicked it before the UI removed it
                 if (listener != null) {
-                    Category categorySelected = categories.get(position);
-                    listener.onTitleCategoryClicked(view, categorySelected.getName());
+                    TitleCategory titleCategorySelected = (TitleCategory) categories.get(position);
+                    listener.onTitleCategoryClicked(view, titleCategorySelected);
                 }
             }
         }
@@ -187,8 +143,53 @@ public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             Log.i(TAG, "item in RV long-clicked! position: " + position);
             if (position != RecyclerView.NO_POSITION) { // Check if an item was deleted, but the user clicked it before the UI removed it
                 if (listener != null) {
-                    Category categorySelected = categories.get(position);
-                    listener.onTitleCategoryLongClicked(view, categorySelected.getName());
+                    TitleCategory titleCategorySelected = (TitleCategory) categories.get(position);
+                    listener.onTitleCategoryLongClicked(view, titleCategorySelected);
+                    return true;
+                }
+            }
+            return false;
+        }
+    }
+
+    class ViewHolderParentCategory extends RecyclerView.ViewHolder
+            implements View.OnClickListener, View.OnLongClickListener {
+        private ImageView ivThumbnail;
+        private TextView tvName;
+
+        public ViewHolderParentCategory(@NonNull View itemView) {
+            super(itemView);
+            ivThumbnail = itemView.findViewById(R.id.iv_thumbnail);
+            tvName = itemView.findViewById(R.id.tv_name);
+            itemView.setOnClickListener(this);
+            itemView.setOnLongClickListener(this);
+        }
+
+        public void bind(ParentCategory parentCategory) {
+            ivThumbnail.setImageResource(parentCategory.getIdImage());
+            tvName.setText(parentCategory.getName());
+        }
+
+        @Override
+        public void onClick(View view) {
+            int position = getAdapterPosition(); // gets item position
+            Log.i(TAG, "item in RV clicked! position: " + position);
+            if (position != RecyclerView.NO_POSITION) { // Check if an item was deleted, but the user clicked it before the UI removed it
+                if (listener != null) {
+                    ParentCategory parentCategorySelected = (ParentCategory) categories.get(position);
+                    listener.onParentCategoryClicked(view, parentCategorySelected);
+                }
+            }
+        }
+
+        @Override
+        public boolean onLongClick(View view) {
+            int position = getAdapterPosition(); // gets item position
+            Log.i(TAG, "item in RV long-clicked! position: " + position);
+            if (position != RecyclerView.NO_POSITION) { // Check if an item was deleted, but the user clicked it before the UI removed it
+                if (listener != null) {
+                    ParentCategory parentCategorySelected = (ParentCategory) categories.get(position);
+                    listener.onParentCategoryLongClicked(view, parentCategorySelected);
                     return true;
                 }
             }

@@ -1,10 +1,15 @@
 package com.jackingaming.vesselforcheesemobileapp.models.menu.category;
 
-public abstract class Category {
-    private String name;
+import java.io.Serializable;
 
-    public Category(String name) {
+public abstract class Category
+        implements Serializable {
+    private String name;
+    private int idImage;
+
+    public Category(String name, int idImage) {
         this.name = name;
+        this.idImage = idImage;
     }
 
     public String getName() {
@@ -13,5 +18,13 @@ public abstract class Category {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getIdImage() {
+        return idImage;
+    }
+
+    public void setIdImage(int idImage) {
+        this.idImage = idImage;
     }
 }

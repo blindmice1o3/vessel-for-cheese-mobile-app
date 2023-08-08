@@ -23,7 +23,7 @@
             android:name=".controllers.order.menu.menuitem.MenuItemActivity"
             android:exported="false" />
         <activity
-            android:name=".controllers.order.menu.subcategory.MenuItemCategoryActivity"
+            android:name=".controllers.order.menu.subcategory.ParentCategoryActivity"
             android:exported="false"
             android:parentActivityName=".controllers.MainActivity" />
         <activity

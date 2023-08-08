@@ -36,6 +36,9 @@ import com.jackingaming.vesselforcheesemobileapp.models.menu.Menu;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.MenuItem;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.Drink;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.DrinkSize;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.BrewedCoffees;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.Espresso;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.straight_shots.EspressoShots;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -48,9 +51,7 @@ import java.util.Map;
 
 public class MenuItemActivity extends AppCompatActivity {
     public static final String TAG = MenuItemActivity.class.getSimpleName();
-    public static final String EXTRA_NAME_CATEGORY = "com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem.nameCategory";
-    public static final String EXTRA_NAME_SUB_CATEGORY = "com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem.nameSubCategory";
-    public static final String EXTRA_POSITION = "com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem.position";
+    public static final String EXTRA_MENU_ITEM_SELECTED = "com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem.menuItemSelected";
 
     private Drink drink;
     private WhatsIncludedAdapter adapter;
@@ -80,12 +81,10 @@ public class MenuItemActivity extends AppCompatActivity {
         TextView tvMenuItemName = findViewById(R.id.tv_menuitem_name);
         TextView tvMenuItemCalories = findViewById(R.id.tv_menuitem_calories);
 
-        String nameCategory = getIntent().getStringExtra(EXTRA_NAME_CATEGORY);
-        String nameSubCategory = getIntent().getStringExtra(EXTRA_NAME_SUB_CATEGORY);
-        int position = getIntent().getIntExtra(EXTRA_POSITION, -1);
+        MenuItem menuItemSelected = (MenuItem) getIntent().getSerializableExtra(EXTRA_MENU_ITEM_SELECTED);
 
         TextView tvContent = findViewById(R.id.tv_content);
-        tvContent.setText(nameCategory + " | " + nameSubCategory + " | position: " + position);
+        tvContent.setText(menuItemSelected.getName());
 
         RecyclerView rvWhatsIncluded = findViewById(R.id.rv_whats_included);
 
@@ -95,11 +94,10 @@ public class MenuItemActivity extends AppCompatActivity {
         TextView tvCaloriesSugarFat = findViewById(R.id.tv_calories_sugar_fat);
         Button buttonNutritionAndIngredient = findViewById(R.id.button_nutrition_and_ingredient);
 
-        if (nameCategory.equals(Menu.HOT_COFFEES) ||
-                nameCategory.equals(Menu.COLD_COFFEES)) {
-            Log.i(TAG, "Menu.HOT_COFFEES || Menu.COLD_COFFEES " +
-                    "[which implies the selected MenuItem is a Drink]");
-            drink = createCopyOfDrinkFromMenu(nameCategory, nameSubCategory, position);
+        if (menuItemSelected instanceof BrewedCoffees ||
+                (menuItemSelected instanceof Espresso && !(menuItemSelected instanceof EspressoShots))) {
+            Log.i(TAG, "menuItemSelected instanceof BrewedCoffees || (menuItemSelected instanceof Espresso && !(menuItemSelected instanceof EspressoShots))");
+            drink = createCopyOfMenuItemFromMenu(menuItemSelected);
 
             // TODO: add field to MenuItem class: long idImageResource.
 //            ivMenuItemImage.setImageResource(R.drawable.harvest_moon_natsume);
@@ -294,17 +292,10 @@ public class MenuItemActivity extends AppCompatActivity {
         });
     }
 
-    private Drink createCopyOfDrinkFromMenu(String nameCategory, String nameSubCategory, int position) {
-        MenuItem menuItem = null;
-        if (nameCategory.equals(Menu.HOT_COFFEES)) {
-            menuItem = Menu.hotCoffeesAsMap.get(nameSubCategory).get(position);
-        } else if (nameCategory.equals(Menu.COLD_COFFEES)) {
-            menuItem = Menu.coldCoffeesAsMap.get(nameSubCategory).get(position);
-        } else {
-            Log.e(TAG, "nameCategory NOT equals() Menu.HOT_COFFEES nor Menu.COLD_COFFEES");
-        }
-
+    private Drink createCopyOfMenuItemFromMenu(MenuItem menuItem) {
         if (menuItem instanceof Drink) {
+            Log.i(TAG, "menuItem instanceof Drink");
+
             Drink original = (Drink) menuItem;
             Drink copy = null;
             try {

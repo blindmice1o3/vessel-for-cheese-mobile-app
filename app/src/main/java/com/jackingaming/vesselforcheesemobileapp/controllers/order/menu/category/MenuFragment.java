@@ -15,10 +15,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jackingaming.vesselforcheesemobileapp.R;
-import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.subcategory.MenuItemCategoryActivity;
+import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.subcategory.ParentCategoryActivity;
 import com.jackingaming.vesselforcheesemobileapp.models.menu.Menu;
 import com.jackingaming.vesselforcheesemobileapp.models.menu.category.Category;
-import com.jackingaming.vesselforcheesemobileapp.models.menu.category.MenuItemCategory;
+import com.jackingaming.vesselforcheesemobileapp.models.menu.category.ParentCategory;
+import com.jackingaming.vesselforcheesemobileapp.models.menu.category.TitleCategory;
 
 import java.util.List;
 
@@ -39,7 +40,6 @@ public class MenuFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    // SUBCLASSES: (1) TitleCategory, (2) MenuItemCategory
     private List<Category> categories = Menu.categories;
     private CategoryAdapter adapter;
 
@@ -86,53 +86,32 @@ public class MenuFragment extends Fragment {
 
         adapter = new CategoryAdapter(categories, new CategoryAdapter.CategoryAdapterListener() {
             @Override
-            public void onMenuItemCategoryClicked(View view, String nameOfCategorySelected) {
-                Log.i(TAG, "onMenuItemCategoryClicked(View, String) nameOfCategorySelected: " + nameOfCategorySelected);
+            public void onParentCategoryClicked(View view, ParentCategory parentCategorySelected) {
+                Log.i(TAG, "onParentCategoryClicked(View, ParentCategory) parentCategorySelected: " + parentCategorySelected.getName());
 
-                int numberOfMenuItemsViaMap = 0;
-                if (nameOfCategorySelected.equals(Menu.HOT_COFFEES)) {
-                    Log.i(TAG, "nameOfCategorySelected.equals(Menu.HOT_COFFEES)");
-
-                    for (MenuItemCategory menuItemCategory : Menu.hotCoffees) {
-                        String keyHotCoffees = menuItemCategory.getName();
-                        numberOfMenuItemsViaMap += Menu.hotCoffeesAsMap.get(keyHotCoffees).size();
-                    }
-                } else if (nameOfCategorySelected.equals(Menu.COLD_COFFEES)) {
-                    Log.i(TAG, "nameOfCategorySelected.equals(Menu.COLD_COFFEES)");
-
-                    for (MenuItemCategory menuItemCategory : Menu.coldCoffees) {
-                        String keyColdCoffees = menuItemCategory.getName();
-                        numberOfMenuItemsViaMap += Menu.coldCoffeesAsMap.get(keyColdCoffees).size();
-                    }
-                } else {
-                    Log.e(TAG, "nameOfCategorySelected NOT equals() Menu.HOT_COFFEES nor Menu.COLD_COFFEES");
-                }
-                Log.i(TAG, "numberOfMenuItemsViaMap: " + numberOfMenuItemsViaMap);
-
-                Intent intent = new Intent(getContext(), MenuItemCategoryActivity.class);
-                intent.putExtra(MenuItemCategoryActivity.EXTRA_TITLE, nameOfCategorySelected);
-                intent.putExtra(MenuItemCategoryActivity.EXTRA_SIZE, numberOfMenuItemsViaMap);
+                Intent intent = new Intent(getContext(), ParentCategoryActivity.class);
+                intent.putExtra(ParentCategoryActivity.EXTRA_PARENT_CATEGORY_SELECTED, parentCategorySelected);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             }
 
             @Override
-            public void onMenuItemCategoryLongClicked(View view, String nameOfCategorySelected) {
-                Log.i(TAG, "onMenuItemCategoryLongClicked(View, String) nameOfCategorySelected: " + nameOfCategorySelected);
+            public void onParentCategoryLongClicked(View view, ParentCategory parentCategorySelected) {
+                Log.i(TAG, "onParentCategoryLongClicked(View, ParentCategory) parentCategorySelected: " + parentCategorySelected.getName());
 
                 // TODO:
             }
 
             @Override
-            public void onTitleCategoryClicked(View view, String nameOfCategorySelected) {
-                Log.i(TAG, "onTitleCategoryClicked(View, String) nameOfCategorySelected: " + nameOfCategorySelected);
+            public void onTitleCategoryClicked(View view, TitleCategory titleCategorySelected) {
+                Log.i(TAG, "onTitleCategoryClicked(View, TitleCategory) titleCategorySelected: " + titleCategorySelected.getName());
 
                 // TODO:
             }
 
             @Override
-            public void onTitleCategoryLongClicked(View view, String nameOfCategorySelected) {
-                Log.i(TAG, "onTitleCategoryLongClicked(View, String) nameOfCategorySelected: " + nameOfCategorySelected);
+            public void onTitleCategoryLongClicked(View view, TitleCategory titleCategorySelected) {
+                Log.i(TAG, "onTitleCategoryLongClicked(View, TitleCategory) titleCategorySelected: " + titleCategorySelected.getName());
 
                 // TODO:
             }
