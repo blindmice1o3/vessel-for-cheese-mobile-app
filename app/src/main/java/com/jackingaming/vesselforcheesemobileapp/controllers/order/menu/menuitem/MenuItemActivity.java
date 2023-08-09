@@ -39,6 +39,8 @@ import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.DrinkS
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.BrewedCoffees;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.Espresso;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.straight_shots.EspressoShots;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.teas.Teas;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.travelers.CoffeeTravelers;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -95,7 +97,9 @@ public class MenuItemActivity extends AppCompatActivity {
         Button buttonNutritionAndIngredient = findViewById(R.id.button_nutrition_and_ingredient);
 
         if (menuItemSelected instanceof BrewedCoffees ||
-                (menuItemSelected instanceof Espresso && !(menuItemSelected instanceof EspressoShots))) {
+                (menuItemSelected instanceof Espresso && !(menuItemSelected instanceof EspressoShots)) ||
+                menuItemSelected instanceof Teas ||
+                menuItemSelected instanceof CoffeeTravelers) {
             Log.i(TAG, "menuItemSelected instanceof BrewedCoffees || (menuItemSelected instanceof Espresso && !(menuItemSelected instanceof EspressoShots))");
             drink = createCopyOfMenuItemFromMenu(menuItemSelected);
 

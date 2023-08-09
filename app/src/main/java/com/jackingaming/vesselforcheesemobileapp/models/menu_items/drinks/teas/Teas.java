@@ -1,26 +1,20 @@
-package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.tea;
+package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.teas;
 
 import android.util.Log;
 
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.Drink;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.DrinkSize;
 
-public abstract class Tea extends Drink {
-    public static final String TAG = Tea.class.getSimpleName();
-    public static final DrinkSize DEFAULT_DRINK_SIZE = DrinkSize.GRANDE;
+public abstract class Teas extends Drink {
+    public static final String TAG = Teas.class.getSimpleName();
 
-    public static final DrinkSize[] DEFAULT_DRINK_SIZES_ALLOWED =
-            {DrinkSize.SHORT, DrinkSize.TALL, DrinkSize.GRANDE, DrinkSize.VENTI_HOT};
-
-    public Tea() {
+    public Teas() {
     }
 
-    public Tea(String name, String description, int calories, int sugarInGram, float fatInGram,
-               double price) {
+    public Teas(String name, String description, int calories, int sugarInGram, float fatInGram,
+                double price, DrinkSize drinkSizeDefault) {
         super(name, description, calories, sugarInGram, fatInGram,
-                price, DEFAULT_DRINK_SIZE);
-
-        drinkSizesAllowed = DEFAULT_DRINK_SIZES_ALLOWED;
+                price, drinkSizeDefault);
     }
 
     @Override

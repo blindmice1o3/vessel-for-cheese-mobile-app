@@ -81,6 +81,33 @@ import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espres
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.straight_shots.ShotEspresso;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.water_based.cold.icedamericano.IcedCaffeAmericano;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.water_based.hot.americanos.CaffeAmericano;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.teas.cold.bottledteas.TeavanaMangoBlackTea;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.teas.cold.bottledteas.TeavanaSparklingUnsweetenedPeachNectarineGreenTea;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.teas.cold.icedblackteas.IcedBlackTea;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.teas.cold.icedblackteas.IcedBlackTeaLemonade;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.teas.cold.icedblackteas.IcedLondonFogTeaLatte;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.teas.cold.icedblackteas.IcedRoyalEnglishBreakfastTeaLatte;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.teas.cold.icedchaiteas.IcedChaiTeaLatte;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.teas.cold.icedgreenteas.IcedGreenTea;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.teas.cold.icedgreenteas.IcedGreenTeaLemonade;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.teas.cold.icedgreenteas.IcedMatchaLemonade;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.teas.cold.icedgreenteas.IcedMatchaTeaLatte;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.teas.cold.icedgreenteas.IcedPeachGreenTea;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.teas.cold.icedgreenteas.IcedPeachGreenTeaLemonade;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.teas.cold.icedherbalteas.IcedPassionTangoTea;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.teas.cold.icedherbalteas.IcedPassionTangoTeaLemonade;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.teas.hot.blackteas.EarlGreyTea;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.teas.hot.blackteas.RoyalEnglishBreakfastTea;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.teas.hot.blackteas.RoyalEnglishBreakfastTeaLatte;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.teas.hot.blackteas.TeavanaLondonFogTeaLatte;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.teas.hot.chaiteas.ChaiTea;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.teas.hot.chaiteas.ChaiTeaLatte;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.teas.hot.greenteas.EmperorsCloudsAndMist;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.teas.hot.greenteas.HoneyCitrusMintTea;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.teas.hot.greenteas.JadeCitrusMintBrewedTea;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.teas.hot.greenteas.MatchaTeaLatte;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.teas.hot.herbalteas.MintMajesty;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.teas.hot.herbalteas.PeachTranquility;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.travelers.VerandaBlend;
 
 import java.util.ArrayList;
@@ -305,23 +332,34 @@ public class Menu {
     public static final String HERBAL_TEAS = "Herbal Teas";
 
     public static final List<MenuItem> chaiTeas = Arrays.asList(
-            // TODO:
+            new ChaiTeaLatte(),
+            new ChaiTea()
     );
 
     public static final List<MenuItem> blackTeas = Arrays.asList(
-            // TODO:
+            new EarlGreyTea(),
+            new TeavanaLondonFogTeaLatte(),
+            new RoyalEnglishBreakfastTea(),
+            new RoyalEnglishBreakfastTeaLatte()
     );
 
     public static final List<MenuItem> greenTeas = Arrays.asList(
-            // TODO:
+            new EmperorsCloudsAndMist(),
+            new MatchaTeaLatte(),
+            new HoneyCitrusMintTea(),
+            new JadeCitrusMintBrewedTea()
     );
 
     public static final List<MenuItem> herbalTeas = Arrays.asList(
-            // TODO:
+            new MintMajesty(),
+            new PeachTranquility()
     );
 
     public static final List<SubCategory> hotTeas = Arrays.asList(
-            // TODO:
+            new SubCategory(CHAI_TEAS, R.drawable.harvest_moon_natsume, chaiTeas),
+            new SubCategory(BLACK_TEAS, R.drawable.harvest_moon_natsume, blackTeas),
+            new SubCategory(GREEN_TEAS, R.drawable.harvest_moon_natsume, greenTeas),
+            new SubCategory(HERBAL_TEAS, R.drawable.harvest_moon_natsume, herbalTeas)
     );
 
     // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -381,27 +419,41 @@ public class Menu {
     public static final String ICED_HERBAL_TEAS = "Iced Herbal Teas";
 
     public static final List<MenuItem> bottledTeas = Arrays.asList(
-            // TODO:
+            new TeavanaSparklingUnsweetenedPeachNectarineGreenTea(),
+            new TeavanaMangoBlackTea()
     );
 
     public static final List<MenuItem> icedBlackTeas = Arrays.asList(
-            // TODO:
+            new IcedBlackTea(),
+            new IcedBlackTeaLemonade(),
+            new IcedRoyalEnglishBreakfastTeaLatte(),
+            new IcedLondonFogTeaLatte()
     );
 
     public static final List<MenuItem> icedChaiTeas = Arrays.asList(
-            // TODO:
+            new IcedChaiTeaLatte()
     );
 
     public static final List<MenuItem> icedGreenTeas = Arrays.asList(
-            // TODO:
+            new IcedPeachGreenTea(),
+            new IcedPeachGreenTeaLemonade(),
+            new IcedMatchaTeaLatte(),
+            new IcedGreenTea(),
+            new IcedGreenTeaLemonade(),
+            new IcedMatchaLemonade()
     );
 
     public static final List<MenuItem> icedHerbalTeas = Arrays.asList(
-            // TODO:
+            new IcedPassionTangoTea(),
+            new IcedPassionTangoTeaLemonade()
     );
 
     public static final List<SubCategory> icedTeas = Arrays.asList(
-            // TODO:
+            new SubCategory(BOTTLED_TEAS, R.drawable.harvest_moon_natsume, bottledTeas),
+            new SubCategory(ICED_BLACK_TEAS, R.drawable.harvest_moon_natsume, icedBlackTeas),
+            new SubCategory(ICED_CHAI_TEAS, R.drawable.harvest_moon_natsume, icedChaiTeas),
+            new SubCategory(ICED_GREEN_TEAS, R.drawable.harvest_moon_natsume, icedGreenTeas),
+            new SubCategory(ICED_HERBAL_TEAS, R.drawable.harvest_moon_natsume, icedHerbalTeas)
     );
 
     // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
