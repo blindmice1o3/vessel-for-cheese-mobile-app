@@ -47,40 +47,40 @@ import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.hot.FeaturedLTORoastGreenApronBlend;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.hot.FeaturedMediumRoastPikePlaceRoast;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.hot.FeaturedMediumRoastPikePlaceRoast2;
-import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.cappuccinos.Cappuccino;
-import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.flat_whites.cold.IcedFlatWhite;
-import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.flat_whites.cold.IcedHoneyAlmondmilkFlatWhite;
-import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.flat_whites.hot.FlatWhite;
-import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.flat_whites.hot.HoneyAlmondmilkFlatWhite;
-import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.iced_shaken_espressos.IcedBrownSugarOatmilkShakenEspresso;
-import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.iced_shaken_espressos.IcedChocolateAlmondmilkShakenEspresso;
-import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.iced_shaken_espressos.IcedShakenEspresso;
-import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.iced_shaken_espressos.IcedToastedVanillaOatmilkShakenEspresso;
-import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.iced_shaken_espressos.OleatoIcedShakenEspressoWithOatmilkAndToffeenut;
-import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.lattes.cold.IcedCaffeLatte;
-import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.lattes.cold.IcedCinnamonDolceLatte;
-import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.lattes.cold.IcedStarbucksBlondeVanillaLatte;
-import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.lattes.cold.StarbucksReserveIcedHazelnutBiancoLatte;
-import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.lattes.cold.StarbucksReserveIcedLatte;
-import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.lattes.hot.CaffeLatte;
-import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.lattes.hot.CinnamonDolceLatte;
-import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.lattes.hot.OleatoCaffeLatteWithOatmilk;
-import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.lattes.hot.StarbucksBlondeVanillaLatte;
-import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.lattes.hot.StarbucksReserveHazelnutBiancoLatte;
-import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.lattes.hot.StarbucksReserveLatte;
-import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.macchiatos.cold.IcedCaramelMacchiato;
-import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.macchiatos.hot.CaramelMacchiato;
-import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.macchiatos.hot.EspressoMacchiato;
-import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.mochas.cold.IcedCaffeMocha;
-import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.mochas.cold.IcedWhiteChocolateMocha;
-import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.mochas.cold.StarbucksReserveIcedDarkChocolateMocha;
-import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.mochas.hot.CaffeMocha;
-import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.mochas.hot.StarbucksReserveDarkChocolateMocha;
-import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.mochas.hot.WhiteChocolateMocha;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.cold.icedflatwhites.IcedFlatWhite;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.cold.icedflatwhites.IcedHoneyAlmondmilkFlatWhite;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.cold.icedlattes.IcedCaffeLatte;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.cold.icedlattes.IcedCinnamonDolceLatte;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.cold.icedlattes.IcedStarbucksBlondeVanillaLatte;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.cold.icedlattes.StarbucksReserveIcedHazelnutBiancoLatte;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.cold.icedlattes.StarbucksReserveIcedLatte;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.cold.icedmacchiatos.IcedCaramelMacchiato;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.cold.icedmochas.IcedCaffeMocha;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.cold.icedmochas.IcedWhiteChocolateMocha;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.cold.icedmochas.StarbucksReserveIcedDarkChocolateMocha;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.cold.icedshakenespressos.IcedBrownSugarOatmilkShakenEspresso;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.cold.icedshakenespressos.IcedChocolateAlmondmilkShakenEspresso;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.cold.icedshakenespressos.IcedShakenEspresso;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.cold.icedshakenespressos.IcedToastedVanillaOatmilkShakenEspresso;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.cold.icedshakenespressos.OleatoIcedShakenEspressoWithOatmilkAndToffeenut;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.hot.cappuccinos.Cappuccino;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.hot.flatwhites.FlatWhite;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.hot.flatwhites.HoneyAlmondmilkFlatWhite;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.hot.lattes.CaffeLatte;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.hot.lattes.CinnamonDolceLatte;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.hot.lattes.OleatoCaffeLatteWithOatmilk;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.hot.lattes.StarbucksBlondeVanillaLatte;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.hot.lattes.StarbucksReserveHazelnutBiancoLatte;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.hot.lattes.StarbucksReserveLatte;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.hot.macchiatos.CaramelMacchiato;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.hot.macchiatos.EspressoMacchiato;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.hot.mochas.CaffeMocha;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.hot.mochas.StarbucksReserveDarkChocolateMocha;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.hot.mochas.WhiteChocolateMocha;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.straight_shots.EspressoConPanna;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.straight_shots.ShotEspresso;
-import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.water_based.americanos.cold.IcedCaffeAmericano;
-import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.water_based.americanos.hot.CaffeAmericano;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.water_based.cold.icedamericano.IcedCaffeAmericano;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.water_based.hot.americanos.CaffeAmericano;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.travelers.VerandaBlend;
 
 import java.util.ArrayList;
@@ -299,6 +299,26 @@ public class Menu {
     // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
     public static final String HOT_TEAS = "Hot Teas";
+    public static final String CHAI_TEAS = "Chai Teas";
+    public static final String BLACK_TEAS = "Black Teas";
+    public static final String GREEN_TEAS = "Green Teas";
+    public static final String HERBAL_TEAS = "Herbal Teas";
+
+    public static final List<MenuItem> chaiTeas = Arrays.asList(
+            // TODO:
+    );
+
+    public static final List<MenuItem> blackTeas = Arrays.asList(
+            // TODO:
+    );
+
+    public static final List<MenuItem> greenTeas = Arrays.asList(
+            // TODO:
+    );
+
+    public static final List<MenuItem> herbalTeas = Arrays.asList(
+            // TODO:
+    );
 
     public static final List<SubCategory> hotTeas = Arrays.asList(
             // TODO:
@@ -309,6 +329,21 @@ public class Menu {
     // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
     public static final String HOT_DRINKS = "Hot Drinks";
+    public static final String HOT_CHOCOLATES = "Hot Chocolates";
+    public static final String JUICE = "Juice";
+    public static final String STEAMERS = "Steamers";
+
+    public static final List<MenuItem> hotChocolates = Arrays.asList(
+            // TODO:
+    );
+
+    public static final List<MenuItem> juice = Arrays.asList(
+            // TODO:
+    );
+
+    public static final List<MenuItem> steamers = Arrays.asList(
+            // TODO:
+    );
 
     public static final List<SubCategory> hotDrinks = Arrays.asList(
             // TODO:
@@ -319,6 +354,16 @@ public class Menu {
     // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
     public static final String BLENDED_BEVERAGES = "Blended Beverages";
+    public static final String COFFEE_FRAPPUCCINO = "Coffee Frappuccino";
+    public static final String CREME_FRAPPUCCINO = "Creme Frappuccino";
+
+    public static final List<MenuItem> coffeeFrappuccino = Arrays.asList(
+            // TODO:
+    );
+
+    public static final List<MenuItem> cremeFrappuccino = Arrays.asList(
+            // TODO:
+    );
 
     public static final List<SubCategory> blendedBeverages = Arrays.asList(
             // TODO:
@@ -329,6 +374,31 @@ public class Menu {
     // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
     public static final String ICED_TEAS = "Iced Teas";
+    public static final String BOTTLED_TEAS = "Bottled Teas";
+    public static final String ICED_BLACK_TEAS = "Iced Black Teas";
+    public static final String ICED_CHAI_TEAS = "Iced Chai Teas";
+    public static final String ICED_GREEN_TEAS = "Iced Green Teas";
+    public static final String ICED_HERBAL_TEAS = "Iced Herbal Teas";
+
+    public static final List<MenuItem> bottledTeas = Arrays.asList(
+            // TODO:
+    );
+
+    public static final List<MenuItem> icedBlackTeas = Arrays.asList(
+            // TODO:
+    );
+
+    public static final List<MenuItem> icedChaiTeas = Arrays.asList(
+            // TODO:
+    );
+
+    public static final List<MenuItem> icedGreenTeas = Arrays.asList(
+            // TODO:
+    );
+
+    public static final List<MenuItem> icedHerbalTeas = Arrays.asList(
+            // TODO:
+    );
 
     public static final List<SubCategory> icedTeas = Arrays.asList(
             // TODO:
@@ -339,6 +409,31 @@ public class Menu {
     // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
     public static final String COLD_DRINKS = "Cold Drinks";
+    public static final String REFRESHERS = "Starbucks Refreshers";
+    public static final String ICED_JUICE = "Juice";
+    public static final String MILK = "Milk";
+    public static final String SPARKLING_WATER = "Sparkling Water";
+    public static final String WATER = "Water";
+
+    public static final List<MenuItem> refreshers = Arrays.asList(
+            // TODO:
+    );
+
+    public static final List<MenuItem> icedJuice = Arrays.asList(
+            // TODO:
+    );
+
+    public static final List<MenuItem> milk = Arrays.asList(
+            // TODO:
+    );
+
+    public static final List<MenuItem> sparklingWater = Arrays.asList(
+            // TODO:
+    );
+
+    public static final List<MenuItem> water = Arrays.asList(
+            // TODO:
+    );
 
     public static final List<SubCategory> coldDrinks = Arrays.asList(
             // TODO:
@@ -349,6 +444,16 @@ public class Menu {
     // ======================================================================
 
     public static final String HOT_BREAKFAST = "Hot Breakfast";
+    public static final String BREAKFAST_SANDWICHES_AND_WRAPS = "Breakfast Sandwiches & Wraps";
+    public static final String SOUS_VIDE_EGG_BITES = "Sous Vide Egg Bites";
+
+    public static final List<MenuItem> breakfastSandwichesAndWraps = Arrays.asList(
+            // TODO:
+    );
+
+    public static final List<MenuItem> sousVideEggBites = Arrays.asList(
+            // TODO:
+    );
 
     public static final List<SubCategory> hotBreakfast = Arrays.asList(
             // TODO:
@@ -369,6 +474,41 @@ public class Menu {
     // ======================================================================
 
     public static final String BAKERY = "Bakery";
+    public static final String BAGELS = "Bagels";
+    public static final String CAKE_POPS = "Cake Pops";
+    public static final String COOKIES_BROWNIES_AND_BARS = "Cookies, Brownies & Bars";
+    public static final String CROISSANTS = "Croissants";
+    public static final String LOAVES_CAKES_AND_BUNS = "Loaves, Cakes & Buns";
+    public static final String DANISHES_AND_DOUGHNUTS = "Danishes & Doughnuts";
+    public static final String MUFFINS_AND_SCONES = "Muffins & Scones";
+
+    public static final List<MenuItem> bagels = Arrays.asList(
+            // TODO:
+    );
+
+    public static final List<MenuItem> cakePops = Arrays.asList(
+            // TODO:
+    );
+
+    public static final List<MenuItem> cookiesBrowniesAndBars = Arrays.asList(
+            // TODO:
+    );
+
+    public static final List<MenuItem> croissants = Arrays.asList(
+            // TODO:
+    );
+
+    public static final List<SubCategory> loavesCakesAndBuns = Arrays.asList(
+            // TODO:
+    );
+
+    public static final List<SubCategory> danishesAndDoughnuts = Arrays.asList(
+            // TODO:
+    );
+
+    public static final List<SubCategory> muffinsAndScones = Arrays.asList(
+            // TODO:
+    );
 
     public static final List<SubCategory> bakery = Arrays.asList(
             // TODO:
@@ -379,6 +519,16 @@ public class Menu {
     // ======================================================================
 
     public static final String LUNCH = "Lunch";
+    public static final String WARM_SANDWICHES = "Warm Sandwiches";
+    public static final String PROTEIN_BOXES = "Protein Boxes";
+
+    public static final List<SubCategory> warmSandwiches = Arrays.asList(
+            // TODO:
+    );
+
+    public static final List<SubCategory> proteinBoxes = Arrays.asList(
+            // TODO:
+    );
 
     public static final List<SubCategory> lunch = Arrays.asList(
             // TODO:
@@ -389,6 +539,46 @@ public class Menu {
     // ======================================================================
 
     public static final String SNACKS_AND_SWEETS = "Snacks & Sweets";
+    public static final String BISCOTTI_AND_COOKIES = "Biscotti & Cookies";
+    public static final String CHOCOLATES_AND_CANDY = "Chocolates & Candy";
+    public static final String FRUITS_AND_NUTS = "Fruits & Nuts";
+    public static final String GUM_AND_MINTS = "Gum & Mints";
+    public static final String POPCORN_AND_CHIPS = "Popcorn & Chips";
+    public static final String MEAT_AND_CHEESE = "Meat & Cheese";
+    public static final String SNACK_BARS = "Snack Bars";
+    public static final String SPREADS = "Spreads";
+
+    public static final List<MenuItem> biscottiAndCookies = Arrays.asList(
+            // TODO:
+    );
+
+    public static final List<MenuItem> chocolatesAndCandy = Arrays.asList(
+            // TODO:
+    );
+
+    public static final List<MenuItem> fruitsAndNuts = Arrays.asList(
+            // TODO:
+    );
+
+    public static final List<MenuItem> gumAndMints = Arrays.asList(
+            // TODO:
+    );
+
+    public static final List<SubCategory> popcornAndChips = Arrays.asList(
+            // TODO:
+    );
+
+    public static final List<SubCategory> meatAndCheese = Arrays.asList(
+            // TODO:
+    );
+
+    public static final List<SubCategory> snackBars = Arrays.asList(
+            // TODO:
+    );
+
+    public static final List<SubCategory> spreads = Arrays.asList(
+            // TODO:
+    );
 
     public static final List<SubCategory> snacksAndSweets = Arrays.asList(
             // TODO:
