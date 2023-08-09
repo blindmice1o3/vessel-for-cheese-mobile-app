@@ -34,14 +34,19 @@ import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.cold.nitrocoldbrews.NitroColdBrew;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.cold.nitrocoldbrews.VanillaSweetCreamNitroColdBrew;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.hot.CaffeMisto;
-import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.hot.CostaRicaNaranjo;
-import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.hot.DarkRoast;
-import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.hot.DecafPikePlaceRoast;
-import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.hot.EcuadorLoja;
-import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.hot.GreenApronBlend;
-import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.hot.PapuaNewGuineaMoanti;
-import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.hot.PikePlaceRoast;
-import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.hot.RwandaSholi;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.hot.CloverStarbucksReserveCostaRicaNaranjo;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.hot.CloverStarbucksReserveEcuadorLoja;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.hot.CloverStarbucksReservePapuaNewGuineaMoanti;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.hot.CloverStarbucksReserveRwandaSholi;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.hot.FeaturedBlondeRoast;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.hot.FeaturedBlondeRoastVerandaBlend;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.hot.FeaturedDarkRoastCaffeVerona;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.hot.FeaturedDarkRoastSumatra;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.hot.FeaturedDecafRoastDecafPikePlaceRoast;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.hot.FeaturedDecafRoastDecafPikePlaceRoast2;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.hot.FeaturedLTORoastGreenApronBlend;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.hot.FeaturedMediumRoastPikePlaceRoast;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.hot.FeaturedMediumRoastPikePlaceRoast2;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.cappuccinos.Cappuccino;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.flat_whites.cold.IcedFlatWhite;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.flat_whites.cold.IcedHoneyAlmondmilkFlatWhite;
@@ -130,15 +135,20 @@ public class Menu {
     );
 
     public static final List<MenuItem> brewedCoffees = Arrays.asList(
-            new GreenApronBlend(),
-            new PikePlaceRoast(),
-            new DarkRoast(),
-            new DecafPikePlaceRoast(),
-            new RwandaSholi(),
-            new PapuaNewGuineaMoanti(),
-            new CostaRicaNaranjo(),
-            new EcuadorLoja(),
-            new CaffeMisto()
+            new FeaturedBlondeRoast(),
+            new FeaturedMediumRoastPikePlaceRoast(),
+            new FeaturedDarkRoastSumatra(),
+            new FeaturedDecafRoastDecafPikePlaceRoast(),
+            new FeaturedBlondeRoastVerandaBlend(),
+            new FeaturedMediumRoastPikePlaceRoast2(),
+            new FeaturedDarkRoastCaffeVerona(),
+            new FeaturedDecafRoastDecafPikePlaceRoast2(),
+            new FeaturedLTORoastGreenApronBlend(),
+            new CaffeMisto(),
+            new CloverStarbucksReserveRwandaSholi(),
+            new CloverStarbucksReservePapuaNewGuineaMoanti(),
+            new CloverStarbucksReserveEcuadorLoja(),
+            new CloverStarbucksReserveCostaRicaNaranjo()
     );
 
     public static final List<MenuItem> cappuccinos = Arrays.asList(

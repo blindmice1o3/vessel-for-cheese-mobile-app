@@ -1,7 +1,7 @@
 package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.hot;
 
-public class RwandaSholi extends HotBrewedCoffees {
-    public static final String TAG = RwandaSholi.class.getSimpleName();
+public class CloverStarbucksReserveRwandaSholi extends HotBrewedCoffees {
+    public static final String TAG = CloverStarbucksReserveRwandaSholi.class.getSimpleName();
 
     public static final String DEFAULT_NAME = "Clover Starbucks Reserve Rwanda Sholi";
     public static final String DEFAULT_DESCRIPTION = "Notes of Raspberry & Toffee The founding principle of Abateraninkunga ba Sholi, a woman-founded coffee cooperative in the Muhanga District of central Rwanda, is one of community support through coffee. The name translates to \"mutual assistance,\" and the members of Sholi bring exceptional coffee and renewed strength to the local economy. There's deep satisfaction in enjoying this coffee-and helping the spirit of Sholi live on.";
@@ -13,7 +13,7 @@ public class RwandaSholi extends HotBrewedCoffees {
     public static final double DEFAULT_PRICE_MEDIUM = 2.45;
     public static final double DEFAULT_PRICE_LARGE = 2.70;
 
-    public RwandaSholi() {
+    public CloverStarbucksReserveRwandaSholi() {
         super(DEFAULT_NAME, DEFAULT_DESCRIPTION, DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
                 DEFAULT_PRICE_MEDIUM);
     }
