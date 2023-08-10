@@ -10,38 +10,6 @@
     <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 
     <!--
-    HOT_DRINKS
-    [HotChocolates]
-    Hot Chocolate
-    Steamed milk with chocolate-flavored syrups. Topped with sweetened whipped cream and chocolate-flavored drizzle. A timeless classic made to sweeten your spirits.
-    370, 37, 16.0
-
-    White Hot Chocolate
-    A traditional hot chocolate beverage made with white chocolate sauce and steamed milk, topped with whipped cream.
-    440, 55, 19.0
-
-    [Juice]
-    Caramel Apple Spice
-    Steamed apple juice complemented with cinnamon syrup, whipped cream and a caramel sauce drizzle.
-    380, 70, 8.0
-
-    Steamed Apple Juice
-    Freshly steamed 100% apple juice (not from concentrate). Feel the apple goodness in this classic fruit drink that will soothe and embolden your day.
-    220, 50, 0.0
-
-    [Steamers]
-    Steamed Milk
-    Enjoy a warm cup of skim, 2%, soy, almond or coconutmilk steamed for your sipping pleasure.
-    200, 19, 8.0
-
-    Vanilla Creme
-    A smooth, frothy vanilla flavoured luxury. For those times when you'd rather not indulge in the rich flavour of our world-famous espresso - but still desire a hot, creamy vanilla beverage.
-    350, 43, 14.0
-    -->
-
-    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-
-    <!--
     COLD_DRINKS
     [StarbucksRefreshers]
     Dragon Drink Starbucks Refreshers Beverage

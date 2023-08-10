@@ -1,8 +1,8 @@
 package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.other.cold.water;
 
-import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.other.Other;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.other.cold.ColdOther;
 
-public class Water extends Other {
+public class Water extends ColdOther {
     public static final String TAG = Water.class.getSimpleName();
 
     public static final String DEFAULT_NAME = "Water";

@@ -40,6 +40,8 @@ import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.blende
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.BrewedCoffees;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.Espresso;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.straight_shots.EspressoShots;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.other.Other;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.other.cold.ColdOther;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.teas.Teas;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.travelers.CoffeeTravelers;
 
@@ -99,7 +101,10 @@ public class MenuItemActivity extends AppCompatActivity {
 
         if (menuItemSelected instanceof BlendedBeverages ||
                 menuItemSelected instanceof BrewedCoffees ||
+                // TODO: change to include EspressoShots
                 (menuItemSelected instanceof Espresso && !(menuItemSelected instanceof EspressoShots)) ||
+                // TODO: change to include ColdOther
+                (menuItemSelected instanceof Other && !(menuItemSelected instanceof ColdOther)) ||
                 menuItemSelected instanceof Teas ||
                 menuItemSelected instanceof CoffeeTravelers) {
             Log.i(TAG, "menuItemSelected instanceof BrewedCoffees || (menuItemSelected instanceof Espresso && !(menuItemSelected instanceof EspressoShots))");

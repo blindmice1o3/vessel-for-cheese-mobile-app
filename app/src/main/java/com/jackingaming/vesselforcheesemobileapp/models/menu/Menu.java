@@ -100,6 +100,12 @@ import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espres
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.straight_shots.ShotEspresso;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.water_based.cold.icedamericano.IcedCaffeAmericano;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.water_based.hot.americanos.CaffeAmericano;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.other.hot.hotchocolates.HotChocolate;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.other.hot.hotchocolates.WhiteHotChocolate;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.other.hot.juice.CaramelAppleSpice;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.other.hot.juice.SteamedAppleJuice;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.other.hot.steamers.SteamedMilk;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.other.hot.steamers.VanillaCreme;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.teas.cold.bottledteas.TeavanaMangoBlackTea;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.teas.cold.bottledteas.TeavanaSparklingUnsweetenedPeachNectarineGreenTea;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.teas.cold.icedblackteas.IcedBlackTea;
@@ -391,19 +397,24 @@ public class Menu {
     public static final String STEAMERS = "Steamers";
 
     public static final List<MenuItem> hotChocolates = Arrays.asList(
-            // TODO:
+            new HotChocolate(),
+            new WhiteHotChocolate()
     );
 
     public static final List<MenuItem> juice = Arrays.asList(
-            // TODO:
+            new CaramelAppleSpice(),
+            new SteamedAppleJuice()
     );
 
     public static final List<MenuItem> steamers = Arrays.asList(
-            // TODO:
+            new SteamedMilk(),
+            new VanillaCreme()
     );
 
     public static final List<SubCategory> hotDrinks = Arrays.asList(
-            // TODO:
+            new SubCategory(HOT_CHOCOLATES, R.drawable.harvest_moon_natsume, hotChocolates),
+            new SubCategory(JUICE, R.drawable.harvest_moon_natsume, juice),
+            new SubCategory(STEAMERS, R.drawable.harvest_moon_natsume, steamers)
     );
 
     // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
