@@ -1,4 +1,4 @@
-package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.blended.coffeebased;
+package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.blendedbeverages.coffeebased;
 
 public class MochaCookieCrumbleFrappuccino extends CoffeeBased {
     public static final String TAG = MochaCookieCrumbleFrappuccino.class.getSimpleName();

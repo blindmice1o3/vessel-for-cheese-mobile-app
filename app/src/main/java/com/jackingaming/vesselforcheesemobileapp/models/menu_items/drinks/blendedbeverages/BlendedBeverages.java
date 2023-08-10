@@ -1,22 +1,22 @@
-package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.blended;
+package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.blendedbeverages;
 
 import android.util.Log;
 
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.Drink;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.DrinkSize;
 
-public abstract class Blended extends Drink {
-    public static final String TAG = Blended.class.getSimpleName();
+public abstract class BlendedBeverages extends Drink {
+    public static final String TAG = BlendedBeverages.class.getSimpleName();
     public static final DrinkSize DEFAULT_DRINK_SIZE = DrinkSize.GRANDE;
 
     public static final DrinkSize[] DEFAULT_DRINK_SIZES_ALLOWED =
             {DrinkSize.TALL, DrinkSize.GRANDE, DrinkSize.VENTI_ICED};
 
-    public Blended() {
+    public BlendedBeverages() {
     }
 
-    public Blended(String name, String description, int calories, int sugarInGram, float fatInGram,
-                   double price) {
+    public BlendedBeverages(String name, String description, int calories, int sugarInGram, float fatInGram,
+                            double price) {
         super(name, description, calories, sugarInGram, fatInGram,
                 price, DEFAULT_DRINK_SIZE);
 

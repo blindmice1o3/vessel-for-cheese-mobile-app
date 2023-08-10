@@ -1,7 +1,7 @@
-package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.blended.cremebased;
+package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.blendedbeverages.cremebased;
 
-public class StrawberryCremeFrappuccinoBlendedBeverage extends CremeBased {
-    public static final String TAG = StrawberryCremeFrappuccinoBlendedBeverage.class.getSimpleName();
+public class StrawberryCremeFrappuccinoBlendedBeveragesBeverage extends CremeBased {
+    public static final String TAG = StrawberryCremeFrappuccinoBlendedBeveragesBeverage.class.getSimpleName();
 
     public static final String DEFAULT_NAME = "Strawberry Creme Frappuccino Blended Beverage";
     public static final String DEFAULT_DESCRIPTION = "Summer's favorite berry is the star of this delicious Frappuccino Blended Beverage - a blend of ice, milk and strawberry puree layered on top of a splash of strawberry puree and finished with vanilla whipped cream.";
@@ -13,7 +13,7 @@ public class StrawberryCremeFrappuccinoBlendedBeverage extends CremeBased {
     public static final double DEFAULT_PRICE_MEDIUM = 3.45;
     public static final double DEFAULT_PRICE_LARGE = 3.70;
 
-    public StrawberryCremeFrappuccinoBlendedBeverage() {
+    public StrawberryCremeFrappuccinoBlendedBeveragesBeverage() {
         super(DEFAULT_NAME, DEFAULT_DESCRIPTION, DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
                 DEFAULT_PRICE_MEDIUM);
     }

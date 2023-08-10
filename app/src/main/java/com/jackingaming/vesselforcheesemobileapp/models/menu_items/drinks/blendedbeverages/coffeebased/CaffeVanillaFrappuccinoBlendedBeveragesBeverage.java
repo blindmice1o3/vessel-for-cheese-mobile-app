@@ -1,7 +1,7 @@
-package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.blended.coffeebased;
+package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.blendedbeverages.coffeebased;
 
-public class CaffeVanillaFrappuccinoBlendedBeverage extends CoffeeBased {
-    public static final String TAG = CaffeVanillaFrappuccinoBlendedBeverage.class.getSimpleName();
+public class CaffeVanillaFrappuccinoBlendedBeveragesBeverage extends CoffeeBased {
+    public static final String TAG = CaffeVanillaFrappuccinoBlendedBeveragesBeverage.class.getSimpleName();
 
     public static final String DEFAULT_NAME = "Caffe Vanilla Frappuccino Blended Beverage";
     public static final String DEFAULT_DESCRIPTION = "We take Frappuccino roast coffee and vanilla bean powder, combine them with milk and ice, topped with whipped cream. Tastes like happiness.";
@@ -13,7 +13,7 @@ public class CaffeVanillaFrappuccinoBlendedBeverage extends CoffeeBased {
     public static final double DEFAULT_PRICE_MEDIUM = 3.45;
     public static final double DEFAULT_PRICE_LARGE = 3.70;
 
-    public CaffeVanillaFrappuccinoBlendedBeverage() {
+    public CaffeVanillaFrappuccinoBlendedBeveragesBeverage() {
         super(DEFAULT_NAME, DEFAULT_DESCRIPTION, DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
                 DEFAULT_PRICE_MEDIUM);
     }

@@ -1,8 +1,8 @@
-package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.blended.cremebased;
+package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.blendedbeverages.cremebased;
 
-import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.blended.Blended;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.blendedbeverages.BlendedBeverages;
 
-public abstract class CremeBased extends Blended {
+public abstract class CremeBased extends BlendedBeverages {
     public static final String TAG = CremeBased.class.getSimpleName();
 
     public CremeBased() {

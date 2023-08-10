@@ -1,4 +1,4 @@
-package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.blended.cremebased;
+package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.blendedbeverages.cremebased;
 
 public class ChaiCremeFrappuccino extends CremeBased {
     public static final String TAG = ChaiCremeFrappuccino.class.getSimpleName();

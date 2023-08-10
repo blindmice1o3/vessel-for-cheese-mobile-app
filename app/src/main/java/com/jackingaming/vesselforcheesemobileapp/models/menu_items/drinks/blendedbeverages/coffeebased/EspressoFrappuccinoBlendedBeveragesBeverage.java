@@ -1,7 +1,7 @@
-package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.blended.coffeebased;
+package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.blendedbeverages.coffeebased;
 
-public class EspressoFrappuccinoBlendedBeverage extends CoffeeBased {
-    public static final String TAG = EspressoFrappuccinoBlendedBeverage.class.getSimpleName();
+public class EspressoFrappuccinoBlendedBeveragesBeverage extends CoffeeBased {
+    public static final String TAG = EspressoFrappuccinoBlendedBeveragesBeverage.class.getSimpleName();
 
     public static final String DEFAULT_NAME = "Espresso Frappuccino Blended Beverage";
     public static final String DEFAULT_DESCRIPTION = "Coffee is combined with a shot of espresso and milk, then blended with ice to give you a nice little jolt and lots of sipping joy.";
@@ -13,7 +13,7 @@ public class EspressoFrappuccinoBlendedBeverage extends CoffeeBased {
     public static final double DEFAULT_PRICE_MEDIUM = 3.45;
     public static final double DEFAULT_PRICE_LARGE = 3.70;
 
-    public EspressoFrappuccinoBlendedBeverage() {
+    public EspressoFrappuccinoBlendedBeveragesBeverage() {
         super(DEFAULT_NAME, DEFAULT_DESCRIPTION, DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
                 DEFAULT_PRICE_MEDIUM);
     }

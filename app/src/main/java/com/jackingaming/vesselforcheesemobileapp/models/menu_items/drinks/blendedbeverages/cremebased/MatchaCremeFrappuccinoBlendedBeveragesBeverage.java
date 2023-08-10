@@ -1,7 +1,7 @@
-package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.blended.cremebased;
+package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.blendedbeverages.cremebased;
 
-public class MatchaCremeFrappuccinoBlendedBeverage extends CremeBased {
-    public static final String TAG = MatchaCremeFrappuccinoBlendedBeverage.class.getSimpleName();
+public class MatchaCremeFrappuccinoBlendedBeveragesBeverage extends CremeBased {
+    public static final String TAG = MatchaCremeFrappuccinoBlendedBeveragesBeverage.class.getSimpleName();
 
     public static final String DEFAULT_NAME = "Matcha Creme Frappuccino Blended Beverage";
     public static final String DEFAULT_DESCRIPTION = "This blend of sweetened premium matcha green tea, milk and ice - topped off with sweetened whipped cream - inspires a delicious boost and good green vibes.";
@@ -13,7 +13,7 @@ public class MatchaCremeFrappuccinoBlendedBeverage extends CremeBased {
     public static final double DEFAULT_PRICE_MEDIUM = 3.45;
     public static final double DEFAULT_PRICE_LARGE = 3.70;
 
-    public MatchaCremeFrappuccinoBlendedBeverage() {
+    public MatchaCremeFrappuccinoBlendedBeveragesBeverage() {
         super(DEFAULT_NAME, DEFAULT_DESCRIPTION, DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
                 DEFAULT_PRICE_MEDIUM);
     }
