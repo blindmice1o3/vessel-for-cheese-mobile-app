@@ -19,6 +19,25 @@ import com.jackingaming.vesselforcheesemobileapp.models.menu.category.ParentCate
 import com.jackingaming.vesselforcheesemobileapp.models.menu.category.SubCategory;
 import com.jackingaming.vesselforcheesemobileapp.models.menu.category.TitleCategory;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.MenuItem;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.blended.coffeebased.CaffeVanillaFrappuccinoBlendedBeverage;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.blended.coffeebased.CaramelFrappuccinoBlendedBeverage;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.blended.coffeebased.CaramelRibbonCrunchFrappuccinoBlendedBeverage;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.blended.coffeebased.ChocolateJavaMintFrappuccinoBlendedBeverage;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.blended.coffeebased.CoffeeFrappuccinoBlendedBeverage;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.blended.coffeebased.EspressoFrappuccinoBlendedBeverage;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.blended.coffeebased.JavaChipFrappuccinoBlendedBeverage;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.blended.coffeebased.MochaCookieCrumbleFrappuccino;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.blended.coffeebased.MochaFrappuccinoBlendedBeverage;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.blended.coffeebased.WhiteChocolateMochaFrappuccinoBlendedBeverage;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.blended.cremebased.CaramelRibbonCrunchCremeFrappuccinoBlendedBeverage;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.blended.cremebased.ChaiCremeFrappuccino;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.blended.cremebased.ChocolateCookieCrumbleCremeFrappuccino;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.blended.cremebased.ChocolateMintCremeFrappuccinoBlendedBeverage;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.blended.cremebased.DoubleChocolatyChipCremeFrappuccinoBlendedBeverage;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.blended.cremebased.MatchaCremeFrappuccinoBlendedBeverage;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.blended.cremebased.StrawberryCremeFrappuccinoBlendedBeverage;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.blended.cremebased.VanillaBeanCremeFrappuccinoBlendedCreme;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.blended.cremebased.WhiteChocolateCremeFrappuccinoBlendedBeverage;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.cold.coldbrews.ChocolateCreamColdBrew;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.cold.coldbrews.CinnamonCaramelCreamColdBrew;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.cold.coldbrews.OleatoGoldenFoamColdBrew;
@@ -396,15 +415,33 @@ public class Menu {
     public static final String CREME_FRAPPUCCINO = "Creme Frappuccino";
 
     public static final List<MenuItem> coffeeFrappuccino = Arrays.asList(
-            // TODO:
+            new ChocolateJavaMintFrappuccinoBlendedBeverage(),
+            new MochaCookieCrumbleFrappuccino(),
+            new CaramelRibbonCrunchFrappuccinoBlendedBeverage(),
+            new EspressoFrappuccinoBlendedBeverage(),
+            new CoffeeFrappuccinoBlendedBeverage(),
+            new CaffeVanillaFrappuccinoBlendedBeverage(),
+            new CaramelFrappuccinoBlendedBeverage(),
+            new MochaFrappuccinoBlendedBeverage(),
+            new JavaChipFrappuccinoBlendedBeverage(),
+            new WhiteChocolateMochaFrappuccinoBlendedBeverage()
     );
 
     public static final List<MenuItem> cremeFrappuccino = Arrays.asList(
-            // TODO:
+            new ChocolateMintCremeFrappuccinoBlendedBeverage(),
+            new ChocolateCookieCrumbleCremeFrappuccino(),
+            new CaramelRibbonCrunchCremeFrappuccinoBlendedBeverage(),
+            new StrawberryCremeFrappuccinoBlendedBeverage(),
+            new ChaiCremeFrappuccino(),
+            new DoubleChocolatyChipCremeFrappuccinoBlendedBeverage(),
+            new MatchaCremeFrappuccinoBlendedBeverage(),
+            new VanillaBeanCremeFrappuccinoBlendedCreme(),
+            new WhiteChocolateCremeFrappuccinoBlendedBeverage()
     );
 
     public static final List<SubCategory> blendedBeverages = Arrays.asList(
-            // TODO:
+            new SubCategory(COFFEE_FRAPPUCCINO, R.drawable.harvest_moon_natsume, coffeeFrappuccino),
+            new SubCategory(CREME_FRAPPUCCINO, R.drawable.harvest_moon_natsume, cremeFrappuccino)
     );
 
     // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

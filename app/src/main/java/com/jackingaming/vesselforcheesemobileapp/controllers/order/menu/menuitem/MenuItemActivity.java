@@ -36,6 +36,7 @@ import com.jackingaming.vesselforcheesemobileapp.models.menu.Menu;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.MenuItem;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.Drink;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.DrinkSize;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.blended.Blended;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.BrewedCoffees;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.Espresso;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.straight_shots.EspressoShots;
@@ -96,7 +97,8 @@ public class MenuItemActivity extends AppCompatActivity {
         TextView tvCaloriesSugarFat = findViewById(R.id.tv_calories_sugar_fat);
         Button buttonNutritionAndIngredient = findViewById(R.id.button_nutrition_and_ingredient);
 
-        if (menuItemSelected instanceof BrewedCoffees ||
+        if (menuItemSelected instanceof Blended ||
+                menuItemSelected instanceof BrewedCoffees ||
                 (menuItemSelected instanceof Espresso && !(menuItemSelected instanceof EspressoShots)) ||
                 menuItemSelected instanceof Teas ||
                 menuItemSelected instanceof CoffeeTravelers) {
