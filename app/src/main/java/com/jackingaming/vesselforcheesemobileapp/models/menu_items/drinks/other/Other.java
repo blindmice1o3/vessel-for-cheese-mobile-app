@@ -13,9 +13,11 @@ public abstract class Other extends Drink {
         super();
     }
 
-    public Other(String name, String description, int calories, int sugarInGram, float fatInGram,
+    public Other(int imageResourceId, String name, String description,
+                 int calories, int sugarInGram, float fatInGram,
                  double price, DrinkSize drinkSizeDefault) {
-        super(name, description, calories, sugarInGram, fatInGram,
+        super(imageResourceId, name, description,
+                calories, sugarInGram, fatInGram,
                 price, drinkSizeDefault);
     }
 

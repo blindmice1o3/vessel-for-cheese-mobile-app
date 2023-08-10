@@ -1,8 +1,11 @@
 package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.cold.coldbrews;
 
+import com.jackingaming.vesselforcheesemobileapp.R;
+
 public class SaltedCaramelCreamColdBrew extends ColdBrews {
     public static final String TAG = SaltedCaramelCreamColdBrew.class.getSimpleName();
 
+    public static final int DEFAULT_IMAGE_RESOURCE_ID = R.drawable.harvest_moon_natsume;
     public static final String DEFAULT_NAME = "Salted Caramel Cream Cold Brew";
     public static final String DEFAULT_DESCRIPTION = "Here's a savory-meets-sweet refreshing beverage certain to delight: our signature, super-smooth cold brew, sweetened with a touch of caramel and topped with a salted, rich cold foam.";
     public static final int DEFAULT_CALORIES = 240;
@@ -14,7 +17,8 @@ public class SaltedCaramelCreamColdBrew extends ColdBrews {
     public static final double DEFAULT_PRICE_LARGE = 3.70;
 
     public SaltedCaramelCreamColdBrew() {
-        super(DEFAULT_NAME, DEFAULT_DESCRIPTION, DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
+        super(DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
+                DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
                 DEFAULT_PRICE_MEDIUM);
     }
 }

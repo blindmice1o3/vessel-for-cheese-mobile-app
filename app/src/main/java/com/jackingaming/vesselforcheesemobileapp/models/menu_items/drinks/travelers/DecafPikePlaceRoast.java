@@ -1,8 +1,11 @@
 package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.travelers;
 
+import com.jackingaming.vesselforcheesemobileapp.R;
+
 public class DecafPikePlaceRoast extends CoffeeTravelers {
     public static final String TAG = DecafPikePlaceRoast.class.getSimpleName();
 
+    public static final int DEFAULT_IMAGE_RESOURCE_ID = R.drawable.harvest_moon_natsume;
     public static final String DEFAULT_NAME = "Coffee Traveler - Decaf Pike Place Roast";
     public static final String DEFAULT_DESCRIPTION = "A convenient carrier filled with 96 fl oz of our featured brewed decaf coffee (equivalent of twelve 8 fl oz cups)-a perfect companion for meetings, picnics or whatever occasion calls for coffee.";
     public static final int DEFAULT_CALORIES = 5;
@@ -14,7 +17,8 @@ public class DecafPikePlaceRoast extends CoffeeTravelers {
     public static final double DEFAULT_PRICE_LARGE = 2.70;
 
     public DecafPikePlaceRoast() {
-        super(DEFAULT_NAME, DEFAULT_DESCRIPTION, DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
+        super(DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
+                DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
                 DEFAULT_PRICE_MEDIUM);
     }
 }

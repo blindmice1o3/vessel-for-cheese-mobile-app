@@ -1,10 +1,12 @@
 package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.teas.hot.herbalteas;
 
+import com.jackingaming.vesselforcheesemobileapp.R;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.teas.hot.HotTeas;
 
 public class MintMajesty extends HotTeas {
     public static final String TAG = MintMajesty.class.getSimpleName();
 
+    public static final int DEFAULT_IMAGE_RESOURCE_ID = R.drawable.harvest_moon_natsume;
     public static final String DEFAULT_NAME = "Mint Majesty";
     public static final String DEFAULT_DESCRIPTION = "A blend of mint and a pinch of lemon verbena creates a refreshing flavor that's supercool for a caffeine-free herbal tea.";
     public static final int DEFAULT_CALORIES = 0;
@@ -16,7 +18,8 @@ public class MintMajesty extends HotTeas {
     public static final double DEFAULT_PRICE_LARGE = 3.70;
 
     public MintMajesty() {
-        super(DEFAULT_NAME, DEFAULT_DESCRIPTION, DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
+        super(DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
+                DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
                 DEFAULT_PRICE_MEDIUM);
     }
 }

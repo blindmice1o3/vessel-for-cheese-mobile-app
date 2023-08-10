@@ -9,9 +9,11 @@ public abstract class MilkBased extends Espresso {
     public MilkBased() {
     }
 
-    public MilkBased(String name, String description, int calories, int sugarInGram, float fatInGram,
+    public MilkBased(int imageResourceId, String name, String description,
+                     int calories, int sugarInGram, float fatInGram,
                      double price, DrinkSize drinkSizeDefault) {
-        super(name, description, calories, sugarInGram, fatInGram,
+        super(imageResourceId, name, description,
+                calories, sugarInGram, fatInGram,
                 price, drinkSizeDefault);
     }
 }

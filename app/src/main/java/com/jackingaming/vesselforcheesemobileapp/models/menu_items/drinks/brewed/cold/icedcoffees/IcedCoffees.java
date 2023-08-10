@@ -8,9 +8,11 @@ public abstract class IcedCoffees extends ColdBrewedCoffees {
     public IcedCoffees() {
     }
 
-    public IcedCoffees(String name, String description, int calories, int sugarInGram, float fatInGram,
+    public IcedCoffees(int imageResourceId, String name, String description,
+                       int calories, int sugarInGram, float fatInGram,
                        double price) {
-        super(name, description, calories, sugarInGram, fatInGram,
+        super(imageResourceId, name, description,
+                calories, sugarInGram, fatInGram,
                 price);
     }
 }

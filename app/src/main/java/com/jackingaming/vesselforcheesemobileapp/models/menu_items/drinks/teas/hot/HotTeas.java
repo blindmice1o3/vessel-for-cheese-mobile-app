@@ -13,9 +13,11 @@ public abstract class HotTeas extends Teas {
     public HotTeas() {
     }
 
-    public HotTeas(String name, String description, int calories, int sugarInGram, float fatInGram,
+    public HotTeas(int imageResourceId, String name, String description,
+                   int calories, int sugarInGram, float fatInGram,
                    double price) {
-        super(name, description, calories, sugarInGram, fatInGram,
+        super(imageResourceId, name, description,
+                calories, sugarInGram, fatInGram,
                 price, DEFAULT_DRINK_SIZE);
 
         drinkSizesAllowed = DEFAULT_DRINK_SIZES_ALLOWED;

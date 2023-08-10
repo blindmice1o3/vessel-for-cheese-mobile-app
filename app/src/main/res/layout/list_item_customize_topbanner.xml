@@ -10,7 +10,6 @@
         android:layout_height="75dp"
         android:layout_margin="8dp"
         android:scaleType="fitXY"
-        android:src="@drawable/harvest_moon_natsume"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/tv_name"
         app:layout_constraintStart_toStartOf="parent"

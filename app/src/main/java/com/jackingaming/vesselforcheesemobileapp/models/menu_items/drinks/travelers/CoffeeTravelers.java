@@ -9,14 +9,17 @@ public abstract class CoffeeTravelers extends Drink {
     public static final String TAG = CoffeeTravelers.class.getSimpleName();
     public static final DrinkSize DEFAULT_DRINK_SIZE = DrinkSize.UNIQUE;
 
-    public static final DrinkSize[] UNIQUE_DEFAULT_DRINK_SIZES_ALLOWED = {DrinkSize.UNIQUE};
+    public static final DrinkSize[] UNIQUE_DEFAULT_DRINK_SIZES_ALLOWED =
+            {DrinkSize.UNIQUE};
 
     public CoffeeTravelers() {
     }
 
-    public CoffeeTravelers(String name, String description, int calories, int sugarInGram, float fatInGram,
+    public CoffeeTravelers(int imageResourceId, String name, String description,
+                           int calories, int sugarInGram, float fatInGram,
                            double price) {
-        super(name, description, calories, sugarInGram, fatInGram,
+        super(imageResourceId, name, description,
+                calories, sugarInGram, fatInGram,
                 price, DEFAULT_DRINK_SIZE);
 
         drinkSizesAllowed = UNIQUE_DEFAULT_DRINK_SIZES_ALLOWED;

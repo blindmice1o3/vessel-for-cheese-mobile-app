@@ -9,9 +9,11 @@ public abstract class WaterBased extends Espresso {
     public WaterBased() {
     }
 
-    public WaterBased(String name, String description, int calories, int sugarInGram, float fatInGram,
+    public WaterBased(int imageResourceId, String name, String description,
+                      int calories, int sugarInGram, float fatInGram,
                       double price, DrinkSize drinkSizeDefault) {
-        super(name, description, calories, sugarInGram, fatInGram,
+        super(imageResourceId, name, description,
+                calories, sugarInGram, fatInGram,
                 price, drinkSizeDefault);
     }
 }

@@ -67,8 +67,7 @@ public class MenuItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
 
         public void bind(MenuItem menuItem) {
-            // TODO: store image resource in MenuItem and use it here.
-            ivThumbnail.setImageResource(R.drawable.harvest_moon_natsume);
+            ivThumbnail.setImageResource(menuItem.getImageResourceId());
             tvName.setText(menuItem.getName());
         }
 

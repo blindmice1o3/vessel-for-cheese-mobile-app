@@ -1,8 +1,11 @@
 package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.hot.lattes;
 
+import com.jackingaming.vesselforcheesemobileapp.R;
+
 public class StarbucksReserveLatte extends Lattes {
     public static final String TAG = StarbucksReserveLatte.class.getSimpleName();
 
+    public static final int DEFAULT_IMAGE_RESOURCE_ID = R.drawable.harvest_moon_natsume;
     public static final String DEFAULT_NAME = "Starbucks Reserve Latte";
     public static final String DEFAULT_DESCRIPTION = "Small-lot Starbucks Reserve espresso balanced with steamed milk and a light layer of foam forms a perfectly handcrafted latte.";
     public static final int DEFAULT_CALORIES = 230;
@@ -14,7 +17,8 @@ public class StarbucksReserveLatte extends Lattes {
     public static final double DEFAULT_PRICE_LARGE = 3.70;
 
     public StarbucksReserveLatte() {
-        super(DEFAULT_NAME, DEFAULT_DESCRIPTION, DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
+        super(DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
+                DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
                 DEFAULT_PRICE_MEDIUM);
     }
 }

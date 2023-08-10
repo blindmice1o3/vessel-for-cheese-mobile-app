@@ -1,8 +1,11 @@
 package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.blendedbeverages.coffeebased;
 
+import com.jackingaming.vesselforcheesemobileapp.R;
+
 public class CaramelRibbonCrunchFrappuccinoBlendedBeveragesBeverage extends CoffeeBased {
     public static final String TAG = CaramelRibbonCrunchFrappuccinoBlendedBeveragesBeverage.class.getSimpleName();
 
+    public static final int DEFAULT_IMAGE_RESOURCE_ID = R.drawable.harvest_moon_natsume;
     public static final String DEFAULT_NAME = "Caramel Ribbon Crunch Frappuccino Blended Beverage";
     public static final String DEFAULT_DESCRIPTION = "Buttery caramel syrup blended with coffee, milk and ice, then topped with a layer of dark caramel sauce, whipped cream, caramel drizzle and a crunchy caramel-sugar topping - oh-so-beautifully delicious.";
     public static final int DEFAULT_CALORIES = 470;
@@ -14,7 +17,8 @@ public class CaramelRibbonCrunchFrappuccinoBlendedBeveragesBeverage extends Coff
     public static final double DEFAULT_PRICE_LARGE = 3.70;
 
     public CaramelRibbonCrunchFrappuccinoBlendedBeveragesBeverage() {
-        super(DEFAULT_NAME, DEFAULT_DESCRIPTION, DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
+        super(DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
+                DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
                 DEFAULT_PRICE_MEDIUM);
     }
 }

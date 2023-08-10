@@ -191,7 +191,7 @@ public class CustomizeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         }
 
         public void bind(Drink drink) {
-            // TODO: instead of hard-coded datasource for ivThumbnail, use from Drink.
+            ivThumbnail.setImageResource(drink.getImageResourceId());
 
             tvName.setText(drink.getName());
 

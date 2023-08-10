@@ -13,9 +13,11 @@ public abstract class Cappuccinos extends MilkBased {
     public Cappuccinos() {
     }
 
-    public Cappuccinos(String name, String description, int calories, int sugarInGram, float fatInGram,
+    public Cappuccinos(int imageResourceId, String name, String description,
+                       int calories, int sugarInGram, float fatInGram,
                        double price) {
-        super(name, description, calories, sugarInGram, fatInGram,
+        super(imageResourceId, name, description,
+                calories, sugarInGram, fatInGram,
                 price, DEFAULT_DRINK_SIZE);
 
         drinkSizesAllowed = DEFAULT_DRINK_SIZES_ALLOWED;

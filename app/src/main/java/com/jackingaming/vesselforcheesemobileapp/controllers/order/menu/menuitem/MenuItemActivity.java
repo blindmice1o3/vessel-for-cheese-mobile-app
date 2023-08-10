@@ -107,11 +107,10 @@ public class MenuItemActivity extends AppCompatActivity {
                 (menuItemSelected instanceof Other && !(menuItemSelected instanceof ColdOther)) ||
                 menuItemSelected instanceof Teas ||
                 menuItemSelected instanceof CoffeeTravelers) {
-            Log.i(TAG, "menuItemSelected instanceof BrewedCoffees || (menuItemSelected instanceof Espresso && !(menuItemSelected instanceof EspressoShots))");
+            Log.i(TAG, "menuItemSelected instanceof BlendedBeverages || menuItemSelected instanceof BrewedCoffees || (menuItemSelected instanceof Espresso && !(menuItemSelected instanceof EspressoShots) || (menuItemSelected instanceof Other && !(menuItemSelected instanceof ColdOther)) || menuItemSelected instanceof Teas || menuItemSelected instanceof CoffeeTravelers)");
             drink = createCopyOfMenuItemFromMenu(menuItemSelected);
 
-            // TODO: add field to MenuItem class: long idImageResource.
-//            ivMenuItemImage.setImageResource(R.drawable.harvest_moon_natsume);
+            ivMenuItemImage.setImageResource(drink.getImageResourceId());
             tvMenuItemName.setText(drink.getName());
             tvMenuItemCalories.setText(drink.getCalories() + " calories");
 

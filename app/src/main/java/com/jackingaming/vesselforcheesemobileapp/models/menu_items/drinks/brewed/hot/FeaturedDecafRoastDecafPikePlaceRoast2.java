@@ -1,8 +1,11 @@
 package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.hot;
 
+import com.jackingaming.vesselforcheesemobileapp.R;
+
 public class FeaturedDecafRoastDecafPikePlaceRoast2 extends HotBrewedCoffees {
     public static final String TAG = FeaturedDecafRoastDecafPikePlaceRoast2.class.getSimpleName();
 
+    public static final int DEFAULT_IMAGE_RESOURCE_ID = R.drawable.harvest_moon_natsume;
     public static final String DEFAULT_NAME = "Featured Decaf Roast Decaf Pike Place Roast";
     public static final String DEFAULT_DESCRIPTION = "A smooth, well-rounded decaf blend of Latin American coffees with subtly rich flavors of cocoa and toasted nuts--a signature cup perfect for every day.";
     public static final int DEFAULT_CALORIES = 10;
@@ -14,7 +17,8 @@ public class FeaturedDecafRoastDecafPikePlaceRoast2 extends HotBrewedCoffees {
     public static final double DEFAULT_PRICE_LARGE = 2.70;
 
     public FeaturedDecafRoastDecafPikePlaceRoast2() {
-        super(DEFAULT_NAME, DEFAULT_DESCRIPTION, DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
+        super(DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
+                DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
                 DEFAULT_PRICE_MEDIUM);
     }
 }

@@ -1,8 +1,11 @@
 package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.hot;
 
+import com.jackingaming.vesselforcheesemobileapp.R;
+
 public class CloverStarbucksReservePapuaNewGuineaMoanti extends HotBrewedCoffees {
     public static final String TAG = CloverStarbucksReservePapuaNewGuineaMoanti.class.getSimpleName();
 
+    public static final int DEFAULT_IMAGE_RESOURCE_ID = R.drawable.harvest_moon_natsume;
     public static final String DEFAULT_NAME = "Clover Starbucks Reserve Papua New Guinea Moanti";
     public static final String DEFAULT_DESCRIPTION = "Notes of Milk Chocolate & Hazelnut Moanti Ise is a one-woman force for change. In the Eastern Highlands of Papua New Guinea, she single-handedly brought hundreds of smallholder farmers together, creating a high-quality supply chain that is improving lives. We are in awe of her accomplishments and honored to share this exceptional cup.";
     public static final int DEFAULT_CALORIES = 10;
@@ -14,7 +17,8 @@ public class CloverStarbucksReservePapuaNewGuineaMoanti extends HotBrewedCoffees
     public static final double DEFAULT_PRICE_LARGE = 2.70;
 
     public CloverStarbucksReservePapuaNewGuineaMoanti() {
-        super(DEFAULT_NAME, DEFAULT_DESCRIPTION, DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
+        super(DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
+                DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
                 DEFAULT_PRICE_MEDIUM);
     }
 }

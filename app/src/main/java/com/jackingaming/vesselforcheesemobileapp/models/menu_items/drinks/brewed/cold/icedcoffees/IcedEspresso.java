@@ -1,10 +1,12 @@
 package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.cold.icedcoffees;
 
+import com.jackingaming.vesselforcheesemobileapp.R;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.DrinkSize;
 
 public class IcedEspresso extends IcedCoffees {
     public static final String TAG = IcedEspresso.class.getSimpleName();
 
+    public static final int DEFAULT_IMAGE_RESOURCE_ID = R.drawable.harvest_moon_natsume;
     public static final String DEFAULT_NAME = "Iced Espresso";
     public static final String DEFAULT_DESCRIPTION = "Our smooth signature Espresso Roast over ice boasts rich, robust flavor and caramelly sweetness. A recipe of perfection at the heart of every handcrafted espresso we serve.";
     public static final int DEFAULT_CALORIES = 10;
@@ -18,7 +20,8 @@ public class IcedEspresso extends IcedCoffees {
     public static final double DEFAULT_PRICE_LARGE = 3.70;
 
     public IcedEspresso() {
-        super(DEFAULT_NAME, DEFAULT_DESCRIPTION, DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
+        super(DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
+                DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
                 DEFAULT_PRICE_MEDIUM);
 
         drinkSizesAllowed = UNIQUE_DEFAULT_DRINK_SIZES_ALLOWED;

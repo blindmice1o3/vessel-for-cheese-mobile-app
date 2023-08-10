@@ -13,9 +13,11 @@ public abstract class IcedMacchiatos extends MilkBased {
     public IcedMacchiatos() {
     }
 
-    public IcedMacchiatos(String name, String description, int calories, int sugarInGram, float fatInGram,
+    public IcedMacchiatos(int imageResourceId, String name, String description,
+                          int calories, int sugarInGram, float fatInGram,
                           double price) {
-        super(name, description, calories, sugarInGram, fatInGram,
+        super(imageResourceId, name, description,
+                calories, sugarInGram, fatInGram,
                 price, DEFAULT_DRINK_SIZE);
 
         drinkSizesAllowed = DEFAULT_DRINK_SIZES_ALLOWED;

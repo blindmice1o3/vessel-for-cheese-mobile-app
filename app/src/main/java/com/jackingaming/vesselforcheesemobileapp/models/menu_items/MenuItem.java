@@ -9,6 +9,7 @@ public abstract class MenuItem
     public static final boolean HANDED_OFF_DEFAULT = false;
 
     protected long id;
+    protected int imageResourceId;
     protected String name;
     protected String description;
     protected int calories;
@@ -21,8 +22,10 @@ public abstract class MenuItem
     public MenuItem() {
     }
 
-    public MenuItem(String name, String description, int calories, int sugarInGram, float fatInGram,
+    public MenuItem(int imageResourceId, String name, String description,
+                    int calories, int sugarInGram, float fatInGram,
                     double price) {
+        this.imageResourceId = imageResourceId;
         this.name = name;
         this.description = description;
         this.calories = calories;
@@ -39,6 +42,14 @@ public abstract class MenuItem
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public int getImageResourceId() {
+        return imageResourceId;
+    }
+
+    public void setImageResourceId(int imageResourceId) {
+        this.imageResourceId = imageResourceId;
     }
 
     public String getName() {

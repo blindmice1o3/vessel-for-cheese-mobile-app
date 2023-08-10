@@ -1,8 +1,11 @@
 package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.cold.coldbrews;
 
+import com.jackingaming.vesselforcheesemobileapp.R;
+
 public class StarbucksColdBrewCoffeeWithMilk extends ColdBrews {
     public static final String TAG = StarbucksColdBrewCoffeeWithMilk.class.getSimpleName();
 
+    public static final int DEFAULT_IMAGE_RESOURCE_ID = R.drawable.harvest_moon_natsume;
     public static final String DEFAULT_NAME = "Starbucks Cold Brew Coffee with Milk";
     public static final String DEFAULT_DESCRIPTION = "Handcrafted in small batches daily, slow-steeped in cool water for 20 hours, without touching heat and finished with a splash of milk-Starbucks Cold Brew is made from our custom blend of beans grown to steep long and cold for a super-smooth flavor.";
     public static final int DEFAULT_CALORIES = 35;
@@ -14,7 +17,8 @@ public class StarbucksColdBrewCoffeeWithMilk extends ColdBrews {
     public static final double DEFAULT_PRICE_LARGE = 3.70;
 
     public StarbucksColdBrewCoffeeWithMilk() {
-        super(DEFAULT_NAME, DEFAULT_DESCRIPTION, DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
+        super(DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
+                DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
                 DEFAULT_PRICE_MEDIUM);
     }
 }

@@ -1,8 +1,11 @@
 package com.jackingaming.vesselforcheesemobileapp.models.menu_items.foods;
 
+import com.jackingaming.vesselforcheesemobileapp.R;
+
 public class Bread extends Food {
     public static final String TAG = Bread.class.getSimpleName();
 
+    public static final int DEFAULT_IMAGE_RESOURCE_ID = R.drawable.harvest_moon_natsume;
     public static final String DEFAULT_NAME = "Bread";
     public static final String DEFAULT_DESCRIPTION = "made from multiplying yeast";
     public static final int DEFAULT_CALORIES = 42;
@@ -12,7 +15,8 @@ public class Bread extends Food {
     public static final double DEFAULT_PRICE = 0.10;
 
     public Bread() {
-        super(DEFAULT_NAME, DEFAULT_DESCRIPTION, DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
+        super(DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
+                DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
                 DEFAULT_PRICE);
     }
 }

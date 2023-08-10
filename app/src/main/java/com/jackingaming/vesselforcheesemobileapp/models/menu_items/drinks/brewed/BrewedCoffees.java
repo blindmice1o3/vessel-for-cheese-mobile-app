@@ -11,9 +11,11 @@ public abstract class BrewedCoffees extends Drink {
     public BrewedCoffees() {
     }
 
-    public BrewedCoffees(String name, String description, int calories, int sugarInGram, float fatInGram,
+    public BrewedCoffees(int imageResourceId, String name, String description,
+                         int calories, int sugarInGram, float fatInGram,
                          double price, DrinkSize drinkSizeDefault) {
-        super(name, description, calories, sugarInGram, fatInGram,
+        super(imageResourceId, name, description,
+                calories, sugarInGram, fatInGram,
                 price, drinkSizeDefault);
     }
 

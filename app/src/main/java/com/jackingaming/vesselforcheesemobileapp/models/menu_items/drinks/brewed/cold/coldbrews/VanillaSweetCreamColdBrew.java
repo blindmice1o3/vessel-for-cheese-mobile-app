@@ -1,8 +1,11 @@
 package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.cold.coldbrews;
 
+import com.jackingaming.vesselforcheesemobileapp.R;
+
 public class VanillaSweetCreamColdBrew extends ColdBrews {
     public static final String TAG = VanillaSweetCreamColdBrew.class.getSimpleName();
 
+    public static final int DEFAULT_IMAGE_RESOURCE_ID = R.drawable.harvest_moon_natsume;
     public static final String DEFAULT_NAME = "Vanilla Sweet Cream Cold Brew";
     public static final String DEFAULT_DESCRIPTION = "Our slow-steeped custom blend of Starbucks Cold Brew coffee accented with vanilla and topped with a delicate float of house-made vanilla sweet cream that cascades throughout the cup. It's over-the-top and super-smooth.";
     public static final int DEFAULT_CALORIES = 110;
@@ -14,7 +17,8 @@ public class VanillaSweetCreamColdBrew extends ColdBrews {
     public static final double DEFAULT_PRICE_LARGE = 3.70;
 
     public VanillaSweetCreamColdBrew() {
-        super(DEFAULT_NAME, DEFAULT_DESCRIPTION, DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
+        super(DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
+                DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
                 DEFAULT_PRICE_MEDIUM);
     }
 }
