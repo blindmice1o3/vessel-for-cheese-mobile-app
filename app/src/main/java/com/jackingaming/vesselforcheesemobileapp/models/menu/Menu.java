@@ -100,6 +100,40 @@ import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espres
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.straight_shots.ShotEspresso;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.water_based.cold.icedamericano.IcedCaffeAmericano;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.water_based.hot.americanos.CaffeAmericano;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.other.cold.juice.BlendedStrawberryLemonade;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.other.cold.juice.EvolutionFreshMightyWatermelon;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.other.cold.juice.EvolutionFreshOrange;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.other.cold.juice.EvolutionFreshOrganicDefenseUp;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.other.cold.juice.EvolutionFreshOrganicSuperFruitGreens;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.other.cold.juice.EvolutionFreshOrganicVitalBerry;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.other.cold.juice.Lemonade;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.other.cold.juice.StarbucksBayaEnergyMangoGuava;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.other.cold.juice.StarbucksBayaEnergyRaspberryLime;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.other.cold.juice.TreeTopAppleJuiceBox;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.other.cold.milk.ColdMilk;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.other.cold.milk.HorizonChocolateOrganicMilk;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.other.cold.milk.HorizonOrganicLowfatMilkBox;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.other.cold.milk.HorizonOrganicVanillaMilkBox;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.other.cold.refreshers.DragonDrinkStarbucksRefreshersBeverage;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.other.cold.refreshers.FrozenMangoDragonfruitLemonadeStarbucksRefreshersBeverage;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.other.cold.refreshers.FrozenPineapplePassionfruitLemonadeStarbucksRefreshersBeverage;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.other.cold.refreshers.FrozenStrawberryAcaiLemonadeStarbucksRefreshersBeverage;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.other.cold.refreshers.MangoDragonfruitLemonadeStarbucksRefreshersBeverage;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.other.cold.refreshers.MangoDragonfruitStarbucksRefreshersBeverage;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.other.cold.refreshers.ParadiseDrinkStarbucksRefreshersBeverage;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.other.cold.refreshers.PineapplePassionfruitLemonadeStarbucksRefreshersBeverage;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.other.cold.refreshers.PineapplePassionfruitStarbucksRefreshersBeverage;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.other.cold.refreshers.PinkDrinkStarbucksRefreshersBeverage;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.other.cold.refreshers.StrawberryAcaiLemonadeStarbucksRefreshersBeverage;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.other.cold.refreshers.StrawberryAcaiStarbucksRefreshersBeverage;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.other.cold.sparklingwater.GalvaninaSparklingWater;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.other.cold.sparklingwater.GalvaninaSparklingWaterLime;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.other.cold.sparklingwater.SpindriftGrapefruitSparklingWater;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.other.cold.sparklingwater.SpindriftRaspberryLimeSparklingWater;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.other.cold.water.DasaniBottledWater;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.other.cold.water.EthosBottledWater;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.other.cold.water.FilteredTapWater;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.other.cold.water.HawaiiVolcanicWater;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.other.hot.hotchocolates.HotChocolate;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.other.hot.hotchocolates.WhiteHotChocolate;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.other.hot.juice.CaramelAppleSpice;
@@ -523,27 +557,60 @@ public class Menu {
     public static final String WATER = "Water";
 
     public static final List<MenuItem> refreshers = Arrays.asList(
-            // TODO:
+            new FrozenPineapplePassionfruitLemonadeStarbucksRefreshersBeverage(),
+            new FrozenStrawberryAcaiLemonadeStarbucksRefreshersBeverage(),
+            new FrozenMangoDragonfruitLemonadeStarbucksRefreshersBeverage(),
+            new ParadiseDrinkStarbucksRefreshersBeverage(),
+            new PineapplePassionfruitStarbucksRefreshersBeverage(),
+            new PineapplePassionfruitLemonadeStarbucksRefreshersBeverage(),
+            new PinkDrinkStarbucksRefreshersBeverage(),
+            new StrawberryAcaiStarbucksRefreshersBeverage(),
+            new StrawberryAcaiLemonadeStarbucksRefreshersBeverage(),
+            new DragonDrinkStarbucksRefreshersBeverage(),
+            new MangoDragonfruitStarbucksRefreshersBeverage(),
+            new MangoDragonfruitLemonadeStarbucksRefreshersBeverage()
     );
 
     public static final List<MenuItem> icedJuice = Arrays.asList(
-            // TODO:
+            new StarbucksBayaEnergyMangoGuava(),
+            new EvolutionFreshOrganicVitalBerry(),
+            new EvolutionFreshOrganicDefenseUp(),
+            new EvolutionFreshOrange(),
+            new EvolutionFreshOrganicSuperFruitGreens(),
+            new EvolutionFreshMightyWatermelon(),
+            new TreeTopAppleJuiceBox(),
+            new StarbucksBayaEnergyRaspberryLime(),
+            new Lemonade(),
+            new BlendedStrawberryLemonade()
     );
 
     public static final List<MenuItem> milk = Arrays.asList(
-            // TODO:
+            new HorizonChocolateOrganicMilk(),
+            new HorizonOrganicLowfatMilkBox(),
+            new ColdMilk(),
+            new HorizonOrganicVanillaMilkBox()
     );
 
     public static final List<MenuItem> sparklingWater = Arrays.asList(
-            // TODO:
+            new GalvaninaSparklingWater(),
+            new SpindriftGrapefruitSparklingWater(),
+            new SpindriftRaspberryLimeSparklingWater(),
+            new GalvaninaSparklingWaterLime()
     );
 
     public static final List<MenuItem> water = Arrays.asList(
-            // TODO:
+            new DasaniBottledWater(),
+            new EthosBottledWater(),
+            new HawaiiVolcanicWater(),
+            new FilteredTapWater()
     );
 
     public static final List<SubCategory> coldDrinks = Arrays.asList(
-            // TODO:
+            new SubCategory(REFRESHERS, R.drawable.harvest_moon_natsume, refreshers),
+            new SubCategory(ICED_JUICE, R.drawable.harvest_moon_natsume, icedJuice),
+            new SubCategory(MILK, R.drawable.harvest_moon_natsume, milk),
+            new SubCategory(SPARKLING_WATER, R.drawable.harvest_moon_natsume, sparklingWater),
+            new SubCategory(WATER, R.drawable.harvest_moon_natsume, water)
     );
 
     // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

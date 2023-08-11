@@ -1,23 +1,23 @@
-package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.other.cold.water;
+package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.other.cold.juice;
 
 import com.jackingaming.vesselforcheesemobileapp.R;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.other.cold.ColdOther;
 
-public class Water extends ColdOther {
-    public static final String TAG = Water.class.getSimpleName();
+public class TreeTopAppleJuiceBox extends ColdOther {
+    public static final String TAG = TreeTopAppleJuiceBox.class.getSimpleName();
 
     public static final int DEFAULT_IMAGE_RESOURCE_ID = R.drawable.harvest_moon_natsume;
-    public static final String DEFAULT_NAME = "Water";
-    public static final String DEFAULT_DESCRIPTION = "2 part H, 1 part O";
-    public static final int DEFAULT_CALORIES = 0;
-    public static final int DEFAULT_SUGAR_IN_GRAM = 0;
+    public static final String DEFAULT_NAME = "Tree Top Apple Juice Box";
+    public static final String DEFAULT_DESCRIPTION = "This childhood favorite contains 100% of your daily vitamin C with just the right amount of sweetness.";
+    public static final int DEFAULT_CALORIES = 120;
+    public static final int DEFAULT_SUGAR_IN_GRAM = 26;
     public static final float DEFAULT_FAT_IN_GRAM = 0.0f;
 
     public static final double DEFAULT_PRICE_SMALL = 0.05;
     public static final double DEFAULT_PRICE_MEDIUM = 0.10;
     public static final double DEFAULT_PRICE_LARGE = 0.25;
 
-    public Water() {
+    public TreeTopAppleJuiceBox() {
         super(DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
                 DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
                 DEFAULT_PRICE_MEDIUM);
