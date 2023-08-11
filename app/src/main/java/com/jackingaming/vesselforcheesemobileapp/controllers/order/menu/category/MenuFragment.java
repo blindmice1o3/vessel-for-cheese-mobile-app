@@ -16,9 +16,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.jackingaming.vesselforcheesemobileapp.R;
 import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.parentcategory.ParentCategoryActivity;
+import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.subcategory.SubCategoryAsGridActivity;
 import com.jackingaming.vesselforcheesemobileapp.models.menu.Menu;
 import com.jackingaming.vesselforcheesemobileapp.models.menu.category.Category;
 import com.jackingaming.vesselforcheesemobileapp.models.menu.category.ParentCategory;
+import com.jackingaming.vesselforcheesemobileapp.models.menu.category.SubCategory;
 import com.jackingaming.vesselforcheesemobileapp.models.menu.category.TitleCategory;
 
 import java.util.List;
@@ -89,10 +91,21 @@ public class MenuFragment extends Fragment {
             public void onParentCategoryClicked(View view, ParentCategory parentCategorySelected) {
                 Log.i(TAG, "onParentCategoryClicked(View, ParentCategory) parentCategorySelected: " + parentCategorySelected.getName());
 
-                Intent intent = new Intent(getContext(), ParentCategoryActivity.class);
-                intent.putExtra(ParentCategoryActivity.EXTRA_PARENT_CATEGORY_SELECTED, parentCategorySelected);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
+                if (parentCategorySelected.getName().equals(Menu.OILEETO)) {
+                    Log.i(TAG, "parentCategorySelected.getName().equals(Menu.OILEETO) ---> launch SubCategoryAsGridActivity");
+
+                    SubCategory subCategorySelected = parentCategorySelected.getSubCategories().get(0);
+                    Intent intent = new Intent(getContext(), SubCategoryAsGridActivity.class);
+                    intent.putExtra(SubCategoryAsGridActivity.EXTRA_SUB_CATEGORY_SELECTED, subCategorySelected);
+                    startActivity(intent);
+                } else {
+                    Log.i(TAG, "NOT parentCategorySelected.getName().equals(Menu.OILEETO) ---> launch ParentCategoryActivity");
+
+                    Intent intent = new Intent(getContext(), ParentCategoryActivity.class);
+                    intent.putExtra(ParentCategoryActivity.EXTRA_PARENT_CATEGORY_SELECTED, parentCategorySelected);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+                }
             }
 
             @Override

@@ -15,7 +15,6 @@ import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.sweete
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.tea_options.TeaOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.topping_options.ToppingOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.menu.category.Category;
-import com.jackingaming.vesselforcheesemobileapp.models.menu.category.FeaturedParentCategory;
 import com.jackingaming.vesselforcheesemobileapp.models.menu.category.ParentCategory;
 import com.jackingaming.vesselforcheesemobileapp.models.menu.category.SubCategory;
 import com.jackingaming.vesselforcheesemobileapp.models.menu.category.TitleCategory;
@@ -343,10 +342,15 @@ public class Menu {
 
     public static final String OILEETO = "Oileeto";
 
-    public static final List<MenuItem> oileeto = Arrays.asList(
+    // TODO: change to SubCategory, display using SubCategoryAsGridActivity
+    //  instead of changing ParentCategoryActivity RV's adapter/layout manager.
+    public static final List<MenuItem> oileetoAsMenuItem = Arrays.asList(
             new OleatoGoldenFoamColdBrew(),
             new OleatoCaffeLatteWithOatmilk(),
             new OleatoIcedShakenEspressoWithOatmilkAndToffeenut()
+    );
+    public static final List<SubCategory> oileetoAsSubCategory = Arrays.asList(
+            new SubCategory(OILEETO, R.drawable.harvest_moon_natsume, oileetoAsMenuItem)
     );
 
     // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -794,7 +798,7 @@ public class Menu {
     // **********************************************************************
 
     public static final List<ParentCategory> drinks = Arrays.asList(
-            new FeaturedParentCategory(OILEETO, R.drawable.harvest_moon_natsume, oileeto),
+            new ParentCategory(OILEETO, R.drawable.harvest_moon_natsume, oileetoAsSubCategory),
             new ParentCategory(HOT_COFFEES, R.drawable.harvest_moon_natsume, hotCoffees),
             new ParentCategory(HOT_TEAS, R.drawable.harvest_moon_natsume, hotTeas),
             new ParentCategory(HOT_DRINKS, R.drawable.harvest_moon_natsume, hotDrinks),
