@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -115,6 +116,13 @@ public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             tvSize.setText(
                     String.format("See all %d", titleCategory.getNumberOfParentCategory())
             );
+            tvSize.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Toast.makeText(view.getContext(), "CategoryAdapter.ViewHolderTitleCategory.bind() tvSize's OnClickListener", Toast.LENGTH_SHORT).show();
+                    // TODO: set on click listener (launch subcategory adapter rv?).
+                }
+            });
         }
 
         public ViewHolderTitleCategory(@NonNull View itemView) {

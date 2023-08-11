@@ -1,4 +1,4 @@
-package com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.subcategory;
+package com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.parentcategory;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -27,7 +27,7 @@ import java.util.List;
 
 public class ParentCategoryActivity extends AppCompatActivity {
     public static final String TAG = ParentCategoryActivity.class.getSimpleName();
-    public static final String EXTRA_PARENT_CATEGORY_SELECTED = "com.jackingaming.vesselforcheesemobileapp.models.menu.category.parentCategorySelected";
+    public static final String EXTRA_PARENT_CATEGORY_SELECTED = "com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.parentcategory.parentCategorySelected";
     public static final int NUMBER_OF_COLUMNS = 2;
 
     public void initHeightAppBarLayoutAsQuarterScreen(AppBarLayout appBarLayout) {
@@ -68,13 +68,12 @@ public class ParentCategoryActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        RecyclerView recyclerView = findViewById(R.id.rv_menu_item_category);
+        RecyclerView recyclerView = findViewById(R.id.rv_parent_category);
         RecyclerView.Adapter adapter = null;
         RecyclerView.LayoutManager layoutManager = null;
         if (parentCategorySelected instanceof FeaturedParentCategory) {
             Log.i(TAG, "parentCategorySelected instanceof FeaturedParentCategory ---> SPECIAL FeaturedParentCategory");
 
-            // TODO:
             List<MenuItem> featuredMenuItems = ((FeaturedParentCategory) parentCategorySelected).getMenuItems();
             adapter = new MenuItemAdapter(featuredMenuItems, new MenuItemAdapter.MenuItemAdapterListener() {
                 @Override
@@ -121,7 +120,6 @@ public class ParentCategoryActivity extends AppCompatActivity {
         }
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(layoutManager);
-
     }
 
     @Override

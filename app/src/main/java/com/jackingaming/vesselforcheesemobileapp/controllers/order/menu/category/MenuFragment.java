@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jackingaming.vesselforcheesemobileapp.R;
-import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.subcategory.ParentCategoryActivity;
+import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.parentcategory.ParentCategoryActivity;
 import com.jackingaming.vesselforcheesemobileapp.models.menu.Menu;
 import com.jackingaming.vesselforcheesemobileapp.models.menu.category.Category;
 import com.jackingaming.vesselforcheesemobileapp.models.menu.category.ParentCategory;

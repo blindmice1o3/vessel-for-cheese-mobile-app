@@ -1,4 +1,4 @@
-package com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.subcategory;
+package com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.parentcategory;
 
 import android.content.Intent;
 import android.util.Log;
@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.jackingaming.vesselforcheesemobileapp.R;
 import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem.MenuItemActivity;
+import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.subcategory.SubCategoryAsGridActivity;
 import com.jackingaming.vesselforcheesemobileapp.models.menu.category.SubCategory;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.MenuItem;
 
@@ -82,6 +83,14 @@ public class SubCategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
             tvName.setText(subCategorySelected.getName());
             tvSize.setText("See all " + menuItems.size());
+            tvSize.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(view.getContext(), SubCategoryAsGridActivity.class);
+                    intent.putExtra(SubCategoryAsGridActivity.EXTRA_SUB_CATEGORY_SELECTED, subCategorySelected);
+                    view.getContext().startActivity(intent);
+                }
+            });
 
             MenuItemAdapter adapter = new MenuItemAdapter(menuItems, new MenuItemAdapter.MenuItemAdapterListener() {
                 @Override
