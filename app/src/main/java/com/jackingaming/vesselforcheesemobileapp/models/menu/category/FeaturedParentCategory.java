@@ -4,13 +4,13 @@ import com.jackingaming.vesselforcheesemobileapp.models.menu_items.MenuItem;
 
 import java.util.List;
 
-public class SubCategory extends Category {
-    public static final String TAG = SubCategory.class.getSimpleName();
+public class FeaturedParentCategory extends ParentCategory {
+    public static final String TAG = FeaturedParentCategory.class.getSimpleName();
 
     private List<MenuItem> menuItems;
 
-    public SubCategory(String name, int idImage, List<MenuItem> menuItems) {
-        super(name, idImage);
+    public FeaturedParentCategory(String name, int idImage, List<MenuItem> menuItems) {
+        super(name, idImage, null);
         this.menuItems = menuItems;
     }
 

@@ -15,6 +15,7 @@ import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.sweete
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.tea_options.TeaOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.topping_options.ToppingOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.menu.category.Category;
+import com.jackingaming.vesselforcheesemobileapp.models.menu.category.FeaturedParentCategory;
 import com.jackingaming.vesselforcheesemobileapp.models.menu.category.ParentCategory;
 import com.jackingaming.vesselforcheesemobileapp.models.menu.category.SubCategory;
 import com.jackingaming.vesselforcheesemobileapp.models.menu.category.TitleCategory;
@@ -342,8 +343,10 @@ public class Menu {
 
     public static final String OILEETO = "Oileeto";
 
-    public static final List<SubCategory> oileeto = Arrays.asList(
-            // TODO:
+    public static final List<MenuItem> oileeto = Arrays.asList(
+            new OleatoGoldenFoamColdBrew(),
+            new OleatoCaffeLatteWithOatmilk(),
+            new OleatoIcedShakenEspressoWithOatmilkAndToffeenut()
     );
 
     // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -791,7 +794,7 @@ public class Menu {
     // **********************************************************************
 
     public static final List<ParentCategory> drinks = Arrays.asList(
-            new ParentCategory(OILEETO, R.drawable.harvest_moon_natsume, oileeto),
+            new FeaturedParentCategory(OILEETO, R.drawable.harvest_moon_natsume, oileeto),
             new ParentCategory(HOT_COFFEES, R.drawable.harvest_moon_natsume, hotCoffees),
             new ParentCategory(HOT_TEAS, R.drawable.harvest_moon_natsume, hotTeas),
             new ParentCategory(HOT_DRINKS, R.drawable.harvest_moon_natsume, hotDrinks),
