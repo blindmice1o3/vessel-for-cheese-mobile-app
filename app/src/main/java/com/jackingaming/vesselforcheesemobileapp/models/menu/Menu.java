@@ -14,10 +14,9 @@ import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.refres
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.sweetener_options.SweetenerOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.tea_options.TeaOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.topping_options.ToppingOptions;
-import com.jackingaming.vesselforcheesemobileapp.models.menu.category.Category;
-import com.jackingaming.vesselforcheesemobileapp.models.menu.category.ParentCategory;
-import com.jackingaming.vesselforcheesemobileapp.models.menu.category.SubCategory;
-import com.jackingaming.vesselforcheesemobileapp.models.menu.category.TitleCategory;
+import com.jackingaming.vesselforcheesemobileapp.models.menu.hierarchy.Section;
+import com.jackingaming.vesselforcheesemobileapp.models.menu.hierarchy.Category;
+import com.jackingaming.vesselforcheesemobileapp.models.menu.hierarchy.Topic;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.MenuItem;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.blendedbeverages.coffeebased.CaffeVanillaFrappuccinoBlendedBeveragesBeverage;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.blendedbeverages.coffeebased.CaramelFrappuccinoBlendedBeveragesBeverage;
@@ -169,7 +168,6 @@ import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.teas.h
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.teas.hot.herbalteas.PeachTranquility;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.travelers.VerandaBlend;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -277,16 +275,16 @@ public class Menu {
             new com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.travelers.DecafPikePlaceRoast()
     );
 
-    public static final List<SubCategory> hotCoffees = Arrays.asList(
-            new SubCategory(AMERICANOS, R.drawable.harvest_moon_natsume, americanos),
-            new SubCategory(BREWED_COFFEES, R.drawable.harvest_moon_natsume, brewedCoffees),
-            new SubCategory(CAPPUCCINOS, R.drawable.harvest_moon_natsume, cappuccinos),
-            new SubCategory(ESPRESSO_SHOTS, R.drawable.harvest_moon_natsume, espressoShots),
-            new SubCategory(FLAT_WHITES, R.drawable.harvest_moon_natsume, flatWhites),
-            new SubCategory(LATTES, R.drawable.harvest_moon_natsume, lattes),
-            new SubCategory(MACCHIATOS, R.drawable.harvest_moon_natsume, macchiatos),
-            new SubCategory(MOCHAS, R.drawable.harvest_moon_natsume, mochas),
-            new SubCategory(COFFEE_TRAVELERS, R.drawable.harvest_moon_natsume, coffeeTravelers)
+    public static final List<Section> hotCoffees = Arrays.asList(
+            new Section(AMERICANOS, R.drawable.harvest_moon_natsume, americanos),
+            new Section(BREWED_COFFEES, R.drawable.harvest_moon_natsume, brewedCoffees),
+            new Section(CAPPUCCINOS, R.drawable.harvest_moon_natsume, cappuccinos),
+            new Section(ESPRESSO_SHOTS, R.drawable.harvest_moon_natsume, espressoShots),
+            new Section(FLAT_WHITES, R.drawable.harvest_moon_natsume, flatWhites),
+            new Section(LATTES, R.drawable.harvest_moon_natsume, lattes),
+            new Section(MACCHIATOS, R.drawable.harvest_moon_natsume, macchiatos),
+            new Section(MOCHAS, R.drawable.harvest_moon_natsume, mochas),
+            new Section(COFFEE_TRAVELERS, R.drawable.harvest_moon_natsume, coffeeTravelers)
     );
 
     // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -360,16 +358,16 @@ public class Menu {
             new StarbucksReserveIcedDarkChocolateMocha()
     );
 
-    public static final List<SubCategory> coldCoffees = Arrays.asList(
-            new SubCategory(COLD_BREWS, R.drawable.harvest_moon_natsume, coldBrews),
-            new SubCategory(NITRO_COLD_BREWS, R.drawable.harvest_moon_natsume, nitroColdBrews),
-            new SubCategory(ICED_AMERICANO, R.drawable.harvest_moon_natsume, icedAmericano),
-            new SubCategory(ICED_COFFEES, R.drawable.harvest_moon_natsume, icedCoffees),
-            new SubCategory(ICED_SHAKEN_ESPRESSO, R.drawable.harvest_moon_natsume, icedShakenEspresso),
-            new SubCategory(ICED_FLAT_WHITES, R.drawable.harvest_moon_natsume, icedFlatWhites),
-            new SubCategory(ICED_LATTES, R.drawable.harvest_moon_natsume, icedLattes),
-            new SubCategory(ICED_MACCHIATOS, R.drawable.harvest_moon_natsume, icedMacchiatos),
-            new SubCategory(ICED_MOCHAS, R.drawable.harvest_moon_natsume, icedMochas)
+    public static final List<Section> coldCoffees = Arrays.asList(
+            new Section(COLD_BREWS, R.drawable.harvest_moon_natsume, coldBrews),
+            new Section(NITRO_COLD_BREWS, R.drawable.harvest_moon_natsume, nitroColdBrews),
+            new Section(ICED_AMERICANO, R.drawable.harvest_moon_natsume, icedAmericano),
+            new Section(ICED_COFFEES, R.drawable.harvest_moon_natsume, icedCoffees),
+            new Section(ICED_SHAKEN_ESPRESSO, R.drawable.harvest_moon_natsume, icedShakenEspresso),
+            new Section(ICED_FLAT_WHITES, R.drawable.harvest_moon_natsume, icedFlatWhites),
+            new Section(ICED_LATTES, R.drawable.harvest_moon_natsume, icedLattes),
+            new Section(ICED_MACCHIATOS, R.drawable.harvest_moon_natsume, icedMacchiatos),
+            new Section(ICED_MOCHAS, R.drawable.harvest_moon_natsume, icedMochas)
     );
 
     // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -383,8 +381,8 @@ public class Menu {
             new OleatoCaffeLatteWithOatmilk(),
             new OleatoIcedShakenEspressoWithOatmilkAndToffeenut()
     );
-    public static final List<SubCategory> oileetoAsSubCategory = Arrays.asList(
-            new SubCategory(OILEETO, R.drawable.harvest_moon_natsume, oileetoAsMenuItem)
+    public static final List<Section> OILEETO_AS_CHILD_CATEGORY = Arrays.asList(
+            new Section(OILEETO, R.drawable.harvest_moon_natsume, oileetoAsMenuItem)
     );
 
     // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -421,11 +419,11 @@ public class Menu {
             new PeachTranquility()
     );
 
-    public static final List<SubCategory> hotTeas = Arrays.asList(
-            new SubCategory(CHAI_TEAS, R.drawable.harvest_moon_natsume, chaiTeas),
-            new SubCategory(BLACK_TEAS, R.drawable.harvest_moon_natsume, blackTeas),
-            new SubCategory(GREEN_TEAS, R.drawable.harvest_moon_natsume, greenTeas),
-            new SubCategory(HERBAL_TEAS, R.drawable.harvest_moon_natsume, herbalTeas)
+    public static final List<Section> hotTeas = Arrays.asList(
+            new Section(CHAI_TEAS, R.drawable.harvest_moon_natsume, chaiTeas),
+            new Section(BLACK_TEAS, R.drawable.harvest_moon_natsume, blackTeas),
+            new Section(GREEN_TEAS, R.drawable.harvest_moon_natsume, greenTeas),
+            new Section(HERBAL_TEAS, R.drawable.harvest_moon_natsume, herbalTeas)
     );
 
     // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -452,10 +450,10 @@ public class Menu {
             new VanillaCreme()
     );
 
-    public static final List<SubCategory> hotDrinks = Arrays.asList(
-            new SubCategory(HOT_CHOCOLATES, R.drawable.harvest_moon_natsume, hotChocolates),
-            new SubCategory(JUICE, R.drawable.harvest_moon_natsume, juice),
-            new SubCategory(STEAMERS, R.drawable.harvest_moon_natsume, steamers)
+    public static final List<Section> hotDrinks = Arrays.asList(
+            new Section(HOT_CHOCOLATES, R.drawable.harvest_moon_natsume, hotChocolates),
+            new Section(JUICE, R.drawable.harvest_moon_natsume, juice),
+            new Section(STEAMERS, R.drawable.harvest_moon_natsume, steamers)
     );
 
     // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -491,9 +489,9 @@ public class Menu {
             new WhiteChocolateCremeFrappuccinoBlendedBeveragesBeverage()
     );
 
-    public static final List<SubCategory> blendedBeverages = Arrays.asList(
-            new SubCategory(COFFEE_FRAPPUCCINO, R.drawable.harvest_moon_natsume, coffeeFrappuccino),
-            new SubCategory(CREME_FRAPPUCCINO, R.drawable.harvest_moon_natsume, cremeFrappuccino)
+    public static final List<Section> blendedBeverages = Arrays.asList(
+            new Section(COFFEE_FRAPPUCCINO, R.drawable.harvest_moon_natsume, coffeeFrappuccino),
+            new Section(CREME_FRAPPUCCINO, R.drawable.harvest_moon_natsume, cremeFrappuccino)
     );
 
     // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -537,12 +535,12 @@ public class Menu {
             new IcedPassionTangoTeaLemonade()
     );
 
-    public static final List<SubCategory> icedTeas = Arrays.asList(
-            new SubCategory(BOTTLED_TEAS, R.drawable.harvest_moon_natsume, bottledTeas),
-            new SubCategory(ICED_BLACK_TEAS, R.drawable.harvest_moon_natsume, icedBlackTeas),
-            new SubCategory(ICED_CHAI_TEAS, R.drawable.harvest_moon_natsume, icedChaiTeas),
-            new SubCategory(ICED_GREEN_TEAS, R.drawable.harvest_moon_natsume, icedGreenTeas),
-            new SubCategory(ICED_HERBAL_TEAS, R.drawable.harvest_moon_natsume, icedHerbalTeas)
+    public static final List<Section> icedTeas = Arrays.asList(
+            new Section(BOTTLED_TEAS, R.drawable.harvest_moon_natsume, bottledTeas),
+            new Section(ICED_BLACK_TEAS, R.drawable.harvest_moon_natsume, icedBlackTeas),
+            new Section(ICED_CHAI_TEAS, R.drawable.harvest_moon_natsume, icedChaiTeas),
+            new Section(ICED_GREEN_TEAS, R.drawable.harvest_moon_natsume, icedGreenTeas),
+            new Section(ICED_HERBAL_TEAS, R.drawable.harvest_moon_natsume, icedHerbalTeas)
     );
 
     // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -605,12 +603,12 @@ public class Menu {
             new FilteredTapWater()
     );
 
-    public static final List<SubCategory> coldDrinks = Arrays.asList(
-            new SubCategory(REFRESHERS, R.drawable.harvest_moon_natsume, refreshers),
-            new SubCategory(ICED_JUICE, R.drawable.harvest_moon_natsume, icedJuice),
-            new SubCategory(MILK, R.drawable.harvest_moon_natsume, milk),
-            new SubCategory(SPARKLING_WATER, R.drawable.harvest_moon_natsume, sparklingWater),
-            new SubCategory(WATER, R.drawable.harvest_moon_natsume, water)
+    public static final List<Section> coldDrinks = Arrays.asList(
+            new Section(REFRESHERS, R.drawable.harvest_moon_natsume, refreshers),
+            new Section(ICED_JUICE, R.drawable.harvest_moon_natsume, icedJuice),
+            new Section(MILK, R.drawable.harvest_moon_natsume, milk),
+            new Section(SPARKLING_WATER, R.drawable.harvest_moon_natsume, sparklingWater),
+            new Section(WATER, R.drawable.harvest_moon_natsume, water)
     );
 
     // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -629,7 +627,7 @@ public class Menu {
             // TODO:
     );
 
-    public static final List<SubCategory> hotBreakfast = Arrays.asList(
+    public static final List<Section> hotBreakfast = Arrays.asList(
             // TODO:
     );
 
@@ -639,7 +637,7 @@ public class Menu {
 
     public static final String OATMEAL_AND_YOGURT = "Oatmeal & Yogurt";
 
-    public static final List<SubCategory> oatmealAndYogurt = Arrays.asList(
+    public static final List<Section> oatmealAndYogurt = Arrays.asList(
             // TODO:
     );
 
@@ -672,19 +670,19 @@ public class Menu {
             // TODO:
     );
 
-    public static final List<SubCategory> loavesCakesAndBuns = Arrays.asList(
+    public static final List<Section> loavesCakesAndBuns = Arrays.asList(
             // TODO:
     );
 
-    public static final List<SubCategory> danishesAndDoughnuts = Arrays.asList(
+    public static final List<Section> danishesAndDoughnuts = Arrays.asList(
             // TODO:
     );
 
-    public static final List<SubCategory> muffinsAndScones = Arrays.asList(
+    public static final List<Section> muffinsAndScones = Arrays.asList(
             // TODO:
     );
 
-    public static final List<SubCategory> bakery = Arrays.asList(
+    public static final List<Section> bakery = Arrays.asList(
             // TODO:
     );
 
@@ -696,15 +694,15 @@ public class Menu {
     public static final String WARM_SANDWICHES = "Warm Sandwiches";
     public static final String PROTEIN_BOXES = "Protein Boxes";
 
-    public static final List<SubCategory> warmSandwiches = Arrays.asList(
+    public static final List<Section> warmSandwiches = Arrays.asList(
             // TODO:
     );
 
-    public static final List<SubCategory> proteinBoxes = Arrays.asList(
+    public static final List<Section> proteinBoxes = Arrays.asList(
             // TODO:
     );
 
-    public static final List<SubCategory> lunch = Arrays.asList(
+    public static final List<Section> lunch = Arrays.asList(
             // TODO:
     );
 
@@ -738,23 +736,23 @@ public class Menu {
             // TODO:
     );
 
-    public static final List<SubCategory> popcornAndChips = Arrays.asList(
+    public static final List<Section> popcornAndChips = Arrays.asList(
             // TODO:
     );
 
-    public static final List<SubCategory> meatAndCheese = Arrays.asList(
+    public static final List<Section> meatAndCheese = Arrays.asList(
             // TODO:
     );
 
-    public static final List<SubCategory> snackBars = Arrays.asList(
+    public static final List<Section> snackBars = Arrays.asList(
             // TODO:
     );
 
-    public static final List<SubCategory> spreads = Arrays.asList(
+    public static final List<Section> spreads = Arrays.asList(
             // TODO:
     );
 
-    public static final List<SubCategory> snacksAndSweets = Arrays.asList(
+    public static final List<Section> snacksAndSweets = Arrays.asList(
             // TODO:
     );
 
@@ -764,7 +762,7 @@ public class Menu {
 
     public static final String WHOLE_BEAN = "Whole Bean";
 
-    public static final List<SubCategory> wholeBean = Arrays.asList(
+    public static final List<Section> wholeBean = Arrays.asList(
             // TODO:
     );
 
@@ -774,7 +772,7 @@ public class Menu {
 
     public static final String INSTANT_COFFEE = "Instant Coffee";
 
-    public static final List<SubCategory> instantCoffee = Arrays.asList(
+    public static final List<Section> instantCoffee = Arrays.asList(
             // TODO:
     );
 
@@ -784,7 +782,7 @@ public class Menu {
 
     public static final String COLD_CUPS = "Cold Cups";
 
-    public static final List<SubCategory> coldCups = Arrays.asList(
+    public static final List<Section> coldCups = Arrays.asList(
             // TODO:
     );
 
@@ -794,7 +792,7 @@ public class Menu {
 
     public static final String TUMBLERS = "Tumblers";
 
-    public static final List<SubCategory> tumblers = Arrays.asList(
+    public static final List<Section> tumblers = Arrays.asList(
             // TODO:
     );
 
@@ -804,7 +802,7 @@ public class Menu {
 
     public static final String MUGS = "Mugs";
 
-    public static final List<SubCategory> mugs = Arrays.asList(
+    public static final List<Section> mugs = Arrays.asList(
             // TODO:
     );
 
@@ -814,7 +812,7 @@ public class Menu {
 
     public static final String WATER_BOTTLES = "Water Bottles";
 
-    public static final List<SubCategory> waterBottles = Arrays.asList(
+    public static final List<Section> waterBottles = Arrays.asList(
             // TODO:
     );
 
@@ -824,7 +822,7 @@ public class Menu {
 
     public static final String OTHER = "Other";
 
-    public static final List<SubCategory> other = Arrays.asList(
+    public static final List<Section> other = Arrays.asList(
             // TODO:
     );
 
@@ -834,7 +832,7 @@ public class Menu {
 
     public static final String HAPPY_BIRTHDAY = "Happy Birthday";
 
-    public static final List<SubCategory> happyBirthday = Arrays.asList(
+    public static final List<Section> happyBirthday = Arrays.asList(
             // TODO:
     );
 
@@ -844,7 +842,7 @@ public class Menu {
 
     public static final String THANK_YOU = "Thank You";
 
-    public static final List<SubCategory> thankYou = Arrays.asList(
+    public static final List<Section> thankYou = Arrays.asList(
             // TODO:
     );
 
@@ -854,7 +852,7 @@ public class Menu {
 
     public static final String TRADITIONAL = "Traditional";
 
-    public static final List<SubCategory> traditional = Arrays.asList(
+    public static final List<Section> traditional = Arrays.asList(
             // TODO:
     );
 
@@ -864,42 +862,42 @@ public class Menu {
     // class: MenuFragment
     // **********************************************************************
 
-    public static final List<ParentCategory> drinks = Arrays.asList(
-            new ParentCategory(OILEETO, R.drawable.harvest_moon_natsume, oileetoAsSubCategory),
-            new ParentCategory(HOT_COFFEES, R.drawable.harvest_moon_natsume, hotCoffees),
-            new ParentCategory(HOT_TEAS, R.drawable.harvest_moon_natsume, hotTeas),
-            new ParentCategory(HOT_DRINKS, R.drawable.harvest_moon_natsume, hotDrinks),
-            new ParentCategory(BLENDED_BEVERAGES, R.drawable.harvest_moon_natsume, blendedBeverages),
-            new ParentCategory(COLD_COFFEES, R.drawable.harvest_moon_natsume, coldCoffees),
-            new ParentCategory(ICED_TEAS, R.drawable.harvest_moon_natsume, icedTeas),
-            new ParentCategory(COLD_DRINKS, R.drawable.harvest_moon_natsume, coldDrinks)
+    public static final List<Topic> drinks = Arrays.asList(
+            new Topic(OILEETO, R.drawable.harvest_moon_natsume, OILEETO_AS_CHILD_CATEGORY),
+            new Topic(HOT_COFFEES, R.drawable.harvest_moon_natsume, hotCoffees),
+            new Topic(HOT_TEAS, R.drawable.harvest_moon_natsume, hotTeas),
+            new Topic(HOT_DRINKS, R.drawable.harvest_moon_natsume, hotDrinks),
+            new Topic(BLENDED_BEVERAGES, R.drawable.harvest_moon_natsume, blendedBeverages),
+            new Topic(COLD_COFFEES, R.drawable.harvest_moon_natsume, coldCoffees),
+            new Topic(ICED_TEAS, R.drawable.harvest_moon_natsume, icedTeas),
+            new Topic(COLD_DRINKS, R.drawable.harvest_moon_natsume, coldDrinks)
     );
 
-    public static final List<ParentCategory> food = Arrays.asList(
-            new ParentCategory(HOT_BREAKFAST, R.drawable.harvest_moon_natsume, hotBreakfast),
-            new ParentCategory(OATMEAL_AND_YOGURT, R.drawable.harvest_moon_natsume, oatmealAndYogurt),
-            new ParentCategory(BAKERY, R.drawable.harvest_moon_natsume, bakery),
-            new ParentCategory(LUNCH, R.drawable.harvest_moon_natsume, lunch),
-            new ParentCategory(SNACKS_AND_SWEETS, R.drawable.harvest_moon_natsume, snacksAndSweets)
+    public static final List<Topic> food = Arrays.asList(
+            new Topic(HOT_BREAKFAST, R.drawable.harvest_moon_natsume, hotBreakfast),
+            new Topic(OATMEAL_AND_YOGURT, R.drawable.harvest_moon_natsume, oatmealAndYogurt),
+            new Topic(BAKERY, R.drawable.harvest_moon_natsume, bakery),
+            new Topic(LUNCH, R.drawable.harvest_moon_natsume, lunch),
+            new Topic(SNACKS_AND_SWEETS, R.drawable.harvest_moon_natsume, snacksAndSweets)
     );
 
-    public static final List<ParentCategory> atHomeCoffee = Arrays.asList(
-            new ParentCategory(WHOLE_BEAN, R.drawable.harvest_moon_natsume, wholeBean),
-            new ParentCategory(INSTANT_COFFEE, R.drawable.harvest_moon_natsume, instantCoffee)
+    public static final List<Topic> atHomeCoffee = Arrays.asList(
+            new Topic(WHOLE_BEAN, R.drawable.harvest_moon_natsume, wholeBean),
+            new Topic(INSTANT_COFFEE, R.drawable.harvest_moon_natsume, instantCoffee)
     );
 
-    public static final List<ParentCategory> merchandise = Arrays.asList(
-            new ParentCategory(COLD_CUPS, R.drawable.harvest_moon_natsume, coldCups),
-            new ParentCategory(TUMBLERS, R.drawable.harvest_moon_natsume, tumblers),
-            new ParentCategory(MUGS, R.drawable.harvest_moon_natsume, mugs),
-            new ParentCategory(WATER_BOTTLES, R.drawable.harvest_moon_natsume, waterBottles),
-            new ParentCategory(OTHER, R.drawable.harvest_moon_natsume, other)
+    public static final List<Topic> merchandise = Arrays.asList(
+            new Topic(COLD_CUPS, R.drawable.harvest_moon_natsume, coldCups),
+            new Topic(TUMBLERS, R.drawable.harvest_moon_natsume, tumblers),
+            new Topic(MUGS, R.drawable.harvest_moon_natsume, mugs),
+            new Topic(WATER_BOTTLES, R.drawable.harvest_moon_natsume, waterBottles),
+            new Topic(OTHER, R.drawable.harvest_moon_natsume, other)
     );
 
-    public static final List<ParentCategory> giftCards = Arrays.asList(
-            new ParentCategory(HAPPY_BIRTHDAY, R.drawable.harvest_moon_natsume, happyBirthday),
-            new ParentCategory(THANK_YOU, R.drawable.harvest_moon_natsume, thankYou),
-            new ParentCategory(TRADITIONAL, R.drawable.harvest_moon_natsume, traditional)
+    public static final List<Topic> giftCards = Arrays.asList(
+            new Topic(HAPPY_BIRTHDAY, R.drawable.harvest_moon_natsume, happyBirthday),
+            new Topic(THANK_YOU, R.drawable.harvest_moon_natsume, thankYou),
+            new Topic(TRADITIONAL, R.drawable.harvest_moon_natsume, traditional)
     );
 
     // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -912,18 +910,11 @@ public class Menu {
 
     // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-    public static final List<Category> categories = new ArrayList<Category>();
-
-    static {
-        categories.add(new TitleCategory(DRINKS, drinks.size()));
-        categories.addAll(drinks);
-        categories.add(new TitleCategory(FOOD, food.size()));
-        categories.addAll(food);
-        categories.add(new TitleCategory(AT_HOME_COFFEE, atHomeCoffee.size()));
-        categories.addAll(atHomeCoffee);
-        categories.add(new TitleCategory(MERCHANDISE, merchandise.size()));
-        categories.addAll(merchandise);
-        categories.add(new TitleCategory(GIFT_CARDS, giftCards.size()));
-        categories.addAll(giftCards);
-    }
+    public static final List<Category> categories = Arrays.asList(
+            new Category(DRINKS, R.drawable.harvest_moon_natsume, drinks),
+            new Category(FOOD, R.drawable.harvest_moon_natsume, food),
+            new Category(AT_HOME_COFFEE, R.drawable.harvest_moon_natsume, atHomeCoffee),
+            new Category(MERCHANDISE, R.drawable.harvest_moon_natsume, merchandise),
+            new Category(GIFT_CARDS, R.drawable.harvest_moon_natsume, giftCards)
+    );
 }

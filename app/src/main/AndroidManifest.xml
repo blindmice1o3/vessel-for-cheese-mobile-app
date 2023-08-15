@@ -14,7 +14,7 @@
         android:theme="@style/Theme.VesselForCheeseMobileApp"
         tools:targetApi="31">
         <activity
-            android:name=".controllers.order.menu.subcategory.SubCategoryAsGridActivity"
+            android:name=".controllers.order.menu.hierarchy.section.SectionAsGridActivity"
             android:exported="false" />
         <activity
             android:name=".controllers.order.menu.revieworder.ReviewOrderActivity"
@@ -26,7 +26,7 @@
             android:name=".controllers.order.menu.menuitem.MenuItemActivity"
             android:exported="false" />
         <activity
-            android:name=".controllers.order.menu.parentcategory.ParentCategoryActivity"
+            android:name=".controllers.order.menu.hierarchy.topic.TopicActivity"
             android:exported="false"
             android:parentActivityName=".controllers.MainActivity" />
         <activity

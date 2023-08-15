@@ -1,9 +1,8 @@
-package com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.parentcategory;
+package com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.hierarchy.topic;
 
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,12 +15,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.jackingaming.vesselforcheesemobileapp.R;
-import com.jackingaming.vesselforcheesemobileapp.models.menu.category.ParentCategory;
+import com.jackingaming.vesselforcheesemobileapp.models.menu.hierarchy.Section;
+import com.jackingaming.vesselforcheesemobileapp.models.menu.hierarchy.Topic;
 
-public class ParentCategoryActivity extends AppCompatActivity {
-    public static final String TAG = ParentCategoryActivity.class.getSimpleName();
-    public static final String EXTRA_PARENT_CATEGORY_SELECTED = "com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.parentcategory.parentCategorySelected";
-    public static final int NUMBER_OF_COLUMNS = 2;
+public class TopicActivity extends AppCompatActivity {
+    public static final String TAG = TopicActivity.class.getSimpleName();
+    public static final String EXTRA_TOPIC_SELECTED = "com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.hierarchy.topic.topicSelected";
 
     public void initHeightAppBarLayoutAsQuarterScreen(AppBarLayout appBarLayout) {
         float heightDp = getResources().getDisplayMetrics().heightPixels / 4;
@@ -33,48 +32,45 @@ public class ParentCategoryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.i(TAG, "onCreate()");
-        setContentView(R.layout.activity_parent_category);
+        setContentView(R.layout.activity_topic);
 
-        ParentCategory parentCategorySelected = (ParentCategory) getIntent().getSerializableExtra(EXTRA_PARENT_CATEGORY_SELECTED);
+        Topic topicSelected = (Topic) getIntent().getSerializableExtra(EXTRA_TOPIC_SELECTED);
 
         AppBarLayout appBarLayout = findViewById(R.id.app_bar_layout);
         initHeightAppBarLayoutAsQuarterScreen(appBarLayout);
 
         CollapsingToolbarLayout collapsingToolbarLayout = findViewById(R.id.collapsing_toolbar_layout);
-        String nameParentCategorySelected = parentCategorySelected.getName();
-        int sizeOfList = parentCategorySelected.getSubCategories().size();
+        String nameTopicSelected = topicSelected.getName();
+        int sizeOfList = topicSelected.getSections().size();
         String formatStringTitle = "%s (%d)";
         String title = String.format(formatStringTitle,
-                nameParentCategorySelected, sizeOfList);
+                nameTopicSelected, sizeOfList);
         collapsingToolbarLayout.setTitle(title);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        RecyclerView recyclerView = findViewById(R.id.rv_parent_category);
-        SubCategoryAdapter adapter = new SubCategoryAdapter(parentCategorySelected.getName(), parentCategorySelected.getSubCategories(), new SubCategoryAdapter.SubCategoryAdapterListener() {
+        RecyclerView rvSection = findViewById(R.id.rv_section);
+        SectionAdapter adapter = new SectionAdapter(topicSelected.getSections(), new SectionAdapter.SectionAdapterListener() {
             @Override
-            public void onItemClicked(int position, View view) {
-                Toast.makeText(ParentCategoryActivity.this, "onItemClicked() position: " + position, Toast.LENGTH_SHORT).show();
+            public void onItemClicked(View view, Section sectionSelected) {
+                Log.i(TAG, "onItemClicked(View, Section) sectionSelected: " + sectionSelected.getName());
                 // TODO:
             }
 
             @Override
-            public void onItemLongClicked(int position, View view) {
-                Toast.makeText(ParentCategoryActivity.this, "onItemLongClicked() position: " + position, Toast.LENGTH_SHORT).show();
+            public void onItemLongClicked(View view, Section sectionSelected) {
+                Log.i(TAG, "onItemLongClicked(View, Section) sectionSelected: " + sectionSelected.getName());
                 // TODO:
             }
         });
-        recyclerView.setAdapter(adapter);
-
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        recyclerView.setLayoutManager(layoutManager);
+        rvSection.setAdapter(adapter);
+        rvSection.setLayoutManager(new LinearLayoutManager(this));
 
         RecyclerView.ItemDecoration itemDecoration =
                 new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
-        recyclerView.addItemDecoration(itemDecoration);
+        rvSection.addItemDecoration(itemDecoration);
     }
 
     @Override

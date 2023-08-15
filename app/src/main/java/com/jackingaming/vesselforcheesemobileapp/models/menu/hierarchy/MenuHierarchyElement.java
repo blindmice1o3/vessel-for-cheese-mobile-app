@@ -1,13 +1,13 @@
-package com.jackingaming.vesselforcheesemobileapp.models.menu.category;
+package com.jackingaming.vesselforcheesemobileapp.models.menu.hierarchy;
 
 import java.io.Serializable;
 
-public abstract class Category
+public abstract class MenuHierarchyElement
         implements Serializable {
     private String name;
     private int idImage;
 
-    public Category(String name, int idImage) {
+    public MenuHierarchyElement(String name, int idImage) {
         this.name = name;
         this.idImage = idImage;
     }

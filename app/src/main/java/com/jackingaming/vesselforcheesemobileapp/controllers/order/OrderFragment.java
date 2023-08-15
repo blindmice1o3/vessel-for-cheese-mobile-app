@@ -18,11 +18,8 @@ import com.google.android.material.tabs.TabLayoutMediator;
 import com.jackingaming.vesselforcheesemobileapp.R;
 import com.jackingaming.vesselforcheesemobileapp.controllers.order.favorites.FavoritesFragment;
 import com.jackingaming.vesselforcheesemobileapp.controllers.order.featured.FeaturedFragment;
-import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.category.MenuFragment;
+import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.MenuFragment;
 import com.jackingaming.vesselforcheesemobileapp.controllers.order.previous.PreviousFragment;
-import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
-import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.espresso_options.Shot;
-import com.jackingaming.vesselforcheesemobileapp.models.menu.Menu;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.MenuItem;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.Drink;
 
@@ -33,7 +30,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
