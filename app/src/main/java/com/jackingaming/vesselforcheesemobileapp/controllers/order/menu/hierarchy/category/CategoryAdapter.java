@@ -18,7 +18,9 @@ import com.jackingaming.vesselforcheesemobileapp.models.menu.Menu;
 import com.jackingaming.vesselforcheesemobileapp.models.menu.hierarchy.Category;
 import com.jackingaming.vesselforcheesemobileapp.models.menu.hierarchy.Section;
 import com.jackingaming.vesselforcheesemobileapp.models.menu.hierarchy.Topic;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.MenuItem;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -77,14 +79,26 @@ public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
 
         public void bind(Category category) {
+            List<MenuItem> menuItemsFromCategory = new ArrayList<>();
             List<Topic> topics = category.getTopics();
+            for (Topic topic : topics) {
+                List<Section> sections = topic.getSections();
+                for (Section section : sections) {
+                    List<MenuItem> menuItems = section.getMenuItems();
+
+                    menuItemsFromCategory.addAll(
+                            menuItems
+                    );
+                }
+            }
+            Log.e(TAG, "number of MenuItem from Category: " + menuItemsFromCategory.size());
 
             tvName.setText(category.getName());
-            tvSeeAll.setText("See all " + topics.size());
+            tvSeeAll.setText("See all " + menuItemsFromCategory.size());
             tvSeeAll.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    // TODO: ~CategoryAdapter.tvSeeAll.OnClickListener
+                    // TODO: CategoryAdapter.tvSeeAll.OnClickListener
                 }
             });
 

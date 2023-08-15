@@ -14,8 +14,8 @@ import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.refres
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.sweetener_options.SweetenerOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.tea_options.TeaOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.topping_options.ToppingOptions;
-import com.jackingaming.vesselforcheesemobileapp.models.menu.hierarchy.Section;
 import com.jackingaming.vesselforcheesemobileapp.models.menu.hierarchy.Category;
+import com.jackingaming.vesselforcheesemobileapp.models.menu.hierarchy.Section;
 import com.jackingaming.vesselforcheesemobileapp.models.menu.hierarchy.Topic;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.MenuItem;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.blendedbeverages.coffeebased.CaffeVanillaFrappuccinoBlendedBeveragesBeverage;
@@ -381,7 +381,7 @@ public class Menu {
             new OleatoCaffeLatteWithOatmilk(),
             new OleatoIcedShakenEspressoWithOatmilkAndToffeenut()
     );
-    public static final List<Section> OILEETO_AS_CHILD_CATEGORY = Arrays.asList(
+    public static final List<Section> oileetoAsSection = Arrays.asList(
             new Section(OILEETO, R.drawable.harvest_moon_natsume, oileetoAsMenuItem)
     );
 
@@ -863,7 +863,7 @@ public class Menu {
     // **********************************************************************
 
     public static final List<Topic> drinks = Arrays.asList(
-            new Topic(OILEETO, R.drawable.harvest_moon_natsume, OILEETO_AS_CHILD_CATEGORY),
+            new Topic(OILEETO, R.drawable.harvest_moon_natsume, oileetoAsSection),
             new Topic(HOT_COFFEES, R.drawable.harvest_moon_natsume, hotCoffees),
             new Topic(HOT_TEAS, R.drawable.harvest_moon_natsume, hotTeas),
             new Topic(HOT_DRINKS, R.drawable.harvest_moon_natsume, hotDrinks),
