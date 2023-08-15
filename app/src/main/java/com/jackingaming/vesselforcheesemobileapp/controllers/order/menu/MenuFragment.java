@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jackingaming.vesselforcheesemobileapp.R;
-import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.hierarchy.category.CategoryAdapter;
 import com.jackingaming.vesselforcheesemobileapp.models.menu.Menu;
 import com.jackingaming.vesselforcheesemobileapp.models.menu.hierarchy.Category;
 

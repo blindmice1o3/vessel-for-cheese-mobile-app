@@ -1,4 +1,4 @@
-package com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.hierarchy.category;
+package com.jackingaming.vesselforcheesemobileapp.controllers.order.menu;
 
 import android.content.Intent;
 import android.util.Log;
@@ -12,15 +12,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jackingaming.vesselforcheesemobileapp.R;
-import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.hierarchy.section.SectionAsGridActivity;
-import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.hierarchy.topic.TopicActivity;
+import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.category_to_menuitem.category.CategoryAsNestedListActivity;
+import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.category_to_menuitem.section.SectionAsGridActivity;
+import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.category_to_menuitem.topic.TopicAsNestedListActivity;
 import com.jackingaming.vesselforcheesemobileapp.models.menu.Menu;
 import com.jackingaming.vesselforcheesemobileapp.models.menu.hierarchy.Category;
 import com.jackingaming.vesselforcheesemobileapp.models.menu.hierarchy.Section;
 import com.jackingaming.vesselforcheesemobileapp.models.menu.hierarchy.Topic;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.MenuItem;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -79,26 +79,26 @@ public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
 
         public void bind(Category category) {
-            List<MenuItem> menuItemsFromCategory = new ArrayList<>();
+            int sizeOfList = 0;
             List<Topic> topics = category.getTopics();
             for (Topic topic : topics) {
                 List<Section> sections = topic.getSections();
                 for (Section section : sections) {
                     List<MenuItem> menuItems = section.getMenuItems();
 
-                    menuItemsFromCategory.addAll(
-                            menuItems
-                    );
+                    sizeOfList += menuItems.size();
                 }
             }
-            Log.e(TAG, "number of MenuItem from Category: " + menuItemsFromCategory.size());
+            Log.e(TAG, "number of MenuItem from Category: " + sizeOfList);
 
             tvName.setText(category.getName());
-            tvSeeAll.setText("See all " + menuItemsFromCategory.size());
+            tvSeeAll.setText("See all " + sizeOfList);
             tvSeeAll.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    // TODO: CategoryAdapter.tvSeeAll.OnClickListener
+                    Intent intent = new Intent(view.getContext(), CategoryAsNestedListActivity.class);
+                    intent.putExtra(CategoryAsNestedListActivity.EXTRA_CATEGORY_SELECTED, category);
+                    view.getContext().startActivity(intent);
                 }
             });
 
@@ -118,8 +118,8 @@ public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                     } else {
                         Log.i(TAG, "NOT topicSelected.getName().equals(Menu.OILEETO) ---> launch TopicActivity");
 
-                        Intent intent = new Intent(view.getContext(), TopicActivity.class);
-                        intent.putExtra(TopicActivity.EXTRA_TOPIC_SELECTED, topicSelected);
+                        Intent intent = new Intent(view.getContext(), TopicAsNestedListActivity.class);
+                        intent.putExtra(TopicAsNestedListActivity.EXTRA_TOPIC_SELECTED, topicSelected);
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         view.getContext().startActivity(intent);
                     }

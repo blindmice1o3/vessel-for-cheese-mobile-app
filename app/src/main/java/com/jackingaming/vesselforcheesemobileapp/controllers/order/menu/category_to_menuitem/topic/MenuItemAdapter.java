@@ -1,66 +1,64 @@
-package com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.hierarchy.category;
+package com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.category_to_menuitem.topic;
 
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jackingaming.vesselforcheesemobileapp.R;
-import com.jackingaming.vesselforcheesemobileapp.models.menu.hierarchy.Topic;
-import com.jackingaming.vesselforcheesemobileapp.views.CircularBorderedImageView;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.MenuItem;
 
 import java.util.List;
 
-public class TopicAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    public static final String TAG = TopicAdapter.class.getSimpleName();
+public class MenuItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+    public static final String TAG = MenuItemAdapter.class.getSimpleName();
 
-    public interface TopicAdapterListener {
-        void onItemClicked(View view, Topic topicSelected);
+    public interface MenuItemAdapterListener {
+        void onItemClicked(View view, MenuItem menuItemSelected);
 
-        void onItemLongClicked(View view, Topic topicSelected);
+        void onItemLongClicked(View view, MenuItem menuItemSelected);
     }
 
-    private List<Topic> topics;
-    private TopicAdapterListener listener;
+    private List<MenuItem> menuItems;
+    private MenuItemAdapterListener listener;
 
-    public TopicAdapter(List<Topic> topics, TopicAdapterListener listener) {
-        this.topics = topics;
+    public MenuItemAdapter(List<MenuItem> menuItems, MenuItemAdapterListener listener) {
+        this.menuItems = menuItems;
         this.listener = listener;
     }
 
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        Log.i(TAG, "onCreateViewHolder()");
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View view = inflater.inflate(R.layout.list_item_topic, parent, false);
-        return new ViewHolderTopic(view);
+        View view = inflater.inflate(R.layout.list_item_menu_item_for_childcategory, parent, false);
+        RecyclerView.ViewHolder viewHolderMenuItem = new ViewHolderMenuItem(view);
+        return viewHolderMenuItem;
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        Log.i(TAG, "onBindViewHolder()");
-        Topic topic = topics.get(position);
-        ViewHolderTopic viewHolderTopic = (ViewHolderTopic) holder;
-        viewHolderTopic.bind(topic);
+        MenuItem menuItem = menuItems.get(position);
+        ViewHolderMenuItem viewHolderMenuItem = (ViewHolderMenuItem) holder;
+        viewHolderMenuItem.bind(menuItem);
     }
 
     @Override
     public int getItemCount() {
-        Log.i(TAG, "onItemCount() topics.size(): " + topics.size());
-        return topics.size();
+        return menuItems.size();
     }
 
-    class ViewHolderTopic extends RecyclerView.ViewHolder
+    class ViewHolderMenuItem extends RecyclerView.ViewHolder
             implements View.OnClickListener, View.OnLongClickListener {
-        private CircularBorderedImageView ivThumbnail;
+        private ImageView ivThumbnail;
         private TextView tvName;
 
-        public ViewHolderTopic(@NonNull View itemView) {
+        public ViewHolderMenuItem(@NonNull View itemView) {
             super(itemView);
             ivThumbnail = itemView.findViewById(R.id.iv_thumbnail);
             tvName = itemView.findViewById(R.id.tv_name);
@@ -68,9 +66,9 @@ public class TopicAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             itemView.setOnLongClickListener(this);
         }
 
-        public void bind(Topic topic) {
-            ivThumbnail.setImageResource(topic.getIdImage());
-            tvName.setText(topic.getName());
+        public void bind(MenuItem menuItem) {
+            ivThumbnail.setImageResource(menuItem.getImageResourceId());
+            tvName.setText(menuItem.getName());
         }
 
         @Override
@@ -79,8 +77,8 @@ public class TopicAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             Log.i(TAG, "item in RV clicked! position: " + position);
             if (position != RecyclerView.NO_POSITION) { // Check if an item was deleted, but the user clicked it before the UI removed it
                 if (listener != null) {
-                    Topic topicSelected = topics.get(position);
-                    listener.onItemClicked(view, topicSelected);
+                    MenuItem menuItemSelected = menuItems.get(position);
+                    listener.onItemClicked(view, menuItemSelected);
                 }
             }
         }
@@ -91,8 +89,8 @@ public class TopicAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             Log.i(TAG, "item in RV long-clicked! position: " + position);
             if (position != RecyclerView.NO_POSITION) { // Check if an item was deleted, but the user clicked it before the UI removed it
                 if (listener != null) {
-                    Topic topicSelected = topics.get(position);
-                    listener.onItemLongClicked(view, topicSelected);
+                    MenuItem menuItemSelected = menuItems.get(position);
+                    listener.onItemLongClicked(view, menuItemSelected);
                     return true;
                 }
             }

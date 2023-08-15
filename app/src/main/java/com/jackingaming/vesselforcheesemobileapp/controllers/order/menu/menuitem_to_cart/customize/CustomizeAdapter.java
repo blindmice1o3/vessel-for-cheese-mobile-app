@@ -1,4 +1,4 @@
-package com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.customize;
+package com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem_to_cart.customize;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,8 +16,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jackingaming.vesselforcheesemobileapp.R;
-import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem.DrinkComponentBaseAdapter;
-import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem.ModalBottomSheet;
+import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem_to_cart.menuitem.DrinkComponentBaseAdapter;
+import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem_to_cart.menuitem.ModalBottomSheet;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
 import com.jackingaming.vesselforcheesemobileapp.models.menu.Menu;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.Drink;

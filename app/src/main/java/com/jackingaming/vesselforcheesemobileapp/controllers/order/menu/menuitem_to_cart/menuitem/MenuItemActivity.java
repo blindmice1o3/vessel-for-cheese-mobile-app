@@ -1,4 +1,4 @@
-package com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem;
+package com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem_to_cart.menuitem;
 
 import android.content.Intent;
 import android.graphics.PorterDuff;
@@ -28,8 +28,8 @@ import com.google.android.material.floatingactionbutton.ExtendedFloatingActionBu
 import com.google.android.material.snackbar.Snackbar;
 import com.jackingaming.vesselforcheesemobileapp.R;
 import com.jackingaming.vesselforcheesemobileapp.controllers.order.OrderFragment;
-import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.customize.CustomizeActivity;
-import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.revieworder.ReviewOrderActivity;
+import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem_to_cart.customize.CustomizeActivity;
+import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem_to_cart.revieworder.ReviewOrderActivity;
 import com.jackingaming.vesselforcheesemobileapp.models.components.Granular;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
 import com.jackingaming.vesselforcheesemobileapp.models.menu.Menu;
@@ -55,7 +55,7 @@ import java.util.Map;
 
 public class MenuItemActivity extends AppCompatActivity {
     public static final String TAG = MenuItemActivity.class.getSimpleName();
-    public static final String EXTRA_MENU_ITEM_SELECTED = "com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem.menuItemSelected";
+    public static final String EXTRA_MENU_ITEM_SELECTED = "com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem_to_cart.menuitem.menuItemSelected";
 
     private Drink drink;
     private WhatsIncludedAdapter adapter;

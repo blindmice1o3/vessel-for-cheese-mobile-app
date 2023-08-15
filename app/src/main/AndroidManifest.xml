@@ -14,19 +14,22 @@
         android:theme="@style/Theme.VesselForCheeseMobileApp"
         tools:targetApi="31">
         <activity
-            android:name=".controllers.order.menu.hierarchy.section.SectionAsGridActivity"
+            android:name=".controllers.order.menu.category_to_menuitem.category.CategoryAsNestedListActivity"
             android:exported="false" />
         <activity
-            android:name=".controllers.order.menu.revieworder.ReviewOrderActivity"
+            android:name=".controllers.order.menu.category_to_menuitem.section.SectionAsGridActivity"
             android:exported="false" />
         <activity
-            android:name=".controllers.order.menu.customize.CustomizeActivity"
+            android:name=".controllers.order.menu.menuitem_to_cart.revieworder.ReviewOrderActivity"
             android:exported="false" />
         <activity
-            android:name=".controllers.order.menu.menuitem.MenuItemActivity"
+            android:name=".controllers.order.menu.menuitem_to_cart.customize.CustomizeActivity"
             android:exported="false" />
         <activity
-            android:name=".controllers.order.menu.hierarchy.topic.TopicActivity"
+            android:name=".controllers.order.menu.menuitem_to_cart.menuitem.MenuItemActivity"
+            android:exported="false" />
+        <activity
+            android:name=".controllers.order.menu.category_to_menuitem.topic.TopicAsNestedListActivity"
             android:exported="false"
             android:parentActivityName=".controllers.MainActivity" />
         <activity

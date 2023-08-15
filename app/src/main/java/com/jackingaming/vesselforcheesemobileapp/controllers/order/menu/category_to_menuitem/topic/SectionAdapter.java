@@ -1,4 +1,4 @@
-package com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.hierarchy.topic;
+package com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.category_to_menuitem.topic;
 
 import android.content.Intent;
 import android.util.Log;
@@ -12,8 +12,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jackingaming.vesselforcheesemobileapp.R;
-import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.hierarchy.section.SectionAsGridActivity;
-import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem.MenuItemActivity;
+import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.category_to_menuitem.section.SectionAsGridActivity;
+import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem_to_cart.menuitem.MenuItemActivity;
 import com.jackingaming.vesselforcheesemobileapp.models.menu.hierarchy.Section;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.MenuItem;
 
@@ -94,7 +94,7 @@ public class SectionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                     Log.i(TAG, "onItemClicked(View, MenuItem) menuItemSelected: " + menuItemSelected.getName());
                     Intent intent = new Intent(view.getContext(), MenuItemActivity.class);
                     intent.putExtra(MenuItemActivity.EXTRA_MENU_ITEM_SELECTED, menuItemSelected);
-                    rvMenuItem.getContext().startActivity(intent);
+                    view.getContext().startActivity(intent);
                 }
 
                 @Override

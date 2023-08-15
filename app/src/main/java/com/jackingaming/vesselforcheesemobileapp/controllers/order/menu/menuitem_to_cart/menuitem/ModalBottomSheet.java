@@ -1,4 +1,4 @@
-package com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem;
+package com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem_to_cart.menuitem;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -18,11 +18,11 @@ import com.jackingaming.vesselforcheesemobileapp.R;
 
 public class ModalBottomSheet extends BottomSheetDialogFragment {
     public static final String TAG = ModalBottomSheet.class.getSimpleName();
-    public static final String REQUEST_KEY = "com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem.Key";
-    public static final String KEY_RESULT = "com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem.Result";
+    public static final String REQUEST_KEY = "com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem_to_cart.menuitem.Key";
+    public static final String KEY_RESULT = "com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem_to_cart.menuitem.Result";
 
-    private static final String ARG_NAMES = "com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem.Names";
-    private static final String ARG_NAME_DEFAULT = "com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem.NameDefault";
+    private static final String ARG_NAMES = "com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem_to_cart.menuitem.Names";
+    private static final String ARG_NAME_DEFAULT = "com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem_to_cart.menuitem.NameDefault";
 
     private String[] names;
     private String nameDefault;

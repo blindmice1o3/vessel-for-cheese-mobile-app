@@ -1,4 +1,4 @@
-package com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.hierarchy.section;
+package com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.category_to_menuitem.section;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,14 +15,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.jackingaming.vesselforcheesemobileapp.R;
-import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.hierarchy.topic.MenuItemAdapter;
-import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem.MenuItemActivity;
+import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.category_to_menuitem.topic.MenuItemAdapter;
+import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem_to_cart.menuitem.MenuItemActivity;
 import com.jackingaming.vesselforcheesemobileapp.models.menu.hierarchy.Section;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.MenuItem;
 
 public class SectionAsGridActivity extends AppCompatActivity {
     public static final String TAG = SectionAsGridActivity.class.getSimpleName();
-    public static final String EXTRA_SECTION_SELECTED = "com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.hierarchy.section.sectionSelected";
+    public static final String EXTRA_SECTION_SELECTED = "com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.category_to_menuitem.section.sectionSelected";
     public static final int NUMBER_OF_COLUMNS = 2;
 
     public void initHeightAppBarLayoutAsQuarterScreen(AppBarLayout appBarLayout) {

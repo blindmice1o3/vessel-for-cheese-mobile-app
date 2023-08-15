@@ -1,5 +1,5 @@
 
-package com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.revieworder;
+package com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem_to_cart.revieworder;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -26,7 +26,7 @@ import java.util.List;
 
 public class ReviewOrderActivity extends AppCompatActivity {
     public static final String TAG = ReviewOrderActivity.class.getSimpleName();
-    public static final String EXTRA_ORDER = "com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.revieworder.order";
+    public static final String EXTRA_ORDER = "com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem_to_cart.revieworder.order";
 
     private CollapsingToolbarLayout collapsingToolbarLayout;
 

@@ -1,4 +1,4 @@
-package com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.hierarchy.topic;
+package com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.category_to_menuitem.topic;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -18,9 +18,9 @@ import com.jackingaming.vesselforcheesemobileapp.R;
 import com.jackingaming.vesselforcheesemobileapp.models.menu.hierarchy.Section;
 import com.jackingaming.vesselforcheesemobileapp.models.menu.hierarchy.Topic;
 
-public class TopicActivity extends AppCompatActivity {
-    public static final String TAG = TopicActivity.class.getSimpleName();
-    public static final String EXTRA_TOPIC_SELECTED = "com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.hierarchy.topic.topicSelected";
+public class TopicAsNestedListActivity extends AppCompatActivity {
+    public static final String TAG = TopicAsNestedListActivity.class.getSimpleName();
+    public static final String EXTRA_TOPIC_SELECTED = "com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.category_to_menuitem.topic.topicSelected";
 
     public void initHeightAppBarLayoutAsQuarterScreen(AppBarLayout appBarLayout) {
         float heightDp = getResources().getDisplayMetrics().heightPixels / 4;
@@ -32,7 +32,7 @@ public class TopicActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.i(TAG, "onCreate()");
-        setContentView(R.layout.activity_topic);
+        setContentView(R.layout.activity_topic_as_nested_list);
 
         Topic topicSelected = (Topic) getIntent().getSerializableExtra(EXTRA_TOPIC_SELECTED);
 
@@ -78,8 +78,9 @@ public class TopicActivity extends AppCompatActivity {
         Log.i(TAG, "onOptionsItemSelected()");
         if (item.getItemId() == android.R.id.home) {
             Log.i(TAG, "up button (android.R.id.home) was pressed");
-            // TODO: if needed, can customize behavior of Up-button here.
-            return super.onOptionsItemSelected(item);
+
+            finish();
+            return true;
         } else {
             Log.i(TAG, "else-clause");
             return super.onOptionsItemSelected(item);

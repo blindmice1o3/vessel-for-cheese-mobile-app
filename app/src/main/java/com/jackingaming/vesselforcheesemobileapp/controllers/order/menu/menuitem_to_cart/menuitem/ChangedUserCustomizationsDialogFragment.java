@@ -1,4 +1,4 @@
-package com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem;
+package com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem_to_cart.menuitem;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -13,8 +13,8 @@ import com.jackingaming.vesselforcheesemobileapp.R;
 
 public class ChangedUserCustomizationsDialogFragment extends DialogFragment {
     public static final String TAG = ChangedUserCustomizationsDialogFragment.class.getSimpleName();
-//    private static final String ARG_TITLE = "com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem.title";
-//    private static final String ARG_MESSAGE = "com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem.message";
+//    private static final String ARG_TITLE = "com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem_to_cart.menuitem.title";
+//    private static final String ARG_MESSAGE = "com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem_to_cart.menuitem.message";
 
     public ChangedUserCustomizationsDialogFragment() {
     }

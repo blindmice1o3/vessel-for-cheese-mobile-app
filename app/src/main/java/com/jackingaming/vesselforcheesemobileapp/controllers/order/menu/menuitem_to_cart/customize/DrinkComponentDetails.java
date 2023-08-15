@@ -1,4 +1,4 @@
-package com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.customize;
+package com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem_to_cart.customize;
 
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
 

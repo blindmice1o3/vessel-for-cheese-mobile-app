@@ -1,11 +1,10 @@
-package com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.customize;
+package com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem_to_cart.customize;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,22 +16,14 @@ import com.google.android.material.floatingactionbutton.ExtendedFloatingActionBu
 import com.google.android.material.snackbar.Snackbar;
 import com.jackingaming.vesselforcheesemobileapp.R;
 import com.jackingaming.vesselforcheesemobileapp.controllers.order.OrderFragment;
-import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem.MenuItemActivity;
-import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.revieworder.ReviewOrderActivity;
+import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem_to_cart.revieworder.ReviewOrderActivity;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.Drink;
-
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
 
 public class CustomizeActivity extends AppCompatActivity {
     public static final String TAG = CustomizeActivity.class.getSimpleName();
-    public static final String EXTRA_DRINK = "com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.customize.drink";
+    public static final String EXTRA_DRINK = "com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem_to_cart.customize.drink";
     public static final int REQUEST_CODE = 1;
-    public static final String RESULT_KEY = "com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.customize.key";
+    public static final String RESULT_KEY = "com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem_to_cart.customize.key";
 
     private Drink drink;
 
