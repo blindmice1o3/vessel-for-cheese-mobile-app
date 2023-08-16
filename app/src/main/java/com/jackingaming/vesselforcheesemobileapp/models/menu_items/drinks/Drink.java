@@ -149,16 +149,20 @@ public abstract class Drink extends MenuItem
                     for (int i = 0; i < drinkComponentsGroup.size(); i++) {
                         DrinkComponent drinkComponent = drinkComponentsGroup.get(i);
 
-                        if (drinkComponent instanceof Shot) {
-                            Log.i(TAG, "drinkComponent instanceof Shot");
+                        if (drinkComponentsStandardRecipe.contains(drinkComponent)) {
+                            Log.i(TAG, "drinkComponentsStandardRecipe.contains() drinkComponent (Class, Type): (" + drinkComponent.getClassAsString() + ", " + drinkComponent.getTypeAsString() + ")");
 
-                            int quantityNew = getNumberOfShotByDrinkSize(drinkSizeNew);
-                            if (quantityNew == QUANTITY_INDEPENDENT_OF_DRINK_SIZE) {
-                                Log.e(TAG, "quantityNew == QUANTITY_INDEPENDENT_OF_DRINK_SIZE");
-                                return false;
+                            if (drinkComponent instanceof Shot) {
+                                Log.i(TAG, "drinkComponent instanceof Shot");
+
+                                int quantityNew = getNumberOfShotByDrinkSize(drinkSizeNew);
+                                if (quantityNew == QUANTITY_INDEPENDENT_OF_DRINK_SIZE) {
+                                    Log.e(TAG, "quantityNew == QUANTITY_INDEPENDENT_OF_DRINK_SIZE");
+                                    return false;
+                                }
+                                changedUserCustomizations =
+                                        updateQuantityByDrinkSize(drinkComponent, quantityNew, key, i);
                             }
-                            changedUserCustomizations =
-                                    updateQuantityByDrinkSize(drinkComponent, quantityNew, key, i);
                         }
                     }
                 } else if (key.equals(TeaOptions.TAG)) {
