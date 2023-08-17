@@ -45,7 +45,7 @@ public class CategoryAsNestedListActivity extends AppCompatActivity {
 
         CollapsingToolbarLayout collapsingToolbarLayout = findViewById(R.id.collapsing_toolbar_layout);
         String nameTopicSelected = categorySelected.getName();
-        // TODO:
+
         int sizeOfList = 0;
         List<Topic> topics = categorySelected.getTopics();
         for (Topic topic : topics) {

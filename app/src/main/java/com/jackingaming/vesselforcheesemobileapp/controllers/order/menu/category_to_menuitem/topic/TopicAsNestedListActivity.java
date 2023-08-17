@@ -17,6 +17,9 @@ import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.jackingaming.vesselforcheesemobileapp.R;
 import com.jackingaming.vesselforcheesemobileapp.models.menu.hierarchy.Section;
 import com.jackingaming.vesselforcheesemobileapp.models.menu.hierarchy.Topic;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.MenuItem;
+
+import java.util.List;
 
 public class TopicAsNestedListActivity extends AppCompatActivity {
     public static final String TAG = TopicAsNestedListActivity.class.getSimpleName();
@@ -41,7 +44,15 @@ public class TopicAsNestedListActivity extends AppCompatActivity {
 
         CollapsingToolbarLayout collapsingToolbarLayout = findViewById(R.id.collapsing_toolbar_layout);
         String nameTopicSelected = topicSelected.getName();
-        int sizeOfList = topicSelected.getSections().size();
+
+        int sizeOfList = 0;
+        List<Section> sections = topicSelected.getSections();
+        for (Section section : sections) {
+            List<MenuItem> menuItems = section.getMenuItems();
+
+            sizeOfList += menuItems.size();
+        }
+        Log.e(TAG, "number of MenuItem from Topic: " + sizeOfList);
         String formatStringTitle = "%s (%d)";
         String title = String.format(formatStringTitle,
                 nameTopicSelected, sizeOfList);
