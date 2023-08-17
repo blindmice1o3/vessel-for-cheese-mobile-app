@@ -63,10 +63,11 @@ public class Syrup extends FlavorOptions
     public enum Type {
         BROWN_SUGAR,
         CARAMEL,
+        CINNAMON_CARAMEL,
         CINNAMON_DOLCE,
         HAZELNUT,
+        MACADAMIA,
         PEPPERMINT,
-        RASPBERRY,
         SUGAR_FREE_VANILLA,
         TOASTED_VANILLA,
         TOFFEE_NUT,

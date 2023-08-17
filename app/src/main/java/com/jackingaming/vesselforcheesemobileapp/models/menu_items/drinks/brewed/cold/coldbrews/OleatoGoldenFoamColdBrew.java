@@ -1,6 +1,11 @@
 package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.cold.coldbrews;
 
 import com.jackingaming.vesselforcheesemobileapp.R;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponentWithDefaultAsString;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.flavor_options.FlavorOptions;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.flavor_options.Syrup;
+
+import java.util.List;
 
 public class OleatoGoldenFoamColdBrew extends ColdBrews {
     public static final String TAG = OleatoGoldenFoamColdBrew.class.getSimpleName();
@@ -12,6 +17,8 @@ public class OleatoGoldenFoamColdBrew extends ColdBrews {
     public static final int DEFAULT_SUGAR_IN_GRAM = 19;
     public static final float DEFAULT_FAT_IN_GRAM = 34.0f;
 
+    public static final Syrup.Type DEFAULT_SYRUP_VANILLA = Syrup.Type.VANILLA;
+
     public static final double DEFAULT_PRICE_SMALL = 2.95;
     public static final double DEFAULT_PRICE_MEDIUM = 3.45;
     public static final double DEFAULT_PRICE_LARGE = 3.70;
@@ -20,5 +27,16 @@ public class OleatoGoldenFoamColdBrew extends ColdBrews {
         super(DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
                 DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
                 DEFAULT_PRICE_MEDIUM);
+
+        // FLAVOR_OPTIONS (add into EXISTING DrinkComponent group)
+        int numberOfPumpByDrinkSize = getNumberOfPumpByDrinkSize(drinkSize);
+        Syrup syrupVanilla = new Syrup(DEFAULT_SYRUP_VANILLA, numberOfPumpByDrinkSize);
+
+        List<DrinkComponentWithDefaultAsString> flavorOptions = drinkComponents.get(FlavorOptions.TAG);
+        flavorOptions.add(0, new DrinkComponentWithDefaultAsString(
+                syrupVanilla, Integer.toString(numberOfPumpByDrinkSize)
+        ));
+
+        drinkComponentsStandardRecipe.add(syrupVanilla);
     }
 }

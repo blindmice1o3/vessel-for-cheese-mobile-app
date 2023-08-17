@@ -1,6 +1,14 @@
 package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.cold.coldbrews;
 
 import com.jackingaming.vesselforcheesemobileapp.R;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponentWithDefaultAsString;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.lemonade_options.LemonadeOptions;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.milk_options.MilkBase;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.milk_options.MilkOptions;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.preparation_options.PreparationOptions;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class StarbucksColdBrewCoffeeWithMilk extends ColdBrews {
     public static final String TAG = StarbucksColdBrewCoffeeWithMilk.class.getSimpleName();
@@ -12,6 +20,8 @@ public class StarbucksColdBrewCoffeeWithMilk extends ColdBrews {
     public static final int DEFAULT_SUGAR_IN_GRAM = 3;
     public static final float DEFAULT_FAT_IN_GRAM = 1.5f;
 
+    public static final MilkBase.Type DEFAULT_MILK_BASE = MilkBase.Type.TWO_PERCENT;
+
     public static final double DEFAULT_PRICE_SMALL = 2.95;
     public static final double DEFAULT_PRICE_MEDIUM = 3.45;
     public static final double DEFAULT_PRICE_LARGE = 3.70;
@@ -20,5 +30,21 @@ public class StarbucksColdBrewCoffeeWithMilk extends ColdBrews {
         super(DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
                 DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
                 DEFAULT_PRICE_MEDIUM);
+
+        // MILK_OPTIONS (add into NEW DrinkComponent group)
+        MilkBase milkBaseTwoPercent = new MilkBase(DEFAULT_MILK_BASE);
+
+        List<DrinkComponentWithDefaultAsString> milkOptions = new ArrayList<>();
+        milkOptions.add(new DrinkComponentWithDefaultAsString(
+                milkBaseTwoPercent, DEFAULT_MILK_BASE.name()
+        ));
+
+        drinkComponents.put(MilkOptions.TAG, milkOptions);
+
+        // REMOVAL: LEMONADE_OPTIONS and PREPARATION_OPTIONS
+        drinkComponents.remove(LemonadeOptions.TAG);
+        drinkComponents.remove(PreparationOptions.TAG);
+
+        drinkComponentsStandardRecipe.add(milkBaseTwoPercent);
     }
 }

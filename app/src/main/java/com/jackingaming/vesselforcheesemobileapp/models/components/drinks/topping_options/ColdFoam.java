@@ -19,9 +19,11 @@ public class ColdFoam extends ToppingOptions
 
     public enum Type {
         CHOCOLATE_CREAM,
-        PISTACHIO_CREAM,
+        CINNAMON_SWEET_CREAM,
+        MATCHA_CREAM,
         SALTED_CARAMEL_CREAM,
-        VANILLA_SWEET_CREAM;
+        VANILLA_SWEET_CREAM,
+        WHITE_CHOCOLATE_MACADAMIA_CREAM;
     }
 
     private Type type;

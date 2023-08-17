@@ -61,9 +61,9 @@ public class Sauce extends FlavorOptions
     }
 
     public enum Type {
-        DARK_CARAMEL,
         MOCHA,
-        PISTACHIO,
+        NEW_DARK_CARAMEL,
+        WHITE_CHOCOLATE_MINT,
         WHITE_CHOCOLATE_MOCHA;
     }
 

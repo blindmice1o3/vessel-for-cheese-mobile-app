@@ -27,20 +27,16 @@ public abstract class BrewedCoffees extends Drink {
         switch (drinkSizeNew) {
             case SHORT:
             case TALL:
-                numberOfShotNew = 1;
-                break;
             case GRANDE:
             case VENTI_HOT:
-                numberOfShotNew = 2;
-                break;
             case VENTI_ICED:
-                numberOfShotNew = 3;
-                break;
             case TRENTA:
             case UNIQUE:
             case UNDEFINED:
                 break;
         }
+
+        Log.i(TAG, "numberOfShotNew: " + numberOfShotNew);
 
         return numberOfShotNew;
     }
@@ -67,10 +63,14 @@ public abstract class BrewedCoffees extends Drink {
                 numberOfPumpNew = 6;
                 break;
             case TRENTA:
+                numberOfPumpNew = 7;
+                break;
             case UNIQUE:
             case UNDEFINED:
                 break;
         }
+
+        Log.i(TAG, "numberOfPumpNew: " + numberOfPumpNew);
 
         return numberOfPumpNew;
     }
@@ -100,6 +100,8 @@ public abstract class BrewedCoffees extends Drink {
                 break;
         }
 
+        Log.i(TAG, "numberOfScoopNew: " + numberOfScoopNew);
+
         return numberOfScoopNew;
     }
 
@@ -110,23 +112,17 @@ public abstract class BrewedCoffees extends Drink {
         int numberOfFrapRoastNew = QUANTITY_INDEPENDENT_OF_DRINK_SIZE;
         switch (drinkSizeNew) {
             case SHORT:
-                numberOfFrapRoastNew = 1;
-                break;
             case TALL:
-                numberOfFrapRoastNew = 2;
-                break;
             case GRANDE:
-                numberOfFrapRoastNew = 3;
-                break;
             case VENTI_HOT:
             case VENTI_ICED:
-                numberOfFrapRoastNew = 4;
-                break;
             case TRENTA:
             case UNIQUE:
             case UNDEFINED:
                 break;
         }
+
+        Log.i(TAG, "numberOfFrapRoastNew: " + numberOfFrapRoastNew);
 
         return numberOfFrapRoastNew;
     }
@@ -139,18 +135,16 @@ public abstract class BrewedCoffees extends Drink {
         switch (drinkSizeNew) {
             case SHORT:
             case TALL:
-                numberOfTeaBagNew = 1;
-                break;
             case GRANDE:
             case VENTI_HOT:
             case VENTI_ICED:
-                numberOfTeaBagNew = 2;
-                break;
             case TRENTA:
             case UNIQUE:
             case UNDEFINED:
                 break;
         }
+
+        Log.i(TAG, "numberOfTeaBagNew: " + numberOfTeaBagNew);
 
         return numberOfTeaBagNew;
     }

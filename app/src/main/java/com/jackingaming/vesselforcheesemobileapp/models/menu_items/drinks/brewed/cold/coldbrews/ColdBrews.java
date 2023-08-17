@@ -1,5 +1,7 @@
 package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.cold.coldbrews;
 
+import android.util.Log;
+
 import com.jackingaming.vesselforcheesemobileapp.models.components.Granular;
 import com.jackingaming.vesselforcheesemobileapp.models.components.Incrementable;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
@@ -34,6 +36,7 @@ import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.toppin
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.topping_options.ToppingOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.topping_options.WhippedCream;
 import com.jackingaming.vesselforcheesemobileapp.models.menu.Menu;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.DrinkSize;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.cold.ColdBrewedCoffees;
 
 import java.util.ArrayList;
@@ -178,5 +181,37 @@ public abstract class ColdBrews extends ColdBrewedCoffees {
                 }
             }
         }
+    }
+
+    @Override
+    public int getNumberOfPumpByDrinkSize(DrinkSize drinkSizeNew) {
+        Log.i(TAG, "getNumberOfPumpByDrinkSize(DrinkSize)");
+
+        int numberOfPumpNew = QUANTITY_INDEPENDENT_OF_DRINK_SIZE;
+        switch (drinkSizeNew) {
+            case SHORT:
+                break;
+            case TALL:
+                numberOfPumpNew = 1;
+                break;
+            case GRANDE:
+                numberOfPumpNew = 2;
+                break;
+            case VENTI_HOT:
+                break;
+            case VENTI_ICED:
+                numberOfPumpNew = 3;
+                break;
+            case TRENTA:
+                numberOfPumpNew = 4;
+                break;
+            case UNIQUE:
+            case UNDEFINED:
+                break;
+        }
+
+        Log.i(TAG, "numberOfPumpNew: " + numberOfPumpNew);
+
+        return numberOfPumpNew;
     }
 }
