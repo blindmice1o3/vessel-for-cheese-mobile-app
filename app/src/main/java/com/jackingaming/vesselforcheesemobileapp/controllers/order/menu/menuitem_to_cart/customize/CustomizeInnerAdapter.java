@@ -7,6 +7,7 @@ import com.jackingaming.vesselforcheesemobileapp.models.components.Granular;
 import com.jackingaming.vesselforcheesemobileapp.models.components.Incrementable;
 import com.jackingaming.vesselforcheesemobileapp.models.components.MixedType;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponentWithDefaultAsString;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.mixed_type.fruits.base.Fruits;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.mixed_type.fruits.derived.FruitInclusion;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.mixed_type.fruits.derived.StrawberryPuree;
@@ -20,8 +21,8 @@ import java.util.List;
 public class CustomizeInnerAdapter extends DrinkComponentBaseAdapter {
     public static final String TAG = CustomizeInnerAdapter.class.getSimpleName();
 
-    public CustomizeInnerAdapter(List<DrinkComponent> drinkComponents, List<String> drinkComponentsDefaultAsString, List<DrinkComponent> drinkComponentsStandardRecipe, DrinkComponentBaseAdapterListener listener) {
-        super(drinkComponents, drinkComponentsDefaultAsString, drinkComponentsStandardRecipe, listener);
+    public CustomizeInnerAdapter(List<DrinkComponentWithDefaultAsString> drinkComponents, List<DrinkComponent> drinkComponentsStandardRecipe, DrinkComponentBaseAdapterListener listener) {
+        super(drinkComponents, drinkComponentsStandardRecipe, listener);
     }
 
     @Override
@@ -59,7 +60,6 @@ public class CustomizeInnerAdapter extends DrinkComponentBaseAdapter {
             drinkComponentSelected.setTypeByString(DrinkComponent.NULL_TYPE_AS_STRING);
             ((Granular) drinkComponentSelected).setAmount(Granular.Amount.NO);
             drinkComponents.remove(indexSelected);
-            drinkComponentsDefaultAsString.remove(indexSelected);
             notifyItemRemoved(indexSelected);
         }
     }
@@ -126,8 +126,11 @@ public class CustomizeInnerAdapter extends DrinkComponentBaseAdapter {
             DrinkComponent drinkComponentToAdd =
                     ((Incrementable) drinkComponentSelected).newInstanceViaTypeAsString(name, 1);
             int drinkComponentDefaultAsStringToAdd = ((Incrementable) drinkComponentSelected).getQuantityMin();
-            drinkComponents.add(indexSelected, drinkComponentToAdd);
-            drinkComponentsDefaultAsString.add(indexSelected, Integer.toString(drinkComponentDefaultAsStringToAdd));
+            DrinkComponentWithDefaultAsString drinkComponentWithDefaultAsStringToAdd =
+                    new DrinkComponentWithDefaultAsString(
+                            drinkComponentToAdd, Integer.toString(drinkComponentDefaultAsStringToAdd)
+                    );
+            drinkComponents.add(indexSelected, drinkComponentWithDefaultAsStringToAdd);
             notifyItemInserted(indexSelected);
 
             // CHECK CONDITION TO CONVERT "INVOKER" TO LAST OPTION
@@ -148,8 +151,11 @@ public class CustomizeInnerAdapter extends DrinkComponentBaseAdapter {
                 DrinkComponent drinkComponentToAdd =
                         ((Granular) drinkComponentSelected).newInstanceViaTypeAsString(name, Granular.Amount.MEDIUM);
                 String drinkComponentDefaultAsStringToAdd = Granular.Amount.NO.name();
-                drinkComponents.add(indexSelected, drinkComponentToAdd);
-                drinkComponentsDefaultAsString.add(indexSelected, drinkComponentDefaultAsStringToAdd);
+                DrinkComponentWithDefaultAsString drinkComponentWithDefaultAsStringToAdd =
+                        new DrinkComponentWithDefaultAsString(
+                                drinkComponentToAdd, drinkComponentDefaultAsStringToAdd
+                        );
+                drinkComponents.add(indexSelected, drinkComponentWithDefaultAsStringToAdd);
                 notifyItemInserted(indexSelected);
 
                 // CHECK CONDITION TO CONVERT "INVOKER" TO LAST OPTION
@@ -200,8 +206,11 @@ public class CustomizeInnerAdapter extends DrinkComponentBaseAdapter {
                         drinkComponentDefaultAsStringToAdd = Granular.Amount.NO.name();
                     }
                 }
-                drinkComponents.add(indexSelected, drinkComponentToAdd);
-                drinkComponentsDefaultAsString.add(indexSelected, drinkComponentDefaultAsStringToAdd);
+                DrinkComponentWithDefaultAsString drinkComponentWithDefaultAsStringToAdd =
+                        new DrinkComponentWithDefaultAsString(
+                                drinkComponentToAdd, drinkComponentDefaultAsStringToAdd
+                        );
+                drinkComponents.add(indexSelected, drinkComponentWithDefaultAsStringToAdd);
                 notifyItemInserted(indexSelected);
 
                 // TODO: account for AddInsOptions -> Powders
@@ -210,7 +219,8 @@ public class CustomizeInnerAdapter extends DrinkComponentBaseAdapter {
 
                 // CHECK IF LAST OPTION CONDITION
                 List<String> drinkComponentsAsStringAlreadyInsideDrink = new ArrayList<>();
-                for (DrinkComponent drinkComponentInsideDrink : drinkComponents) {
+                for (DrinkComponentWithDefaultAsString drinkComponentWithDefaultAsString : drinkComponents) {
+                    DrinkComponent drinkComponentInsideDrink = drinkComponentWithDefaultAsString.getDrinkComponent();
                     if (drinkComponentInsideDrink instanceof Powders) {
                         if (drinkComponentInsideDrink instanceof Incrementable) {
                             Log.i(TAG, "drinkComponentInsideDrink instanceof Incrementable");
@@ -283,8 +293,11 @@ public class CustomizeInnerAdapter extends DrinkComponentBaseAdapter {
                     Log.e(TAG, "drinkComponentNotInsideDrink: " + drinkComponentNotInsideDrink.getTypeAsString());
 
                     // TURN "invoker" INTO LAST OPTION
-                    drinkComponents.set(indexSelected + 1, drinkComponentNotInsideDrink);
-                    drinkComponentsDefaultAsString.set(indexSelected + 1, drinkComponentDefaultNotInsideDrink);
+                    DrinkComponentWithDefaultAsString drinkComponentWithDefaultAsString =
+                            new DrinkComponentWithDefaultAsString(
+                                    drinkComponentNotInsideDrink, drinkComponentDefaultNotInsideDrink
+                            );
+                    drinkComponents.set(indexSelected + 1, drinkComponentWithDefaultAsString);
                     notifyItemChanged(indexSelected + 1);
                 } else {
                     Log.i(TAG, "NOT lastOption");
@@ -307,13 +320,17 @@ public class CustomizeInnerAdapter extends DrinkComponentBaseAdapter {
                         drinkComponentDefaultAsStringToAdd = Granular.Amount.NO.name();
                     }
                 }
-                drinkComponents.add(indexSelected, drinkComponentToAdd);
-                drinkComponentsDefaultAsString.add(indexSelected, drinkComponentDefaultAsStringToAdd);
+                DrinkComponentWithDefaultAsString drinkComponentWithDefaultAsString =
+                        new DrinkComponentWithDefaultAsString(
+                                drinkComponentToAdd, drinkComponentDefaultAsStringToAdd
+                        );
+                drinkComponents.add(indexSelected, drinkComponentWithDefaultAsString);
                 notifyItemInserted(indexSelected);
 
                 // CHECK IF LAST OPTION CONDITION
                 List<String> drinkComponentsAsStringAlreadyInsideDrink = new ArrayList<>();
-                for (DrinkComponent drinkComponentInsideDrink : drinkComponents) {
+                for (DrinkComponentWithDefaultAsString drinkComponentWithDefaultAsStringInsideDrink : drinkComponents) {
+                    DrinkComponent drinkComponentInsideDrink = drinkComponentWithDefaultAsStringInsideDrink.getDrinkComponent();
                     if (drinkComponentInsideDrink instanceof Fruits) {
                         if (drinkComponentInsideDrink instanceof Incrementable) {
                             Log.i(TAG, "drinkComponentInsideDrink instanceof Incrementable");
@@ -386,8 +403,11 @@ public class CustomizeInnerAdapter extends DrinkComponentBaseAdapter {
                     Log.e(TAG, "drinkComponentNotInsideDrink: " + drinkComponentNotInsideDrink.getTypeAsString());
 
                     // TURN "invoker" INTO LAST OPTION
-                    drinkComponents.set(indexSelected + 1, drinkComponentNotInsideDrink);
-                    drinkComponentsDefaultAsString.set(indexSelected + 1, drinkComponentDefaultNotInsideDrink);
+                    DrinkComponentWithDefaultAsString drinkComponentWithDefaultAsStringNotInsideDrink =
+                            new DrinkComponentWithDefaultAsString(
+                                    drinkComponentNotInsideDrink, drinkComponentDefaultNotInsideDrink
+                            );
+                    drinkComponents.set(indexSelected + 1, drinkComponentWithDefaultAsStringNotInsideDrink);
                     notifyItemChanged(indexSelected + 1);
                 } else {
                     Log.i(TAG, "NOT lastOption");

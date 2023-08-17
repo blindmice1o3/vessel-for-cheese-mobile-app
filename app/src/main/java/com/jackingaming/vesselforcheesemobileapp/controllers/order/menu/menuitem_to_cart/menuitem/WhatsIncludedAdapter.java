@@ -2,12 +2,11 @@ package com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuite
 
 import android.util.Log;
 
-import androidx.core.util.Pair;
-
 import com.jackingaming.vesselforcheesemobileapp.models.components.Granular;
 import com.jackingaming.vesselforcheesemobileapp.models.components.Incrementable;
 import com.jackingaming.vesselforcheesemobileapp.models.components.MixedType;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponentWithDefaultAsString;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.LineTheCup;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.cup_options.CupSize;
 import com.jackingaming.vesselforcheesemobileapp.models.menu.Menu;
@@ -26,28 +25,23 @@ public class WhatsIncludedAdapter extends DrinkComponentBaseAdapter {
     }
 
     public void init(Drink drink) {
-        Pair<List<DrinkComponent>, List<String>> pairDefaultAndTypes = generateWhatsIncluded(drink);
-        this.drinkComponents = pairDefaultAndTypes.first;
-        this.drinkComponentsDefaultAsString = pairDefaultAndTypes.second;
+        this.drinkComponents = generateWhatsIncluded(drink);
         this.drinkComponentsStandardRecipe = drink.getDrinkComponentsStandardRecipe();
     }
 
-    private Pair<List<DrinkComponent>, List<String>> generateWhatsIncluded(Drink drink) {
-        Map<String, List<DrinkComponent>> drinkComponentGroups = drink.getDrinkComponents();
-        Map<String, List<String>> drinkComponentGroupsDefaultAsString = drink.getDrinkComponentsDefaultAsString();
+    private List<DrinkComponentWithDefaultAsString> generateWhatsIncluded(Drink drink) {
+        Map<String, List<DrinkComponentWithDefaultAsString>> drinkComponentGroups = drink.getDrinkComponents();
         List<DrinkComponent> drinkComponentsStandardRecipe = drink.getDrinkComponentsStandardRecipe();
-        List<DrinkComponent> drinkComponentsWhatsIncluded = new ArrayList<>();
-        List<String> drinkComponentsWhatsIncludedDefaultAsString = new ArrayList<>();
+        List<DrinkComponentWithDefaultAsString> drinkComponentsWhatsIncluded = new ArrayList<>();
         Log.i(TAG, "!!!!!creating drinkComponentsWhatsIncluded!!!!!");
         for (int i = 0; i < Menu.DRINK_COMPONENTS_KEYS.size(); i++) {
             String key = Menu.DRINK_COMPONENTS_KEYS.get(i);
             if (drinkComponentGroups.containsKey(key)) {
                 Log.i(TAG, i + "contains: " + Menu.DRINK_COMPONENTS_KEYS.get(i));
-                List<String> typesDefault = drinkComponentGroupsDefaultAsString.get(key);
-                List<DrinkComponent> types = drinkComponentGroups.get(key);
+                List<DrinkComponentWithDefaultAsString> types = drinkComponentGroups.get(key);
                 for (int j = 0; j < types.size(); j++) {
-                    DrinkComponent drinkComponent = types.get(j);
-                    String drinkComponentDefault = typesDefault.get(j);
+                    DrinkComponent drinkComponent = types.get(j).getDrinkComponent();
+                    String drinkComponentDefault = types.get(j).getDrinkComponentDefaultAsString();
 
                     if (drinkComponentsStandardRecipe.contains(drinkComponent)) {
                         Log.e(TAG, "drinkComponentsStandardRecipe.contains(drinkComponent)");
@@ -59,8 +53,10 @@ public class WhatsIncludedAdapter extends DrinkComponentBaseAdapter {
                         }
 
                         Log.i(TAG, "adding - drinkComponent.getTypeAsString(): " + drinkComponent.getTypeAsString());
-                        drinkComponentsWhatsIncluded.add(drinkComponent);
-                        drinkComponentsWhatsIncludedDefaultAsString.add(drinkComponentDefault);
+                        DrinkComponentWithDefaultAsString drinkComponentWithDefaultAsString = new DrinkComponentWithDefaultAsString(
+                                drinkComponent, drinkComponentDefault
+                        );
+                        drinkComponentsWhatsIncluded.add(drinkComponentWithDefaultAsString);
                     } else {
                         Log.e(TAG, "NOT drinkComponentsStandardRecipe.contains(drinkComponent)");
 
@@ -84,15 +80,17 @@ public class WhatsIncludedAdapter extends DrinkComponentBaseAdapter {
                         }
 
                         Log.i(TAG, "adding - drinkComponent.getTypeAsString(): " + drinkComponent.getTypeAsString());
-                        drinkComponentsWhatsIncluded.add(drinkComponent);
-                        drinkComponentsWhatsIncludedDefaultAsString.add(drinkComponentDefault);
+                        DrinkComponentWithDefaultAsString drinkComponentWithDefaultAsString = new DrinkComponentWithDefaultAsString(
+                                drinkComponent, drinkComponentDefault
+                        );
+                        drinkComponentsWhatsIncluded.add(drinkComponentWithDefaultAsString);
                     }
                 }
             } else {
                 Log.i(TAG, i + "!contains: " + Menu.DRINK_COMPONENTS_KEYS.get(i));
             }
         }
-        return new Pair<>(drinkComponentsWhatsIncluded, drinkComponentsWhatsIncludedDefaultAsString);
+        return drinkComponentsWhatsIncluded;
     }
 
     @Override
@@ -128,7 +126,6 @@ public class WhatsIncludedAdapter extends DrinkComponentBaseAdapter {
             if (drinkComponentSelected instanceof CupSize ||
                     drinkComponentSelected instanceof LineTheCup) {
                 drinkComponents.remove(indexSelected);
-                drinkComponentsDefaultAsString.remove(indexSelected);
                 notifyItemRemoved(indexSelected);
             } else {
                 notifyItemChanged(indexSelected);
@@ -159,7 +156,6 @@ public class WhatsIncludedAdapter extends DrinkComponentBaseAdapter {
             // Update the underlying model.
             ((Incrementable) drinkComponentSelected).setQuantity(Incrementable.QUANTITY_FOR_INVOKER);
             drinkComponents.remove(indexSelected);
-            drinkComponentsDefaultAsString.remove(indexSelected);
             notifyItemRemoved(indexSelected);
         } else if (drinkComponentSelected instanceof Granular) {
             Log.i(TAG, "drinkComponentSelected instanceof Granular");
@@ -187,7 +183,6 @@ public class WhatsIncludedAdapter extends DrinkComponentBaseAdapter {
             }
 
             drinkComponents.remove(indexSelected);
-            drinkComponentsDefaultAsString.remove(indexSelected);
             notifyItemRemoved(indexSelected);
         } else {
             Log.i(TAG, "drinkComponentSelected NOT instanceof Incrementable nor Granular");
@@ -195,7 +190,6 @@ public class WhatsIncludedAdapter extends DrinkComponentBaseAdapter {
             // Update the underlying model.
             drinkComponentSelected.setTypeByString(DrinkComponent.NULL_TYPE_AS_STRING);
             drinkComponents.remove(indexSelected);
-            drinkComponentsDefaultAsString.remove(indexSelected);
             notifyItemRemoved(indexSelected);
         }
     }

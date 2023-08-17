@@ -3,6 +3,7 @@ package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewe
 import com.jackingaming.vesselforcheesemobileapp.R;
 import com.jackingaming.vesselforcheesemobileapp.models.components.Granular;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponentWithDefaultAsString;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.milk_options.MilkBase;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.milk_options.MilkFoam;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.milk_options.MilkOptions;
@@ -36,22 +37,22 @@ public class CaffeMisto extends HotBrewedCoffees {
                 DEFAULT_PRICE_MEDIUM);
 
         // MILK_OPTIONS
-        List<DrinkComponent> milkOptions = new ArrayList<>();
-        milkOptions.add(new MilkFoam(DEFAULT_MILK_FOAM, DEFAULT_MILK_FOAM_AMOUNT));
-        milkOptions.add(new MilkBase(DEFAULT_MILK_BASE));
-        milkOptions.add(new Temperature(DEFAULT_TEMPERATURE));
-
-        // MILK_OPTIONS (defaults)
-        List<String> milkOptionsDefault = new ArrayList<>();
-        milkOptionsDefault.add(DEFAULT_MILK_FOAM_AMOUNT.name());
-        milkOptionsDefault.add(DEFAULT_MILK_BASE.name());
-        milkOptionsDefault.add(DEFAULT_TEMPERATURE.name());
+        List<DrinkComponentWithDefaultAsString> milkOptions = new ArrayList<>();
+        milkOptions.add(new DrinkComponentWithDefaultAsString(
+                new MilkFoam(DEFAULT_MILK_FOAM, DEFAULT_MILK_FOAM_AMOUNT), DEFAULT_MILK_FOAM_AMOUNT.name()
+        ));
+        milkOptions.add(new DrinkComponentWithDefaultAsString(
+                new MilkBase(DEFAULT_MILK_BASE), DEFAULT_MILK_BASE.name()
+        ));
+        milkOptions.add(new DrinkComponentWithDefaultAsString(
+                new Temperature(DEFAULT_TEMPERATURE), DEFAULT_TEMPERATURE.name()
+        ));
 
         drinkComponents.put(MilkOptions.TAG, milkOptions);
-        drinkComponentsDefaultAsString.put(MilkOptions.TAG, milkOptionsDefault);
 
-        List<DrinkComponent> drinkComponentsGroup = drinkComponents.get(MilkOptions.TAG);
-        for (DrinkComponent drinkComponent : drinkComponentsGroup) {
+        List<DrinkComponentWithDefaultAsString> drinkComponentsGroup = drinkComponents.get(MilkOptions.TAG);
+        for (DrinkComponentWithDefaultAsString drinkComponentWithDefaultAsString : drinkComponentsGroup) {
+            DrinkComponent drinkComponent = drinkComponentWithDefaultAsString.getDrinkComponent();
             if (drinkComponent.getTypeAsString().equals(DrinkComponent.NULL_TYPE_AS_STRING)) {
                 continue;
             } else {

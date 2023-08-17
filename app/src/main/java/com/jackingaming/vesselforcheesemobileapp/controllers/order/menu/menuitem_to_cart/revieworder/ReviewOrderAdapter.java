@@ -17,6 +17,7 @@ import com.jackingaming.vesselforcheesemobileapp.controllers.order.OrderFragment
 import com.jackingaming.vesselforcheesemobileapp.models.components.Granular;
 import com.jackingaming.vesselforcheesemobileapp.models.components.Incrementable;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponentWithDefaultAsString;
 import com.jackingaming.vesselforcheesemobileapp.models.menu.Menu;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.MenuItem;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.Drink;
@@ -94,15 +95,14 @@ public class ReviewOrderAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             // TODO: pass filtered list to DrinkComponentAdapter
             List<String> drinkComponentsCustomAsString = new ArrayList<>();
             if (menuItem instanceof Drink) {
-                Map<String, List<DrinkComponent>> drinkComponents = ((Drink) menuItem).getDrinkComponents();
-                Map<String, List<String>> drinkComponentsDefaultAsString = ((Drink) menuItem).getDrinkComponentsDefaultAsString();
+
+                Map<String, List<DrinkComponentWithDefaultAsString>> drinkComponents = ((Drink) menuItem).getDrinkComponents();
                 for (String key : Menu.DRINK_COMPONENTS_KEYS) {
                     if (drinkComponents.containsKey(key)) {
-                        List<DrinkComponent> drinkComponentsGroup = drinkComponents.get(key);
-                        List<String> drinkComponentsDefaultAsStringGroup = drinkComponentsDefaultAsString.get(key);
+                        List<DrinkComponentWithDefaultAsString> drinkComponentsGroup = drinkComponents.get(key);
                         for (int i = 0; i < drinkComponentsGroup.size(); i++) {
-                            DrinkComponent drinkComponent = drinkComponentsGroup.get(i);
-                            String drinkComponentDefaultAsString = drinkComponentsDefaultAsStringGroup.get(i);
+                            DrinkComponent drinkComponent = drinkComponentsGroup.get(i).getDrinkComponent();
+                            String drinkComponentDefaultAsString = drinkComponentsGroup.get(i).getDrinkComponentDefaultAsString();
 
                             if (drinkComponent.getTypeAsString().equals(DrinkComponent.NULL_TYPE_AS_STRING)) {
                                 continue;

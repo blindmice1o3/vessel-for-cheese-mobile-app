@@ -4,6 +4,7 @@ import com.jackingaming.vesselforcheesemobileapp.R;
 import com.jackingaming.vesselforcheesemobileapp.models.components.Granular;
 import com.jackingaming.vesselforcheesemobileapp.models.components.Incrementable;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponentWithDefaultAsString;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.AddInsOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.LineTheCup;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.mixed_type.powders.base.Powders;
@@ -83,88 +84,93 @@ public class CaramelMacchiato extends Macchiatos {
                 DEFAULT_PRICE_MEDIUM);
 
         // MILK_OPTIONS
-        List<DrinkComponent> milkOptions = new ArrayList<>();
-        milkOptions.add(new MilkFoam(DEFAULT_MILK_FOAM, DEFAULT_MILK_FOAM_AMOUNT));
-        milkOptions.add(new MilkBase(DEFAULT_MILK_BASE));
-        milkOptions.add(new Temperature(DEFAULT_TEMPERATURE));
+        List<DrinkComponentWithDefaultAsString> milkOptions = new ArrayList<>();
+        milkOptions.add(new DrinkComponentWithDefaultAsString(
+                new MilkFoam(DEFAULT_MILK_FOAM, DEFAULT_MILK_FOAM_AMOUNT), DEFAULT_MILK_FOAM_AMOUNT.name()
+        ));
+        milkOptions.add(new DrinkComponentWithDefaultAsString(
+                new MilkBase(DEFAULT_MILK_BASE), DEFAULT_MILK_BASE.name()
+        ));
+        milkOptions.add(new DrinkComponentWithDefaultAsString(
+                new Temperature(DEFAULT_TEMPERATURE), DEFAULT_TEMPERATURE.name()
+        ));
         // ESPRESSO_OPTIONS
-        List<DrinkComponent> espressoOptions = new ArrayList<>();
-        espressoOptions.add(new RoastOptions(DEFAULT_ROAST_OPTIONS));
+        List<DrinkComponentWithDefaultAsString> espressoOptions = new ArrayList<>();
+        espressoOptions.add(new DrinkComponentWithDefaultAsString(
+                new RoastOptions(DEFAULT_ROAST_OPTIONS), DEFAULT_ROAST_OPTIONS.name()
+        ));
         int numberOfShotByDrinkSize = getNumberOfShotByDrinkSize(drinkSize);
         Shot shot = new Shot(DEFAULT_SHOT, numberOfShotByDrinkSize);
         shot.setQuantityMin(DEFAULT_NUMBER_OF_ESPRESSO_SHOTS_MIN);
-        espressoOptions.add(shot);
-        espressoOptions.add(new PullOptions(null));
-        espressoOptions.add(new PrepOptions(null));
+        espressoOptions.add(new DrinkComponentWithDefaultAsString(
+                shot, Integer.toString(numberOfShotByDrinkSize)
+        ));
+        espressoOptions.add(new DrinkComponentWithDefaultAsString(
+                new PullOptions(null), DEFAULT_PULL_OPTIONS.name()
+        ));
+        espressoOptions.add(new DrinkComponentWithDefaultAsString(
+                new PrepOptions(null), DEFAULT_PREP_OPTIONS.name()
+        ));
         // TEA_OPTIONS
-        List<DrinkComponent> teaOptions = new ArrayList<>();
-        teaOptions.add(new Chai(null, Incrementable.QUANTITY_FOR_INVOKER));
+        List<DrinkComponentWithDefaultAsString> teaOptions = new ArrayList<>();
+        teaOptions.add(new DrinkComponentWithDefaultAsString(
+                new Chai(null, Incrementable.QUANTITY_FOR_INVOKER), Integer.toString(DEFAULT_NUMBER_OF_CHAI_SCOOPS)
+        ));
         // SWEETENER_OPTIONS
-        List<DrinkComponent> sweetenerOptions = new ArrayList<>();
-        sweetenerOptions.add(new Liquid(null, Incrementable.QUANTITY_FOR_INVOKER));
-        sweetenerOptions.add(new Packet(null, Incrementable.QUANTITY_FOR_INVOKER));
+        List<DrinkComponentWithDefaultAsString> sweetenerOptions = new ArrayList<>();
+        sweetenerOptions.add(new DrinkComponentWithDefaultAsString(
+                new Liquid(null, Incrementable.QUANTITY_FOR_INVOKER), Integer.toString(DEFAULT_NUMBER_OF_SWEETENER_LIQUID_PUMPS)
+        ));
+        sweetenerOptions.add(new DrinkComponentWithDefaultAsString(
+                new Packet(null, Incrementable.QUANTITY_FOR_INVOKER), Integer.toString(DEFAULT_NUMBER_OF_SWEETENER_PACKET_PACKS)
+        ));
         // FLAVOR_OPTIONS
-        List<DrinkComponent> flavorOptions = new ArrayList<>();
+        List<DrinkComponentWithDefaultAsString> flavorOptions = new ArrayList<>();
         int numberOfPumpByDrinkSize = getNumberOfPumpByDrinkSize(drinkSize);
         Syrup syrupVanilla = new Syrup(DEFAULT_SYRUP_VANILLA, numberOfPumpByDrinkSize);
-        flavorOptions.add(syrupVanilla);
-        flavorOptions.add(new Sauce(null, Incrementable.QUANTITY_FOR_INVOKER));
-        flavorOptions.add(new Syrup(null, Incrementable.QUANTITY_FOR_INVOKER));
+        flavorOptions.add(new DrinkComponentWithDefaultAsString(
+                syrupVanilla, Integer.toString(numberOfPumpByDrinkSize)
+        ));
+        flavorOptions.add(new DrinkComponentWithDefaultAsString(
+                new Sauce(null, Incrementable.QUANTITY_FOR_INVOKER), Integer.toString(DEFAULT_NUMBER_OF_FLAVOR_SAUCE_PUMPS)
+        ));
+        flavorOptions.add(new DrinkComponentWithDefaultAsString(
+                new Syrup(null, Incrementable.QUANTITY_FOR_INVOKER), Integer.toString(DEFAULT_NUMBER_OF_FLAVOR_SYRUP_PUMPS)
+        ));
         // TOPPING_OPTIONS
-        List<DrinkComponent> toppingOptions = new ArrayList<>();
+        List<DrinkComponentWithDefaultAsString> toppingOptions = new ArrayList<>();
         Drizzle drizzleCaramel = new Drizzle(DEFAULT_DRIZZLE_CARAMEL, DEFAULT_DRIZZLE_CARAMEL_AMOUNT);
-        toppingOptions.add(drizzleCaramel);
-        toppingOptions.add(new ColdFoam(null, Granular.Amount.NO));
-        toppingOptions.add(new CinnamonPowder(null, Granular.Amount.NO));
-        toppingOptions.add(new Drizzle(null, Granular.Amount.NO));
-        toppingOptions.add(new Topping(null, Granular.Amount.NO));
-        toppingOptions.add(new WhippedCream(null, Granular.Amount.NO));
+        toppingOptions.add(new DrinkComponentWithDefaultAsString(
+                drizzleCaramel, DEFAULT_DRIZZLE_CARAMEL_AMOUNT.name()
+        ));
+        toppingOptions.add(new DrinkComponentWithDefaultAsString(
+                new ColdFoam(null, Granular.Amount.NO), DEFAULT_COLD_FOAM_AMOUNT.name()
+        ));
+        toppingOptions.add(new DrinkComponentWithDefaultAsString(
+                new CinnamonPowder(null, Granular.Amount.NO), DEFAULT_CINNAMON_POWDER_AMOUNT.name()
+        ));
+        toppingOptions.add(new DrinkComponentWithDefaultAsString(
+                new Drizzle(null, Granular.Amount.NO), DEFAULT_DRIZZLE_AMOUNT.name()
+        ));
+        toppingOptions.add(new DrinkComponentWithDefaultAsString(
+                new Topping(null, Granular.Amount.NO), DEFAULT_TOPPING_AMOUNT.name()
+        ));
+        toppingOptions.add(new DrinkComponentWithDefaultAsString(
+                new WhippedCream(null, Granular.Amount.NO), DEFAULT_WHIPPED_CREAM_AMOUNT.name()
+        ));
         // ADD_INS_OPTIONS
-        List<DrinkComponent> addInsOptions = new ArrayList<>();
-        addInsOptions.add(new LineTheCup(DEFAULT_LINE_THE_CUP));
-        addInsOptions.add(new Powders());
+        List<DrinkComponentWithDefaultAsString> addInsOptions = new ArrayList<>();
+        addInsOptions.add(new DrinkComponentWithDefaultAsString(
+                new LineTheCup(DEFAULT_LINE_THE_CUP), DEFAULT_LINE_THE_CUP.name()
+        ));
+        addInsOptions.add(new DrinkComponentWithDefaultAsString(
+                new Powders(), DEFAULT_POWDERS
+        ));
         // CUP_OPTIONS
-        List<DrinkComponent> cupOptions = new ArrayList<>();
-        cupOptions.add(new CupSize(DEFAULT_CUP_SIZE));
-
-        // MILK_OPTIONS (defaults)
-        List<String> milkOptionsDefault = new ArrayList<>();
-        milkOptionsDefault.add(DEFAULT_MILK_FOAM_AMOUNT.name());
-        milkOptionsDefault.add(DEFAULT_MILK_BASE.name());
-        milkOptionsDefault.add(DEFAULT_TEMPERATURE.name());
-        // ESPRESSO_OPTIONS (defaults)
-        List<String> espressoOptionsDefault = new ArrayList<>();
-        espressoOptionsDefault.add(DEFAULT_ROAST_OPTIONS.name());
-        espressoOptionsDefault.add(Integer.toString(numberOfShotByDrinkSize));
-        espressoOptionsDefault.add(DEFAULT_PULL_OPTIONS.name());
-        espressoOptionsDefault.add(DEFAULT_PREP_OPTIONS.name());
-        // TEA_OPTIONS (defaults)
-        List<String> teaOptionsDefault = new ArrayList<>();
-        teaOptionsDefault.add(Integer.toString(DEFAULT_NUMBER_OF_CHAI_SCOOPS));
-        // SWEETENER_OPTIONS (defaults)
-        List<String> sweetenerOptionsDefault = new ArrayList<>();
-        sweetenerOptionsDefault.add(Integer.toString(DEFAULT_NUMBER_OF_SWEETENER_LIQUID_PUMPS));
-        sweetenerOptionsDefault.add(Integer.toString(DEFAULT_NUMBER_OF_SWEETENER_PACKET_PACKS));
-        // FLAVOR_OPTIONS (defaults)
-        List<String> flavorOptionsDefault = new ArrayList<>();
-        flavorOptionsDefault.add(Integer.toString(numberOfPumpByDrinkSize));
-        flavorOptionsDefault.add(Integer.toString(DEFAULT_NUMBER_OF_FLAVOR_SAUCE_PUMPS));
-        flavorOptionsDefault.add(Integer.toString(DEFAULT_NUMBER_OF_FLAVOR_SYRUP_PUMPS));
-        // TOPPING_OPTIONS (defaults)
-        List<String> toppingOptionsDefault = new ArrayList<>();
-        toppingOptionsDefault.add(DEFAULT_DRIZZLE_CARAMEL_AMOUNT.name());
-        toppingOptionsDefault.add(DEFAULT_COLD_FOAM_AMOUNT.name());
-        toppingOptionsDefault.add(DEFAULT_CINNAMON_POWDER_AMOUNT.name());
-        toppingOptionsDefault.add(DEFAULT_DRIZZLE_AMOUNT.name());
-        toppingOptionsDefault.add(DEFAULT_TOPPING_AMOUNT.name());
-        toppingOptionsDefault.add(DEFAULT_WHIPPED_CREAM_AMOUNT.name());
-        // ADD_INS_OPTIONS (defaults)
-        List<String> addInsOptionsDefault = new ArrayList<>();
-        addInsOptionsDefault.add(DEFAULT_LINE_THE_CUP.name());
-        addInsOptionsDefault.add(DEFAULT_POWDERS);
-        // CUP_OPTIONS (defaults)
-        List<String> cupOptionsDefault = new ArrayList<>();
-        cupOptionsDefault.add(DEFAULT_CUP_SIZE.name());
+        List<DrinkComponentWithDefaultAsString> cupOptions = new ArrayList<>();
+        cupOptions.add(new DrinkComponentWithDefaultAsString(
+                new CupSize(DEFAULT_CUP_SIZE), DEFAULT_CUP_SIZE.name()
+        ));
 
         drinkComponents.put(MilkOptions.TAG, milkOptions);
         drinkComponents.put(EspressoOptions.TAG, espressoOptions);
@@ -174,19 +180,12 @@ public class CaramelMacchiato extends Macchiatos {
         drinkComponents.put(ToppingOptions.TAG, toppingOptions);
         drinkComponents.put(AddInsOptions.TAG, addInsOptions);
         drinkComponents.put(CupOptions.TAG, cupOptions);
-        drinkComponentsDefaultAsString.put(MilkOptions.TAG, milkOptionsDefault);
-        drinkComponentsDefaultAsString.put(EspressoOptions.TAG, espressoOptionsDefault);
-        drinkComponentsDefaultAsString.put(TeaOptions.TAG, teaOptionsDefault);
-        drinkComponentsDefaultAsString.put(SweetenerOptions.TAG, sweetenerOptionsDefault);
-        drinkComponentsDefaultAsString.put(FlavorOptions.TAG, flavorOptionsDefault);
-        drinkComponentsDefaultAsString.put(ToppingOptions.TAG, toppingOptionsDefault);
-        drinkComponentsDefaultAsString.put(AddInsOptions.TAG, addInsOptionsDefault);
-        drinkComponentsDefaultAsString.put(CupOptions.TAG, cupOptionsDefault);
 
         for (String key : Menu.DRINK_COMPONENTS_KEYS) {
             if (drinkComponents.containsKey(key)) {
-                List<DrinkComponent> drinkComponentsGroup = drinkComponents.get(key);
-                for (DrinkComponent drinkComponent : drinkComponentsGroup) {
+                List<DrinkComponentWithDefaultAsString> drinkComponentsGroup = drinkComponents.get(key);
+                for (DrinkComponentWithDefaultAsString drinkComponentWithDefaultAsString : drinkComponentsGroup) {
+                    DrinkComponent drinkComponent = drinkComponentWithDefaultAsString.getDrinkComponent();
                     if (drinkComponent.getTypeAsString().equals(DrinkComponent.NULL_TYPE_AS_STRING)) {
                         continue;
                     } else {

@@ -16,6 +16,7 @@ import com.jackingaming.vesselforcheesemobileapp.models.components.Granular;
 import com.jackingaming.vesselforcheesemobileapp.models.components.Incrementable;
 import com.jackingaming.vesselforcheesemobileapp.models.components.MixedType;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponentWithDefaultAsString;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.mixed_type.fruits.base.Fruits;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.mixed_type.fruits.derived.FruitInclusion;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.mixed_type.fruits.derived.StrawberryPuree;
@@ -46,8 +47,7 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
         void onItemLongClicked(String[] names, String nameDefault);
     }
 
-    protected List<DrinkComponent> drinkComponents;
-    protected List<String> drinkComponentsDefaultAsString;
+    protected List<DrinkComponentWithDefaultAsString> drinkComponents;
     protected List<DrinkComponent> drinkComponentsStandardRecipe;
     protected DrinkComponentBaseAdapterListener listener;
 
@@ -58,19 +58,17 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
 
     }
 
-    public DrinkComponentBaseAdapter(List<DrinkComponent> drinkComponents,
-                                     List<String> drinkComponentsDefaultAsString,
+    public DrinkComponentBaseAdapter(List<DrinkComponentWithDefaultAsString> drinkComponents,
                                      List<DrinkComponent> drinkComponentsStandardRecipe,
                                      DrinkComponentBaseAdapterListener listener) {
         this.drinkComponents = drinkComponents;
-        this.drinkComponentsDefaultAsString = drinkComponentsDefaultAsString;
         this.drinkComponentsStandardRecipe = drinkComponentsStandardRecipe;
         this.listener = listener;
     }
 
     @Override
     public int getItemViewType(int position) {
-        DrinkComponent drinkComponent = drinkComponents.get(position);
+        DrinkComponent drinkComponent = drinkComponents.get(position).getDrinkComponent();
         if (drinkComponent instanceof Incrementable) {
             return VIEW_TYPE_INCREMENTABLE_SELECTION;
         } else if (drinkComponent instanceof Granular) {
@@ -102,16 +100,15 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        DrinkComponent drinkComponent = drinkComponents.get(position);
-        String drinkComponentDefaultAsString = drinkComponentsDefaultAsString.get(position);
+        DrinkComponentWithDefaultAsString drinkComponentWithDefaultAsString = drinkComponents.get(position);
         if (holder instanceof ViewHolderIncrementableSelection) {
-            ((ViewHolderIncrementableSelection) holder).bind(drinkComponent, drinkComponentDefaultAsString);
+            ((ViewHolderIncrementableSelection) holder).bind(drinkComponentWithDefaultAsString);
         } else if (holder instanceof ViewHolderGranularSelection) {
-            ((ViewHolderGranularSelection) holder).bind(drinkComponent, drinkComponentDefaultAsString);
+            ((ViewHolderGranularSelection) holder).bind(drinkComponentWithDefaultAsString);
         } else if (holder instanceof ViewHolderMixedTypeSelection) {
-            ((ViewHolderMixedTypeSelection) holder).bind(drinkComponent, drinkComponentDefaultAsString);
+            ((ViewHolderMixedTypeSelection) holder).bind(drinkComponentWithDefaultAsString);
         } else {
-            ((ViewHolderSimpleSelection) holder).bind(drinkComponent, drinkComponentDefaultAsString);
+            ((ViewHolderSimpleSelection) holder).bind(drinkComponentWithDefaultAsString);
         }
     }
 
@@ -128,8 +125,9 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
             return;
         }
 
-        DrinkComponent drinkComponentSelected = drinkComponents.get(indexSelected);
-        String drinkComponentDefaultAsStringSelected = drinkComponentsDefaultAsString.get(indexSelected);
+        DrinkComponentWithDefaultAsString drinkComponentWithDefaultAsString = drinkComponents.get(indexSelected);
+        DrinkComponent drinkComponentSelected = drinkComponentWithDefaultAsString.getDrinkComponent();
+        String drinkComponentDefaultAsStringSelected = drinkComponentWithDefaultAsString.getDrinkComponentDefaultAsString();
         Log.i(TAG, "drinkComponentSelected ---> class: " + drinkComponentSelected.getClassAsString() + ", type: " + drinkComponentSelected.getTypeAsString());
 
         boolean typeSelectedIsDefault =
@@ -197,11 +195,14 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
             itemView.setOnLongClickListener(this);
         }
 
-        public void bind(DrinkComponent drinkComponent, String drinkComponentDefaultAsString) {
-            updateScreen(drinkComponent, drinkComponentDefaultAsString);
+        public void bind(DrinkComponentWithDefaultAsString drinkComponentWithDefaultAsString) {
+            updateScreen(drinkComponentWithDefaultAsString);
         }
 
-        public void updateScreen(DrinkComponent drinkComponent, String drinkComponentDefaultAsString) {
+        public void updateScreen(DrinkComponentWithDefaultAsString drinkComponentWithDefaultAsString) {
+            DrinkComponent drinkComponent = drinkComponentWithDefaultAsString.getDrinkComponent();
+            String drinkComponentDefaultAsString = drinkComponentWithDefaultAsString.getDrinkComponentDefaultAsString();
+
             tvBorderTitle.setText(drinkComponent.getClassAsString());
 
             boolean init = drinkComponent.getTypeAsString().equals(DrinkComponent.NULL_TYPE_AS_STRING);
@@ -279,11 +280,14 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
             itemView.setOnLongClickListener(this);
         }
 
-        public void bind(DrinkComponent drinkComponent, String drinkComponentDefaultAsString) {
-            updateScreen(drinkComponent, drinkComponentDefaultAsString);
+        public void bind(DrinkComponentWithDefaultAsString drinkComponentWithDefaultAsString) {
+            updateScreen(drinkComponentWithDefaultAsString);
         }
 
-        public void updateScreen(DrinkComponent drinkComponent, String drinkComponentDefaultAsString) {
+        public void updateScreen(DrinkComponentWithDefaultAsString drinkComponentWithDefaultAsString) {
+            DrinkComponent drinkComponent = drinkComponentWithDefaultAsString.getDrinkComponent();
+            String drinkComponentDefaultAsString = drinkComponentWithDefaultAsString.getDrinkComponentDefaultAsString();
+
             tvBorderTitle.setText(drinkComponent.getClassAsString());
 
             String typeAsString = drinkComponent.getTypeAsString();
@@ -371,29 +375,36 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
             itemView.setOnLongClickListener(this);
         }
 
-        public void bind(DrinkComponent drinkComponent, String drinkComponentDefaultAsString) {
-            updateScreen(drinkComponent, drinkComponentDefaultAsString);
+        public void bind(DrinkComponentWithDefaultAsString drinkComponentWithDefaultAsString) {
+            updateScreen(drinkComponentWithDefaultAsString);
 
             ivMinus.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    DrinkComponent drinkComponent = drinkComponentWithDefaultAsString.getDrinkComponent();
+
                     ((Incrementable) drinkComponent).onDecrement();
 
-                    updateScreen(drinkComponent, drinkComponentDefaultAsString);
+                    updateScreen(drinkComponentWithDefaultAsString);
                 }
             });
 
             ivAdd.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    DrinkComponent drinkComponent = drinkComponentWithDefaultAsString.getDrinkComponent();
+
                     ((Incrementable) drinkComponent).onIncrement();
 
-                    updateScreen(drinkComponent, drinkComponentDefaultAsString);
+                    updateScreen(drinkComponentWithDefaultAsString);
                 }
             });
         }
 
-        private void updateScreen(DrinkComponent drinkComponent, String drinkComponentDefaultAsString) {
+        private void updateScreen(DrinkComponentWithDefaultAsString drinkComponentWithDefaultAsString) {
+            DrinkComponent drinkComponent = drinkComponentWithDefaultAsString.getDrinkComponent();
+            String drinkComponentDefaultAsString = drinkComponentWithDefaultAsString.getDrinkComponentDefaultAsString();
+
             Incrementable incrementable = (Incrementable) drinkComponent;
             int quantity = incrementable.getQuantity();
             String quantityAsString = Integer.toString(quantity);
@@ -480,11 +491,14 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
             itemView.setOnLongClickListener(this);
         }
 
-        public void bind(DrinkComponent drinkComponent, String drinkComponentDefaultAsString) {
-            updateScreen(drinkComponent, drinkComponentDefaultAsString);
+        public void bind(DrinkComponentWithDefaultAsString drinkComponentWithDefaultAsString) {
+            updateScreen(drinkComponentWithDefaultAsString);
         }
 
-        public void updateScreen(DrinkComponent drinkComponent, String drinkComponentDefaultAsString) {
+        public void updateScreen(DrinkComponentWithDefaultAsString drinkComponentWithDefaultAsString) {
+            DrinkComponent drinkComponent = drinkComponentWithDefaultAsString.getDrinkComponent();
+            String drinkComponentDefaultAsString = drinkComponentWithDefaultAsString.getDrinkComponentDefaultAsString();
+
             tvBorderTitle.setText(drinkComponent.getClassAsString());
 
             boolean init = drinkComponent.getTypeAsString().equals(DrinkComponent.NULL_TYPE_AS_STRING);
@@ -552,8 +566,9 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
             return;
         }
 
-        DrinkComponent drinkComponentSelected = drinkComponents.get(indexSelected);
-        String drinkComponentDefaultAsStringSelected = drinkComponentsDefaultAsString.get(indexSelected);
+        DrinkComponentWithDefaultAsString drinkComponentWithDefaultAsString = drinkComponents.get(indexSelected);
+        DrinkComponent drinkComponentSelected = drinkComponentWithDefaultAsString.getDrinkComponent();
+        String drinkComponentDefaultAsStringSelected = drinkComponentWithDefaultAsString.getDrinkComponentDefaultAsString();
 
         // FIND DRINK COMPONENTS THAT ARE [not inside] THE DRINK
         List<String> drinkComponentsAsStringNotInsideDrink = new ArrayList<>();
@@ -603,8 +618,9 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
             return;
         }
 
-        DrinkComponent drinkComponentSelected = drinkComponents.get(indexSelected);
-        String drinkComponentDefaultAsStringSelected = drinkComponentsDefaultAsString.get(indexSelected);
+        DrinkComponentWithDefaultAsString drinkComponentWithDefaultAsString = drinkComponents.get(indexSelected);
+        DrinkComponent drinkComponentSelected = drinkComponentWithDefaultAsString.getDrinkComponent();
+        String drinkComponentDefaultAsStringSelected = drinkComponentWithDefaultAsString.getDrinkComponentDefaultAsString();
 
         boolean init = drinkComponentSelected.getTypeAsString().equals(DrinkComponent.NULL_TYPE_AS_STRING);
         if (init) {
@@ -631,7 +647,7 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
             Log.i(TAG, "NOT drinkComponentSelected.getTypeAsString().equals(DrinkComponent.NULL_TYPE_AS_STRING)");
 
             String[] names = new String[Granular.Amount.values().length];
-            String nameDefault = drinkComponentsDefaultAsString.get(indexSelected);
+            String nameDefault = drinkComponentDefaultAsStringSelected;
             for (int i = 0; i < Granular.Amount.values().length; i++) {
                 names[i] = Granular.Amount.values()[i].name();
             }
@@ -648,8 +664,9 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
             return;
         }
 
-        DrinkComponent drinkComponentSelected = drinkComponents.get(indexSelected);
-        String drinkComponentDefaultAsStringSelected = drinkComponentsDefaultAsString.get(indexSelected);
+        DrinkComponentWithDefaultAsString drinkComponentWithDefaultAsString = drinkComponents.get(indexSelected);
+        DrinkComponent drinkComponentSelected = drinkComponentWithDefaultAsString.getDrinkComponent();
+        String drinkComponentDefaultAsStringSelected = drinkComponentWithDefaultAsString.getDrinkComponentDefaultAsString();
 
         boolean init = drinkComponentSelected.getTypeAsString().equals(DrinkComponent.NULL_TYPE_AS_STRING);
         if (init) {
@@ -691,8 +708,8 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
             return;
         }
 
-        String[] names = drinkComponents.get(indexSelected).getEnumValuesAsStringArray();
-        String nameDefault = drinkComponentsDefaultAsString.get(indexSelected);
+        String[] names = drinkComponents.get(indexSelected).getDrinkComponent().getEnumValuesAsStringArray();
+        String nameDefault = drinkComponents.get(indexSelected).getDrinkComponentDefaultAsString();
 
         listener.onItemClicked(names, nameDefault);
     }
@@ -705,7 +722,8 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
             Log.i(TAG, "enumValueAsString: " + enumValueAsString);
             boolean isInsideDrink = false;
 
-            for (DrinkComponent drinkComponent : drinkComponents) {
+            for (DrinkComponentWithDefaultAsString drinkComponentWithDefaultAsString : drinkComponents) {
+                DrinkComponent drinkComponent = drinkComponentWithDefaultAsString.getDrinkComponent();
                 Log.i(TAG, "drinkComponent CLASS: " + drinkComponent.getClassAsString() + ", TYPE: " + drinkComponent.getTypeAsString());
                 if (enumValueAsString.equals(drinkComponent.getTypeAsString())) {
                     isInsideDrink = true;

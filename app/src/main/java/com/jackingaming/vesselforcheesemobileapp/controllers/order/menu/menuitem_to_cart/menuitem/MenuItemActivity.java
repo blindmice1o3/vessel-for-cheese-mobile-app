@@ -32,6 +32,7 @@ import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem
 import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem_to_cart.revieworder.ReviewOrderActivity;
 import com.jackingaming.vesselforcheesemobileapp.models.components.Granular;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponentWithDefaultAsString;
 import com.jackingaming.vesselforcheesemobileapp.models.menu.Menu;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.MenuItem;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.Drink;
@@ -335,18 +336,16 @@ public class MenuItemActivity extends AppCompatActivity {
     }
 
     private void removeDuplicateGranularInvoker(Drink drink) {
-        Map<String, List<DrinkComponent>> drinkComponents = drink.getDrinkComponents();
-        Map<String, List<String>> drinkComponentsDefaultAsString = drink.getDrinkComponentsDefaultAsString();
+        Map<String, List<DrinkComponentWithDefaultAsString>> drinkComponents = drink.getDrinkComponents();
 
         for (int i = 0; i < Menu.DRINK_COMPONENTS_KEYS.size(); i++) {
             String key = Menu.DRINK_COMPONENTS_KEYS.get(i);
             Log.d(TAG, i + ": " + Menu.DRINK_COMPONENTS_KEYS.get(i));
             if (drinkComponents.containsKey(key)) {
-                List<DrinkComponent> drinkComponentsGroup = drinkComponents.get(key);
-                List<String> drinkComponentsDefaultAsStringGroup = drinkComponentsDefaultAsString.get(key);
+                List<DrinkComponentWithDefaultAsString> drinkComponentsGroup = drinkComponents.get(key);
 
                 for (int j = 0; j < drinkComponentsGroup.size(); j++) {
-                    DrinkComponent drinkComponent = drinkComponentsGroup.get(j);
+                    DrinkComponent drinkComponent = drinkComponentsGroup.get(j).getDrinkComponent();
                     Log.e(TAG, "drinkComponent.getTypeAsString(): " + drinkComponent.getTypeAsString());
 
                     if (drinkComponent instanceof Granular) {
@@ -355,7 +354,7 @@ public class MenuItemActivity extends AppCompatActivity {
 
                             List<Integer> indexesOfDuplicate = new ArrayList<>();
                             for (int k = 0; k < drinkComponentsGroup.size(); k++) {
-                                DrinkComponent drinkComponentInner = drinkComponentsGroup.get(k);
+                                DrinkComponent drinkComponentInner = drinkComponentsGroup.get(k).getDrinkComponent();
                                 Log.e(TAG, "drinkComponentInner.getTypeAsString(): " + drinkComponentInner.getTypeAsString());
 
                                 if (drinkComponentInner == drinkComponent) {
@@ -374,10 +373,9 @@ public class MenuItemActivity extends AppCompatActivity {
                             }
 
                             for (Integer indexOfRemoval : indexesOfDuplicate) {
-                                DrinkComponent drinkComponentRemoval = drinkComponentsGroup.remove(indexOfRemoval.intValue());
-                                String drinkComponentDefaultRemoval = drinkComponentsDefaultAsStringGroup.remove(indexOfRemoval.intValue());
-                                Log.e(TAG, "successfulRemoval: " + drinkComponentRemoval.getClassAsString() + ", " + drinkComponentRemoval.getTypeAsString());
-                                Log.e(TAG, "default value: " + drinkComponentDefaultRemoval);
+                                DrinkComponentWithDefaultAsString drinkComponentRemoval = drinkComponentsGroup.remove(indexOfRemoval.intValue());
+                                Log.e(TAG, "successfulRemoval: " + drinkComponentRemoval.getDrinkComponent().getClassAsString() + ", " + drinkComponentRemoval.getDrinkComponent().getTypeAsString());
+                                Log.e(TAG, "default value: " + drinkComponentRemoval.getDrinkComponentDefaultAsString());
                             }
                         }
                     }
@@ -422,7 +420,6 @@ public class MenuItemActivity extends AppCompatActivity {
 
                 Drink drinkReturned = (Drink) data.getSerializableExtra(CustomizeActivity.RESULT_KEY);
                 drink.setDrinkComponents(drinkReturned.getDrinkComponents());
-                drink.setDrinkComponentsDefaultAsString(drinkReturned.getDrinkComponentsDefaultAsString());
                 drink.setDrinkComponentsStandardRecipe(drinkReturned.getDrinkComponentsStandardRecipe());
 
                 adapter.init(drink);

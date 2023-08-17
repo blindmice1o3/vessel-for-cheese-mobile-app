@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.jackingaming.vesselforcheesemobileapp.models.components.Incrementable;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponentWithDefaultAsString;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.AddInsOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.blended_options.BlendedOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.blended_options.FrapChips;
@@ -32,8 +33,7 @@ public abstract class Drink extends MenuItem
     public static final String TAG = Drink.class.getSimpleName();
     public static final int QUANTITY_INDEPENDENT_OF_DRINK_SIZE = -1;
 
-    protected Map<String, List<DrinkComponent>> drinkComponents = new HashMap<>();
-    protected Map<String, List<String>> drinkComponentsDefaultAsString = new HashMap<>();
+    protected Map<String, List<DrinkComponentWithDefaultAsString>> drinkComponents = new HashMap<>();
     protected List<DrinkComponent> drinkComponentsStandardRecipe = new ArrayList<>();
     protected DrinkSize drinkSize;
     protected DrinkSize[] drinkSizesAllowed;
@@ -63,12 +63,14 @@ public abstract class Drink extends MenuItem
 //        drinkComponents.get(key).add(drinkComponent);
     }
 
-    private boolean updateQuantityByDrinkSize(DrinkComponent drinkComponent, int quantityNew, String key, int i) {
+    private boolean updateQuantityByDrinkSize(DrinkComponentWithDefaultAsString drinkComponentWithDefaultAsString, int quantityNew) {
+        DrinkComponent drinkComponent = drinkComponentWithDefaultAsString.getDrinkComponent();
+        String drinkComponentDefaultAsString = drinkComponentWithDefaultAsString.getDrinkComponentDefaultAsString();
         Incrementable incrementable = (Incrementable) drinkComponent;
         boolean changedUserCustomizations = false;
 
         int quantityInDrink = incrementable.getQuantity();
-        int quantityDefaultInDrink = Integer.parseInt(drinkComponentsDefaultAsString.get(key).get(i));
+        int quantityDefaultInDrink = Integer.parseInt(drinkComponentDefaultAsString);
         if (quantityInDrink == quantityDefaultInDrink) {
             // user left as default value
 
@@ -91,7 +93,7 @@ public abstract class Drink extends MenuItem
         }
 
         // update drinkComponent's associate default value
-        drinkComponentsDefaultAsString.get(key).set(i, Integer.toString(quantityNew));
+        drinkComponentWithDefaultAsString.setDrinkComponentDefaultAsString(Integer.toString(quantityNew));
 
         return changedUserCustomizations;
     }
@@ -107,7 +109,7 @@ public abstract class Drink extends MenuItem
             if (drinkComponents.containsKey(key)) {
                 Log.i(TAG, "key: " + key);
 
-                List<DrinkComponent> drinkComponentsGroup = drinkComponents.get(key);
+                List<DrinkComponentWithDefaultAsString> drinkComponentsGroup = drinkComponents.get(key);
                 if (key.equals(AddInsOptions.TAG)) {
                     Log.i(TAG, "key.equals(AddInsOptions.TAG)");
 
@@ -115,7 +117,8 @@ public abstract class Drink extends MenuItem
                     Log.i(TAG, "key.equals(BlendedOptions.TAG)");
 
                     for (int i = 0; i < drinkComponentsGroup.size(); i++) {
-                        DrinkComponent drinkComponent = drinkComponentsGroup.get(i);
+                        DrinkComponentWithDefaultAsString drinkComponentWithDefaultAsString = drinkComponentsGroup.get(i);
+                        DrinkComponent drinkComponent = drinkComponentWithDefaultAsString.getDrinkComponent();
 
                         if (drinkComponentsStandardRecipe.contains(drinkComponent)) {
                             Log.i(TAG, "drinkComponentsStandardRecipe.contains() drinkComponent (Class, Type): (" + drinkComponent.getClassAsString() + ", " + drinkComponent.getTypeAsString() + ")");
@@ -129,7 +132,7 @@ public abstract class Drink extends MenuItem
                                     return false;
                                 }
                                 changedUserCustomizations =
-                                        updateQuantityByDrinkSize(drinkComponent, quantityNew, key, i);
+                                        updateQuantityByDrinkSize(drinkComponentWithDefaultAsString, quantityNew);
                             } else if (drinkComponent instanceof FrapRoast) {
                                 Log.i(TAG, "drinkComponent instanceof FrapRoast");
 
@@ -139,7 +142,7 @@ public abstract class Drink extends MenuItem
                                     return false;
                                 }
                                 changedUserCustomizations =
-                                        updateQuantityByDrinkSize(drinkComponent, quantityNew, key, i);
+                                        updateQuantityByDrinkSize(drinkComponentWithDefaultAsString, quantityNew);
                             }
                         }
                     }
@@ -147,7 +150,8 @@ public abstract class Drink extends MenuItem
                     Log.i(TAG, "key.equals(EspressoOptions.TAG)");
 
                     for (int i = 0; i < drinkComponentsGroup.size(); i++) {
-                        DrinkComponent drinkComponent = drinkComponentsGroup.get(i);
+                        DrinkComponentWithDefaultAsString drinkComponentWithDefaultAsString = drinkComponentsGroup.get(i);
+                        DrinkComponent drinkComponent = drinkComponentWithDefaultAsString.getDrinkComponent();
 
                         if (drinkComponentsStandardRecipe.contains(drinkComponent)) {
                             Log.i(TAG, "drinkComponentsStandardRecipe.contains() drinkComponent (Class, Type): (" + drinkComponent.getClassAsString() + ", " + drinkComponent.getTypeAsString() + ")");
@@ -161,7 +165,7 @@ public abstract class Drink extends MenuItem
                                     return false;
                                 }
                                 changedUserCustomizations =
-                                        updateQuantityByDrinkSize(drinkComponent, quantityNew, key, i);
+                                        updateQuantityByDrinkSize(drinkComponentWithDefaultAsString, quantityNew);
                             }
                         }
                     }
@@ -169,7 +173,8 @@ public abstract class Drink extends MenuItem
                     Log.i(TAG, "key.equals(TeaOptions.TAG)");
 
                     for (int i = 0; i < drinkComponentsGroup.size(); i++) {
-                        DrinkComponent drinkComponent = drinkComponentsGroup.get(i);
+                        DrinkComponentWithDefaultAsString drinkComponentWithDefaultAsString = drinkComponentsGroup.get(i);
+                        DrinkComponent drinkComponent = drinkComponentWithDefaultAsString.getDrinkComponent();
 
                         if (drinkComponentsStandardRecipe.contains(drinkComponent)) {
                             Log.i(TAG, "drinkComponentsStandardRecipe.contains() drinkComponent (Class, Type): (" + drinkComponent.getClassAsString() + ", " + drinkComponent.getTypeAsString() + ")");
@@ -183,7 +188,7 @@ public abstract class Drink extends MenuItem
                                     return false;
                                 }
                                 changedUserCustomizations =
-                                        updateQuantityByDrinkSize(drinkComponent, quantityNew, key, i);
+                                        updateQuantityByDrinkSize(drinkComponentWithDefaultAsString, quantityNew);
                             } else if (drinkComponent instanceof MatchaPowder) {
                                 Log.i(TAG, "drinkComponent instanceof MatchaPowder");
 
@@ -193,7 +198,7 @@ public abstract class Drink extends MenuItem
                                     return false;
                                 }
                                 changedUserCustomizations =
-                                        updateQuantityByDrinkSize(drinkComponent, quantityNew, key, i);
+                                        updateQuantityByDrinkSize(drinkComponentWithDefaultAsString, quantityNew);
                             } else if (drinkComponent instanceof TeaBag) {
                                 Log.i(TAG, "drinkComponent instanceof TeaBag");
 
@@ -203,7 +208,7 @@ public abstract class Drink extends MenuItem
                                     return false;
                                 }
                                 changedUserCustomizations =
-                                        updateQuantityByDrinkSize(drinkComponent, quantityNew, key, i);
+                                        updateQuantityByDrinkSize(drinkComponentWithDefaultAsString, quantityNew);
                             }
                         }
                     }
@@ -211,7 +216,8 @@ public abstract class Drink extends MenuItem
                     Log.i(TAG, "key.equals(SweetenerOptions.TAG)");
 
                     for (int i = 0; i < drinkComponentsGroup.size(); i++) {
-                        DrinkComponent drinkComponent = drinkComponentsGroup.get(i);
+                        DrinkComponentWithDefaultAsString drinkComponentWithDefaultAsString = drinkComponentsGroup.get(i);
+                        DrinkComponent drinkComponent = drinkComponentWithDefaultAsString.getDrinkComponent();
 
                         if (drinkComponentsStandardRecipe.contains(drinkComponent)) {
                             Log.i(TAG, "drinkComponentsStandardRecipe.contains() drinkComponent (Class, Type): (" + drinkComponent.getClassAsString() + ", " + drinkComponent.getTypeAsString() + ")");
@@ -225,7 +231,7 @@ public abstract class Drink extends MenuItem
                                     return false;
                                 }
                                 changedUserCustomizations =
-                                        updateQuantityByDrinkSize(drinkComponent, quantityNew, key, i);
+                                        updateQuantityByDrinkSize(drinkComponentWithDefaultAsString, quantityNew);
                             }
                         }
                     }
@@ -233,7 +239,8 @@ public abstract class Drink extends MenuItem
                     Log.i(TAG, "key.equals(FlavorOptions.TAG)");
 
                     for (int i = 0; i < drinkComponentsGroup.size(); i++) {
-                        DrinkComponent drinkComponent = drinkComponentsGroup.get(i);
+                        DrinkComponentWithDefaultAsString drinkComponentWithDefaultAsString = drinkComponentsGroup.get(i);
+                        DrinkComponent drinkComponent = drinkComponentWithDefaultAsString.getDrinkComponent();
 
                         if (drinkComponentsStandardRecipe.contains(drinkComponent)) {
                             Log.i(TAG, "drinkComponentsStandardRecipe.contains() drinkComponent (Class, Type): (" + drinkComponent.getClassAsString() + ", " + drinkComponent.getTypeAsString() + ")");
@@ -247,7 +254,7 @@ public abstract class Drink extends MenuItem
                                     return false;
                                 }
                                 changedUserCustomizations =
-                                        updateQuantityByDrinkSize(drinkComponent, quantityNew, key, i);
+                                        updateQuantityByDrinkSize(drinkComponentWithDefaultAsString, quantityNew);
 
                             }
                         }
@@ -260,21 +267,21 @@ public abstract class Drink extends MenuItem
         return changedUserCustomizations;
     }
 
-    public Map<String, List<DrinkComponent>> getDrinkComponents() {
+    public Map<String, List<DrinkComponentWithDefaultAsString>> getDrinkComponents() {
         return drinkComponents;
     }
 
-    public void setDrinkComponents(Map<String, List<DrinkComponent>> drinkComponents) {
+    public void setDrinkComponents(Map<String, List<DrinkComponentWithDefaultAsString>> drinkComponents) {
         this.drinkComponents = drinkComponents;
     }
 
-    public Map<String, List<String>> getDrinkComponentsDefaultAsString() {
-        return drinkComponentsDefaultAsString;
-    }
-
-    public void setDrinkComponentsDefaultAsString(Map<String, List<String>> drinkComponentsDefaultAsString) {
-        this.drinkComponentsDefaultAsString = drinkComponentsDefaultAsString;
-    }
+//    public Map<String, List<String>> getDrinkComponentsDefaultAsString() {
+//        return drinkComponentsDefaultAsString;
+//    }
+//
+//    public void setDrinkComponentsDefaultAsString(Map<String, List<String>> drinkComponentsDefaultAsString) {
+//        this.drinkComponentsDefaultAsString = drinkComponentsDefaultAsString;
+//    }
 
     public List<DrinkComponent> getDrinkComponentsStandardRecipe() {
         return drinkComponentsStandardRecipe;

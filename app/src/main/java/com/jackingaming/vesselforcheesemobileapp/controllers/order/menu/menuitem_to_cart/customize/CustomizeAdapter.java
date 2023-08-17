@@ -19,6 +19,7 @@ import com.jackingaming.vesselforcheesemobileapp.R;
 import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem_to_cart.menuitem.DrinkComponentBaseAdapter;
 import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem_to_cart.menuitem.ModalBottomSheet;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponentWithDefaultAsString;
 import com.jackingaming.vesselforcheesemobileapp.models.menu.Menu;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.Drink;
 import com.jackingaming.vesselforcheesemobileapp.views.CircularBorderedImageView;
@@ -49,24 +50,22 @@ public class CustomizeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         this.activity = activity;
         this.drink = drink;
 
-        Map<String, List<DrinkComponent>> drinkComponentGroups = drink.getDrinkComponents();
-        Map<String, List<String>> drinkComponentGroupsDefaultAsString = drink.getDrinkComponentsDefaultAsString();
+        Map<String, List<DrinkComponentWithDefaultAsString>> drinkComponentGroups = drink.getDrinkComponents();
         drinkComponentsStandardRecipe = drink.getDrinkComponentsStandardRecipe();
 
         for (int i = 0; i < Menu.DRINK_COMPONENTS_KEYS.size(); i++) {
             String key = Menu.DRINK_COMPONENTS_KEYS.get(i);
             Log.d(TAG, i + ": " + Menu.DRINK_COMPONENTS_KEYS.get(i));
             if (drinkComponentGroups.containsKey(key)) {
-                List<String> typesDefault = drinkComponentGroupsDefaultAsString.get(key);
-                List<DrinkComponent> types = drinkComponentGroups.get(key);
+                List<DrinkComponentWithDefaultAsString> drinkComponents = drinkComponentGroups.get(key);
 
-                dataProcessed.add(new DrinkComponentDetails(key, typesDefault, types));
+                dataProcessed.add(new DrinkComponentDetails(key, drinkComponents));
             }
         }
         // Add DUMMY DrinkComponentDetails to the START of list
-        dataProcessed.add(0, new DrinkComponentDetails(IDENTIFIER_TOP_BANNER, null, null));
+        dataProcessed.add(0, new DrinkComponentDetails(IDENTIFIER_TOP_BANNER, null));
         // Add DUMMY DrinkComponentDetails to the END of list
-        dataProcessed.add(dataProcessed.size(), new DrinkComponentDetails(IDENTIFIER_DONE_CUSTOMIZING_BUTTON, null, null));
+        dataProcessed.add(dataProcessed.size(), new DrinkComponentDetails(IDENTIFIER_DONE_CUSTOMIZING_BUTTON, null));
     }
 
     @Override
@@ -108,13 +107,11 @@ public class CustomizeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             ((TopBannerViewHolder) holder).bind(drink);
         } else if (holder instanceof DrinkComponentGroupViewHolder) {
             String keyGroup = dataProcessed.get(position).getKeyGroup();
-            List<String> drinkComponentsDefault = dataProcessed.get(position).getDrinkComponentsDefault();
-            List<DrinkComponent> drinkComponents = dataProcessed.get(position).getDrinkComponents();
+            List<DrinkComponentWithDefaultAsString> drinkComponents = dataProcessed.get(position).getDrinkComponents();
 
             ((DrinkComponentGroupViewHolder) holder).bind(
                     keyGroup,
-                    drinkComponents,
-                    drinkComponentsDefault);
+                    drinkComponents);
         } else if (holder instanceof DoneCustomizingButtonViewHolder) {
             ((DoneCustomizingButtonViewHolder) holder).bind();
         } else {
@@ -138,12 +135,11 @@ public class CustomizeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             rvCustomize = itemView.findViewById(R.id.rv_customize);
         }
 
-        public void bind(String keyGroup, List<DrinkComponent> drinkComponents, List<String> drinkComponentsDefault) {
+        public void bind(String keyGroup, List<DrinkComponentWithDefaultAsString> drinkComponents) {
             tvClassNameDrinkComponent.setText((keyGroup));
 
             CustomizeInnerAdapter adapter = new CustomizeInnerAdapter(
                     drinkComponents,
-                    drinkComponentsDefault,
                     drinkComponentsStandardRecipe,
                     new DrinkComponentBaseAdapter.DrinkComponentBaseAdapterListener() {
                         @Override

@@ -1,17 +1,15 @@
 package com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem_to_cart.customize;
 
-import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponentWithDefaultAsString;
 
 import java.util.List;
 
 public class DrinkComponentDetails {
     private String keyGroup;
-    private List<String> drinkComponentsDefault;
-    private List<DrinkComponent> drinkComponents;
+    private List<DrinkComponentWithDefaultAsString> drinkComponents;
 
-    public DrinkComponentDetails(String keyGroup, List<String> drinkComponentsDefault, List<DrinkComponent> drinkComponents) {
+    public DrinkComponentDetails(String keyGroup, List<DrinkComponentWithDefaultAsString> drinkComponents) {
         this.keyGroup = keyGroup;
-        this.drinkComponentsDefault = drinkComponentsDefault;
         this.drinkComponents = drinkComponents;
     }
 
@@ -23,19 +21,11 @@ public class DrinkComponentDetails {
         this.keyGroup = keyGroup;
     }
 
-    public List<String> getDrinkComponentsDefault() {
-        return drinkComponentsDefault;
-    }
-
-    public void setDrinkComponentsDefault(List<String> drinkComponentsDefault) {
-        this.drinkComponentsDefault = drinkComponentsDefault;
-    }
-
-    public List<DrinkComponent> getDrinkComponents() {
+    public List<DrinkComponentWithDefaultAsString> getDrinkComponents() {
         return drinkComponents;
     }
 
-    public void setDrinkComponents(List<DrinkComponent> drinkComponents) {
+    public void setDrinkComponents(List<DrinkComponentWithDefaultAsString> drinkComponents) {
         this.drinkComponents = drinkComponents;
     }
 }
