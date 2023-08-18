@@ -5,6 +5,7 @@ import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkC
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.lemonade_options.LemonadeOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.milk_options.MilkBase;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.milk_options.MilkOptions;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.preparation_options.PreparationMethod;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.preparation_options.PreparationOptions;
 
 import java.util.ArrayList;
@@ -40,11 +41,13 @@ public class StarbucksColdBrewCoffeeWithMilk extends ColdBrews {
         ));
 
         drinkComponents.put(MilkOptions.TAG, milkOptions);
+        drinkComponentsStandardRecipe.add(milkBaseTwoPercent);
 
         // REMOVAL: LEMONADE_OPTIONS and PREPARATION_OPTIONS
+        PreparationMethod preparationMethod = (PreparationMethod) drinkComponents.get(PreparationOptions.TAG).get(0).getDrinkComponent();
+
+        drinkComponentsStandardRecipe.remove(preparationMethod);
         drinkComponents.remove(LemonadeOptions.TAG);
         drinkComponents.remove(PreparationOptions.TAG);
-
-        drinkComponentsStandardRecipe.add(milkBaseTwoPercent);
     }
 }
