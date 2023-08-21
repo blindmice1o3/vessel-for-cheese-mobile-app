@@ -5,8 +5,8 @@ import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espres
 
 public abstract class FlatWhites extends MilkBased {
     public static final String TAG = FlatWhites.class.getSimpleName();
-    public static final DrinkSize DEFAULT_DRINK_SIZE = DrinkSize.GRANDE;
 
+    public static final DrinkSize DEFAULT_DRINK_SIZE = DrinkSize.TALL;
     public static final DrinkSize[] DEFAULT_DRINK_SIZES_ALLOWED =
             {DrinkSize.SHORT, DrinkSize.TALL, DrinkSize.GRANDE, DrinkSize.VENTI_HOT};
 

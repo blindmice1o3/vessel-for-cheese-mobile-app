@@ -12,8 +12,8 @@ import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_in
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.cup_options.CupOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.cup_options.CupSize;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.espresso_options.EspressoOptions;
-import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.espresso_options.RoastOptions;
-import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.espresso_options.Shot;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.espresso_options.RoastOptionsAllowable;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.espresso_options.Shots;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.flavor_options.FlavorOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.flavor_options.Sauce;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.flavor_options.Syrup;
@@ -42,7 +42,7 @@ public abstract class HotBrewedCoffees extends BrewedCoffees {
     public static final DrinkSize[] DEFAULT_DRINK_SIZES_ALLOWED =
             {DrinkSize.SHORT, DrinkSize.TALL, DrinkSize.GRANDE, DrinkSize.VENTI_HOT};
 
-    public static final RoastOptions.Type DEFAULT_ROAST_OPTIONS = RoastOptions.Type.NONE;
+    public static final RoastOptionsAllowable.Type DEFAULT_ROAST_OPTIONS_ALLOWABLE = RoastOptionsAllowable.Type.NONE;
     public static final int DEFAULT_NUMBER_OF_ESPRESSO_SHOTS = 0;
     public static final int DEFAULT_NUMBER_OF_CHAI_SCOOPS = 0;
     public static final int DEFAULT_NUMBER_OF_SWEETENER_LIQUID_PUMPS = 0;
@@ -75,10 +75,10 @@ public abstract class HotBrewedCoffees extends BrewedCoffees {
         // ESPRESSO_OPTIONS
         List<DrinkComponentWithDefaultAsString> espressoOptions = new ArrayList<>();
         espressoOptions.add(new DrinkComponentWithDefaultAsString(
-                new RoastOptions(null), DEFAULT_ROAST_OPTIONS.name()
+                new RoastOptionsAllowable(null), DEFAULT_ROAST_OPTIONS_ALLOWABLE.name()
         ));
         espressoOptions.add(new DrinkComponentWithDefaultAsString(
-                new Shot(null, Incrementable.QUANTITY_FOR_INVOKER), Integer.toString(DEFAULT_NUMBER_OF_ESPRESSO_SHOTS)
+                new Shots(null, Incrementable.QUANTITY_FOR_INVOKER), Integer.toString(DEFAULT_NUMBER_OF_ESPRESSO_SHOTS)
         ));
         // TEA_OPTIONS
         List<DrinkComponentWithDefaultAsString> teaOptions = new ArrayList<>();

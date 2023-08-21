@@ -2,21 +2,18 @@ package com.jackingaming.vesselforcheesemobileapp.models.components.drinks.espre
 
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
 
-public class RoastOptions extends EspressoOptions {
-    public static final String DEFAULT_TEXT_INIT = "Roast Options";
+public class PullOptionsAllowable extends EspressoOptions {
+    public static final String DEFAULT_TEXT_INIT = "Ristretto or Long Shot";
 
     public enum Type {
-        BLONDE,
-        SIGNATURE,
-        DECAF,
-        DECAF_ONE_THIRD,
-        DECAF_ONE_HALF,
-        DECAF_TWO_THIRD;
+        NONE,
+        LONG,
+        RISTRETTO;
     }
 
     private Type type;
 
-    public RoastOptions(Type type) {
+    public PullOptionsAllowable(Type type) {
         this.type = type;
     }
 
@@ -45,7 +42,7 @@ public class RoastOptions extends EspressoOptions {
 
     @Override
     public String getClassAsString() {
-        return RoastOptions.class.getSimpleName();
+        return PullOptionsAllowable.class.getSimpleName();
     }
 
     @Override

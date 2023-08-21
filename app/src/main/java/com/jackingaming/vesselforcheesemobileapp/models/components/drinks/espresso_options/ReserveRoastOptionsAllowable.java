@@ -2,21 +2,17 @@ package com.jackingaming.vesselforcheesemobileapp.models.components.drinks.espre
 
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
 
-public class RoastOptions extends EspressoOptions {
-    public static final String DEFAULT_TEXT_INIT = "Roast Options";
+public class ReserveRoastOptionsAllowable extends EspressoOptions {
+    public static final String DEFAULT_TEXT_INIT = "Reserve Roast Options";
 
     public enum Type {
-        BLONDE,
-        SIGNATURE,
-        DECAF,
-        DECAF_ONE_THIRD,
-        DECAF_ONE_HALF,
-        DECAF_TWO_THIRD;
+        NONE,
+        STARBUCKS_RESERVE_DECAF_ESPRESSO_ROAST;
     }
 
     private Type type;
 
-    public RoastOptions(Type type) {
+    public ReserveRoastOptionsAllowable(Type type) {
         this.type = type;
     }
 
@@ -45,7 +41,7 @@ public class RoastOptions extends EspressoOptions {
 
     @Override
     public String getClassAsString() {
-        return RoastOptions.class.getSimpleName();
+        return ReserveRoastOptionsAllowable.class.getSimpleName();
     }
 
     @Override

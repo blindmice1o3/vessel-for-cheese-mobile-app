@@ -5,8 +5,8 @@ import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espres
 
 public abstract class Macchiatos extends MilkBased {
     public static final String TAG = Macchiatos.class.getSimpleName();
-    public static final DrinkSize DEFAULT_DRINK_SIZE = DrinkSize.GRANDE;
 
+    public static final DrinkSize DEFAULT_DRINK_SIZE = DrinkSize.GRANDE;
     public static final DrinkSize[] DEFAULT_DRINK_SIZES_ALLOWED =
             {DrinkSize.SHORT, DrinkSize.TALL, DrinkSize.GRANDE, DrinkSize.VENTI_HOT};
 

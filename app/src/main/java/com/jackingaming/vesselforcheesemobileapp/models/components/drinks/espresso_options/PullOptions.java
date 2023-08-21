@@ -6,7 +6,6 @@ public class PullOptions extends EspressoOptions {
     public static final String DEFAULT_TEXT_INIT = "Ristretto or Long Shot";
 
     public enum Type {
-        NONE,
         LONG,
         RISTRETTO;
     }

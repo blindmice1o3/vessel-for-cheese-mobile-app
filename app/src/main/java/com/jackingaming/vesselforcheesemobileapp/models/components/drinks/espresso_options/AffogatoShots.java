@@ -5,11 +5,11 @@ import android.util.Log;
 import com.jackingaming.vesselforcheesemobileapp.models.components.Incrementable;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
 
-public class Shot extends EspressoOptions
+public class AffogatoShots extends EspressoOptions
         implements Incrementable {
-    public static final String DEFAULT_TEXT_INIT = "Add Shots";
+    public static final String DEFAULT_TEXT_INIT = "Add Affogato Shot";
     public static final int DEFAULT_QUANTITY_MIN = 0;
-    public static final int DEFAULT_QUANTITY_MAX = 12;
+    public static final int DEFAULT_QUANTITY_MAX = 4;
 
     private int quantityMin = DEFAULT_QUANTITY_MIN;
     private int quantityMax = DEFAULT_QUANTITY_MAX;
@@ -61,13 +61,13 @@ public class Shot extends EspressoOptions
     }
 
     public enum Type {
-        SHOT;
+        AFFOGATO_SHOT;
     }
 
     private Type type;
     private int quantity;
 
-    public Shot(Type type, int quantity) {
+    public AffogatoShots(Type type, int quantity) {
         this.type = type;
         this.quantity = quantity;
     }
@@ -114,7 +114,7 @@ public class Shot extends EspressoOptions
 
     @Override
     public String getClassAsString() {
-        return Shot.class.getSimpleName();
+        return AffogatoShots.class.getSimpleName();
     }
 
     @Override
@@ -142,8 +142,8 @@ public class Shot extends EspressoOptions
 
     @Override
     public DrinkComponent newInstanceViaTypeAsString(String typeAsString, int quantity) {
-        Shot shot = new Shot(null, 1);
-        shot.setTypeByString(typeAsString);
-        return shot;
+        AffogatoShots affogatoShots = new AffogatoShots(null, 1);
+        affogatoShots.setTypeByString(typeAsString);
+        return affogatoShots;
     }
 }

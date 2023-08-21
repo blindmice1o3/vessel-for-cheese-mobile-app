@@ -10,7 +10,8 @@ import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.blende
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.blended_options.FrapChips;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.blended_options.FrapRoast;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.espresso_options.EspressoOptions;
-import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.espresso_options.Shot;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.espresso_options.ReserveEspressoShots;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.espresso_options.Shots;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.flavor_options.FlavorOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.flavor_options.Sauce;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.flavor_options.Syrup;
@@ -156,7 +157,7 @@ public abstract class Drink extends MenuItem
                         if (drinkComponentsStandardRecipe.contains(drinkComponent)) {
                             Log.i(TAG, "drinkComponentsStandardRecipe.contains() drinkComponent (Class, Type): (" + drinkComponent.getClassAsString() + ", " + drinkComponent.getTypeAsString() + ")");
 
-                            if (drinkComponent instanceof Shot) {
+                            if (drinkComponent instanceof Shots || drinkComponent instanceof ReserveEspressoShots) {
                                 Log.i(TAG, "drinkComponent instanceof Shot");
 
                                 int quantityNew = getNumberOfShotByDrinkSize(drinkSizeNew);

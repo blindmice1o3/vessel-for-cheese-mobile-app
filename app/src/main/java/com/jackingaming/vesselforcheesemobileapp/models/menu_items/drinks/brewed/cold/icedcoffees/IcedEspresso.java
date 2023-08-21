@@ -25,5 +25,7 @@ public class IcedEspresso extends IcedCoffees {
                 DEFAULT_PRICE_MEDIUM);
 
         drinkSizesAllowed = UNIQUE_DEFAULT_DRINK_SIZES_ALLOWED;
+
+        // TODO: RoastOptions should NOT be RoastOptionsAllowable
     }
 }

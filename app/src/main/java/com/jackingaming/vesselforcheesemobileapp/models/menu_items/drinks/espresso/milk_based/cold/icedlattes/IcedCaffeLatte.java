@@ -13,9 +13,9 @@ import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.cup_op
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.cup_options.CupSize;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.espresso_options.EspressoOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.espresso_options.PrepOptions;
-import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.espresso_options.PullOptions;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.espresso_options.PullOptionsAllowable;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.espresso_options.RoastOptions;
-import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.espresso_options.Shot;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.espresso_options.Shots;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.flavor_options.FlavorOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.flavor_options.Sauce;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.flavor_options.Syrup;
@@ -49,9 +49,9 @@ public class IcedCaffeLatte extends IcedLattes {
 
     public static final MilkBase.Type DEFAULT_MILK_BASE = MilkBase.Type.TWO_PERCENT;
     public static final RoastOptions.Type DEFAULT_ROAST_OPTIONS = RoastOptions.Type.SIGNATURE;
-    public static final Shot.Type DEFAULT_SHOT = Shot.Type.SHOT;
+    public static final Shots.Type DEFAULT_SHOT = Shots.Type.SHOT;
     public static final int DEFAULT_NUMBER_OF_ESPRESSO_SHOTS_MIN = 1;
-    public static final PullOptions.Type DEFAULT_PULL_OPTIONS = PullOptions.Type.NONE;
+    public static final PullOptionsAllowable.Type DEFAULT_PULL_OPTIONS = PullOptionsAllowable.Type.NONE;
     public static final PrepOptions.Type DEFAULT_PREP_OPTIONS = PrepOptions.Type.NONE;
     public static final int DEFAULT_NUMBER_OF_CHAI_SCOOPS = 0;
     public static final int DEFAULT_NUMBER_OF_SWEETENER_LIQUID_PUMPS = 0;
@@ -89,13 +89,13 @@ public class IcedCaffeLatte extends IcedLattes {
                 new RoastOptions(DEFAULT_ROAST_OPTIONS), DEFAULT_ROAST_OPTIONS.name()
         ));
         int numberOfShotByDrinkSize = getNumberOfShotByDrinkSize(drinkSize);
-        Shot shot = new Shot(DEFAULT_SHOT, numberOfShotByDrinkSize);
-        shot.setQuantityMin(DEFAULT_NUMBER_OF_ESPRESSO_SHOTS_MIN);
+        Shots shots = new Shots(DEFAULT_SHOT, numberOfShotByDrinkSize);
+        shots.setQuantityMin(DEFAULT_NUMBER_OF_ESPRESSO_SHOTS_MIN);
         espressoOptions.add(new DrinkComponentWithDefaultAsString(
-                shot, Integer.toString(numberOfShotByDrinkSize)
+                shots, Integer.toString(numberOfShotByDrinkSize)
         ));
         espressoOptions.add(new DrinkComponentWithDefaultAsString(
-                new PullOptions(null), DEFAULT_PULL_OPTIONS.name()
+                new PullOptionsAllowable(null), DEFAULT_PULL_OPTIONS.name()
         ));
         espressoOptions.add(new DrinkComponentWithDefaultAsString(
                 new PrepOptions(null), DEFAULT_PREP_OPTIONS.name()

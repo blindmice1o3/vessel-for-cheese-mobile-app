@@ -2,10 +2,11 @@ package com.jackingaming.vesselforcheesemobileapp.models.components.drinks.espre
 
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
 
-public class RoastOptions extends EspressoOptions {
+public class RoastOptionsAllowable extends EspressoOptions {
     public static final String DEFAULT_TEXT_INIT = "Roast Options";
 
     public enum Type {
+        NONE,
         BLONDE,
         SIGNATURE,
         DECAF,
@@ -16,7 +17,7 @@ public class RoastOptions extends EspressoOptions {
 
     private Type type;
 
-    public RoastOptions(Type type) {
+    public RoastOptionsAllowable(Type type) {
         this.type = type;
     }
 
@@ -45,7 +46,7 @@ public class RoastOptions extends EspressoOptions {
 
     @Override
     public String getClassAsString() {
-        return RoastOptions.class.getSimpleName();
+        return RoastOptionsAllowable.class.getSimpleName();
     }
 
     @Override
