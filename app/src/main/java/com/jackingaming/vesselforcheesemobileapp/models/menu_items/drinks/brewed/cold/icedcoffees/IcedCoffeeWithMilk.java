@@ -36,8 +36,8 @@ public class IcedCoffeeWithMilk extends IcedCoffees {
         milkOptions.add(new DrinkComponentWithDefaultAsString(
                 milkBaseTwoPercent, DEFAULT_MILK_BASE.name()
         ));
+        drinkComponentsStandardRecipe.add(milkBaseTwoPercent);
 
         drinkComponents.put(MilkOptions.TAG, milkOptions);
-        drinkComponentsStandardRecipe.add(milkBaseTwoPercent);
     }
 }

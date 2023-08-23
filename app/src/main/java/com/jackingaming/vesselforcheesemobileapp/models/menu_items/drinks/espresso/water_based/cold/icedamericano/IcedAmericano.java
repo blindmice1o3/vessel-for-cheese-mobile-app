@@ -11,8 +11,8 @@ import java.util.List;
 
 public abstract class IcedAmericano extends WaterBased {
     public static final String TAG = IcedAmericano.class.getSimpleName();
-    public static final DrinkSize DEFAULT_DRINK_SIZE = DrinkSize.GRANDE;
 
+    public static final DrinkSize DEFAULT_DRINK_SIZE = DrinkSize.GRANDE;
     public static final DrinkSize[] DEFAULT_DRINK_SIZES_ALLOWED =
             {DrinkSize.TALL, DrinkSize.GRANDE, DrinkSize.VENTI_ICED};
 

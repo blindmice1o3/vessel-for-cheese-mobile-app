@@ -125,8 +125,9 @@ public class WhatsIncludedAdapter extends DrinkComponentBaseAdapter {
             // Update the underlying model.
             drinkComponentSelected.setTypeByString(name);
 
-            if (drinkComponentSelected instanceof CupSize ||
-                    drinkComponentSelected instanceof LineTheCup) {
+            if (drinkComponentSelected instanceof PreparationMethod ||
+                    drinkComponentSelected instanceof LineTheCup ||
+                    drinkComponentSelected instanceof CupSize) {
                 drinkComponents.remove(indexSelected);
                 notifyItemRemoved(indexSelected);
             } else {

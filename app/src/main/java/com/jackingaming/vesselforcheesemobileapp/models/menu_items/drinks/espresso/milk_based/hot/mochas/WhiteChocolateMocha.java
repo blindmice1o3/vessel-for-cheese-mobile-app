@@ -21,13 +21,13 @@ public class WhiteChocolateMocha extends Mochas {
     public static final int DEFAULT_SUGAR_IN_GRAM = 53;
     public static final float DEFAULT_FAT_IN_GRAM = 18.0f;
 
-    public static final double DEFAULT_PRICE_SMALL = 1.95;
-    public static final double DEFAULT_PRICE_MEDIUM = 2.45;
-    public static final double DEFAULT_PRICE_LARGE = 2.70;
-
     public static final Sauce.Type DEFAULT_SAUCE_WHITE_CHOCOLATE_MOCHA = Sauce.Type.WHITE_CHOCOLATE_MOCHA;
     public static final WhippedCream.Type DEFAULT_WHIPPED_CREAM = WhippedCream.Type.WHIPPED_CREAM;
     public static final Granular.Amount DEFAULT_WHIPPED_CREAM_AMOUNT = Granular.Amount.MEDIUM;
+
+    public static final double DEFAULT_PRICE_SMALL = 1.95;
+    public static final double DEFAULT_PRICE_MEDIUM = 2.45;
+    public static final double DEFAULT_PRICE_LARGE = 2.70;
 
     public WhiteChocolateMocha() {
         super(DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,

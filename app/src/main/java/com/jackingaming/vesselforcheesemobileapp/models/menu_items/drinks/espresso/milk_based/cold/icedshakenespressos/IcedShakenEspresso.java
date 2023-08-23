@@ -1,6 +1,11 @@
 package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.cold.icedshakenespressos;
 
 import com.jackingaming.vesselforcheesemobileapp.R;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponentWithDefaultAsString;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.sweetener_options.Liquid;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.sweetener_options.SweetenerOptions;
+
+import java.util.List;
 
 public class IcedShakenEspresso extends IcedShakenEspressos {
     public static final String TAG = IcedShakenEspresso.class.getSimpleName();
@@ -12,6 +17,8 @@ public class IcedShakenEspresso extends IcedShakenEspressos {
     public static final int DEFAULT_SUGAR_IN_GRAM = 14;
     public static final float DEFAULT_FAT_IN_GRAM = 2.0f;
 
+    public static final Liquid.Type DEFAULT_LIQUID_CLASSIC = Liquid.Type.CLASSIC;
+
     public static final double DEFAULT_PRICE_SMALL = 2.95;
     public static final double DEFAULT_PRICE_MEDIUM = 3.45;
     public static final double DEFAULT_PRICE_LARGE = 3.70;
@@ -20,5 +27,16 @@ public class IcedShakenEspresso extends IcedShakenEspressos {
         super(DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
                 DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
                 DEFAULT_PRICE_MEDIUM);
+
+        // SWEETENER_OPTIONS (add into EXISTING DrinkComponent group)
+        int numberOfPumpByDrinkSize = getNumberOfPumpByDrinkSize(drinkSize);
+        Liquid liquidClassic = new Liquid(DEFAULT_LIQUID_CLASSIC, numberOfPumpByDrinkSize);
+
+        List<DrinkComponentWithDefaultAsString> sweetenerOptions = drinkComponents.get(SweetenerOptions.TAG);
+        sweetenerOptions.add(0, new DrinkComponentWithDefaultAsString(
+                liquidClassic, Integer.toString(numberOfPumpByDrinkSize)
+        ));
+
+        drinkComponentsStandardRecipe.add(liquidClassic);
     }
 }

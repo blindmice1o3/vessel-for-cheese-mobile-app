@@ -34,8 +34,11 @@ import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.Drink;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.DrinkSize;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.cold.icedflatwhites.IcedFlatWhites;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.cold.icedlattes.IcedLattes;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.cold.icedlattes.StarbucksReserveIcedHazelnutBiancoLatte;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.cold.icedlattes.StarbucksReserveIcedLatte;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.cold.icedmacchiatos.IcedMacchiatos;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.cold.icedmochas.IcedMochas;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.cold.icedmochas.StarbucksReserveIcedDarkChocolateMocha;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.cold.icedshakenespressos.IcedShakenEspressos;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.hot.cappuccinos.Cappuccinos;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.hot.flatwhites.FlatWhites;
@@ -177,8 +180,9 @@ public abstract class Espresso extends Drink {
         Log.i(TAG, "getNumberOfShotByDrinkSize(DrinkSize)");
 
         int numberOfShotNew = QUANTITY_INDEPENDENT_OF_DRINK_SIZE;
-        if (this instanceof StarbucksReserveLatte || this instanceof StarbucksReserveDarkChocolateMocha) {
-            Log.i(TAG, "this instanceof StarbucksReserveLatte || this instanceof StarbucksReserveDarkChocolateMocha");
+        if (this instanceof StarbucksReserveLatte || this instanceof StarbucksReserveIcedLatte ||
+                this instanceof StarbucksReserveDarkChocolateMocha || this instanceof StarbucksReserveIcedDarkChocolateMocha) {
+            Log.i(TAG, "this instanceof StarbucksReserveLatte || this instanceof StarbucksReserveIcedLatte || this instanceof StarbucksReserveDarkChocolateMocha || this instanceof StarbucksReserveIcedDarkChocolateMocha");
             switch (drinkSizeNew) {
                 case SHORT:
                 case TALL:
@@ -186,16 +190,16 @@ public abstract class Espresso extends Drink {
                     numberOfShotNew = 2;
                     break;
                 case VENTI_HOT:
+                case VENTI_ICED:
                     numberOfShotNew = 4;
                     break;
-                case VENTI_ICED:
                 case TRENTA:
                 case UNIQUE:
                 case UNDEFINED:
                     break;
             }
-        } else if (this instanceof StarbucksReserveHazelnutBiancoLatte) {
-            Log.i(TAG, "this instanceof StarbucksReserveLatte");
+        } else if (this instanceof StarbucksReserveHazelnutBiancoLatte || this instanceof StarbucksReserveIcedHazelnutBiancoLatte) {
+            Log.i(TAG, "this instanceof StarbucksReserveLatte || this instanceof StarbucksReserveIcedHazelnutBiancoLatte");
             switch (drinkSizeNew) {
                 case SHORT:
                 case TALL:
@@ -203,9 +207,9 @@ public abstract class Espresso extends Drink {
                     numberOfShotNew = 2;
                     break;
                 case VENTI_HOT:
+                case VENTI_ICED:
                     numberOfShotNew = 3;
                     break;
-                case VENTI_ICED:
                 case TRENTA:
                 case UNIQUE:
                 case UNDEFINED:
@@ -290,7 +294,8 @@ public abstract class Espresso extends Drink {
         if (this instanceof Lattes || this instanceof IcedLattes ||
                 this instanceof Mochas || this instanceof IcedMochas ||
                 this instanceof Americanos || this instanceof IcedAmericano ||
-                this instanceof FlatWhites || this instanceof IcedShakenEspressos ||
+                this instanceof FlatWhites || this instanceof IcedFlatWhites ||
+                this instanceof IcedShakenEspressos ||
                 this instanceof Cappuccinos) {
             Log.i(TAG, "this instanceof Lattes || this instanceof IcedLattes || this instanceof Mochas || this instanceof IcedMochas || this instanceof Americanos || this instanceof IcedAmericano || this instanceof FlatWhites || this instanceof IcedShakenEspressos || this instanceof Cappuccinos");
             switch (drinkSizeNew) {

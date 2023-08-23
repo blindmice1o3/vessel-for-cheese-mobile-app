@@ -5,11 +5,11 @@ import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkC
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.milk_options.MilkFoam;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.milk_options.MilkOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.DrinkSize;
-import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.MilkBased;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.HotMilkBased;
 
 import java.util.List;
 
-public abstract class Lattes extends MilkBased {
+public abstract class Lattes extends HotMilkBased {
     public static final String TAG = Lattes.class.getSimpleName();
 
     public static final DrinkSize DEFAULT_DRINK_SIZE = DrinkSize.GRANDE;

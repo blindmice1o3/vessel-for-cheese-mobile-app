@@ -50,7 +50,6 @@ public class FlatWhite extends FlatWhites {
         drinkComponentsStandardRecipe.remove(pullOptionsAllowable);
         drinkComponents.get(EspressoOptions.TAG).remove(2);
 
-        // TODO: remove PullOptionsAllowable and replace with PullOptions
         // ESPRESSO_OPTIONS: PullOptions (add into EXISTING DrinkComponent group)
         PullOptions pullOptions = new PullOptions(DEFAULT_PULL_OPTIONS_RISTRETTO);
         List<DrinkComponentWithDefaultAsString> espressoOptions = drinkComponents.get(EspressoOptions.TAG);

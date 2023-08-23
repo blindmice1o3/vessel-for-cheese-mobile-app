@@ -1,12 +1,13 @@
 package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.cold.icedmacchiatos;
 
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.DrinkSize;
-import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.MilkBased;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.HotMilkBased;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.cold.ColdMilkBased;
 
-public abstract class IcedMacchiatos extends MilkBased {
+public abstract class IcedMacchiatos extends ColdMilkBased {
     public static final String TAG = IcedMacchiatos.class.getSimpleName();
-    public static final DrinkSize DEFAULT_DRINK_SIZE = DrinkSize.GRANDE;
 
+    public static final DrinkSize DEFAULT_DRINK_SIZE = DrinkSize.GRANDE;
     public static final DrinkSize[] DEFAULT_DRINK_SIZES_ALLOWED =
             {DrinkSize.TALL, DrinkSize.GRANDE, DrinkSize.VENTI_ICED};
 

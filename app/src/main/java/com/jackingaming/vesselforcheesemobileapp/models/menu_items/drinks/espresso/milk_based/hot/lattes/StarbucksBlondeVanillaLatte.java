@@ -42,13 +42,13 @@ public class StarbucksBlondeVanillaLatte extends Lattes {
         flavorOptions.add(0, new DrinkComponentWithDefaultAsString(
                 syrupVanilla, Integer.toString(numberOfPumpByDrinkSize)
         ));
+        drinkComponentsStandardRecipe.add(syrupVanilla);
+
         // ESPRESSO_OPTIONS (update EXISTING DrinkComponent)
         List<DrinkComponentWithDefaultAsString> espressoOptions = drinkComponents.get(EspressoOptions.TAG);
         RoastOptions roastOptionsBlonde = (RoastOptions) espressoOptions.get(0).getDrinkComponent();
         roastOptionsBlonde.setType(DEFAULT_ROAST_OPTIONS_BLONDE);
         espressoOptions.get(0).setDrinkComponentDefaultAsString(DEFAULT_ROAST_OPTIONS_BLONDE.name());
-
-        drinkComponentsStandardRecipe.add(syrupVanilla);
 
         // REMOVAL: CUP_OPTIONS
         CupSize cupSize = null;
