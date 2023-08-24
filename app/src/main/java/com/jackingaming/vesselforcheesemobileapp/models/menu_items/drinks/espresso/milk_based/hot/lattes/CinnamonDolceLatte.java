@@ -22,7 +22,7 @@ public class CinnamonDolceLatte extends Lattes {
     public static final int DEFAULT_SUGAR_IN_GRAM = 40;
     public static final float DEFAULT_FAT_IN_GRAM = 14.0f;
 
-    public static final Syrup.Type DEFAULT_SYRUP_CINNAMON_DOLCE = Syrup.Type.CINNAMON_DOLCE;
+    public static final Syrup.Type DEFAULT_SYRUP_CINNAMON_DOLCE = Syrup.Type.CINNAMON_DOLCE_SYRUP;
     public static final Topping.Type DEFAULT_TOPPING_CINNAMON_DOLCE_SPRINKLES = Topping.Type.CINNAMON_DOLCE_SPRINKLES;
     public static final Granular.Amount DEFAULT_TOPPING_CINNAMON_DOLCE_SPRINKLES_AMOUNT = Granular.Amount.MEDIUM;
     public static final WhippedCream.Type DEFAULT_WHIPPED_CREAM = WhippedCream.Type.WHIPPED_CREAM;

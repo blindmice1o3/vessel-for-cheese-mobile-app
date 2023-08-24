@@ -8,6 +8,7 @@ import com.jackingaming.vesselforcheesemobileapp.models.components.MixedType;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponentWithDefaultAsString;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.LineTheCup;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.blended_options.BlendedPrep;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.cup_options.CupSize;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.preparation_options.PreparationMethod;
 import com.jackingaming.vesselforcheesemobileapp.models.menu.Menu;
@@ -48,6 +49,7 @@ public class WhatsIncludedAdapter extends DrinkComponentBaseAdapter {
                         Log.e(TAG, "drinkComponentsStandardRecipe.contains(drinkComponent)");
 
                         if ((drinkComponent instanceof PreparationMethod && drinkComponent.getTypeAsString().equals(drinkComponentDefault)) ||
+                                (drinkComponent instanceof BlendedPrep && drinkComponent.getTypeAsString().equals(drinkComponentDefault)) ||
                                 (drinkComponent instanceof LineTheCup && drinkComponent.getTypeAsString().equals(drinkComponentDefault)) ||
                                 (drinkComponent instanceof CupSize && drinkComponent.getTypeAsString().equals(drinkComponentDefault))) {
                             Log.i(TAG, "skipping - (drinkComponent instanceof PreparationMethod && drinkComponent.getTypeAsString().equals(drinkComponentDefault)) || (drinkComponent instanceof LineTheCup && drinkComponent.getTypeAsString().equals(drinkComponentDefault)) || (drinkComponent instanceof CupSize && drinkComponent.getTypeAsString().equals(drinkComponentDefault)) - drinkComponent.getClassAsStrings(): " + drinkComponent.getClassAsString());

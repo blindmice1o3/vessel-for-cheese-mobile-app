@@ -18,8 +18,9 @@ public class Drizzle extends ToppingOptions
     }
 
     public enum Type {
-        CARAMEL,
-        MOCHA;
+        CARAMEL_DRIZZLE,
+        MOCHA_DRIZZLE,
+        SPICED_APPLE_DRIZZLE;
     }
 
     private Type type;

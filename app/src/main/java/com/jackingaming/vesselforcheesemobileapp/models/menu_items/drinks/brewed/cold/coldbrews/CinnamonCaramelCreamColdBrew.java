@@ -4,7 +4,7 @@ import com.jackingaming.vesselforcheesemobileapp.R;
 import com.jackingaming.vesselforcheesemobileapp.models.components.Granular;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponentWithDefaultAsString;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.flavor_options.FlavorOptions;
-import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.flavor_options.Syrup;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.flavor_options.SyrupSeasonal;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.topping_options.ColdFoam;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.topping_options.Topping;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.topping_options.ToppingOptions;
@@ -21,8 +21,8 @@ public class CinnamonCaramelCreamColdBrew extends ColdBrews {
     public static final int DEFAULT_SUGAR_IN_GRAM = 32;
     public static final float DEFAULT_FAT_IN_GRAM = 12.0f;
 
-    public static final Syrup.Type DEFAULT_SYRUP_CINNAMON_CARAMEL = Syrup.Type.CINNAMON_CARAMEL;
-    public static final ColdFoam.Type DEFAULT_COLD_FOAM_CINNAMON_SWEET_CREAM = ColdFoam.Type.CINNAMON_SWEET_CREAM;
+    public static final SyrupSeasonal.Type DEFAULT_SYRUP_SEASONAL_CINNAMON_CARAMEL = SyrupSeasonal.Type.CINNAMON_CARAMEL_SYRUP;
+    public static final ColdFoam.Type DEFAULT_COLD_FOAM_CINNAMON_SWEET_CREAM = ColdFoam.Type.CINNAMON_SWEET_CREAM_COLD_FOAM;
     public static final Granular.Amount DEFAULT_COLD_FOAM_CINNAMON_SWEET_CREAM_AMOUNT = Granular.Amount.MEDIUM;
     public static final Topping.Type DEFAULT_TOPPING_CINNAMON_DOLCE_SPRINKLES = Topping.Type.CINNAMON_DOLCE_SPRINKLES;
     public static final Granular.Amount DEFAULT_TOPPING_CINNAMON_DOLCE_SPRINKLES_AMOUNT = Granular.Amount.MEDIUM;
@@ -38,12 +38,15 @@ public class CinnamonCaramelCreamColdBrew extends ColdBrews {
 
         // FLAVOR_OPTIONS (add into EXISTING DrinkComponent group)
         int numberOfPumpByDrinkSize = getNumberOfPumpByDrinkSize(drinkSize);
-        Syrup syrupCinnamonCaramel = new Syrup(DEFAULT_SYRUP_CINNAMON_CARAMEL, numberOfPumpByDrinkSize);
+        SyrupSeasonal syrupSeasonalCinnamonCaramel = new SyrupSeasonal(DEFAULT_SYRUP_SEASONAL_CINNAMON_CARAMEL, numberOfPumpByDrinkSize);
 
         List<DrinkComponentWithDefaultAsString> flavorOptions = drinkComponents.get(FlavorOptions.TAG);
         flavorOptions.add(0, new DrinkComponentWithDefaultAsString(
-                syrupCinnamonCaramel, Integer.toString(numberOfPumpByDrinkSize)
+                syrupSeasonalCinnamonCaramel, Integer.toString(numberOfPumpByDrinkSize)
         ));
+
+        drinkComponentsStandardRecipe.add(syrupSeasonalCinnamonCaramel);
+
         // TOPPING_OPTIONS (add into EXISTING DrinkComponent group)
         ColdFoam coldFoamCinnamonSweetCream = new ColdFoam(DEFAULT_COLD_FOAM_CINNAMON_SWEET_CREAM, DEFAULT_COLD_FOAM_CINNAMON_SWEET_CREAM_AMOUNT);
         Topping toppingCinnamonDolceSprinkles = new Topping(DEFAULT_TOPPING_CINNAMON_DOLCE_SPRINKLES, DEFAULT_TOPPING_CINNAMON_DOLCE_SPRINKLES_AMOUNT);
@@ -56,7 +59,6 @@ public class CinnamonCaramelCreamColdBrew extends ColdBrews {
                 toppingCinnamonDolceSprinkles, DEFAULT_TOPPING_CINNAMON_DOLCE_SPRINKLES_AMOUNT.name()
         ));
 
-        drinkComponentsStandardRecipe.add(syrupCinnamonCaramel);
         drinkComponentsStandardRecipe.add(coldFoamCinnamonSweetCream);
         drinkComponentsStandardRecipe.add(toppingCinnamonDolceSprinkles);
     }

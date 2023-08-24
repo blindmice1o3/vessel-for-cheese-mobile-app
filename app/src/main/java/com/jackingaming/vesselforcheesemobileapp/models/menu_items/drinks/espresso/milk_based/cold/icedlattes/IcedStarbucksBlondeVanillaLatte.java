@@ -23,7 +23,7 @@ public class IcedStarbucksBlondeVanillaLatte extends IcedLattes {
     public static final float DEFAULT_FAT_IN_GRAM = 4.0f;
 
     public static final RoastOptions.Type DEFAULT_ROAST_OPTIONS_BLONDE = RoastOptions.Type.BLONDE;
-    public static final Syrup.Type DEFAULT_SYRUP_VANILLA = Syrup.Type.VANILLA;
+    public static final Syrup.Type DEFAULT_SYRUP_VANILLA = Syrup.Type.VANILLA_SYRUP;
 
     public static final double DEFAULT_PRICE_SMALL = 2.95;
     public static final double DEFAULT_PRICE_MEDIUM = 3.45;

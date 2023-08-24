@@ -18,11 +18,10 @@ public class Topping extends ToppingOptions
     }
 
     public enum Type {
-        CARAMEL_CRUNCH,
-        CHOCOLATE_MINT_COOKIE_SPRINKLES,
+        CARAMEL_CRUNCH_TOPPING,
         CINNAMON_DOLCE_SPRINKLES,
-        COOKIE_CRUMBLE,
-        TOASTED_COOKIE_CRUMBLE;
+        COOKIE_CRUMBLE_TOPPING,
+        PUMPKIN_SPICE_TOPPING;
     }
 
     private Type type;

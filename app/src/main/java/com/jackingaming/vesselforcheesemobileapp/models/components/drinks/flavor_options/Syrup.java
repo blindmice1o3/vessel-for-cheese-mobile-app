@@ -9,7 +9,7 @@ public class Syrup extends FlavorOptions
         implements Incrementable {
     public static final String DEFAULT_TEXT_INIT = "Add Syrups";
     public static final int DEFAULT_QUANTITY_MIN = 0;
-    public static final int DEFAULT_QUANTITY_MAX = Integer.MAX_VALUE;
+    public static final int DEFAULT_QUANTITY_MAX = 12;
 
     private int quantityMin = DEFAULT_QUANTITY_MIN;
     private int quantityMax = DEFAULT_QUANTITY_MAX;
@@ -61,17 +61,16 @@ public class Syrup extends FlavorOptions
     }
 
     public enum Type {
-        BROWN_SUGAR,
-        CARAMEL,
-        CINNAMON_CARAMEL,
-        CINNAMON_DOLCE,
-        HAZELNUT,
-        MACADAMIA,
-        PEPPERMINT,
-        SUGAR_FREE_VANILLA,
-        TOASTED_VANILLA,
-        TOFFEE_NUT,
-        VANILLA;
+        APPLE_BROWN_SUGAR,
+        BROWN_SUGAR_SYRUP,
+        CARAMEL_SYRUP,
+        CINNAMON_DOLCE_SYRUP,
+        HAZELNUT_SYRUP,
+        PEPPERMINT_SYRUP,
+        SUGAR_FREE_VANILLA_SYRUP,
+        TOASTED_VANILLA_SYRUP,
+        TOFFEE_NUT_SYRUP,
+        VANILLA_SYRUP;
     }
 
     private Type type;

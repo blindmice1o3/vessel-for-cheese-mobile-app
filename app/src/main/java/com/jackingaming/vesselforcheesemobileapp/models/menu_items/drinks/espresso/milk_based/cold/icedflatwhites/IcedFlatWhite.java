@@ -57,6 +57,7 @@ public class IcedFlatWhite extends IcedFlatWhites {
 
         // ESPRESSO_OPTIONS: PullOptions (add into EXISTING DrinkComponent group)
         PullOptions pullOptions = new PullOptions(DEFAULT_PULL_OPTIONS_RISTRETTO);
+
         List<DrinkComponentWithDefaultAsString> espressoOptions = drinkComponents.get(EspressoOptions.TAG);
         espressoOptions.add(1, new DrinkComponentWithDefaultAsString(
                 pullOptions, DEFAULT_PULL_OPTIONS_RISTRETTO.name()

@@ -20,8 +20,8 @@ public class ChocolateCreamColdBrew extends ColdBrews {
     public static final int DEFAULT_SUGAR_IN_GRAM = 28;
     public static final float DEFAULT_FAT_IN_GRAM = 14.0f;
 
-    public static final Syrup.Type DEFAULT_SYRUP_VANILLA = Syrup.Type.VANILLA;
-    public static final ColdFoam.Type DEFAULT_COLD_FOAM_CHOCOLATE_CREAM = ColdFoam.Type.CHOCOLATE_CREAM;
+    public static final Syrup.Type DEFAULT_SYRUP_VANILLA = Syrup.Type.VANILLA_SYRUP;
+    public static final ColdFoam.Type DEFAULT_COLD_FOAM_CHOCOLATE_CREAM = ColdFoam.Type.CHOCOLATE_CREAM_COLD_FOAM;
     public static final Granular.Amount DEFAULT_COLD_FOAM_CHOCOLATE_CREAM_AMOUNT = Granular.Amount.MEDIUM;
 
     public static final double DEFAULT_PRICE_SMALL = 2.95;

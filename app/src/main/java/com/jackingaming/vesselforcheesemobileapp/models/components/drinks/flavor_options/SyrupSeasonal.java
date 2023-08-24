@@ -5,9 +5,9 @@ import android.util.Log;
 import com.jackingaming.vesselforcheesemobileapp.models.components.Incrementable;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
 
-public class Sauce extends FlavorOptions
+public class SyrupSeasonal extends FlavorOptions
         implements Incrementable {
-    public static final String DEFAULT_TEXT_INIT = "Add Sauces";
+    public static final String DEFAULT_TEXT_INIT = "Add Syrups";
     public static final int DEFAULT_QUANTITY_MIN = 0;
     public static final int DEFAULT_QUANTITY_MAX = 12;
 
@@ -61,16 +61,14 @@ public class Sauce extends FlavorOptions
     }
 
     public enum Type {
-        MOCHA_SAUCE,
-        NEW_DARK_CARAMEL_SAUCE,
-        PUMPKIN_SAUCE,
-        WHITE_CHOCOLATE_MOCHA_SAUCE;
+        CINNAMON_CARAMEL_SYRUP,
+        MACADAMIA_SYRUP;
     }
 
     private Type type;
     private int quantity;
 
-    public Sauce(Type type, int quantity) {
+    public SyrupSeasonal(Type type, int quantity) {
         this.type = type;
         this.quantity = quantity;
     }
@@ -117,7 +115,7 @@ public class Sauce extends FlavorOptions
 
     @Override
     public String getClassAsString() {
-        return Sauce.class.getSimpleName();
+        return SyrupSeasonal.class.getSimpleName();
     }
 
     @Override
@@ -145,8 +143,8 @@ public class Sauce extends FlavorOptions
 
     @Override
     public DrinkComponent newInstanceViaTypeAsString(String typeAsString, int quantity) {
-        Sauce sauce = new Sauce(null, quantity);
-        sauce.setTypeByString(typeAsString);
-        return sauce;
+        SyrupSeasonal syrup = new SyrupSeasonal(null, quantity);
+        syrup.setTypeByString(typeAsString);
+        return syrup;
     }
 }

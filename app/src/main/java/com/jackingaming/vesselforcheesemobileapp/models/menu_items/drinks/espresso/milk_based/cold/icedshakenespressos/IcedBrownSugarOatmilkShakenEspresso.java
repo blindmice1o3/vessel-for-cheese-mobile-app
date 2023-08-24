@@ -30,7 +30,7 @@ public class IcedBrownSugarOatmilkShakenEspresso extends IcedShakenEspressos {
     public static final PreparationMethod.Type DEFAULT_PREPARATION_METHOD = PreparationMethod.Type.NONE;
     public static final MilkBase.Type DEFAULT_MILK_BASE_OATMILK = MilkBase.Type.OATMILK;
     public static final RoastOptionsAllowable.Type DEFAULT_ROAST_OPTIONS_ALLOWABLE = RoastOptionsAllowable.Type.NONE;
-    public static final Syrup.Type DEFAULT_SYRUP_BROWN_SUGAR = Syrup.Type.BROWN_SUGAR;
+    public static final Syrup.Type DEFAULT_SYRUP_BROWN_SUGAR = Syrup.Type.BROWN_SUGAR_SYRUP;
     public static final CinnamonPowder.Type DEFAULT_CINNAMON_POWDER = CinnamonPowder.Type.CINNAMON_POWDER;
     public static final Granular.Amount DEFAULT_CINNAMON_POWDER_AMOUNT = Granular.Amount.MEDIUM;
 

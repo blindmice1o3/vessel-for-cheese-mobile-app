@@ -20,8 +20,8 @@ public class IcedCaramelMacchiato extends IcedMacchiatos {
     public static final int DEFAULT_SUGAR_IN_GRAM = 34;
     public static final float DEFAULT_FAT_IN_GRAM = 7.0f;
 
-    public static final Syrup.Type DEFAULT_SYRUP_VANILLA = Syrup.Type.VANILLA;
-    public static final Drizzle.Type DEFAULT_DRIZZLE_CARAMEL = Drizzle.Type.CARAMEL;
+    public static final Syrup.Type DEFAULT_SYRUP_VANILLA = Syrup.Type.VANILLA_SYRUP;
+    public static final Drizzle.Type DEFAULT_DRIZZLE_CARAMEL = Drizzle.Type.CARAMEL_DRIZZLE;
     public static final Granular.Amount DEFAULT_DRIZZLE_CARAMEL_AMOUNT = Granular.Amount.MEDIUM;
 
     public static final double DEFAULT_PRICE_SMALL = 2.95;
@@ -41,6 +41,8 @@ public class IcedCaramelMacchiato extends IcedMacchiatos {
         flavorOptions.add(0, new DrinkComponentWithDefaultAsString(
                 syrupVanilla, Integer.toString(numberOfPumpByDrinkSize)
         ));
+        drinkComponentsStandardRecipe.add(syrupVanilla);
+
         // TOPPING_OPTIONS (add into EXISTING DrinkComponent group)
         Drizzle drizzleCaramel = new Drizzle(DEFAULT_DRIZZLE_CARAMEL, DEFAULT_DRIZZLE_CARAMEL_AMOUNT);
 
@@ -48,8 +50,6 @@ public class IcedCaramelMacchiato extends IcedMacchiatos {
         toppingOptions.add(0, new DrinkComponentWithDefaultAsString(
                 drizzleCaramel, DEFAULT_DRIZZLE_CARAMEL_AMOUNT.name()
         ));
-
-        drinkComponentsStandardRecipe.add(syrupVanilla);
         drinkComponentsStandardRecipe.add(drizzleCaramel);
     }
 }

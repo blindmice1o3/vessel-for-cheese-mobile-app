@@ -20,7 +20,7 @@ public class VanillaSweetCreamColdBrew extends ColdBrews {
     public static final int DEFAULT_SUGAR_IN_GRAM = 14;
     public static final float DEFAULT_FAT_IN_GRAM = 5.0f;
 
-    public static final Syrup.Type DEFAULT_SYRUP_VANILLA = Syrup.Type.VANILLA;
+    public static final Syrup.Type DEFAULT_SYRUP_VANILLA = Syrup.Type.VANILLA_SYRUP;
     public static final MilkCreamer.Type DEFAULT_MILK_CREAMER_VANILLA_SWEET_CREAM = MilkCreamer.Type.VANILLA_SWEET_CREAM;
     public static final Granular.Amount DEFAULT_MILK_CREAMER_VANILLA_SWEET_CREAM_AMOUNT = Granular.Amount.MEDIUM;
 

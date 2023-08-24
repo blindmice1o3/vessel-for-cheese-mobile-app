@@ -1,6 +1,11 @@
 package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.blendedbeverages.coffeebased;
 
 import com.jackingaming.vesselforcheesemobileapp.R;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponentWithDefaultAsString;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.espresso_options.EspressoOptions;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.espresso_options.Shots;
+
+import java.util.List;
 
 public class EspressoFrappuccinoBlendedBeveragesBeverage extends CoffeeBased {
     public static final String TAG = EspressoFrappuccinoBlendedBeveragesBeverage.class.getSimpleName();
@@ -12,6 +17,9 @@ public class EspressoFrappuccinoBlendedBeveragesBeverage extends CoffeeBased {
     public static final int DEFAULT_SUGAR_IN_GRAM = 42;
     public static final float DEFAULT_FAT_IN_GRAM = 2.5f;
 
+    public static final Shots.Type DEFAULT_SHOT = Shots.Type.SHOT;
+    public static final int DEFAULT_NUMBER_OF_ESPRESSO_SHOTS_MIN = 1;
+
     public static final double DEFAULT_PRICE_SMALL = 2.95;
     public static final double DEFAULT_PRICE_MEDIUM = 3.45;
     public static final double DEFAULT_PRICE_LARGE = 3.70;
@@ -20,5 +28,20 @@ public class EspressoFrappuccinoBlendedBeveragesBeverage extends CoffeeBased {
         super(DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
                 DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
                 DEFAULT_PRICE_MEDIUM);
+
+        // REMOVAL: ESPRESSO_OPTIONS: Shots
+        drinkComponents.get(EspressoOptions.TAG).remove(2);
+
+        // ESPRESSO_OPTIONS (add into EXISTING DrinkComponent group)
+        int numberOfShotByDrinkSize = getNumberOfShotByDrinkSize(drinkSize);
+        Shots shots = new Shots(DEFAULT_SHOT, numberOfShotByDrinkSize);
+        shots.setQuantityMin(DEFAULT_NUMBER_OF_ESPRESSO_SHOTS_MIN);
+
+        List<DrinkComponentWithDefaultAsString> espressoOptions = drinkComponents.get(EspressoOptions.TAG);
+        espressoOptions.add(0, new DrinkComponentWithDefaultAsString(
+                shots, Integer.toString(numberOfShotByDrinkSize)
+        ));
+
+        drinkComponentsStandardRecipe.add(shots);
     }
 }

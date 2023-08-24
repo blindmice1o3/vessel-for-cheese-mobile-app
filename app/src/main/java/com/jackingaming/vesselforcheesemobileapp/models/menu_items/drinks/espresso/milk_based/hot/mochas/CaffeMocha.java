@@ -21,7 +21,7 @@ public class CaffeMocha extends Mochas {
     public static final int DEFAULT_SUGAR_IN_GRAM = 35;
     public static final float DEFAULT_FAT_IN_GRAM = 15.0f;
 
-    public static final Sauce.Type DEFAULT_SAUCE_MOCHA = Sauce.Type.MOCHA;
+    public static final Sauce.Type DEFAULT_SAUCE_MOCHA = Sauce.Type.MOCHA_SAUCE;
     public static final WhippedCream.Type DEFAULT_WHIPPED_CREAM = WhippedCream.Type.WHIPPED_CREAM;
     public static final Granular.Amount DEFAULT_WHIPPED_CREAM_AMOUNT = Granular.Amount.MEDIUM;
 

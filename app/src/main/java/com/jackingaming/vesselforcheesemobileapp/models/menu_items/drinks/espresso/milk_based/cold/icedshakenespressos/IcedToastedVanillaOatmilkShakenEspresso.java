@@ -27,7 +27,7 @@ public class IcedToastedVanillaOatmilkShakenEspresso extends IcedShakenEspressos
     public static final PreparationMethod.Type DEFAULT_PREPARATION_METHOD = PreparationMethod.Type.NONE;
     public static final MilkBase.Type DEFAULT_MILK_BASE_OATMILK = MilkBase.Type.OATMILK;
     public static final RoastOptionsAllowable.Type DEFAULT_ROAST_OPTIONS_ALLOWABLE = RoastOptionsAllowable.Type.NONE;
-    public static final Syrup.Type DEFAULT_SYRUP_TOASTED_VANILLA = Syrup.Type.TOASTED_VANILLA;
+    public static final Syrup.Type DEFAULT_SYRUP_TOASTED_VANILLA = Syrup.Type.TOASTED_VANILLA_SYRUP;
 
     public static final double DEFAULT_PRICE_SMALL = 2.95;
     public static final double DEFAULT_PRICE_MEDIUM = 3.45;

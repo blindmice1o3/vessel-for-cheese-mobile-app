@@ -26,7 +26,7 @@ public class OleatoIcedShakenEspressoWithOatmilkAndToffeenut extends IcedShakenE
 
     public static final MilkBase.Type DEFAULT_MILK_BASE_OATMILK = MilkBase.Type.OATMILK;
     public static final RoastOptions.Type DEFAULT_ROAST_OPTIONS_BLONDE = RoastOptions.Type.BLONDE;
-    public static final Syrup.Type DEFAULT_SYRUP_TOFFEE_NUT = Syrup.Type.TOFFEE_NUT;
+    public static final Syrup.Type DEFAULT_SYRUP_TOFFEE_NUT = Syrup.Type.TOFFEE_NUT_SYRUP;
 
     public static final double DEFAULT_PRICE_SMALL = 2.95;
     public static final double DEFAULT_PRICE_MEDIUM = 3.45;

@@ -20,8 +20,8 @@ public class SaltedCaramelCreamColdBrew extends ColdBrews {
     public static final int DEFAULT_SUGAR_IN_GRAM = 26;
     public static final float DEFAULT_FAT_IN_GRAM = 14.0f;
 
-    public static final Syrup.Type DEFAULT_SYRUP_VANILLA = Syrup.Type.VANILLA;
-    public static final ColdFoam.Type DEFAULT_COLD_FOAM_SALTED_CARAMEL_CREAM = ColdFoam.Type.SALTED_CARAMEL_CREAM;
+    public static final Syrup.Type DEFAULT_SYRUP_VANILLA = Syrup.Type.VANILLA_SYRUP;
+    public static final ColdFoam.Type DEFAULT_COLD_FOAM_SALTED_CARAMEL_CREAM = ColdFoam.Type.SALTED_CARAMEL_CREAM_COLD_FOAM;
     public static final Granular.Amount DEFAULT_COLD_FOAM_SALTED_CARAMEL_CREAM_AMOUNT = Granular.Amount.MEDIUM;
 
     public static final double DEFAULT_PRICE_SMALL = 2.95;
@@ -41,6 +41,9 @@ public class SaltedCaramelCreamColdBrew extends ColdBrews {
         flavorOptions.add(0, new DrinkComponentWithDefaultAsString(
                 syrupVanilla, Integer.toString(numberOfPumpByDrinkSize)
         ));
+
+        drinkComponentsStandardRecipe.add(syrupVanilla);
+
         // TOPPING_OPTIONS (add into EXISTING DrinkComponent group)
         ColdFoam coldFoamSaltedCaramelCream = new ColdFoam(DEFAULT_COLD_FOAM_SALTED_CARAMEL_CREAM, DEFAULT_COLD_FOAM_SALTED_CARAMEL_CREAM_AMOUNT);
 
@@ -49,7 +52,6 @@ public class SaltedCaramelCreamColdBrew extends ColdBrews {
                 coldFoamSaltedCaramelCream, DEFAULT_COLD_FOAM_SALTED_CARAMEL_CREAM_AMOUNT.name()
         ));
 
-        drinkComponentsStandardRecipe.add(syrupVanilla);
         drinkComponentsStandardRecipe.add(coldFoamSaltedCaramelCream);
     }
 }

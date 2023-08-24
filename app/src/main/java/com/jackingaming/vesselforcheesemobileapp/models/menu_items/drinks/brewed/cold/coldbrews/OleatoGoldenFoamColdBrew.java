@@ -17,7 +17,7 @@ public class OleatoGoldenFoamColdBrew extends ColdBrews {
     public static final int DEFAULT_SUGAR_IN_GRAM = 19;
     public static final float DEFAULT_FAT_IN_GRAM = 34.0f;
 
-    public static final Syrup.Type DEFAULT_SYRUP_VANILLA = Syrup.Type.VANILLA;
+    public static final Syrup.Type DEFAULT_SYRUP_VANILLA = Syrup.Type.VANILLA_SYRUP;
 
     public static final double DEFAULT_PRICE_SMALL = 2.95;
     public static final double DEFAULT_PRICE_MEDIUM = 3.45;

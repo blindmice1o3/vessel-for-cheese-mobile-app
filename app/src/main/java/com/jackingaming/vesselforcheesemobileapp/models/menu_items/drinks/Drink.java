@@ -6,6 +6,7 @@ import com.jackingaming.vesselforcheesemobileapp.models.components.Incrementable
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponentWithDefaultAsString;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.AddInsOptions;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.mixed_type.powders.derived.VanillaBeanPowder;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.blended_options.BlendedOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.blended_options.FrapChips;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.blended_options.FrapRoast;
@@ -15,6 +16,7 @@ import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.espres
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.flavor_options.FlavorOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.flavor_options.Sauce;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.flavor_options.Syrup;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.flavor_options.SyrupSeasonal;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.sweetener_options.Liquid;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.sweetener_options.SweetenerOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.tea_options.Chai;
@@ -114,6 +116,28 @@ public abstract class Drink extends MenuItem
                 if (key.equals(AddInsOptions.TAG)) {
                     Log.i(TAG, "key.equals(AddInsOptions.TAG)");
 
+                    for (int i = 0; i < drinkComponentsGroup.size(); i++) {
+                        DrinkComponentWithDefaultAsString drinkComponentWithDefaultAsString = drinkComponentsGroup.get(i);
+                        DrinkComponent drinkComponent = drinkComponentWithDefaultAsString.getDrinkComponent();
+
+                        if (drinkComponentsStandardRecipe.contains(drinkComponent)) {
+                            Log.i(TAG, "drinkComponentsStandardRecipe.contains() drinkComponent (Class, Type): (" + drinkComponent.getClassAsString() + ", " + drinkComponent.getTypeAsString() + ")");
+
+                            if (drinkComponent instanceof VanillaBeanPowder) {
+                                Log.i(TAG, "drinkComponent instanceof VanillaBeanPowder");
+
+                                int quantityNew = getNumberOfScoopByDrinkSize(drinkSizeNew);
+                                if (quantityNew == QUANTITY_INDEPENDENT_OF_DRINK_SIZE) {
+                                    Log.e(TAG, "quantityNew == QUANTITY_INDEPENDENT_OF_DRINK_SIZE");
+                                    return false;
+                                }
+                                changedUserCustomizations =
+                                        updateQuantityByDrinkSize(drinkComponentWithDefaultAsString, quantityNew);
+                            } else {
+                                Log.e(TAG, "drinkComponent NOT instanceof VanillaBeanPowder");
+                            }
+                        }
+                    }
                 } else if (key.equals(BlendedOptions.TAG)) {
                     Log.i(TAG, "key.equals(BlendedOptions.TAG)");
 
@@ -157,7 +181,8 @@ public abstract class Drink extends MenuItem
                         if (drinkComponentsStandardRecipe.contains(drinkComponent)) {
                             Log.i(TAG, "drinkComponentsStandardRecipe.contains() drinkComponent (Class, Type): (" + drinkComponent.getClassAsString() + ", " + drinkComponent.getTypeAsString() + ")");
 
-                            if (drinkComponent instanceof Shots || drinkComponent instanceof ReserveEspressoShots) {
+                            if (drinkComponent instanceof Shots ||
+                                    drinkComponent instanceof ReserveEspressoShots) {
                                 Log.i(TAG, "drinkComponent instanceof Shot");
 
                                 int quantityNew = getNumberOfShotByDrinkSize(drinkSizeNew);
@@ -246,8 +271,10 @@ public abstract class Drink extends MenuItem
                         if (drinkComponentsStandardRecipe.contains(drinkComponent)) {
                             Log.i(TAG, "drinkComponentsStandardRecipe.contains() drinkComponent (Class, Type): (" + drinkComponent.getClassAsString() + ", " + drinkComponent.getTypeAsString() + ")");
 
-                            if (drinkComponent instanceof Sauce || drinkComponent instanceof Syrup) {
-                                Log.i(TAG, "drinkComponent instanceof Sauce || drinkComponent instanceof Syrup");
+                            if (drinkComponent instanceof Sauce ||
+                                    drinkComponent instanceof Syrup ||
+                                    drinkComponent instanceof SyrupSeasonal) {
+                                Log.i(TAG, "drinkComponent instanceof Sauce || drinkComponent instanceof Syrup || drinkComponent instanceof SyrupSeasonal");
 
                                 int quantityNew = getNumberOfPumpByDrinkSize(drinkSizeNew);
                                 if (quantityNew == QUANTITY_INDEPENDENT_OF_DRINK_SIZE) {

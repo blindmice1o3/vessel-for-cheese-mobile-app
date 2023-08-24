@@ -4,7 +4,7 @@ import com.jackingaming.vesselforcheesemobileapp.R;
 import com.jackingaming.vesselforcheesemobileapp.models.components.Granular;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponentWithDefaultAsString;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.flavor_options.FlavorOptions;
-import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.flavor_options.Syrup;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.flavor_options.SyrupSeasonal;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.topping_options.ColdFoam;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.topping_options.Topping;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.topping_options.ToppingOptions;
@@ -21,10 +21,10 @@ public class WhiteChocolateMacadamiaCreamColdBrew extends ColdBrews {
     public static final int DEFAULT_SUGAR_IN_GRAM = 30;
     public static final float DEFAULT_FAT_IN_GRAM = 11.0f;
 
-    public static final Syrup.Type DEFAULT_SYRUP_MACADAMIA = Syrup.Type.MACADAMIA;
-    public static final ColdFoam.Type DEFAULT_COLD_FOAM_WHITE_CHOCOLATE_MACADAMIA_CREAM = ColdFoam.Type.WHITE_CHOCOLATE_MACADAMIA_CREAM;
+    public static final SyrupSeasonal.Type DEFAULT_SYRUP_SEASONAL_MACADAMIA = SyrupSeasonal.Type.MACADAMIA_SYRUP;
+    public static final ColdFoam.Type DEFAULT_COLD_FOAM_WHITE_CHOCOLATE_MACADAMIA_CREAM = ColdFoam.Type.WHITE_CHOCOLATE_MACADAMIA_CREAM_COLD_FOAM;
     public static final Granular.Amount DEFAULT_COLD_FOAM_WHITE_CHOCOLATE_MACADAMIA_CREAM_AMOUNT = Granular.Amount.MEDIUM;
-    public static final Topping.Type DEFAULT_TOPPING_TOASTED_COOKIE_CRUMBLE = Topping.Type.TOASTED_COOKIE_CRUMBLE;
+    public static final Topping.Type DEFAULT_TOPPING_TOASTED_COOKIE_CRUMBLE = Topping.Type.PUMPKIN_SPICE_TOPPING;
     public static final Granular.Amount DEFAULT_TOPPING_TOASTED_COOKIE_CRUMBLE_AMOUNT = Granular.Amount.MEDIUM;
 
     public static final double DEFAULT_PRICE_SMALL = 2.95;
@@ -38,12 +38,15 @@ public class WhiteChocolateMacadamiaCreamColdBrew extends ColdBrews {
 
         // FLAVOR_OPTIONS (add into EXISTING DrinkComponent group)
         int numberOfPumpByDrinkSize = getNumberOfPumpByDrinkSize(drinkSize);
-        Syrup syrupMacadamia = new Syrup(DEFAULT_SYRUP_MACADAMIA, numberOfPumpByDrinkSize);
+        SyrupSeasonal syrupSeasonalMacadamia = new SyrupSeasonal(DEFAULT_SYRUP_SEASONAL_MACADAMIA, numberOfPumpByDrinkSize);
 
         List<DrinkComponentWithDefaultAsString> flavorOptions = drinkComponents.get(FlavorOptions.TAG);
         flavorOptions.add(0, new DrinkComponentWithDefaultAsString(
-                syrupMacadamia, Integer.toString(numberOfPumpByDrinkSize)
+                syrupSeasonalMacadamia, Integer.toString(numberOfPumpByDrinkSize)
         ));
+
+        drinkComponentsStandardRecipe.add(syrupSeasonalMacadamia);
+
         // TOPPING_OPTIONS (add into EXISTING DrinkComponent group)
         ColdFoam coldFoamWhiteChocolateMacadamiaCream = new ColdFoam(DEFAULT_COLD_FOAM_WHITE_CHOCOLATE_MACADAMIA_CREAM, DEFAULT_COLD_FOAM_WHITE_CHOCOLATE_MACADAMIA_CREAM_AMOUNT);
         Topping toppingToastedCookieCrumble = new Topping(DEFAULT_TOPPING_TOASTED_COOKIE_CRUMBLE, DEFAULT_TOPPING_TOASTED_COOKIE_CRUMBLE_AMOUNT);
@@ -56,7 +59,6 @@ public class WhiteChocolateMacadamiaCreamColdBrew extends ColdBrews {
                 toppingToastedCookieCrumble, DEFAULT_TOPPING_TOASTED_COOKIE_CRUMBLE_AMOUNT.name()
         ));
 
-        drinkComponentsStandardRecipe.add(syrupMacadamia);
         drinkComponentsStandardRecipe.add(coldFoamWhiteChocolateMacadamiaCream);
         drinkComponentsStandardRecipe.add(toppingToastedCookieCrumble);
     }
