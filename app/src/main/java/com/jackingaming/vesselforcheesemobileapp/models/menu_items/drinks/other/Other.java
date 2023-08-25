@@ -8,7 +8,6 @@ import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.DrinkS
 public abstract class Other extends Drink {
     public static final String TAG = Other.class.getSimpleName();
 
-
     public Other() {
         super();
     }

@@ -41,6 +41,8 @@ public class VanillaSweetCreamColdBrew extends ColdBrews {
         flavorOptions.add(0, new DrinkComponentWithDefaultAsString(
                 syrupVanilla, Integer.toString(numberOfPumpByDrinkSize)
         ));
+        drinkComponentsStandardRecipe.add(syrupVanilla);
+
         // ADD_INS_OPTIONS (add into EXISTING DrinkComponent group)
         MilkCreamer milkCreamerVanillaSweetCream = new MilkCreamer(DEFAULT_MILK_CREAMER_VANILLA_SWEET_CREAM, DEFAULT_MILK_CREAMER_VANILLA_SWEET_CREAM_AMOUNT);
 
@@ -48,8 +50,6 @@ public class VanillaSweetCreamColdBrew extends ColdBrews {
         addInsOptions.add(0, new DrinkComponentWithDefaultAsString(
                 milkCreamerVanillaSweetCream, DEFAULT_MILK_CREAMER_VANILLA_SWEET_CREAM_AMOUNT.name()
         ));
-
-        drinkComponentsStandardRecipe.add(syrupVanilla);
         drinkComponentsStandardRecipe.add(milkCreamerVanillaSweetCream);
     }
 }
