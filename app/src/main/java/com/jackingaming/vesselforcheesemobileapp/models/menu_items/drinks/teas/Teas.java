@@ -67,6 +67,8 @@ public abstract class Teas extends Drink {
                 numberOfPumpNew = 6;
                 break;
             case TRENTA:
+                numberOfPumpNew = 7;
+                break;
             case UNIQUE:
             case UNDEFINED:
                 break;
@@ -95,6 +97,8 @@ public abstract class Teas extends Drink {
                 numberOfScoopNew = 4;
                 break;
             case TRENTA:
+                numberOfScoopNew = 5;
+                break;
             case UNIQUE:
             case UNDEFINED:
                 break;

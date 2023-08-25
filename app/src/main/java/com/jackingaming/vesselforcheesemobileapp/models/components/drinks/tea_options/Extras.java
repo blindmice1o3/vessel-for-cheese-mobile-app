@@ -6,7 +6,7 @@ public class Extras extends TeaOptions {
     public static final String DEFAULT_TEXT_INIT = "Add Extra(s)";
 
     public enum Type {
-        EXTRA_NONE,
+        NO,
         EXTRA_LEMONADE,
         EXTRA_TEA;
     }

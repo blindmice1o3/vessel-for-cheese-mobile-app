@@ -18,8 +18,8 @@ public class Juice extends JuiceOptions
     }
 
     public enum Type {
-        APPLE,
-        PEACH_BLEND;
+        APPLE_JUICE,
+        PEACH_JUICE_BLEND;
     }
 
     private Type type;

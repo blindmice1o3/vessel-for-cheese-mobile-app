@@ -18,7 +18,6 @@ public class RefresherBase extends RefresherBaseOptions
     }
 
     public enum Type {
-        KIWI_STARFRUIT,
         MANGO_DRAGONFRUIT,
         PINEAPPLE_PASSIONFRUIT,
         STRAWBERRY_ACAI;
