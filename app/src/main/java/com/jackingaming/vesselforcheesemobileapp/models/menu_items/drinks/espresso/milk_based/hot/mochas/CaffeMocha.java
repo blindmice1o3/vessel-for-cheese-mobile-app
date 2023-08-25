@@ -42,7 +42,6 @@ public class CaffeMocha extends Mochas {
         flavorOptions.add(0, new DrinkComponentWithDefaultAsString(
                 sauceMocha, Integer.toString(numberOfPumpByDrinkSize)
         ));
-
         drinkComponentsStandardRecipe.add(sauceMocha);
 
         // REMOVAL: TOPPING_OPTIONS: WhippedCream

@@ -26,17 +26,12 @@ public abstract class Other extends Drink {
 
         int numberOfShotNew = QUANTITY_INDEPENDENT_OF_DRINK_SIZE;
         switch (drinkSizeNew) {
+            case KID:
             case SHORT:
             case TALL:
-                numberOfShotNew = 1;
-                break;
             case GRANDE:
             case VENTI_HOT:
-                numberOfShotNew = 2;
-                break;
             case VENTI_ICED:
-                numberOfShotNew = 3;
-                break;
             case TRENTA:
             case UNIQUE:
             case UNDEFINED:
@@ -52,6 +47,7 @@ public abstract class Other extends Drink {
 
         int numberOfPumpNew = QUANTITY_INDEPENDENT_OF_DRINK_SIZE;
         switch (drinkSizeNew) {
+            case KID:
             case SHORT:
                 numberOfPumpNew = 2;
                 break;
@@ -65,8 +61,6 @@ public abstract class Other extends Drink {
                 numberOfPumpNew = 5;
                 break;
             case VENTI_ICED:
-                numberOfPumpNew = 6;
-                break;
             case TRENTA:
             case UNIQUE:
             case UNDEFINED:
@@ -82,6 +76,7 @@ public abstract class Other extends Drink {
 
         int numberOfScoopNew = QUANTITY_INDEPENDENT_OF_DRINK_SIZE;
         switch (drinkSizeNew) {
+            case KID:
             case SHORT:
                 numberOfScoopNew = 1;
                 break;
@@ -92,9 +87,9 @@ public abstract class Other extends Drink {
                 numberOfScoopNew = 3;
                 break;
             case VENTI_HOT:
-            case VENTI_ICED:
                 numberOfScoopNew = 4;
                 break;
+            case VENTI_ICED:
             case TRENTA:
             case UNIQUE:
             case UNDEFINED:
@@ -110,19 +105,12 @@ public abstract class Other extends Drink {
 
         int numberOfFrapRoastNew = QUANTITY_INDEPENDENT_OF_DRINK_SIZE;
         switch (drinkSizeNew) {
+            case KID:
             case SHORT:
-                numberOfFrapRoastNew = 1;
-                break;
             case TALL:
-                numberOfFrapRoastNew = 2;
-                break;
             case GRANDE:
-                numberOfFrapRoastNew = 3;
-                break;
             case VENTI_HOT:
             case VENTI_ICED:
-                numberOfFrapRoastNew = 4;
-                break;
             case TRENTA:
             case UNIQUE:
             case UNDEFINED:
@@ -138,15 +126,12 @@ public abstract class Other extends Drink {
 
         int numberOfTeaBagNew = QUANTITY_INDEPENDENT_OF_DRINK_SIZE;
         switch (drinkSizeNew) {
+            case KID:
             case SHORT:
             case TALL:
-                numberOfTeaBagNew = 1;
-                break;
             case GRANDE:
             case VENTI_HOT:
             case VENTI_ICED:
-                numberOfTeaBagNew = 2;
-                break;
             case TRENTA:
             case UNIQUE:
             case UNDEFINED:

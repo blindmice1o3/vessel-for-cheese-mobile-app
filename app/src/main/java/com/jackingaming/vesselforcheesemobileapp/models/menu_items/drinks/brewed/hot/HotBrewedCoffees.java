@@ -44,7 +44,7 @@ public abstract class HotBrewedCoffees extends BrewedCoffees {
 
     public static final RoastOptionsAllowable.Type DEFAULT_ROAST_OPTIONS_ALLOWABLE = RoastOptionsAllowable.Type.NONE;
     public static final int DEFAULT_NUMBER_OF_ESPRESSO_SHOTS = 0;
-    public static final int DEFAULT_NUMBER_OF_CHAI_SCOOPS = 0;
+    public static final int DEFAULT_NUMBER_OF_CHAI_PUMPS = 0;
     public static final int DEFAULT_NUMBER_OF_SWEETENER_LIQUID_PUMPS = 0;
     public static final int DEFAULT_NUMBER_OF_SWEETENER_PACKET_PACKS = 0;
     public static final int DEFAULT_NUMBER_OF_FLAVOR_SAUCE_PUMPS = 0;
@@ -83,7 +83,7 @@ public abstract class HotBrewedCoffees extends BrewedCoffees {
         // TEA_OPTIONS
         List<DrinkComponentWithDefaultAsString> teaOptions = new ArrayList<>();
         teaOptions.add(new DrinkComponentWithDefaultAsString(
-                new Chai(null, Incrementable.QUANTITY_FOR_INVOKER), Integer.toString(DEFAULT_NUMBER_OF_CHAI_SCOOPS)
+                new Chai(null, Incrementable.QUANTITY_FOR_INVOKER), Integer.toString(DEFAULT_NUMBER_OF_CHAI_PUMPS)
         ));
         // SWEETENER_OPTIONS
         List<DrinkComponentWithDefaultAsString> sweetenerOptions = new ArrayList<>();

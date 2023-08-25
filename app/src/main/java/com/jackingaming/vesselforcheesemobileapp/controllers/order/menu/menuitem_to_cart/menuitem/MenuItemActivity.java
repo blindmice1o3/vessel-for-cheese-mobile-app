@@ -155,6 +155,9 @@ public class MenuItemActivity extends AppCompatActivity {
                 DrinkSize drinkSize = drinkSizesAllowed[i];
                 int imageResource = 0;
                 switch (drinkSize) {
+                    case KID:
+                        imageResource = R.drawable.drinksize_kid;
+                        break;
                     case SHORT:
                         imageResource = R.drawable.drinksize_short;
                         break;

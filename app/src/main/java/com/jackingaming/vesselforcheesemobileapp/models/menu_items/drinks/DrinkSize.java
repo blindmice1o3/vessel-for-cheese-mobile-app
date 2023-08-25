@@ -1,6 +1,7 @@
 package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks;
 
 public enum DrinkSize {
+    KID(8),
     SHORT(8),
     TALL(12),
     GRANDE(16),
