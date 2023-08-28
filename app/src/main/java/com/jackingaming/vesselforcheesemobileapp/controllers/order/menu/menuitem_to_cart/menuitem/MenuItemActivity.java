@@ -37,6 +37,7 @@ import com.jackingaming.vesselforcheesemobileapp.models.menu.Menu;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.MenuItem;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.Drink;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.DrinkSize;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.NotHandCrafted;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.blendedbeverages.BlendedBeverages;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.BrewedCoffees;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.Espresso;
@@ -143,130 +144,143 @@ public class MenuItemActivity extends AppCompatActivity {
             String textPreviousContent = tvContent.getText().toString();
             tvContent.setText(textPreviousContent + ": " + drink.getName());
 
-            LinearLayout linearLayoutDrinkSizeOptions = findViewById(R.id.linearlayout_drink_size_options);
-            DrinkSize[] drinkSizesAllowed = drink.getDrinkSizesAllowed();
-            for (int i = 0; i < drinkSizesAllowed.length; i++) {
-                ImageView imageView = new ImageView(this);
-                imageView.setLayoutParams(new LinearLayout.LayoutParams(
-                        LinearLayout.LayoutParams.WRAP_CONTENT,
-                        LinearLayout.LayoutParams.WRAP_CONTENT,
-                        1.0f));
+            if (drink instanceof NotHandCrafted) {
+                TextView tvSizeOptionsLabel = findViewById(R.id.tvSizeOptionsLabel);
+                View viewSizeOptionsUnderline = findViewById(R.id.viewSizeOptionsUnderline);
+                TextView tvWhatsIncludedLabel = findViewById(R.id.tvWhatsIncludedLabel);
+                View viewWhatsIncludedUnderline = findViewById(R.id.viewWhatsIncludedUnderline);
 
-                DrinkSize drinkSize = drinkSizesAllowed[i];
-                int imageResource = 0;
-                switch (drinkSize) {
-                    case KID:
-                        imageResource = R.drawable.drinksize_kid;
-                        break;
-                    case SHORT:
-                        imageResource = R.drawable.drinksize_short;
-                        break;
-                    case TALL:
-                        imageResource = R.drawable.drinksize_tall;
-                        break;
-                    case GRANDE:
-                        imageResource = R.drawable.drinksize_grande;
-                        break;
-                    case VENTI_HOT:
-                        imageResource = R.drawable.drinksize_venti;
-                        break;
-                    case VENTI_ICED:
-                        imageResource = R.drawable.drinksize_venti;
-                        break;
-                    case TRENTA:
-                        imageResource = R.drawable.drinksize_trenta;
-                        break;
-                    case UNIQUE:
-                        imageResource = R.drawable.drinksize_short;
-                        break;
-                    case UNDEFINED:
-                        imageResource = R.drawable.drinksize_short;
-                        break;
-                }
-                imageView.setImageResource(imageResource);
+                tvSizeOptionsLabel.setVisibility(View.GONE);
+                viewSizeOptionsUnderline.setVisibility(View.GONE);
+                tvWhatsIncludedLabel.setVisibility(View.GONE);
+                viewWhatsIncludedUnderline.setVisibility(View.GONE);
+                buttonCustomize.setVisibility(View.GONE);
+            } else {
+                LinearLayout linearLayoutDrinkSizeOptions = findViewById(R.id.linearlayout_drink_size_options);
+                DrinkSize[] drinkSizesAllowed = drink.getDrinkSizesAllowed();
+                for (int i = 0; i < drinkSizesAllowed.length; i++) {
+                    ImageView imageView = new ImageView(this);
+                    imageView.setLayoutParams(new LinearLayout.LayoutParams(
+                            LinearLayout.LayoutParams.WRAP_CONTENT,
+                            LinearLayout.LayoutParams.WRAP_CONTENT,
+                            1.0f));
 
-                imageView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Toast.makeText(MenuItemActivity.this, "drinkSize: " + drinkSize.name(), Toast.LENGTH_SHORT).show();
+                    DrinkSize drinkSize = drinkSizesAllowed[i];
+                    int imageResource = 0;
+                    switch (drinkSize) {
+                        case KID:
+                            imageResource = R.drawable.drinksize_kid;
+                            break;
+                        case SHORT:
+                            imageResource = R.drawable.drinksize_short;
+                            break;
+                        case TALL:
+                            imageResource = R.drawable.drinksize_tall;
+                            break;
+                        case GRANDE:
+                            imageResource = R.drawable.drinksize_grande;
+                            break;
+                        case VENTI_HOT:
+                            imageResource = R.drawable.drinksize_venti;
+                            break;
+                        case VENTI_ICED:
+                            imageResource = R.drawable.drinksize_venti;
+                            break;
+                        case TRENTA:
+                            imageResource = R.drawable.drinksize_trenta;
+                            break;
+                        case UNIQUE:
+                            imageResource = R.drawable.drinksize_short;
+                            break;
+                        case UNDEFINED:
+                            imageResource = R.drawable.drinksize_short;
+                            break;
+                    }
+                    imageView.setImageResource(imageResource);
 
-                        // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-                        boolean changedUserCustomizations =
-                                drink.updateDrinkSize(drinkSize);
-                        if (changedUserCustomizations) {
-                            showDialogChangedUserCustomizations();
-                        }
-                        // always update (default value may have changed)
-                        adapter.init(drink);
-                        adapter.notifyDataSetChanged();
-                        // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+                    imageView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Toast.makeText(MenuItemActivity.this, "drinkSize: " + drinkSize.name(), Toast.LENGTH_SHORT).show();
 
-                        for (int j = 0; j < linearLayoutDrinkSizeOptions.getChildCount(); j++) {
-                            if (drinkSizesAllowed[j] == drinkSize) {
-                                ((ImageView) linearLayoutDrinkSizeOptions.getChildAt(j)).setColorFilter(
-                                        ContextCompat.getColor(MenuItemActivity.this, R.color.purple_200),
-                                        PorterDuff.Mode.MULTIPLY
-                                );
-                            } else {
-                                ((ImageView) linearLayoutDrinkSizeOptions.getChildAt(j)).setColorFilter(
-                                        ContextCompat.getColor(MenuItemActivity.this, R.color.white),
-                                        PorterDuff.Mode.MULTIPLY
-                                );
+                            // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+                            boolean changedUserCustomizations =
+                                    drink.updateDrinkSize(drinkSize);
+                            if (changedUserCustomizations) {
+                                showDialogChangedUserCustomizations();
                             }
+                            // always update (default value may have changed)
+                            adapter.init(drink);
+                            adapter.notifyDataSetChanged();
+                            // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+                            for (int j = 0; j < linearLayoutDrinkSizeOptions.getChildCount(); j++) {
+                                if (drinkSizesAllowed[j] == drinkSize) {
+                                    ((ImageView) linearLayoutDrinkSizeOptions.getChildAt(j)).setColorFilter(
+                                            ContextCompat.getColor(MenuItemActivity.this, R.color.purple_200),
+                                            PorterDuff.Mode.MULTIPLY
+                                    );
+                                } else {
+                                    ((ImageView) linearLayoutDrinkSizeOptions.getChildAt(j)).setColorFilter(
+                                            ContextCompat.getColor(MenuItemActivity.this, R.color.white),
+                                            PorterDuff.Mode.MULTIPLY
+                                    );
+                                }
+                            }
+                        }
+                    });
+
+                    if (drinkSize == drink.getDrinkSize()) {
+                        imageView.setColorFilter(
+                                ContextCompat.getColor(this, R.color.purple_200),
+                                PorterDuff.Mode.MULTIPLY
+                        );
+                    }
+
+                    linearLayoutDrinkSizeOptions.addView(imageView);
+                }
+
+                adapter = new WhatsIncludedAdapter(drink,
+                        new DrinkComponentBaseAdapter.DrinkComponentBaseAdapterListener() {
+                            @Override
+                            public void onItemClicked(String[] names, String nameDefault) {
+                                Log.i(TAG, "onItemClicked(String[] names, String nameDefault)");
+
+                                ModalBottomSheet.newInstance(names, nameDefault).show(getSupportFragmentManager(), ModalBottomSheet.TAG);
+                            }
+
+                            @Override
+                            public void onItemLongClicked(String[] names, String nameDefault) {
+                                Log.i(TAG, "onItemLongClicked(String[] names, String nameDefault)");
+                            }
+                        });
+                rvWhatsIncluded.setAdapter(adapter);
+                rvWhatsIncluded.setLayoutManager(new LinearLayoutManager(this));
+
+                getSupportFragmentManager().setFragmentResultListener(ModalBottomSheet.REQUEST_KEY, this, new FragmentResultListener() {
+                    @Override
+                    public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
+                        if (requestKey.equals(ModalBottomSheet.REQUEST_KEY)) {
+                            String name = result.getString(ModalBottomSheet.KEY_RESULT);
+
+                            adapter.updateDrinkComponentByString(name);
                         }
                     }
                 });
 
-                if (drinkSize == drink.getDrinkSize()) {
-                    imageView.setColorFilter(
-                            ContextCompat.getColor(this, R.color.purple_200),
-                            PorterDuff.Mode.MULTIPLY
-                    );
-                }
+                buttonCustomize.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        // ***********************************
+                        removeDuplicateGranularInvoker(drink);
+                        // ***********************************
 
-                linearLayoutDrinkSizeOptions.addView(imageView);
-            }
-
-            adapter = new WhatsIncludedAdapter(drink,
-                    new DrinkComponentBaseAdapter.DrinkComponentBaseAdapterListener() {
-                        @Override
-                        public void onItemClicked(String[] names, String nameDefault) {
-                            Log.i(TAG, "onItemClicked(String[] names, String nameDefault)");
-
-                            ModalBottomSheet.newInstance(names, nameDefault).show(getSupportFragmentManager(), ModalBottomSheet.TAG);
-                        }
-
-                        @Override
-                        public void onItemLongClicked(String[] names, String nameDefault) {
-                            Log.i(TAG, "onItemLongClicked(String[] names, String nameDefault)");
-                        }
-                    });
-            rvWhatsIncluded.setAdapter(adapter);
-            rvWhatsIncluded.setLayoutManager(new LinearLayoutManager(this));
-
-            getSupportFragmentManager().setFragmentResultListener(ModalBottomSheet.REQUEST_KEY, this, new FragmentResultListener() {
-                @Override
-                public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
-                    if (requestKey.equals(ModalBottomSheet.REQUEST_KEY)) {
-                        String name = result.getString(ModalBottomSheet.KEY_RESULT);
-
-                        adapter.updateDrinkComponentByString(name);
+                        Intent intentCustomize = new Intent(MenuItemActivity.this, CustomizeActivity.class);
+                        intentCustomize.putExtra(CustomizeActivity.EXTRA_DRINK, drink);
+                        startActivityForResult(intentCustomize, CustomizeActivity.REQUEST_CODE);
                     }
-                }
-            });
-
-            buttonCustomize.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    // ***********************************
-                    removeDuplicateGranularInvoker(drink);
-                    // ***********************************
-
-                    Intent intentCustomize = new Intent(MenuItemActivity.this, CustomizeActivity.class);
-                    intentCustomize.putExtra(CustomizeActivity.EXTRA_DRINK, drink);
-                    startActivityForResult(intentCustomize, CustomizeActivity.REQUEST_CODE);
-                }
-            });
+                });
+            }
 
             tvDescription.setText(drink.getDescription());
 

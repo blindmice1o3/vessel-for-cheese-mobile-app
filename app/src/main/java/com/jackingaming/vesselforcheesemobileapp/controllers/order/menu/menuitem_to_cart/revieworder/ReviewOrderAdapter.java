@@ -21,6 +21,7 @@ import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkC
 import com.jackingaming.vesselforcheesemobileapp.models.menu.Menu;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.MenuItem;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.Drink;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.NotHandCrafted;
 import com.jackingaming.vesselforcheesemobileapp.views.CircularBorderedImageView;
 
 import java.util.ArrayList;
@@ -141,8 +142,22 @@ public class ReviewOrderAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                     }
                 }
 
+                // Display calories if NotHandCrafted or not customized
+                if (((Drink) menuItem) instanceof NotHandCrafted ||
+                        drinkComponentsCustomAsString.size() == 0) {
+                    String caloriesAsString = Integer.toString(((Drink) menuItem).getCalories()) + " calories";
+                    drinkComponentsCustomAsString.add(caloriesAsString);
+                }
+
                 // Display DrinkSize at top of list
-                String drinkSizeAsString = ((Drink) menuItem).getDrinkSize().getUserFriendlyName();
+                String drinkSizeAsString = null;
+                if (((Drink) menuItem) instanceof NotHandCrafted) {
+                    float containerSize = ((NotHandCrafted) menuItem).getContainerSize();
+                    drinkSizeAsString = (containerSize < 0) ?
+                            "traveler" : containerSize + " fl oz";
+                } else {
+                    drinkSizeAsString = ((Drink) menuItem).getDrinkSize().getUserFriendlyName();
+                }
                 drinkComponentsCustomAsString.add(0, drinkSizeAsString);
             } else {
                 Log.e(TAG, "NOT menuItem instanceof Drink");
