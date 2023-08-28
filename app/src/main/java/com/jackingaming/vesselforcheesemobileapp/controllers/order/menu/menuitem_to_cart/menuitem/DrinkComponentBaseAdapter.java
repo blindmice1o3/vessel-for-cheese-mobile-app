@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.jackingaming.vesselforcheesemobileapp.R;
 import com.jackingaming.vesselforcheesemobileapp.models.components.Granular;
+import com.jackingaming.vesselforcheesemobileapp.models.components.GranularTwoOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.components.Incrementable;
 import com.jackingaming.vesselforcheesemobileapp.models.components.MixedType;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
@@ -300,17 +301,40 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
 
                 viewBorder.setBackgroundResource(BACKGROUND_BORDER_INIT);
             } else {
-                Granular.Amount amount = ((Granular) drinkComponent).getAmount();
-                String textBasedOnAmount = (amount == Granular.Amount.MEDIUM) ?
-                        (typeAsString) : (amount.name() + " " + typeAsString);
-                tvName.setText(textBasedOnAmount);
-                ivDropDownImage.setImageResource(R.drawable.ic_menu_arrow_down);
+                if (drinkComponent instanceof GranularTwoOptions) {
+                    Log.i(TAG, "drinkComponent instanceof GranularTwoOptions");
 
-                tvBorderTitle.setVisibility(View.VISIBLE);
+                    String text = null;
+                    GranularTwoOptions.Option option = ((GranularTwoOptions) drinkComponent).getOption();
+                    if (option.name().equals(GranularTwoOptions.Option.STANDARD.name())) {
+                        text = "Add " + drinkComponent.getTypeAsString();
+                    } else {
+                        text = drinkComponent.getTypeAsString();
+                    }
 
-                boolean defaultSelected =
-                        (amount.name().equals(drinkComponentDefaultAsString)) ? true : false;
-                updateBorderColor(defaultSelected);
+                    tvName.setText(text);
+                    ivDropDownImage.setImageResource(R.drawable.ic_menu_arrow_down);
+
+                    tvBorderTitle.setVisibility(View.VISIBLE);
+
+                    boolean defaultSelected =
+                            (option.name().equals(drinkComponentDefaultAsString)) ? true : false;
+                    updateBorderColor(defaultSelected);
+                } else {
+                    Log.i(TAG, "drinkComponent NOT instanceof GranularTwoOptions");
+
+                    Granular.Amount amount = ((Granular) drinkComponent).getAmount();
+                    String textBasedOnAmount = (amount == Granular.Amount.MEDIUM) ?
+                            (typeAsString) : (amount.name() + " " + typeAsString);
+                    tvName.setText(textBasedOnAmount);
+                    ivDropDownImage.setImageResource(R.drawable.ic_menu_arrow_down);
+
+                    tvBorderTitle.setVisibility(View.VISIBLE);
+
+                    boolean defaultSelected =
+                            (amount.name().equals(drinkComponentDefaultAsString)) ? true : false;
+                    updateBorderColor(defaultSelected);
+                }
             }
         }
 
@@ -646,10 +670,22 @@ public abstract class DrinkComponentBaseAdapter extends RecyclerView.Adapter<Rec
         } else {
             Log.i(TAG, "NOT drinkComponentSelected.getTypeAsString().equals(DrinkComponent.NULL_TYPE_AS_STRING)");
 
-            String[] names = new String[Granular.Amount.values().length];
-            String nameDefault = drinkComponentDefaultAsStringSelected;
-            for (int i = 0; i < Granular.Amount.values().length; i++) {
-                names[i] = Granular.Amount.values()[i].name();
+            String[] names = null;
+            String nameDefault = null;
+            if (drinkComponentSelected instanceof GranularTwoOptions) {
+                names = new String[GranularTwoOptions.Option.values().length];
+                nameDefault = drinkComponentDefaultAsStringSelected;
+
+                for (int i = 0; i < GranularTwoOptions.Option.values().length; i++) {
+                    names[i] = GranularTwoOptions.Option.values()[i].name();
+                }
+            } else {
+                names = new String[Granular.Amount.values().length];
+                nameDefault = drinkComponentDefaultAsStringSelected;
+
+                for (int i = 0; i < Granular.Amount.values().length; i++) {
+                    names[i] = Granular.Amount.values()[i].name();
+                }
             }
 
             listener.onItemClicked(names, nameDefault);

@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem_to_cart.menuitem.DrinkComponentBaseAdapter;
 import com.jackingaming.vesselforcheesemobileapp.models.components.Granular;
+import com.jackingaming.vesselforcheesemobileapp.models.components.GranularTwoOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.components.Incrementable;
 import com.jackingaming.vesselforcheesemobileapp.models.components.MixedType;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
@@ -44,23 +45,48 @@ public class CustomizeInnerAdapter extends DrinkComponentBaseAdapter {
     private void handleSelectionOfDefaultForAllowableGranular(DrinkComponent drinkComponentSelected, String drinkComponentDefaultAsStringSelected) {
         Log.i(TAG, "handleSelectionOfDefaultForAllowableGranular(DrinkComponent, String)");
 
-        String[] enumValues = drinkComponentSelected.getEnumValuesAsStringArray();
-        List<String> enumValuesNotInsideDrink = findEnumValuesNotInsideDrink(enumValues);
-        if (enumValuesNotInsideDrink.size() == 0) {
-            Log.i(TAG, "enumValuesNotInsideDrink.size() == 0");
+        if (drinkComponentSelected instanceof GranularTwoOptions) {
+            Log.i(TAG, "drinkComponentSelected instanceof GranularTwoOptions");
 
-            // Update the underlying model.
-            drinkComponentSelected.setTypeByString(DrinkComponent.NULL_TYPE_AS_STRING);
-            ((Granular) drinkComponentSelected).setAmount(Granular.Amount.NO);
-            notifyItemChanged(indexSelected);
+            String[] enumValues = drinkComponentSelected.getEnumValuesAsStringArray();
+            List<String> enumValuesNotInsideDrink = findEnumValuesNotInsideDrink(enumValues);
+            if (enumValuesNotInsideDrink.size() == 0) {
+                Log.i(TAG, "enumValuesNotInsideDrink.size() == 0");
+
+                // Update the underlying model.
+                drinkComponentSelected.setTypeByString(DrinkComponent.NULL_TYPE_AS_STRING);
+                ((GranularTwoOptions) drinkComponentSelected).setOption(GranularTwoOptions.Option.STANDARD);
+                notifyItemChanged(indexSelected);
+            } else {
+                Log.i(TAG, "enumValuesNotInsideDrink.size() != 0");
+
+                // Update the underlying model.
+                drinkComponentSelected.setTypeByString(DrinkComponent.NULL_TYPE_AS_STRING);
+                ((GranularTwoOptions) drinkComponentSelected).setOption(GranularTwoOptions.Option.STANDARD);
+                drinkComponents.remove(indexSelected);
+                notifyItemRemoved(indexSelected);
+            }
         } else {
-            Log.i(TAG, "enumValuesNotInsideDrink.size() != 0");
+            Log.i(TAG, "drinkComponentSelected NOT instanceof GranularTwoOptions");
 
-            // Update the underlying model.
-            drinkComponentSelected.setTypeByString(DrinkComponent.NULL_TYPE_AS_STRING);
-            ((Granular) drinkComponentSelected).setAmount(Granular.Amount.NO);
-            drinkComponents.remove(indexSelected);
-            notifyItemRemoved(indexSelected);
+            String[] enumValues = drinkComponentSelected.getEnumValuesAsStringArray();
+            List<String> enumValuesNotInsideDrink = findEnumValuesNotInsideDrink(enumValues);
+            if (enumValuesNotInsideDrink.size() == 0) {
+                Log.i(TAG, "enumValuesNotInsideDrink.size() == 0");
+
+                // Update the underlying model.
+                drinkComponentSelected.setTypeByString(DrinkComponent.NULL_TYPE_AS_STRING);
+                ((Granular) drinkComponentSelected).setAmount(Granular.Amount.NO);
+                notifyItemChanged(indexSelected);
+            } else {
+                Log.i(TAG, "enumValuesNotInsideDrink.size() != 0");
+
+                // Update the underlying model.
+                drinkComponentSelected.setTypeByString(DrinkComponent.NULL_TYPE_AS_STRING);
+                ((Granular) drinkComponentSelected).setAmount(Granular.Amount.NO);
+                drinkComponents.remove(indexSelected);
+                notifyItemRemoved(indexSelected);
+            }
         }
     }
 
@@ -144,42 +170,86 @@ public class CustomizeInnerAdapter extends DrinkComponentBaseAdapter {
         } else if (drinkComponentSelected instanceof Granular) {
             Log.i(TAG, "drinkComponentSelected instanceof Granular");
 
-            if (drinkComponentSelected.getTypeAsString().equals(DrinkComponent.NULL_TYPE_AS_STRING)) {
-                Log.i(TAG, "drinkComponentSelected.getTypeAsString().equals(DrinkComponent.NULL_TYPE_AS_STRING)");
+            if (drinkComponentSelected instanceof GranularTwoOptions) {
+                Log.i(TAG, "drinkComponentSelected instanceof GranularTwoOptions");
 
-                // ADD USER'S SELECTION
-                DrinkComponent drinkComponentToAdd =
-                        ((Granular) drinkComponentSelected).newInstanceViaTypeAsString(name, Granular.Amount.MEDIUM);
-                String drinkComponentDefaultAsStringToAdd = Granular.Amount.NO.name();
-                DrinkComponentWithDefaultAsString drinkComponentWithDefaultAsStringToAdd =
-                        new DrinkComponentWithDefaultAsString(
-                                drinkComponentToAdd, drinkComponentDefaultAsStringToAdd
-                        );
-                drinkComponents.add(indexSelected, drinkComponentWithDefaultAsStringToAdd);
-                notifyItemInserted(indexSelected);
+                if (drinkComponentSelected.getTypeAsString().equals(DrinkComponent.NULL_TYPE_AS_STRING)) {
+                    Log.i(TAG, "drinkComponentSelected.getTypeAsString().equals(DrinkComponent.NULL_TYPE_AS_STRING)");
 
-                // CHECK CONDITION TO CONVERT "INVOKER" TO LAST OPTION
-                String[] enumValues = drinkComponentSelected.getEnumValuesAsStringArray();
-                List<String> enumValuesNotInsideDrink = findEnumValuesNotInsideDrink(enumValues);
-                if (enumValuesNotInsideDrink.size() == 1) {
-                    drinkComponentSelected.setTypeByString(enumValuesNotInsideDrink.get(0));
-                    ((Granular) drinkComponentSelected).setAmount(Granular.Amount.NO);
-                    notifyItemChanged(indexSelected + 1);
+                    // ADD USER'S SELECTION
+                    DrinkComponent drinkComponentToAdd =
+                            ((GranularTwoOptions) drinkComponentSelected).newInstanceViaTypeAsString(name, null);
+                    String drinkComponentDefaultAsStringToAdd = GranularTwoOptions.Option.STANDARD.name();
+                    DrinkComponentWithDefaultAsString drinkComponentWithDefaultAsStringToAdd =
+                            new DrinkComponentWithDefaultAsString(
+                                    drinkComponentToAdd, drinkComponentDefaultAsStringToAdd
+                            );
+                    drinkComponents.add(indexSelected, drinkComponentWithDefaultAsStringToAdd);
+                    notifyItemInserted(indexSelected);
+
+                    // CHECK CONDITION TO CONVERT "INVOKER" TO LAST OPTION
+                    String[] enumValues = drinkComponentSelected.getEnumValuesAsStringArray();
+                    List<String> enumValuesNotInsideDrink = findEnumValuesNotInsideDrink(enumValues);
+                    if (enumValuesNotInsideDrink.size() == 1) {
+                        drinkComponentSelected.setTypeByString(enumValuesNotInsideDrink.get(0));
+                        ((GranularTwoOptions) drinkComponentSelected).setOption(GranularTwoOptions.Option.STANDARD);
+                        notifyItemChanged(indexSelected + 1);
+                    }
+                } else {
+                    Log.i(TAG, "NOT drinkComponentSelected.getTypeAsString().equals(DrinkComponent.NULL_TYPE_AS_STRING)");
+
+                    GranularTwoOptions.Option optionSelected = null;
+                    for (int i = 0; i < GranularTwoOptions.Option.values().length; i++) {
+                        if (name.equals(GranularTwoOptions.Option.values()[i].name())) {
+                            optionSelected = GranularTwoOptions.Option.values()[i];
+                            break;
+                        }
+                    }
+
+                    // Update the underlying model.
+                    ((GranularTwoOptions) drinkComponentSelected).setOption(optionSelected);
+                    notifyItemChanged(indexSelected);
                 }
             } else {
-                Log.i(TAG, "NOT drinkComponentSelected.getTypeAsString().equals(DrinkComponent.NULL_TYPE_AS_STRING)");
+                Log.i(TAG, "drinkComponentSelected NOT instanceof GranularTwoOptions");
 
-                Granular.Amount amountSelected = null;
-                for (int i = 0; i < Granular.Amount.values().length; i++) {
-                    if (name.equals(Granular.Amount.values()[i].name())) {
-                        amountSelected = Granular.Amount.values()[i];
-                        break;
+                if (drinkComponentSelected.getTypeAsString().equals(DrinkComponent.NULL_TYPE_AS_STRING)) {
+                    Log.i(TAG, "drinkComponentSelected.getTypeAsString().equals(DrinkComponent.NULL_TYPE_AS_STRING)");
+
+                    // ADD USER'S SELECTION
+                    DrinkComponent drinkComponentToAdd =
+                            ((Granular) drinkComponentSelected).newInstanceViaTypeAsString(name, Granular.Amount.MEDIUM);
+                    String drinkComponentDefaultAsStringToAdd = Granular.Amount.NO.name();
+                    DrinkComponentWithDefaultAsString drinkComponentWithDefaultAsStringToAdd =
+                            new DrinkComponentWithDefaultAsString(
+                                    drinkComponentToAdd, drinkComponentDefaultAsStringToAdd
+                            );
+                    drinkComponents.add(indexSelected, drinkComponentWithDefaultAsStringToAdd);
+                    notifyItemInserted(indexSelected);
+
+                    // CHECK CONDITION TO CONVERT "INVOKER" TO LAST OPTION
+                    String[] enumValues = drinkComponentSelected.getEnumValuesAsStringArray();
+                    List<String> enumValuesNotInsideDrink = findEnumValuesNotInsideDrink(enumValues);
+                    if (enumValuesNotInsideDrink.size() == 1) {
+                        drinkComponentSelected.setTypeByString(enumValuesNotInsideDrink.get(0));
+                        ((Granular) drinkComponentSelected).setAmount(Granular.Amount.NO);
+                        notifyItemChanged(indexSelected + 1);
                     }
-                }
+                } else {
+                    Log.i(TAG, "NOT drinkComponentSelected.getTypeAsString().equals(DrinkComponent.NULL_TYPE_AS_STRING)");
 
-                // Update the underlying model.
-                ((Granular) drinkComponentSelected).setAmount(amountSelected);
-                notifyItemChanged(indexSelected);
+                    Granular.Amount amountSelected = null;
+                    for (int i = 0; i < Granular.Amount.values().length; i++) {
+                        if (name.equals(Granular.Amount.values()[i].name())) {
+                            amountSelected = Granular.Amount.values()[i];
+                            break;
+                        }
+                    }
+
+                    // Update the underlying model.
+                    ((Granular) drinkComponentSelected).setAmount(amountSelected);
+                    notifyItemChanged(indexSelected);
+                }
             }
         } else if (drinkComponentSelected instanceof MixedType) {
             Log.i(TAG, "drinkComponentSelected instanceof MixedType");

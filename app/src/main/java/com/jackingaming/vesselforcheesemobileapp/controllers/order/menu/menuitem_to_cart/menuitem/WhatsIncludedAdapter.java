@@ -3,6 +3,7 @@ package com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuite
 import android.util.Log;
 
 import com.jackingaming.vesselforcheesemobileapp.models.components.Granular;
+import com.jackingaming.vesselforcheesemobileapp.models.components.GranularTwoOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.components.Incrementable;
 import com.jackingaming.vesselforcheesemobileapp.models.components.MixedType;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
@@ -10,6 +11,7 @@ import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkC
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.LineTheCup;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.blended_options.BlendedPrep;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.cup_options.CupSize;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.milk_options.MilkBaseAllowable;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.preparation_options.PreparationMethod;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.tea_options.Extras;
 import com.jackingaming.vesselforcheesemobileapp.models.menu.Menu;
@@ -50,6 +52,7 @@ public class WhatsIncludedAdapter extends DrinkComponentBaseAdapter {
                         Log.e(TAG, "drinkComponentsStandardRecipe.contains(drinkComponent)");
 
                         if ((drinkComponent instanceof PreparationMethod && drinkComponent.getTypeAsString().equals(drinkComponentDefault)) ||
+                                (drinkComponent instanceof MilkBaseAllowable && drinkComponent.getTypeAsString().equals(drinkComponentDefault)) ||
                                 (drinkComponent instanceof BlendedPrep && drinkComponent.getTypeAsString().equals(drinkComponentDefault)) ||
                                 (drinkComponent instanceof Extras && drinkComponent.getTypeAsString().equals(drinkComponentDefault)) ||
                                 (drinkComponent instanceof LineTheCup && drinkComponent.getTypeAsString().equals(drinkComponentDefault)) ||
@@ -70,11 +73,20 @@ public class WhatsIncludedAdapter extends DrinkComponentBaseAdapter {
                             Log.i(TAG, "skipping - drinkComponent.getTypeAsString().equals(DrinkComponent.NULL_TYPE_AS_STRING) - drinkComponent.getClassAsString(): " + drinkComponent.getClassAsString());
                             continue;
                         } else if (drinkComponent instanceof Granular) {
-                            Granular.Amount amount = ((Granular) drinkComponent).getAmount();
+                            if (drinkComponent instanceof GranularTwoOptions) {
+                                GranularTwoOptions.Option option = ((GranularTwoOptions) drinkComponent).getOption();
 
-                            if (amount == Granular.Amount.NO) {
-                                Log.i(TAG, "skipping - amount == Granular.Amount.NO - drinkComponent.getClassAsString(): " + drinkComponent.getClassAsString());
-                                continue;
+                                if (option == GranularTwoOptions.Option.STANDARD) {
+                                    Log.i(TAG, "skipping - option == GranularTwoOptions.Option.NO - drinkComponent.getClassAsString(): " + drinkComponent.getClassAsString());
+                                    continue;
+                                }
+                            } else {
+                                Granular.Amount amount = ((Granular) drinkComponent).getAmount();
+
+                                if (amount == Granular.Amount.NO) {
+                                    Log.i(TAG, "skipping - amount == Granular.Amount.NO - drinkComponent.getClassAsString(): " + drinkComponent.getClassAsString());
+                                    continue;
+                                }
                             }
                         } else if (drinkComponent instanceof Incrementable) {
                             int quantity = ((Incrementable) drinkComponent).getQuantity();
@@ -112,17 +124,35 @@ public class WhatsIncludedAdapter extends DrinkComponentBaseAdapter {
         } else if (drinkComponentSelected instanceof Granular) {
             Log.i(TAG, "drinkComponentSelected instanceof Granular");
 
-            Granular.Amount amountSelected = null;
-            for (int i = 0; i < Granular.Amount.values().length; i++) {
-                if (name.equals(Granular.Amount.values()[i].name())) {
-                    amountSelected = Granular.Amount.values()[i];
-                    break;
-                }
-            }
+            if (drinkComponentSelected instanceof GranularTwoOptions) {
+                Log.i(TAG, "drinkComponentSelected instanceof GranularTwoOptions");
 
-            // Update the underlying model.
-            ((Granular) drinkComponentSelected).setAmount(amountSelected);
-            notifyItemChanged(indexSelected);
+                GranularTwoOptions.Option optionSelected = null;
+                for (int i = 0; i < GranularTwoOptions.Option.values().length; i++) {
+                    if (name.equals(GranularTwoOptions.Option.values()[i].name())) {
+                        optionSelected = GranularTwoOptions.Option.values()[i];
+                        break;
+                    }
+                }
+
+                // Update the underlying model.
+                ((GranularTwoOptions) drinkComponentSelected).setOption(optionSelected);
+                notifyItemChanged(indexSelected);
+            } else {
+                Log.i(TAG, "drinkComponentSelected NOT instanceof GranularTwoOptions");
+
+                Granular.Amount amountSelected = null;
+                for (int i = 0; i < Granular.Amount.values().length; i++) {
+                    if (name.equals(Granular.Amount.values()[i].name())) {
+                        amountSelected = Granular.Amount.values()[i];
+                        break;
+                    }
+                }
+
+                // Update the underlying model.
+                ((Granular) drinkComponentSelected).setAmount(amountSelected);
+                notifyItemChanged(indexSelected);
+            }
         } else {
             Log.i(TAG, "drinkComponentSelected NOT instanceof Incrementable nor Granular");
 
@@ -130,6 +160,9 @@ public class WhatsIncludedAdapter extends DrinkComponentBaseAdapter {
             drinkComponentSelected.setTypeByString(name);
 
             if (drinkComponentSelected instanceof PreparationMethod ||
+                    drinkComponentSelected instanceof MilkBaseAllowable ||
+                    drinkComponentSelected instanceof BlendedPrep ||
+                    drinkComponentSelected instanceof Extras ||
                     drinkComponentSelected instanceof LineTheCup ||
                     drinkComponentSelected instanceof CupSize) {
                 drinkComponents.remove(indexSelected);
@@ -167,30 +200,55 @@ public class WhatsIncludedAdapter extends DrinkComponentBaseAdapter {
         } else if (drinkComponentSelected instanceof Granular) {
             Log.i(TAG, "drinkComponentSelected instanceof Granular");
 
-            if (drinkComponentSelected instanceof MixedType) {
-                Log.i(TAG, "drinkComponentSelected instanceof MixedType");
+            if (drinkComponentSelected instanceof GranularTwoOptions) {
+                Log.i(TAG, "drinkComponentSelected instanceof GranularTwoOptions");
 
-                // Intentionally blank.
-            }
+                String[] enumValues = drinkComponentSelected.getEnumValuesAsStringArray();
+                List<String> enumValuesNotInsideDrink = findEnumValuesNotInsideDrink(enumValues);
 
-            String[] enumValues = drinkComponentSelected.getEnumValuesAsStringArray();
-            List<String> enumValuesNotInsideDrink = findEnumValuesNotInsideDrink(enumValues);
+                if (enumValuesNotInsideDrink.size() == 0) {
+                    Log.i(TAG, "enumValuesNotInsideDrink.size() == 0");
 
-            if (enumValuesNotInsideDrink.size() == 0) {
-                Log.i(TAG, "enumValuesNotInsideDrink.size() == 0");
+                    // Update the underlying model.
+                    ((GranularTwoOptions) drinkComponentSelected).setOption(GranularTwoOptions.Option.STANDARD);
+                } else {
+                    Log.i(TAG, "enumValuesNotInsideDrink.size() != 0");
 
-                // Update the underlying model.
-                ((Granular) drinkComponentSelected).setAmount(Granular.Amount.NO);
+                    // Update the underlying model.
+                    drinkComponentSelected.setTypeByString(DrinkComponent.NULL_TYPE_AS_STRING);
+                    ((GranularTwoOptions) drinkComponentSelected).setOption(GranularTwoOptions.Option.STANDARD);
+                }
+
+                drinkComponents.remove(indexSelected);
+                notifyItemRemoved(indexSelected);
             } else {
-                Log.i(TAG, "enumValuesNotInsideDrink.size() != 0");
+                Log.i(TAG, "drinkComponentSelected NOT instanceof GranularTwoOptions");
 
-                // Update the underlying model.
-                drinkComponentSelected.setTypeByString(DrinkComponent.NULL_TYPE_AS_STRING);
-                ((Granular) drinkComponentSelected).setAmount(Granular.Amount.NO);
+                if (drinkComponentSelected instanceof MixedType) {
+                    Log.i(TAG, "drinkComponentSelected instanceof MixedType");
+
+                    // Intentionally blank.
+                }
+
+                String[] enumValues = drinkComponentSelected.getEnumValuesAsStringArray();
+                List<String> enumValuesNotInsideDrink = findEnumValuesNotInsideDrink(enumValues);
+
+                if (enumValuesNotInsideDrink.size() == 0) {
+                    Log.i(TAG, "enumValuesNotInsideDrink.size() == 0");
+
+                    // Update the underlying model.
+                    ((Granular) drinkComponentSelected).setAmount(Granular.Amount.NO);
+                } else {
+                    Log.i(TAG, "enumValuesNotInsideDrink.size() != 0");
+
+                    // Update the underlying model.
+                    drinkComponentSelected.setTypeByString(DrinkComponent.NULL_TYPE_AS_STRING);
+                    ((Granular) drinkComponentSelected).setAmount(Granular.Amount.NO);
+                }
+
+                drinkComponents.remove(indexSelected);
+                notifyItemRemoved(indexSelected);
             }
-
-            drinkComponents.remove(indexSelected);
-            notifyItemRemoved(indexSelected);
         } else {
             Log.i(TAG, "drinkComponentSelected NOT instanceof Incrementable nor Granular");
 
@@ -219,16 +277,33 @@ public class WhatsIncludedAdapter extends DrinkComponentBaseAdapter {
         } else if (drinkComponentSelected instanceof Granular) {
             Log.i(TAG, "drinkComponentSelected instanceof Granular");
 
-            Granular.Amount amountSelected = null;
-            for (int i = 0; i < Granular.Amount.values().length; i++) {
-                if (name.equals(Granular.Amount.values()[i].name())) {
-                    amountSelected = Granular.Amount.values()[i];
-                    break;
-                }
-            }
+            if (drinkComponentSelected instanceof GranularTwoOptions) {
+                Log.i(TAG, "drinkComponentSelected instanceof GranularTwoOptions");
 
-            // Update the underlying model.
-            ((Granular) drinkComponentSelected).setAmount(amountSelected);
+                GranularTwoOptions.Option optionSelected = null;
+                for (int i = 0; i < GranularTwoOptions.Option.values().length; i++) {
+                    if (name.equals(GranularTwoOptions.Option.values()[i].name())) {
+                        optionSelected = GranularTwoOptions.Option.values()[i];
+                        break;
+                    }
+                }
+
+                // Update the underlying model.
+                ((GranularTwoOptions) drinkComponentSelected).setOption(optionSelected);
+            } else {
+                Log.i(TAG, "drinkComponentSelected NOT instanceof GranularTwoOptions");
+
+                Granular.Amount amountSelected = null;
+                for (int i = 0; i < Granular.Amount.values().length; i++) {
+                    if (name.equals(Granular.Amount.values()[i].name())) {
+                        amountSelected = Granular.Amount.values()[i];
+                        break;
+                    }
+                }
+
+                // Update the underlying model.
+                ((Granular) drinkComponentSelected).setAmount(amountSelected);
+            }
         } else {
             Log.i(TAG, "drinkComponentSelected NOT instanceof Incrementable nor Granular");
 

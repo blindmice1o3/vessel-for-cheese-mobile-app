@@ -6,6 +6,7 @@ import com.jackingaming.vesselforcheesemobileapp.models.components.Incrementable
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponentWithDefaultAsString;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.AddInsOptions;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.mixed_type.fruits.derived.FruitInclusion;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.mixed_type.powders.derived.VanillaBeanPowder;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.blended_options.BlendedOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.blended_options.FrapChips;
@@ -125,6 +126,16 @@ public abstract class Drink extends MenuItem
 
                             if (drinkComponent instanceof VanillaBeanPowder) {
                                 Log.i(TAG, "drinkComponent instanceof VanillaBeanPowder");
+
+                                int quantityNew = getNumberOfScoopByDrinkSize(drinkSizeNew);
+                                if (quantityNew == QUANTITY_INDEPENDENT_OF_DRINK_SIZE) {
+                                    Log.e(TAG, "quantityNew == QUANTITY_INDEPENDENT_OF_DRINK_SIZE");
+                                    return false;
+                                }
+                                changedUserCustomizations =
+                                        updateQuantityByDrinkSize(drinkComponentWithDefaultAsString, quantityNew);
+                            } else if (drinkComponent instanceof FruitInclusion) {
+                                Log.i(TAG, "drinkComponent instanceof FruitInclusion");
 
                                 int quantityNew = getNumberOfScoopByDrinkSize(drinkSizeNew);
                                 if (quantityNew == QUANTITY_INDEPENDENT_OF_DRINK_SIZE) {

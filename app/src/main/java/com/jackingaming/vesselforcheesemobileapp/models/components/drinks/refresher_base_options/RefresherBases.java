@@ -3,7 +3,7 @@ package com.jackingaming.vesselforcheesemobileapp.models.components.drinks.refre
 import com.jackingaming.vesselforcheesemobileapp.models.components.Granular;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
 
-public class RefresherBase extends RefresherBaseOptions
+public class RefresherBases extends RefresherBasesOptions
         implements Granular {
     public static final String DEFAULT_TEXT_INIT = "Add Refresher Bases";
 
@@ -26,7 +26,7 @@ public class RefresherBase extends RefresherBaseOptions
     private Type type;
     private Amount amount;
 
-    public RefresherBase(Type type, Amount amount) {
+    public RefresherBases(Type type, Amount amount) {
         this.type = type;
         this.amount = amount;
     }
@@ -56,7 +56,7 @@ public class RefresherBase extends RefresherBaseOptions
 
     @Override
     public String getClassAsString() {
-        return RefresherBase.class.getSimpleName();
+        return RefresherBases.class.getSimpleName();
     }
 
     @Override
@@ -84,8 +84,8 @@ public class RefresherBase extends RefresherBaseOptions
 
     @Override
     public DrinkComponent newInstanceViaTypeAsString(String typeAsString, Amount amount) {
-        RefresherBase refresherBase = new RefresherBase(null, amount);
-        refresherBase.setTypeByString(typeAsString);
-        return refresherBase;
+        RefresherBases refresherBases = new RefresherBases(null, amount);
+        refresherBases.setTypeByString(typeAsString);
+        return refresherBases;
     }
 }

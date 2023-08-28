@@ -5,12 +5,13 @@ import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_in
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.blended_options.BlendedOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.cup_options.CupOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.espresso_options.EspressoOptions;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.extra_refresher_bases_options.ExtraRefresherBasesOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.flavor_options.FlavorOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.juice_options.JuiceOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.lemonade_options.LemonadeOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.milk_options.MilkOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.preparation_options.PreparationOptions;
-import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.refresher_base_options.RefresherBaseOptions;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.refresher_base_options.RefresherBasesOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.sweetener_options.SweetenerOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.tea_options.TeaOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.topping_options.ToppingOptions;
@@ -178,11 +179,12 @@ public class Menu {
 
     public static final List<String> DRINK_COMPONENTS_KEYS = Arrays.asList(
             LemonadeOptions.TAG,
+            ExtraRefresherBasesOptions.TAG,
             PreparationOptions.TAG,
             MilkOptions.TAG,
             EspressoOptions.TAG,
             BlendedOptions.TAG,
-            RefresherBaseOptions.TAG,
+            RefresherBasesOptions.TAG,
             TeaOptions.TAG,
             JuiceOptions.TAG,
             SweetenerOptions.TAG,

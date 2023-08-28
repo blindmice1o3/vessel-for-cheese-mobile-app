@@ -13,8 +13,8 @@ import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.juice_
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.juice_options.JuiceOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.preparation_options.PreparationMethod;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.preparation_options.PreparationOptions;
-import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.refresher_base_options.RefresherBase;
-import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.refresher_base_options.RefresherBaseOptions;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.refresher_base_options.RefresherBases;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.refresher_base_options.RefresherBasesOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.tea_options.Chai;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.tea_options.MatchaPowder;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.tea_options.TeaOptions;
@@ -66,10 +66,10 @@ public class IcedGreenTea extends IcedTeas {
         // REFRESHER_BASE_OPTIONS (add into NEW DrinkComponent group)
         List<DrinkComponentWithDefaultAsString> refresherBaseOptions = new ArrayList<>();
         refresherBaseOptions.add(new DrinkComponentWithDefaultAsString(
-                new RefresherBase(null, DEFAULT_REFRESHER_BASE_AMOUNT), DEFAULT_REFRESHER_BASE_AMOUNT.name()
+                new RefresherBases(null, DEFAULT_REFRESHER_BASE_AMOUNT), DEFAULT_REFRESHER_BASE_AMOUNT.name()
         ));
 
-        drinkComponents.put(RefresherBaseOptions.TAG, refresherBaseOptions);
+        drinkComponents.put(RefresherBasesOptions.TAG, refresherBaseOptions);
 
         // TEA_OPTIONS (add into NEW DrinkComponent group)
         List<DrinkComponentWithDefaultAsString> teaOptions = new ArrayList<>();
