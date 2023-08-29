@@ -56,7 +56,7 @@ public class WhatsIncludedAdapter extends DrinkComponentBaseAdapter {
                                 (drinkComponent instanceof BlendedPrep && drinkComponent.getTypeAsString().equals(drinkComponentDefault)) ||
                                 (drinkComponent instanceof Extras && drinkComponent.getTypeAsString().equals(drinkComponentDefault)) ||
                                 (drinkComponent instanceof LineTheCup && drinkComponent.getTypeAsString().equals(drinkComponentDefault)) ||
-                                (drinkComponent instanceof CupSize && drinkComponent.getTypeAsString().equals(drinkComponentDefault))) {
+                                (drinkComponent instanceof CupSize && drinkComponent.getTypeAsString().equals(CupSize.Type.NO.name()))) {
                             Log.i(TAG, "skipping - (drinkComponent instanceof PreparationMethod && drinkComponent.getTypeAsString().equals(drinkComponentDefault)) || (drinkComponent instanceof LineTheCup && drinkComponent.getTypeAsString().equals(drinkComponentDefault)) || (drinkComponent instanceof CupSize && drinkComponent.getTypeAsString().equals(drinkComponentDefault)) - drinkComponent.getClassAsStrings(): " + drinkComponent.getClassAsString());
                             continue;
                         }
@@ -164,7 +164,7 @@ public class WhatsIncludedAdapter extends DrinkComponentBaseAdapter {
                     drinkComponentSelected instanceof BlendedPrep ||
                     drinkComponentSelected instanceof Extras ||
                     drinkComponentSelected instanceof LineTheCup ||
-                    drinkComponentSelected instanceof CupSize) {
+                    drinkComponentSelected instanceof CupSize && drinkComponentSelected.getTypeAsString().equals(CupSize.Type.NO.name())) {
                 drinkComponents.remove(indexSelected);
                 notifyItemRemoved(indexSelected);
             } else {

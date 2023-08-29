@@ -41,7 +41,6 @@ import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.NotHan
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.blendedbeverages.BlendedBeverages;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewed.BrewedCoffees;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.Espresso;
-import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.straight_shots.EspressoShots;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.other.Other;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.teas.Teas;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.travelers.CoffeeTravelers;
@@ -102,12 +101,11 @@ public class MenuItemActivity extends AppCompatActivity {
 
         if (menuItemSelected instanceof BlendedBeverages ||
                 menuItemSelected instanceof BrewedCoffees ||
-                // TODO: change to include EspressoShots
-                (menuItemSelected instanceof Espresso && !(menuItemSelected instanceof EspressoShots)) ||
+                menuItemSelected instanceof Espresso ||
                 menuItemSelected instanceof Other ||
                 menuItemSelected instanceof Teas ||
                 menuItemSelected instanceof CoffeeTravelers) {
-            Log.i(TAG, "menuItemSelected instanceof BlendedBeverages || menuItemSelected instanceof BrewedCoffees || (menuItemSelected instanceof Espresso && !(menuItemSelected instanceof EspressoShots) || menuItemSelected instanceof Other || menuItemSelected instanceof Teas || menuItemSelected instanceof CoffeeTravelers)");
+            Log.i(TAG, "menuItemSelected instanceof BlendedBeverages || menuItemSelected instanceof BrewedCoffees || menuItemSelected instanceof Espresso || menuItemSelected instanceof Other || menuItemSelected instanceof Teas || menuItemSelected instanceof CoffeeTravelers)");
             drink = createCopyOfMenuItemFromMenu(menuItemSelected);
 
             ivMenuItemImage.setImageResource(drink.getImageResourceId());
@@ -188,6 +186,18 @@ public class MenuItemActivity extends AppCompatActivity {
                             break;
                         case TRENTA:
                             imageResource = R.drawable.drinksize_trenta;
+                            break;
+                        case SOLO:
+                            imageResource = R.drawable.drinksize_solo;
+                            break;
+                        case DOPPIO:
+                            imageResource = R.drawable.drinksize_doppio;
+                            break;
+                        case TRIPLE:
+                            imageResource = R.drawable.drinksize_triple;
+                            break;
+                        case QUAD:
+                            imageResource = R.drawable.drinksize_quad;
                             break;
                         case UNIQUE:
                             imageResource = R.drawable.drinksize_short;

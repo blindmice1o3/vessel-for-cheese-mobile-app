@@ -8,6 +8,10 @@ public enum DrinkSize {
     VENTI_HOT(20),
     VENTI_ICED(24),
     TRENTA(30),
+    SOLO(-1),
+    DOPPIO(-1),
+    TRIPLE(-1),
+    QUAD(-1),
     UNIQUE(-1),
     UNDEFINED(-1);
 
