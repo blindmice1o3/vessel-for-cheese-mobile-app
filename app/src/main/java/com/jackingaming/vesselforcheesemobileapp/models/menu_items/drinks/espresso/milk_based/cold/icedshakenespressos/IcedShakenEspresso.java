@@ -1,7 +1,10 @@
 package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.cold.icedshakenespressos;
 
 import com.jackingaming.vesselforcheesemobileapp.R;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponentWithDefaultAsString;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.AddInsOptions;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.Ice;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.sweetener_options.Liquid;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.sweetener_options.SweetenerOptions;
 
@@ -12,7 +15,7 @@ public class IcedShakenEspresso extends IcedShakenEspressos {
 
     public static final int DEFAULT_IMAGE_RESOURCE_ID = R.drawable.harvest_moon_natsume;
     public static final String DEFAULT_NAME = "Iced Shaken Espresso";
-    public static final String DEFAULT_DESCRIPTION = "Made with the rich, full-bodied espresso you love - then shaken, chilled and mellowed with sweetness and a touch of milk to create a delightfully and deliciously convenient on-the-go drink.";
+    public static final String DEFAULT_DESCRIPTION = "Made with the rich, full-bodied espresso you love--then shaken, chilled and mellowed with sweetness and a touch of milk to create a delightfully and deliciously convenient on-the-go drink.";
     public static final int DEFAULT_CALORIES = 100;
     public static final int DEFAULT_SUGAR_IN_GRAM = 14;
     public static final float DEFAULT_FAT_IN_GRAM = 2.0f;
@@ -38,5 +41,16 @@ public class IcedShakenEspresso extends IcedShakenEspressos {
         ));
 
         drinkComponentsStandardRecipe.add(liquidClassic);
+
+        // REMOVAL: ADD_INS_OPTIONS: Ice
+        Ice ice = null;
+        for (DrinkComponent drinkComponent : drinkComponentsStandardRecipe) {
+            if (drinkComponent instanceof Ice) {
+                ice = (Ice) drinkComponent;
+                break;
+            }
+        }
+        drinkComponentsStandardRecipe.remove(ice);
+        drinkComponents.get(AddInsOptions.TAG).remove(0);
     }
 }

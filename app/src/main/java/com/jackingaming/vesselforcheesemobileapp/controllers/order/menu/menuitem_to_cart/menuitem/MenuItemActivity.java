@@ -25,9 +25,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 import com.jackingaming.vesselforcheesemobileapp.R;
-import com.jackingaming.vesselforcheesemobileapp.controllers.order.OrderFragment;
 import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem_to_cart.customize.CustomizeActivity;
 import com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem_to_cart.revieworder.ReviewOrderActivity;
 import com.jackingaming.vesselforcheesemobileapp.models.components.Granular;
@@ -320,10 +318,14 @@ public class MenuItemActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Log.i(TAG, "extendedFloatingActionButton clicked");
 
-                OrderFragment.getInstance().addMenuItemToOrder(drink);
-
-                Snackbar.make(view, drink.getName() + " added", Snackbar.LENGTH_LONG)
-                        .show();
+                // TODO: un-comment below
+//                OrderFragment.getInstance().addMenuItemToOrder(drink);
+//
+//                Snackbar.make(view, drink.getName() + " added", Snackbar.LENGTH_LONG)
+//                        .show();
+                for (DrinkComponent drinkComponent : drink.getDrinkComponentsStandardRecipe()) {
+                    Log.e(TAG, drinkComponent.getClassAsString() + " | " + drinkComponent.getTypeAsString());
+                }
             }
         });
     }

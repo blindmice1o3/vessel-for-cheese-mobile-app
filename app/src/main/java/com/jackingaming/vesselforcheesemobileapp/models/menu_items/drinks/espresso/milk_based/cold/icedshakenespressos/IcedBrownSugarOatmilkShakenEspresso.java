@@ -2,7 +2,10 @@ package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espre
 
 import com.jackingaming.vesselforcheesemobileapp.R;
 import com.jackingaming.vesselforcheesemobileapp.models.components.Granular;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponentWithDefaultAsString;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.AddInsOptions;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.Ice;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.espresso_options.EspressoOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.espresso_options.RoastOptionsAllowable;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.flavor_options.FlavorOptions;
@@ -92,5 +95,16 @@ public class IcedBrownSugarOatmilkShakenEspresso extends IcedShakenEspressos {
                 cinnamonPowder, DEFAULT_CINNAMON_POWDER_AMOUNT.name()
         ));
         drinkComponentsStandardRecipe.add(cinnamonPowder);
+
+        // REMOVAL: ADD_INS_OPTIONS: Ice
+        Ice ice = null;
+        for (DrinkComponent drinkComponent : drinkComponentsStandardRecipe) {
+            if (drinkComponent instanceof Ice) {
+                ice = (Ice) drinkComponent;
+                break;
+            }
+        }
+        drinkComponentsStandardRecipe.remove(ice);
+        drinkComponents.get(AddInsOptions.TAG).remove(0);
     }
 }

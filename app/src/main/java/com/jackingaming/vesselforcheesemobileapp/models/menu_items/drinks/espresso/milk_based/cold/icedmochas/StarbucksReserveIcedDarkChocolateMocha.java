@@ -23,7 +23,7 @@ public class StarbucksReserveIcedDarkChocolateMocha extends IcedMochas {
 
     public static final int DEFAULT_IMAGE_RESOURCE_ID = R.drawable.harvest_moon_natsume;
     public static final String DEFAULT_NAME = "Starbucks Reserve Iced Dark Chocolate Mocha";
-    public static final String DEFAULT_DESCRIPTION = "Our small-lot Starbucks Reserve espresso - combined with cocoa and ground chocolate, then topped with cold milk and served over iced - makes a perfect mocha companion day or night.";
+    public static final String DEFAULT_DESCRIPTION = "Our small-lot Starbucks Reserve espresso--combined with cocoa and ground chocolate, then topped with cold milk and served over iced--makes a perfect mocha companion day or night.";
     public static final int DEFAULT_CALORIES = 260;
     public static final int DEFAULT_SUGAR_IN_GRAM = 28;
     public static final float DEFAULT_FAT_IN_GRAM = 10.0f;

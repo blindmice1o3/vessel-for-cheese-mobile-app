@@ -1,11 +1,8 @@
 package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.cold.icedflatwhites;
 
 import com.jackingaming.vesselforcheesemobileapp.R;
-import com.jackingaming.vesselforcheesemobileapp.models.components.Granular;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponentWithDefaultAsString;
-import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.AddInsOptions;
-import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.Ice;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.espresso_options.EspressoOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.espresso_options.PullOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.espresso_options.PullOptionsAllowable;
@@ -26,8 +23,6 @@ public class IcedFlatWhite extends IcedFlatWhites {
 
     public static final MilkBase.Type DEFAULT_MILK_BASE_WHOLE_MILK = MilkBase.Type.WHOLE_MILK;
     public static final PullOptions.Type DEFAULT_PULL_OPTIONS_RISTRETTO = PullOptions.Type.RISTRETTO;
-    public static final Ice.Type DEFAULT_ICE = Ice.Type.ICE;
-    public static final Granular.Amount DEFAULT_ICE_AMOUNT = Granular.Amount.MEDIUM;
 
     public static final double DEFAULT_PRICE_SMALL = 2.95;
     public static final double DEFAULT_PRICE_MEDIUM = 3.45;
@@ -64,15 +59,5 @@ public class IcedFlatWhite extends IcedFlatWhites {
         ));
 
         drinkComponentsStandardRecipe.add(pullOptions);
-
-        // ADD_INS_OPTIONS (add into EXISTING DrinkComponent group)
-        Ice ice = new Ice(DEFAULT_ICE, DEFAULT_ICE_AMOUNT);
-
-        List<DrinkComponentWithDefaultAsString> addInsOptions = drinkComponents.get(AddInsOptions.TAG);
-        addInsOptions.add(0, new DrinkComponentWithDefaultAsString(
-                ice, DEFAULT_ICE_AMOUNT.name()
-        ));
-
-        drinkComponentsStandardRecipe.add(ice);
     }
 }

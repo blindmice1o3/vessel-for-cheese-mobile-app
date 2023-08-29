@@ -2,8 +2,10 @@ package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espre
 
 import com.jackingaming.vesselforcheesemobileapp.R;
 import com.jackingaming.vesselforcheesemobileapp.models.components.Granular;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponentWithDefaultAsString;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.AddInsOptions;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.Ice;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.mixed_type.powders.derived.ChocolateMaltPowder;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.mixed_type.powders.derived.VanillaBeanPowder;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.espresso_options.EspressoOptions;
@@ -64,8 +66,19 @@ public class IcedChocolateAlmondmilkShakenEspresso extends IcedShakenEspressos {
         roastOptionsBlonde.setType(DEFAULT_ROAST_OPTIONS_BLONDE);
         espressoOptions.get(0).setDrinkComponentDefaultAsString(DEFAULT_ROAST_OPTIONS_BLONDE.name());
 
-        // REMOVAL: ADD_INS_OPTIONS: Powders
-        drinkComponents.get(AddInsOptions.TAG).remove(1);
+        // REMOVAL: ADD_INS_OPTIONS: Powder
+        drinkComponents.get(AddInsOptions.TAG).remove(2);
+
+        // REMOVAL: ADD_INS_OPTIONS: Ice
+        Ice ice = null;
+        for (DrinkComponent drinkComponent : drinkComponentsStandardRecipe) {
+            if (drinkComponent instanceof Ice) {
+                ice = (Ice) drinkComponent;
+                break;
+            }
+        }
+        drinkComponentsStandardRecipe.remove(ice);
+        drinkComponents.get(AddInsOptions.TAG).remove(0);
 
         // ADD_INS_OPTIONS (add into EXISTING DrinkComponent group)
         ChocolateMaltPowder chocolateMaltPowder =

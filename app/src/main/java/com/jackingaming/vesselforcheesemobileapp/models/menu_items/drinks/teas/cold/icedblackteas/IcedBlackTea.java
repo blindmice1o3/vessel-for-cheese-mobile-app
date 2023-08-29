@@ -28,7 +28,7 @@ public class IcedBlackTea extends IcedTeas {
 
     public static final int DEFAULT_IMAGE_RESOURCE_ID = R.drawable.harvest_moon_natsume;
     public static final String DEFAULT_NAME = "Iced Black Tea";
-    public static final String DEFAULT_DESCRIPTION = "Premium black tea sweetened just right and shaken with ice to create an ideal iced tea - a rich and flavorful black tea journey awaits you.";
+    public static final String DEFAULT_DESCRIPTION = "Premium black tea sweetened just right and shaken with ice to create an ideal iced tea--a rich and flavorful black tea journey awaits you.";
     public static final int DEFAULT_CALORIES = 0;
     public static final int DEFAULT_SUGAR_IN_GRAM = 0;
     public static final float DEFAULT_FAT_IN_GRAM = 0.0f;

@@ -23,7 +23,7 @@ public class StarbucksReserveIcedHazelnutBiancoLatte extends IcedLattes {
 
     public static final int DEFAULT_IMAGE_RESOURCE_ID = R.drawable.harvest_moon_natsume;
     public static final String DEFAULT_NAME = "Starbucks Reserve Iced Hazelnut Bianco Latte";
-    public static final String DEFAULT_DESCRIPTION = "House-made hazelnut-praline-infused milk combined with our small-lot Starbucks Reserve espresso and served over ice - a true character of sweetly chilled nut love.";
+    public static final String DEFAULT_DESCRIPTION = "House-made hazelnut-praline-infused milk combined with our small-lot Starbucks Reserve espresso and served over ice--a true character of sweetly chilled nut love.";
     public static final int DEFAULT_CALORIES = 280;
     public static final int DEFAULT_SUGAR_IN_GRAM = 26;
     public static final float DEFAULT_FAT_IN_GRAM = 13.0f;

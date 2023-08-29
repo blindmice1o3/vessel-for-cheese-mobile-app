@@ -7,8 +7,8 @@ import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.espres
 
 import java.util.List;
 
-public class EspressoFrappuccinoBlendedBeveragesBeverage extends CoffeeBased {
-    public static final String TAG = EspressoFrappuccinoBlendedBeveragesBeverage.class.getSimpleName();
+public class EspressoFrappuccinoBlendedBeverage extends CoffeeBased {
+    public static final String TAG = EspressoFrappuccinoBlendedBeverage.class.getSimpleName();
 
     public static final int DEFAULT_IMAGE_RESOURCE_ID = R.drawable.harvest_moon_natsume;
     public static final String DEFAULT_NAME = "Espresso Frappuccino Blended Beverage";
@@ -24,7 +24,7 @@ public class EspressoFrappuccinoBlendedBeveragesBeverage extends CoffeeBased {
     public static final double DEFAULT_PRICE_MEDIUM = 3.45;
     public static final double DEFAULT_PRICE_LARGE = 3.70;
 
-    public EspressoFrappuccinoBlendedBeveragesBeverage() {
+    public EspressoFrappuccinoBlendedBeverage() {
         super(DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
                 DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
                 DEFAULT_PRICE_MEDIUM);

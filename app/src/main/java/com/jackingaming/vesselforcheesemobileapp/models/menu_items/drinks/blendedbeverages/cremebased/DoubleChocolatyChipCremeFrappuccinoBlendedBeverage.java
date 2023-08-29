@@ -1,4 +1,4 @@
-package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.blendedbeverages.coffeebased;
+package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.blendedbeverages.cremebased;
 
 import com.jackingaming.vesselforcheesemobileapp.R;
 import com.jackingaming.vesselforcheesemobileapp.models.components.Granular;
@@ -6,23 +6,26 @@ import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkC
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponentWithDefaultAsString;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.blended_options.BlendedOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.blended_options.FrapChips;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.flavor_options.FlavorOptions;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.flavor_options.Sauce;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.topping_options.Drizzle;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.topping_options.ToppingOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.topping_options.WhippedCream;
 
 import java.util.List;
 
-public class ChocolateJavaMintFrappuccinoBlendedBeveragesBeverage extends CoffeeBased {
-    public static final String TAG = ChocolateJavaMintFrappuccinoBlendedBeveragesBeverage.class.getSimpleName();
+public class DoubleChocolatyChipCremeFrappuccinoBlendedBeverage extends CremeBased {
+    public static final String TAG = DoubleChocolatyChipCremeFrappuccinoBlendedBeverage.class.getSimpleName();
 
     public static final int DEFAULT_IMAGE_RESOURCE_ID = R.drawable.harvest_moon_natsume;
-    public static final String DEFAULT_NAME = "Chocolate Java Mint Frappuccino Blended Beverage";
-    public static final String DEFAULT_DESCRIPTION = "Coffee and flavors of sweet chocolate and refreshing mint blended with rich Frappuccino chips for a smooth treat finished with a layer of mocha sauce, whipped cream and chocolate-mint cookie crumble.";
-    public static final int DEFAULT_CALORIES = 490;
-    public static final int DEFAULT_SUGAR_IN_GRAM = 69;
+    public static final String DEFAULT_NAME = "Double Chocolaty Chip Creme Frappuccino Blended Beverage";
+    public static final String DEFAULT_DESCRIPTION = "Rich mocha-flavored sauce meets up with chocolaty chips, milk and ice for a blender bash. Top it off with sweetened whipped cream and mocha drizzle for a real party in your mouth.";
+    public static final int DEFAULT_CALORIES = 410;
+    public static final int DEFAULT_SUGAR_IN_GRAM = 47;
     public static final float DEFAULT_FAT_IN_GRAM = 20.0f;
 
     public static final FrapChips.Type DEFAULT_FRAP_CHIPS = FrapChips.Type.FRAP_CHIPS;
+    public static final Sauce.Type DEFAULT_SAUCE_MOCHA = Sauce.Type.MOCHA_SAUCE;
     public static final WhippedCream.Type DEFAULT_WHIPPED_CREAM = WhippedCream.Type.WHIPPED_CREAM;
     public static final Granular.Amount DEFAULT_WHIPPED_CREAM_AMOUNT = Granular.Amount.MEDIUM;
     public static final Drizzle.Type DEFAULT_DRIZZLE_MOCHA = Drizzle.Type.MOCHA_DRIZZLE;
@@ -32,7 +35,7 @@ public class ChocolateJavaMintFrappuccinoBlendedBeveragesBeverage extends Coffee
     public static final double DEFAULT_PRICE_MEDIUM = 3.45;
     public static final double DEFAULT_PRICE_LARGE = 3.70;
 
-    public ChocolateJavaMintFrappuccinoBlendedBeveragesBeverage() {
+    public DoubleChocolatyChipCremeFrappuccinoBlendedBeverage() {
         super(DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
                 DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
                 DEFAULT_PRICE_MEDIUM);
@@ -46,7 +49,7 @@ public class ChocolateJavaMintFrappuccinoBlendedBeveragesBeverage extends Coffee
             }
         }
         drinkComponentsStandardRecipe.remove(frapChips);
-        drinkComponents.get(BlendedOptions.TAG).remove(2);
+        drinkComponents.get(BlendedOptions.TAG).remove(1);
 
         // BLENDED_OPTIONS (add into EXISTING DrinkComponent group)
         int numberOfScoopByDrinkSize = getNumberOfScoopByDrinkSize(drinkSize);
@@ -57,6 +60,16 @@ public class ChocolateJavaMintFrappuccinoBlendedBeveragesBeverage extends Coffee
                 frapChipsDefined, Integer.toString(numberOfScoopByDrinkSize)
         ));
         drinkComponentsStandardRecipe.add(frapChipsDefined);
+
+        // FLAVOR_OPTIONS (add into EXISTING DrinkComponent group)
+        int numberOfPumpByDrinkSize = getNumberOfPumpByDrinkSize(drinkSize);
+        Sauce sauceMocha = new Sauce(DEFAULT_SAUCE_MOCHA, numberOfPumpByDrinkSize);
+
+        List<DrinkComponentWithDefaultAsString> flavorOptions = drinkComponents.get(FlavorOptions.TAG);
+        flavorOptions.add(0, new DrinkComponentWithDefaultAsString(
+                sauceMocha, Integer.toString(numberOfPumpByDrinkSize)
+        ));
+        drinkComponentsStandardRecipe.add(sauceMocha);
 
         // REMOVAL: TOPPING_OPTIONS: WhippedCream
         WhippedCream whippedCream = null;

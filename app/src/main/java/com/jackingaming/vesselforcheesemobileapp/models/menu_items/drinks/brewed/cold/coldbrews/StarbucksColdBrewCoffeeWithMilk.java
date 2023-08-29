@@ -2,11 +2,8 @@ package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewe
 
 import com.jackingaming.vesselforcheesemobileapp.R;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponentWithDefaultAsString;
-import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.lemonade_options.LemonadeOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.milk_options.MilkBase;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.milk_options.MilkOptions;
-import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.preparation_options.PreparationMethod;
-import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.preparation_options.PreparationOptions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +13,7 @@ public class StarbucksColdBrewCoffeeWithMilk extends ColdBrews {
 
     public static final int DEFAULT_IMAGE_RESOURCE_ID = R.drawable.harvest_moon_natsume;
     public static final String DEFAULT_NAME = "Starbucks Cold Brew Coffee with Milk";
-    public static final String DEFAULT_DESCRIPTION = "Handcrafted in small batches daily, slow-steeped in cool water for 20 hours, without touching heat and finished with a splash of milk-Starbucks Cold Brew is made from our custom blend of beans grown to steep long and cold for a super-smooth flavor.";
+    public static final String DEFAULT_DESCRIPTION = "Handcrafted in small batches daily, slow-steeped in cool water for 20 hours, without touching heat and finished with a splash of milk--Starbucks Cold Brew is made from our custom blend of beans grown to steep long and cold for a super-smooth flavor.";
     public static final int DEFAULT_CALORIES = 35;
     public static final int DEFAULT_SUGAR_IN_GRAM = 3;
     public static final float DEFAULT_FAT_IN_GRAM = 1.5f;
@@ -42,12 +39,5 @@ public class StarbucksColdBrewCoffeeWithMilk extends ColdBrews {
 
         drinkComponents.put(MilkOptions.TAG, milkOptions);
         drinkComponentsStandardRecipe.add(milkBaseTwoPercent);
-
-        // REMOVAL: LEMONADE_OPTIONS and PREPARATION_OPTIONS
-        PreparationMethod preparationMethod = (PreparationMethod) drinkComponents.get(PreparationOptions.TAG).get(0).getDrinkComponent();
-
-        drinkComponentsStandardRecipe.remove(preparationMethod);
-        drinkComponents.remove(LemonadeOptions.TAG);
-        drinkComponents.remove(PreparationOptions.TAG);
     }
 }

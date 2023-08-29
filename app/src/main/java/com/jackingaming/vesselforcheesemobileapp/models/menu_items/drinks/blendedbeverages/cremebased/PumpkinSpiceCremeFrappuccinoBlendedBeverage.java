@@ -1,27 +1,33 @@
 package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.blendedbeverages.cremebased;
 
+import android.util.Log;
+
 import com.jackingaming.vesselforcheesemobileapp.R;
 import com.jackingaming.vesselforcheesemobileapp.models.components.Granular;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponentWithDefaultAsString;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.flavor_options.FlavorOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.flavor_options.Sauce;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.topping_options.Topping;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.topping_options.ToppingOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.topping_options.WhippedCream;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.DrinkSize;
 
 import java.util.List;
 
-public class WhiteChocolateCremeFrappuccinoBlendedBeveragesBeverage extends CremeBased {
-    public static final String TAG = WhiteChocolateCremeFrappuccinoBlendedBeveragesBeverage.class.getSimpleName();
+public class PumpkinSpiceCremeFrappuccinoBlendedBeverage extends CremeBased {
+    public static final String TAG = PumpkinSpiceCremeFrappuccinoBlendedBeverage.class.getSimpleName();
 
     public static final int DEFAULT_IMAGE_RESOURCE_ID = R.drawable.harvest_moon_natsume;
-    public static final String DEFAULT_NAME = "White Chocolate Creme Frappuccino Blended Beverage";
-    public static final String DEFAULT_DESCRIPTION = "A smooth blend of white chocolate sauce, milk and ice topped with whipped cream for a remarkable flavor that surprisingly wows.";
-    public static final int DEFAULT_CALORIES = 380;
-    public static final int DEFAULT_SUGAR_IN_GRAM = 49;
-    public static final float DEFAULT_FAT_IN_GRAM = 18.0f;
+    public static final String DEFAULT_NAME = "Pumpkin Spice Creme Frappuccino Blended Beverage";
+    public static final String DEFAULT_DESCRIPTION = "Pumpkin blended with traditional fall spice flavors, milk and ice, topped with whipped cream and pumpkin-pie spice. Helllloooooo, fall!";
+    public static final int DEFAULT_CALORIES = 360;
+    public static final int DEFAULT_SUGAR_IN_GRAM = 47;
+    public static final float DEFAULT_FAT_IN_GRAM = 16.0f;
 
-    public static final Sauce.Type DEFAULT_SAUCE_WHITE_CHOCOLATE_MOCHA = Sauce.Type.WHITE_CHOCOLATE_MOCHA_SAUCE;
+    public static final Sauce.Type DEFAULT_SAUCE_PUMPKIN = Sauce.Type.PUMPKIN_SAUCE;
+    public static final Topping.Type DEFAULT_TOPPING_PUMPKIN_SPICE = Topping.Type.PUMPKIN_SPICE_TOPPING;
+    public static final Granular.Amount DEFAULT_TOPPING_PUMPKIN_SPICE_AMOUNT = Granular.Amount.MEDIUM;
     public static final WhippedCream.Type DEFAULT_WHIPPED_CREAM = WhippedCream.Type.WHIPPED_CREAM;
     public static final Granular.Amount DEFAULT_WHIPPED_CREAM_AMOUNT = Granular.Amount.MEDIUM;
 
@@ -29,20 +35,20 @@ public class WhiteChocolateCremeFrappuccinoBlendedBeveragesBeverage extends Crem
     public static final double DEFAULT_PRICE_MEDIUM = 3.45;
     public static final double DEFAULT_PRICE_LARGE = 3.70;
 
-    public WhiteChocolateCremeFrappuccinoBlendedBeveragesBeverage() {
+    public PumpkinSpiceCremeFrappuccinoBlendedBeverage() {
         super(DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
                 DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
                 DEFAULT_PRICE_MEDIUM);
 
         // FLAVOR_OPTIONS (add into EXISTING DrinkComponent group)
         int numberOfPumpByDrinkSize = getNumberOfPumpByDrinkSize(drinkSize);
-        Sauce sauceWhiteChocolateMocha = new Sauce(DEFAULT_SAUCE_WHITE_CHOCOLATE_MOCHA, numberOfPumpByDrinkSize);
+        Sauce saucePumpkin = new Sauce(DEFAULT_SAUCE_PUMPKIN, numberOfPumpByDrinkSize);
 
         List<DrinkComponentWithDefaultAsString> flavorOptions = drinkComponents.get(FlavorOptions.TAG);
         flavorOptions.add(0, new DrinkComponentWithDefaultAsString(
-                sauceWhiteChocolateMocha, Integer.toString(numberOfPumpByDrinkSize)
+                saucePumpkin, Integer.toString(numberOfPumpByDrinkSize)
         ));
-        drinkComponentsStandardRecipe.add(sauceWhiteChocolateMocha);
+        drinkComponentsStandardRecipe.add(saucePumpkin);
 
         // REMOVAL: TOPPING_OPTIONS: WhippedCream
         WhippedCream whippedCream = null;
@@ -63,5 +69,39 @@ public class WhiteChocolateCremeFrappuccinoBlendedBeveragesBeverage extends Crem
                 whippedCreamDefined, DEFAULT_WHIPPED_CREAM_AMOUNT.name()
         ));
         drinkComponentsStandardRecipe.add(whippedCreamDefined);
+
+        // TOPPING_OPTIONS (add into EXISTING DrinkComponent group)
+        Topping toppingPumpkinSpice = new Topping(DEFAULT_TOPPING_PUMPKIN_SPICE, DEFAULT_TOPPING_PUMPKIN_SPICE_AMOUNT);
+
+        toppingOptions = drinkComponents.get(ToppingOptions.TAG);
+        toppingOptions.add(0, new DrinkComponentWithDefaultAsString(
+                toppingPumpkinSpice, DEFAULT_TOPPING_PUMPKIN_SPICE_AMOUNT.name()
+        ));
+        drinkComponentsStandardRecipe.add(toppingPumpkinSpice);
+    }
+
+    @Override
+    public int getNumberOfPumpByDrinkSize(DrinkSize drinkSizeNew) {
+        Log.i(TAG, "getNumberOfPumpByDrinkSize(DrinkSize)");
+
+        int numberOfPumpNew = QUANTITY_INDEPENDENT_OF_DRINK_SIZE;
+        switch (drinkSizeNew) {
+            case SHORT:
+                break;
+            case TALL:
+                numberOfPumpNew = 1;
+                break;
+            case GRANDE:
+            case VENTI_ICED:
+                numberOfPumpNew = 2;
+                break;
+            case VENTI_HOT:
+            case TRENTA:
+            case UNIQUE:
+            case UNDEFINED:
+                break;
+        }
+
+        return numberOfPumpNew;
     }
 }

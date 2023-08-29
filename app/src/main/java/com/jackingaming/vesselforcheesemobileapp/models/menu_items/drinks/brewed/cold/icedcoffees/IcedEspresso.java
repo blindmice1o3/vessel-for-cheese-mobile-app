@@ -94,7 +94,7 @@ public class IcedEspresso extends IcedCoffees {
 
         // ADD_INS_OPTIONS (add into EXISTING DrinkComponent group)
         List<DrinkComponentWithDefaultAsString> addInsOptions = drinkComponents.get(AddInsOptions.TAG);
-        addInsOptions.add(4, new DrinkComponentWithDefaultAsString(
+        addInsOptions.add(5, new DrinkComponentWithDefaultAsString(
                 new Water(null, DEFAULT_WATER_AMOUNT), DEFAULT_WATER_AMOUNT.name()
         ));
 

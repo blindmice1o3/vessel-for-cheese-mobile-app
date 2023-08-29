@@ -17,6 +17,7 @@ import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.tea_op
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.tea_options.MatchaPowder;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.tea_options.TeaOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.topping_options.CinnamonPowder;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.topping_options.ColdFoam;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.topping_options.Drizzle;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.topping_options.Topping;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.topping_options.ToppingOptions;
@@ -27,15 +28,15 @@ import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.teas.c
 import java.util.ArrayList;
 import java.util.List;
 
-public class IcedChaiTeaLatte extends IcedTeas {
-    public static final String TAG = IcedChaiTeaLatte.class.getSimpleName();
+public class IcedPumpkinCreamChaiTeaLatte extends IcedTeas {
+    public static final String TAG = IcedPumpkinCreamChaiTeaLatte.class.getSimpleName();
 
     public static final int DEFAULT_IMAGE_RESOURCE_ID = R.drawable.harvest_moon_natsume;
-    public static final String DEFAULT_NAME = "Iced Chai Tea Latte";
-    public static final String DEFAULT_DESCRIPTION = "Black tea infused with cinnamon, clove, and other warming spices are combined with milk and ice for the perfect balance of sweet and spicy.";
-    public static final int DEFAULT_CALORIES = 240;
-    public static final int DEFAULT_SUGAR_IN_GRAM = 42;
-    public static final float DEFAULT_FAT_IN_GRAM = 4.0f;
+    public static final String DEFAULT_NAME = "Iced Pumpkin Cream Chai Tea Latte";
+    public static final String DEFAULT_DESCRIPTION = "For the iced indulger--who wants a new way to enjoy cozy autumn flavors--this customer-inspired pumpkin cream chai blends the warming spice flavors of chai and pumpkin without the coffee for a perfectly iced cup in fall.";
+    public static final int DEFAULT_CALORIES = 460;
+    public static final int DEFAULT_SUGAR_IN_GRAM = 66;
+    public static final float DEFAULT_FAT_IN_GRAM = 17.0f;
 
     public static final DrinkSize[] DEFAULT_DRINK_SIZES_ALLOWED =
             {DrinkSize.TALL, DrinkSize.GRANDE, DrinkSize.VENTI_ICED};
@@ -46,6 +47,10 @@ public class IcedChaiTeaLatte extends IcedTeas {
     public static final Chai.Type DEFAULT_CHAI = Chai.Type.CHAI;
     public static final int DEFAULT_NUMBER_OF_MATCHA_SCOOPS = 0;
     public static final int DEFAULT_NUMBER_OF_SAUCE_PUMPS = 0;
+    public static final ColdFoam.Type DEFAULT_COLD_FOAM_PUMPKIN_CREAM = ColdFoam.Type.PUMPKIN_CREAM_COLD_FOAM;
+    public static final Granular.Amount DEFAULT_COLD_FOAM_PUMPKIN_CREAM_AMOUNT = Granular.Amount.MEDIUM;
+    public static final Topping.Type DEFAULT_TOPPING_PUMPKIN_SPICE = Topping.Type.PUMPKIN_SPICE_TOPPING;
+    public static final Granular.Amount DEFAULT_TOPPING_PUMPKIN_SPICE_AMOUNT = Granular.Amount.MEDIUM;
     public static final Granular.Amount DEFAULT_CINNAMON_POWDER_AMOUNT = Granular.Amount.NO;
     public static final Granular.Amount DEFAULT_DRIZZLE_AMOUNT = Granular.Amount.NO;
     public static final Granular.Amount DEFAULT_TOPPING_AMOUNT = Granular.Amount.NO;
@@ -56,7 +61,7 @@ public class IcedChaiTeaLatte extends IcedTeas {
     public static final double DEFAULT_PRICE_MEDIUM = 3.45;
     public static final double DEFAULT_PRICE_LARGE = 3.70;
 
-    public IcedChaiTeaLatte() {
+    public IcedPumpkinCreamChaiTeaLatte() {
         super(DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
                 DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
                 DEFAULT_PRICE_MEDIUM);
@@ -107,19 +112,30 @@ public class IcedChaiTeaLatte extends IcedTeas {
         ));
 
         // TOPPING_OPTIONS (add into EXISTING DrinkComponent group)
+        ColdFoam coldFoamPumpkinCream = new ColdFoam(DEFAULT_COLD_FOAM_PUMPKIN_CREAM, DEFAULT_COLD_FOAM_PUMPKIN_CREAM_AMOUNT);
+        Topping toppingPumpkinSpice = new Topping(DEFAULT_TOPPING_PUMPKIN_SPICE, DEFAULT_TOPPING_PUMPKIN_SPICE_AMOUNT);
+
         List<DrinkComponentWithDefaultAsString> toppingOptions = drinkComponents.get(ToppingOptions.TAG);
-        toppingOptions.add(1, new DrinkComponentWithDefaultAsString(
-                new CinnamonPowder(null, DEFAULT_CINNAMON_POWDER_AMOUNT), DEFAULT_CINNAMON_POWDER_AMOUNT.name()
+        toppingOptions.add(0, new DrinkComponentWithDefaultAsString(
+                coldFoamPumpkinCream, DEFAULT_COLD_FOAM_PUMPKIN_CREAM_AMOUNT.name()
         ));
-        toppingOptions.add(2, new DrinkComponentWithDefaultAsString(
-                new Drizzle(null, DEFAULT_DRIZZLE_AMOUNT), DEFAULT_DRIZZLE_AMOUNT.name()
+        toppingOptions.add(1, new DrinkComponentWithDefaultAsString(
+                toppingPumpkinSpice, DEFAULT_TOPPING_PUMPKIN_SPICE_AMOUNT.name()
         ));
         toppingOptions.add(3, new DrinkComponentWithDefaultAsString(
-                new Topping(null, DEFAULT_TOPPING_AMOUNT), DEFAULT_TOPPING_AMOUNT.name()
+                new CinnamonPowder(null, DEFAULT_CINNAMON_POWDER_AMOUNT), DEFAULT_CINNAMON_POWDER_AMOUNT.name()
         ));
         toppingOptions.add(4, new DrinkComponentWithDefaultAsString(
+                new Drizzle(null, DEFAULT_DRIZZLE_AMOUNT), DEFAULT_DRIZZLE_AMOUNT.name()
+        ));
+        toppingOptions.add(5, new DrinkComponentWithDefaultAsString(
+                new Topping(null, DEFAULT_TOPPING_AMOUNT), DEFAULT_TOPPING_AMOUNT.name()
+        ));
+        toppingOptions.add(6, new DrinkComponentWithDefaultAsString(
                 new WhippedCream(null, DEFAULT_WHIPPED_CREAM_AMOUNT), DEFAULT_WHIPPED_CREAM_AMOUNT.name()
         ));
+        drinkComponentsStandardRecipe.add(coldFoamPumpkinCream);
+        drinkComponentsStandardRecipe.add(toppingPumpkinSpice);
 
         // CUP_OPTIONS
         List<DrinkComponentWithDefaultAsString> cupOptions = new ArrayList<>();

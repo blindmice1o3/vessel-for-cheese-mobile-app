@@ -16,7 +16,7 @@ public class CinnamonCaramelCreamColdBrew extends ColdBrews {
 
     public static final int DEFAULT_IMAGE_RESOURCE_ID = R.drawable.harvest_moon_natsume;
     public static final String DEFAULT_NAME = "Cinnamon Caramel Cream Cold Brew";
-    public static final String DEFAULT_DESCRIPTION = "Starbucks Cold Brew packed with flavors of cinnamon caramel, topped with vanilla sweet cream cold foam and dusted with even more flavor for a special personal treat.";
+    public static final String DEFAULT_DESCRIPTION = "Starbucks Cold Brew is sweetened with Cinnamon Caramel Syrup and topped with a cinnamon caramel cold foam and a dusting of cinnamon dolce topping for a special treat.";
     public static final int DEFAULT_CALORIES = 250;
     public static final int DEFAULT_SUGAR_IN_GRAM = 32;
     public static final float DEFAULT_FAT_IN_GRAM = 12.0f;

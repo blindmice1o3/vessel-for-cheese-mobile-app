@@ -1,40 +1,40 @@
-package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.cold.icedshakenespressos;
+package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.cold.icedmacchiatos;
 
 import com.jackingaming.vesselforcheesemobileapp.R;
-import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
+import com.jackingaming.vesselforcheesemobileapp.models.components.Granular;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponentWithDefaultAsString;
-import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.AddInsOptions;
-import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.Ice;
-import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.cup_options.CupOptions;
-import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.cup_options.CupSize;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.espresso_options.EspressoOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.espresso_options.RoastOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.flavor_options.FlavorOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.flavor_options.Syrup;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.milk_options.MilkBase;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.milk_options.MilkOptions;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.topping_options.Drizzle;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.topping_options.ToppingOptions;
 
 import java.util.List;
 
-public class OleatoIcedShakenEspressoWithOatmilkAndToffeenut extends IcedShakenEspressos {
-    public static final String TAG = OleatoIcedShakenEspressoWithOatmilkAndToffeenut.class.getSimpleName();
+public class IcedAppleCrispOatmilkMacchiato extends IcedMacchiatos {
+    public static final String TAG = IcedAppleCrispOatmilkMacchiato.class.getSimpleName();
 
     public static final int DEFAULT_IMAGE_RESOURCE_ID = R.drawable.harvest_moon_natsume;
-    public static final String DEFAULT_NAME = "Oleato Iced Shaken Espresso with Oatmilk and Toffeenut";
-    public static final String DEFAULT_DESCRIPTION = "Layers of flavor--coffee forward and lightly sweetened with notes of toasted nuts, rich espresso, and creamy oatmilk infused with Partanna extra virgin olive oil.";
-    public static final int DEFAULT_CALORIES = 250;
-    public static final int DEFAULT_SUGAR_IN_GRAM = 12;
-    public static final float DEFAULT_FAT_IN_GRAM = 17.0f;
+    public static final String DEFAULT_NAME = "Iced Apple Crisp Oatmilk Macchiato";
+    public static final String DEFAULT_DESCRIPTION = "Layered flavors of apple, cinnamon, oats and brown sugar harmonize with Starbucks Blonde Espresso Roast, creamy oatmilk, ice and spiced apple drizzle to create a delicious apple crisp you can sip. A nostalgic autumn pick-me-up.";
+    public static final int DEFAULT_CALORIES = 310;
+    public static final int DEFAULT_SUGAR_IN_GRAM = 34;
+    public static final float DEFAULT_FAT_IN_GRAM = 9.0f;
 
     public static final MilkBase.Type DEFAULT_MILK_BASE_OATMILK = MilkBase.Type.OATMILK;
     public static final RoastOptions.Type DEFAULT_ROAST_OPTIONS_BLONDE = RoastOptions.Type.BLONDE;
-    public static final Syrup.Type DEFAULT_SYRUP_TOFFEE_NUT = Syrup.Type.TOFFEE_NUT_SYRUP;
+    public static final Syrup.Type DEFAULT_SYRUP_APPLE_BROWN_SUGAR = Syrup.Type.APPLE_BROWN_SUGAR;
+    public static final Drizzle.Type DEFAULT_DRIZZLE_SPICED_APPLE = Drizzle.Type.SPICED_APPLE_DRIZZLE;
+    public static final Granular.Amount DEFAULT_DRIZZLE_SPICED_APPLE_AMOUNT = Granular.Amount.MEDIUM;
 
     public static final double DEFAULT_PRICE_SMALL = 2.95;
     public static final double DEFAULT_PRICE_MEDIUM = 3.45;
     public static final double DEFAULT_PRICE_LARGE = 3.70;
 
-    public OleatoIcedShakenEspressoWithOatmilkAndToffeenut() {
+    public IcedAppleCrispOatmilkMacchiato() {
         super(DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
                 DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
                 DEFAULT_PRICE_MEDIUM);
@@ -53,34 +53,21 @@ public class OleatoIcedShakenEspressoWithOatmilkAndToffeenut extends IcedShakenE
 
         // FLAVOR_OPTIONS (add into EXISTING DrinkComponent group)
         int numberOfPumpByDrinkSize = getNumberOfPumpByDrinkSize(drinkSize);
-        Syrup syrupToffeeNut = new Syrup(DEFAULT_SYRUP_TOFFEE_NUT, numberOfPumpByDrinkSize);
+        Syrup syrupAppleBrownSugar = new Syrup(DEFAULT_SYRUP_APPLE_BROWN_SUGAR, numberOfPumpByDrinkSize);
 
         List<DrinkComponentWithDefaultAsString> flavorOptions = drinkComponents.get(FlavorOptions.TAG);
         flavorOptions.add(0, new DrinkComponentWithDefaultAsString(
-                syrupToffeeNut, Integer.toString(numberOfPumpByDrinkSize)
+                syrupAppleBrownSugar, Integer.toString(numberOfPumpByDrinkSize)
         ));
-        drinkComponentsStandardRecipe.add(syrupToffeeNut);
+        drinkComponentsStandardRecipe.add(syrupAppleBrownSugar);
 
-        // REMOVAL: ADD_INS_OPTIONS: Ice
-        Ice ice = null;
-        for (DrinkComponent drinkComponent : drinkComponentsStandardRecipe) {
-            if (drinkComponent instanceof Ice) {
-                ice = (Ice) drinkComponent;
-                break;
-            }
-        }
-        drinkComponentsStandardRecipe.remove(ice);
-        drinkComponents.get(AddInsOptions.TAG).remove(0);
+        // TOPPING_OPTIONS (add into EXISTING DrinkComponent group)
+        Drizzle drizzleSpicedApple = new Drizzle(DEFAULT_DRIZZLE_SPICED_APPLE, DEFAULT_DRIZZLE_SPICED_APPLE_AMOUNT);
 
-        // REMOVAL: CUP_OPTIONS
-        CupSize cupSize = null;
-        for (DrinkComponent drinkComponent : drinkComponentsStandardRecipe) {
-            if (drinkComponent instanceof CupSize) {
-                cupSize = (CupSize) drinkComponent;
-                break;
-            }
-        }
-        drinkComponentsStandardRecipe.remove(cupSize);
-        drinkComponents.remove(CupOptions.TAG);
+        List<DrinkComponentWithDefaultAsString> toppingOptions = drinkComponents.get(ToppingOptions.TAG);
+        toppingOptions.add(0, new DrinkComponentWithDefaultAsString(
+                drizzleSpicedApple, DEFAULT_DRIZZLE_SPICED_APPLE_AMOUNT.name()
+        ));
+        drinkComponentsStandardRecipe.add(drizzleSpicedApple);
     }
 }

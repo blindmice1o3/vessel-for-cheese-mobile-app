@@ -7,7 +7,7 @@ public class NitroColdBrew extends NitroColdBrews {
 
     public static final int DEFAULT_IMAGE_RESOURCE_ID = R.drawable.harvest_moon_natsume;
     public static final String DEFAULT_NAME = "Nitro Cold Brew";
-    public static final String DEFAULT_DESCRIPTION = "Our small-batch cold brew-slow-steeped for a super-smooth taste-gets even better. We're infusing it with nitrogen to create a sweet flavor without sugar and cascading, velvety crema. Perfection is served.";
+    public static final String DEFAULT_DESCRIPTION = "Our small-batch cold brew--slow-steeped for a super-smooth taste--gets even better. We're infusing it with nitrogen to create a sweet flavor without sugar and cascading, velvety crema. Perfection is served.";
     public static final int DEFAULT_CALORIES = 5;
     public static final int DEFAULT_SUGAR_IN_GRAM = 0;
     public static final float DEFAULT_FAT_IN_GRAM = 0.0f;

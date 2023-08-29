@@ -7,7 +7,7 @@ public class StarbucksColdBrewCoffee extends ColdBrews {
 
     public static final int DEFAULT_IMAGE_RESOURCE_ID = R.drawable.harvest_moon_natsume;
     public static final String DEFAULT_NAME = "Starbucks Cold Brew Coffee";
-    public static final String DEFAULT_DESCRIPTION = "Handcrafted in small batches daily, slow-steeped in cool water for 20 hours, without touching heat-Starbucks Cold Brew is made from our custom blend of beans grown to steep long and cold for a super-smooth flavor.";
+    public static final String DEFAULT_DESCRIPTION = "Handcrafted in small batches daily, slow-steeped in cool water for 20 hours, without touching heat--Starbucks Cold Brew is made from our custom blend of beans grown to steep long and cold for a super-smooth flavor.";
     public static final int DEFAULT_CALORIES = 5;
     public static final int DEFAULT_SUGAR_IN_GRAM = 0;
     public static final float DEFAULT_FAT_IN_GRAM = 0.0f;

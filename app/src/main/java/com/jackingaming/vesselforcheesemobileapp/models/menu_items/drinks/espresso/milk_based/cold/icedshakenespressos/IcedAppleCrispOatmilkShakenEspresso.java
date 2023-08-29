@@ -17,26 +17,26 @@ import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.prepar
 import java.util.ArrayList;
 import java.util.List;
 
-public class IcedToastedVanillaOatmilkShakenEspresso extends IcedShakenEspressos {
-    public static final String TAG = IcedToastedVanillaOatmilkShakenEspresso.class.getSimpleName();
+public class IcedAppleCrispOatmilkShakenEspresso extends IcedShakenEspressos {
+    public static final String TAG = IcedAppleCrispOatmilkShakenEspresso.class.getSimpleName();
 
     public static final int DEFAULT_IMAGE_RESOURCE_ID = R.drawable.harvest_moon_natsume;
-    public static final String DEFAULT_NAME = "Iced Toasted Vanilla Oatmilk Shaken Espresso";
-    public static final String DEFAULT_DESCRIPTION = "Starbucks Blonde espresso combined with notes of caramelized vanilla shaken together and topped with oatmilk for an energizing treat to boost your day.";
-    public static final int DEFAULT_CALORIES = 140;
-    public static final int DEFAULT_SUGAR_IN_GRAM = 11;
+    public static final String DEFAULT_NAME = "Iced Apple Crisp Oatmilk Shaken Espresso";
+    public static final String DEFAULT_DESCRIPTION = "For the cool quencher--who wants a treat that uplifts their energy and matches their cozy fall mood--this Iced Apple Crisp Shaken Espresso is the perfect balance of spiced apple flavor, smooth espresso and creamy oatmilk for a leveled-up autumn espresso beverage.";
+    public static final int DEFAULT_CALORIES = 180;
+    public static final int DEFAULT_SUGAR_IN_GRAM = 21;
     public static final float DEFAULT_FAT_IN_GRAM = 4.5f;
 
     public static final PreparationMethod.Type DEFAULT_PREPARATION_METHOD = PreparationMethod.Type.NONE;
     public static final MilkBase.Type DEFAULT_MILK_BASE_OATMILK = MilkBase.Type.OATMILK;
     public static final RoastOptionsAllowable.Type DEFAULT_ROAST_OPTIONS_ALLOWABLE = RoastOptionsAllowable.Type.NONE;
-    public static final Syrup.Type DEFAULT_SYRUP_TOASTED_VANILLA = Syrup.Type.TOASTED_VANILLA_SYRUP;
+    public static final Syrup.Type DEFAULT_SYRUP_APPLE_BROWN_SUGAR = Syrup.Type.APPLE_BROWN_SUGAR;
 
     public static final double DEFAULT_PRICE_SMALL = 2.95;
     public static final double DEFAULT_PRICE_MEDIUM = 3.45;
     public static final double DEFAULT_PRICE_LARGE = 3.70;
 
-    public IcedToastedVanillaOatmilkShakenEspresso() {
+    public IcedAppleCrispOatmilkShakenEspresso() {
         super(DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
                 DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
                 DEFAULT_PRICE_MEDIUM);
@@ -71,13 +71,13 @@ public class IcedToastedVanillaOatmilkShakenEspresso extends IcedShakenEspressos
 
         // FLAVOR_OPTIONS (add into EXISTING DrinkComponent group)
         int numberOfPumpByDrinkSize = getNumberOfPumpByDrinkSize(drinkSize);
-        Syrup syrupToastedVanilla = new Syrup(DEFAULT_SYRUP_TOASTED_VANILLA, numberOfPumpByDrinkSize);
+        Syrup syrupAppleBrownSugar = new Syrup(DEFAULT_SYRUP_APPLE_BROWN_SUGAR, numberOfPumpByDrinkSize);
 
         List<DrinkComponentWithDefaultAsString> flavorOptions = drinkComponents.get(FlavorOptions.TAG);
         flavorOptions.add(0, new DrinkComponentWithDefaultAsString(
-                syrupToastedVanilla, Integer.toString(numberOfPumpByDrinkSize)
+                syrupAppleBrownSugar, Integer.toString(numberOfPumpByDrinkSize)
         ));
-        drinkComponentsStandardRecipe.add(syrupToastedVanilla);
+        drinkComponentsStandardRecipe.add(syrupAppleBrownSugar);
 
         // REMOVAL: ADD_INS_OPTIONS: Ice
         Ice ice = null;

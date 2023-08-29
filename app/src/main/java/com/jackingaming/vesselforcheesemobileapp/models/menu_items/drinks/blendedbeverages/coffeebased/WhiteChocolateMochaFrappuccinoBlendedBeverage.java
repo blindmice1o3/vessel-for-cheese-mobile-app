@@ -11,17 +11,17 @@ import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.toppin
 
 import java.util.List;
 
-public class MochaFrappuccinoBlendedBeveragesBeverage extends CoffeeBased {
-    public static final String TAG = MochaFrappuccinoBlendedBeveragesBeverage.class.getSimpleName();
+public class WhiteChocolateMochaFrappuccinoBlendedBeverage extends CoffeeBased {
+    public static final String TAG = WhiteChocolateMochaFrappuccinoBlendedBeverage.class.getSimpleName();
 
     public static final int DEFAULT_IMAGE_RESOURCE_ID = R.drawable.harvest_moon_natsume;
-    public static final String DEFAULT_NAME = "Mocha Frappuccino Blended Beverage";
-    public static final String DEFAULT_DESCRIPTION = "Mocha sauce, Frappuccino Roast coffee, milk and ice all come together for a mocha flavor that'll leave you wanting more. To change things up, try it affogato-style with a hot espresso shot poured right over the top.";
-    public static final int DEFAULT_CALORIES = 370;
-    public static final int DEFAULT_SUGAR_IN_GRAM = 51;
-    public static final float DEFAULT_FAT_IN_GRAM = 15.0f;
+    public static final String DEFAULT_NAME = "White Chocolate Mocha Frappuccino Blended Beverage";
+    public static final String DEFAULT_DESCRIPTION = "White chocolate Frappuccino Roast coffee, milk and ice get together for what might be the best thing that happens to you all day. Oh, and there's whipped cream on top.";
+    public static final int DEFAULT_CALORIES = 420;
+    public static final int DEFAULT_SUGAR_IN_GRAM = 61;
+    public static final float DEFAULT_FAT_IN_GRAM = 17.0f;
 
-    public static final Sauce.Type DEFAULT_SAUCE_MOCHA = Sauce.Type.MOCHA_SAUCE;
+    public static final Sauce.Type DEFAULT_SAUCE_WHITE_CHOCOLATE_MOCHA = Sauce.Type.WHITE_CHOCOLATE_MOCHA_SAUCE;
     public static final WhippedCream.Type DEFAULT_WHIPPED_CREAM = WhippedCream.Type.WHIPPED_CREAM;
     public static final Granular.Amount DEFAULT_WHIPPED_CREAM_AMOUNT = Granular.Amount.MEDIUM;
 
@@ -29,20 +29,20 @@ public class MochaFrappuccinoBlendedBeveragesBeverage extends CoffeeBased {
     public static final double DEFAULT_PRICE_MEDIUM = 3.45;
     public static final double DEFAULT_PRICE_LARGE = 3.70;
 
-    public MochaFrappuccinoBlendedBeveragesBeverage() {
+    public WhiteChocolateMochaFrappuccinoBlendedBeverage() {
         super(DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
                 DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
                 DEFAULT_PRICE_MEDIUM);
 
         // FLAVOR_OPTIONS (add into EXISTING DrinkComponent group)
         int numberOfPumpByDrinkSize = getNumberOfPumpByDrinkSize(drinkSize);
-        Sauce sauceMocha = new Sauce(DEFAULT_SAUCE_MOCHA, numberOfPumpByDrinkSize);
+        Sauce sauceWhiteChocolateMocha = new Sauce(DEFAULT_SAUCE_WHITE_CHOCOLATE_MOCHA, numberOfPumpByDrinkSize);
 
         List<DrinkComponentWithDefaultAsString> flavorOptions = drinkComponents.get(FlavorOptions.TAG);
         flavorOptions.add(0, new DrinkComponentWithDefaultAsString(
-                sauceMocha, Integer.toString(numberOfPumpByDrinkSize)
+                sauceWhiteChocolateMocha, Integer.toString(numberOfPumpByDrinkSize)
         ));
-        drinkComponentsStandardRecipe.add(sauceMocha);
+        drinkComponentsStandardRecipe.add(sauceWhiteChocolateMocha);
 
         // REMOVAL: TOPPING_OPTIONS: WhippedCream
         WhippedCream whippedCream = null;

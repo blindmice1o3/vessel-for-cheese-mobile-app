@@ -23,8 +23,7 @@ public class ColdFoam extends ToppingOptions
         MATCHA_CREAM_COLD_FOAM,
         PUMPKIN_CREAM_COLD_FOAM,
         SALTED_CARAMEL_CREAM_COLD_FOAM,
-        VANILLA_SWEET_CREAM_COLD_FOAM,
-        WHITE_CHOCOLATE_MACADAMIA_CREAM_COLD_FOAM;
+        VANILLA_SWEET_CREAM_COLD_FOAM;
     }
 
     private Type type;

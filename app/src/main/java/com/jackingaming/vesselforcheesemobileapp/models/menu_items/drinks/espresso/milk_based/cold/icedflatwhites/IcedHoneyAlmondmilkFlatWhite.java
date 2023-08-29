@@ -1,11 +1,8 @@
 package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espresso.milk_based.cold.icedflatwhites;
 
 import com.jackingaming.vesselforcheesemobileapp.R;
-import com.jackingaming.vesselforcheesemobileapp.models.components.Granular;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponentWithDefaultAsString;
-import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.AddInsOptions;
-import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.Ice;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.cup_options.CupOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.cup_options.CupSize;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.espresso_options.EspressoOptions;
@@ -27,7 +24,7 @@ public class IcedHoneyAlmondmilkFlatWhite extends IcedFlatWhites {
 
     public static final int DEFAULT_IMAGE_RESOURCE_ID = R.drawable.harvest_moon_natsume;
     public static final String DEFAULT_NAME = "Iced Honey Almondmilk Flat White";
-    public static final String DEFAULT_DESCRIPTION = "This iced flat white - intentionally made with almondmilk and Starbucks Blonde Espresso Roast poured over ice with a hint of honey - creates a perfect amount of cool, creamy, nutty sweetness.";
+    public static final String DEFAULT_DESCRIPTION = "This iced flat white--intentionally made with almondmilk and Starbucks Blonde Espresso Roast poured over ice with a hint of honey--creates a perfect amount of cool, creamy, nutty sweetness.";
     public static final int DEFAULT_CALORIES = 100;
     public static final int DEFAULT_SUGAR_IN_GRAM = 17;
     public static final float DEFAULT_FAT_IN_GRAM = 2.5f;
@@ -36,8 +33,6 @@ public class IcedHoneyAlmondmilkFlatWhite extends IcedFlatWhites {
     public static final PullOptions.Type DEFAULT_PULL_OPTIONS_RISTRETTO = PullOptions.Type.RISTRETTO;
     public static final RoastOptionsAllowable.Type DEFAULT_ROAST_OPTIONS_ALLOWABLE = RoastOptionsAllowable.Type.NONE;
     public static final Liquid.Type DEFAULT_LIQUID_HONEY_BLEND = Liquid.Type.HONEY_BLEND;
-    public static final Ice.Type DEFAULT_ICE = Ice.Type.ICE;
-    public static final Granular.Amount DEFAULT_ICE_AMOUNT = Granular.Amount.MEDIUM;
 
     public static final double DEFAULT_PRICE_SMALL = 2.95;
     public static final double DEFAULT_PRICE_MEDIUM = 3.45;
@@ -124,16 +119,6 @@ public class IcedHoneyAlmondmilkFlatWhite extends IcedFlatWhites {
                 liquidHoneyBlend, Integer.toString(numberOfPumpByDrinkSize)
         ));
         drinkComponentsStandardRecipe.add(liquidHoneyBlend);
-
-        // ADD_INS_OPTIONS (add into EXISTING DrinkComponent group)
-        Ice ice = new Ice(DEFAULT_ICE, DEFAULT_ICE_AMOUNT);
-
-        List<DrinkComponentWithDefaultAsString> addInsOptions = drinkComponents.get(AddInsOptions.TAG);
-        addInsOptions.add(0, new DrinkComponentWithDefaultAsString(
-                ice, DEFAULT_ICE_AMOUNT.name()
-        ));
-
-        drinkComponentsStandardRecipe.add(ice);
 
         // REMOVAL: CUP_OPTIONS
         CupSize cupSize = null;
