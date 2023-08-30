@@ -2,12 +2,12 @@ package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.brewe
 
 import com.jackingaming.vesselforcheesemobileapp.R;
 
-public class FeaturedMediumRoastPikePlaceRoast extends HotBrewedCoffees {
-    public static final String TAG = FeaturedMediumRoastPikePlaceRoast.class.getSimpleName();
+public class CloverMalawiSableFarmsStarbucksReserve extends HotBrewedCoffees {
+    public static final String TAG = CloverMalawiSableFarmsStarbucksReserve.class.getSimpleName();
 
     public static final int DEFAULT_IMAGE_RESOURCE_ID = R.drawable.harvest_moon_natsume;
-    public static final String DEFAULT_NAME = "Featured Medium Roast Pike Place Roast";
-    public static final String DEFAULT_DESCRIPTION = "From our first store in Seattle's Pike Place Market to our coffeehouses around the world, customers requested a freshly brewed coffee they could enjoy throughout the day. In 2008 our master blenders and roasters created this for you--a smooth, well-rounded blend of Latin American coffees with subtly rich flavors of chocolate and toasted nuts, it's served fresh every day at a Starbucks store near you.";
+    public static final String DEFAULT_NAME = "Clover Malawi Sable Farms Starbucks Reserve";
+    public static final String DEFAULT_DESCRIPTION = "Citrus, Cedar & Ginger Sable Farm has a global reputation for producing top-quality coffee with environmentally-thoughtful practices. It's also a pioneer in using solar coffee dryers!";
     public static final int DEFAULT_CALORIES = 5;
     public static final int DEFAULT_SUGAR_IN_GRAM = 0;
     public static final float DEFAULT_FAT_IN_GRAM = 0.0f;
@@ -16,7 +16,7 @@ public class FeaturedMediumRoastPikePlaceRoast extends HotBrewedCoffees {
     public static final double DEFAULT_PRICE_MEDIUM = 2.45;
     public static final double DEFAULT_PRICE_LARGE = 2.70;
 
-    public FeaturedMediumRoastPikePlaceRoast() {
+    public CloverMalawiSableFarmsStarbucksReserve() {
         super(DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
                 DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
                 DEFAULT_PRICE_MEDIUM);

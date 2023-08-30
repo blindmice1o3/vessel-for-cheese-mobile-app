@@ -33,7 +33,7 @@ public class RoyalEnglishBreakfastTeaLatte extends HotTeas {
 
     public static final int DEFAULT_IMAGE_RESOURCE_ID = R.drawable.harvest_moon_natsume;
     public static final String DEFAULT_NAME = "Royal English Breakfast Tea Latte";
-    public static final String DEFAULT_DESCRIPTION = "A select blend of rich, full-leaf black teas from India and Sri Lanka sweetened with liquid cane sugar and topped with steamed milk and a velvety foam. Each and every sip - smooth and silky.";
+    public static final String DEFAULT_DESCRIPTION = "A select blend of rich, full-leaf black teas from India and Sri Lanka sweetened with liquid cane sugar and topped with steamed milk and a velvety foam. Each and every sip--smooth and silky.";
     public static final int DEFAULT_CALORIES = 150;
     public static final int DEFAULT_SUGAR_IN_GRAM = 21;
     public static final float DEFAULT_FAT_IN_GRAM = 4.0f;

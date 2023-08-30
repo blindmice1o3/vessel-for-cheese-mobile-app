@@ -6,8 +6,9 @@ import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkC
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.AddInsOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.LineTheCup;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.flavor_options.FlavorOptions;
-import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.flavor_options.Syrup;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.flavor_options.Sauce;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.milk_options.MilkBase;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.milk_options.MilkFoam;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.milk_options.MilkOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.milk_options.Temperature;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.topping_options.CinnamonPowder;
@@ -20,19 +21,23 @@ import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.other.
 import java.util.ArrayList;
 import java.util.List;
 
-public class VanillaCreme extends HotOther {
-    public static final String TAG = VanillaCreme.class.getSimpleName();
+public class PumpkinSpiceCreme extends HotOther {
+    public static final String TAG = PumpkinSpiceCreme.class.getSimpleName();
 
     public static final int DEFAULT_IMAGE_RESOURCE_ID = R.drawable.harvest_moon_natsume;
-    public static final String DEFAULT_NAME = "Vanilla Creme";
-    public static final String DEFAULT_DESCRIPTION = "A smooth, frothy vanilla flavoured luxury. For those times when you'd rather not indulge in the rich flavour of our world-famous espresso--but still desire a hot, creamy vanilla beverage.";
-    public static final int DEFAULT_CALORIES = 350;
-    public static final int DEFAULT_SUGAR_IN_GRAM = 43;
-    public static final float DEFAULT_FAT_IN_GRAM = 14.0f;
+    public static final String DEFAULT_NAME = "Pumpkin Spice Creme";
+    public static final String DEFAULT_DESCRIPTION = "We combine steamed milk with flavors of pumpkin, cinnamon, nutmeg and clove, then top it all off with whipped cream to create this amazing, coffee-free fall favorite.";
+    public static final int DEFAULT_CALORIES = 400;
+    public static final int DEFAULT_SUGAR_IN_GRAM = 52;
+    public static final float DEFAULT_FAT_IN_GRAM = 15.0f;
 
+    public static final MilkFoam.Type DEFAULT_MILK_FOAM = MilkFoam.Type.MILK_FOAM;
+    public static final Granular.Amount DEFAULT_MILK_FOAM_AMOUNT = Granular.Amount.MEDIUM;
     public static final MilkBase.Type DEFAULT_MILK_BASE = MilkBase.Type.TWO_PERCENT;
     public static final Temperature.Type DEFAULT_TEMPERATURE = Temperature.Type.MEDIUM;
-    public static final Syrup.Type DEFAULT_SYRUP_VANILLA = Syrup.Type.VANILLA_SYRUP;
+    public static final Sauce.Type DEFAULT_SAUCE_PUMPKIN = Sauce.Type.PUMPKIN_SAUCE;
+    public static final Topping.Type DEFAULT_TOPPING_PUMPKIN_SPICE = Topping.Type.PUMPKIN_SPICE_TOPPING;
+    public static final Granular.Amount DEFAULT_TOPPING_PUMPKIN_SPICE_AMOUNT = Granular.Amount.MEDIUM;
     public static final WhippedCream.Type DEFAULT_WHIPPED_CREAM = WhippedCream.Type.WHIPPED_CREAM;
     public static final Granular.Amount DEFAULT_WHIPPED_CREAM_AMOUNT = Granular.Amount.MEDIUM;
     public static final Granular.Amount DEFAULT_CINNAMON_POWDER_AMOUNT = Granular.Amount.NO;
@@ -44,22 +49,27 @@ public class VanillaCreme extends HotOther {
     public static final double DEFAULT_PRICE_MEDIUM = 3.45;
     public static final double DEFAULT_PRICE_LARGE = 3.70;
 
-    public VanillaCreme() {
+    public PumpkinSpiceCreme() {
         super(DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
                 DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
                 DEFAULT_PRICE_MEDIUM);
 
         // MILK_OPTIONS (add into NEW DrinkComponent group)
+        MilkFoam milkFoamMedium = new MilkFoam(DEFAULT_MILK_FOAM, DEFAULT_MILK_FOAM_AMOUNT);
         MilkBase milkBaseTwoPercent = new MilkBase(DEFAULT_MILK_BASE);
         Temperature temperatureMedium = new Temperature(DEFAULT_TEMPERATURE);
 
         List<DrinkComponentWithDefaultAsString> milkOptions = new ArrayList<>();
+        milkOptions.add(new DrinkComponentWithDefaultAsString(
+                milkFoamMedium, DEFAULT_MILK_FOAM_AMOUNT.name()
+        ));
         milkOptions.add(new DrinkComponentWithDefaultAsString(
                 milkBaseTwoPercent, DEFAULT_MILK_BASE.name()
         ));
         milkOptions.add(new DrinkComponentWithDefaultAsString(
                 temperatureMedium, DEFAULT_TEMPERATURE.name()
         ));
+        drinkComponentsStandardRecipe.add(milkFoamMedium);
         drinkComponentsStandardRecipe.add(milkBaseTwoPercent);
         drinkComponentsStandardRecipe.add(temperatureMedium);
 
@@ -67,18 +77,22 @@ public class VanillaCreme extends HotOther {
 
         // FLAVOR_OPTIONS (add into EXISTING DrinkComponent group)
         int numberOfPumpByDrinkSize = getNumberOfPumpByDrinkSize(drinkSize);
-        Syrup syrupVanilla = new Syrup(DEFAULT_SYRUP_VANILLA, numberOfPumpByDrinkSize);
+        Sauce saucePumpkin = new Sauce(DEFAULT_SAUCE_PUMPKIN, numberOfPumpByDrinkSize);
 
         List<DrinkComponentWithDefaultAsString> flavorOptions = drinkComponents.get(FlavorOptions.TAG);
         flavorOptions.add(0, new DrinkComponentWithDefaultAsString(
-                syrupVanilla, Integer.toString(numberOfPumpByDrinkSize)
+                saucePumpkin, Integer.toString(numberOfPumpByDrinkSize)
         ));
-        drinkComponentsStandardRecipe.add(syrupVanilla);
+        drinkComponentsStandardRecipe.add(saucePumpkin);
 
         // TOPPING_OPTIONS
+        Topping toppingPumpkinSpice = new Topping(DEFAULT_TOPPING_PUMPKIN_SPICE, DEFAULT_TOPPING_PUMPKIN_SPICE_AMOUNT);
         WhippedCream whippedCream = new WhippedCream(DEFAULT_WHIPPED_CREAM, DEFAULT_WHIPPED_CREAM_AMOUNT);
 
         List<DrinkComponentWithDefaultAsString> toppingOptions = new ArrayList<>();
+        toppingOptions.add(new DrinkComponentWithDefaultAsString(
+                toppingPumpkinSpice, DEFAULT_TOPPING_PUMPKIN_SPICE_AMOUNT.name()
+        ));
         toppingOptions.add(new DrinkComponentWithDefaultAsString(
                 whippedCream, DEFAULT_WHIPPED_CREAM_AMOUNT.name()
         ));
@@ -91,6 +105,7 @@ public class VanillaCreme extends HotOther {
         toppingOptions.add(new DrinkComponentWithDefaultAsString(
                 new Topping(null, DEFAULT_TOPPING_AMOUNT), DEFAULT_TOPPING_AMOUNT.name()
         ));
+        drinkComponentsStandardRecipe.add(toppingPumpkinSpice);
         drinkComponentsStandardRecipe.add(whippedCream);
 
         drinkComponents.put(ToppingOptions.TAG, toppingOptions);

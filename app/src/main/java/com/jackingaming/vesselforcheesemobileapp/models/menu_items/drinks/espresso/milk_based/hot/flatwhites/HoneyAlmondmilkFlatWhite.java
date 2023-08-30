@@ -3,6 +3,8 @@ package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.espre
 import com.jackingaming.vesselforcheesemobileapp.R;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponentWithDefaultAsString;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.cup_options.CupOptions;
+import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.cup_options.CupSize;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.espresso_options.EspressoOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.espresso_options.PullOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.espresso_options.PullOptionsAllowable;
@@ -93,5 +95,16 @@ public class HoneyAlmondmilkFlatWhite extends FlatWhites {
         ));
 
         drinkComponentsStandardRecipe.add(liquid);
+
+        // REMOVAL: CUP_OPTIONS
+        CupSize cupSize = null;
+        for (DrinkComponent drinkComponent : drinkComponentsStandardRecipe) {
+            if (drinkComponent instanceof CupSize) {
+                cupSize = (CupSize) drinkComponent;
+                break;
+            }
+        }
+        drinkComponentsStandardRecipe.remove(cupSize);
+        drinkComponents.remove(CupOptions.TAG);
     }
 }

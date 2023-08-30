@@ -45,7 +45,6 @@ public class IcedCinnamonDolceLatte extends IcedLattes {
         flavorOptions.add(0, new DrinkComponentWithDefaultAsString(
                 syrupCinnamonDolce, Integer.toString(numberOfPumpByDrinkSize)
         ));
-
         drinkComponentsStandardRecipe.add(syrupCinnamonDolce);
 
         // REMOVAL: TOPPING_OPTIONS: WhippedCream
@@ -70,7 +69,6 @@ public class IcedCinnamonDolceLatte extends IcedLattes {
         toppingOptions.add(1, new DrinkComponentWithDefaultAsString(
                 whippedCreamDefined, DEFAULT_WHIPPED_CREAM_AMOUNT.name()
         ));
-
         drinkComponentsStandardRecipe.add(toppingCinnamonDolceSprinkles);
         drinkComponentsStandardRecipe.add(whippedCreamDefined);
     }

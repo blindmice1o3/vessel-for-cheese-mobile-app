@@ -7,7 +7,7 @@ public class FeaturedDarkRoastSumatra extends HotBrewedCoffees {
 
     public static final int DEFAULT_IMAGE_RESOURCE_ID = R.drawable.harvest_moon_natsume;
     public static final String DEFAULT_NAME = "Featured Dark Roast Sumatra";
-    public static final String DEFAULT_DESCRIPTION = "This full-bodied dark roast coffee with bold, robust flavors showcases our roasting and blending artistry-an essential blend of balanced and lingering flavors.";
+    public static final String DEFAULT_DESCRIPTION = "This full-bodied dark roast coffee with bold, robust flavors showcases our roasting and blending artistry--an essential blend of balanced and lingering flavors.";
     public static final int DEFAULT_CALORIES = 5;
     public static final int DEFAULT_SUGAR_IN_GRAM = 0;
     public static final float DEFAULT_FAT_IN_GRAM = 0.0f;
