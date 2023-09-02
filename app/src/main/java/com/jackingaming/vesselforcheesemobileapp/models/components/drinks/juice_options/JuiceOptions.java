@@ -4,4 +4,8 @@ import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkC
 
 public abstract class JuiceOptions extends DrinkComponent {
     public static final String TAG = JuiceOptions.class.getSimpleName();
+
+    public JuiceOptions(String id) {
+        super(id);
+    }
 }

@@ -7,6 +7,20 @@ public abstract class DrinkComponent
     public static final String TAG = DrinkComponent.class.getSimpleName();
     public static final String NULL_TYPE_AS_STRING = "null";
 
+    public DrinkComponent(String id) {
+        this.id = id;
+    }
+
+    protected String id;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public abstract String getTextInit();
 
     public abstract String[] getEnumValuesAsStringArray();

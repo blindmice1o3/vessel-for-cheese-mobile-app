@@ -6,6 +6,7 @@ import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkC
 public class Juice extends JuiceOptions
         implements Granular {
     public static final String DEFAULT_TEXT_INIT = "Add Juice Options";
+    public static final String ID = "Juice";
 
     @Override
     public Amount getAmount() {
@@ -26,6 +27,8 @@ public class Juice extends JuiceOptions
     private Amount amount;
 
     public Juice(Type type, Amount amount) {
+        super(ID);
+
         this.type = type;
         this.amount = amount;
     }

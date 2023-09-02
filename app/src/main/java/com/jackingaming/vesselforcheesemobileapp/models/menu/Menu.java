@@ -179,7 +179,10 @@ import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.teas.h
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.teas.hot.greenteas.MatchaTeaLatte;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.teas.hot.herbalteas.MintMajesty;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.teas.hot.herbalteas.PeachTranquility;
-import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.travelers.VerandaBlend;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.travelers.TravelerDarkRoast;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.travelers.TravelerDecafPikePlaceRoast;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.travelers.TravelerPikePlaceRoast;
+import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.travelers.TravelerVerandaBlend;
 
 import java.util.Arrays;
 import java.util.List;
@@ -283,10 +286,10 @@ public class Menu {
     );
 
     public static final List<MenuItem> coffeeTravelers = Arrays.asList(
-            new VerandaBlend(),
-            new com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.travelers.DarkRoast(),
-            new com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.travelers.PikePlaceRoast(),
-            new com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.travelers.DecafPikePlaceRoast()
+            new TravelerVerandaBlend(),
+            new TravelerDarkRoast(),
+            new TravelerPikePlaceRoast(),
+            new TravelerDecafPikePlaceRoast()
     );
 
     public static final List<Section> hotCoffees = Arrays.asList(

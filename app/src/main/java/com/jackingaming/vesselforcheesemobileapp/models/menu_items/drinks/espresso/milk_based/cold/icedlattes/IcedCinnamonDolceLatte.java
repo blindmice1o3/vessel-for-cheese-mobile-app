@@ -15,6 +15,7 @@ import java.util.List;
 public class IcedCinnamonDolceLatte extends IcedLattes {
     public static final String TAG = IcedCinnamonDolceLatte.class.getSimpleName();
 
+    public static final String ID = "IcedCinnamonDolceLatte";
     public static final int DEFAULT_IMAGE_RESOURCE_ID = R.drawable.harvest_moon_natsume;
     public static final String DEFAULT_NAME = "Iced Cinnamon Dolce Latte";
     public static final String DEFAULT_DESCRIPTION = "We add freshly steamed milk and cinnamon dolce-flavored syrup to our classic espresso and ice, topped with sweetened whipped cream and a cinnamon dolce topping to bring you specialness in a treat.";
@@ -33,7 +34,7 @@ public class IcedCinnamonDolceLatte extends IcedLattes {
     public static final double DEFAULT_PRICE_LARGE = 3.70;
 
     public IcedCinnamonDolceLatte() {
-        super(DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
+        super(ID, DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
                 DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
                 DEFAULT_PRICE_MEDIUM);
 

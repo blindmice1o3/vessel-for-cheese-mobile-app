@@ -4,6 +4,7 @@ import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkC
 
 public class PrepOptions extends EspressoOptions {
     public static final String DEFAULT_TEXT_INIT = "Shot Prep";
+    public static final String ID = "PrepOptions";
 
     public enum Type {
         NONE,
@@ -13,6 +14,8 @@ public class PrepOptions extends EspressoOptions {
     private Type type;
 
     public PrepOptions(Type type) {
+        super(ID);
+
         this.type = type;
     }
 

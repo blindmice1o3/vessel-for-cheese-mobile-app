@@ -20,6 +20,7 @@ import java.util.List;
 public class StrawberryAcaiLemonadeStarbucksRefreshersBeverage extends ColdOther {
     public static final String TAG = StrawberryAcaiLemonadeStarbucksRefreshersBeverage.class.getSimpleName();
 
+    public static final String ID = "StrawberryAcaiLemonadeStarbucksRefreshersBeverage";
     public static final int DEFAULT_IMAGE_RESOURCE_ID = R.drawable.harvest_moon_natsume;
     public static final String DEFAULT_NAME = "Strawberry Acai Lemonade Starbucks Refreshers Beverage";
     public static final String DEFAULT_DESCRIPTION = "Sweet strawberry flavors, passion fruit and acai notes balanced with the delightful zing of lemonade, served over ice with freeze-dried strawberry pieces. The ultimate pick-me-up your afternoon is calling for.";
@@ -40,7 +41,7 @@ public class StrawberryAcaiLemonadeStarbucksRefreshersBeverage extends ColdOther
     public static final double DEFAULT_PRICE_LARGE = 0.25;
 
     public StrawberryAcaiLemonadeStarbucksRefreshersBeverage() {
-        super(DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
+        super(ID, DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
                 DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
                 DEFAULT_PRICE_MEDIUM);
 

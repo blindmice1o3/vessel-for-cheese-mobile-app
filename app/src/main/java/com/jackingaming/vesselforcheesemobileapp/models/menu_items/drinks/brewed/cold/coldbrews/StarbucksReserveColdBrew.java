@@ -17,6 +17,7 @@ import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.DrinkS
 public class StarbucksReserveColdBrew extends ColdBrews {
     public static final String TAG = StarbucksReserveColdBrew.class.getSimpleName();
 
+    public static final String ID = "StarbucksReserveColdBrew";
     public static final int DEFAULT_IMAGE_RESOURCE_ID = R.drawable.harvest_moon_natsume;
     public static final String DEFAULT_NAME = "Starbucks Reserve Cold Brew";
     public static final String DEFAULT_DESCRIPTION = "Our Starbucks Reserve Cold Brew--a nuanced, smooth cup of coffee, perfect over ice--is extraordinarily uplifting in a bold form.";
@@ -33,7 +34,7 @@ public class StarbucksReserveColdBrew extends ColdBrews {
     public static final double DEFAULT_PRICE_LARGE = 3.70;
 
     public StarbucksReserveColdBrew() {
-        super(DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
+        super(ID, DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
                 DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
                 DEFAULT_PRICE_MEDIUM);
 

@@ -4,6 +4,7 @@ import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkC
 
 public class RoastOptionsAllowable extends EspressoOptions {
     public static final String DEFAULT_TEXT_INIT = "Roast Options";
+    public static final String ID = "RoastOptionsAllowable";
 
     public enum Type {
         NONE,
@@ -18,6 +19,8 @@ public class RoastOptionsAllowable extends EspressoOptions {
     private Type type;
 
     public RoastOptionsAllowable(Type type) {
+        super(ID);
+
         this.type = type;
     }
 

@@ -14,6 +14,7 @@ import java.util.List;
 public class PumpkinCreamColdBrew extends ColdBrews {
     public static final String TAG = PumpkinCreamColdBrew.class.getSimpleName();
 
+    public static final String ID = "PumpkinCreamColdBrew";
     public static final int DEFAULT_IMAGE_RESOURCE_ID = R.drawable.harvest_moon_natsume;
     public static final String DEFAULT_NAME = "Pumpkin Cream Cold Brew";
     public static final String DEFAULT_DESCRIPTION = "Starbucks Cold Brew sweetened with vanilla syrup and topped with pumpkin cream cold foam and a dusting of pumpkin-spice topping.";
@@ -32,7 +33,7 @@ public class PumpkinCreamColdBrew extends ColdBrews {
     public static final double DEFAULT_PRICE_LARGE = 3.70;
 
     public PumpkinCreamColdBrew() {
-        super(DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
+        super(ID, DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
                 DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
                 DEFAULT_PRICE_MEDIUM);
 

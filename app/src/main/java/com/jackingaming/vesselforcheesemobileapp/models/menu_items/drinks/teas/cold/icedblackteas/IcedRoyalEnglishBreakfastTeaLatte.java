@@ -35,6 +35,7 @@ import java.util.List;
 public class IcedRoyalEnglishBreakfastTeaLatte extends IcedTeas {
     public static final String TAG = IcedRoyalEnglishBreakfastTeaLatte.class.getSimpleName();
 
+    public static final String ID = "IcedRoyalEnglishBreakfastTeaLatte";
     public static final int DEFAULT_IMAGE_RESOURCE_ID = R.drawable.harvest_moon_natsume;
     public static final String DEFAULT_NAME = "Iced Royal English Breakfast Tea Latte";
     public static final String DEFAULT_DESCRIPTION = "A select blend of rich, full-leaf black teas from India and Sri Lanka sweetened with liquid cane sugar and combined with milk and ice.";
@@ -66,7 +67,7 @@ public class IcedRoyalEnglishBreakfastTeaLatte extends IcedTeas {
     public static final double DEFAULT_PRICE_LARGE = 3.70;
 
     public IcedRoyalEnglishBreakfastTeaLatte() {
-        super(DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
+        super(ID, DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
                 DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
                 DEFAULT_PRICE_MEDIUM);
 

@@ -14,6 +14,7 @@ import java.util.List;
 public class CinnamonCaramelCreamColdBrew extends ColdBrews {
     public static final String TAG = CinnamonCaramelCreamColdBrew.class.getSimpleName();
 
+    public static final String ID = "CinnamonCaramelCreamColdBrew";
     public static final int DEFAULT_IMAGE_RESOURCE_ID = R.drawable.harvest_moon_natsume;
     public static final String DEFAULT_NAME = "Cinnamon Caramel Cream Cold Brew";
     public static final String DEFAULT_DESCRIPTION = "Starbucks Cold Brew is sweetened with Cinnamon Caramel Syrup and topped with a cinnamon caramel cold foam and a dusting of cinnamon dolce topping for a special treat.";
@@ -32,7 +33,7 @@ public class CinnamonCaramelCreamColdBrew extends ColdBrews {
     public static final double DEFAULT_PRICE_LARGE = 3.70;
 
     public CinnamonCaramelCreamColdBrew() {
-        super(DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
+        super(ID, DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
                 DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
                 DEFAULT_PRICE_MEDIUM);
 

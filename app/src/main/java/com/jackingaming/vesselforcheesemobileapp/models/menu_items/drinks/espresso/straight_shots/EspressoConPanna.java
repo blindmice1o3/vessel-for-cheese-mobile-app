@@ -22,6 +22,7 @@ import java.util.List;
 public class EspressoConPanna extends EspressoShots {
     public static final String TAG = EspressoConPanna.class.getSimpleName();
 
+    public static final String ID = "EspressoConPanna";
     public static final int DEFAULT_IMAGE_RESOURCE_ID = R.drawable.harvest_moon_natsume;
     public static final String DEFAULT_NAME = "Espresso Con Panna";
     public static final String DEFAULT_DESCRIPTION = "Espresso meets a dollop of whipped cream to enhance the rich and caramelly flavors of a straight-up shot.";
@@ -41,7 +42,7 @@ public class EspressoConPanna extends EspressoShots {
     public static final double DEFAULT_PRICE_LARGE = 1.95;
 
     public EspressoConPanna() {
-        super(DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
+        super(ID, DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
                 DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
                 DEFAULT_PRICE_SMALL);
 
@@ -71,7 +72,7 @@ public class EspressoConPanna extends EspressoShots {
         // ADD_INS_OPTIONS (add into EXISTING DrinkComponent group)
         List<DrinkComponentWithDefaultAsString> addInsOptions = drinkComponents.get(AddInsOptions.TAG);
         addInsOptions.add(1, new DrinkComponentWithDefaultAsString(
-                new Powders(), DEFAULT_POWDERS
+                new Powders(Powders.DUMMY_ID), DEFAULT_POWDERS
         ));
         addInsOptions.add(2, new DrinkComponentWithDefaultAsString(
                 new MilkCreamer(null, DEFAULT_MILK_CREAMER_AMOUNT), DEFAULT_MILK_CREAMER_AMOUNT.name()

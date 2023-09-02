@@ -6,6 +6,7 @@ import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkC
 public class Drizzle extends ToppingOptions
         implements Granular {
     public static final String DEFAULT_TEXT_INIT = "Add Drizzle";
+    public static final String ID = "Drizzle";
 
     @Override
     public Amount getAmount() {
@@ -27,6 +28,8 @@ public class Drizzle extends ToppingOptions
     private Amount amount;
 
     public Drizzle(Type type, Amount amount) {
+        super(ID);
+
         this.type = type;
         this.amount = amount;
     }

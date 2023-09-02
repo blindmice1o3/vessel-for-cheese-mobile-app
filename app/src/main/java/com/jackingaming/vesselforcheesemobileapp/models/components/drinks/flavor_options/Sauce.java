@@ -8,6 +8,8 @@ import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkC
 public class Sauce extends FlavorOptions
         implements Incrementable {
     public static final String DEFAULT_TEXT_INIT = "Add Sauces";
+    public static final String ID = "Sauce";
+
     public static final int DEFAULT_QUANTITY_MIN = 0;
     public static final int DEFAULT_QUANTITY_MAX = 12;
 
@@ -71,6 +73,8 @@ public class Sauce extends FlavorOptions
     private int quantity;
 
     public Sauce(Type type, int quantity) {
+        super(ID);
+
         this.type = type;
         this.quantity = quantity;
     }

@@ -3,7 +3,6 @@ package com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_i
 import com.jackingaming.vesselforcheesemobileapp.models.components.MixedType;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkComponent;
 import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.AddInsOptions;
-import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.add_ins.mixed_type.fruits.base.Fruits;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +10,7 @@ import java.util.List;
 public class Powders extends AddInsOptions
         implements MixedType {
     public static final String DEFAULT_TEXT_INIT = "Add Powders";
+    public static final String DUMMY_ID = "POWDERS";
 
     public enum Type {
         CHOCOLATE_MALT,
@@ -19,8 +19,8 @@ public class Powders extends AddInsOptions
 
     private Type type;
 
-    public Powders() {
-
+    public Powders(String id) {
+        super(id);
     }
 
     public static List<String> getEnumValuesAsStringForMixedType() {

@@ -18,6 +18,7 @@ import java.util.List;
 public class FrozenPineapplePassionfruitLemonadeStarbucksRefreshersBeverage extends ColdOther {
     public static final String TAG = FrozenPineapplePassionfruitLemonadeStarbucksRefreshersBeverage.class.getSimpleName();
 
+    public static final String ID = "FrozenPineapplePassionfruitLemonadeStarbucksRefreshersBeverage";
     public static final int DEFAULT_IMAGE_RESOURCE_ID = R.drawable.harvest_moon_natsume;
     public static final String DEFAULT_NAME = "Frozen Pineapple Passionfruit Lemonade Starbucks Refreshers Beverage";
     public static final String DEFAULT_DESCRIPTION = "Tropical flavors of pineapple and passionfruit blended with real diced pineapple, strawberry puree and lemonade for a refreshingly frozen, vibrant escape in a cup.";
@@ -37,7 +38,7 @@ public class FrozenPineapplePassionfruitLemonadeStarbucksRefreshersBeverage exte
     public static final double DEFAULT_PRICE_LARGE = 0.25;
 
     public FrozenPineapplePassionfruitLemonadeStarbucksRefreshersBeverage() {
-        super(DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
+        super(ID, DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
                 DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
                 DEFAULT_PRICE_MEDIUM);
 

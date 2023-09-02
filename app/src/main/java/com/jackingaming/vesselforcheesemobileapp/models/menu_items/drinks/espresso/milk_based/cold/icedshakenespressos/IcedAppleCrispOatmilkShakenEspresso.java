@@ -20,6 +20,7 @@ import java.util.List;
 public class IcedAppleCrispOatmilkShakenEspresso extends IcedShakenEspressos {
     public static final String TAG = IcedAppleCrispOatmilkShakenEspresso.class.getSimpleName();
 
+    public static final String ID = "IcedAppleCrispOatmilkShakenEspresso";
     public static final int DEFAULT_IMAGE_RESOURCE_ID = R.drawable.harvest_moon_natsume;
     public static final String DEFAULT_NAME = "Iced Apple Crisp Oatmilk Shaken Espresso";
     public static final String DEFAULT_DESCRIPTION = "For the cool quencher--who wants a treat that uplifts their energy and matches their cozy fall mood--this Iced Apple Crisp Shaken Espresso is the perfect balance of spiced apple flavor, smooth espresso and creamy oatmilk for a leveled-up autumn espresso beverage.";
@@ -37,7 +38,7 @@ public class IcedAppleCrispOatmilkShakenEspresso extends IcedShakenEspressos {
     public static final double DEFAULT_PRICE_LARGE = 3.70;
 
     public IcedAppleCrispOatmilkShakenEspresso() {
-        super(DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
+        super(ID, DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
                 DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
                 DEFAULT_PRICE_MEDIUM);
 

@@ -26,10 +26,10 @@ public abstract class NitroColdBrews extends ColdBrewedCoffees {
     public NitroColdBrews() {
     }
 
-    public NitroColdBrews(int imageResourceId, String name, String description,
+    public NitroColdBrews(String id, int imageResourceId, String name, String description,
                           int calories, int sugarInGram, float fatInGram,
                           double price) {
-        super(imageResourceId, name, description,
+        super(id, imageResourceId, name, description,
                 calories, sugarInGram, fatInGram,
                 price);
         Log.e(TAG, "NitroColdBrews()");

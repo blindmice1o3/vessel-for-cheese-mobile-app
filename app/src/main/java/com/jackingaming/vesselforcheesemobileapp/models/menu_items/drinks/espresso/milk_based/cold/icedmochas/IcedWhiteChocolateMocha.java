@@ -14,6 +14,7 @@ import java.util.List;
 public class IcedWhiteChocolateMocha extends IcedMochas {
     public static final String TAG = IcedWhiteChocolateMocha.class.getSimpleName();
 
+    public static final String ID = "IcedWhiteChocolateMocha";
     public static final int DEFAULT_IMAGE_RESOURCE_ID = R.drawable.harvest_moon_natsume;
     public static final String DEFAULT_NAME = "Iced White Chocolate Mocha";
     public static final String DEFAULT_DESCRIPTION = "Our signature espresso meets white chocolate sauce, milk and ice, and then is finished off with sweetened whipped cream to create this supreme white chocolate delight.";
@@ -30,7 +31,7 @@ public class IcedWhiteChocolateMocha extends IcedMochas {
     public static final double DEFAULT_PRICE_LARGE = 3.70;
 
     public IcedWhiteChocolateMocha() {
-        super(DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
+        super(ID, DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
                 DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
                 DEFAULT_PRICE_MEDIUM);
 

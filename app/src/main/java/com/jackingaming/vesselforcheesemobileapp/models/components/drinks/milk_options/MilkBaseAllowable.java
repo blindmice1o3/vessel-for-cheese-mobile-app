@@ -4,6 +4,7 @@ import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkC
 
 public class MilkBaseAllowable extends MilkOptions {
     public static final String DEFAULT_TEXT_INIT = "Milk Base";
+    public static final String ID = "MilkBaseAllowable";
 
     public enum Type {
         NO,
@@ -22,6 +23,8 @@ public class MilkBaseAllowable extends MilkOptions {
     private Type type;
 
     public MilkBaseAllowable(Type type) {
+        super(ID);
+
         this.type = type;
     }
 

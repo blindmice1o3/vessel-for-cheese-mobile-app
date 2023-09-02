@@ -17,6 +17,7 @@ import java.util.List;
 public class DoubleChocolatyChipCremeFrappuccinoBlendedBeverage extends CremeBased {
     public static final String TAG = DoubleChocolatyChipCremeFrappuccinoBlendedBeverage.class.getSimpleName();
 
+    public static final String ID = "DoubleChocolatyChipCremeFrappuccinoBlendedBeverage";
     public static final int DEFAULT_IMAGE_RESOURCE_ID = R.drawable.harvest_moon_natsume;
     public static final String DEFAULT_NAME = "Double Chocolaty Chip Creme Frappuccino Blended Beverage";
     public static final String DEFAULT_DESCRIPTION = "Rich mocha-flavored sauce meets up with chocolaty chips, milk and ice for a blender bash. Top it off with sweetened whipped cream and mocha drizzle for a real party in your mouth.";
@@ -36,7 +37,7 @@ public class DoubleChocolatyChipCremeFrappuccinoBlendedBeverage extends CremeBas
     public static final double DEFAULT_PRICE_LARGE = 3.70;
 
     public DoubleChocolatyChipCremeFrappuccinoBlendedBeverage() {
-        super(DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
+        super(ID, DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
                 DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
                 DEFAULT_PRICE_MEDIUM);
 

@@ -23,6 +23,7 @@ import java.util.List;
 public class IcedBrownSugarOatmilkShakenEspresso extends IcedShakenEspressos {
     public static final String TAG = IcedBrownSugarOatmilkShakenEspresso.class.getSimpleName();
 
+    public static final String ID = "IcedBrownSugarOatmilkShakenEspresso";
     public static final int DEFAULT_IMAGE_RESOURCE_ID = R.drawable.harvest_moon_natsume;
     public static final String DEFAULT_NAME = "Iced Brown Sugar Oatmilk Shaken Espresso";
     public static final String DEFAULT_DESCRIPTION = "First we shake Starbucks Blonde espresso, brown sugar and cinnamon together, and then top it off with oatmilk and ice for a cool lift to power you through your day.";
@@ -42,7 +43,7 @@ public class IcedBrownSugarOatmilkShakenEspresso extends IcedShakenEspressos {
     public static final double DEFAULT_PRICE_LARGE = 3.70;
 
     public IcedBrownSugarOatmilkShakenEspresso() {
-        super(DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
+        super(ID, DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
                 DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
                 DEFAULT_PRICE_MEDIUM);
 

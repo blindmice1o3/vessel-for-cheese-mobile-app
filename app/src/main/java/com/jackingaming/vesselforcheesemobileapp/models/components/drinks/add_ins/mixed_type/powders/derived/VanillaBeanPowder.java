@@ -12,6 +12,8 @@ import java.util.List;
 public class VanillaBeanPowder extends Powders
         implements Incrementable {
     public static final String DEFAULT_TEXT_INIT = "Add Vanilla Bean Powder";
+    public static final String ID = "VanillaBeanPowder";
+
     public static final int DEFAULT_QUANTITY_MIN = 0;
     public static final int DEFAULT_QUANTITY_MAX = Integer.MAX_VALUE;
 
@@ -72,6 +74,8 @@ public class VanillaBeanPowder extends Powders
     private int quantity;
 
     public VanillaBeanPowder(Type type, int quantity) {
+        super(ID);
+
         this.type = type;
         this.quantity = quantity;
     }

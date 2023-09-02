@@ -32,6 +32,7 @@ import java.util.List;
 public class IcedLondonFogTeaLatte extends IcedTeas {
     public static final String TAG = IcedLondonFogTeaLatte.class.getSimpleName();
 
+    public static final String ID = "IcedLondonFogTeaLatte";
     public static final int DEFAULT_IMAGE_RESOURCE_ID = R.drawable.harvest_moon_natsume;
     public static final String DEFAULT_NAME = "Iced London Fog Tea Latte";
     public static final String DEFAULT_DESCRIPTION = "Bright, citrusy spark of bergamot blends with subtle hints of lavender and mixes with vanilla syrup, milk and ice to create this delicious reinvention of a classic Earl Grey tea.";
@@ -61,7 +62,7 @@ public class IcedLondonFogTeaLatte extends IcedTeas {
     public static final double DEFAULT_PRICE_LARGE = 3.70;
 
     public IcedLondonFogTeaLatte() {
-        super(DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
+        super(ID, DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
                 DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
                 DEFAULT_PRICE_MEDIUM);
 

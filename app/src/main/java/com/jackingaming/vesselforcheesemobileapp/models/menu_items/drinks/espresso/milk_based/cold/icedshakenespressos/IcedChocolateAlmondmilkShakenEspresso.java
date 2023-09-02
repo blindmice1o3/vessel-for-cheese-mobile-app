@@ -21,6 +21,7 @@ import java.util.List;
 public class IcedChocolateAlmondmilkShakenEspresso extends IcedShakenEspressos {
     public static final String TAG = IcedChocolateAlmondmilkShakenEspresso.class.getSimpleName();
 
+    public static final String ID = "IcedChocolateAlmondmilkShakenEspresso";
     public static final int DEFAULT_IMAGE_RESOURCE_ID = R.drawable.harvest_moon_natsume;
     public static final String DEFAULT_NAME = "Iced Chocolate Almondmilk Shaken Espresso";
     public static final String DEFAULT_DESCRIPTION = "Starbucks Blonde espresso meets cocoa and notes of malt, shaken together and topped with almondmilk and ice for an invigorating treat to power you through your day.";
@@ -39,7 +40,7 @@ public class IcedChocolateAlmondmilkShakenEspresso extends IcedShakenEspressos {
     public static final double DEFAULT_PRICE_LARGE = 3.70;
 
     public IcedChocolateAlmondmilkShakenEspresso() {
-        super(DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
+        super(ID, DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
                 DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
                 DEFAULT_PRICE_MEDIUM);
 

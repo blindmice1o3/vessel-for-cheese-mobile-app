@@ -8,6 +8,8 @@ import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkC
 public class Chai extends TeaOptions
         implements Incrementable {
     public static final String DEFAULT_TEXT_INIT = "Add Chai";
+    public static final String ID = "Chai";
+
     public static final int DEFAULT_QUANTITY_MIN = 0;
     public static final int DEFAULT_QUANTITY_MAX = Integer.MAX_VALUE;
 
@@ -68,6 +70,8 @@ public class Chai extends TeaOptions
     private int quantity;
 
     public Chai(Type type, int quantity) {
+        super(ID);
+
         this.type = type;
         this.quantity = quantity;
     }

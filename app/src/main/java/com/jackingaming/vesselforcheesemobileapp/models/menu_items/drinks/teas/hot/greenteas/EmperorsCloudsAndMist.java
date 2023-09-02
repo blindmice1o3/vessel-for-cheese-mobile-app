@@ -18,6 +18,7 @@ import java.util.List;
 public class EmperorsCloudsAndMist extends HotTeas {
     public static final String TAG = EmperorsCloudsAndMist.class.getSimpleName();
 
+    public static final String ID = "EmperorsCloudsAndMist";
     public static final int DEFAULT_IMAGE_RESOURCE_ID = R.drawable.harvest_moon_natsume;
     public static final String DEFAULT_NAME = "Emperor's Clouds & Mist";
     public static final String DEFAULT_DESCRIPTION = "This gently smoky, softly sweet green tea--cultivated at 3,500 feet and shrouded in ethereal clouds and mist--is tasty no matter what language you say it in.";
@@ -35,7 +36,7 @@ public class EmperorsCloudsAndMist extends HotTeas {
     public static final double DEFAULT_PRICE_LARGE = 3.70;
 
     public EmperorsCloudsAndMist() {
-        super(DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
+        super(ID, DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
                 DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
                 DEFAULT_PRICE_MEDIUM);
 

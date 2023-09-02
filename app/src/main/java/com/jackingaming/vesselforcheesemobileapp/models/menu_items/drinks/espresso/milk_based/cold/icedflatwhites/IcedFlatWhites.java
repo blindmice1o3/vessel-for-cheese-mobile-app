@@ -13,10 +13,10 @@ public abstract class IcedFlatWhites extends ColdMilkBased {
     public IcedFlatWhites() {
     }
 
-    public IcedFlatWhites(int imageResourceId, String name, String description,
+    public IcedFlatWhites(String id, int imageResourceId, String name, String description,
                           int calories, int sugarInGram, float fatInGram,
                           double price) {
-        super(imageResourceId, name, description,
+        super(id, imageResourceId, name, description,
                 calories, sugarInGram, fatInGram,
                 price, DEFAULT_DRINK_SIZE);
 

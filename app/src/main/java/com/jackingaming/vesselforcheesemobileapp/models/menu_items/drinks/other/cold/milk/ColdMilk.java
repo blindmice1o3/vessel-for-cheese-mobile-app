@@ -30,6 +30,7 @@ import java.util.List;
 public class ColdMilk extends ColdOther {
     public static final String TAG = ColdMilk.class.getSimpleName();
 
+    public static final String ID = "ColdMilk";
     public static final int DEFAULT_IMAGE_RESOURCE_ID = R.drawable.harvest_moon_natsume;
     public static final String DEFAULT_NAME = "Cold Milk";
     public static final String DEFAULT_DESCRIPTION = "Skim, 2%, soy, almond, or coconutmilk served chilled or over ice. Simply refreshing.";
@@ -56,7 +57,7 @@ public class ColdMilk extends ColdOther {
     public static final double DEFAULT_PRICE_LARGE = 0.25;
 
     public ColdMilk() {
-        super(DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
+        super(ID, DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
                 DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
                 DEFAULT_PRICE_MEDIUM);
 

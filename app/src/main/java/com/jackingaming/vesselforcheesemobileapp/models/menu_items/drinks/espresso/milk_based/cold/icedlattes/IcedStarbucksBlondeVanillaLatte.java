@@ -15,6 +15,7 @@ import java.util.List;
 public class IcedStarbucksBlondeVanillaLatte extends IcedLattes {
     public static final String TAG = IcedStarbucksBlondeVanillaLatte.class.getSimpleName();
 
+    public static final String ID = "IcedStarbucksBlondeVanillaLatte";
     public static final int DEFAULT_IMAGE_RESOURCE_ID = R.drawable.harvest_moon_natsume;
     public static final String DEFAULT_NAME = "Iced Starbucks Blonde Vanilla Latte";
     public static final String DEFAULT_DESCRIPTION = "Seriously smooth and subtly sweet Starbucks Blonde Espresso, milk, ice and vanilla syrup come together to create a delightful twist on a beloved espresso classic.";
@@ -30,7 +31,7 @@ public class IcedStarbucksBlondeVanillaLatte extends IcedLattes {
     public static final double DEFAULT_PRICE_LARGE = 3.70;
 
     public IcedStarbucksBlondeVanillaLatte() {
-        super(DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
+        super(ID, DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
                 DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
                 DEFAULT_PRICE_MEDIUM);
 

@@ -13,10 +13,10 @@ public abstract class FlatWhites extends HotMilkBased {
     public FlatWhites() {
     }
 
-    public FlatWhites(int imageResourceId, String name, String description,
+    public FlatWhites(String id, int imageResourceId, String name, String description,
                       int calories, int sugarInGram, float fatInGram,
                       double price) {
-        super(imageResourceId, name, description,
+        super(id, imageResourceId, name, description,
                 calories, sugarInGram, fatInGram,
                 price, DEFAULT_DRINK_SIZE);
 

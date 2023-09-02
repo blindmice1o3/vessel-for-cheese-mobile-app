@@ -26,6 +26,7 @@ import java.util.List;
 public class IcedBlackTeaLemonade extends IcedTeas {
     public static final String TAG = IcedBlackTeaLemonade.class.getSimpleName();
 
+    public static final String ID = "IcedBlackTeaLemonade";
     public static final int DEFAULT_IMAGE_RESOURCE_ID = R.drawable.harvest_moon_natsume;
     public static final String DEFAULT_NAME = "Iced Black Tea Lemonade";
     public static final String DEFAULT_DESCRIPTION = "Premium black tea sweetened just right, then shaken with refreshing lemonade and ice for this Arnold Palmer-inspired beverage. A distinguished, satisfying treat.";
@@ -47,7 +48,7 @@ public class IcedBlackTeaLemonade extends IcedTeas {
     public static final double DEFAULT_PRICE_LARGE = 3.70;
 
     public IcedBlackTeaLemonade() {
-        super(DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
+        super(ID, DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
                 DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
                 DEFAULT_PRICE_MEDIUM);
 
@@ -106,7 +107,7 @@ public class IcedBlackTeaLemonade extends IcedTeas {
         // ADD_INS_OPTIONS (add into EXISTING DrinkComponent group)
         List<DrinkComponentWithDefaultAsString> addInsOptions = drinkComponents.get(AddInsOptions.TAG);
         addInsOptions.add(1, new DrinkComponentWithDefaultAsString(
-                new Fruits(), DEFAULT_FRUITS
+                new Fruits(Fruits.DUMMY_ID), DEFAULT_FRUITS
         ));
     }
 }

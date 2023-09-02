@@ -14,6 +14,7 @@ import java.util.List;
 public class FlatWhite extends FlatWhites {
     public static final String TAG = FlatWhite.class.getSimpleName();
 
+    public static final String ID = "FlatWhite";
     public static final int DEFAULT_IMAGE_RESOURCE_ID = R.drawable.harvest_moon_natsume;
     public static final String DEFAULT_NAME = "Flat White";
     public static final String DEFAULT_DESCRIPTION = "Smooth ristretto shots of espresso get the perfect amount of steamed whole milk to create a not-too-strong, not-too-creamy, just-right flavor.";
@@ -29,7 +30,7 @@ public class FlatWhite extends FlatWhites {
     public static final double DEFAULT_PRICE_LARGE = 1.95;
 
     public FlatWhite() {
-        super(DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
+        super(ID, DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
                 DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
                 DEFAULT_PRICE_MEDIUM);
 

@@ -17,6 +17,7 @@ import java.util.List;
 public class IcedAppleCrispOatmilkMacchiato extends IcedMacchiatos {
     public static final String TAG = IcedAppleCrispOatmilkMacchiato.class.getSimpleName();
 
+    public static final String ID = "IcedAppleCrispOatmilkMacchiato";
     public static final int DEFAULT_IMAGE_RESOURCE_ID = R.drawable.harvest_moon_natsume;
     public static final String DEFAULT_NAME = "Iced Apple Crisp Oatmilk Macchiato";
     public static final String DEFAULT_DESCRIPTION = "Layered flavors of apple, cinnamon, oats and brown sugar harmonize with Starbucks Blonde Espresso Roast, creamy oatmilk, ice and spiced apple drizzle to create a delicious apple crisp you can sip. A nostalgic autumn pick-me-up.";
@@ -35,7 +36,7 @@ public class IcedAppleCrispOatmilkMacchiato extends IcedMacchiatos {
     public static final double DEFAULT_PRICE_LARGE = 3.70;
 
     public IcedAppleCrispOatmilkMacchiato() {
-        super(DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
+        super(ID, DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
                 DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
                 DEFAULT_PRICE_MEDIUM);
 

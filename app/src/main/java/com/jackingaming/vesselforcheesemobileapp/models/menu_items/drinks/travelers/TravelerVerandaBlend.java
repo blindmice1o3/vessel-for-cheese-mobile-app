@@ -3,10 +3,11 @@ package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.trave
 import com.jackingaming.vesselforcheesemobileapp.R;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.NotHandCrafted;
 
-public class VerandaBlend extends CoffeeTravelers
+public class TravelerVerandaBlend extends CoffeeTravelers
         implements NotHandCrafted {
-    public static final String TAG = VerandaBlend.class.getSimpleName();
+    public static final String TAG = TravelerVerandaBlend.class.getSimpleName();
 
+    public static final String ID = "TravelerVerandaBlend";
     public static final int DEFAULT_IMAGE_RESOURCE_ID = R.drawable.harvest_moon_natsume;
     public static final String DEFAULT_NAME = "Coffee Traveler - Veranda Blend";
     public static final String DEFAULT_DESCRIPTION = "A convenient carrier filled with 96 fl oz of our brewed Starbucks Blonde Veranda Blend (equivalent to 12 8-fl-oz cups), perfect for meetings, picnic gatherings or any occasion that calls for coffee.";
@@ -19,8 +20,8 @@ public class VerandaBlend extends CoffeeTravelers
     public static final double DEFAULT_PRICE_MEDIUM = 2.45;
     public static final double DEFAULT_PRICE_LARGE = 2.70;
 
-    public VerandaBlend() {
-        super(DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
+    public TravelerVerandaBlend() {
+        super(ID, DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
                 DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
                 DEFAULT_PRICE_MEDIUM);
     }

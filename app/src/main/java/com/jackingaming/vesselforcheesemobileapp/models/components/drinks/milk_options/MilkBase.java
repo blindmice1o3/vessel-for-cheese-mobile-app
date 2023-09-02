@@ -4,6 +4,7 @@ import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkC
 
 public class MilkBase extends MilkOptions {
     public static final String DEFAULT_TEXT_INIT = "Milk Base";
+    public static final String ID = "MilkBase";
 
     public enum Type {
         TWO_PERCENT,
@@ -21,6 +22,8 @@ public class MilkBase extends MilkOptions {
     private Type type;
 
     public MilkBase(Type type) {
+        super(ID);
+
         this.type = type;
     }
 

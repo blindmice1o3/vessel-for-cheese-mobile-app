@@ -4,6 +4,7 @@ import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkC
 
 public class CappuccinoFoam extends MilkOptions {
     public static final String DEFAULT_TEXT_INIT = "Cappuccino Foam";
+    public static final String ID = "CappuccinoFoam";
 
     public enum Type {
         EXTRA_DRY, DRY, MEDIUM, WET, EXTRA_WET;
@@ -12,6 +13,8 @@ public class CappuccinoFoam extends MilkOptions {
     private Type type;
 
     public CappuccinoFoam(Type type) {
+        super(ID);
+
         this.type = type;
     }
 

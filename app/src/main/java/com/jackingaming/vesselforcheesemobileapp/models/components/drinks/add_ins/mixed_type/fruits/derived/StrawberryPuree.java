@@ -10,6 +10,7 @@ import java.util.List;
 public class StrawberryPuree extends Fruits
         implements Granular {
     public static final String DEFAULT_TEXT_INIT = "Add Strawberry Puree";
+    public static final String ID = "StrawberryPuree";
 
     @Override
     public Amount getAmount() {
@@ -29,6 +30,8 @@ public class StrawberryPuree extends Fruits
     private Amount amount;
 
     public StrawberryPuree(Type type, Amount amount) {
+        super(ID);
+
         this.type = type;
         this.amount = amount;
     }

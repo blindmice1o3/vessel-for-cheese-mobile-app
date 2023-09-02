@@ -23,10 +23,10 @@ public abstract class HotMilkBased extends Espresso {
     public HotMilkBased() {
     }
 
-    public HotMilkBased(int imageResourceId, String name, String description,
+    public HotMilkBased(String id, int imageResourceId, String name, String description,
                         int calories, int sugarInGram, float fatInGram,
                         double price, DrinkSize drinkSizeDefault) {
-        super(imageResourceId, name, description,
+        super(id, imageResourceId, name, description,
                 calories, sugarInGram, fatInGram,
                 price, drinkSizeDefault);
 
@@ -49,7 +49,7 @@ public abstract class HotMilkBased extends Espresso {
         // ADD_INS_OPTIONS (add into EXISTING DrinkComponent group)
         List<DrinkComponentWithDefaultAsString> addInsOptions = drinkComponents.get(AddInsOptions.TAG);
         addInsOptions.add(1, new DrinkComponentWithDefaultAsString(
-                new Powders(), DEFAULT_POWDERS
+                new Powders(Powders.DUMMY_ID), DEFAULT_POWDERS
         ));
     }
 }

@@ -18,6 +18,7 @@ import java.util.List;
 public class MintMajesty extends HotTeas {
     public static final String TAG = MintMajesty.class.getSimpleName();
 
+    public static final String ID = "MintMajesty";
     public static final int DEFAULT_IMAGE_RESOURCE_ID = R.drawable.harvest_moon_natsume;
     public static final String DEFAULT_NAME = "Mint Majesty";
     public static final String DEFAULT_DESCRIPTION = "A blend of mint and a pinch of lemon verbena creates a refreshing flavor that's supercool for a caffeine-free herbal tea.";
@@ -35,7 +36,7 @@ public class MintMajesty extends HotTeas {
     public static final double DEFAULT_PRICE_LARGE = 3.70;
 
     public MintMajesty() {
-        super(DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
+        super(ID, DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
                 DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
                 DEFAULT_PRICE_MEDIUM);
 

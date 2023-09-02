@@ -8,7 +8,7 @@ public abstract class MenuItem
 
     public static final boolean HANDED_OFF_DEFAULT = false;
 
-    protected long id;
+    protected String id;
     protected int imageResourceId;
     protected String name;
     protected String description;
@@ -22,9 +22,10 @@ public abstract class MenuItem
     public MenuItem() {
     }
 
-    public MenuItem(int imageResourceId, String name, String description,
+    public MenuItem(String id, int imageResourceId, String name, String description,
                     int calories, int sugarInGram, float fatInGram,
                     double price) {
+        this.id = id;
         this.imageResourceId = imageResourceId;
         this.name = name;
         this.description = description;
@@ -36,11 +37,11 @@ public abstract class MenuItem
         this.handedOff = HANDED_OFF_DEFAULT;
     }
 
-    public long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

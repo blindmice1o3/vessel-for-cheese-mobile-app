@@ -18,6 +18,7 @@ import java.util.List;
 public class RoyalEnglishBreakfastTea extends HotTeas {
     public static final String TAG = RoyalEnglishBreakfastTea.class.getSimpleName();
 
+    public static final String ID = "RoyalEnglishBreakfastTea";
     public static final int DEFAULT_IMAGE_RESOURCE_ID = R.drawable.harvest_moon_natsume;
     public static final String DEFAULT_NAME = "Royal English Breakfast Tea";
     public static final String DEFAULT_DESCRIPTION = "Each sip of this beloved morning black tea unfolds to reveal the complexity of the high-grown full leaves. An elegant, time-honored classic that brings a royal nod to every cup.";
@@ -35,7 +36,7 @@ public class RoyalEnglishBreakfastTea extends HotTeas {
     public static final double DEFAULT_PRICE_LARGE = 3.70;
 
     public RoyalEnglishBreakfastTea() {
-        super(DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
+        super(ID, DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
                 DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
                 DEFAULT_PRICE_MEDIUM);
 

@@ -30,6 +30,7 @@ import java.util.List;
 public class Lemonade extends ColdOther {
     public static final String TAG = Lemonade.class.getSimpleName();
 
+    public static final String ID = "Lemonade";
     public static final int DEFAULT_IMAGE_RESOURCE_ID = R.drawable.harvest_moon_natsume;
     public static final String DEFAULT_NAME = "Lemonade";
     public static final String DEFAULT_DESCRIPTION = "Awaken your taste buds with the zing of refreshing lemonade--this tangy, fresh sip puts a little zip in your step.";
@@ -56,7 +57,7 @@ public class Lemonade extends ColdOther {
     public static final double DEFAULT_PRICE_LARGE = 0.25;
 
     public Lemonade() {
-        super(DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
+        super(ID, DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
                 DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
                 DEFAULT_PRICE_MEDIUM);
 
@@ -121,7 +122,7 @@ public class Lemonade extends ColdOther {
                 ice, DEFAULT_ICE_AMOUNT.name()
         ));
         addInsOptions.add(new DrinkComponentWithDefaultAsString(
-                new Fruits(), DEFAULT_FRUITS
+                new Fruits(Fruits.DUMMY_ID), DEFAULT_FRUITS
         ));
 
         drinkComponents.put(AddInsOptions.TAG, addInsOptions);

@@ -9,10 +9,10 @@ public abstract class Food extends MenuItem {
         super();
     }
 
-    public Food(int imageResourceId, String name, String description,
+    public Food(String id, int imageResourceId, String name, String description,
                 int calories, int sugarInGram, float fatInGram,
                 double price) {
-        super(imageResourceId, name, description,
+        super(id, imageResourceId, name, description,
                 calories, sugarInGram, fatInGram,
                 price);
     }

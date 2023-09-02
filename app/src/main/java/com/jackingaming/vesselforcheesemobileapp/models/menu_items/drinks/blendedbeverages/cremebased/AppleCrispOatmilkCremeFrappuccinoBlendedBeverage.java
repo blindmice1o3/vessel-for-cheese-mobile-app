@@ -20,6 +20,7 @@ import java.util.List;
 public class AppleCrispOatmilkCremeFrappuccinoBlendedBeverage extends CremeBased {
     public static final String TAG = AppleCrispOatmilkCremeFrappuccinoBlendedBeverage.class.getSimpleName();
 
+    public static final String ID = "AppleCrispOatmilkCremeFrappuccinoBlendedBeverage";
     public static final int DEFAULT_IMAGE_RESOURCE_ID = R.drawable.harvest_moon_natsume;
     public static final String DEFAULT_NAME = "Apple Crisp Oatmilk Creme Frappuccino Blended Beverage";
     public static final String DEFAULT_DESCRIPTION = "Flavors of apple, cinnamon and brown sugar blended with oatmilk and ice. Topped with a spiced-apple drizzle and whipped cream.";
@@ -39,7 +40,7 @@ public class AppleCrispOatmilkCremeFrappuccinoBlendedBeverage extends CremeBased
     public static final double DEFAULT_PRICE_LARGE = 3.70;
 
     public AppleCrispOatmilkCremeFrappuccinoBlendedBeverage() {
-        super(DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
+        super(ID, DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
                 DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
                 DEFAULT_PRICE_MEDIUM);
 

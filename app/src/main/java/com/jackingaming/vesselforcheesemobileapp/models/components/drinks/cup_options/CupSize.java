@@ -4,6 +4,7 @@ import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkC
 
 public class CupSize extends CupOptions {
     public static final String DEFAULT_TEXT_INIT = "Cup Size";
+    public static final String ID = "CupSize";
 
     public enum Type {
         NO, TALL, GRANDE, VENTI;
@@ -12,6 +13,8 @@ public class CupSize extends CupOptions {
     private Type type;
 
     public CupSize(Type type) {
+        super(ID);
+
         this.type = type;
     }
 

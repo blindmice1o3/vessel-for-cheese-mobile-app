@@ -4,6 +4,7 @@ import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkC
 
 public class PreparationMethod extends PreparationOptions {
     public static final String DEFAULT_TEXT_INIT = "Preparation Method";
+    public static final String ID = "PreparationMethod";
 
     public enum Type {
         NONE,
@@ -13,6 +14,8 @@ public class PreparationMethod extends PreparationOptions {
     private Type type;
 
     public PreparationMethod(Type type) {
+        super(ID);
+
         this.type = type;
     }
 

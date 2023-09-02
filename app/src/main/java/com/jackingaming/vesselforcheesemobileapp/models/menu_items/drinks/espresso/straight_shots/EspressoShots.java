@@ -15,10 +15,10 @@ public abstract class EspressoShots extends Espresso {
     public EspressoShots() {
     }
 
-    public EspressoShots(int imageResourceId, String name, String description,
+    public EspressoShots(String id, int imageResourceId, String name, String description,
                          int calories, int sugarInGram, float fatInGram,
                          double price) {
-        super(imageResourceId, name, description,
+        super(id, imageResourceId, name, description,
                 calories, sugarInGram, fatInGram,
                 price, DEFAULT_DRINK_SIZE);
 

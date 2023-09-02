@@ -8,6 +8,7 @@ public class EvolutionFreshMightyWatermelon extends ColdOther
         implements NotHandCrafted {
     public static final String TAG = EvolutionFreshMightyWatermelon.class.getSimpleName();
 
+    public static final String ID = "EvolutionFreshMightyWatermelon";
     public static final int DEFAULT_IMAGE_RESOURCE_ID = R.drawable.harvest_moon_natsume;
     public static final String DEFAULT_NAME = "Evolution Fresh Mighty Watermelon";
     public static final String DEFAULT_DESCRIPTION = "A naturally refreshing and hydrating juice with just a touch of lemon, our fruit is picked at its absolute peak of sweetness then cold-pressed using high pressure processing for maximum flavor and nutrients. 100% juice with no added sweeteners or artificial flavors.";
@@ -21,7 +22,7 @@ public class EvolutionFreshMightyWatermelon extends ColdOther
     public static final double DEFAULT_PRICE_LARGE = 0.25;
 
     public EvolutionFreshMightyWatermelon() {
-        super(DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
+        super(ID, DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
                 DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
                 DEFAULT_PRICE_MEDIUM);
     }

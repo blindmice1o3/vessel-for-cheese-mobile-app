@@ -8,6 +8,7 @@ public class TeavanaMangoBlackTea extends IcedTeas
         implements NotHandCrafted {
     public static final String TAG = TeavanaMangoBlackTea.class.getSimpleName();
 
+    public static final String ID = "TeavanaMangoBlackTea";
     public static final int DEFAULT_IMAGE_RESOURCE_ID = R.drawable.harvest_moon_natsume;
     public static final String DEFAULT_NAME = "Teavana Mango Black Tea";
     public static final String DEFAULT_DESCRIPTION = "We start with fine black tea then blend it with refreshing mango notes and hints of crisp lime, giving your day a refreshing lift.";
@@ -21,7 +22,7 @@ public class TeavanaMangoBlackTea extends IcedTeas
     public static final double DEFAULT_PRICE_LARGE = 3.70;
 
     public TeavanaMangoBlackTea() {
-        super(DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
+        super(ID, DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
                 DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
                 DEFAULT_PRICE_MEDIUM);
     }

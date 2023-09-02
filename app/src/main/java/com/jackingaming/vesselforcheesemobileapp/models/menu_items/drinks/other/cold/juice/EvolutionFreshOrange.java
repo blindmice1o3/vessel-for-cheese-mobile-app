@@ -8,6 +8,7 @@ public class EvolutionFreshOrange extends ColdOther
         implements NotHandCrafted {
     public static final String TAG = EvolutionFreshOrange.class.getSimpleName();
 
+    public static final String ID = "EvolutionFreshOrange";
     public static final int DEFAULT_IMAGE_RESOURCE_ID = R.drawable.harvest_moon_natsume;
     public static final String DEFAULT_NAME = "Evolution Fresh Orange";
     public static final String DEFAULT_DESCRIPTION = "Once you try this orange juice--cold-pressed with oranges picked and squeezed at their peak of sweetness--you'll never go back to any other. Vitamin C--packed and made with 100% juice, no added sweeteners or any artificial flavors.";
@@ -21,7 +22,7 @@ public class EvolutionFreshOrange extends ColdOther
     public static final double DEFAULT_PRICE_LARGE = 0.25;
 
     public EvolutionFreshOrange() {
-        super(DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
+        super(ID, DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
                 DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
                 DEFAULT_PRICE_MEDIUM);
     }

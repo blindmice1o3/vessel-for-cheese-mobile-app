@@ -18,6 +18,7 @@ import java.util.List;
 public class PumpkinSpiceFrappuccinoBlendedBeverage extends CoffeeBased {
     public static final String TAG = PumpkinSpiceFrappuccinoBlendedBeverage.class.getSimpleName();
 
+    public static final String ID = "PumpkinSpiceFrappuccinoBlendedBeverage";
     public static final int DEFAULT_IMAGE_RESOURCE_ID = R.drawable.harvest_moon_natsume;
     public static final String DEFAULT_NAME = "Pumpkin Spice Frappuccino Blended Beverage";
     public static final String DEFAULT_DESCRIPTION = "Pumpkin plus traditional fall spice flavors, blended with coffee, milk and ice and topped with whipped cream and pumpkin-pie spice. Think of it as the ultimate fall care package.";
@@ -36,7 +37,7 @@ public class PumpkinSpiceFrappuccinoBlendedBeverage extends CoffeeBased {
     public static final double DEFAULT_PRICE_LARGE = 3.70;
 
     public PumpkinSpiceFrappuccinoBlendedBeverage() {
-        super(DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
+        super(ID, DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
                 DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
                 DEFAULT_PRICE_MEDIUM);
 

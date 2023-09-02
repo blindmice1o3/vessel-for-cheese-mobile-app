@@ -8,6 +8,8 @@ import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkC
 public class Packet extends SweetenerOptions
         implements Incrementable {
     public static final String DEFAULT_TEXT_INIT = "Add Sweetener Packets";
+    public static final String ID = "Packet";
+
     public static final int DEFAULT_QUANTITY_MIN = 0;
     public static final int DEFAULT_QUANTITY_MAX = Integer.MAX_VALUE;
 
@@ -72,6 +74,8 @@ public class Packet extends SweetenerOptions
     private int quantity;
 
     public Packet(Type type, int quantity) {
+        super(ID);
+
         this.type = type;
         this.quantity = quantity;
     }

@@ -18,6 +18,7 @@ import java.util.List;
 public class ParadiseDrinkStarbucksRefreshersBeverage extends ColdOther {
     public static final String TAG = ParadiseDrinkStarbucksRefreshersBeverage.class.getSimpleName();
 
+    public static final String ID = "ParadiseDrinkStarbucksRefreshersBeverage";
     public static final int DEFAULT_IMAGE_RESOURCE_ID = R.drawable.harvest_moon_natsume;
     public static final String DEFAULT_NAME = "Paradise Drink Starbucks Refreshers Beverage";
     public static final String DEFAULT_DESCRIPTION = "Tropical flavors of pineapple and passionfruit combine with diced pineapple and creamy coconutmilk to create a delicious island escape.";
@@ -36,7 +37,7 @@ public class ParadiseDrinkStarbucksRefreshersBeverage extends ColdOther {
     public static final double DEFAULT_PRICE_LARGE = 0.25;
 
     public ParadiseDrinkStarbucksRefreshersBeverage() {
-        super(DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
+        super(ID, DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
                 DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
                 DEFAULT_PRICE_MEDIUM);
 

@@ -18,6 +18,7 @@ import java.util.List;
 public class DragonDrinkStarbucksRefreshersBeverageWithOleatoGoldenFoam extends ColdOther {
     public static final String TAG = DragonDrinkStarbucksRefreshersBeverageWithOleatoGoldenFoam.class.getSimpleName();
 
+    public static final String ID = "DragonDrinkStarbucksRefreshersBeverageWithOleatoGoldenFoam";
     public static final int DEFAULT_IMAGE_RESOURCE_ID = R.drawable.harvest_moon_natsume;
     public static final String DEFAULT_NAME = "Dragon Drink Starbucks Refreshers Beverage with Oleato Golden Foam";
     public static final String DEFAULT_DESCRIPTION = "Crafted with sweet mango and dragonfruit flavors and hand-shaken with creamy coconutmilk, ice and a scoop of real diced dragonfruit. Topped with lush Partanna extra virgin olive oil infused cold foam.";
@@ -36,7 +37,7 @@ public class DragonDrinkStarbucksRefreshersBeverageWithOleatoGoldenFoam extends 
     public static final double DEFAULT_PRICE_LARGE = 0.25;
 
     public DragonDrinkStarbucksRefreshersBeverageWithOleatoGoldenFoam() {
-        super(DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
+        super(ID, DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
                 DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
                 DEFAULT_PRICE_MEDIUM);
 

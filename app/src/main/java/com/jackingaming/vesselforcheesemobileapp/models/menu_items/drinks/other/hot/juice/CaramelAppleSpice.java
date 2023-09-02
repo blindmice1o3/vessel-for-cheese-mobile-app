@@ -23,6 +23,7 @@ import java.util.List;
 public class CaramelAppleSpice extends HotOther {
     public static final String TAG = CaramelAppleSpice.class.getSimpleName();
 
+    public static final String ID = "CaramelAppleSpice";
     public static final int DEFAULT_IMAGE_RESOURCE_ID = R.drawable.harvest_moon_natsume;
     public static final String DEFAULT_NAME = "Caramel Apple Spice";
     public static final String DEFAULT_DESCRIPTION = "Steamed apple juice complemented with cinnamon syrup, whipped cream and a caramel sauce drizzle.";
@@ -44,7 +45,7 @@ public class CaramelAppleSpice extends HotOther {
     public static final double DEFAULT_PRICE_LARGE = 3.70;
 
     public CaramelAppleSpice() {
-        super(DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
+        super(ID, DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
                 DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
                 DEFAULT_PRICE_MEDIUM);
 
@@ -85,7 +86,7 @@ public class CaramelAppleSpice extends HotOther {
         // ADD_INS_OPTIONS (add into NEW DrinkComponent group)
         List<DrinkComponentWithDefaultAsString> addInsOptions = new ArrayList<>();
         addInsOptions.add(new DrinkComponentWithDefaultAsString(
-                new Fruits(), DEFAULT_FRUITS
+                new Fruits(Fruits.DUMMY_ID), DEFAULT_FRUITS
         ));
         addInsOptions.add(new DrinkComponentWithDefaultAsString(
                 new Ice(null, DEFAULT_ICE_AMOUNT), DEFAULT_ICE_AMOUNT.name()

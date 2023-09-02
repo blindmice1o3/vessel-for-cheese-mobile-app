@@ -8,6 +8,8 @@ import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkC
 public class ReserveEspressoShots extends EspressoOptions
         implements Incrementable {
     public static final String DEFAULT_TEXT_INIT = "Add Starbucks Reserve Espressso Shots";
+    public static final String ID = "ReserveEspressoShots";
+
     public static final int DEFAULT_QUANTITY_MIN = 0;
     public static final int DEFAULT_QUANTITY_MAX = 12;
 
@@ -68,6 +70,8 @@ public class ReserveEspressoShots extends EspressoOptions
     private int quantity;
 
     public ReserveEspressoShots(Type type, int quantity) {
+        super(ID);
+
         this.type = type;
         this.quantity = quantity;
     }

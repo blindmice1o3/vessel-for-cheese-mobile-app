@@ -8,6 +8,7 @@ public class EvolutionFreshOrganicVitalBerry extends ColdOther
         implements NotHandCrafted {
     public static final String TAG = EvolutionFreshOrganicVitalBerry.class.getSimpleName();
 
+    public static final String ID = "EvolutionFreshOrganicVitalBerry";
     public static final int DEFAULT_IMAGE_RESOURCE_ID = R.drawable.harvest_moon_natsume;
     public static final String DEFAULT_NAME = "Evolution Fresh Organic Vital Berry";
     public static final String DEFAULT_DESCRIPTION = "Bright berries, orange and mango blend together for a satisfying smoothie with a delicious punch of vitamin C.";
@@ -21,7 +22,7 @@ public class EvolutionFreshOrganicVitalBerry extends ColdOther
     public static final double DEFAULT_PRICE_LARGE = 0.25;
 
     public EvolutionFreshOrganicVitalBerry() {
-        super(DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
+        super(ID, DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
                 DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
                 DEFAULT_PRICE_MEDIUM);
     }

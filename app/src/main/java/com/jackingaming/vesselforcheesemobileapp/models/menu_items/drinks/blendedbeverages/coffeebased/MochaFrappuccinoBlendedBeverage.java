@@ -14,6 +14,7 @@ import java.util.List;
 public class MochaFrappuccinoBlendedBeverage extends CoffeeBased {
     public static final String TAG = MochaFrappuccinoBlendedBeverage.class.getSimpleName();
 
+    public static final String ID = "MochaFrappuccinoBlendedBeverage";
     public static final int DEFAULT_IMAGE_RESOURCE_ID = R.drawable.harvest_moon_natsume;
     public static final String DEFAULT_NAME = "Mocha Frappuccino Blended Beverage";
     public static final String DEFAULT_DESCRIPTION = "Mocha sauce, Frappuccino Roast coffee, milk and ice all come together for a mocha flavor that'll leave you wanting more. To change things up, try it affogato-style with a hot espresso shot poured right over the top.";
@@ -30,7 +31,7 @@ public class MochaFrappuccinoBlendedBeverage extends CoffeeBased {
     public static final double DEFAULT_PRICE_LARGE = 3.70;
 
     public MochaFrappuccinoBlendedBeverage() {
-        super(DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
+        super(ID, DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
                 DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
                 DEFAULT_PRICE_MEDIUM);
 

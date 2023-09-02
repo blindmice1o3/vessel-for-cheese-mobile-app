@@ -8,6 +8,7 @@ public class StarbucksBayaEnergyMangoGuava extends ColdOther
         implements NotHandCrafted {
     public static final String TAG = StarbucksBayaEnergyMangoGuava.class.getSimpleName();
 
+    public static final String ID = "StarbucksBayaEnergyMangoGuava";
     public static final int DEFAULT_IMAGE_RESOURCE_ID = R.drawable.harvest_moon_natsume;
     public static final String DEFAULT_NAME = "Starbucks BAYA Energy Mango Guava";
     public static final String DEFAULT_DESCRIPTION = "Starbucks BAYA Energy Mango Guava crafted with mango juice and tropical guava flavor to lift you with some feel-good energy. It comes with 160 mg of caffeine naturally found in the fruit of the coffee plant. Taste how Starbucks does energy!";
@@ -21,7 +22,7 @@ public class StarbucksBayaEnergyMangoGuava extends ColdOther
     public static final double DEFAULT_PRICE_LARGE = 0.25;
 
     public StarbucksBayaEnergyMangoGuava() {
-        super(DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
+        super(ID, DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
                 DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
                 DEFAULT_PRICE_MEDIUM);
     }

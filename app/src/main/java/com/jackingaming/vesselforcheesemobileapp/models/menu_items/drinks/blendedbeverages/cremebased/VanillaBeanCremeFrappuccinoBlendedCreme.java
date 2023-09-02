@@ -14,6 +14,7 @@ import java.util.List;
 public class VanillaBeanCremeFrappuccinoBlendedCreme extends CremeBased {
     public static final String TAG = VanillaBeanCremeFrappuccinoBlendedCreme.class.getSimpleName();
 
+    public static final String ID = "VanillaBeanCremeFrappuccinoBlendedCreme";
     public static final int DEFAULT_IMAGE_RESOURCE_ID = R.drawable.harvest_moon_natsume;
     public static final String DEFAULT_NAME = "Vanilla Bean Creme Frappuccino Blended Creme";
     public static final String DEFAULT_DESCRIPTION = "This rich and creamy blend of vanilla bean, milk and ice topped with whipped cream takes va-va-vanilla flavor to another level. To change things up, try it affogato-style with a hot espresso shot poured right over the top.";
@@ -30,7 +31,7 @@ public class VanillaBeanCremeFrappuccinoBlendedCreme extends CremeBased {
     public static final double DEFAULT_PRICE_LARGE = 3.70;
 
     public VanillaBeanCremeFrappuccinoBlendedCreme() {
-        super(DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
+        super(ID, DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
                 DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
                 DEFAULT_PRICE_MEDIUM);
 

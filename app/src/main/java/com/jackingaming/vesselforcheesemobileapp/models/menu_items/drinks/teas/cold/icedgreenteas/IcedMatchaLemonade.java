@@ -28,6 +28,7 @@ import java.util.List;
 public class IcedMatchaLemonade extends IcedTeas {
     public static final String TAG = IcedMatchaLemonade.class.getSimpleName();
 
+    public static final String ID = "IcedMatchaLemonade";
     public static final int DEFAULT_IMAGE_RESOURCE_ID = R.drawable.harvest_moon_natsume;
     public static final String DEFAULT_NAME = "Iced Matcha Lemonade";
     public static final String DEFAULT_DESCRIPTION = "Our finely ground Teavana matcha green tea combined with crisp lemonade, then shaken with ice, creates a refreshingly sweet, delicious drink and a delightfully vibrant, green hue.";
@@ -52,7 +53,7 @@ public class IcedMatchaLemonade extends IcedTeas {
     public static final double DEFAULT_PRICE_LARGE = 3.70;
 
     public IcedMatchaLemonade() {
-        super(DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
+        super(ID, DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
                 DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
                 DEFAULT_PRICE_MEDIUM);
 
@@ -120,7 +121,7 @@ public class IcedMatchaLemonade extends IcedTeas {
                 new MilkCreamer(null, DEFAULT_MILK_CREAMER_AMOUNT), DEFAULT_MILK_CREAMER_AMOUNT.name()
         ));
         addInsOptions.add(3, new DrinkComponentWithDefaultAsString(
-                new Fruits(), DEFAULT_FRUITS
+                new Fruits(Fruits.DUMMY_ID), DEFAULT_FRUITS
         ));
         drinkComponentsStandardRecipe.add(water);
     }

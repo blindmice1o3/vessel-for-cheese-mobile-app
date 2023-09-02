@@ -4,4 +4,8 @@ import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkC
 
 public abstract class ExtraRefresherBasesOptions extends DrinkComponent {
     public static final String TAG = ExtraRefresherBasesOptions.class.getSimpleName();
+
+    public ExtraRefresherBasesOptions(String id) {
+        super(id);
+    }
 }

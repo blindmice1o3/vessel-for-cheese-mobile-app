@@ -4,6 +4,7 @@ import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkC
 
 public class Extras extends TeaOptions {
     public static final String DEFAULT_TEXT_INIT = "Add Extra(s)";
+    public static final String ID = "Extras";
 
     public enum Type {
         NO,
@@ -14,6 +15,8 @@ public class Extras extends TeaOptions {
     private Type type;
 
     public Extras(Type type) {
+        super(ID);
+
         this.type = type;
     }
 

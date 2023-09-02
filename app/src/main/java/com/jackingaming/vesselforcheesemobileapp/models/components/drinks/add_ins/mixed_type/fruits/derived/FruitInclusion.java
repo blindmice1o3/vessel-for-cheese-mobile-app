@@ -12,6 +12,8 @@ import java.util.List;
 public class FruitInclusion extends Fruits
         implements Incrementable {
     public static final String DEFAULT_TEXT_INIT = "Add Fruit Inclusion";
+    public static final String ID = "FruitInclusion";
+
     public static final int DEFAULT_QUANTITY_MIN = 0;
     public static final int DEFAULT_QUANTITY_MAX = 12;
 
@@ -74,6 +76,8 @@ public class FruitInclusion extends Fruits
     private int quantity;
 
     public FruitInclusion(Type type, int quantity) {
+        super(ID);
+
         this.type = type;
         this.quantity = quantity;
     }

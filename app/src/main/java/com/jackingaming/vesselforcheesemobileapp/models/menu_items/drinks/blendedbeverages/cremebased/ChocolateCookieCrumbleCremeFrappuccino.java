@@ -18,6 +18,7 @@ import java.util.List;
 public class ChocolateCookieCrumbleCremeFrappuccino extends CremeBased {
     public static final String TAG = ChocolateCookieCrumbleCremeFrappuccino.class.getSimpleName();
 
+    public static final String ID = "ChocolateCookieCrumbleCremeFrappuccino";
     public static final int DEFAULT_IMAGE_RESOURCE_ID = R.drawable.harvest_moon_natsume;
     public static final String DEFAULT_NAME = "Chocolate Cookie Crumble Creme Frappuccino";
     public static final String DEFAULT_DESCRIPTION = "Mocha sauce and Frappuccino chips are blended with milk and ice, layered on top of whipped cream and chocolate cookie crumble and topped with vanilla whipped cream, mocha drizzle and even more chocolate cookie crumble. These layers ensure each sip is as good as the last; all the way to the end.";
@@ -39,7 +40,7 @@ public class ChocolateCookieCrumbleCremeFrappuccino extends CremeBased {
     public static final double DEFAULT_PRICE_LARGE = 3.70;
 
     public ChocolateCookieCrumbleCremeFrappuccino() {
-        super(DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
+        super(ID, DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
                 DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
                 DEFAULT_PRICE_MEDIUM);
 

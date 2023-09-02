@@ -8,6 +8,7 @@ public class GalvaninaSparklingWaterLime extends ColdOther
         implements NotHandCrafted {
     public static final String TAG = GalvaninaSparklingWaterLime.class.getSimpleName();
 
+    public static final String ID = "GalvaninaSparklingWaterLime";
     public static final int DEFAULT_IMAGE_RESOURCE_ID = R.drawable.harvest_moon_natsume;
     public static final String DEFAULT_NAME = "Galvanina Sparkling Water - Lime";
     public static final String DEFAULT_DESCRIPTION = "Natural, thirst-quenching mineral water with a twist of refreshing lime.";
@@ -21,7 +22,7 @@ public class GalvaninaSparklingWaterLime extends ColdOther
     public static final double DEFAULT_PRICE_LARGE = 0.25;
 
     public GalvaninaSparklingWaterLime() {
-        super(DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
+        super(ID, DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
                 DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
                 DEFAULT_PRICE_MEDIUM);
     }

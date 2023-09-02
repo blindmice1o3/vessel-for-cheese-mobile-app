@@ -4,6 +4,7 @@ import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkC
 
 public class PullOptions extends EspressoOptions {
     public static final String DEFAULT_TEXT_INIT = "Ristretto or Long Shot";
+    public static final String ID = "PullOptions";
 
     public enum Type {
         LONG,
@@ -13,6 +14,8 @@ public class PullOptions extends EspressoOptions {
     private Type type;
 
     public PullOptions(Type type) {
+        super(ID);
+
         this.type = type;
     }
 

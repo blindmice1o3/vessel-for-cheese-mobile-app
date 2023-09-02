@@ -14,6 +14,7 @@ import java.util.List;
 public class IcedCaffeMocha extends IcedMochas {
     public static final String TAG = IcedCaffeMocha.class.getSimpleName();
 
+    public static final String ID = "IcedCaffeMocha";
     public static final int DEFAULT_IMAGE_RESOURCE_ID = R.drawable.harvest_moon_natsume;
     public static final String DEFAULT_NAME = "Iced Caffe Mocha";
     public static final String DEFAULT_DESCRIPTION = "Our rich, full-bodied espresso combined with bittersweet mocha sauce, milk and ice, then topped with sweetened whipped cream. The classic iced coffee drink that always sweetly satisfies.";
@@ -30,7 +31,7 @@ public class IcedCaffeMocha extends IcedMochas {
     public static final double DEFAULT_PRICE_LARGE = 3.70;
 
     public IcedCaffeMocha() {
-        super(DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
+        super(ID, DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
                 DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
                 DEFAULT_PRICE_MEDIUM);
 

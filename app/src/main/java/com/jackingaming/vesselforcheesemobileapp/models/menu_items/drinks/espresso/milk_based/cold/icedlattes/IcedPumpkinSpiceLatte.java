@@ -18,6 +18,7 @@ import java.util.List;
 public class IcedPumpkinSpiceLatte extends IcedLattes {
     public static final String TAG = IcedPumpkinSpiceLatte.class.getSimpleName();
 
+    public static final String ID = "IcedPumpkinSpiceLatte";
     public static final int DEFAULT_IMAGE_RESOURCE_ID = R.drawable.harvest_moon_natsume;
     public static final String DEFAULT_NAME = "Iced Pumpkin Spice Latte";
     public static final String DEFAULT_DESCRIPTION = "Our signature espresso and milk--with the celebrated flavor combination of pumpkin, cinnamon, nutmeg and clove--served over ice. Enjoy it topped with whipped cream and real pumpkin-pie spices.";
@@ -37,7 +38,7 @@ public class IcedPumpkinSpiceLatte extends IcedLattes {
     public static final double DEFAULT_PRICE_LARGE = 3.70;
 
     public IcedPumpkinSpiceLatte() {
-        super(DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
+        super(ID, DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
                 DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
                 DEFAULT_PRICE_MEDIUM);
 

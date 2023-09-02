@@ -4,6 +4,7 @@ import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkC
 
 public class BlendedPrep extends BlendedOptions {
     public static final String DEFAULT_TEXT_INIT = "Blended Prep";
+    public static final String ID = "BlendedPrep";
 
     public enum Type {
         NONE,
@@ -13,6 +14,8 @@ public class BlendedPrep extends BlendedOptions {
     private Type type;
 
     public BlendedPrep(Type type) {
+        super(ID);
+
         this.type = type;
     }
 

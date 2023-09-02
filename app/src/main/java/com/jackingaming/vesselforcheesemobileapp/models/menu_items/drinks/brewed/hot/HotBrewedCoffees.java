@@ -63,10 +63,10 @@ public abstract class HotBrewedCoffees extends BrewedCoffees {
     public HotBrewedCoffees() {
     }
 
-    public HotBrewedCoffees(int imageResourceId, String name, String description,
+    public HotBrewedCoffees(String id, int imageResourceId, String name, String description,
                             int calories, int sugarInGram, float fatInGram,
                             double price) {
-        super(imageResourceId, name, description,
+        super(id, imageResourceId, name, description,
                 calories, sugarInGram, fatInGram,
                 price, DEFAULT_DRINK_SIZE);
 
@@ -124,7 +124,7 @@ public abstract class HotBrewedCoffees extends BrewedCoffees {
                 new LineTheCup(DEFAULT_LINE_THE_CUP), DEFAULT_LINE_THE_CUP.name()
         ));
         addInsOptions.add(new DrinkComponentWithDefaultAsString(
-                new Powders(), DEFAULT_POWDERS
+                new Powders(Powders.DUMMY_ID), DEFAULT_POWDERS
         ));
         addInsOptions.add(new DrinkComponentWithDefaultAsString(
                 new MilkCreamer(null, DEFAULT_MILK_CREAMER_AMOUNT), DEFAULT_MILK_CREAMER_AMOUNT.name()

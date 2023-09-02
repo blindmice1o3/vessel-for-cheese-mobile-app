@@ -3,10 +3,11 @@ package com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.trave
 import com.jackingaming.vesselforcheesemobileapp.R;
 import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.NotHandCrafted;
 
-public class DarkRoast extends CoffeeTravelers
+public class TravelerDarkRoast extends CoffeeTravelers
         implements NotHandCrafted {
-    public static final String TAG = DarkRoast.class.getSimpleName();
+    public static final String TAG = TravelerDarkRoast.class.getSimpleName();
 
+    public static final String ID = "TravelerDarkRoast";
     public static final int DEFAULT_IMAGE_RESOURCE_ID = R.drawable.harvest_moon_natsume;
     public static final String DEFAULT_NAME = "Coffee Traveler - Dark Roast";
     public static final String DEFAULT_DESCRIPTION = "A convenient carrier filled with 96 fl oz of our brewed Starbucks Dark Roast coffee.";
@@ -19,8 +20,8 @@ public class DarkRoast extends CoffeeTravelers
     public static final double DEFAULT_PRICE_MEDIUM = 2.45;
     public static final double DEFAULT_PRICE_LARGE = 2.70;
 
-    public DarkRoast() {
-        super(DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
+    public TravelerDarkRoast() {
+        super(ID, DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
                 DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
                 DEFAULT_PRICE_MEDIUM);
     }

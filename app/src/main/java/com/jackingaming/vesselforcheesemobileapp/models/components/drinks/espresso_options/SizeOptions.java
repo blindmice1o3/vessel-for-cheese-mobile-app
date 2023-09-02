@@ -4,6 +4,7 @@ import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkC
 
 public class SizeOptions extends EspressoOptions {
     public static final String DEFAULT_TEXT_INIT = "Size Options";
+    public static final String ID = "SizeOptions";
 
     public enum Type {
         SOLO,
@@ -15,6 +16,8 @@ public class SizeOptions extends EspressoOptions {
     private Type type;
 
     public SizeOptions(Type type) {
+        super(ID);
+
         this.type = type;
     }
 

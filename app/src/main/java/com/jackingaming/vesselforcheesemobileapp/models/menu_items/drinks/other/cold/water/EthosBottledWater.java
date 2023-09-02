@@ -8,6 +8,7 @@ public class EthosBottledWater extends ColdOther
         implements NotHandCrafted {
     public static final String TAG = EthosBottledWater.class.getSimpleName();
 
+    public static final String ID = "EthosBottledWater";
     public static final int DEFAULT_IMAGE_RESOURCE_ID = R.drawable.harvest_moon_natsume;
     public static final String DEFAULT_NAME = "Ethos Bottled Water";
     public static final String DEFAULT_DESCRIPTION = "For every bottle of Ethos water you buy, Starbucks will donate 5 cents to support humanitarian programs in coffee - growing communities, providing clean, safe water to those in need.";
@@ -21,7 +22,7 @@ public class EthosBottledWater extends ColdOther
     public static final double DEFAULT_PRICE_LARGE = 0.25;
 
     public EthosBottledWater() {
-        super(DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
+        super(ID, DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
                 DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
                 DEFAULT_PRICE_MEDIUM);
     }

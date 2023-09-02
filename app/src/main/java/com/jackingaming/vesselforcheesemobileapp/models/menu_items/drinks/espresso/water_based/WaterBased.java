@@ -22,10 +22,10 @@ public abstract class WaterBased extends Espresso {
     public WaterBased() {
     }
 
-    public WaterBased(int imageResourceId, String name, String description,
+    public WaterBased(String id, int imageResourceId, String name, String description,
                       int calories, int sugarInGram, float fatInGram,
                       double price, DrinkSize drinkSizeDefault) {
-        super(imageResourceId, name, description,
+        super(id, imageResourceId, name, description,
                 calories, sugarInGram, fatInGram,
                 price, drinkSizeDefault);
 

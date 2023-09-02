@@ -31,6 +31,7 @@ import java.util.List;
 public class IcedPumpkinCreamChaiTeaLatte extends IcedTeas {
     public static final String TAG = IcedPumpkinCreamChaiTeaLatte.class.getSimpleName();
 
+    public static final String ID = "IcedPumpkinCreamChaiTeaLatte";
     public static final int DEFAULT_IMAGE_RESOURCE_ID = R.drawable.harvest_moon_natsume;
     public static final String DEFAULT_NAME = "Iced Pumpkin Cream Chai Tea Latte";
     public static final String DEFAULT_DESCRIPTION = "For the iced indulger--who wants a new way to enjoy cozy autumn flavors--this customer-inspired pumpkin cream chai blends the warming spice flavors of chai and pumpkin without the coffee for a perfectly iced cup in fall.";
@@ -62,7 +63,7 @@ public class IcedPumpkinCreamChaiTeaLatte extends IcedTeas {
     public static final double DEFAULT_PRICE_LARGE = 3.70;
 
     public IcedPumpkinCreamChaiTeaLatte() {
-        super(DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
+        super(ID, DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
                 DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
                 DEFAULT_PRICE_MEDIUM);
 

@@ -25,10 +25,10 @@ public abstract class ColdMilkBased extends Espresso {
     public ColdMilkBased() {
     }
 
-    public ColdMilkBased(int imageResourceId, String name, String description,
+    public ColdMilkBased(String id, int imageResourceId, String name, String description,
                          int calories, int sugarInGram, float fatInGram,
                          double price, DrinkSize drinkSizeDefault) {
-        super(imageResourceId, name, description,
+        super(id, imageResourceId, name, description,
                 calories, sugarInGram, fatInGram,
                 price, drinkSizeDefault);
 
@@ -51,7 +51,7 @@ public abstract class ColdMilkBased extends Espresso {
                 ice, DEFAULT_ICE_AMOUNT.name()
         ));
         addInsOptions.add(2, new DrinkComponentWithDefaultAsString(
-                new Powders(), DEFAULT_POWDERS
+                new Powders(Powders.DUMMY_ID), DEFAULT_POWDERS
         ));
         drinkComponentsStandardRecipe.add(ice);
     }

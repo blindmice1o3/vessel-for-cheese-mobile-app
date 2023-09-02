@@ -6,6 +6,7 @@ import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkC
 public class Ice extends AddInsOptions
         implements Granular {
     public static final String DEFAULT_TEXT_INIT = "Add Ice";
+    public static final String ID = "Ice";
 
     @Override
     public Amount getAmount() {
@@ -25,6 +26,8 @@ public class Ice extends AddInsOptions
     private Amount amount;
 
     public Ice(Type type, Amount amount) {
+        super(ID);
+
         this.type = type;
         this.amount = amount;
     }

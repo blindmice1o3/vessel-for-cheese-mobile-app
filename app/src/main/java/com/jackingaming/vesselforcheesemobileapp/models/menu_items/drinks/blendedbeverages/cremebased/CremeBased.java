@@ -8,10 +8,10 @@ public abstract class CremeBased extends BlendedBeverages {
     public CremeBased() {
     }
 
-    public CremeBased(int imageResourceId, String name, String description,
+    public CremeBased(String id, int imageResourceId, String name, String description,
                       int calories, int sugarInGram, float fatInGram,
                       double price) {
-        super(imageResourceId, name, description,
+        super(id, imageResourceId, name, description,
                 calories, sugarInGram, fatInGram,
                 price);
     }

@@ -21,6 +21,7 @@ import java.util.List;
 public class StarbucksReserveLatte extends Lattes {
     public static final String TAG = StarbucksReserveLatte.class.getSimpleName();
 
+    public static final String ID = "StarbucksReserveLatte";
     public static final int DEFAULT_IMAGE_RESOURCE_ID = R.drawable.harvest_moon_natsume;
     public static final String DEFAULT_NAME = "Starbucks Reserve Latte";
     public static final String DEFAULT_DESCRIPTION = "Small-lot Starbucks Reserve espresso balanced with steamed milk and a light layer of foam forms a perfectly handcrafted latte.";
@@ -38,7 +39,7 @@ public class StarbucksReserveLatte extends Lattes {
     public static final double DEFAULT_PRICE_LARGE = 3.70;
 
     public StarbucksReserveLatte() {
-        super(DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
+        super(ID, DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
                 DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
                 DEFAULT_PRICE_MEDIUM);
 

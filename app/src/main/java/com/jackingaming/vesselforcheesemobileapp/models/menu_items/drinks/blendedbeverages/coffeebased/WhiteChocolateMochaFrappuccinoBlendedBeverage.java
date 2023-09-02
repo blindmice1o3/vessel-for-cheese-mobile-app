@@ -14,6 +14,7 @@ import java.util.List;
 public class WhiteChocolateMochaFrappuccinoBlendedBeverage extends CoffeeBased {
     public static final String TAG = WhiteChocolateMochaFrappuccinoBlendedBeverage.class.getSimpleName();
 
+    public static final String ID = "WhiteChocolateMochaFrappuccinoBlendedBeverage";
     public static final int DEFAULT_IMAGE_RESOURCE_ID = R.drawable.harvest_moon_natsume;
     public static final String DEFAULT_NAME = "White Chocolate Mocha Frappuccino Blended Beverage";
     public static final String DEFAULT_DESCRIPTION = "White chocolate Frappuccino Roast coffee, milk and ice get together for what might be the best thing that happens to you all day. Oh, and there's whipped cream on top.";
@@ -30,7 +31,7 @@ public class WhiteChocolateMochaFrappuccinoBlendedBeverage extends CoffeeBased {
     public static final double DEFAULT_PRICE_LARGE = 3.70;
 
     public WhiteChocolateMochaFrappuccinoBlendedBeverage() {
-        super(DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
+        super(ID, DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
                 DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
                 DEFAULT_PRICE_MEDIUM);
 

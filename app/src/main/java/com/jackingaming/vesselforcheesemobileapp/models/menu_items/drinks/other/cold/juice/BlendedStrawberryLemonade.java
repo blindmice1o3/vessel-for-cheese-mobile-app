@@ -39,6 +39,7 @@ import java.util.List;
 public class BlendedStrawberryLemonade extends ColdOther {
     public static final String TAG = BlendedStrawberryLemonade.class.getSimpleName();
 
+    public static final String ID = "BlendedStrawberryLemonade";
     public static final int DEFAULT_IMAGE_RESOURCE_ID = R.drawable.harvest_moon_natsume;
     public static final String DEFAULT_NAME = "Blended Strawberry Lemonade";
     public static final String DEFAULT_DESCRIPTION = "Awaken your taste buds with the zing of refreshing lemonade infused with a hint of delicious strawberry flavor and blended with ice. A light, fresh beverage that puts a little zip in your step.";
@@ -74,7 +75,7 @@ public class BlendedStrawberryLemonade extends ColdOther {
     public static final double DEFAULT_PRICE_LARGE = 0.25;
 
     public BlendedStrawberryLemonade() {
-        super(DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
+        super(ID, DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
                 DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
                 DEFAULT_PRICE_MEDIUM);
 

@@ -11,10 +11,10 @@ public abstract class Teas extends Drink {
     public Teas() {
     }
 
-    public Teas(int imageResourceId, String name, String description,
+    public Teas(String id, int imageResourceId, String name, String description,
                 int calories, int sugarInGram, float fatInGram,
                 double price, DrinkSize drinkSizeDefault) {
-        super(imageResourceId, name, description,
+        super(id, imageResourceId, name, description,
                 calories, sugarInGram, fatInGram,
                 price, drinkSizeDefault);
     }

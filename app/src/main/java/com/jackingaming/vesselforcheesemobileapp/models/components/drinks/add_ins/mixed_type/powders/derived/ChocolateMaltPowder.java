@@ -10,6 +10,7 @@ import java.util.List;
 public class ChocolateMaltPowder extends Powders
         implements Granular {
     public static final String DEFAULT_TEXT_INIT = "Add Chocolate Malt Powder";
+    public static final String ID = "ChocolateMaltPowder";
 
     @Override
     public Amount getAmount() {
@@ -29,6 +30,8 @@ public class ChocolateMaltPowder extends Powders
     private Amount amount;
 
     public ChocolateMaltPowder(Type type, Amount amount) {
+        super(ID);
+
         this.type = type;
         this.amount = amount;
     }

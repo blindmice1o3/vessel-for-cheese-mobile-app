@@ -5,6 +5,7 @@ import com.jackingaming.vesselforcheesemobileapp.R;
 public class IcedCaffeLatte extends IcedLattes {
     public static final String TAG = IcedCaffeLatte.class.getSimpleName();
 
+    public static final String ID = "IcedCaffeLatte";
     public static final int DEFAULT_IMAGE_RESOURCE_ID = R.drawable.harvest_moon_natsume;
     public static final String DEFAULT_NAME = "Iced Caffe Latte";
     public static final String DEFAULT_DESCRIPTION = "Our dark, rich espresso combined with milk and served over ice. A perfect milk-forward cooldown.";
@@ -17,7 +18,7 @@ public class IcedCaffeLatte extends IcedLattes {
     public static final double DEFAULT_PRICE_LARGE = 3.70;
 
     public IcedCaffeLatte() {
-        super(DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
+        super(ID, DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
                 DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
                 DEFAULT_PRICE_MEDIUM);
     }

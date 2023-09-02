@@ -30,6 +30,7 @@ import java.util.List;
 public class IcedChaiTeaLatteWithOleatoGoldenFoam extends IcedTeas {
     public static final String TAG = IcedChaiTeaLatteWithOleatoGoldenFoam.class.getSimpleName();
 
+    public static final String ID = "IcedChaiTeaLatteWithOleatoGoldenFoam";
     public static final int DEFAULT_IMAGE_RESOURCE_ID = R.drawable.harvest_moon_natsume;
     public static final String DEFAULT_NAME = "Iced Chai Tea Latte with Oleato Golden Foam";
     public static final String DEFAULT_DESCRIPTION = "Black tea infused with cinnamon, clove, and other warming spices is combined with milk and ice for the perfect balance of sweet and spicy. Topped with lush Partanna extra virgin olive oil infused cold foam.";
@@ -57,7 +58,7 @@ public class IcedChaiTeaLatteWithOleatoGoldenFoam extends IcedTeas {
     public static final double DEFAULT_PRICE_LARGE = 3.70;
 
     public IcedChaiTeaLatteWithOleatoGoldenFoam() {
-        super(DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
+        super(ID, DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
                 DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
                 DEFAULT_PRICE_MEDIUM);
 

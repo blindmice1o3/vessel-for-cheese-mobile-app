@@ -26,6 +26,7 @@ import java.util.List;
 public class MatchaTeaLatte extends HotTeas {
     public static final String TAG = MatchaTeaLatte.class.getSimpleName();
 
+    public static final String ID = "MatchaTeaLatte";
     public static final int DEFAULT_IMAGE_RESOURCE_ID = R.drawable.harvest_moon_natsume;
     public static final String DEFAULT_NAME = "Matcha Tea Latte";
     public static final String DEFAULT_DESCRIPTION = "Smooth and creamy matcha sweetened just right and served with steamed milk. This favorite will transport your senses to pure green delight.";
@@ -49,7 +50,7 @@ public class MatchaTeaLatte extends HotTeas {
     public static final double DEFAULT_PRICE_LARGE = 3.70;
 
     public MatchaTeaLatte() {
-        super(DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
+        super(ID, DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
                 DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
                 DEFAULT_PRICE_MEDIUM);
 

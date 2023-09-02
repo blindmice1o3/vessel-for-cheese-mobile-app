@@ -6,6 +6,7 @@ import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkC
 public class ExtraRefresherBases extends ExtraRefresherBasesOptions
         implements GranularTwoOptions {
     public static final String DEFAULT_TEXT_INIT = "Add Extra Refresher Bases";
+    public static final String ID = "ExtraRefresherBases";
 
     @Override
     public Amount getAmount() {
@@ -38,6 +39,8 @@ public class ExtraRefresherBases extends ExtraRefresherBasesOptions
     private Amount amount = null;
 
     public ExtraRefresherBases(Type type, Option option) {
+        super(ID);
+
         this.type = type;
         this.option = option;
     }

@@ -22,6 +22,7 @@ import java.util.List;
 public class StarbucksReserveHazelnutBiancoLatte extends Lattes {
     public static final String TAG = StarbucksReserveHazelnutBiancoLatte.class.getSimpleName();
 
+    public static final String ID = "StarbucksReserveHazelnutBiancoLatte";
     public static final int DEFAULT_IMAGE_RESOURCE_ID = R.drawable.harvest_moon_natsume;
     public static final String DEFAULT_NAME = "Starbucks Reserve Hazelnut Bianco Latte";
     public static final String DEFAULT_DESCRIPTION = "House-made hazelnut-praline-infused milk combined with our small-lot Starbucks Reserve espresso--a true character of sweetly nut love.";
@@ -38,7 +39,7 @@ public class StarbucksReserveHazelnutBiancoLatte extends Lattes {
     public static final double DEFAULT_PRICE_LARGE = 3.70;
 
     public StarbucksReserveHazelnutBiancoLatte() {
-        super(DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
+        super(ID, DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
                 DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
                 DEFAULT_PRICE_MEDIUM);
 

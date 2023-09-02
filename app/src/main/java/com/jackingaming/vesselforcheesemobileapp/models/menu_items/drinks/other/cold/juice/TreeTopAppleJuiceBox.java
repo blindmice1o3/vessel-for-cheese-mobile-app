@@ -8,6 +8,7 @@ public class TreeTopAppleJuiceBox extends ColdOther
         implements NotHandCrafted {
     public static final String TAG = TreeTopAppleJuiceBox.class.getSimpleName();
 
+    public static final String ID = "TreeTopAppleJuiceBox";
     public static final int DEFAULT_IMAGE_RESOURCE_ID = R.drawable.harvest_moon_natsume;
     public static final String DEFAULT_NAME = "Tree Top Apple Juice Box";
     public static final String DEFAULT_DESCRIPTION = "This childhood favorite contains 100% of your daily vitamin C with just the right amount of sweetness.";
@@ -21,7 +22,7 @@ public class TreeTopAppleJuiceBox extends ColdOther
     public static final double DEFAULT_PRICE_LARGE = 0.25;
 
     public TreeTopAppleJuiceBox() {
-        super(DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
+        super(ID, DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
                 DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
                 DEFAULT_PRICE_MEDIUM);
     }

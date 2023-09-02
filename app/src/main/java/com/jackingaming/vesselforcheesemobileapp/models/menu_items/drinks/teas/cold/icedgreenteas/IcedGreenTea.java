@@ -26,6 +26,7 @@ import java.util.List;
 public class IcedGreenTea extends IcedTeas {
     public static final String TAG = IcedGreenTea.class.getSimpleName();
 
+    public static final String ID = "IcedGreenTea";
     public static final int DEFAULT_IMAGE_RESOURCE_ID = R.drawable.harvest_moon_natsume;
     public static final String DEFAULT_NAME = "Iced Green Tea";
     public static final String DEFAULT_DESCRIPTION = "Green tea blended with mint, lemongrass and lemon verbena, and given a good shake with ice. Lightly flavored and oh-so-refreshing!";
@@ -48,7 +49,7 @@ public class IcedGreenTea extends IcedTeas {
     public static final double DEFAULT_PRICE_LARGE = 3.70;
 
     public IcedGreenTea() {
-        super(DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
+        super(ID, DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
                 DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
                 DEFAULT_PRICE_MEDIUM);
 
@@ -101,7 +102,7 @@ public class IcedGreenTea extends IcedTeas {
                 new MilkCreamer(null, DEFAULT_MILK_CREAMER_AMOUNT), DEFAULT_MILK_CREAMER_AMOUNT.name()
         ));
         addInsOptions.add(3, new DrinkComponentWithDefaultAsString(
-                new Fruits(), DEFAULT_FRUITS
+                new Fruits(Fruits.DUMMY_ID), DEFAULT_FRUITS
         ));
         drinkComponentsStandardRecipe.add(water);
     }

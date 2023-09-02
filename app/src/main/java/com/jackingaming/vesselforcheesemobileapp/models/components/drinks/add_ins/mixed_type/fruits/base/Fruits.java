@@ -11,6 +11,7 @@ import java.util.List;
 public class Fruits extends AddInsOptions
         implements MixedType {
     public static final String DEFAULT_TEXT_INIT = "Add Fruit Add-Ins";
+    public static final String DUMMY_ID = "FRUITS";
 
     public enum Type {
         DRAGONFRUIT_FRUIT,
@@ -21,8 +22,8 @@ public class Fruits extends AddInsOptions
 
     private Type type;
 
-    public Fruits() {
-
+    public Fruits(String id) {
+        super(id);
     }
 
     public static List<String> getEnumValuesAsStringForMixedType() {

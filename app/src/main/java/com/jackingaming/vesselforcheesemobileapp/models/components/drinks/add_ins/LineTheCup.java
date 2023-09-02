@@ -4,6 +4,7 @@ import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkC
 
 public class LineTheCup extends AddInsOptions {
     public static final String DEFAULT_TEXT_INIT = "Line the Cup";
+    public static final String ID = "LineTheCup";
 
     public enum Type {
         NO,
@@ -14,6 +15,8 @@ public class LineTheCup extends AddInsOptions {
     private Type type;
 
     public LineTheCup(Type type) {
+        super(ID);
+
         this.type = type;
     }
 

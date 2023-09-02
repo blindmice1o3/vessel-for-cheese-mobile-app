@@ -8,6 +8,7 @@ public class HorizonChocolateOrganicMilk extends ColdOther
         implements NotHandCrafted {
     public static final String TAG = HorizonChocolateOrganicMilk.class.getSimpleName();
 
+    public static final String ID = "HorizonChocolateOrganicMilk";
     public static final int DEFAULT_IMAGE_RESOURCE_ID = R.drawable.harvest_moon_natsume;
     public static final String DEFAULT_NAME = "Horizon Chocolate Organic Milk";
     public static final String DEFAULT_DESCRIPTION = "Great for snacks, travel and more, this chocolate organic milk box is a convenient way to experience your milk on the go and everywhere.";
@@ -21,7 +22,7 @@ public class HorizonChocolateOrganicMilk extends ColdOther
     public static final double DEFAULT_PRICE_LARGE = 0.25;
 
     public HorizonChocolateOrganicMilk() {
-        super(DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
+        super(ID, DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
                 DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
                 DEFAULT_PRICE_MEDIUM);
     }

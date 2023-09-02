@@ -22,6 +22,7 @@ import java.util.List;
 public class SteamedAppleJuice extends HotOther {
     public static final String TAG = SteamedAppleJuice.class.getSimpleName();
 
+    public static final String ID = "SteamedAppleJuice";
     public static final int DEFAULT_IMAGE_RESOURCE_ID = R.drawable.harvest_moon_natsume;
     public static final String DEFAULT_NAME = "Steamed Apple Juice";
     public static final String DEFAULT_DESCRIPTION = "Freshly steamed 100% apple juice (not from concentrate). Feel the apple goodness in this classic fruit drink that will soothe and embolden your day.";
@@ -40,7 +41,7 @@ public class SteamedAppleJuice extends HotOther {
     public static final double DEFAULT_PRICE_LARGE = 3.70;
 
     public SteamedAppleJuice() {
-        super(DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
+        super(ID, DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
                 DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
                 DEFAULT_PRICE_MEDIUM);
 
@@ -74,7 +75,7 @@ public class SteamedAppleJuice extends HotOther {
         // ADD_INS_OPTIONS (add into NEW DrinkComponent group)
         List<DrinkComponentWithDefaultAsString> addInsOptions = new ArrayList<>();
         addInsOptions.add(new DrinkComponentWithDefaultAsString(
-                new Fruits(), DEFAULT_FRUITS
+                new Fruits(Fruits.DUMMY_ID), DEFAULT_FRUITS
         ));
         addInsOptions.add(new DrinkComponentWithDefaultAsString(
                 new Ice(null, DEFAULT_ICE_AMOUNT), DEFAULT_ICE_AMOUNT.name()

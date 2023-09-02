@@ -23,10 +23,10 @@ public abstract class ColdBrews extends ColdBrewedCoffees {
     public ColdBrews() {
     }
 
-    public ColdBrews(int imageResourceId, String name, String description,
+    public ColdBrews(String id, int imageResourceId, String name, String description,
                      int calories, int sugarInGram, float fatInGram,
                      double price) {
-        super(imageResourceId, name, description,
+        super(id, imageResourceId, name, description,
                 calories, sugarInGram, fatInGram,
                 price);
 

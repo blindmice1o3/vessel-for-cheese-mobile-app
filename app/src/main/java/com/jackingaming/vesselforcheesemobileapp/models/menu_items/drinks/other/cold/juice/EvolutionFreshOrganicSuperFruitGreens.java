@@ -8,6 +8,7 @@ public class EvolutionFreshOrganicSuperFruitGreens extends ColdOther
         implements NotHandCrafted {
     public static final String TAG = EvolutionFreshOrganicSuperFruitGreens.class.getSimpleName();
 
+    public static final String ID = "EvolutionFreshOrganicSuperFruitGreens";
     public static final int DEFAULT_IMAGE_RESOURCE_ID = R.drawable.harvest_moon_natsume;
     public static final String DEFAULT_NAME = "Evolution Fresh Organic Super Fruit Greens";
     public static final String DEFAULT_DESCRIPTION = "Here's a satisfying way to get your greens: a fruit and vegetable smoothie packed with goodness including mango puree, spinach, spirulina, chlorella, and Vitamin C. Made with 100% juice and no added sweeteners or artificial flavors.";
@@ -21,7 +22,7 @@ public class EvolutionFreshOrganicSuperFruitGreens extends ColdOther
     public static final double DEFAULT_PRICE_LARGE = 0.25;
 
     public EvolutionFreshOrganicSuperFruitGreens() {
-        super(DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
+        super(ID, DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
                 DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
                 DEFAULT_PRICE_MEDIUM);
     }

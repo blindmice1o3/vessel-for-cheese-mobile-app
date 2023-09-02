@@ -5,6 +5,7 @@ import com.jackingaming.vesselforcheesemobileapp.R;
 public class FeaturedMediumRoastPikePlaceRoast2 extends HotBrewedCoffees {
     public static final String TAG = FeaturedMediumRoastPikePlaceRoast2.class.getSimpleName();
 
+    public static final String ID = "FeaturedMediumRoastPikePlaceRoast2";
     public static final int DEFAULT_IMAGE_RESOURCE_ID = R.drawable.harvest_moon_natsume;
     public static final String DEFAULT_NAME = "Featured Medium Roast Pike Place Roast";
     public static final String DEFAULT_DESCRIPTION = "Well-rounded medium-roasted coffee with subtle notes of cocoa and toasted nuts balancing the smooth mouthfeel.";
@@ -17,7 +18,7 @@ public class FeaturedMediumRoastPikePlaceRoast2 extends HotBrewedCoffees {
     public static final double DEFAULT_PRICE_LARGE = 2.70;
 
     public FeaturedMediumRoastPikePlaceRoast2() {
-        super(DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
+        super(ID, DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
                 DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
                 DEFAULT_PRICE_MEDIUM);
     }

@@ -22,6 +22,7 @@ import java.util.List;
 public class EspressoMacchiato extends Macchiatos {
     public static final String TAG = EspressoMacchiato.class.getSimpleName();
 
+    public static final String ID = "EspressoMacchiato";
     public static final int DEFAULT_IMAGE_RESOURCE_ID = R.drawable.harvest_moon_natsume;
     public static final String DEFAULT_NAME = "Espresso Macchiato";
     public static final String DEFAULT_DESCRIPTION = "Our rich espresso marked with dollop of steamed milk and foam. A European-style classic.";
@@ -44,7 +45,7 @@ public class EspressoMacchiato extends Macchiatos {
     public static final double DEFAULT_PRICE_LARGE = 2.70;
 
     public EspressoMacchiato() {
-        super(DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
+        super(ID, DEFAULT_IMAGE_RESOURCE_ID, DEFAULT_NAME, DEFAULT_DESCRIPTION,
                 DEFAULT_CALORIES, DEFAULT_SUGAR_IN_GRAM, DEFAULT_FAT_IN_GRAM,
                 DEFAULT_PRICE_MEDIUM);
 

@@ -8,6 +8,8 @@ import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkC
 public class Syrup extends FlavorOptions
         implements Incrementable {
     public static final String DEFAULT_TEXT_INIT = "Add Syrups";
+    public static final String ID = "Syrup";
+
     public static final int DEFAULT_QUANTITY_MIN = 0;
     public static final int DEFAULT_QUANTITY_MAX = 12;
 
@@ -77,6 +79,8 @@ public class Syrup extends FlavorOptions
     private int quantity;
 
     public Syrup(Type type, int quantity) {
+        super(ID);
+
         this.type = type;
         this.quantity = quantity;
     }

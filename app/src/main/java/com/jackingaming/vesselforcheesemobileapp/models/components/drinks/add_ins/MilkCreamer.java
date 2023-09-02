@@ -6,6 +6,7 @@ import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkC
 public class MilkCreamer extends AddInsOptions
         implements Granular {
     public static final String DEFAULT_TEXT_INIT = "Add Creamer";
+    public static final String ID = "MilkCreamer";
 
     @Override
     public Amount getAmount() {
@@ -34,6 +35,8 @@ public class MilkCreamer extends AddInsOptions
     private Amount amount;
 
     public MilkCreamer(Type type, Amount amount) {
+        super(ID);
+
         this.type = type;
         this.amount = amount;
     }

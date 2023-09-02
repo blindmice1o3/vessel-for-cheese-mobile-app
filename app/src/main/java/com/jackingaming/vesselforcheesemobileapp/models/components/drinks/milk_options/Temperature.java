@@ -4,6 +4,7 @@ import com.jackingaming.vesselforcheesemobileapp.models.components.drinks.DrinkC
 
 public class Temperature extends MilkOptions {
     public static final String DEFAULT_TEXT_INIT = "Temperature";
+    public static final String ID = "Temperature";
 
     public enum Type {
         WARM, MEDIUM, EXTRA;
@@ -12,6 +13,8 @@ public class Temperature extends MilkOptions {
     private Type type;
 
     public Temperature(Type type) {
+        super(ID);
+
         this.type = type;
     }
 
