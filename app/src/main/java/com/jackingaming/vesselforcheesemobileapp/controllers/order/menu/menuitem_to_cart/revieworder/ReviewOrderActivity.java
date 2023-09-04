@@ -29,7 +29,7 @@ import com.jackingaming.vesselforcheesemobileapp.R;
 import com.jackingaming.vesselforcheesemobileapp.controllers.order.OrderFragment;
 import com.jackingaming.vesselforcheesemobileapp.models.LocalDateTimeTypeAdapter;
 import com.jackingaming.vesselforcheesemobileapp.models.MenuItemInfo;
-import com.jackingaming.vesselforcheesemobileapp.models.MenuItemInfoListWrapper;
+import com.jackingaming.vesselforcheesemobileapp.models.Order;
 import com.jackingaming.vesselforcheesemobileapp.models.components.Granular;
 import com.jackingaming.vesselforcheesemobileapp.models.components.GranularTwoOptions;
 import com.jackingaming.vesselforcheesemobileapp.models.components.Incrementable;
@@ -115,7 +115,14 @@ public class ReviewOrderActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Log.i(TAG, "[Continue] clicked");
 
-                postOrder();
+                Order order = new Order(
+                        LocalDateTime.now(),
+                        convertToListOfMenuItemInfo(
+                                OrderFragment.getInstance().getOrder()
+                        )
+                );
+
+                postOrder(order);
 
 //                StringRequest stringRequest =
 //                        new StringRequest(
@@ -150,31 +157,16 @@ public class ReviewOrderActivity extends AppCompatActivity {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    private void postOrder() {
+    private void postOrder(Order order) {
         Log.i(TAG, "postOrder()");
 
         Gson gson = new GsonBuilder()
                 .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeTypeAdapter())
                 .create();
-        MenuItemInfoListWrapper listWrapper = null;
-        listWrapper = new MenuItemInfoListWrapper(
-                LocalDateTime.now(),
-                convertToListOfMenuItemInfo(
-                        OrderFragment.getInstance().getOrder()
-                )
-        );
-        Log.e(TAG, listWrapper.getCreatedOn().toString());
-        String json = gson.toJson(listWrapper);
-        Log.e(TAG, json);
+        String json = gson.toJson(order);
         JSONObject jsonObject = null;
         try {
             jsonObject = new JSONObject(json);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        try {
-
-            Log.e(TAG, "TARGET: " + jsonObject.get("createdOn"));
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -186,7 +178,7 @@ public class ReviewOrderActivity extends AppCompatActivity {
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        MenuItemInfoListWrapper responsePayload = gson.fromJson(response.toString(), MenuItemInfoListWrapper.class);
+                        Order responsePayload = gson.fromJson(response.toString(), Order.class);
 
                         LocalDateTime createdOnPayload = responsePayload.getCreatedOn();
                         Log.e(TAG, createdOnPayload.toString());
