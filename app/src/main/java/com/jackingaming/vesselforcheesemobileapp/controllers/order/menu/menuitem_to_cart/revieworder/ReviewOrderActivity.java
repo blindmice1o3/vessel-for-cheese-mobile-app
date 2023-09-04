@@ -1,11 +1,13 @@
 
 package com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem_to_cart.revieworder;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
@@ -25,6 +27,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.jackingaming.vesselforcheesemobileapp.R;
 import com.jackingaming.vesselforcheesemobileapp.controllers.order.OrderFragment;
+import com.jackingaming.vesselforcheesemobileapp.models.LocalDateTimeTypeAdapter;
 import com.jackingaming.vesselforcheesemobileapp.models.MenuItemInfo;
 import com.jackingaming.vesselforcheesemobileapp.models.MenuItemInfoListWrapper;
 import com.jackingaming.vesselforcheesemobileapp.models.components.Granular;
@@ -40,6 +43,7 @@ import com.jackingaming.vesselforcheesemobileapp.models.menu_items.drinks.NotHan
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -106,6 +110,7 @@ public class ReviewOrderActivity extends AppCompatActivity {
 
         ExtendedFloatingActionButton fabContinue = findViewById(R.id.fab);
         fabContinue.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View view) {
                 Log.i(TAG, "[Continue] clicked");
@@ -144,19 +149,32 @@ public class ReviewOrderActivity extends AppCompatActivity {
         });
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void postOrder() {
         Log.i(TAG, "postOrder()");
 
-        Gson gson = new GsonBuilder().create();
-        MenuItemInfoListWrapper listWrapper = new MenuItemInfoListWrapper(
+        Gson gson = new GsonBuilder()
+                .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeTypeAdapter())
+                .create();
+        MenuItemInfoListWrapper listWrapper = null;
+        listWrapper = new MenuItemInfoListWrapper(
+                LocalDateTime.now(),
                 convertToListOfMenuItemInfo(
                         OrderFragment.getInstance().getOrder()
                 )
         );
+        Log.e(TAG, listWrapper.getCreatedOn().toString());
         String json = gson.toJson(listWrapper);
+        Log.e(TAG, json);
         JSONObject jsonObject = null;
         try {
             jsonObject = new JSONObject(json);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        try {
+
+            Log.e(TAG, "TARGET: " + jsonObject.get("createdOn"));
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -168,19 +186,10 @@ public class ReviewOrderActivity extends AppCompatActivity {
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        // Converts JSON string into MenuItemInfoListWrapper object
-                        MenuItemInfoListWrapper menuItemInfoListWrapper = gson.fromJson(response.toString(), MenuItemInfoListWrapper.class);
+                        MenuItemInfoListWrapper responsePayload = gson.fromJson(response.toString(), MenuItemInfoListWrapper.class);
 
-                        // TODO: remove below
-                        List<MenuItemInfo> menuItemInfosFromServer = menuItemInfoListWrapper.getMenuItemInfos();
-                        for (int i = 0; i < menuItemInfosFromServer.size(); i++) {
-                            MenuItemInfo menuItemInfoFromServer = menuItemInfosFromServer.get(i);
-
-                            Log.e(TAG, i + ". " + menuItemInfoFromServer.getId() + " [" + menuItemInfoFromServer.getSize() + "]");
-                            for (String customization : menuItemInfoFromServer.getMenuItemCustomizations()) {
-                                Log.e(TAG, "    * " + customization);
-                            }
-                        }
+                        LocalDateTime createdOnPayload = responsePayload.getCreatedOn();
+                        Log.e(TAG, createdOnPayload.toString());
 
                         Log.i(TAG, "onResponse(JSONObject) clearing local Order from OrderFragment.");
                         OrderFragment.getInstance().getOrder().clear();
