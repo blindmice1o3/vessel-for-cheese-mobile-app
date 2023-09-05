@@ -122,7 +122,11 @@ public class ReviewOrderActivity extends AppCompatActivity {
                         )
                 );
 
-                postOrder(order);
+                try {
+                    postOrder(order);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
 
 //                StringRequest stringRequest =
 //                        new StringRequest(
@@ -157,24 +161,18 @@ public class ReviewOrderActivity extends AppCompatActivity {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    private void postOrder(Order order) {
-        Log.i(TAG, "postOrder()");
+    private void postOrder(Order order) throws JSONException {
+        Log.i(TAG, "postOrder(Order)");
 
         Gson gson = new GsonBuilder()
                 .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeTypeAdapter())
                 .create();
-        String json = gson.toJson(order);
-        JSONObject jsonObject = null;
-        try {
-            jsonObject = new JSONObject(json);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        String orderAsJsonString = gson.toJson(order);
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
                 Request.Method.POST,
                 URL_APPEND_NEW_ORDER,
-                jsonObject,
+                new JSONObject(orderAsJsonString),
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
