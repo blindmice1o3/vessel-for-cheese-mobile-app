@@ -51,8 +51,7 @@ import java.util.Map;
 public class ReviewOrderActivity extends AppCompatActivity {
     public static final String TAG = ReviewOrderActivity.class.getSimpleName();
     public static final String EXTRA_ORDER = "com.jackingaming.vesselforcheesemobileapp.controllers.order.menu.menuitem_to_cart.revieworder.order";
-
-    public static final String URL_ORDER = "http://192.168.1.143:8080/orders";
+    public static final String URL_ORDER = "http://192.168.1.143:8080/v1/orders";
     private RequestQueue requestQueue;
 
     private CollapsingToolbarLayout collapsingToolbarLayout;
